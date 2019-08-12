@@ -1,4 +1,4 @@
-# identity-wallet-mobile
+# Identity wallet mobile
 The React Native mobile application for SelfKey.
 
 ## Setup dev environment
