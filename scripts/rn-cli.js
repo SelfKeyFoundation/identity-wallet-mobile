@@ -1,9 +1,10 @@
 const { spawnSync } = require('child_process');
-const linkRnPackages = require('./link-rn-packages');
+const path = require('path');
+// const Util = require('./link-rn-packages');
 
-linkRnPackages(__dirname + '/packages/identity-wallet-mobile');
+// Util.makeSymlinks(path.resolve('./packages/identity-wallet-mobile'), __dirname);
 
-spawnSync('./node_modules/.bin/react-native', process.argv.slice(2), {
+spawnSync(path.resolve('./node_modules/.bin/react-native'), process.argv.slice(2), {
   stdio: 'inherit',
-  cwd: './packages/identity-wallet-mobile'
+  cwd: path.resolve('./packages/identity-wallet-mobile')
 });

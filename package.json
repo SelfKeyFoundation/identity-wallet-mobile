@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node ./scripts/rn-cli start",
     "android": "node ./scripts/rn-cli run-android",
-    "ios": "node ./scripts/rn-cli run-ios"
+    "ios": "node ./scripts/rn-cli run-ios",
+    "storybook": "yarn workspace @selfkey/mobile-ui-storybook storybook",
+    "storybook:start": "yarn workspace @selfkey/mobile-ui-storybook start",
+    "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
+    "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios"
   },
   "author": "",
   "license": "ISC",

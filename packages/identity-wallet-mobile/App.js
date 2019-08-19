@@ -26,10 +26,13 @@ import {
 
 import Test from '@selfkey/blockchain/util/test';
 
+import { renderComponent } from '@selfkey/mobile-ui';
+
 const App = () => {
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
+      
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -42,6 +45,7 @@ const App = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              { renderComponent() }
               <Text style={styles.sectionTitle}>{Test.getValue()}</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this

@@ -1,4 +1,3 @@
-
 /**
  * Metro configuration for React Native
  * https://github.com/facebook/react-native
@@ -7,14 +6,13 @@
  */
 const path = require('path');
 
-require('./link-workspaces.js');
-
 module.exports = {
   watchFolders: [
     path.resolve(__dirname, "../mobile-ui"),
     path.resolve(__dirname, "../blockchain"),
     path.resolve(__dirname, "../identity-wallet-core"),
     path.resolve(__dirname, "../../node_modules"),
+    path.resolve(__dirname, "./storybook"),
   ],
   transformer: {
     getTransformOptions: async () => ({

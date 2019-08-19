@@ -1,19 +1,18 @@
 {
-  "name": "identity-wallet-mobile",
+  "name": "@selfkey/mobile-ui-storybook",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint .",
     "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
-    "@selfkey/blockchain": "1.0.0",
-    "@selfkey/mobile-ui": "1.0.0",
     "react": "16.8.6",
-    "react-native": "^0.60.5"
+    "react-native": "0.60.5"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
@@ -22,12 +21,12 @@
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addons": "^5.1.11",
-    "@storybook/react-native": "^5.2.0-alpha.36",
-    "@storybook/react-native-server": "^5.2.0-alpha.36",
-    "babel-jest": "24.8.0",
+    "@storybook/react-native": "^5.1.11",
+    "@storybook/react-native-server": "^5.1.11",
+    "babel-jest": "24.9.0",
     "babel-loader": "^8.0.6",
     "eslint": "6.1.0",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "metro-bundler-config-yarn-workspaces": "^1.0.3",
     "metro-react-native-babel-preset": "0.54.1",
     "react-dom": "^16.8.6",
