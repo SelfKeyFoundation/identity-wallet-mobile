@@ -12,6 +12,17 @@
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
     "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios"
   },
+  "nohoist": [
+    "**/react-native",
+    "**/react-native-reanimated",
+    "**/react-native-swipe-gestures",
+    "**/@react-native-community/**",
+    "**/@react-native-community/cli",
+    "**/@react-native-community/cli-platform-ios",
+    "**/@react-native-community/cli-platform-android",
+    "**/@react-native-firebase/app/",
+    "**/@react-native-firebase/**"
+  ],
   "author": "",
   "license": "ISC",
   "workspaces": ["packages/*"]
