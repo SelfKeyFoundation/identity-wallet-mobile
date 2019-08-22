@@ -21,7 +21,8 @@
     "**/@react-native-community/cli-platform-ios",
     "**/@react-native-community/cli-platform-android",
     "**/@react-native-firebase/app/",
-    "**/@react-native-firebase/**"
+    "**/@react-native-firebase/**",
+    "**/jest-html-reporter"
   ],
   "author": "",
   "license": "ISC",
