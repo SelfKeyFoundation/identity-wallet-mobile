@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./scripts/rn-cli start",
+    "start": "yarn workspace @selfkey/identity-wallet-mobile start",
     "android": "node ./scripts/rn-cli run-android",
     "ios": "node ./scripts/rn-cli run-ios",
     "storybook": "yarn workspace @selfkey/mobile-ui-storybook storybook",
     "storybook:start": "yarn workspace @selfkey/mobile-ui-storybook start",
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
-    "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios"
+    "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios",
+    "test:wallet": "yarn workspace @selfkey/identity-wallet-mobile test",
+    "test:ui": "yarn workspace @selfkey/mobile-ui test",
+    "test:wallet-core": "yarn workspace @selfkey/identity-wallet-core test",
+    "test": "yarn test:wallet && yarn test:ui"
   },
   "nohoist": [
     "**/react-native",
@@ -19,6 +23,7 @@
     "**/@react-native-community/**",
     "**/@react-native-community/cli",
     "**/@react-native-community/cli-platform-ios",
+    "**/@react-native-community/cli-tools",
     "**/@react-native-community/cli-platform-android",
     "**/@react-native-firebase/app/",
     "**/@react-native-firebase/**",
@@ -26,5 +31,10 @@
   ],
   "author": "",
   "license": "ISC",
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/jest": "^24.0.18"
+  }
 }

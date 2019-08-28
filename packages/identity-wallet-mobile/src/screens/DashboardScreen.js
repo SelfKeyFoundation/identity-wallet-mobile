@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Paragraph } from '@selfkey/mobile-ui/Paragraph';
 
 export default function DashboardScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Dashboard Screen (Dummy)</Text>
+      <Paragraph>Dashboard Screen (Dummy)</Paragraph>
     </View>
   );
 }
