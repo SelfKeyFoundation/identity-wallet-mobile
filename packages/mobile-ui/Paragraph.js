@@ -1,14 +1,6 @@
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import styled from 'styled-components/native';
 
-export function Paragraph({ children }) {
-  return <Text>Paragraph: { children }</Text>;
-}
+export const Paragraph = styled.Text`
+  color: red;
+`;
