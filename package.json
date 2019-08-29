@@ -11,6 +11,7 @@
     "storybook:start": "yarn workspace @selfkey/mobile-ui-storybook start",
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
     "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios",
+    "lint:wallet": "yarn workspace @selfkey/identity-wallet-mobile lint",
     "test:wallet": "yarn workspace @selfkey/identity-wallet-mobile test",
     "test:ui": "yarn workspace @selfkey/mobile-ui test",
     "test:wallet-core": "yarn workspace @selfkey/identity-wallet-core test",
