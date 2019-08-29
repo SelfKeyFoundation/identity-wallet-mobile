@@ -16,7 +16,7 @@
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/runtime": "7.5.5",
-    "@react-native-community/eslint-config": "0.0.3",
+    "@selfkey/eslint-config": "1.0.0",
     "babel-jest": "24.8.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
