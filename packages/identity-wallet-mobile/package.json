@@ -7,6 +7,7 @@
     "android": "react-native run-android",
     "test": "jest",
     "lint": "eslint .",
+    "lint:style": "stylelint './src/**/*.js'",
     "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
@@ -44,6 +45,10 @@
     "metro-bundler-config-yarn-workspaces": "^1.0.3",
     "metro-react-native-babel-preset": "0.54.1",
     "react-dom": "^16.8.6",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.8.6",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0"
   }
 }
