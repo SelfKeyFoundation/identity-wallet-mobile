@@ -12,10 +12,12 @@
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
     "storybook:ios": "yarn workspace @selfkey/mobile-ui-storybook ios",
     "lint:wallet": "yarn workspace @selfkey/identity-wallet-mobile lint",
+    "lint:ui": "yarn workspace @selfkey/mobile-ui lint",
     "test:wallet": "yarn workspace @selfkey/identity-wallet-mobile test",
     "test:ui": "yarn workspace @selfkey/mobile-ui test",
     "test:wallet-core": "yarn workspace @selfkey/identity-wallet-core test",
-    "test": "yarn test:wallet && yarn test:ui"
+    "test": "yarn test:wallet && yarn test:ui",
+    "test:coverage": "yarn test:wallet --coverage && yarn test:ui --coverage"
   },
   "nohoist": [
     "**/react-native",
