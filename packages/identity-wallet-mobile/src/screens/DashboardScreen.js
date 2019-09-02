@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Paragraph } from '@selfkey/mobile-ui/Paragraph';
+import { Paragraph } from '@selfkey/mobile-ui/lib/Paragraph';
 
 export default function DashboardScreen() {
   return (
