@@ -7,6 +7,7 @@
     "start": "yarn workspace @selfkey/identity-wallet-mobile start",
     "android": "node ./scripts/rn-cli run-android",
     "ios": "node ./scripts/rn-cli run-ios",
+    "build:android": "yarn workspace @selfkey/identity-wallet-mobile build:android",
     "storybook": "yarn workspace @selfkey/mobile-ui-storybook storybook",
     "storybook:start": "yarn workspace @selfkey/mobile-ui-storybook start",
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
