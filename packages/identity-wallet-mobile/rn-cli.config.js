@@ -5,4 +5,4 @@ const options = {
   nodeModules: path.resolve(__dirname, '..', '..'),
 }
 
-moodule.exports = getConfig(__dirname, options);
+module.exports = getConfig(__dirname, options);
