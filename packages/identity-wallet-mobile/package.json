@@ -5,11 +5,12 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "build:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "test": "jest",
     "lint": "eslint .",
     "lint:style": "stylelint './src/**/*.js'",
-    "storybook": "start-storybook -p 7007"
+    "storybook": "start-storybook -p 7007",
+    "flow": "flow"
   },
   "dependencies": {
     "@selfkey/blockchain": "1.0.0",
@@ -41,6 +42,8 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "6.1.0",
+    "flow-bin": "^0.106.3",
+    "flow-typed": "^2.6.1",
     "jest": "24.8.0",
     "jest-enzyme": "^7.1.0",
     "metro-bundler-config-yarn-workspaces": "^1.0.3",
