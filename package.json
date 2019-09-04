@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "yarn workspace @selfkey/identity-wallet-mobile start",
-    "android": "yarn workspace @selfkey/identity-wallet-mobile ios",
+    "android": "yarn workspace @selfkey/identity-wallet-mobile android",
     "android:release": "yarn workspace @selfkey/identity-wallet-mobile android --variant=release",
     "ios": "yarn workspace @selfkey/identity-wallet-mobile ios",
     "build:android": "node ./scripts/build.js --platform=android",
