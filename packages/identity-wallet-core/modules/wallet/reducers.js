@@ -1,0 +1,18 @@
+// @flow
+import { LOAD_WALLET } from './types';
+import { LoadWalletAction } from './actions';
+import { createReducer } from '../../redux/reducers';
+import { initialState, WalletState } from './state';
+
+export function loadWalletReducer(state: WalletState, action: LoadWalletAction): WalletState {
+  return {
+    ...state,
+    isLoading: true,
+  };
+}
+
+export const reducers = {
+  [LOAD_WALLET]: loadWalletReducer,
+};
+
+export const walletReducer = createReducer(initialState, reducers);

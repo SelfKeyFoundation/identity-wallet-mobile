@@ -1,9 +1,10 @@
 import { applyMiddleware } from 'redux';
-import reduxLogger from 'redux-logger';
 
 const middlewares = [];
 
-middlewares.push(reduxLogger);
+export function addMiddleware(mw) {
+  middlewares.push(mw);
+}
 
 export function getMiddlewareEnhancer() {
   return applyMiddleware(
