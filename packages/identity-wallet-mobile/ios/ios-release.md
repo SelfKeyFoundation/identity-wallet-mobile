@@ -14,7 +14,7 @@ You need follow these steps:
 You can do it in xcode or by using react-native cli.
 
 - To do it using xcode you need to go to Product->Build
-- To performn the action with react-native cli you need to run `react-native run-ios --configuration Release``
+- To performn the action with react-native cli you need to run `react-native run-ios --configuration Release`
 
 ## Getting the artifacts
 
