@@ -5,5 +5,4 @@ rm -rf $TMPDIR/haste-map-react-native-packager-*
 rm -rf node_modules/st
 rm -rf packages/*/node_modules
 
-
-yarn start --reset-cache
+# yarn start --reset-cache

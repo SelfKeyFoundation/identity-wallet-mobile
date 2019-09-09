@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "yarn workspace @selfkey/identity-wallet-mobile start",
-    "android": "node ./scripts/rn-cli run-android",
-    "ios": "node ./scripts/rn-cli run-ios",
+    "android": "yarn workspace @selfkey/identity-wallet-mobile android",
+    "android:release": "yarn workspace @selfkey/identity-wallet-mobile android --variant=release",
+    "ios": "yarn workspace @selfkey/identity-wallet-mobile ios",
+    "build:android": "node ./scripts/build.js --platform=android",
     "storybook": "yarn workspace @selfkey/mobile-ui-storybook storybook",
     "storybook:start": "yarn workspace @selfkey/mobile-ui-storybook start",
     "storybook:android": "yarn workspace @selfkey/mobile-ui-storybook android",
@@ -21,7 +23,8 @@
     "test": "yarn test:wallet && yarn test:ui",
     "lint": "yarn lint:wallet && yarn lint:ui",
     "lint:style": "yarn lint:stylewallet && yarn lint:style:ui",
-    "test:coverage": "yarn test:wallet --coverage && yarn test:ui --coverage"
+    "test:coverage": "yarn test:wallet --coverage && yarn test:ui --coverage",
+    "flow:wallet": "yarn workspace @selfkey/identity-wallet-mobile flow"
   },
   "nohoist": [
     "**/react-native",
@@ -41,7 +44,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "postinstall": "./fixdeps && npx jetify",
   "devDependencies": {
-    "@types/jest": "^24.0.18"
+    "@types/jest": "^24.0.18",
+    "jetifier": "^1.6.4",
+    "yargs": "^14.0.0"
   }
 }
