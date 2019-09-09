@@ -7,6 +7,8 @@
     "start": "yarn workspace @selfkey/identity-wallet-mobile start",
     "android": "yarn workspace @selfkey/identity-wallet-mobile android",
     "android:release": "yarn workspace @selfkey/identity-wallet-mobile android --variant=release",
+    "bundle:ios": "yarn workspace @selfkey/identity-wallet-mobile bundle:ios",
+    "bundle:android": "yarn workspace @selfkey/identity-wallet-mobile bundle:android",
     "ios": "yarn workspace @selfkey/identity-wallet-mobile ios",
     "build:android": "node ./scripts/build.js --platform=android",
     "storybook": "yarn workspace @selfkey/mobile-ui-storybook storybook",
