@@ -17,5 +17,8 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "dependencies": {
+    "redux-logger": "^3.0.6"
   }
 }

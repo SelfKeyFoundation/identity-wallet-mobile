@@ -1,3 +1,3 @@
 
 export { connect } from './connect';
-export { StoreProvider } from './store';
+export { createStoreProvider } from './store';

@@ -1,3 +1,1 @@
-export function connect(mapStateToProps) {
-  return Wrapper => Wrapper;
-}
+export { connect } from 'react-redux';
