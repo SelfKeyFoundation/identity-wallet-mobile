@@ -1,16 +1,14 @@
 // @flow
-import {
-  LOAD_WALLET,
-} from './types';
+import * as WalletTypes from './types';
 
 // action types
 export type LoadWalletAction = {
-  type: LOAD_WALLET,
+  type: WalletTypes.LOAD_WALLET,
 };
 
 // actions
 export function loadWallet(): LoadWalletAction {
   return {
-    type: LOAD_WALLET,
+    type: WalletTypes.LOAD_WALLET,
   };
 }

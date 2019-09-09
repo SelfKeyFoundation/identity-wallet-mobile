@@ -1,5 +1,5 @@
 // @flow
-import { LOAD_WALLET } from './types';
+import * as WalletTypes from './types';
 import { LoadWalletAction } from './actions';
 import { createReducer } from '../../redux/reducers';
 import { initialState, WalletState } from './state';
@@ -12,7 +12,7 @@ export function loadWalletReducer(state: WalletState, action: LoadWalletAction):
 }
 
 export const reducers = {
-  [LOAD_WALLET]: loadWalletReducer,
+  [WalletTypes.LOAD_WALLET]: loadWalletReducer,
 };
 
 export const walletReducer = createReducer(initialState, reducers);
