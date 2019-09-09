@@ -1,3 +1,5 @@
+// @flow
+
 export type WalletState = {
   isLoading: boolean
 };

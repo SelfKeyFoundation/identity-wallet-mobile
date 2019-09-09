@@ -1,3 +1,4 @@
+// @flow
 import { LOAD_WALLET } from './types';
 
 export type LoadWalletAction = {
