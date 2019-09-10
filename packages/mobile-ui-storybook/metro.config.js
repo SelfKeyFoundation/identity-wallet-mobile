@@ -10,7 +10,7 @@ module.exports = {
   watchFolders: [
     path.resolve(__dirname, "../mobile-ui"),
     path.resolve(__dirname, "../blockchain"),
-    path.resolve(__dirname, "../identity-wallet-core"),
+    path.resolve(__dirname, "../wallet-core"),
     path.resolve(__dirname, "../../node_modules"),
     path.resolve(__dirname, "./storybook"),
   ],

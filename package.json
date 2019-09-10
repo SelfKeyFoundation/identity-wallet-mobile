@@ -21,7 +21,7 @@
     "lint:style:ui": "yarn workspace @selfkey/mobile-ui lint:style",
     "test:wallet": "yarn workspace @selfkey/identity-wallet-mobile test",
     "test:ui": "yarn workspace @selfkey/mobile-ui test",
-    "test:wallet-core": "yarn workspace @selfkey/identity-wallet-core test",
+    "test:wallet-core": "yarn workspace @selfkey/wallet-core test",
     "test": "yarn test:wallet && yarn test:ui",
     "lint": "yarn lint:wallet && yarn lint:ui",
     "lint:style": "yarn lint:stylewallet && yarn lint:style:ui",
