@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "release:ios": "react-native run-ios --configuration Release",
     "bundle:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/IdentityWalletMobile/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
