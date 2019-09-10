@@ -1,5 +1,14 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import Navigation from './navigation';
+import './setup-redux';
+import { createStoreProvider } from '@selfkey/wallet-core/redux';
 
-export default Navigation;
+const Provider = createStoreProvider();
+
+export default function App() {
+  return (
+    <Provider>
+      <Navigation />
+    </Provider>
+  );
+}

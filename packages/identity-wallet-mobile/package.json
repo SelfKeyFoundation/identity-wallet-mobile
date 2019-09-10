@@ -17,6 +17,7 @@
   "dependencies": {
     "@selfkey/blockchain": "1.0.0",
     "@selfkey/mobile-ui": "1.0.0",
+    "@selfkey/wallet-core": "1.0.0",
     "babel-plugin-styled-components": "^1.10.6",
     "react": "16.8.6",
     "react-native": "^0.60.5",
