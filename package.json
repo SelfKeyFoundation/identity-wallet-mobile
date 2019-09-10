@@ -26,7 +26,8 @@
     "lint": "yarn lint:wallet && yarn lint:ui",
     "lint:style": "yarn lint:stylewallet && yarn lint:style:ui",
     "test:coverage": "yarn test:wallet --coverage && yarn test:ui --coverage",
-    "flow:wallet": "yarn workspace @selfkey/identity-wallet-mobile flow"
+    "flow:wallet": "yarn workspace @selfkey/identity-wallet-mobile flow",
+    "postinstall": "sh fixdeps.sh && npx jetify"
   },
   "nohoist": [
     "**/react-native",
@@ -46,7 +47,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "postinstall": "./fixdeps && npx jetify",
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "jetifier": "^1.6.4",
