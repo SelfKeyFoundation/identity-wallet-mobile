@@ -1,6 +1,6 @@
 import { registerModule } from './redux';
 import modules from './modules';
 
-for (const module of modules) {
-  registerModule(module);
-}
+Object.keys(modules).forEach(key => {
+  registerModule(key, modules[key]);
+});

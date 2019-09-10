@@ -10,15 +10,23 @@
   "license": "ISC",
   "peerDependencies": {
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-native": "*"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "dependencies": {
-    "redux-logger": "^3.0.6"
+    "@babel/plugin-transform-flow-strip-types": "^7.4.4",
+    "react-native": "^0.60.5",
+    "react-redux": "^7.1.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.5",
+    "redux-thunk": "^2.3.0"
   }
 }

@@ -4,6 +4,7 @@ import { LoadWalletAction } from './actions';
 import { createReducer } from '../../redux/reducers';
 import { initialState, WalletState } from './state';
 
+
 export function loadWalletReducer(state: WalletState, action: LoadWalletAction): WalletState {
   return {
     ...state,
@@ -15,4 +16,4 @@ export const reducers = {
   [WalletTypes.LOAD_WALLET]: loadWalletReducer,
 };
 
-export const walletReducer = createReducer(initialState, reducers);
+export default createReducer(initialState, reducers);
