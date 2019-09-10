@@ -12,3 +12,9 @@ export function loadWallet(): LoadWalletAction {
     type: WalletTypes.LOAD_WALLET,
   };
 }
+
+export function setWallet(): SetWalletAction {
+  return {
+    type: WalletTypes.SET_WALLET,
+  };
+}
