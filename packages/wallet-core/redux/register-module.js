@@ -1,8 +1,12 @@
 import { addReducer } from './reducers';
 import { addSaga } from './sagas';
-import modules from '../modules';
 
-export function registerModule({ reducers, sagas }) {
-  addReducer(reducers);
-  addSaga(sagas);
+export function registerModule(name, { reducers, sagas }) {
+  if (reducers) {
+    addReducer(name, reducers);
+  }
+
+  if (sagas) {
+    addSaga(sagas);
+  }
 }

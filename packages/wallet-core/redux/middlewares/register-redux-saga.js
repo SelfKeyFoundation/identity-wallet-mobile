@@ -1,4 +1,8 @@
 import reduxSaga from 'redux-saga';
-import { addMiddleware } from './middlewres';
+import { addMiddleware } from '../middlewares';
+
+export {
+  reduxSaga,
+};
 
 addMiddleware(reduxSaga);

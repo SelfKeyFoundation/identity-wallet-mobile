@@ -1,4 +1,8 @@
 import reduxThunk from 'redux-thunk';
-import { addMiddleware } from './middlewres';
+import { addMiddleware } from '../middlewares';
+
+export {
+  reduxThunk,
+};
 
 addMiddleware(reduxThunk);

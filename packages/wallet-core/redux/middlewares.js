@@ -1,6 +1,6 @@
 import { applyMiddleware } from 'redux';
 
-const middlewares = [];
+export const middlewares = [];
 
 export function addMiddleware(mw) {
   middlewares.push(mw);

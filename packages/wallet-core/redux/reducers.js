@@ -9,7 +9,7 @@ export function addReducer(name, reducer) {
 
 export function createReducer(initialState, reducerMap) {
   const defaultReducer = state => state;
-  return (state = initialState, action) => {
+  return function (state = initialState, action) {
     const reducer = reducerMap[action.type || 'default'] || defaultReducer;
 
     if (reducer) {
