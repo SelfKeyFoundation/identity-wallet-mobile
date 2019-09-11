@@ -21,9 +21,15 @@
     "lint:style:ui": "yarn workspace @selfkey/mobile-ui lint:style",
     "test:wallet": "yarn workspace @selfkey/identity-wallet-mobile test",
     "test:ui": "yarn workspace @selfkey/mobile-ui test",
+<<<<<<< HEAD
     "test:wallet-core": "yarn workspace @selfkey/identity-wallet-core test",
     "test": "yarn test:wallet && yarn test:ui",
     "lint": "yarn lint:wallet && yarn lint:ui",
+=======
+    "test:wallet-core": "yarn workspace @selfkey/wallet-core test",
+    "test": "yarn test:wallet && yarn test:wallet-core",
+    "lint": "yarn lint:wallet",
+>>>>>>> 3a1eed6... Initial setup for CircleCI
     "lint:style": "yarn lint:stylewallet && yarn lint:style:ui",
     "test:coverage": "yarn test:wallet --coverage && yarn test:ui --coverage",
     "flow:wallet": "yarn workspace @selfkey/identity-wallet-mobile flow"
