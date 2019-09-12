@@ -1,19 +1,34 @@
-// @flow
-import * as WalletTypes from './types';
-import { LoadWalletAction } from './actions';
+
 import { createReducer } from '../../redux/reducers';
-import { initialState, WalletState } from './state';
+import walletTypes from './types';
 
+export const initialState = {
+  isLoading: false,
+  wallet: null,
+};
 
-export function loadWalletReducer(state: WalletState, action: LoadWalletAction): WalletState {
+function setWalletLoadingReducer(state, action) {
   return {
     ...state,
-    isLoading: true,
+    isLoading: action.payload.isLoading,
   };
 }
 
-export const reducers = {
-  [WalletTypes.LOAD_WALLET]: loadWalletReducer,
+function setWalletReducer(state, action) {
+  return {
+    ...state,
+    wallet: action.payload,
+  };
+}
+
+export const walletReducers = {
+  setWalletLoadingReducer,
+  setWalletReducer,
 };
 
-export default createReducer(initialState, reducers);
+const reducersMap = {
+  [walletTypes.SET_WALLET_LOADING]: walletReducers.setWalletLoadingReducer,
+  [walletTypes.SET_WALLET]: walletReducers.setWalletReducer,
+};
+
+export default createReducer(initialState, reducersMap);

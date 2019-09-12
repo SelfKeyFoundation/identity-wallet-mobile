@@ -1,20 +1,16 @@
 // @flow
-import * as WalletTypes from './types';
+import walletTypes from './types';
 
-// action types
-export type LoadWalletAction = {
-  type: WalletTypes.LOAD_WALLET,
+export const walletActions = {
+  setLoading: (isLoading) => ({
+    type: walletTypes.SET_WALLET_LOADING,
+    payload: { isLoading },
+  }),
+
+  setWallet: (wallet) => ({
+    type: walletTypes.SET_WALLET,
+    payload: wallet,
+  }),
 };
 
-// actions
-export function loadWallet(): LoadWalletAction {
-  return {
-    type: WalletTypes.LOAD_WALLET,
-  };
-}
-
-export function setWallet(): SetWalletAction {
-  return {
-    type: WalletTypes.SET_WALLET,
-  };
-}
+export default walletActions;

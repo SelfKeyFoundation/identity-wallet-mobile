@@ -1,7 +1,11 @@
-import reducers from './reducers';
-import sagas from './sagas';
+import reducer, { walletReducers, initialState } from './reducers';
+import actions from './actions';
+import operations from './operations';
 
 export default {
-  reducers,
-  sagas,
+  reducer,
+  reducers: walletReducers,
+  actions,
+  operations,
+  initialState,
 };
