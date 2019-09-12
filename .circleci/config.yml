@@ -1,0 +1,79 @@
+version: 2
+aliases:
+    - &cache_version '2'
+    - &step_prepare_cache_buster
+      run:
+          name: Prepare Cache Buster
+          command: echo ${CACHE_VERSION} > /tmp/cache_buster
+    - &step_setup_nvm
+      run:
+          name: Setup NVM
+          command: |
+              export NODE_VERSION=$(cat .nvmrc)
+              curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash -s -- --no-use
+              echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+              echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+    - &step_restore_cache_mac
+      restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+              - yarn-packages-mac-{{ checksum "/tmp/cache_buster" }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+              - yarn-packages-mac-{{ checksum "/tmp/cache_buster" }}-{{ .Branch }}
+              - yarn-packages-mac-{{ checksum "/tmp/cache_buster" }}}-master
+              - yarn-packages-mac-{{ checksum "/tmp/cache_buster" }}-
+    - &step_save_cache_mac
+      save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-mac-{{ checksum "/tmp/cache_buster" }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+              - node_modules/
+    - &step_restore_cache
+      restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+              - yarn-packages-{{ checksum "/tmp/cache_buster" }}-{{ .Branch }}
+              - yarn-packages-{{ checksum "/tmp/cache_buster" }}}-master
+              - yarn-packages-{{ checksum "/tmp/cache_buster" }}-
+    - &step_save_cache
+      save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "/tmp/cache_buster" }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+              - node_modules/
+    - &step_yarn_upgrade
+      run:
+          name: Upgrade Yarn
+          command: npm install -g yarn@latest
+
+jobs:
+    'unit-test':
+        docker: &DOCKERIMAGE
+            - image: circleci/node:10.16.3-stretch-browsers
+        environment:
+            CACHE_VERSION: *cache_version
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: /tmp/linux
+            - *step_prepare_cache_buster
+            - *step_restore_cache
+            - run:
+                  name: Install OS Dependecies
+                  command: |
+                      sudo apt-get update
+                      sudo apt-get install build-essential
+            - run:
+                  name: Install Node Packages
+                  command: yarn install
+            - run:
+                  name: Unit Tests
+                  command: yarn test
+            - store_artifacts:
+                  path: dist
+            - *step_save_cache
+
+workflows:
+    version: 2
+    workflow1:
+        jobs:
+            - 'unit-test'
