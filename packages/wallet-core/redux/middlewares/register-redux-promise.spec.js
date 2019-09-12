@@ -1,4 +1,4 @@
-import {reduxPromise} from './register-redux-saga';
+import {reduxPromise} from './register-redux-promise';
 import { middlewares } from '../middlewares';
 
 describe('middlewares', () => {
