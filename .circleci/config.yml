@@ -1,6 +1,23 @@
 version: 2
+executors:
+  android-executor:
+    resource_class: large
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      TERM: dumb
+      _JAVA_OPTIONS: "-Xmx3072m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072m -Dfile.encoding=UTF-8"'
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+
+  node8-executor:
+    docker:
+      - image: circleci/openjdk:8-node-browsers
+
 aliases:
     - &cache_version '2'
+    - &cache_version_mac '2_mac'
     - &step_prepare_cache_buster
       run:
           name: Prepare Cache Buster
@@ -45,6 +62,39 @@ aliases:
           name: Upgrade Yarn
           command: npm install -g yarn@latest
 
+    - &restore_pod_cache
+        restore_cache:
+            keys:
+                - ios-pods-{{ checksum "./packages/identity-wallet-mobile/ios/Podfile.lock" }}
+    - &fetch_pods
+        run:
+            name: Fetch CocoaPods
+            command: |
+                # sudo gem uninstall cocoapods
+                # sudo gem install cocoapods -v 1.5.3
+                curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+    - &install_pods
+        run:
+            name: Install CocoaPods
+            command: |
+                cd ./packages/identity-wallet-mobile/ios
+                pod install --verbose
+    - &save_pod_cache
+        save_cache:
+            key: ios-pods-{{ checksum "./packages/identity-wallet-mobile/ios/Podfile.lock" }}
+            paths:
+                - ./packages/identity-wallet-mobile/ios/Pods
+    - &xcode_build
+        run: 
+            name: Build iOS app
+            command: |
+                cd ./packages/identity-wallet-mobile/ios
+                xcodebuild -workspace IdentityWalletMobile.xcworkspace -configuration Debug -scheme IdentityWalletMobile -derivedDataPath build/IdentityWalletMobile
+
+    - &ios_bundle
+        run: 
+            name: Create iOS Bundle
+            command: yarn bundle:ios
 jobs:
     'unit-test':
         docker: &DOCKERIMAGE
@@ -71,9 +121,66 @@ jobs:
             - store_artifacts:
                   path: dist
             - *step_save_cache
+    'build-android':
+        resource_class: large
+        docker:
+        - image: circleci/android:api-29-node
+        environment:
+            TERM: dumb
+            _JAVA_OPTIONS: "-Xmx3072m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072m -Dfile.encoding=UTF-8"'
+            LC_ALL: en_US.UTF-8
+            LANG: en_US.UTF-8
+            CACHE_VERSION: *cache_version
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: /tmp/linux
+            - *step_prepare_cache_buster
+            - *step_restore_cache
+            - run: yes | sdkmanager --lecenses || exit 0
+            - run: yes | sdkmanager --update || exit 0
+            - run:
+                  name: Install Node Packages
+                  command: yarn install
+            - run:
+                  name: Fix deps
+                  command: sh fixdeps.sh
+            - run:
+                  name: Unit Tests
+                  command: yarn build:android
+            - store_artifacts:
+                  path: dist
+            - *step_save_cache
+    'build-ios':
+        macos:
+            xcode: "10.2.0"
+        environment:
+            FL_OUTPUT_DIR: output
+            _JAVA_OPTIONS: "-Xms128m -Xmx3024m"
+            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1248m -XX:+HeapDumpOnOutOfMemoryError"'
+            CACHE_VERSION: *cache_version_mac
+        steps:
+            - checkout
+            - *step_prepare_cache_buster
+            - *step_restore_cache
+            - run:
+                  name: Install Node Packages
+                  command: yarn install
+            # - *restore_pod_cache
+            # - *fetch_pods
+            # - *install_pods
+            # - *save_pod_cache
+            # - *ios_bundle
+            - run:
+                  name: Unit Tests
+                  command: yarn test
+            - *step_save_cache
 
 workflows:
     version: 2
-    workflow1:
+    test_and_build:
         jobs:
             - 'unit-test'
+            - 'build-android'
+            - 'build-ios'

@@ -7,6 +7,7 @@
     "start": "yarn workspace @selfkey/identity-wallet-mobile start",
     "android": "yarn workspace @selfkey/identity-wallet-mobile android",
     "android:release": "yarn workspace @selfkey/identity-wallet-mobile android --variant=release",
+    "release:ios": "yarn workspace @selfkey/identity-wallet-mobile release:ios",
     "bundle:ios": "yarn workspace @selfkey/identity-wallet-mobile bundle:ios",
     "bundle:android": "yarn workspace @selfkey/identity-wallet-mobile bundle:android",
     "ios": "yarn workspace @selfkey/identity-wallet-mobile ios",
@@ -31,6 +32,7 @@
   },
   "nohoist": [
     "**/react-native",
+    "**/react-native/**",
     "**/react-native-reanimated",
     "**/react-native-swipe-gestures",
     "**/@react-native-community/**",
