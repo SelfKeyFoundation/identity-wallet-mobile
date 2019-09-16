@@ -89,7 +89,7 @@ aliases:
             name: Build iOS app
             command: |
                 cd ./packages/identity-wallet-mobile/ios
-                xcodebuild -workspace IdentityWalletMobile.xcworkspace -configuration Debug -scheme IdentityWalletMobile -destination id=210BE897-95D5-4C23-B079-56CF2E97B1F9 -derivedDataPath build/IdentityWalletMobile
+                xcodebuild -workspace IdentityWalletMobile.xcworkspace -configuration Debug -scheme IdentityWalletMobile -derivedDataPath build/IdentityWalletMobile
 
 jobs:
     'unit-test':
