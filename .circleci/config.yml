@@ -162,8 +162,6 @@ jobs:
             CACHE_VERSION: *cache_version_mac
         steps:
             - checkout
-            - attach_workspace:
-                  at: /tmp/workspace
             - *step_prepare_cache_buster
             - *step_restore_cache
             - run:
@@ -174,8 +172,6 @@ jobs:
             # - *install_pods
             # - *save_pod_cache
             - *ios_bundle
-            - store_artifacts:
-                  path: dist
             - *step_save_cache
 
 workflows:
