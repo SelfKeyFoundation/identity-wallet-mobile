@@ -17,6 +17,7 @@ executors:
 
 aliases:
     - &cache_version '2'
+    - &cache_version_mac '2_mac'
     - &step_prepare_cache_buster
       run:
           name: Prepare Cache Buster
@@ -69,8 +70,8 @@ aliases:
         run:
             name: Fetch CocoaPods
             command: |
-                sudo gem uninstall cocoapods
-                sudo gem install cocoapods -v 1.5.3
+                # sudo gem uninstall cocoapods
+                # sudo gem install cocoapods -v 1.5.3
                 curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
     - &install_pods
         run:
@@ -154,6 +155,7 @@ jobs:
             FL_OUTPUT_DIR: output
             _JAVA_OPTIONS: "-Xms128m -Xmx3024m"
             GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1248m -XX:+HeapDumpOnOutOfMemoryError"'
+            CACHE_VERSION: *cache_version_mac
         steps:
             - checkout
             - attach_workspace:
