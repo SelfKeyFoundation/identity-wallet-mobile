@@ -91,6 +91,10 @@ aliases:
                 cd ./packages/identity-wallet-mobile/ios
                 xcodebuild -workspace IdentityWalletMobile.xcworkspace -configuration Debug -scheme IdentityWalletMobile -derivedDataPath build/IdentityWalletMobile
 
+    - &ios_bundle
+        run: 
+            name: Create iOS Bundle
+            command: yarn bundle:ios
 jobs:
     'unit-test':
         docker: &DOCKERIMAGE
@@ -165,11 +169,11 @@ jobs:
             - run:
                   name: Install Node Packages
                   command: yarn install
-            - *restore_pod_cache
-            - *fetch_pods
-            - *install_pods
-            - *save_pod_cache
-            - *xcode_build
+            # - *restore_pod_cache
+            # - *fetch_pods
+            # - *install_pods
+            # - *save_pod_cache
+            - *ios_bundle
             - store_artifacts:
                   path: dist
             - *step_save_cache
