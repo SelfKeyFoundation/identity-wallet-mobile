@@ -154,11 +154,10 @@ jobs:
             FL_OUTPUT_DIR: output
             _JAVA_OPTIONS: "-Xms128m -Xmx3024m"
             GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1248m -XX:+HeapDumpOnOutOfMemoryError"'
-            CACHE_VERSION: *cache_version
         steps:
             - checkout
             - attach_workspace:
-                  at: /tmp/linux
+                  at: /tmp/workspace
             - *step_prepare_cache_buster
             - *step_restore_cache
             - run:
