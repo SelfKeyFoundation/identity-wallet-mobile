@@ -154,12 +154,6 @@ jobs:
             FL_OUTPUT_DIR: output
             _JAVA_OPTIONS: "-Xms128m -Xmx3024m"
             GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1248m -XX:+HeapDumpOnOutOfMemoryError"'
-        environment:
-            TERM: dumb
-            _JAVA_OPTIONS: "-Xmx3072m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072m -Dfile.encoding=UTF-8"'
-            LC_ALL: en_US.UTF-8
-            LANG: en_US.UTF-8
             CACHE_VERSION: *cache_version
         steps:
             - checkout
