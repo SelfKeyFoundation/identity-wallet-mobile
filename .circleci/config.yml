@@ -1,10 +1,9 @@
 version: 2
 executors:
   android-executor:
-    # working_directory: ~/
     resource_class: large
     docker:
-      - image: circleci/android:api-26-node8-alpha
+      - image: circleci/android:api-29
     environment:
       TERM: dumb
       _JAVA_OPTIONS: "-Xmx3072m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
@@ -13,7 +12,6 @@ executors:
       LANG: en_US.UTF-8
 
   node8-executor:
-    # working_directory: ~/
     docker:
       - image: circleci/openjdk:8-node-browsers
 
@@ -90,8 +88,15 @@ jobs:
                   path: dist
             - *step_save_cache
     'build-android':
-        executor: android-executor
+        resource_class: large
+        docker:
+        - image: circleci/android:api-29-node
         environment:
+            TERM: dumb
+            _JAVA_OPTIONS: "-Xmx3072m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072m -Dfile.encoding=UTF-8"'
+            LC_ALL: en_US.UTF-8
+            LANG: en_US.UTF-8
             CACHE_VERSION: *cache_version
         steps:
             - checkout
@@ -99,9 +104,14 @@ jobs:
                   at: /tmp/linux
             - *step_prepare_cache_buster
             - *step_restore_cache
+            - run: yes | sdkmanager --lecenses || exit 0
+            - run: yes | sdkmanager --update || exit 0
             - run:
                   name: Install Node Packages
                   command: yarn install
+            - run:
+                  name: Fix deps
+                  command: sh fixdeps.sh
             - run:
                   name: Unit Tests
                   command: yarn build:android
