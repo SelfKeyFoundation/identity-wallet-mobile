@@ -5,22 +5,7 @@ import './db/register-models';
 import Navigation from './navigation';
 import { createStoreProvider, connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
-import { initRealm } from './db/realm-service';
-import { TestModel } from './db/TestModel';
-
-
-async function initDb() {
-  await initRealm();
-  const testModel = new TestModel();
-
-  await testModel.create({
-    name: 'test',
-    privateKey: 'key1',
-    password: 'pass1',
-  });
-
-  const data = await testModel.getAll();
-}
+import { initDb } from './db';
 
 initDb();
 
