@@ -1,18 +1,16 @@
 import { BaseModel } from './BaseModel';
 
-export class WalletModel extends BaseModel {
+export class TestModel extends BaseModel {
   static schema = {
-    name: 'Wallet',
+    name: 'Test',
     primaryKey: 'id',
     properties: {
       id: { type: 'int' },
       name: { type: 'string' },
-      publicKey: { type: 'string' },
-      privateKey: { type: 'string' },
     },
   }
 
   constructor() {
-    super(WalletModel.schema);
+    super(TestModel.schema);
   }
 }
