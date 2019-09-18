@@ -182,5 +182,5 @@ workflows:
     test_and_build:
         jobs:
             - 'unit-test'
-            - 'build-android'
-            - 'build-ios'
+            # - 'build-android'
+            # - 'build-ios'
