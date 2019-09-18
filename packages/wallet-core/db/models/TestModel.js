@@ -2,11 +2,11 @@ import { BaseModel } from './BaseModel';
 
 export class TestModel extends BaseModel {
   static schema = {
-    name: 'test',
+    name: 'Test',
+    primaryKey: 'id',
     properties: {
-      name: 'string',
-      privateKey: 'string',
-      password: 'string',
+      id: { type: 'int' },
+      name: { type: 'string' },
     },
   }
 

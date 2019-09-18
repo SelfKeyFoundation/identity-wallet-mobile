@@ -1,35 +1,23 @@
 import Realm from 'realm';
+import { initRealm, setRealmImpl } from '@selfkey/wallet-core/db/realm-service';
 
-const WalletSchema = {
-  name: 'wallet',
-  properties: {
-    name:     'string',
-    privateKey: 'string',
-    password: 'string',
-  },
-};
+// For testing purposes, to be removed afterwards
+import { WalletModel } from '@selfkey/wallet-core/db/models/WalletModel';
 
-class RealmModel {
-  constructor(realm, schema) {
-    this.realm = realm;
-    this.schema = schema;
-  }
+// inject react-native Realm
+setRealmImpl(Realm);
 
-  create(props) {
-    return this.realm.create(this.schema.name, props);
-  }
-}
+export async function initDb() {
+  await initRealm();
 
-function init() {
-  Realm.open({schema: [WalletSchema]})
-    .then(realm => {
-      realm.create('wallet', {
-        name: 'test wallet',
-        privateKey: '<private-key>',
-        password: 'encrypted-pwd',
-      });
-    })
-    .catch(error => {
-      // Handle the error here if something went wrong
-    });
+  const testModel = new WalletModel();
+
+  await testModel.create({
+    name: 'test',
+    privateKey: 'key1',
+    password: 'pass1',
+  });
+
+  const data = await testModel.getAll();
+  console.log(data);
 }

@@ -1,2 +1,5 @@
 /coverage
 node_modules
+default.realm.management
+*.realm
+*.realm.lock
