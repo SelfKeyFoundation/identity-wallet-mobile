@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Paragraph } from '@selfkey/mobile-ui/lib/Paragraph';
 

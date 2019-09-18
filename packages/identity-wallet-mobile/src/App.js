@@ -1,9 +1,33 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import './setup-redux';
+import './db/register-models';
 import Navigation from './navigation';
 import { createStoreProvider, connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
+import { initRealm } from './db/realm-service';
+import { TestModel } from './db/TestModel';
+
+
+async function initDb() {
+  await initRealm();
+  console.log('realm is ready');
+  const testModel = new TestModel();
+
+  await testModel.create({
+    name: 'test',
+    privateKey: 'key1',
+    password: 'pass1',
+  });
+
+  console.log('created realm obj');
+
+  const data = await testModel.getAll();
+
+  console.log(data[0]);
+}
+
+initDb();
 
 const Provider = createStoreProvider();
 
