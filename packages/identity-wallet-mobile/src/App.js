@@ -11,7 +11,6 @@ import { TestModel } from './db/TestModel';
 
 async function initDb() {
   await initRealm();
-  console.log('realm is ready');
   const testModel = new TestModel();
 
   await testModel.create({
@@ -20,11 +19,7 @@ async function initDb() {
     password: 'pass1',
   });
 
-  console.log('created realm obj');
-
   const data = await testModel.getAll();
-
-  console.log(data[0]);
 }
 
 initDb();
