@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import './setup-redux';
-import './db/register-models';
 import Navigation from './navigation';
 import { createStoreProvider, connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
