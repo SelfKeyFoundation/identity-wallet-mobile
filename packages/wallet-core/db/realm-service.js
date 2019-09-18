@@ -6,11 +6,11 @@ let realmInstance;
  * Mobile wallet will inject a mobile version
  * Desktop wallet could inject the nodejs version or some wrapper on top of SQLite
  */
-export function setRealm() {
+export function getRealmImpl() {
   return Realm;
 }
 
-export function getRealm(impl) {
+export function setRealmImpl(impl) {
   Realm = impl;
 }
 
@@ -30,9 +30,10 @@ export function setRealmInstance(instance) {
   realmInstance = instance;
 }
 
-export function initRealm() {
+export function initRealm(opts) {
   return Realm.open({
-    schema: models.map(m => m.schema)
+    schema: models.map(m => m.schema),
+    ...opts,
   }).then((instance) => {
     setRealmInstance(instance);
     return instance;
