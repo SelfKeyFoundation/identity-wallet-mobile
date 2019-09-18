@@ -1,8 +1,8 @@
-import { getRealm } from './realm-service';
+import { getRealmInstance } from '../realm-service';
 
 export class BaseModel {
   constructor(schema) {
-    this.realm = getRealm();
+    this.realm = getRealmInstance();
     this.schema = schema;
   }
 
