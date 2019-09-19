@@ -1,7 +1,6 @@
 import { getRealmInstance } from '../../db/realm-service';
 import { BaseModel } from './base-model';
-import { TestModel } from './TestModel';
-
+import { TestModel } from './test-model';
 
 const fixtures = [{
   id: 1,
