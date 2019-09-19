@@ -10,7 +10,7 @@ function getMessage(model) {
 
 describe('core/db/register-models', () => {
   it('expect to have models registered', () => {
-    const files = glob.sync(`${__dirname}/models/*Model.js`);
+    const files = glob.sync(`${__dirname}/models/**/*Model.js`);
     const createdModels = files
       .map(f => f.split('/').pop().replace(/\.js/, ''))
       .filter(f => !modelsToSkip.find(m => m === f));

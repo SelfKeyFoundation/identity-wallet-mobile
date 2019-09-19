@@ -1,8 +1,8 @@
-import { BaseModel } from './BaseModel';
+import { BaseModel } from '../common/base-model';
 
 export class WalletModel extends BaseModel {
   static schema = {
-    name: 'Wallet',
+    name: 'wallet',
     primaryKey: 'id',
     properties: {
       id: { type: 'int' },
@@ -15,4 +15,8 @@ export class WalletModel extends BaseModel {
   constructor() {
     super(WalletModel.schema);
   }
+
+  findByPublicKey(publicKey) {
+		return this.findOne('publicKey = $0', publicKey.toLowerCase());
+	}
 }

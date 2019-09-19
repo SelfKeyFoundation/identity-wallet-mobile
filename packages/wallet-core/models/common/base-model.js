@@ -1,4 +1,4 @@
-import { getRealmInstance } from '../realm-service';
+import { getRealmInstance } from '../../db/realm-service';
 
 export class BaseModel {
   constructor(schema) {
@@ -59,5 +59,10 @@ export class BaseModel {
    */
   find(query, ...args) {
     return this.findAll().filtered(query, ...args);
+  }
+
+  findOne(query, ...args) {
+    const items = this.find(query, ...args);
+    return items[0];
   }
 }

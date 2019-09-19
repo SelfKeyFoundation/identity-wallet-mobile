@@ -1,5 +1,5 @@
-import { getRealmInstance } from '../realm-service';
-import { BaseModel } from './BaseModel';
+import { getRealmInstance } from '../../db/realm-service';
+import { BaseModel } from './base-model';
 import { TestModel } from './TestModel';
 
 
@@ -103,6 +103,13 @@ describe('wallet-code/db/models/BaseModel', () => {
         const items = model.find('name like "test*"');
         expect(items).toHaveLength(fixtures.length);
       });
+    });
+
+    it('findOne', () => {
+      const data = fixtures[0];
+      const item = model.findOne('id = $0', data.id);
+      expect(item.id).toEqual(data.id);
+      expect(item.name).toEqual(data.name);
     });
   });
 });
