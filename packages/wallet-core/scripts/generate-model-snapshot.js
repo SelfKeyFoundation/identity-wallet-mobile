@@ -10,9 +10,7 @@ import path from 'path';
 import fs from 'fs';
 import glob from 'glob';
 import models from '../models';
-
-const CURRENT_SCHEMA_VERSION = 1;
-const SCHEMA_NAME = 'init';
+import { CURRENT_SCHEMA_VERSION,  SCHEMA_NAME } from '../models';
 
 const schemas = models.map(m => m.schema);
 const fileDirectory = path.resolve(__dirname, '../db/schemas');

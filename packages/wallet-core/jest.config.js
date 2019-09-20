@@ -3,6 +3,8 @@ module.exports = {
   'setupFiles': [
     '<rootDir>/tests/setup.js',
   ],
+  // 'globalSetup': '<rootDir>/tests/globalSetup.js',
+  'globalTeardown': '<rootDir>/tests/teardown.js',
   'modulePaths': [
     '<rootDir>',
   ],

@@ -3,6 +3,7 @@ const models = [];
 let realmInstance;
 import migrations from './migrations';
 import schemas from './schemas';
+import { CURRENT_SCHEMA_VERSION,  SCHEMA_NAME } from '../models';
 
 /**
  * Mobile wallet will inject a mobile version
@@ -32,7 +33,7 @@ export function setRealmInstance(instance) {
   realmInstance = instance;
 }
 
-export function initRealm(opts = {}) {
+export async function initRealm(opts = {}) {
   // The first schema to update to is the current schema version
   // since the first schema in our array is at nextSchemaIndex:
   let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath);
@@ -45,7 +46,8 @@ export function initRealm(opts = {}) {
       const migratedRealm = new Realm({
         schema,
         schemaVersion,
-        migration: migrations[schemaVersion],
+        migration: migrations && migrations[schemaVersion],
+        ...opts,
       });
       migratedRealm.close();
     }
@@ -53,6 +55,7 @@ export function initRealm(opts = {}) {
 
   return Realm.open({
     schema: models.map(m => m.schema),
+    schemaVersion: CURRENT_SCHEMA_VERSION,
     ...opts,
   }).then((instance) => {
     setRealmInstance(instance);
