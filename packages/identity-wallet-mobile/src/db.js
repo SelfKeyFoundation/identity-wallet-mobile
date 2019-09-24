@@ -1,23 +1,27 @@
 import Realm from 'realm';
 import { initRealm, setRealmImpl } from '@selfkey/wallet-core/db/realm-service';
+import { registerModels } from '@selfkey/wallet-core/db/register-models';
+import { WalletModel } from '@selfkey/wallet-core/models';
 
-// For testing purposes, to be removed afterwards
-import { WalletModel } from '@selfkey/wallet-core/db/models/WalletModel';
-
-// inject react-native Realm
+registerModels();
 setRealmImpl(Realm);
 
 export async function initDb() {
-  await initRealm();
+  await initRealm({
+    // For testing purposes
+    // Migration system will be added yet
+    deleteRealmIfMigrationNeeded: true,
+  });
 
   const testModel = new WalletModel();
 
   await testModel.create({
+    id: 22,
     name: 'test',
+    publicKey: 'some value',
     privateKey: 'key1',
-    password: 'pass1',
   });
 
-  const data = await testModel.getAll();
+  const data = await testModel.findById(22);
   console.log(data);
 }

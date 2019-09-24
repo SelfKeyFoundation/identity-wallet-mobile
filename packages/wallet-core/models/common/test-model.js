@@ -1,8 +1,8 @@
-import { BaseModel } from './BaseModel';
+import { BaseModel } from './base-model';
 
 export class TestModel extends BaseModel {
   static schema = {
-    name: 'Test',
+    name: 'test',
     primaryKey: 'id',
     properties: {
       id: { type: 'int' },

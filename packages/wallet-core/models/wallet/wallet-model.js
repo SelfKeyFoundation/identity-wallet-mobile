@@ -1,13 +1,13 @@
-import { BaseModel } from './BaseModel';
+import { BaseModel } from '../common/base-model';
 
 export class WalletModel extends BaseModel {
   static schema = {
-    name: 'Wallet',
+    name: 'wallet',
     primaryKey: 'id',
     properties: {
       id: { type: 'int' },
       name: { type: 'string' },
-      publicKey: { type: 'string' },
+      address: { type: 'string' },
       privateKey: { type: 'string' },
     },
   }
@@ -15,4 +15,8 @@ export class WalletModel extends BaseModel {
   constructor() {
     super(WalletModel.schema);
   }
+
+  findByAddress(address) {
+		return this.findOne('address = $0', address.toLowerCase());
+	}
 }

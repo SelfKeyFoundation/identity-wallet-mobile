@@ -1,4 +1,4 @@
-import { TestModel } from './TestModel';
+import { TestModel } from './test-model';
 
 describe('wallet-code/db/models/TestModel', () => {
   it('it expect TestModel to have schema defined', () => {
