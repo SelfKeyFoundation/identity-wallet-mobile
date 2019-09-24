@@ -7,7 +7,7 @@ export class WalletModel extends BaseModel {
     properties: {
       id: { type: 'int' },
       name: { type: 'string' },
-      publicKey: { type: 'string' },
+      address: { type: 'string' },
       privateKey: { type: 'string' },
     },
   }
@@ -16,7 +16,7 @@ export class WalletModel extends BaseModel {
     super(WalletModel.schema);
   }
 
-  findByPublicKey(publicKey) {
-		return this.findOne('publicKey = $0', publicKey.toLowerCase());
+  findByAddress(address) {
+		return this.findOne('address = $0', address.toLowerCase());
 	}
 }

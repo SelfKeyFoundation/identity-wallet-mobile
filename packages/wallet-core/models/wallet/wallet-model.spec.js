@@ -4,12 +4,12 @@ import { WalletModel } from './wallet-model';
 const fixtures = [{
   id: 1,
   name: 'Test wallet',
-  publicKey: uuid(),
+  address: uuid(),
   privateKey: uuid(),
 }, {
   id: 2,
   name: 'Test wallet 2',
-  publicKey: uuid(),
+  address: uuid(),
   privateKey: uuid(),
 }];
 
@@ -30,12 +30,12 @@ describe('core/db/models/WalletModel', () => {
       fixtures.map(model.create.bind(model));
     });
 
-    it('findByPublicKey', () => {
+    it('findByAddress', () => {
       const data = fixtures[0];
-      const item = model.findByPublicKey(data.publicKey);
+      const item = model.findByAddress(data.address);
 
       expect(item.id).toEqual(data.id);
-      expect(item.publicKey).toEqual(data.publicKey);
+      expect(item.address).toEqual(data.address);
     });
   });
 });

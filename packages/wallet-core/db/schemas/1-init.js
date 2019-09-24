@@ -25,7 +25,7 @@ export default {
         "name": {
           "type": "string"
         },
-        "publicKey": {
+        "address": {
           "type": "string"
         },
         "privateKey": {
