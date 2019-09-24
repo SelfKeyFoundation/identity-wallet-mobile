@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import './setup-redux';
 import Navigation from './navigation';
 import { createStoreProvider, connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
+import SplashScreen from 'react-native-splash-screen'
 import { initDb } from './db';
 
 initDb();
@@ -30,6 +31,10 @@ const AppStatus = connect(mapStateToProps, mapActionsToProps)((props) => {
 });
 
 function App(props) {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <Provider>
       <AppStatus />

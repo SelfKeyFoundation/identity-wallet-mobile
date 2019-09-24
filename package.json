@@ -30,25 +30,21 @@
     "flow:wallet": "yarn workspace @selfkey/identity-wallet-mobile flow",
     "postinstall": "sh fixdeps.sh && npx jetify"
   },
-  "nohoist": [
-    "**/react-native",
-    "**/react-native/**",
-    "**/react-native-reanimated",
-    "**/react-native-swipe-gestures",
-    "**/@react-native-community/**",
-    "**/@react-native-community/cli",
-    "**/@react-native-community/cli-platform-ios",
-    "**/@react-native-community/cli-tools",
-    "**/@react-native-community/cli-platform-android",
-    "**/@react-native-firebase/app/",
-    "**/@react-native-firebase/**",
-    "**/jest-html-reporter"
-  ],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react-native-**",
+      "**/@react-native-community/**",
+      "**/jest-html-reporter",
+      "**/realm",
+      "**/react-redux",
+      "**/jsc-android"
+    ]
+  },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "jetifier": "^1.6.4",
