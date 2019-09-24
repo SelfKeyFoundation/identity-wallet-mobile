@@ -105,8 +105,8 @@ jobs:
             - checkout
             - attach_workspace:
                   at: /tmp/linux
-            # - *step_prepare_cache_buster
-            # - *step_restore_cache
+            - *step_prepare_cache_buster
+            - *step_restore_cache
             - run:
                   name: Install OS Dependecies
                   command: |
@@ -120,7 +120,7 @@ jobs:
                   command: yarn test
             - store_artifacts:
                   path: dist
-            # - *step_save_cache
+            - *step_save_cache
     'build-android':
         resource_class: large
         docker:
