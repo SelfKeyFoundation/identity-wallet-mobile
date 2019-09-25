@@ -10970,6 +10970,11 @@ react-native-safe-area-view@^0.14.1:
   dependencies:
     debounce "^1.2.0"
 
+react-native-splash-screen@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
+  integrity sha512-Ls9qiNZzW/OLFoI25wfjjAcrf2DZ975hn2vr6U9gyuxi2nooVbzQeFoQS5vQcbCt9QX5NY8ASEEAtlLdIa6KVg==
+
 react-native-swipe-gestures@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.3.tgz#4160f8d459627323f3a3d2770af4bcd82fd054f5"
@@ -11243,6 +11248,28 @@ realm@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/realm/-/realm-3.0.0.tgz#55668c8e60a8f075ddaadc7d50adcd81c59c960e"
   integrity sha512-YrjbQ2IWLYH4I1+wAVW+HOFyKugmeCFvV10seWAi+G6+lKt4+Br1hfGXjJGle7z4/MlFYQWDfIWpnIvChxPwPg==
+  dependencies:
+    command-line-args "^4.0.6"
+    decompress "^4.2.0"
+    deepmerge "2.1.0"
+    fs-extra "^4.0.3"
+    https-proxy-agent "^2.2.1"
+    ini "^1.3.5"
+    nan "^2.12.1"
+    node-fetch "^1.7.3"
+    node-machine-id "^1.1.10"
+    node-pre-gyp "^0.13.0"
+    progress "^2.0.3"
+    prop-types "^15.6.2"
+    request "^2.88.0"
+    stream-counter "^1.0.0"
+    sync-request "^3.0.1"
+    url-parse "^1.4.4"
+
+realm@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-3.1.0.tgz#89571ce037c8b7e48e70096e7b76b3fba7bed2cd"
+  integrity sha512-Oa2aAfss/GrG3glWzTqsI1FTvMLzTZb0fLjO7w1zXnoF1rNsBc7sTlBzBBgow2nZZEfNxTFF/7mKS9BH03sllA==
   dependencies:
     command-line-args "^4.0.6"
     decompress "^4.2.0"

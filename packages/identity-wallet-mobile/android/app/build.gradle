@@ -185,10 +185,12 @@ android {
         pickFirst '**/x86_64/libc++_shared.so'
         pickFirst '**/x86/libjsc.so'
         pickFirst '**/armeabi-v7a/libjsc.so'
+        // pickFirst '**/libgnustl_shared.so'
     }
 }
 
 dependencies {
+    implementation project(':realm')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
