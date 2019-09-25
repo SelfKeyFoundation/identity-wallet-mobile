@@ -35,14 +35,11 @@
   "workspaces": {
     "packages": ["packages/*"],
     "nohoist": [
-      "**/react-native",
-      "**/react-native/**",
-      "**/react-native-**",
-      "**/@react-native-community/**",
-      "**/jest-html-reporter",
-      "**/realm",
-      "**/react-redux",
-      "**/jsc-android"
+      "**/identity-wallet-mobile/react-native",
+      "**/identity-wallet-mobile/react-native/**",
+      "**/identity-wallet-mobile/react-native-**",
+      "**/identity-wallet-mobile/@react-native-community/**",
+      "**/realm"
     ]
   },
   "devDependencies": {

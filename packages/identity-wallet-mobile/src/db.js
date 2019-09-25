@@ -13,15 +13,15 @@ export async function initDb() {
     deleteRealmIfMigrationNeeded: true,
   });
 
-  const testModel = new WalletModel();
+  // const testModel = new WalletModel();
 
-  await testModel.create({
-    id: 22,
-    name: 'test',
-    publicKey: 'some value',
-    privateKey: 'key1',
-  });
+  // await testModel.create({
+  //   id: 22,
+  //   name: 'test',
+  //   address: 'some value',
+  //   privateKey: 'key1',
+  // });
 
-  const data = await testModel.findById(22);
-  console.log(data);
+  // const data = await testModel.findById(22);
+  // console.log(data);
 }
