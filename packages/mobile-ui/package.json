@@ -10,7 +10,8 @@
   "dependencies": {
     "react": "^16.9.0",
     "styled-components": "^4.3.2",
-    "react-native": "^0.60.5"
+    "react-native": "^0.60.5",
+    "react-native-svg": "^9.9.4"
   },
   "peerDependencies": {
     "react": "^16.9.0",
