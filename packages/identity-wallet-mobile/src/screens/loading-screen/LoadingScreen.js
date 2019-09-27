@@ -1,15 +1,22 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Paragraph } from '@selfkey/mobile-ui/lib/Paragraph';
-import Logo from './Centered.svg';
+import { View, StyleSheet } from 'react-native';
+import { SkBackground, SkLogo, Paragraph } from '@selfkey/mobile-ui/lib';
 
-export function LoadingScreen() {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default function LoadingScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Logo />
-      <Paragraph>IDENTITY WALLET</Paragraph>
-    </View>
+    <SkBackground>
+      <View style={styles.container}>
+        <SkLogo />
+        <Paragraph>IDENTITY WALLET</Paragraph>
+      </View>
+    </SkBackground>
   );
 }
-
-export default LoadingScreen;

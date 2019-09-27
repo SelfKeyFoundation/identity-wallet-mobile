@@ -39,6 +39,8 @@
       "**/identity-wallet-mobile/react-native/**",
       "**/identity-wallet-mobile/react-native-**",
       "**/identity-wallet-mobile/@react-native-community/**",
+      "**/mobile-ui/react-native",
+      "**/mobile-ui/react-native-**",
       "**/realm"
     ]
   },
