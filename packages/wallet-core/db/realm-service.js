@@ -33,14 +33,22 @@ export function setRealmInstance(instance) {
   realmInstance = instance;
 }
 
+let isOpened = false;
+
 export async function initRealm(opts = {}) {
+  if (isOpened) {
+    return;
+  }
+
+  isOpened = true;
+
   // The first schema to update to is the current schema version
   // since the first schema in our array is at nextSchemaIndex:
   let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath);
 
   // If Realm.schemaVersion() returned -1, it means this is a new Realm file
   // so no migration is needed.
-  if (nextSchemaIndex !== -1) {
+  if (!opts.skipMigration && nextSchemaIndex !== -1) {
     while (nextSchemaIndex < schemas.length) {
       const { schema, schemaVersion } = schemas[nextSchemaIndex++];
       const migratedRealm = new Realm({
