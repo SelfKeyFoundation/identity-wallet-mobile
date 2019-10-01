@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { SkBackground, SkLogo, Paragraph } from '@selfkey/mobile-ui/lib';
 import styled from 'styled-components/native';
+import { SkBackground, SkLogo } from '@selfkey/mobile-ui/lib';
 
 const Title = styled.Text`
   color: #0ABBD0;
@@ -17,7 +16,7 @@ const Container = styled.View`
   top: 19%;
 `;
 
-export default function LoadingScreen() {
+export function LoadingScreen() {
   return (
     <SkBackground>
       <Container>
