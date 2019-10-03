@@ -1,10 +1,10 @@
 import walletActions from './actions';
 
-const loadWalletOperation = () => (dispatch, getState) => {
+const delay = (time) => new Promise((res) => setTimeout(res, time));
+
+const loadWalletOperation = () => async (dispatch, getState) => {
   dispatch(walletActions.setLoading(true));
-  dispatch(walletActions.setWallet({
-    name: 'SelfKey Wallet A',
-  }));
+  await delay(2000);
   dispatch(walletActions.setLoading(false));
 };
 

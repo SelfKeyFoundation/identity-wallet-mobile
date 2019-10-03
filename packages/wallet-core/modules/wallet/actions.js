@@ -1,4 +1,3 @@
-// @flow
 import walletTypes from './types';
 
 export const walletActions = {

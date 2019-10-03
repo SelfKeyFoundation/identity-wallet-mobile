@@ -3,7 +3,7 @@ import { createReducer } from '../../redux/reducers';
 import walletTypes from './types';
 
 export const initialState = {
-  isLoading: false,
+  isLoading: true,
   wallet: null,
 };
 
