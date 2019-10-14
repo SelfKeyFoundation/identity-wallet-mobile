@@ -5,33 +5,34 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2A989ED33C25465D8836C076 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 178B81E8AC524DE58113962D /* libz.tbd */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
 		30D7D7D61D3C68348E8E62AF /* libPods-IdentityWalletMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */; };
-		C59E017F37D8DB73F303FC49 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */; };
-		D13DA9DC589747C63FA99321 /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */; };
-		E72ACDB18B62D824FD7BA6E8 /* libPods-IdentityWalletMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */; };
-		CFF7A8AA952148AF8A722EA3 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9262D7A52241019E666788 /* libRealmReact.a */; };
-		968010D0DD014B4BB771E278 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A91A5CF337D743C083660895 /* libc++.tbd */; };
-		2A989ED33C25465D8836C076 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 178B81E8AC524DE58113962D /* libz.tbd */; };
 		494DFD93DE3A440BA115C5AC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53255243B8F048318A89B822 /* Lato-Black.ttf */; };
 		56D1A6EF9BE8457C8D2A28A1 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */; };
-		E7F0902F6AC24B239E984BF1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */; };
 		623002EDFFDF4188B3800E26 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */; };
-		8527F5A0AD1648D3993989E8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B12524E93A3431586D04C4D /* Lato-Light.ttf */; };
-		FF7AA6F34E6E4FABA3F396C5 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */; };
-		DBBD5F2686C9498183416BDF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37840D12A64A4BDB83682940 /* Lato-Regular.ttf */; };
 		7245CA228751471887AC85E2 /* Lato-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */; };
+		8527F5A0AD1648D3993989E8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B12524E93A3431586D04C4D /* Lato-Light.ttf */; };
+		968010D0DD014B4BB771E278 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A91A5CF337D743C083660895 /* libc++.tbd */; };
 		9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */; };
+		C59E017F37D8DB73F303FC49 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */; };
+		CFF7A8AA952148AF8A722EA3 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9262D7A52241019E666788 /* libRealmReact.a */; };
+		D13DA9DC589747C63FA99321 /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */; };
+		DBBD5F2686C9498183416BDF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37840D12A64A4BDB83682940 /* Lato-Regular.ttf */; };
 		E56F21EE223D4962965B26C6 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */; };
+		E72ACDB18B62D824FD7BA6E8 /* libPods-IdentityWalletMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */; };
+		E7F0902F6AC24B239E984BF1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */; };
+		FF7AA6F34E6E4FABA3F396C5 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,13 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		975FD69123477F1E0038BB6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +71,7 @@
 		00E356EE1AD99517003FC87E /* IdentityWalletMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityWalletMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentityWalletMobileTests.m; sourceTree = "<group>"; };
+		0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../assets/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		0B8C07B0F02795179ABEDBD0 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* IdentityWalletMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityWalletMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = IdentityWalletMobile/AppDelegate.h; sourceTree = "<group>"; };
@@ -71,36 +80,35 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = IdentityWalletMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = IdentityWalletMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = IdentityWalletMobile/main.m; sourceTree = "<group>"; };
+		1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-LightItalic.ttf"; path = "../assets/fonts/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
+		178B81E8AC524DE58113962D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		183E05EF45CA11FFCB776554 /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		18977E99A48EFE91CC55D280 /* Pods-IdentityWalletMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* IdentityWalletMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IdentityWalletMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* IdentityWalletMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IdentityWalletMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-ThinItalic.ttf"; path = "../assets/fonts/Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
+		37840D12A64A4BDB83682940 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		3B12524E93A3431586D04C4D /* Lato-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Light.ttf"; path = "../assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		53255243B8F048318A89B822 /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-RegularItalic.ttf"; path = "../assets/fonts/Lato-RegularItalic.ttf"; sourceTree = "<group>"; };
+		652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		6803A9CFB2EE2EB04BDF09F1 /* Pods-IdentityWalletMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobileTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobileTests/Pods-IdentityWalletMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		70117592875C479BE6212177 /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		7C9262D7A52241019E666788 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		8AFFE435789FE2D477F1C7C8 /* Pods-IdentityWalletMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		922252A3725E64A4CF290356 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		A7F694D3EA7FE80F82307048 /* Pods-IdentityWalletMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobileTests/Pods-IdentityWalletMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A91A5CF337D743C083660895 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		7C9262D7A52241019E666788 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		A91A5CF337D743C083660895 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		178B81E8AC524DE58113962D /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		53255243B8F048318A89B822 /* Lato-Black.ttf */ = {isa = PBXFileReference; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BlackItalic.ttf"; path = "../assets/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3B12524E93A3431586D04C4D /* Lato-Light.ttf */ = {isa = PBXFileReference; name = "Lato-Light.ttf"; path = "../assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; name = "Lato-LightItalic.ttf"; path = "../assets/fonts/Lato-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		37840D12A64A4BDB83682940 /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */ = {isa = PBXFileReference; name = "Lato-RegularItalic.ttf"; path = "../assets/fonts/Lato-RegularItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */ = {isa = PBXFileReference; name = "Lato-Thin.ttf"; path = "../assets/fonts/Lato-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Lato-ThinItalic.ttf"; path = "../assets/fonts/Lato-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Thin.ttf"; path = "../assets/fonts/Lato-Thin.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,24 +248,8 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9729E82C2335A3F2006686CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9729E8302335A3F2006686CB /* libSplashScreen.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9729E83723364664006686CB /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				45654404A6DA47E2B10C0814 /* libRealmReact.a */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		9526C2782B9A4ECC9D66B8A2 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				53255243B8F048318A89B822 /* Lato-Black.ttf */,
 				0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */,
@@ -272,7 +264,30 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
+		};
+		9729E82C2335A3F2006686CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9729E8302335A3F2006686CB /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9729E83723364664006686CB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				7C9262D7A52241019E666788 /* libRealmReact.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		975FD68E23477F1E0038BB6A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				975FD69223477F1E0038BB6A /* libRealmReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -395,6 +410,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 975FD68E23477F1E0038BB6A /* Products */;
+					ProjectRef = 1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */;
+				},
+				{
 					ProductGroup = 9729E82C2335A3F2006686CB /* Products */;
 					ProjectRef = 9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */;
 				},
@@ -415,6 +434,13 @@
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = 9729E82F2335A3F2006686CB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		975FD69223477F1E0038BB6A /* libRealmReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRealmReact.a;
+			remoteRef = 975FD69123477F1E0038BB6A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

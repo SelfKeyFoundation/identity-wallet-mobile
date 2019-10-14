@@ -29,7 +29,7 @@
     "react-native-svg-transformer": "^0.13.0",
     "react-navigation": "^3.11.1",
     "react-redux": "^7.1.1",
-    "realm": "^3.1.0",
+    "realm": "^3.2.0",
     "redux": "^4.0.4"
   },
   "devDependencies": {

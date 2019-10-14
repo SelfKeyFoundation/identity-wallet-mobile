@@ -41,6 +41,9 @@
       "**/identity-wallet-mobile/@react-native-community/**",
       "**/mobile-ui/react-native",
       "**/mobile-ui/react-native-**",
+      "**/mobile-ui-storybook/@storybook/**",
+      "**/mobile-ui-storybookreact-native",
+      "**/mobile-ui-storybook/react-native/**",
       "**/realm"
     ]
   },

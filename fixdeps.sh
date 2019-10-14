@@ -1,5 +1,6 @@
 sed -i".bkp" -e "s/ existingModule \&\&/false \&\&/g" ./node_modules/jest-haste-map/build/index.js
 sed -i".bkp" -e "s/ existingModule \&\&/false \&\&/g" ./packages/identity-wallet-mobile/node_modules/jest-haste-map/build/index.js
+sed -i".bkp" -e "s/ existingModule \&\&/false \&\&/g" ./packages/mobile-ui-storybook/node_modules/jest-haste-map/build/index.js
 
 # Fix for dupilcated react versions
 # Multiple react versions could be placed in different packages due to third party libs
