@@ -30,7 +30,7 @@ All the commands must be executed from the root directory and it requires you de
 
 ### iOS (Emulator)
 * yarn start
-* yarn ios
+* yarn ios --simulator "iPhone 11"
 
 ### Android (Real Device)
 * yarn start
