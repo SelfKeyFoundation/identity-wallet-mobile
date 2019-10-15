@@ -22,10 +22,10 @@
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
+  // Add splash screen into root view
+  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
-  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
