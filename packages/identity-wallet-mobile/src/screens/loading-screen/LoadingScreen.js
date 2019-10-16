@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
+import SplashScreen from 'react-native-splash-screen';
 import { SkBackground, SkLogo } from '@selfkey/mobile-ui/lib';
 
 const Title = styled.Text`
@@ -17,6 +18,15 @@ const Container = styled.View`
 `;
 
 export function LoadingScreen() {
+  useEffect(() => {
+    // Close the SplashScreen
+    // The LoadingScreen can take some ms to be rendered
+    // This timeout will prevent a quick white screen between splash screen and loading screen
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000);
+  }, []);
+
   return (
     <SkBackground>
       <Container>
