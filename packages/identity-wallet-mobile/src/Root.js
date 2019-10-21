@@ -4,6 +4,7 @@ import './setup-redux';
 import './db';
 import { createStoreProvider } from '@selfkey/wallet-core/redux';
 import App from './App';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const Provider = createStoreProvider();
 
@@ -14,7 +15,9 @@ type RootProps = {
 export function Root(props: RootProps) {
   return (
     <Provider>
-      <App />
+      <PaperProvider>
+        <App />
+      </PaperProvider>
     </Provider>
   );
 }
