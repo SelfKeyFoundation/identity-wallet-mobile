@@ -6,7 +6,11 @@ import { linkTo } from '@storybook/addon-links';
 import { PrimaryButton } from '@selfkey/mobile-ui/lib/buttons/PrimaryButton';
 
 storiesOf('Buttons', module)
-  .addDecorator(getStory => <View>{getStory()}</View>)
+  .addDecorator(getStory => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {getStory()}
+    </View>
+  ))
   .add('Primary', () => (
     <PrimaryButton onPress={action('buttons-press')}>
       Primary Button
