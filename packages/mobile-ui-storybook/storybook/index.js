@@ -1,14 +1,22 @@
 import React from 'react';
-import { AppRegistry, SafeAreaView } from 'react-native';
+import { AppRegistry, SafeAreaView, StyleSheet } from 'react-native';
 import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
 import { MobileUIProvider } from '@selfkey/mobile-ui';
 
 import './rn-addons';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
 addDecorator(storyFn => (
+  <SafeAreaView style={styles.container}>
     <MobileUIProvider>
       { storyFn() }
     </MobileUIProvider>
+  </SafeAreaView>
 ));
 
 configure(() => require('../stories'), module);
