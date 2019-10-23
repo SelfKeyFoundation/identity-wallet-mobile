@@ -1,14 +1,14 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, SafeAreaView } from 'react-native';
 import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { MobileUIProvider } from '@selfkey/mobile-ui';
 
 import './rn-addons';
 
 addDecorator(storyFn => (
-  <PaperProvider>
-    { storyFn() }
-  </PaperProvider>
+    <MobileUIProvider>
+      { storyFn() }
+    </MobileUIProvider>
 ));
 
 configure(() => require('../stories'), module);

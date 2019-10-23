@@ -1,4 +1,5 @@
 import { colors } from './colors';
+
 export const Theme = {
   colors: {
     uiPrimary: colors.darkTurquoise,
@@ -12,5 +13,5 @@ export const Theme = {
     uiSuccess: colors.mountainMeadow,
     uiWarning: colors.flamenco,
     uiError: colors.bittersweet,
-  }
-}
+  },
+};

@@ -22,7 +22,11 @@ function renderColorBlock(key) {
 }
 
 storiesOf('Colors', module)
-  .addDecorator(getStory => <View>{getStory()}</View>)
+  .addDecorator(getStory => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {getStory()}
+    </View>
+  ))
   .add('default', () => (
     <View style={{
       paddingTop: 10,
