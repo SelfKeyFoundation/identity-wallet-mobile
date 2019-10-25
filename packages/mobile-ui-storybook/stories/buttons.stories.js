@@ -1,18 +1,72 @@
+// @flow
 import React from 'react';
 import { Text, View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
-import { PrimaryButton } from '@selfkey/mobile-ui/lib/buttons/PrimaryButton';
+import { Button, Container } from '@selfkey/mobile-ui';
 
 storiesOf('Buttons', module)
-  .addDecorator(getStory => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {getStory()}
-    </View>
+  .add('Full Primary', () => (
+    <Container centered>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="full-primary"
+        >
+          Full Primary
+        </Button>
+      </View>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="full-primary"
+          disabled
+        >
+          Disabled
+        </Button>
+      </View>
+    </Container>
   ))
-  .add('Primary', () => (
-    <PrimaryButton onPress={action('buttons-press')}>
-      Primary Button
-    </PrimaryButton>
+  .add('Shell Primary', () => (
+    <Container centered style={{ }}>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="shell-primary"
+        >
+          Shell Primary
+        </Button>
+      </View>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="shell-primary"
+          disabled
+        >
+          Disabled
+        </Button>
+      </View>
+    </Container>
   ))
+  .add('Shell Secondary', () => (
+    <Container centered style={{ }}>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="shell-secondary"
+        >
+          Shell Secondary
+        </Button>
+      </View>
+      <View style={{ margin: 5 }}>
+        <Button
+          onPress={action('buttons-press')}
+          type="shell-secondary"
+          disabled
+        >
+          Disabled
+        </Button>
+      </View>
+    </Container>
+  ));
