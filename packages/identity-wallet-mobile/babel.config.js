@@ -3,4 +3,9 @@ module.exports = {
   plugins: [
     'babel-plugin-styled-components',
   ],
+  env: {
+    production: {
+      plugins: ['react-native-paper/babel'],
+    },
+  },
 };
