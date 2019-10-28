@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, KeyboardAvoidingView } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
@@ -9,6 +9,7 @@ import { TextInput, Container } from '@selfkey/mobile-ui';
 storiesOf('TextInput', module)
   .add('default', () => (
     <Container centered>
+      <KeyboardAvoidingView behavior="position" enabled>
       <View style={{ width: 200 }}>
         <TextInput
           error={true}
@@ -42,5 +43,6 @@ storiesOf('TextInput', module)
           onChangeText={action('Input changed')}
         />
       </View>
+      </KeyboardAvoidingView>
     </Container>
   ))
