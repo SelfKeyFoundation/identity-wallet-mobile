@@ -26,11 +26,6 @@ storiesOf('Buttons', module)
           Disabled
         </Button>
       </View>
-      <View>
-        <LinearGradient colors={['#f00', '#0f0']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-          <Text>Testing</Text>
-        </LinearGradient>
-      </View>
     </Container>
   ))
   .add('Shell Primary', () => (
