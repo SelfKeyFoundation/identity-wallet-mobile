@@ -12,7 +12,7 @@ export const CustomPaperTheme = {
     disabled: Theme.colors.disabled,
     error: Theme.colors.error,
   },
-  roundness: 5,
+  roundness: 4,
   fonts: {
     regular: Theme.fonts.regular,
     medium: Theme.fonts.bold,
