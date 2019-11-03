@@ -1,12 +1,10 @@
 // @flow
 import React, { useContext } from 'react';
 import {
-  // TextInput as PaperTextInput,
-  TextInputProps as PaperTextInputProps,
   Text,
 } from 'react-native-paper';
 
-import PaperTextInput from './paper-override/TextInput';
+import SKTextInput from './SKTextInput';
 
 import {
   TextInput as NativeTextInput,
@@ -15,10 +13,6 @@ import {
 } from 'react-native';
 
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
-
-export interface TextInputProps extends PaperTextInputProps {
-  errorMessage?: string,
-}
 
 const renderInput = (inputProps: TextInputProps, theme: any) => (props: NativeTextInputProps) => {
   const style = [...props.style];
@@ -46,16 +40,10 @@ const renderInput = (inputProps: TextInputProps, theme: any) => (props: NativeTe
   );
 };
 
-
-// TODO: Error message
-// TODO: Focus state colors
-
 export const TextInput = (props: TextInputProps) => {
   const paperTheme = useContext(PaperThemeContext);
   const theme = useContext(ThemeContext);
   const { label, ...oProps} = props;
-
-  // border-color: #485A6E
 
   return (
     <View>
@@ -71,7 +59,7 @@ export const TextInput = (props: TextInputProps) => {
           { label }
         </Text>
       </View>
-      <PaperTextInput
+      <SKTextInput
         {...oProps}
         mode="outlined"
         theme={paperTheme}
