@@ -3,6 +3,7 @@ import { colors } from './colors';
 export const Theme = {
   colors: {
     primary: colors.darkTurquoise,
+    primaryDisabled: '#146C7A',
     primaryTint: colors.brightTurquoise,
     typography: colors.spindle,
     white: colors.white,

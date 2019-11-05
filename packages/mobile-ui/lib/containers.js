@@ -14,17 +14,17 @@ const ContainerRegular = styled.View`
   background-color: ${props => props.theme.colors.baseDark};
 `;
 
-export const Container = ({ children, centered }) => {
+export const Container = ({ children, centered, style }) => {
   if (centered) {
     return (
-      <ContainerCentered>
+      <ContainerCentered style={style}>
         { children }
       </ContainerCentered>
     );
   }
 
   return (
-    <ContainerRegular>
+    <ContainerRegular style={style}>
       { children }
     </ContainerRegular>
   );
