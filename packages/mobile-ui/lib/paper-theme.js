@@ -8,6 +8,9 @@ export const CustomPaperTheme = {
     primary: Theme.colors.primary,
     primaryDisabled: Theme.colors.primaryDisabled,
     text: Theme.colors.white,
+    placeholder: Theme.colors.grey,
+    disabled: Theme.colors.disabled,
+    error: Theme.colors.error,
   },
   roundness: 4,
   fonts: {
