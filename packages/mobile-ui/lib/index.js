@@ -12,7 +12,4 @@ export * from './typography/tables';
 export * from './typography/forms';
 export * from './inputs/text-input';
 export * from './navigation';
-<<<<<<< HEAD
 export * from './icons';
-=======
->>>>>>> 5422de1c7bbd27ee965a0351554bfe374a5d55cc
