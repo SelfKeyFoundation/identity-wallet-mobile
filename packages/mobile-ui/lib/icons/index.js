@@ -1,6 +1,21 @@
-// import React, { Component } from 'react';
+// @flow
+import React from 'react';
 // import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from './selection.json';
-export const SKIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', 'icomoon.ttf');
+const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', 'icomoon.ttf');
+
+type IconName = 'icon-menu-settings' | 'icon-menu-qr' | 'icon-menu-tokens' | 'icon-menu-dashboard-2';
+
+interface SKIconProps {
+  name: IconName;
+  color: string;
+  size: number;
+}
+
+export function SKIcon(props: SKIconProps) {
+  return (
+    <Icon {...props} />
+  );
+}
 

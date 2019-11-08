@@ -12,3 +12,4 @@ export * from './typography/tables';
 export * from './typography/forms';
 export * from './inputs/text-input';
 export * from './navigation';
+export * from './icons';
