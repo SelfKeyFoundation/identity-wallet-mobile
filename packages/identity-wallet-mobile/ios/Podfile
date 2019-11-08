@@ -28,6 +28,8 @@ target 'IdentityWalletMobile' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-randombytes', :path => '../node_modules/react-native-randombytes'
+
   target 'IdentityWalletMobileTests' do
     inherit! :search_paths
     # Pods for testing
