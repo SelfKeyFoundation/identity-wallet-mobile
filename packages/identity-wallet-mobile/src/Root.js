@@ -7,8 +7,6 @@ import App from './App';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { MobileUIProvider } from '@selfkey/mobile-ui';
 
-
-
 const Provider = createStoreProvider();
 
 type RootProps = {
