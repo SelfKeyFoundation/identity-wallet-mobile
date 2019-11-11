@@ -33,7 +33,9 @@
   "author": "",
   "license": "ISC",
   "workspaces": {
-    "packages": ["packages/*"],
+    "packages": [
+      "packages/*"
+    ],
     "nohoist": [
       "**/identity-wallet-mobile/react-native",
       "**/identity-wallet-mobile/react-native/**",
@@ -46,12 +48,23 @@
       "**/mobile-ui-storybook/react-native/**",
       "**/mobile-ui-storybook/react-native-**",
       "**/mobile-ui-storybook/@react-native-community/**",
-      "**/realm"
+      "**/realm",
+      "**/stream-browserify"
     ]
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "jetifier": "^1.6.4",
     "yargs": "^14.0.0"
+  },
+  "dependencies": {
+    "react-native-crypto": "^2.2.0",
+    "react-native-level-fs": "^3.0.1",
+    "react-native-os": "^1.2.5",
+    "react-native-randombytes": "^3.5.3",
+    "react-native-tcp": "^3.3.2",
+    "react-native-udp": "^2.6.1",
+    "readable-stream": "^1.0.33",
+    "rn-nodeify": "^10.2.0"
   }
 }
