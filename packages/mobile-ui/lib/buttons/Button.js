@@ -54,6 +54,15 @@ export const Button = (props: ButtonProps) => {
       buttonStyle.borderColor = '#586A77';
       textStyle.color = '#586A77';
     }
+  } else if (props.type === 'link') {
+    mode = 'outlined';
+    buttonStyle.borderWidth = 0;
+    textStyle.color = theme.colors.primary;
+
+    if (disabled) {
+      buttonStyle.borderColor = '#586A77';
+      textStyle.color = '#586A77';
+    }
   }
 
   return (

@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { Theme } from '@selfkey/mobile-ui/lib/theme';
+import { ScreenContainer } from '@selfkey/mobile-ui';
+import { SafeAreaView } from 'react-native';
 
 function renderColorBlock(key) {
   const color = Theme.colors[key];
@@ -22,9 +24,9 @@ function renderColorBlock(key) {
 
 storiesOf('Colors', module)
   .addDecorator(getStory => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {getStory()}
-    </View>
+    </SafeAreaView>
   ))
   .add('default', () => (
     <View style={{

@@ -12,11 +12,9 @@ const styles = StyleSheet.create({
 });
 
 addDecorator(storyFn => (
-  <SafeAreaView style={styles.container}>
-    <MobileUIProvider>
-      { storyFn() }
-    </MobileUIProvider>
-  </SafeAreaView>
+  <MobileUIProvider>
+    { storyFn() }
+  </MobileUIProvider>
 ));
 
 configure(() => require('../stories'), module);
