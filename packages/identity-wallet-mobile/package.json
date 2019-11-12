@@ -29,7 +29,10 @@
     "dns.js": "^1.0.1",
     "domain-browser": "^1.2.0",
     "events": "^1.1.1",
+<<<<<<< HEAD
     "formik": "^2.0.3",
+=======
+>>>>>>> a3c79288d2858805729f5f17e6e021d477a1db0f
     "https-browserify": "0.0.1",
     "path-browserify": "0.0.0",
     "punycode": "^1.4.1",
@@ -61,8 +64,12 @@
     "tty-browserify": "0.0.0",
     "url": "^0.10.3",
     "util": "^0.10.4",
+<<<<<<< HEAD
     "vm-browserify": "0.0.4",
     "yup": "^0.27.0"
+=======
+    "vm-browserify": "0.0.4"
+>>>>>>> a3c79288d2858805729f5f17e6e021d477a1db0f
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
