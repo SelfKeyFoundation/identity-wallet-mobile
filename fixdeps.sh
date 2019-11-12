@@ -7,3 +7,4 @@ sed -i".bkp" -e "s/ existingModule \&\&/false \&\&/g" ./packages/mobile-ui-story
 # It will remove them and rely just in the root react
 rm -rf ./packages/**/node_modules/react
 rm -rf ./packages/**/node_modules/react-redux
+rm -rf ./packages/**/node_modules/styled-components

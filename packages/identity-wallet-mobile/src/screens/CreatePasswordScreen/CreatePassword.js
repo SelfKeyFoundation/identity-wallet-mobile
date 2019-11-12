@@ -13,29 +13,9 @@ import {
   Col,
   Button,
   H3,
-  DefinitionTitle
 } from '@selfkey/mobile-ui';
-import { View } from 'react-native';
-import { getErrorMessage } from './validation-utils';
-
-function Check({ errors, hasValue, theme, text, id }) {
-  const hasError = !hasValue || errors.find(error => error === id);
-
-  return (
-    <Row>
-      <Col style={{ width: 25 }}>
-        <SKIcon
-          name="icon-shield-check"
-          color={hasError ? theme.colors.disabled : theme.colors.success}
-          size={16}
-        />
-      </Col>
-      <Col style={{ width: '100%' }}>
-        <Explanatory>{text}</Explanatory>
-      </Col>
-    </Row>
-  );
-}
+import styled from 'styled-components/native';
+import { ValidationCheck } from './ValidationCheck';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -61,10 +41,43 @@ function getStrenghtMessage(value) {
     return 'Medium';
   }
 
-  return 'Weak'
+  return 'Weak';
 }
 
-export function CreatePassword(props: any) {
+export interface CreatePasswordProps {
+  errors: any,
+  values: any,
+  onChange: (value: string) => void,
+  onSubmit: () => void,
+  passwordStrenght: number;
+}
+
+const ContentGrid = styled(Grid)`
+  flex: 1;
+  min-height: 450px;
+`;
+
+const StrenghtRow = styled(Row)`
+  margin-bottom: 5px;
+`;
+
+const InputRow = styled(Row)`
+  margin-top: 30px;
+`;
+
+const IconCol = styled(Col)`
+  align-items: center;
+`;
+
+const TitleCol = styled(Col)`
+  justify-content: center;
+`;
+
+const PageTitle = styled(H3)`
+  text-align: center;
+`;
+
+export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
@@ -72,23 +85,23 @@ export function CreatePassword(props: any) {
   return (
     <ScreenContainer sidePadding>
       <Container withMargin>
-        <Grid style={{ flex: 1, minHeight: 450 }}>
+        <ContentGrid>
           <Row>
-            <Col style={{ alignItems: 'center' }}>
+            <IconCol>
               <SKIcon name="icon-password" color={theme.colors.primary} size={66} />
-            </Col>
+            </IconCol>
           </Row>
           <Row>
-            <Col style={{ justifyContent: 'center' }}>
-              <H3 style={{ textAlign: 'center' }}>
+            <TitleCol>
+              <PageTitle align="center">
                 Set a password to unlock your
-              </H3>
-              <H3 style={{ textAlign: 'center' }}>
+              </PageTitle>
+              <PageTitle align="center">
                 SelfKey Identity Wallet
-              </H3>
-            </Col>
+              </PageTitle>
+            </TitleCol>
           </Row>
-          <Row style={{ marginTop: 30 }}>
+          <InputRow>
             <Col>
               <TextInput
                 error={passwordInlineErrors.length}
@@ -100,17 +113,17 @@ export function CreatePassword(props: any) {
                 secureTextEntry={true}
               />
             </Col>
-          </Row>
-          <Row style={{ marginBottom: 5 }}>
+          </InputRow>
+          <StrenghtRow>
             <Col>
               <Explanatory>
                 Password Strenght: {getStrenghtMessage(props.passwordStrenght)}
               </Explanatory>
             </Col>
-          </Row>
+          </StrenghtRow>
           {
             PasswordRequirements.map((item) => (
-              <Check
+              <ValidationCheck
                 errors={passwordErrors}
                 hasValue={!!props.values.password}
                 theme={theme}
@@ -119,31 +132,18 @@ export function CreatePassword(props: any) {
               />
             ))
           }
-        </Grid>
+        </ContentGrid>
         <Grid>
           <Row>
             <Col>
-              <Button onPress={props.onSubmit}>
+              <Button
+                onPress={props.onSubmit}
+                type="full-primary"
+              >
                 Save Password
               </Button>
             </Col>
           </Row>
-          {
-            // <Row>
-            //   <Col>
-            //     <DefinitionTitle style={{ textAlign: 'center' }}>
-            //       Or
-            //     </DefinitionTitle>
-            //   </Col>
-            // </Row>
-            // <Row>
-            //   <Col>
-            //     <Button type="link">
-            //       Import Existing Wallet
-            //     </Button>
-            //   </Col>
-            // </Row>
-          }
         </Grid>
       </Container>
     </ScreenContainer>
