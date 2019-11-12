@@ -1,11 +1,11 @@
 import { createSwitchNavigator } from 'react-navigation';
 import { Routes } from '@selfkey/wallet-core/navigation';
 import { loadingFlow } from './flows/loading-flow';
-import { onBoardingFlow } from './flows/on-boarding-flow';
+import { createWalletFlow } from './flows/create-wallet-flow';
 import { appFlow } from './flows/app-flow';
 
 export const RootNavigation = createSwitchNavigator({
   [Routes.LOADING_FLOW]: loadingFlow,
-  [Routes.ON_BOARDING_FLOW]: onBoardingFlow,
+  [Routes.CREATE_WALLET_FLOW]: createWalletFlow,
   [Routes.APP_FLOW]: appFlow,
 });
