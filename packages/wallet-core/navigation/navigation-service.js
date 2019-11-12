@@ -5,6 +5,10 @@ export function setNavigator(n) {
 }
 
 export function navigate(routeName, params) {
+  if (!navigator) {
+    return;
+  }
+
   navigator.navigate(routeName, params);
 }
 
