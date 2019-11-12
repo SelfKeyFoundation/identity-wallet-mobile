@@ -2,6 +2,12 @@ global.DEV = true
 import 'react-native';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
+import { setNavigator } from '@selfkey/wallet-core/navigation';
+
+setNavigator({
+  navigate() {
+  },
+});
 
 /**
  * Set up DOM in node.js environment for Enzyme to mount to
