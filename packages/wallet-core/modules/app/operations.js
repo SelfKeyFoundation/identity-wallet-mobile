@@ -18,7 +18,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
 
   // Redirect to App FLOW
   // TODO: Verify if wallet is created, if not can redirect to on boarding flow
-  navigate(Routes.ON_BOARDING_FLOW);
+  navigate(Routes.CREATE_WALLET_FLOW);
 
   dispatch(appActions.setLoading(false));
 };

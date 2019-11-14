@@ -8,5 +8,6 @@ export const APP_SETTINGS = 'app/settings';
 export const APP_MY_TOKENS = 'app/myTokens';
 export const APP_SCAN_QR = 'app/scanQr';
 
-export const ON_BOARDING_FLOW = 'onBoarding';
-export const ON_BOARDING_SETUP_PASSWORD = 'onBoarding/setupPassword';
+export const CREATE_WALLET_FLOW = 'createWallet';
+export const CREATE_WALLET_PASSWORD = 'createWallet/password';
+export const CREATE_WALLET_CONFIRM_PASSWORD = 'createWallet/confirmPassword';
