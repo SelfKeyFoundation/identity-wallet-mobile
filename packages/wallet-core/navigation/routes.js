@@ -1,5 +1,6 @@
 export const LOADING_FLOW = 'loading';
 export const LOADING = 'loading/all';
+// we could have more steps for loading process
 
 export const APP_FLOW = 'app';
 export const APP_DASHBOARD = 'app/dashboard';
