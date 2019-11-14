@@ -107,7 +107,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                 error={passwordInlineErrors.length}
                 errorMessage={errorMessages[passwordInlineErrors[0]]}
                 value={props.values.password}
-                placeholder=""
+                placeholder="Password"
                 label="Set Password"
                 onChangeText={props.onChange('password')}
                 secureTextEntry={true}

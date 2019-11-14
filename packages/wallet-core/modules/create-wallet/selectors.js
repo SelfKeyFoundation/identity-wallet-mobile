@@ -1,1 +1,2 @@
-export const getPassword = state => state.password;
+export const createWalletRoot = state => state.createWallet;
+export const getPassword = state => createWalletRoot(state).password;
