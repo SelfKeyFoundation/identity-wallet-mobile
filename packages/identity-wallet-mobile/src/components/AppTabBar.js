@@ -8,7 +8,7 @@ export function AppTabBar(props) {
   const route = routes[navigation.state.index];
 
   const items = [{
-    icon: 'icon-menu-dashboard-2',
+    icon: 'icon-menu-dashboard',
     label: 'Dashboard',
     id: Routes.APP_DASHBOARD,
   }, {

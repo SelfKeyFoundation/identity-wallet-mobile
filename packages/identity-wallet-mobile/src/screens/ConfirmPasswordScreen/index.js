@@ -1,23 +1,22 @@
 import React, { useCallback } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmPassword } from './ConfirmPassword';
 import { useConfirmPasswordController } from './useConfirmPasswordController';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 
-// import modules from '@selfkey/wallet-core/modules';
+import modules from '@selfkey/wallet-core/modules';
+
+const { operations, selectors } = modules.createWallet;
 
 function ConfirmPasswordContainer(props) {
-  // const dispatch = useDispatch();
-  // Validation is handled using internal state
-  // Submit will send the form data to redux
+  const dispatch = useDispatch();
+  const password = useSelector(selectors.getPassword);
+
   const controller = useConfirmPasswordController({
-    password: props.password,
-    // onSubmit: form => dispatch(
-    //   modules
-    //     .createWallet
-    //     .operations
-    //     .submitPasswordScreenOperation(form)
-    // ),
+    password,
+    onSubmit: form => dispatch(
+      operations.submitPasswordConfirmationOperation(form)
+    ),
   });
 
   const handleBack = useCallback(() => navigate(Routes.CREATE_WALLET_PASSWORD), []);

@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import {
   Explanatory,
   ScreenContainer,
@@ -82,6 +82,11 @@ export function CreatePassword(props: CreatePasswordProps) {
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
 
+  const handlePasswordChange = useCallback((value = '') => {
+    const cleanedValue = value.replace(/[ \n]/g, '');
+    props.onChange('password')(cleanedValue);
+  });
+
   return (
     <ScreenContainer sidePadding>
       <Container withMargin>
@@ -109,7 +114,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                 value={props.values.password}
                 placeholder="Password"
                 label="Set Password"
-                onChangeText={props.onChange('password')}
+                onChangeText={handlePasswordChange}
                 secureTextEntry={true}
               />
             </Col>
