@@ -1,6 +1,6 @@
 import appActions from './actions';
 import { initRealm } from '@selfkey/wallet-core/db/realm-service';
-
+import { navigate, Routes } from '../../navigation';
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
 const loadAppOperation = () => async (dispatch, getState) => {
@@ -13,11 +13,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
     skipMigration: true,
   });
 
-  // We don't have too much to load and QA team will not see the transition:
-  // Splash Screen -> Loading Screen -> Home
-  // This delay will hold the loading screen for a while and allow QA team to validate the screen
   // TODO: Remove in the future
-  await delay(3000);
+  await delay(1000);
+
+  // Redirect to App FLOW
+  // TODO: Verify if wallet is created, if not can redirect to on boarding flow
+  navigate(Routes.ON_BOARDING_FLOW);
 
   dispatch(appActions.setLoading(false));
 };

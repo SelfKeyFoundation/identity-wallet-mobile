@@ -66,8 +66,8 @@ export const TextInput = (props: TextInputProps) => {
         render={renderInput(props, theme)}
       />
       {
-        props.error && props.errorMessage && (
-          <View style={{ marginBottom: 10, marginTop: 10 }}>
+        (props.error && props.errorMessage) ? (
+          <View style={{ marginBottom: 5, marginTop: 10 }}>
             <Text
               style={{
                 color: theme.colors.error,
@@ -78,7 +78,7 @@ export const TextInput = (props: TextInputProps) => {
               { props.errorMessage }
             </Text>
           </View>
-        )
+        ) : null
       }
     </View>
   );

@@ -1,9 +1,8 @@
 // @flow
 import React, { useEffect } from 'react';
-import Navigation from './navigation';
+import { NavigationContainer } from './navigation';
 import { connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
-import { LoadingScreen } from './screens/loading-screen';
 
 type AppProps = {
   isLoading: boolean,
@@ -11,17 +10,15 @@ type AppProps = {
 };
 
 export function App(props: AppProps) {
-  const { isLoading, loadApp } = props;
+  const { loadApp } = props;
 
   useEffect(() => {
     loadApp();
   }, []);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
-  return <Navigation />;
+  return (
+    <NavigationContainer />
+  );
 }
 
 const mapStateToProps = (state) => {

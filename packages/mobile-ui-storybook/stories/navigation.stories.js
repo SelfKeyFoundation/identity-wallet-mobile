@@ -10,7 +10,7 @@ function TabExample() {
   const [selected, setSelected] = useState('Dashboard');
 
   const items = [{
-    icon: 'icon-menu-dashboard-2',
+    icon: 'icon-menu-dashboard',
     label: 'Dashboard',
     id: 'Dashboard',
   }, {
