@@ -3,12 +3,19 @@ import { BaseModel } from '../common/base-model';
 export class WalletModel extends BaseModel {
   static schema = {
     name: 'wallet',
-    primaryKey: 'id',
+    primaryKey: 'address',
     properties: {
-      id: { type: 'int' },
-      name: { type: 'string' },
-      address: { type: 'string' },
-      privateKey: { type: 'string' },
+      address: 'string',
+      name: 'string',
+      vaultId: 'string',
+      /**
+       * hd-wallet or private-key
+       */
+      type: 'string',
+      /**
+       * Path for HD wallets
+       */
+      path: 'string?',
     },
   }
 

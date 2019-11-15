@@ -11,3 +11,6 @@ export const APP_SCAN_QR = 'app/scanQr';
 export const CREATE_WALLET_FLOW = 'createWallet';
 export const CREATE_WALLET_PASSWORD = 'createWallet/password';
 export const CREATE_WALLET_CONFIRM_PASSWORD = 'createWallet/confirmPassword';
+export const CREATE_WALLET_BACKUP = 'createWallet/backup';
+export const CREATE_WALLET_CONFIRM_BACKUP = 'createWallet/confirmBackup';
+export const CREATE_WALLET_SETUP_COMPLETE = 'createWallet/setupComplete';

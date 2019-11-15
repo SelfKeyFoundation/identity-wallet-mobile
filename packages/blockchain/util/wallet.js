@@ -1,22 +1,12 @@
 // @flow
-import ethUtil from 'ethereumjs-util';
+import { privateToPublic, publicToAddress, toChecksumAddress } from 'ethereumjs-util';
 
-class Wallet {
+export class Wallet {
   constructor(privateKey: string) {
-    const pubKey = ethUtil.privateToPublic(privateKey);
-    const addr = ethUtil.publicToAddress(pubKey).toString('hex');
+    const pubKey = privateToPublic(privateKey);
+    const addr = publicToAddress(pubKey).toString('hex');
 
     this.privateKey = privateKey;
-    this.address = ethUtil.toChecksumAddress(addr);
-  }
-
-  getPrivateKey(): string {
-    return this.privateKey;
-  }
-
-  getAddress(): string {
-    return this.address;
+    this.address = toChecksumAddress(addr);
   }
 }
-
-export default Wallet;

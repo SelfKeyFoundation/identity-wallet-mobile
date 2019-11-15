@@ -7,6 +7,12 @@ export const walletActions = {
       password,
     },
   }),
+  setMnemonicPhrase: (mnemonicPhrase) => ({
+    type: types.SET_MNEMONIC_PHRASE,
+    payload: {
+      mnemonicPhrase,
+    },
+  }),
 };
 
 export default walletActions;

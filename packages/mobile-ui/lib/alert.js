@@ -3,24 +3,19 @@ import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useContext } from 'react';
-import { SKIcon, Paragraph, ThemeContext } from '../index';
+import { SKIcon, Explanatory, ThemeContext } from '../index';
 
 const LeftSide = styled.View`
-  display: flex;
-  flex-basis: 20;
-  padding-top: 3;
+  padding-right: 5px;
 `;
 
 const RightSide = styled.View`
-  display: flex;
-  margin-left: 5;
+  flex: 1;
 `;
 
 const Container = styled.View`
   display: flex;
-  flex: 1;
   flex-direction: row;
-  padding: 20px;
 `;
 
 export interface AlertProps {
@@ -41,7 +36,7 @@ export function Alert(props: AlertProps) {
         </View>
       </LeftSide>
       <RightSide>
-        <Paragraph>{props.children}</Paragraph>
+        <Explanatory>{props.children}</Explanatory>
       </RightSide>
     </Container>
   );
