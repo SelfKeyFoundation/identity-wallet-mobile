@@ -10,7 +10,9 @@ import { reduxMockDecorator } from '../../utils/decorators';
 
 storiesOf('Create Wallet Flow', module)
   .addDecorator(reduxMockDecorator({
-
+    createWallet: {
+      password: '123'
+    }
   }))
   .add('Create Password', () => (
     <CreatePasswordScreen

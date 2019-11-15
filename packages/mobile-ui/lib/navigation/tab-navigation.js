@@ -11,7 +11,7 @@ const Container = styled.View`
   flex: 1;
   flex-direction: row;
   width: 100%;
-  max-height: 100px;
+  max-height: 75px;
 `;
 
 const Col = styled.View`
@@ -24,12 +24,14 @@ const Col = styled.View`
 
 const Row = styled.View`
   align-content: center;
-  
 `;
 
 const TabText = styled.Text`
   color: ${({ theme, active }) => active ? theme.colors.primary : theme.colors.typography};
-  margin-top: 12px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  font-family: ${({ theme }) => theme.fonts.regular };
+  font-size: 10px;
 `;
 
 interface TabNavigationItem {
@@ -51,7 +53,7 @@ export function TabNavigationItem(props: TabNavigationItem) {
     <TouchableWithoutFeedback onPress={() => props.onPress(props.id)}>
       <Col>
         <Row>
-          <SKIcon name={props.icon} color={props.active ? theme.colors.primary : theme.colors.typography} size={30} />
+          <SKIcon name={props.icon} color={props.active ? theme.colors.primary : theme.colors.typography} size={20} />
         </Row>
         <Row>
           <TabText active={props.active}>{props.label}</TabText>
