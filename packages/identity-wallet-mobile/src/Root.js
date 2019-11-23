@@ -1,11 +1,11 @@
 // @flow
-import React, { useEffect } from 'react';
+import React from 'react';
+import './rn-identity-vault/index';
 import './setup-redux';
 import './db';
 import { createStoreProvider } from '@selfkey/wallet-core/redux';
-import App from './App';
-import { Provider as PaperProvider } from 'react-native-paper';
 import { MobileUIProvider } from '@selfkey/mobile-ui';
+import App from './App';
 
 const Provider = createStoreProvider();
 

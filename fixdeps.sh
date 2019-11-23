@@ -8,3 +8,5 @@ sed -i".bkp" -e "s/ existingModule \&\&/false \&\&/g" ./packages/mobile-ui-story
 rm -rf ./packages/**/node_modules/react
 rm -rf ./packages/**/node_modules/react-redux
 rm -rf ./packages/**/node_modules/styled-components
+rm -rf ./packages/**/node_modules/ethereumjs-util
+rm -rf ./packages/**/node_modules/keccak

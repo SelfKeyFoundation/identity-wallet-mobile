@@ -5,20 +5,15 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { Alert, Container } from '@selfkey/mobile-ui';
 import { CreatePassword } from '@selfkey/identity-wallet-mobile/src/screens/CreatePasswordScreen/CreatePassword';
-import CreatePasswordScreen from '@selfkey/identity-wallet-mobile/src/screens/CreatePasswordScreen';
-import { reduxMockDecorator } from '../../utils/decorators';
+// import CreatePasswordScreen from '@selfkey/identity-wallet-mobile/src/screens/CreatePasswordScreen';
+// import { reduxMockDecorator } from '../../utils/decorators';
 
 storiesOf('Create Wallet Flow', module)
-  .addDecorator(reduxMockDecorator({
-    createWallet: {
-      password: '123'
-    }
-  }))
-  .add('Create Password', () => (
-    <CreatePasswordScreen
-      onSubmit={action('handleSubmit')}
-    />
-  ))
+  // .addDecorator(reduxMockDecorator({
+  //   createWallet: {
+  //     password: '123'
+  //   }
+  // }))
   .add('Create Password - Static', () => (
     <CreatePassword
       onSubmit={action('handleSubmit')}

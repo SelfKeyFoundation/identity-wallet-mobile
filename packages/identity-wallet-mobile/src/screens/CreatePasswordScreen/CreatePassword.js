@@ -129,6 +129,7 @@ export function CreatePassword(props: CreatePasswordProps) {
           {
             PasswordRequirements.map((item) => (
               <ValidationCheck
+                key={item.id}
                 errors={passwordErrors}
                 hasValue={!!props.values.password}
                 theme={theme}

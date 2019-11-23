@@ -13,12 +13,21 @@ function setPasswordReducer(state, action) {
   };
 }
 
+function setMnemonicPhrase(state, action) {
+  return {
+    ...state,
+    mnemonicPhrase: action.payload.mnemonicPhrase,
+  };
+}
+
 export const createWalletReducers = {
   setPasswordReducer,
+  setMnemonicPhrase,
 };
 
 const reducersMap = {
   [types.SET_PASSWORD]: setPasswordReducer,
+  [types.SET_MNEMONIC_PHRASE]: setMnemonicPhrase,
 };
 
 export default createReducer(initialState, reducersMap);

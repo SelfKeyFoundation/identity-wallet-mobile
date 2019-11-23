@@ -11,15 +11,14 @@ const Container = styled.View`
   flex: 1;
   flex-direction: row;
   width: 100%;
-  max-height: 75px;
+  max-height: 80px;
 `;
 
 const Col = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  margin: 13px auto 0 auto;
 `;
 
 const Row = styled.View`
@@ -70,6 +69,7 @@ export function TabNavigation(props: TabNavigationProps) {
         props.items.map((item) => {
           return (
             <TabNavigationItem
+              key={item.id}
               icon={item.icon}
               active={item.id === props.activeId}
               label={item.label}

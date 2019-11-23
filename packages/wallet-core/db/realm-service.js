@@ -67,6 +67,8 @@ export async function initRealm(opts = {}) {
     ...opts,
   }).then((instance) => {
     setRealmInstance(instance);
+
+    console.log('realm instance loaded', instance);
     return instance;
   });
 }

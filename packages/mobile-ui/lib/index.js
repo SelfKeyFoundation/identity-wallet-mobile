@@ -14,4 +14,4 @@ export * from './inputs/text-input';
 export * from './navigation';
 export * from './icons';
 export * from './grid';
-export * from './alert';
+export { Alert } from './alert';

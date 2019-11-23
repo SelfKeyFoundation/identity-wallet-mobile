@@ -9,6 +9,8 @@ export const Row = styled.View`
   flex-direction: row;
   margin-left: -5px;
   margin-right: -5px;
+  margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
+  margin-bottom: ${props => props.marginBottom ? `${props.marginBottom}px` : 0};
 `;
 
 export const Col = styled.View`
