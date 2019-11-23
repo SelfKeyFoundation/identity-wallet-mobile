@@ -18,11 +18,11 @@ export const Button = (props: ButtonProps) => {
 
   let mode = 'contained';
   let buttonStyle = {
-    height: 44,
+    height: 45,
   };
 
   let contentStyle = {
-    height: 44,
+    height: 45,
   };
 
   let textStyle = {
@@ -39,6 +39,8 @@ export const Button = (props: ButtonProps) => {
     buttonStyle.borderColor = theme.colors.primary;
     buttonStyle.borderWidth = 2;
     textStyle.color = theme.colors.primary;
+    textStyle.top = -2;
+    contentStyle.height = 42;
 
     if (disabled) {
       textStyle.color = theme.colors.primaryDisabled;
@@ -49,6 +51,7 @@ export const Button = (props: ButtonProps) => {
     buttonStyle.borderColor = '#93B0C1';
     buttonStyle.borderWidth = 2;
     textStyle.color = '#C5DCE9';
+    contentStyle.height = 42;
 
     if (disabled) {
       buttonStyle.borderColor = '#586A77';

@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import {
   ScreenContainer,
   TextInput,
@@ -24,6 +24,7 @@ export interface ConfirmPasswordProps {
   values: any,
   onChange: (value: string) => void,
   onSubmit: () => void,
+  onBack: () => void,
 }
 
 const ContentGrid = styled(Grid)`
@@ -50,6 +51,11 @@ const PageTitle = styled(H3)`
 export function ConfirmPassword(props: ConfirmPasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.confirmPassword || [];
+
+  const handlePasswordChange = useCallback((value = '') => {
+    const cleanedValue = value.replace(/[ \n]/g, '');
+    props.onChange('confirmPassword')(cleanedValue);
+  });
 
   return (
     <ScreenContainer sidePadding>
@@ -78,7 +84,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
                 value={props.values.confirmPassword}
                 placeholder="Password"
                 label="Confirm Password"
-                onChangeText={props.onChange('confirmPassword')}
+                onChangeText={handlePasswordChange}
                 secureTextEntry={true}
               />
             </Col>

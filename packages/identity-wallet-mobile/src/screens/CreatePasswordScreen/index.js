@@ -16,7 +16,7 @@ function CreatePasswordContainer(props) {
       password: password || '',
     },
     onSubmit: form => dispatch(
-      operations.submitPasswordScreenOperation(form)
+      operations.submitPasswordOperation(form)
     ),
   });
 
