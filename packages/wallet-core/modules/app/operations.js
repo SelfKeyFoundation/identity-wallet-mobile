@@ -1,6 +1,8 @@
 import appActions from './actions';
 import { initRealm } from '@selfkey/wallet-core/db/realm-service';
 import { navigate, Routes } from '../../navigation';
+import { WalletModel } from '../../models';
+
 // import { createVault } from '../../identity-vault';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
@@ -31,8 +33,13 @@ const loadAppOperation = () => async (dispatch, getState) => {
   await delay(2000);
 
   // Redirect to App FLOW
-  // TODO: Verify if wallet is created, if not can redirect to on boarding flow
-  navigate(Routes.CREATE_WALLET_FLOW);
+  const wallets = await WalletModel.getInstance().findAll();
+
+  if (!wallets.length) {
+    navigate(Routes.CREATE_WALLET_FLOW);
+  } else {
+    navigate(Routes.UNLOCK_WALLET_FLOW);
+  }
 
   dispatch(appActions.setLoading(false));
 };

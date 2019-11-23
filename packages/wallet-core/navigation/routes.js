@@ -14,3 +14,6 @@ export const CREATE_WALLET_CONFIRM_PASSWORD = 'createWallet/confirmPassword';
 export const CREATE_WALLET_BACKUP = 'createWallet/backup';
 export const CREATE_WALLET_CONFIRM_BACKUP = 'createWallet/confirmBackup';
 export const CREATE_WALLET_SETUP_COMPLETE = 'createWallet/setupComplete';
+
+export const UNLOCK_WALLET_FLOW = 'unlockWallet';
+export const UNLOCK_WALLET_PASSWORD = 'unlockWallet/password';

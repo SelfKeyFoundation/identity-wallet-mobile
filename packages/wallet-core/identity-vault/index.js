@@ -43,7 +43,7 @@ export async function createVault(props: VaultConstructor) {
   const vaultId = props.publicKey;
 
   await getKeychain().setItem(vaultId, {
-    type: props.type,
+    id: vaultId,
     privateKey: props.privateKey,
     // TODO: create hash from password
     password: props.password,
@@ -70,7 +70,6 @@ export async function createVault(props: VaultConstructor) {
  */
 export async function unlockVault(vaultId, password) {
   // TODO: create hash from password
-
   const props = await getKeychain().getItem(vaultId);
 
   if (props.password !== password) {

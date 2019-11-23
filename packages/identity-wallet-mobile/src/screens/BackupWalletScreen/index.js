@@ -11,7 +11,7 @@ function BackupWalletContainer(props) {
   const mnemonic = useSelector(selectors.getMnemonicPhrase);
 
   const handleSubmit = useCallback(() => {
-    dispatch(operations.submitWalletBackup());
+    dispatch(operations.submitWalletBackupOperation());
   }, []);
 
   console.log(mnemonic);

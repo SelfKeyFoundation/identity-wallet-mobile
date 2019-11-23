@@ -7,7 +7,9 @@ registerModels();
 
 export function initTestRealm() {
   return initRealm({
+    deleteRealmIfMigrationNeeded: true,
     skipMigration: true,
+    inMemory: true,
   });
 }
 

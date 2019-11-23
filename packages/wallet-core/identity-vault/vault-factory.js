@@ -24,7 +24,7 @@ export class VaultFactory {
    * @param {VaultConstructor} props
    */
   async createVault(props: VaultConstructor) {
-    const vaultId = '<need to generate id>';
+    const vaultId = 'default-vault';
 
     await this.keychain.setItem(vaultId, {
       type: props.type,

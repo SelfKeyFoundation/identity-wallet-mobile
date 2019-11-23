@@ -1,5 +1,8 @@
 import uuid from 'uuid/v4';
 import { WalletModel } from './wallet-model';
+import { initTestRealm } from '../../tests/utils';
+
+beforeAll(initTestRealm);
 
 const fixtures = [{
   id: 1,
