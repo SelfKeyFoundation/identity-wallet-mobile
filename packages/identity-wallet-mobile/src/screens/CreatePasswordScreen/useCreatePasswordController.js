@@ -5,7 +5,7 @@
  */
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { validateAll } from './validation-utils';
+import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
 
 function computePasswordStrenght(value = '') {
   let strenght = 0;
@@ -51,9 +51,7 @@ const schema = Yup.object().shape({
  */
 export function useCreatePasswordController(props) {
   const formik = useFormik({
-    initialValues: {
-      password: '',
-    },
+    initialValues: props.initialValues,
     validate: values => validateAll(schema, values),
     onSubmit: values => props.onSubmit(values),
   });
