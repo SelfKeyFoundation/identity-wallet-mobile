@@ -22,7 +22,5 @@ describe('Test Setup', () => {
     const { vaultId } = wallet;
     const vault = await unlockVault(vaultId, 'test');
     expect(vault).toBeDefined();
-
-    console.log(vault);
   });
 });
