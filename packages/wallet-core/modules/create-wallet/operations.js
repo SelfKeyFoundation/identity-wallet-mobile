@@ -17,7 +17,7 @@ const submitPasswordConfirmationOperation = (form) => async (dispatch, getState)
 
 const submitWalletBackup = (form) => async (dispatch, getState) => {
   await dispatch(setupWallet());
-  await navigate(Routes.APP_DASHBOARD);
+  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
 const setupWallet = (form) => async (dispatch, getState) => {

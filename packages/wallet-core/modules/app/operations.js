@@ -28,7 +28,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
   });
 
   // TODO: Remove in the future
-  await delay(1000);
+  await delay(2000);
 
   // Redirect to App FLOW
   // TODO: Verify if wallet is created, if not can redirect to on boarding flow
