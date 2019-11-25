@@ -4,9 +4,6 @@ module.exports = {
     '<rootDir>/tests/setup.js',
   ],
   'verbose': true,
-  'globalSetup': '<rootDir>/tests/global-setup.js',
-  'globalTeardown': '<rootDir>/tests/teardown.js',
-  // 'testEnvironment': '<rootDir>/tests/wallet-environment.js',
   'modulePaths': [
     '<rootDir>',
   ],

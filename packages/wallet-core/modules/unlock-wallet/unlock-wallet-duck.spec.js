@@ -1,11 +1,8 @@
 import sinon from 'sinon';
-import { initIdentityVault } from '../../tests/utils';
 import { walletOperations } from '../wallet/operations';
 
 import duck from './index';
 import actions from './actions';
-
-beforeAll(initIdentityVault);
 
 describe('Unlock Wallet Duck', () => {
   let _state = {};
