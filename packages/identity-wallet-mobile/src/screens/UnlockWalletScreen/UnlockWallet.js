@@ -53,7 +53,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin>
+      <Container withMargin scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
@@ -80,6 +80,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
                 label="Password"
                 onChangeText={props.onChange('password')}
                 secureTextEntry={true}
+                onSubmitEditing={props.onSubmit}
               />
             </Col>
           </InputRow>

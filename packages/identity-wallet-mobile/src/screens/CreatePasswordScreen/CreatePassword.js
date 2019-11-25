@@ -1,5 +1,6 @@
 // @flow
 import React, { useContext, useCallback } from 'react';
+import { ScrollView } from 'react-native';
 import {
   Explanatory,
   ScreenContainer,
@@ -89,7 +90,7 @@ export function CreatePassword(props: CreatePasswordProps) {
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin>
+      <Container withMargin scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
@@ -116,6 +117,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                 label="Set Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
+                onSubmitEditing={props.onSubmit}
               />
             </Col>
           </InputRow>

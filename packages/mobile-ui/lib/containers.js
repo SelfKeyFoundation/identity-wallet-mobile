@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -16,17 +16,34 @@ export const ScreenContainer = styled.SafeAreaView`
 `;
 
 const ContainerRegular = styled.View`
-  flex: 1;
   background-color: ${props => props.theme.colors.baseDark};
   margin: ${(props) => props.withMargin ? '35px' : 0};
+  flex: 1;
 `;
 
+const ScrollView = styled.ScrollView`
+  flex: 1;
+`;
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
+});
+
 export const Container = (props) => {
-  if (props.centered) {
-    return <ContainerCentered {...props} />;
+  const InnerContainer = props.centered ? ContainerCentered : ContainerRegular;
+  const innerContent = <InnerContainer {...props} />;
+
+  if (props.scrollable) {
+    return (
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        { innerContent }
+      </ScrollView>
+    );
   }
 
-  return <ContainerRegular {...props} />;
+  return innerContent;
 };
 
 

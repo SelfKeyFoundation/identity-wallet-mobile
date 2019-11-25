@@ -59,7 +59,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin>
+      <Container withMargin scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
@@ -86,6 +86,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
                 label="Confirm Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
+                onSubmitEditing={props.onSubmit}
               />
             </Col>
           </InputRow>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SkBackground, SkLogo } from '@selfkey/mobile-ui/lib';
+import { SkLogo } from '@selfkey/mobile-ui/lib';
+import { SkBackground } from '../../components';
 
 const Title = styled.Text`
   color: ${props => props.theme.colors.primary};
