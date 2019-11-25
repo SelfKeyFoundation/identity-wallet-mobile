@@ -4,3 +4,6 @@ default.realm.management
 *.realm
 *.realm.lock
 *.realm.note
+# realm files
+vault-*
+default.realm

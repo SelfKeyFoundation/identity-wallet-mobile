@@ -33,14 +33,10 @@ export function setRealmInstance(instance) {
   realmInstance = instance;
 }
 
-let isOpened = false;
-
 export async function initRealm(opts = {}) {
-  if (isOpened) {
+  if (getRealmInstance()) {
     return;
   }
-
-  isOpened = true;
 
   // The first schema to update to is the current schema version
   // since the first schema in our array is at nextSchemaIndex:
@@ -69,5 +65,7 @@ export async function initRealm(opts = {}) {
     setRealmInstance(instance);
 
     return instance;
+  }).catch(err => {
+    console.log(err);
   });
 }

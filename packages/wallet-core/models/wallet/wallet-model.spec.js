@@ -1,19 +1,21 @@
 import uuid from 'uuid/v4';
 import { WalletModel } from './wallet-model';
-import { initTestRealm } from '../../tests/utils';
+// import { initTestRealm } from '../../tests/utils';
 
-beforeAll(initTestRealm);
+// beforeAll(initTestRealm);
 
 const fixtures = [{
-  id: 1,
+  vaultId: '<vault-id>',
   name: 'Test wallet',
   address: uuid(),
-  privateKey: uuid(),
+  type: 'hd',
+  path: '',
 }, {
-  id: 2,
+  vaultId: '<vault-id>',
   name: 'Test wallet 2',
   address: uuid(),
-  privateKey: uuid(),
+  type: 'hd',
+  path: '',
 }];
 
 describe('core/db/models/WalletModel', () => {

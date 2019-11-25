@@ -2,8 +2,11 @@ import { getRealmInstance } from '../../db/realm-service';
 
 export class BaseModel {
   constructor(schema) {
-    this.realm = getRealmInstance();
     this.schema = schema;
+  }
+
+  get realm() {
+    return getRealmInstance();
   }
 
   create(props) {
