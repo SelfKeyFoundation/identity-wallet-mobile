@@ -29,6 +29,10 @@ target 'SelfKeyMobileUI' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-randombytes', :path => '../node_modules/react-native-randombytes'
+
+  pod 'RealmJS', :path => '../node_modules/realm'
+
   target 'SelfKeyMobileUITests' do
     inherit! :search_paths
     # Pods for testing
