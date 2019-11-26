@@ -99,8 +99,10 @@ export function Modal(props) {
   );
 
   return (
-    <PaperModal visible={props.visible} onDismiss={props.onClose}>
-      { content }
-    </PaperModal>
+    <Portal>
+      <PaperModal visible={props.visible} onDismiss={props.onClose}>
+        { content }
+      </PaperModal>
+    </Portal>
   );
 }

@@ -18,6 +18,7 @@ export class WalletModel extends BaseModel {
        * Path for HD wallets
        */
       path: 'string?',
+      termsAccepted: 'bool?',
     },
   }
 
@@ -35,5 +36,14 @@ export class WalletModel extends BaseModel {
 
   findByAddress(address) {
 		return this.findOne('address = $0', address.toLowerCase());
+  }
+
+  updateByAddress(address, data) {
+    return this.realm.write(() => {
+      return this.realm.create(this.schema.name, {
+        ...data,
+        address,
+      }, true);
+    });
   }
 }

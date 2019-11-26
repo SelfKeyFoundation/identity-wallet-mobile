@@ -34,7 +34,7 @@ export class BaseModel {
   }
 
   findAll() {
-    return this.realm.objects(this.schema.name);
+    return Array.from(this.realm.objects(this.schema.name)).map(this.toJson);
   }
 
   findById(id) {
@@ -51,6 +51,15 @@ export class BaseModel {
     });
   }
 
+  toJson(realmObject) {
+    const data = {};
+
+    Object.keys(realmObject).map(key => {
+      data[key] = realmObject[key];
+    });
+
+    return data;
+  }
   /**
    * Query example: color = "tan" AND name BEGINSWITH "B"
    * @param {string} query query string
@@ -61,7 +70,13 @@ export class BaseModel {
    *
    */
   find(query, ...args) {
-    return this.findAll().filtered(query, ...args);
+    let results = results = this.findAll();
+
+    if (query) {
+      results = results.filtered(query, ...args);
+    }
+
+    return Array.from(results).map(this.toJson);
   }
 
   findOne(query, ...args) {

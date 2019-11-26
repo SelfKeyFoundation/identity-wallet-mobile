@@ -20,7 +20,7 @@ const withModalButton = (ModalComponent) => (props) => {
       />
     </ScreenContainer>
   );
-}
+};
 
 const TOSModal = withModalButton(TermsOfService);
 const TOSAgreementModal = withModalButton(TermsOfServiceAgreement);

@@ -4,7 +4,9 @@ import './rn-identity-vault/index';
 import './setup-redux';
 import './db';
 import { createStoreProvider } from '@selfkey/wallet-core/redux';
-import { MobileUIProvider } from '@selfkey/mobile-ui';
+import { MobileUIProvider, Portal } from '@selfkey/mobile-ui';
+import { TermsOfService } from './components';
+
 import App from './App';
 
 const Provider = createStoreProvider();
@@ -17,7 +19,9 @@ export function Root(props: RootProps) {
   return (
     <Provider>
       <MobileUIProvider>
-        <App />
+        <Portal.Host>
+          <App />
+        </Portal.Host>
       </MobileUIProvider>
     </Provider>
   );

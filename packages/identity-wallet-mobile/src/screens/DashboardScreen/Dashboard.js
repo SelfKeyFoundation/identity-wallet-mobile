@@ -15,11 +15,15 @@ const Container = styled.View`
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-export default function DashboardScreen() {
+export function Dashboard(props) {
   return (
     <Container>
       <SafeAreaView>
         <HeaderTitle>Dashboard</HeaderTitle>
+        {
+          // Terms of service modal
+          props.children
+        }
       </SafeAreaView>
     </Container>
   );

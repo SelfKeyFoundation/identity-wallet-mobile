@@ -60,6 +60,9 @@ export async function initRealm(opts = {}) {
   return Realm.open({
     schema: models.map(m => m.schema),
     schemaVersion: CURRENT_SCHEMA_VERSION,
+    migration: (oldRealm, newRealm) => {
+
+    },
     ...opts,
   }).then((instance) => {
     setRealmInstance(instance);
