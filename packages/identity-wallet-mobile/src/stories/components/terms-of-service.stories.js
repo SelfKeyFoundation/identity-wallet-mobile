@@ -9,9 +9,7 @@ const withModalButton = (ModalComponent) => (props) => {
 
   return (
     <ScreenContainer>
-      {
-        <Button onPress={handleClick}>Open Modal</Button>
-      }
+      <Button onPress={handleClick}>Open Modal</Button>
       <ModalComponent
         {...props}
         visible={visible}
