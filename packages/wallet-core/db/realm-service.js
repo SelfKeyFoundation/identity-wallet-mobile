@@ -57,12 +57,13 @@ export async function initRealm(opts = {}) {
     }
   }
 
+  if (!opts.deleteRealmIfMigrationNeeded) {
+    opts.migration =  (oldRealm, newRealm) => {}
+  }
+
   return Realm.open({
     schema: models.map(m => m.schema),
     schemaVersion: CURRENT_SCHEMA_VERSION,
-    migration: (oldRealm, newRealm) => {
-
-    },
     ...opts,
   }).then((instance) => {
     setRealmInstance(instance);

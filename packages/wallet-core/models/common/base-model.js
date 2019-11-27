@@ -17,7 +17,7 @@ export class BaseModel {
 
   removeById(id) {
     return this.realm.write(() => {
-      const item = this.findById(id);
+      const item = this._findById(id);
       this.realm.delete(item);
     });
   }
@@ -33,13 +33,21 @@ export class BaseModel {
     });
   }
 
+  _findAll() {
+    return this.realm.objects(this.schema.name);
+  }
+
   findAll() {
-    return Array.from(this.realm.objects(this.schema.name)).map(this.toJson);
+    return Array.from(this._findAll()).map(this.toJson);
+  }
+
+  _findById(id) {
+    const items = this._findAll().filtered(`id = ${id}`);
+    return items[0];
   }
 
   findById(id) {
-    const items = this.findAll().filtered(`id = ${id}`);
-    return items[0];
+    return this.toJson(this._findById(id));
   }
 
   updateById(id, data) {
@@ -52,6 +60,10 @@ export class BaseModel {
   }
 
   toJson(realmObject) {
+    if (!realmObject) {
+      return realmObject;
+    }
+
     const data = {};
 
     Object.keys(realmObject).map(key => {
@@ -70,7 +82,7 @@ export class BaseModel {
    *
    */
   find(query, ...args) {
-    let results = results = this.findAll();
+    let results = this._findAll();
 
     if (query) {
       results = results.filtered(query, ...args);

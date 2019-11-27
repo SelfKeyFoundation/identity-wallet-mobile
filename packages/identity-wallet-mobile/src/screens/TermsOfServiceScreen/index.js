@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TermsOfService, TermsOfServiceAgreement } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
 
-const { operations, selectors } = modules.wallet;
+const { operations, selectors } = modules.app;
 
 function TermsOfServiceContainer(props) {
   const dispatch = useDispatch();
@@ -31,11 +31,9 @@ function TermsOfServiceContainer(props) {
 }
 
 const withTermsCheck = Wrapper => props => {
-  const address = useSelector(selectors.getAddress);
   const isTermsAccepeted = useSelector(selectors.isTermsAccepeted);
 
-  console.log('#mzm render check', { address, isTermsAccepeted });
-  if (address && isTermsAccepeted) {
+  if (isTermsAccepeted) {
     return null;
   }
 
