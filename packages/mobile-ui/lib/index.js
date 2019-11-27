@@ -12,3 +12,4 @@ export * from './icons';
 export * from './grid';
 export { Alert } from './alert';
 export * from './modal';
+export * from './format';
