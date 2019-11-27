@@ -66,6 +66,7 @@ export async function initRealm(opts = {}) {
 
     return instance;
   }).catch(err => {
-    console.log(err);
+    // TODO: Configure a logging system
+    console.error(err);
   });
 }

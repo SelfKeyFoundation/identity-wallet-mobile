@@ -3,10 +3,7 @@ import { WalletBuilder } from './wallet-builder';
 describe('Wallet Builder', () => {
   it('Expect to create wallet', async () => {
     const mnemonic = WalletBuilder.generateMnemonic();
-
-    console.log(mnemonic);
     const builder = await WalletBuilder.createFromMnemonic(mnemonic);
-    
     const wallet = builder.createWallet(0);
 
     expect(wallet.address).toBeDefined();

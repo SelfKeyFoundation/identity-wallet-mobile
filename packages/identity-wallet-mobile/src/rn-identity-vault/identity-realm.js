@@ -41,7 +41,7 @@ export class IdentityRealm {
 
   setItem(item: any) {
     return this.realm.write(() => {
-      let foundItem = this.setItem(item.name);
+      let foundItem = this.getItem(item.name);
       if (!foundItem) {
         this.realm.create('Identity', item);
       } else {
