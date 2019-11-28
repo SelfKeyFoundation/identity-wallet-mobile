@@ -33,7 +33,7 @@ export const Title = styled.Text`
 
 const Container = styled.View`
   background: #2E3945;
-  padding: 20px;
+  padding: 21px;
   border-radius: 4px;
   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
