@@ -7,6 +7,7 @@ const HeaderTitle = styled.Text`
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
   text-align: center;
+  margin-top: 15px;
 `;
 
 const Container = styled.View`

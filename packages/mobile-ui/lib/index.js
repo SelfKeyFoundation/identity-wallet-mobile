@@ -2,7 +2,6 @@
 export * from './mobile-ui-provider';
 export * from './paper-theme';
 export * from './ImageBackground';
-export * from './SkBackground';
 export * from './SkLogo';
 export * from './containers';
 export * from './buttons/Button';
