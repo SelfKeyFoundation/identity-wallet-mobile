@@ -1,10 +1,10 @@
 import walletActions from './actions';
-
-const delay = (time) => new Promise((res) => setTimeout(res, time));
+import * as walletSelectors from './selectors';
+import { WalletModel } from '../../models';
+import { exitApp } from '../../system';
 
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
-  // dispatch(walleqqtActions.setLoading(true));
-  // dispatch(walletActions.setLoading(false));
+  dispatch(walletActions.setWallet(wallet));
 };
 
 export const operations = {

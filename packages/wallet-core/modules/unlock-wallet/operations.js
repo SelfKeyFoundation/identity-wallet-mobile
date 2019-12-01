@@ -6,7 +6,7 @@ import { navigate, Routes } from '../../navigation';
 
 const submitUnlockOperation = (form) => async (dispatch, getState) => {
   // Get the selected wallet, for now we are gonig to get the first one since the users can't create more than one
-  const wallet = WalletModel.getInstance().findAll()[0];
+  const wallet = WalletModel.getInstance().findOne();
   let vault;
 
   try {

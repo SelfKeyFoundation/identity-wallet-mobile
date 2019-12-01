@@ -4,6 +4,7 @@ export const Paragraph = styled.Text`
   color: ${props => props.theme.colors.white};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
+  margin-bottom: 10px;
 `;
 
 export const Ammount = styled.Text`
