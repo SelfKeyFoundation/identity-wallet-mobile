@@ -1,3 +1,7 @@
+// TODO: This is a copy from database impl for react native
+// Need to unify it, the realm impl should be place into the wallet-core package
+// For now this is not possible due to issues to import it from wallet-mobile package
+
 /**
  * @flow
  *

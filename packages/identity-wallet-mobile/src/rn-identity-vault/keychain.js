@@ -10,12 +10,11 @@ export * from 'react-native-keychain';
  * @param {*} options
  */
 export function setItem(id: string, data: any, options: Keychain.Options = {}) {
-  const { password = '', ...otherData } = data;
-  const jsonData = JSON.stringify(otherData);
+  const jsonData = JSON.stringify(data);
 
   options.service = id;
 
-  return Keychain.setGenericPassword(jsonData, password, options);
+  return Keychain.setGenericPassword(jsonData, '', options);
 }
 
 /**
@@ -42,8 +41,5 @@ export async function getItem(id: string): any {
 
   const data = JSON.parse(result.username);
 
-  return {
-    ...data,
-    password: result.password,
-  };
+  return data;
 }

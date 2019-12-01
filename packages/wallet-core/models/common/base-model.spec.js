@@ -1,6 +1,9 @@
 import { getRealmInstance } from '../../db/realm-service';
 import { BaseModel } from './base-model';
 import { TestModel } from './test-model';
+// import { initTestRealm } from '../../tests/utils';
+
+// beforeAll(initTestRealm);
 
 const fixtures = [{
   id: 1,
@@ -14,9 +17,9 @@ const fixtures = [{
 }];
 
 const { schema } = TestModel;
-const realm = getRealmInstance();
 
 function createFixtures() {
+  const realm = getRealmInstance();
   return realm.write(() => {
     let allItems = realm.objects(schema.name);
     realm.delete(allItems);
@@ -25,7 +28,11 @@ function createFixtures() {
 }
 
 describe('wallet-code/db/models/BaseModel', () => {
-  let model = new BaseModel(TestModel.schema);
+  let model;
+
+  beforeAll(() => {
+    model = new BaseModel(TestModel.schema);
+  });
 
   it('expect realm to be defined', () => {
     expect(model.realm).toEqual(getRealmInstance());
@@ -51,6 +58,7 @@ describe('wallet-code/db/models/BaseModel', () => {
     });
 
     it('removeAll', () => {
+      const realm = getRealmInstance();
       model.removeAll();
       const items = realm.objects(schema.name);
       expect(items).toHaveLength(0);

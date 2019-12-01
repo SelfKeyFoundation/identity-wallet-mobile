@@ -1,9 +1,10 @@
 import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 import actions from './actions';
 import * as selectors from './selectors';
-import { createVault } from '../../identity-vault';
+// import { createVault } from '../../identity-vault';
 import { navigate, Routes } from '../../navigation';
-import { WalletModel } from '../../models';
+// import { WalletModel } from '../../models';
+import { setupHDWallet } from './create-wallet-utils';
 
 const submitPasswordOperation = (form) => async (dispatch, getState) => {
   dispatch(actions.setPassword(form.password));
@@ -15,42 +16,16 @@ const submitPasswordConfirmationOperation = (form) => async (dispatch, getState)
   await navigate(Routes.CREATE_WALLET_BACKUP);
 };
 
-const submitWalletBackup = (form) => async (dispatch, getState) => {
-  await dispatch(setupWallet());
-  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
-};
-
-const setupWallet = (form) => async (dispatch, getState) => {
+const submitWalletBackupOperation = (form) => async (dispatch, getState) => {
+  // await dispatch(setupWalletOperation());
   const state = getState();
   const mnemonic = selectors.getMnemonicPhrase(state);
-  const builder = await WalletBuilder.createFromMnemonic(mnemonic);
+  // TODO: create selector
+  const { password } = state.createWallet;
 
-  const { xpriv, xpub } = builder.toJSON();
+  await setupHDWallet({ mnemonic, password });
 
-  const vault = await createVault({
-    privateKey: xpriv,
-    publicKey: xpub,
-    password: state.createWallet.password,
-    securityPolicy: {
-      password: true,
-      faceId: false,
-      fingerprint: false,
-    },
-  });
-
-  const path = builder.getETHPath(0);
-  const wallet = builder.createWallet(path);
-
-  // TODO: Create singleton for getting model
-  const walletModel = new WalletModel();
-
-  await walletModel.create({
-    address: wallet.address,
-    name: 'SelfKey Wallet',
-    vaultId: vault.id,
-    type: 'hd',
-    path: path,
-  });
+  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
 const generateMnemonic = () => async (dispatch, getState) => {
@@ -61,8 +36,8 @@ const generateMnemonic = () => async (dispatch, getState) => {
 export const operations = {
   submitPasswordOperation,
   submitPasswordConfirmationOperation,
-  setupWallet,
-  submitWalletBackup,
+  // setupWalletOperation,
+  submitWalletBackupOperation,
 };
 
 export const createWalletOperations = {

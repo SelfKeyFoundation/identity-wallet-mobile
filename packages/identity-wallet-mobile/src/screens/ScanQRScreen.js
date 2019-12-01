@@ -1,18 +1,25 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+import { SafeAreaView } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const HeaderTitle = styled.Text`
+  color: ${props => props.theme.colors.white};
+  font-size: 18px;
+  font-family: ${props => props.theme.fonts.bold};
+  text-align: center;
+`;
+
+const Container = styled.View`
+  flex: 1;
+  background-color:  ${props => props.theme.colors.baseDark};
+`;
 
 export default function ScanQRScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Scan QR (Dummy)</Text>
-    </View>
+    <Container>
+      <SafeAreaView>
+        <HeaderTitle>Scan QR</HeaderTitle>
+      </SafeAreaView>
+    </Container>
   );
 }
