@@ -13,10 +13,12 @@ const formatCurrency = (value, code) => {
   return formatter ? formatter(value) : value;
 };
 
-export function FormattedNumber({ value, decimal = 2, currency }) {
-  const formattedValue = value.toFixed(decimal)
-    .replace(regex, '$&,')
-    .replace(/\.0+/, '');
+export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal }) {
+  let formattedValue = value.toFixed(decimal).replace(regex, '$&,')
+   
+  if (!currency) {
+    formattedValue = formattedValue.replace(/\.0+/, '');
+  }
 
   if (currency) {
     return formatCurrency(formattedValue, currency);
