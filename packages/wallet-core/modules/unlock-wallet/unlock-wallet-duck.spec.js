@@ -1,21 +1,22 @@
 import sinon from 'sinon';
-import { walletOperations } from '../wallet/operations';
-
+import {
+  walletOperations,
+} from '../wallet/operations';
 import duck from './index';
 import actions from './actions';
 
 describe('Unlock Wallet Duck', () => {
   let _state = {};
-	let store = {
-		dispatch() {},
-		getState() {
-			return _state;
-		},
+  let store = {
+    dispatch() {},
+    getState() {
+      return _state;
+    },
   };
 
   beforeEach(() => {
     sinon.restore();
-		_state = {
+    _state = {
       ...duck.initialState,
     };
   });
@@ -26,7 +27,7 @@ describe('Unlock Wallet Duck', () => {
         duck.initialState,
         actions.setErrors({
           password: 'error',
-        })
+        }),
       );
 
       expect(state.errors.password).toEqual('error');
