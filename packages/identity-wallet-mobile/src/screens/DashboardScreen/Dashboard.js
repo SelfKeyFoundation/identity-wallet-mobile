@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native';
+import { TokenBoxCarouselHOC, MyTokensHOC } from '../../components';
+import {
+  ScreenContainer,
+  Grid,
+  Row,
+  Col,
+} from '@selfkey/mobile-ui';
 
 const HeaderTitle = styled.Text`
   color: ${props => props.theme.colors.white};
@@ -15,15 +22,25 @@ const Container = styled.View`
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
+const CarouselRow = styled.View`
+  margin-top: 25px;
+`;
+
+const MyTokensRow = styled.View`
+  margin: 40px 20px 26px 20px;
+`;
+
 export function Dashboard(props) {
   return (
     <Container>
       <SafeAreaView>
         <HeaderTitle>Dashboard</HeaderTitle>
-        {
-          // Terms of service modal
-          props.children
-        }
+        <CarouselRow>
+         <TokenBoxCarouselHOC />
+        </CarouselRow>  
+        <MyTokensRow>
+          <MyTokensHOC />
+        </MyTokensRow>
       </SafeAreaView>
     </Container>
   );
