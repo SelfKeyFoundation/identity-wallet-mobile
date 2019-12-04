@@ -53,6 +53,8 @@
       "**/mobile-ui-storybook/react-native-**",
       "**/mobile-ui-storybook/@react-native-community/**",
       "**/realm",
+      "**/eslint",
+      "**/acorn",
       "**/jest",
       "**/stream-browserify"
     ]
