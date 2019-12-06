@@ -10,9 +10,11 @@ export class BaseModel {
   }
 
   create(props) {
-    return this.realm.write(() => {
-      return this.realm.create(this.schema.name, props);
+    let result;
+    this.realm.write(() => {
+      result = this.realm.create(this.schema.name, props);
     });
+    return result;
   }
 
   removeById(id) {
@@ -57,6 +59,17 @@ export class BaseModel {
         id,
       }, true);
     });
+  }
+
+  generateId() {
+    const items = this.findAll();
+    if (!items.length) {
+      return 1;
+    }
+
+    const lastItem = items[items.length - 1];
+
+    return lastItem.id + 1;
   }
 
   toJson(realmObject) {

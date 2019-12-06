@@ -1,27 +1,12 @@
 import appActions from './actions';
-import { initRealm } from '@selfkey/wallet-core/db/realm-service';
+import { initRealm, seedDb } from '@selfkey/wallet-core/db/realm-service';
 import { navigate, Routes } from '../../navigation';
 import { WalletModel, GuideSettingsModel } from '../../models';
 import { exitApp } from '../../system';
 import * as selectors from './selectors';
+import { getGuideSettings } from './app-module-utils';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
-
-async function getGuideSettings() {
-  const guideSettingsModel = GuideSettingsModel.getInstance();
-  let settings = await guideSettingsModel.findOne();
-
-  if (!settings) {
-    settings = {
-      id: 1,
-      termsAccepted: false,
-    };
-
-    await guideSettingsModel.create(settings);
-  }
-
-  return settings;
-}
 
 const loadAppOperation = () => async (dispatch, getState) => {
   dispatch(appActions.setLoading(true));
@@ -32,6 +17,8 @@ const loadAppOperation = () => async (dispatch, getState) => {
     // deleteRealmIfMigrationNeeded: true,
     skipMigration: true,
   });
+
+  await seedDb();
 
   // Load guide settings
   const guideSettings = await getGuideSettings();

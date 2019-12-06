@@ -20,4 +20,9 @@ describe('Test Setup', () => {
     const vault = await unlockVault(vaultId, 'test');
     expect(vault).toBeDefined();
   });
+
+  it('Expect wallet to have default tokens', async () => {
+    // expect(wallet.tokens).toHaveLength(1);
+    // expect(wallet.tokens[0].symbol).toEqual('KEY');
+  });
 });
