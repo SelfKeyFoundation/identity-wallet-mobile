@@ -1,10 +1,17 @@
 import React from 'react';
+import  { View } from 'react-native';
+import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
+import { TokensEmptyAlert } from '../TokensEmptyAlert'
 import modules from '@selfkey/wallet-core/modules';
 import { MyTokens } from './MyTokens';
 export * from './MyTokens';
 
 const { selectors } = modules.wallet;
+
+const TokensContainer = styled.View`
+  margin-bottom: 15px;
+`;
 
 export function MyTokensHOC() {
   const ethBalance = useSelector(selectors.getBalance);
@@ -12,6 +19,8 @@ export function MyTokensHOC() {
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokensFiatAmount = useSelector(selectors.getTokensFiatAmount)
   const primaryToken = tokens[0];
+  // Exclude the primary token, KEY or KI
+  const isEmpty = tokens.length === 1;
 
   const items = [{
     id: primaryToken.id,
@@ -34,10 +43,19 @@ export function MyTokensHOC() {
   }];
 
   return (
-    <MyTokens
-      tokens={items}
-      tokensFiatAmount={tokensFiatAmount}
-      tokensFiatCurrency="usd"
-    />
+    <View>
+      <TokensContainer>
+        <MyTokens
+          tokens={items}
+          tokensFiatAmount={tokensFiatAmount}
+          tokensFiatCurrency="usd"
+        />
+      </TokensContainer>
+      {isEmpty && (
+        <TokensContainer>
+          <TokensEmptyAlert />
+        </TokensContainer>
+      )}
+    </View>
   )
 }

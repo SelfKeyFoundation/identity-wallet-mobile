@@ -11,6 +11,8 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
 
   try {
     vault = await unlockVault(wallet.vaultId, form.password);
+    // clear errors
+    dispatch(actions.setErrors({}));
   } catch (err) {
     dispatch(actions.setErrors({
       password: 'wrong_password',

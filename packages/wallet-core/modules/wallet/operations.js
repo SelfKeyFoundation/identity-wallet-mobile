@@ -11,11 +11,15 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   // It will make the loading process faster
   wallet.balance = await getBalanceByAddress(wallet.address);
 
-  await loadTokenPrices();
+  try {
+    // TODO: Handle internet issues
+    await loadTokenPrices();
+  } catch(err) {
+    console.error(err);
+  }
 
   // Fetch tokens balance
   wallet.tokens = await Promise.all(wallet.tokens.map(async (walletToken) => {
-    // const balance = getTokenBalance(token)
     const token = await TokenModel.getInstance().findById(walletToken.tokenId);
     let balance = 0;
 
