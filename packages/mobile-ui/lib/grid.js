@@ -11,9 +11,14 @@ export const Row = styled.View`
   margin-right: -5px;
   margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
   margin-bottom: ${props => props.marginBottom ? `${props.marginBottom}px` : 0};
-  align-items: ${props => props.alignBottom ? (props.alignItems || 'flex-end') : 'flex-start'};
-  justify-content: ${props => props.justifyContent || 'flex-start'}
 `;
+// align-items: ${props => {
+//   if (props.alignBottom) {
+//     return 'flex-end';
+//   }
+
+//   return props.alignItems ? props.alignItems : 'flex-start';
+// }};
 
 export const Col = styled.View`
   flex: ${props => props.autoWidth ? 0 : 1};
@@ -37,5 +42,6 @@ export const Col = styled.View`
   }};
   margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
   margin-bottom: ${props => props.marginBottom ? `${props.marginBottom}px` : 0};
-  align-items: ${props => props.alignItems || 'flex-start'};
 `;
+
+// align-items: ${props => props.alignItems ? props.alignItems : 'flex-start'};

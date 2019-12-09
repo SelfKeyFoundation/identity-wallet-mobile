@@ -23,18 +23,19 @@ const items = [{
   tokenAmount: 1.5,
   fiatCurrency: "usd",
   fiatAmount: 800.44
-}].map(item => {
-  return (
-    <TokenBox
-      iconComponent={item.iconComponent}
-      tokenName={item.tokenName}
-      tokenCode={item.tokenCode}
-      tokenAmount={item.tokenAmount}
-      fiatCurrency={item.fiatCurrency}
-      fiatAmount={item.fiatAmount}
-    />
-  );
-});
+}];
+// .map(item => {
+//   return (
+//     <TokenBox
+//       iconComponent={item.iconComponent}
+//       tokenName={item.tokenName}
+//       tokenCode={item.tokenCode}
+//       tokenAmount={item.tokenAmount}
+//       fiatCurrency={item.fiatCurrency}
+//       fiatAmount={item.fiatAmount}
+//     />
+//   );
+// });
 
 storiesOf('components', module)
   .add('TokenBoxCarousel', () => (

@@ -3,6 +3,13 @@
 import React from 'react';
 import { Dimensions, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { TokenBox } from '../TokenBox';
+import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
+
+const ICON_MAP = {
+  key: IconKey,
+  eth: IconEth,
+}
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -21,7 +28,18 @@ export interface TokenBoxCarouselProps {
   items: any[]
 }
 
-const renderItem = ({ item }) => item;
+const renderItem = ({ item }) => {
+  return (
+    <TokenBox
+      iconComponent={ICON_MAP[item.iconName] || item.iconComponent}
+      tokenName={item.tokenName}
+      tokenCode={item.tokenCode}
+      tokenAmount={item.tokenAmount}
+      fiatCurrency={item.fiatCurrency}
+      fiatAmount={item.fiatAmount}
+    />
+  );
+};
 
 export function TokenBoxCarousel(props: TokenBoxCarouselProps) {
   return (
