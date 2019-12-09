@@ -159,7 +159,7 @@ export function MyTokens(props: MyTokensProps) {
                 { token.name }
               </TokenName>
               <Explanatory>
-                { token.code.toUpperCase() }
+                { token.code && token.code.toUpperCase() }
               </Explanatory>
             </Col>
             <Col autoWidth alignItems="flex-end" noPadding>
