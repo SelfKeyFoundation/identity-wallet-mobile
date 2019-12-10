@@ -19,6 +19,13 @@ export const Row = styled.View`
     return props.alignItems ? props.alignItems : 'flex-start';
   }};
 `;
+// align-items: ${props => {
+//   if (props.alignBottom) {
+//     return 'flex-end';
+//   }
+
+//   return props.alignItems ? props.alignItems : 'flex-start';
+// }};
 
 
 export const Col = styled.View`
