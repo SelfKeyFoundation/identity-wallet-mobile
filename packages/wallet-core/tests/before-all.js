@@ -1,6 +1,6 @@
 import { setupHDWallet } from '../modules/create-wallet/create-wallet-utils';
 import models from '../models';
-import { initRealm } from '../db/realm-service';
+import { initRealm, seedDb } from '../db/realm-service';
 
 let realm;
 
@@ -12,12 +12,13 @@ beforeAll(async () => {
       // inMemory: true,
     });
 
-    await realm.write(async () => {
-      await models.map(model => {
-        let allItems = realm.objects(model.schema.name);
-        return realm.delete(allItems);
+    realm.write(() => {
+      models.forEach(model => {
+        realm.delete(realm.objects(model.schema.name));
       });
     });
+
+    await seedDb();
 
     try {
       await setupHDWallet({
@@ -25,8 +26,8 @@ beforeAll(async () => {
         mnemonic: 'identify twenty rate region kind any ready sunset hungry gauge vicious convince',
       });
     } catch(err) {
-
-     }
+      console.error(err);
+    }
   }
 });
 

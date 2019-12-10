@@ -1,5 +1,7 @@
 import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 import actions from './actions';
+import { walletOperations } from '../wallet/operations';
+
 import * as selectors from './selectors';
 // import { createVault } from '../../identity-vault';
 import { navigate, Routes } from '../../navigation';
@@ -23,7 +25,8 @@ const submitWalletBackupOperation = (form) => async (dispatch, getState) => {
   // TODO: create selector
   const { password } = state.createWallet;
 
-  await setupHDWallet({ mnemonic, password });
+  const { wallet, vault } = await setupHDWallet({ mnemonic, password });
+  await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
 
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };

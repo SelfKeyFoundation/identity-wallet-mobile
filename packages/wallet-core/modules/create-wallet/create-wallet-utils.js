@@ -1,6 +1,6 @@
 import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 import { createVault } from '../../identity-vault';
-import { WalletModel } from '../../models';
+import { WalletModel, TokenModel, WalletTokenModel } from '../../models';
 
 /**
  * This process will:
@@ -26,13 +26,27 @@ export async function setupHDWallet({ mnemonic, password }) {
   });
 
   const path = builder.getETHPath(0);
-  const wallet = builder.createWallet(path);
+  const hdWallet = builder.createWallet(path);
 
-  await WalletModel.getInstance().create({
-    address: wallet.address,
+  const tokens = [{
+    id: WalletTokenModel.getInstance().generateId(),
+    balance: '0',
+    balanceInFiat: 0,
+    hidden: false,
+    tokenId: 2
+  }];
+
+  const wallet = await WalletModel.getInstance().create({
+    address: hdWallet.address,
     name: 'SelfKey Wallet',
     vaultId: vault.id,
     type: 'hd',
     path: path,
+    tokens,
   });
+
+  return {
+    wallet,
+    vault,
+  }
 }

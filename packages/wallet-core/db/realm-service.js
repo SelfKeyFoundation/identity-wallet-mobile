@@ -4,6 +4,9 @@ let realmInstance;
 import migrations from './migrations';
 import schemas from './schemas';
 import { CURRENT_SCHEMA_VERSION,  SCHEMA_NAME } from '../models';
+import { seedDb } from './seed';
+
+export { seedDb };
 
 /**
  * Mobile wallet will inject a mobile version
@@ -35,7 +38,7 @@ export function setRealmInstance(instance) {
 
 export async function initRealm(opts = {}) {
   if (getRealmInstance()) {
-    return;
+    return getRealmInstance();
   }
 
   // The first schema to update to is the current schema version
@@ -61,16 +64,18 @@ export async function initRealm(opts = {}) {
     opts.migration =  (oldRealm, newRealm) => {}
   }
 
-  return Realm.open({
-    schema: models.map(m => m.schema),
-    schemaVersion: CURRENT_SCHEMA_VERSION,
-    ...opts,
-  }).then((instance) => {
+  try {
+    const instance = await Realm.open({
+      schema: models.map(m => m.schema),
+      schemaVersion: CURRENT_SCHEMA_VERSION,
+      ...opts,
+    });
+
     setRealmInstance(instance);
 
     return instance;
-  }).catch(err => {
+  } catch(err) {
     // TODO: Configure a logging system
-    console.error(err);
-  });
+    console.error(err);  
+  }
 }

@@ -4,7 +4,7 @@ export class WalletModel extends BaseModel {
   static instance: WalletModel;
 
   static schema = {
-    name: 'wallet',
+    name: 'Wallet',
     primaryKey: 'address',
     properties: {
       address: 'string',
@@ -18,7 +18,11 @@ export class WalletModel extends BaseModel {
        * Path for HD wallets
        */
       path: 'string?',
-      termsAccepted: 'bool?',
+      tokens: {
+        type: 'WalletToken[]',
+        default: []
+      },
+      // termsAccepted: 'bool?',
     },
   }
 

@@ -4,7 +4,7 @@ export class GuideSettingsModel extends BaseModel {
   static instance: GuideSettingsModel;
 
   static schema = {
-    name: 'guide_settings',
+    name: 'GuideSettings',
     primaryKey: 'id',
     properties: {
       id: 'int',

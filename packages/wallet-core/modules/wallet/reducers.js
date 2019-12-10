@@ -15,9 +15,15 @@ function setWalletLoadingReducer(state, action) {
 }
 
 function setWalletReducer(state, action) {
+  const wallet = action.payload;
+
+  if (wallet.tokens) {
+    wallet.tokens = Array.from(wallet.tokens);
+  }
+
   return {
     ...state,
-    wallet: action.payload,
+    wallet,
   };
 }
 
