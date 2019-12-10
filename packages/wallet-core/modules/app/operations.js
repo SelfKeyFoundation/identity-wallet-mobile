@@ -30,6 +30,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
   // Redirect to App FLOW
   const wallets = await WalletModel.getInstance().findAll();
 
+  // await WalletModel.getInstance().removeAll();
   // Auto unlock, for development purposes
   // dispatch(modules.unlockWallet.operations.submitUnlockOperation({ password: '!@#456Asd'}));
   // navigate(Routes.APP_DASHBOARD);

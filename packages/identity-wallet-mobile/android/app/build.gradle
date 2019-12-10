@@ -133,8 +133,8 @@ android {
         applicationId "com.identitywalletmobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.0.2-alpha"
+        versionCode 4
+        versionName "0.0.4"
     }
     splits {
         abi {

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bignumber.js": "^9.0.0",
     "bip39": "^3.0.2",
     "bs58": "^4.0.1",
     "ethereumjs-util": "6.2.0",
