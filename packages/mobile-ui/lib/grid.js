@@ -11,6 +11,7 @@ export const Row = styled.View`
   margin-right: -5px;
   margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
   margin-bottom: ${props => props.marginBottom ? `${props.marginBottom}px` : 0};
+
   align-items: ${props => {
     if (props.alignBottom) {
       return 'flex-end';
@@ -26,7 +27,6 @@ export const Row = styled.View`
 
 //   return props.alignItems ? props.alignItems : 'flex-start';
 // }};
-
 
 export const Col = styled.View`
   flex: ${props => props.autoWidth ? 0 : 1};
