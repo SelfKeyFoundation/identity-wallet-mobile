@@ -13,6 +13,10 @@ const TokensContainer = styled.View`
   margin-bottom: 15px;
 `;
 
+const EmptyTokensContainer = styled.View`
+  margin-bottom: 25px;
+`;
+
 export function MyTokensHOC() {
   const ethBalance = useSelector(selectors.getBalance);
   const tokens = useSelector(selectors.getTokens);
@@ -52,9 +56,9 @@ export function MyTokensHOC() {
         />
       </TokensContainer>
       {isEmpty && (
-        <TokensContainer>
+        <EmptyTokensContainer>
           <TokensEmptyAlert />
-        </TokensContainer>
+        </EmptyTokensContainer>
       )}
     </View>
   )

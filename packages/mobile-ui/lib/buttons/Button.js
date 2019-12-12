@@ -1,10 +1,13 @@
 // @flow
 import React, { useContext } from 'react';
 import {
-  Button as PaperButton,
   ButtonProps as PaperButtonProps,
   Text,
 } from 'react-native-paper';
+
+import PaperButton from './PaperButton';
+
+import { View } from 'react-native';
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
 
 export interface ButtonProps extends PaperButtonProps {
@@ -68,16 +71,29 @@ export const Button = (props: ButtonProps) => {
     }
   }
 
+  // buttonStyle.flex = 1;
+  // buttonStyle.justifyContent = 'center';;
+  // buttonStyle.alignItems = 'center';
+
   return (
     <PaperButton
       {...props}
       mode={mode}
       theme={paperTheme}
-      style={buttonStyle}
-      contentStyle={contentStyle}
+      style={{
+        ...buttonStyle,
+        ...(props.buttonStyle || {})
+      }}
+      contentStyle={{
+        ...contentStyle,
+        ...(props.contentStyle || {})
+      }}
     >
       <Text
-        style={textStyle}
+        style={{
+          ...textStyle,
+          ...(props.textStyle || {})
+        }}
       >
         { props.children }
       </Text>

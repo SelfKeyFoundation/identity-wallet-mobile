@@ -14,8 +14,6 @@ function BackupWalletContainer(props) {
     dispatch(operations.submitWalletBackupOperation());
   }, []);
 
-  console.log(mnemonic);
-
   return (
     <BackupWallet
       mnemonicPhrase={mnemonic}

@@ -24,7 +24,7 @@ export interface TokenBoxProps {
   fiatAmount: number;
 }
 
-export const Title = styled.Text`
+const Title = styled.Text`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.regular};

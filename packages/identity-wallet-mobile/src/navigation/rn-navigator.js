@@ -19,6 +19,10 @@ export class ReactNativeNavigator {
 
     this.navigator.dispatch(route);
   }
+
+  getParam(name, defaultValue) {
+    return this.navigator.getParam(name, defaultValue);
+  }
 }
 
 
