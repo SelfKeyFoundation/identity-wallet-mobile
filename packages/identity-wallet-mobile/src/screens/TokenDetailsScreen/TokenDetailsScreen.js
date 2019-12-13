@@ -27,26 +27,25 @@ const Title = styled.Text`
   text-align: center;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled.TouchableWithoutFeedback`
   position: absolute;
   top: 5px;
+  left: -10px;
+  padding: 10px;
 `;
-
 
 export function TokenDetailsScreen(props) {
 
   return (
     <Container>
         <Header>
-          <Title>Key</Title>
-          <IconContainer>
+          <Title>{props.title}</Title>
+          <IconContainer onPress={props.onBack}>
             <SKIcon name="icon-nav-ar-left" size={12} color="#fff" />
           </IconContainer>
         </Header>
         <Body>
-          <TokenDetails
-            {...props}
-          />
+          { props.children }
         </Body>
     </Container>
   )

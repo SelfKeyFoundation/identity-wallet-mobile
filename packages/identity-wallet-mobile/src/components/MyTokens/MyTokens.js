@@ -137,7 +137,7 @@ export function MyTokens(props: MyTokensProps) {
           <Title>My Tokens</Title>
           <TotalTokenAmount>
             <FormattedNumber
-              value={props.tokensFiatAmount}
+              value={props.tokensFiatAmount || 0}
               currency={props.tokensFiatCurrency}
             />
           </TotalTokenAmount>

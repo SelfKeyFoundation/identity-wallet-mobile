@@ -33,7 +33,7 @@ export async function setupHDWallet({ mnemonic, password }) {
     balance: '0',
     balanceInFiat: 0,
     hidden: false,
-    tokenId: 2
+    tokenId: 1
   }];
 
   const wallet = await WalletModel.getInstance().create({

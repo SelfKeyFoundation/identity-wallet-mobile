@@ -111,7 +111,7 @@ export function TokenDetails(props: TokenDetailsProps) {
       <Header>
         <Row marginBottom={10}>
           <Col autoWidth>
-            <TokenIcon width={44} height={44}/>
+            { TokenIcon && <TokenIcon width={44} height={44}/> }
           </Col>
           <Col>
             <Title>{props.tokenName}</Title>
@@ -141,13 +141,13 @@ export function TokenDetails(props: TokenDetailsProps) {
             <BodyText>
               <FormattedNumber
                 value={props.lastPrice}
-                decimal={4}
+                decimal={props.fiatDecimal || 2}
                 currency={props.lastPriceCurrency}
               />
             </BodyText>
           </Col>
         </Row>
-        <Row>
+        { props.tokenContract && <Row>
           <Col>
             <Label>Token Contract</Label>
           </Col>
@@ -156,12 +156,13 @@ export function TokenDetails(props: TokenDetailsProps) {
               { formatAddress(props.tokenContract) }
             </BodyText>
           </Col>
-        </Row>
+        </Row>}
       </Body>
       <Footer>
         <FooterCol>
           <Button
             type="shell-primary"
+            onPress={props.onReceive}
             icon={<SKIcon name="icon-qr" size={24} color="#00C0D9" />}
             buttonStyle={{
               height: 50,
@@ -176,6 +177,7 @@ export function TokenDetails(props: TokenDetailsProps) {
         <FooterCol>
           <Button
             type="shell-primary"
+            onPress={props.onSend}
             icon={<SKIcon name="icon-send" size={24} color="#00C0D9" />}
             buttonStyle={{
               height: 50,

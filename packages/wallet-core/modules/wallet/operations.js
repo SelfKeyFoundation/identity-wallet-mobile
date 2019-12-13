@@ -3,7 +3,7 @@ import * as walletSelectors from './selectors';
 import { WalletModel, TokenModel } from '../../models';
 import { exitApp } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
-import { loadTokenPrices, getTokenPrice } from '@selfkey/blockchain/services/price-service';
+import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
   // TODO: Store balance in the database

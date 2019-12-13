@@ -5,6 +5,7 @@ import { WalletModel, GuideSettingsModel } from '../../models';
 import { exitApp } from '../../system';
 import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
+import { loadTokenPrices } from '@selfkey/blockchain/services/price-service';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
@@ -25,7 +26,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
   dispatch(appActions.setGuideSettings(guideSettings));
 
   // TODO: Remove in the future
-  await delay(2000);
+  try {
+    // TODO: Handle internet issues
+    await loadTokenPrices();
+  } catch(err) {
+    console.error(err);
+  }
 
   // Redirect to App FLOW
   const wallets = await WalletModel.getInstance().findAll();

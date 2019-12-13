@@ -1,6 +1,6 @@
 
 // @flow
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   ScreenContainer,
   SKIcon,
@@ -13,10 +13,10 @@ import {
   FormattedNumber,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 
 export interface TokenBoxProps {
   iconComponent: any;
-  onTransfer: () => void;
   tokenName: string;
   tokenCode: string;
   tokenAmount: number;
@@ -53,6 +53,12 @@ const TokenSymbol = styled(Explanatory)`
 export function TokenBox(props: TokenBoxProps) {
   const TokenIcon = props.iconComponent;
 
+  const handleDetails = useCallback(() => {
+    navigate(Routes.TOKEN_DETAILS, {
+      tokenId: props.tokenCode
+    });
+  });
+
   return (
     <Container>
       <Row marginBottom={10}>
@@ -67,7 +73,7 @@ export function TokenBox(props: TokenBoxProps) {
             name="icon-swap"
             size={26}
             color="#93B0C1"
-            onPress={props.onTransfer}
+            onPress={handleDetails}
           />
         </Col>
       </Row>
