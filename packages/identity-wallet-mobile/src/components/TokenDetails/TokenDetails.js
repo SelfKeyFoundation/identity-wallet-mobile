@@ -1,6 +1,6 @@
 
 // @flow
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   ScreenContainer,
   Button,
@@ -106,6 +106,12 @@ function formatAddress(address) {
 export function TokenDetails(props: TokenDetailsProps) {
   const TokenIcon = props.iconComponent;
 
+  const handleReceive= useCallback(() => {
+    if (props.onReceive) {
+      props.onReceive(props.tokenCode);
+    }
+  });
+
   return (
     <Container>
       <Header>
@@ -162,7 +168,7 @@ export function TokenDetails(props: TokenDetailsProps) {
         <FooterCol>
           <Button
             type="shell-primary"
-            onPress={props.onReceive}
+            onPress={handleReceive}
             icon={<SKIcon name="icon-qr" size={24} color="#00C0D9" />}
             buttonStyle={{
               height: 50,

@@ -4,6 +4,7 @@ import { Routes } from '@selfkey/wallet-core/navigation';
 import { AppTabBar } from '../../components/AppTabBar';
 import SettingsScreen from '../../screens/SettingsScreen';
 import DashboardScreen from '../../screens/DashboardScreen';
+import ReceiveTokensScreen from '../../screens/ReceiveTokensScreen';
 import MyTokensScreen from '../../screens/MyTokensScreen';
 import ScanQRScreen from '../../screens/ScanQRScreen';
 import TokenDetailsScreen from '../../screens/TokenDetailsScreen';
@@ -12,6 +13,7 @@ import { stackNavigatorConfig } from '../configs';
 
 export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_DASHBOARD]: DashboardScreen,
+  [Routes.APP_RECEIVE_TOKENS]: ReceiveTokensScreen,
   [Routes.APP_SETTINGS]: SettingsScreen,
   [Routes.APP_SCAN_QR]: ScanQRScreen,
   [Routes.APP_MY_TOKENS]: MyTokensScreen,

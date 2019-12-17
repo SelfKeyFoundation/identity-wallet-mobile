@@ -30,12 +30,19 @@ function TokenDetailsContainer(props) {
     navigate(Routes.APP_DASHBOARD);
   });
 
+  const handleReceive = useCallback((tokenSymbol) => {
+    navigate(Routes.APP_RECEIVE_TOKENS, {
+      tokenSymbol
+    });
+  });
+
   return (
     <TokenDetailsScreen
       title={tokenDetails.code}
       onBack={handleBack}
     >
       <TokenDetails
+        onReceive={handleReceive}
         iconComponent={ICON_MAP[tokenDetails.code]}
         tokenName={tokenDetails.name}
         tokenCode={tokenDetails.code}

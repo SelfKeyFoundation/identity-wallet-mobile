@@ -42,5 +42,10 @@ storiesOf('TokenDetailsScreen', module)
     }
   }))
   .add('default', () => (
-    <TokenDetailsScreen />
+    <TokenDetailsScreen
+      navigation={{
+        navigate: () => {},
+        getParam: () => 'KEY',
+      }}
+    />
   ));

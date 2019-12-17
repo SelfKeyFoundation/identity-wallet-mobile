@@ -5,6 +5,13 @@ import { exitApp } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 
+function getSymbol(symbol) {
+  if (symbol === 'KI') {
+    return 'KEY';
+  }
+
+  return symbol;
+}
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
   // TODO: Store balance in the database
   // When db balance is available can display it and fetch the real balance in background
@@ -38,7 +45,7 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
 
       return {
         id: token.id,
-        symbol: token.symbol,
+        symbol: getSymbol(token.symbol),
         decimal: token.decimal,
         address: token.address,
         balanceInFiat: price.priceUSD,
