@@ -137,7 +137,7 @@ export const ReceiveTokens = props => (
       <FooterCol>
         <Button
           type="shell-primary"
-          onPress={props.onReceive}
+          onPress={props.onCopy}
           icon={<SKIcon name="icon-copy" size={24} color="#00C0D9" />}
           buttonStyle={{
             height: 50,
@@ -152,7 +152,7 @@ export const ReceiveTokens = props => (
       <FooterCol>
         <Button
           type="shell-primary"
-          onPress={props.onSend}
+          onPress={props.onShare}
           icon={<SKIcon name="icon-share" size={24} color="#00C0D9" />}
           buttonStyle={{
             height: 50,

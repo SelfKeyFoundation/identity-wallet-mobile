@@ -12,19 +12,13 @@ function getSymbol(symbol) {
 
   return symbol;
 }
+
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
   // TODO: Store balance in the database
   // When db balance is available can display it and fetch the real balance in background
   // It will make the loading process faster
   try {
-    wallet.balance = 0; //await getBalanceByAddress(wallet.address);
-  } catch(err) {
-    console.error(err);
-  }
-
-  try {
-    // TODO: Handle internet issues
-    // await loadTokenPrices();
+    wallet.balance = await getBalanceByAddress(wallet.address);
   } catch(err) {
     console.error(err);
   }
@@ -36,12 +30,12 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
       let balance = 0;
 
       try {
-        balance = 0;//await getTokenBalance(token.address, wallet.address);
+        balance = await getTokenBalance(token.address, wallet.address);
       } catch(err) {
         console.error(err);
       }
 
-      const price = 0;// getTokenPrice(token.symbol);
+      const price = getTokenPrice(token.symbol);
 
       return {
         id: token.id,
