@@ -4,7 +4,7 @@ import walletTypes from './types';
 
 export const initialState = {
   isLoading: true,
-  wallet: null,
+  balance: 0,
 };
 
 function setWalletLoadingReducer(state, action) {
@@ -23,7 +23,7 @@ function setWalletReducer(state, action) {
 
   return {
     ...state,
-    wallet,
+    ...wallet,
   };
 }
 

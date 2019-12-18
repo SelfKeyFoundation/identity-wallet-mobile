@@ -23,7 +23,7 @@ export function TokenBoxCarouselHOC() {
   }, {
     iconName: 'eth',
     tokenName: "Ethereum",
-    tokenCode: "eth",
+    tokenCode: "ETH",
     tokenAmount: ethBalance,
     // TODO: Get currency from user settings
     fiatCurrency: "usd",

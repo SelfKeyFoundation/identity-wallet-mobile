@@ -4,9 +4,11 @@ export const LOADING = 'loading/all';
 
 export const APP_FLOW = 'app';
 export const APP_DASHBOARD = 'app/dashboard';
+export const APP_RECEIVE_TOKENS = 'app/receiveTokens';
 export const APP_SETTINGS = 'app/settings';
 export const APP_MY_TOKENS = 'app/myTokens';
 export const APP_SCAN_QR = 'app/scanQr';
+export const TOKEN_DETAILS = 'app/tokenDetails';
 
 export const CREATE_WALLET_FLOW = 'createWallet';
 export const CREATE_WALLET_PASSWORD = 'createWallet/password';

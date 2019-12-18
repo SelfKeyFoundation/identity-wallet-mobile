@@ -1,7 +1,7 @@
-import IconKey from './icon-dashboard-key';
-import IconEth from './icon-dashboard-eth';
-import IconTokens from './icon-dashboard-tokens';
-import IconSwap from './icon-swap';
+import IconKey from './icon-dashboard-key.svg';
+import IconEth from './icon-dashboard-eth.svg';
+import IconTokens from './icon-dashboard-tokens.svg';
+import IconSwap from './icon-swap.svg';
 
 export {
   IconKey,

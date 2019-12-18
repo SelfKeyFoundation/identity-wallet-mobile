@@ -14,7 +14,9 @@ export class BaseModel {
     this.realm.write(() => {
       result = this.realm.create(this.schema.name, props);
     });
-    return result;
+
+
+    return this.toJson(result);
   }
 
   removeById(id) {

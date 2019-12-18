@@ -133,8 +133,8 @@ android {
         applicationId "com.identitywalletmobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "0.0.4"
+        versionCode 7
+        versionName "0.0.6"
     }
     splits {
         abi {
@@ -197,6 +197,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-svg')
     implementation project(':react-native-randombytes')
     implementation project(':react-native-vector-icons')
     implementation project(':realm')

@@ -33,7 +33,7 @@ const Body = styled.ScrollView`
 
 const BodyContent = styled.View`
   flex-grow: 1;
-  padding: 25px 15px;
+  padding: ${props => props.noBodyPadding ? 0 : '25px 15px'};
 `;
 
 const Footer = styled.View`
@@ -78,22 +78,24 @@ export function Modal(props) {
         <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose}/>
       </Header>
       <Body contentContainerStyle={styles.scrollContainer}>
-        <BodyContent>
+        <BodyContent noBodyPadding={props.noBodyPadding}>
           {props.children}
         </BodyContent>
       </Body>
-      <Footer>
-        <ButtonWrapper>
-          <Button type="shell-primary" onPress={props.onCancel}>
-            {props.cancelText}
-          </Button>
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <Button onPress={props.onOk}>
-            {props.okText}
-          </Button>
-        </ButtonWrapper>
-      </Footer>
+      {
+        props.footer !== undefined ? props.footer : (<Footer>
+          <ButtonWrapper>
+            <Button type="shell-primary" onPress={props.onCancel}>
+              {props.cancelText}
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button onPress={props.onOk}>
+              {props.okText}
+            </Button>
+          </ButtonWrapper>
+        </Footer>)
+      }
       </InnerContainer>
     </Container>
   );

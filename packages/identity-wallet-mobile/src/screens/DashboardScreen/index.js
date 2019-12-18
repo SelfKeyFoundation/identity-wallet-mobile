@@ -11,7 +11,6 @@ function DashboardContainer(props) {
   return (
     <React.Fragment>
       <Dashboard />
-      <TermsOfServiceScreen />
     </React.Fragment>
   );
 }

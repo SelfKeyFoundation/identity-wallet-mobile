@@ -12,4 +12,6 @@ export function navigate(routeName, params) {
   navigator.navigate(routeName, params);
 }
 
-
+export function getParams(name, defaultValue) {
+  return navigator.getParams(name, defaultValue);
+};
