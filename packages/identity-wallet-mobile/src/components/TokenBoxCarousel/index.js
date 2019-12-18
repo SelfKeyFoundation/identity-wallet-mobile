@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import modules from '@selfkey/wallet-core/modules';
-
 import { TokenBoxCarousel } from './TokenBoxCarousel';
 
 export * from './TokenBoxCarousel';

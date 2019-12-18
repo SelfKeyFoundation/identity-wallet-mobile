@@ -28,12 +28,12 @@ const Header = styled.View`
 `;
 
 const Body = styled.ScrollView`
-  padding: 25px 15px;
   flex-grow: 1;
 `;
 
 const BodyContent = styled.View`
-  flex-grow: 1
+  flex-grow: 1;
+  padding: 25px 15px;
 `;
 
 const Footer = styled.View`
@@ -79,7 +79,7 @@ export function Modal(props) {
       </Header>
       <Body contentContainerStyle={styles.scrollContainer}>
         <BodyContent>
-        {props.children}
+          {props.children}
         </BodyContent>
       </Body>
       <Footer>
