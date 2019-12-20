@@ -10,3 +10,4 @@ export * from './ReceiveTokens';
 export * from './SendTokens';
 export * from './SendTokensPending';
 export * from './SendTokensSuccess';
+export * from './SendTokensError';

@@ -10,4 +10,8 @@ import './send-tokens.stories.js';
 =======
 import './send-tokens-pending.stories.js';
 import './send-tokens-success.stories.js';
+<<<<<<< HEAD
 >>>>>>> 2655761... Send tokens - success screen
+=======
+import './send-tokens-error.stories.js';
+>>>>>>> 4460098... Send tokens - error
