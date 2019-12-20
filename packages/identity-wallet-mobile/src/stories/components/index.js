@@ -5,5 +5,4 @@ import './my-tokens.stories.js';
 import './tokens-empty-alert.stories.js';
 import './token-details.stories.js';
 import './receive-tokens.stories.js';
-
-
+import './send-tokens.stories.js';
