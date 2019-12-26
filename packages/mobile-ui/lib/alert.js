@@ -3,10 +3,11 @@ import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useContext } from 'react';
-import { SKIcon, Explanatory, ThemeContext } from '../index';
+import { SKIcon, Explanatory, ThemeContext, ErrorMessage } from '../index';
 
 const LeftSide = styled.View`
   padding-right: 5px;
+  padding-top: 2px;
 `;
 
 const RightSide = styled.View`
@@ -25,8 +26,15 @@ export interface AlertProps {
 
 export function Alert(props: AlertProps) {
   const theme = useContext(ThemeContext);
-  const iconName = props.icon || 'icon-shield-info';
-  const iconColor = props.iconColor || theme.colors.typography;
+  let iconName = props.icon || 'icon-shield-info';
+  let iconColor = props.iconColor || theme.colors.typography;
+  let TextComponent = Explanatory;
+
+  if (props.type === 'error') {
+    iconName = 'icon-err-warning';
+    iconColor = theme.colors.error;
+    TextComponent = ErrorMessage;
+  }
 
   return (
     <Container>
@@ -36,7 +44,7 @@ export function Alert(props: AlertProps) {
         </View>
       </LeftSide>
       <RightSide>
-        <Explanatory>{props.children}</Explanatory>
+        <TextComponent>{props.children}</TextComponent>
       </RightSide>
     </Container>
   );

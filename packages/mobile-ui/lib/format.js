@@ -7,10 +7,12 @@ const currencyFormat = {
   usd: value => `$${value} USD`,
 };
 
+const genericFormat = (value, code) => code ? `${value} ${code.toUpperCase()}` : value;
+
 const formatCurrency = (value, code) => {
   const formatter = currencyFormat[code];
 
-  return formatter ? formatter(value) : value;
+  return formatter ? formatter(value) : genericFormat(value, code);
 };
 
 export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal }) {
@@ -24,6 +26,8 @@ export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal
    
   if (!currency) {
     formattedValue = formattedValue.replace(/\.0+$/, '');
+  } else if (!(/\.00$/).test(formattedValue)){
+    formattedValue = formattedValue.replace(/00+$/, '')
   }
 
   if (currency) {
