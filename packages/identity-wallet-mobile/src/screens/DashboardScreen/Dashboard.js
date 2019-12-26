@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, RefreshControl } from 'react-native';
 import { TokenBoxCarouselHOC, MyTokensHOC } from '../../components';
 import {
   ScreenContainer,
@@ -35,7 +35,11 @@ export function Dashboard(props) {
     <Container>
       <SafeAreaView>
         <HeaderTitle>Dashboard</HeaderTitle>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />
+          }
+        >
           <CarouselRow>
           <TokenBoxCarouselHOC />
           </CarouselRow>  
