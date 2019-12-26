@@ -1,13 +1,19 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TokenDetailsScreen } from './TokenDetailsScreen';
-import { TokenDetails } from '../../components';
+import { TokenDetails, TransactionsEmptyAlert } from '../../components';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import modules from '@selfkey/wallet-core/modules';
+import styled from 'styled-components/native';
+import { Grid, Row, Col } from '@selfkey/mobile-ui';
 
 const { selectors } = modules.wallet;
+
+const TransactionsContainer = styled.View`
+  margin-top: 10px;
+`;
 
 const ICON_MAP = {
   KEY: IconKey,
@@ -24,8 +30,8 @@ function getFiatDecimal(tokenDetails) {
 }
 
 function TokenDetailsContainer(props) {
-  const tokenId = props.navigation.getParam('tokenId', 'ETH');
-  const tokenDetails = useSelector(selectors.getTokenDetails(tokenId));
+  const tokenSymbol = props.navigation.getParam('tokenId', 'ETH');
+  const tokenDetails = useSelector(selectors.getTokenDetails(tokenSymbol));
   const handleBack = useCallback(() => {
     navigate(Routes.APP_DASHBOARD);
   });
@@ -41,19 +47,30 @@ function TokenDetailsContainer(props) {
       title={tokenDetails.code}
       onBack={handleBack}
     >
-      <TokenDetails
-        onReceive={handleReceive}
-        iconComponent={ICON_MAP[tokenDetails.code]}
-        tokenName={tokenDetails.name}
-        tokenCode={tokenDetails.code}
-        fiatDecimal={getFiatDecimal(tokenDetails)}
-        tokenAmount={tokenDetails.amount}
-        fiatCurrency="usd"
-        fiatAmount={tokenDetails.balanceInFiat}
-        lastPrice={tokenDetails.lastPrice}
-        lastPriceCurrency="usd"
-        tokenContract={tokenDetails.address}
-      />
+      <Grid>
+        <Row>
+          <Col>
+            <TokenDetails
+              onReceive={handleReceive}
+              iconComponent={ICON_MAP[tokenDetails.code]}
+              tokenName={tokenDetails.name}
+              tokenCode={tokenDetails.code}
+              fiatDecimal={getFiatDecimal(tokenDetails)}
+              tokenAmount={tokenDetails.amount}
+              fiatCurrency="usd"
+              fiatAmount={tokenDetails.balanceInFiat}
+              lastPrice={tokenDetails.lastPrice}
+              lastPriceCurrency="usd"
+              tokenContract={tokenDetails.contractAddress}
+            />
+          </Col>
+        </Row>
+        <Row marginTop={20}>
+          <Col>
+            <TransactionsEmptyAlert tokenSymbol={tokenSymbol}/>
+          </Col>
+        </Row>
+      </Grid>
     </TokenDetailsScreen>
   );
 } 

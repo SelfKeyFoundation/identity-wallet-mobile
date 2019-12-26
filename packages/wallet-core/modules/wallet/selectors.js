@@ -18,7 +18,7 @@ export const getTokensFiatAmount = (state) => {
 
 // TODO: Move to token utils
 function getTokenName(symbol) {
-  symbol = symbol.toLowerCase();
+  symbol = symbol.toUpperCase();
 
   if (symbol === 'ETH') {
     return 'Ethereum';
@@ -43,12 +43,14 @@ export const getTokenDetails = (tokenId) => (state) => {
       lastPriceCurrency: 'usd',
       fiatCurrency: 'usd',
       fiatAmount: getFiatAmount(state),
-      tokenContract: undefined 
+      contractAddress: undefined 
     }
   }
 
   const tokens = getTokens(state);
   const token = tokens.find(t => t.symbol === tokenId);
+
+  debugger;
 
   return {
     name: getTokenName(token.symbol),
@@ -59,6 +61,6 @@ export const getTokenDetails = (tokenId) => (state) => {
     lastPriceCurrency: 'usd',
     fiatCurrency: 'usd',
     fiatAmount: token.balanceInFiat,
-    tokenContract: token.contract
+    contractAddress: token.address
   }
 }

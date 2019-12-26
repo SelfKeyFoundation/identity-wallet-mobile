@@ -13,7 +13,7 @@ const Header = styled.View`
   margin: 10px 20px 25px 20px;
 `;
 
-const Body = styled.View`
+const Body = styled.ScrollView`
   margin: 0 20px;
 `;
 
@@ -38,15 +38,15 @@ export function TokenDetailsScreen(props) {
 
   return (
     <Container>
-        <Header>
-          <Title>{props.title}</Title>
-          <IconContainer onPress={props.onBack}>
-            <SKIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </IconContainer>
-        </Header>
-        <Body>
-          { props.children }
-        </Body>
+      <Header>
+        <Title>{props.title}</Title>
+        <IconContainer onPress={props.onBack}>
+          <SKIcon name="icon-nav-ar-left" size={12} color="#fff" />
+        </IconContainer>
+      </Header>
+      <Body>
+        { props.children }
+      </Body>
     </Container>
   )
 }
