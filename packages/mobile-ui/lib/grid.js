@@ -18,6 +18,9 @@ export const Row = styled.View`
   
     return props.alignItems ? props.alignItems : 'flex-start';
   }};
+  justify-content: ${props => {
+    return props.justifyContent ? props.justifyContent : 'flex-start';
+  }};
 `;
 // align-items: ${props => {
 //   if (props.alignBottom) {
@@ -38,12 +41,16 @@ export const Col = styled.View`
     let top = props.noPadding ? '0px' : '8px';
     let bottom = props.noPadding ? '0px' : '8px';
 
-    if (props.paddingLeft) {
+    if (props.paddingLeft !== undefined) {
       left = `${props.paddingLeft}px`;
     }
 
-    if (props.paddingRight) {
+    if (props.paddingRight !== undefined) {
       left = `${props.paddingRight}px`;
+    }
+
+    if (props.paddingTop !== undefined) {
+      top = `${props.paddingTop}px`;
     }
 
     return `${top} ${right} ${bottom} ${left}`;

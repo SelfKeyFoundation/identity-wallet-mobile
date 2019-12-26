@@ -120,6 +120,7 @@ export const ReceiveTokens = props => (
           size={200}
         />
       </QRCodeContainer>
+      {props.children}
     </Body>
     <TokenGrid>
       <Row>

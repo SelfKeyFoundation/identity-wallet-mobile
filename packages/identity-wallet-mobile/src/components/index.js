@@ -8,3 +8,7 @@ export * from './TokensEmptyAlert';
 export * from './TokenDetails';
 export * from './ReceiveTokens';
 export * from './TransactionsEmptyAlert';
+export * from './SendTokens';
+export * from './SendTokensPending';
+export * from './SendTokensSuccess';
+export * from './SendTokensError';
