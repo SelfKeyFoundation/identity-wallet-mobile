@@ -3,9 +3,9 @@ import { createReducer } from '../../redux/reducers';
 import types from './types';
 
 export const initialState = {
-  address: '',
-  // address: '0x4ac0d9ebd28118cab68a64ad8eb8c07c0120ebf8',
-  amount: 0,
+  // address: '',
+  address: '0x4ac0d9ebd28118cab68a64ad8eb8c07c0120ebf8',
+  amount: 0.01,
   // Fiat amount will be selected from wallet
   transactionFee: 'normal',
   token: 'eth',
@@ -37,7 +37,7 @@ export const initialState = {
     }
   ],
   // sending, success, in_progress
-  status: 'in_progress',
+  status: 'pending',
   sendEnabled: true,
   advancedMode: false,
 	// amount: 0,
@@ -136,6 +136,15 @@ function setAdvancedModeReducer(state, action) {
   };
 }
 
+function updateTransactionReducer(state, action) {
+  const { payload } = action;
+
+  return {
+    ...state,
+    ...payload,
+  };
+}
+
 export const transactionReducers = {
   setAddressReducer,
   setAmountReducer,
@@ -145,7 +154,8 @@ export const transactionReducers = {
   setStatusReducer,
   setTokenReducer,
   setTransactionFeeReducer,
-  setAdvancedModeReducer
+  setAdvancedModeReducer,
+  updateTransactionReducer,
 };
 
 const reducersMap = {
@@ -158,7 +168,7 @@ const reducersMap = {
   [types.SET_TRANSACTION_FEE]: transactionReducers.setTransactionFeeReducer,
   [types.SET_TRANSACTION_FEE_OPTIONS]: transactionReducers.setTransactionFeeOptionsReducer,
   [types.SET_ADVANCED_MODE]: transactionReducers.setAdvancedModeReducer,
-
+  [types.UPDATE_TRANSACTION]: transactionReducers.updateTransactionReducer,
 };
 
 export default createReducer(initialState, reducersMap);

@@ -54,7 +54,9 @@ const loadAppOperation = () => async (dispatch, getState) => {
     password: '!@9Mnemdm'
   }));
   // open send tokens modal
-  navigate(Routes.APP_SEND_TOKENS);
+
+  await dispatch(modules.transaction.operations.goToTransactionOperation('eth'));
+  // navigate(Routes.APP_SEND_TOKENS);
 };
 
 const acceptTermsOperation = () => async (dispatch, getState) => {

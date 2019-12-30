@@ -37,6 +37,10 @@ export const transactionActions = {
     type: types.SET_ADVANCED_MODE,
     payload: { advancedMode },
   }),
+  updateTransaction: (payload) => ({
+    type: types.UPDATE_TRANSACTION,
+    payload: payload
+  })
 };
 
 export default transactionActions;

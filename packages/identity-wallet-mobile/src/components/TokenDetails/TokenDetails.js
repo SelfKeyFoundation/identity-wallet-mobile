@@ -153,13 +153,13 @@ export function TokenDetails(props: TokenDetailsProps) {
             </BodyText>
           </Col>
         </Row>
-        { props.tokenContract && <Row>
+        { props.contractAddress && <Row>
           <Col>
             <Label>Token Contract</Label>
           </Col>
           <Col autoWidth>
             <BodyText>
-              { formatAddress(props.tokenContract) }
+              { formatAddress(props.contractAddress) }
             </BodyText>
           </Col>
         </Row>}

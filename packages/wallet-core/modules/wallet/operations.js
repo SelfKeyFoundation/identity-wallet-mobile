@@ -4,6 +4,7 @@ import { WalletModel, TokenModel } from '../../models';
 import { exitApp } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
+import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -64,7 +65,10 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
  * 
  * Load wallet
  */
-const loadWalletOperation = ({ wallet }) => async (dispatch, getState) => {
+const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
+  const { privateKey } = vault.getETHWalletKeys(0);
+  unlockWalletWithPrivateKey(privateKey)
+
   await dispatch(walletActions.setWallet(wallet));
 
   // TODO: Store balance in the database
