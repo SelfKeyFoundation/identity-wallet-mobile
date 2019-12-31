@@ -28,15 +28,19 @@ function getTokenName(symbol) {
     return 'SelfKey';
   }
 
-  return symbol.toUpperCase();
+  return symbol;
 }
 
 export const getTokens = (state) => getWallet(state).tokens || [];
-export const getTokenDetails = (tokenId) => (state) => {
-  if (tokenId === 'ETH') {
+export const getTokenDetails = (symbol) => (state) => {
+  symbol = symbol.toUpperCase();
+
+  if (symbol === 'ETH') {
     return {
-      name: getTokenName(tokenId),
+      name: getTokenName(symbol),
+      // TODO: Remove this property 'code'
       code: 'ETH',
+      symbol: 'ETH',
       amount: getBalance(state),
       decimal: 18,
       lastPrice: getTokenPrice('ETH').priceUSD,
@@ -48,13 +52,15 @@ export const getTokenDetails = (tokenId) => (state) => {
   }
 
   const tokens = getTokens(state);
-  const token = tokens.find(t => t.symbol === tokenId);
+  const token = tokens.find(t => t.symbol.toUpperCase() === symbol);
 
   debugger;
 
   return {
     name: getTokenName(token.symbol),
+    // TODO: Remove this property 'code'
     code: token.symbol,
+    symbol: token.symbol,
     amount: token.balance,
     decimal: token.decimal,
     lastPrice: getTokenPrice(token.symbol).priceUSD,

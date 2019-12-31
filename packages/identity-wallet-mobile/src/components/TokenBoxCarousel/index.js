@@ -12,14 +12,16 @@ export function TokenBoxCarouselHOC() {
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokens = useSelector(selectors.getTokens);
 
+  const mainToken = tokens[0] || {};
+
   const items = [{
     iconName: 'key',
     tokenName: "SelfKey",
-    tokenCode: tokens[0].symbol,
-    tokenAmount: tokens[0].balance,
+    tokenCode: mainToken.symbol,
+    tokenAmount: mainToken.balance,
     // TODO: Get currency from user settings
     fiatCurrency: "usd",
-    fiatAmount: tokens[0].balanceInFiat
+    fiatAmount: mainToken.balanceInFiat
   }, {
     iconName: 'eth',
     tokenName: "Ethereum",

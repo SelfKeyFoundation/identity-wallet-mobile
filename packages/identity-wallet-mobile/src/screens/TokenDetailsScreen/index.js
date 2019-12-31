@@ -32,6 +32,7 @@ function getFiatDecimal(tokenDetails) {
 function TokenDetailsContainer(props) {
   const tokenSymbol = props.navigation.getParam('tokenId', 'ETH');
   const tokenDetails = useSelector(selectors.getTokenDetails(tokenSymbol));
+  const dispatch = useDispatch();
   const handleBack = useCallback(() => {
     navigate(Routes.APP_DASHBOARD);
   });
@@ -40,6 +41,15 @@ function TokenDetailsContainer(props) {
     navigate(Routes.APP_RECEIVE_TOKENS, {
       tokenSymbol
     });
+    
+  });
+
+  const handleSend = useCallback((tokenSymbol) => {
+    // call operation to set token symbol and then redirect
+    // navigate(Routes.APP_SEND_TOKENS, {
+    //   tokenSymbol
+    // });
+    dispatch(modules.transaction.operations.goToTransactionOperation(tokenDetails.symbol));
   });
 
   return (
@@ -52,6 +62,7 @@ function TokenDetailsContainer(props) {
           <Col>
             <TokenDetails
               onReceive={handleReceive}
+              onSend={handleSend}
               iconComponent={ICON_MAP[tokenDetails.code]}
               tokenName={tokenDetails.name}
               tokenCode={tokenDetails.code}

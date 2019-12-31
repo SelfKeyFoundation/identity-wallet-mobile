@@ -6,6 +6,7 @@ import { exitApp } from '../../system';
 import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
 import { loadTokenPrices } from '@selfkey/blockchain/services/price-service';
+import modules from '../index';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
@@ -48,6 +49,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
   }
 
   dispatch(appActions.setLoading(false));
+  // TODO: Remove, testing purposes
+  await dispatch(modules.unlockWallet.operations.submitUnlockOperation({
+    password: '!@9Mnemdm'
+  }));
+  // open send tokens modal
+  navigate(Routes.APP_SEND_TOKENS);
 };
 
 const acceptTermsOperation = () => async (dispatch, getState) => {

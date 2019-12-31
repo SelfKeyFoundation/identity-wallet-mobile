@@ -140,12 +140,11 @@ export function TransactionFeeSwitcher(props: TransactionTabsProps) {
 }
 
 export function SendTokens(props: SendTokensProps) {
-  const { errors = {}, data, tokens, transactionFeeOptions } = props;
+  const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails } = props;
   const { token } = data;
   const handleChange = (fieldName) => (value) => props.onChange(fieldName, value);
 
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
-  const selectedToken = tokens.find(t => t.symbol === data.token);
 
   return (
     <Modal
@@ -159,7 +158,7 @@ export function SendTokens(props: SendTokensProps) {
           <Row>
             <Col>
               <TextInput
-                value={`${selectedToken.symbol.toUpperCase()} - ${selectedToken.name}`}
+                value={`${tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
                 label="Token"
                 disabled
                 labelStyle={{
@@ -177,8 +176,8 @@ export function SendTokens(props: SendTokensProps) {
             <Col autoWidth>
               <H3>
                 <FormattedNumber
-                  currency={selectedToken.symbol}
-                  value={selectedToken.amount}
+                  currency={tokenDetails.symbol}
+                  value={tokenDetails.amount}
                 />
               </H3>
             </Col>
@@ -217,7 +216,7 @@ export function SendTokens(props: SendTokensProps) {
                 error={errors.address}
                 errorMessage={errors.address}
                 value={data.address}
-                onChangeText={handleChange('sendTo')}
+                onChangeText={handleChange('address')}
               />
             </Col>
           </Row>
@@ -291,7 +290,7 @@ export function SendTokens(props: SendTokensProps) {
               <Button type="shell-primary" onPress={props.onCancel}>Cancel</Button>
             </Col>
             <Col autoWidth>
-              <Button type="full-primary" onPress={props.onSend}>Send {selectedToken.symbol}</Button>
+              <Button type="full-primary" onPress={props.onSend}>Send {tokenDetails.symbol}</Button>
             </Col>
           </Row>
         </Grid>

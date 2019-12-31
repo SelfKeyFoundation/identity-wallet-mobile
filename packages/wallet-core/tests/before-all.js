@@ -5,6 +5,8 @@ import { initRealm, seedDb } from '../db/realm-service';
 let realm;
 
 beforeAll(async () => {
+  jest.setTimeout(30000);
+
   if (!realm) {
     realm = await initRealm({
       deleteRealmIfMigrationNeeded: true,
