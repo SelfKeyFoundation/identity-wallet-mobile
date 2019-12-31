@@ -9,6 +9,7 @@ export const initialState = {
   // Fiat amount will be selected from wallet
   transactionFee: 'normal',
   token: 'eth',
+  transactionHash: '0xe66cb2767a9c1726a1b86d44c031254aa143af7a',
   errors: {
     address: undefined,
     transaction: undefined,
@@ -37,7 +38,7 @@ export const initialState = {
     }
   ],
   // sending, success, in_progress
-  status: 'pending',
+  status: 'error',
   sendEnabled: true,
   advancedMode: false,
 	// amount: 0,

@@ -1,6 +1,10 @@
 import { getRealmInstance } from '../../db/realm-service';
 
 export class BaseModel {
+  getIdProperty() {
+    return 'id';
+  };
+
   constructor(schema) {
     this.schema = schema;
   }
@@ -46,7 +50,7 @@ export class BaseModel {
   }
 
   _findById(id) {
-    const items = this._findAll().filtered(`id = ${id}`);
+    const items = this._findAll().filtered(`${this.getIdProperty()} = ${id}`);
     return items[0];
   }
 

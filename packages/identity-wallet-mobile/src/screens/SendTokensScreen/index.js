@@ -8,6 +8,8 @@ import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Modal } from '@selfkey/mobile-ui';
 import { SendStep } from './SendStep';
 import { PendingStep } from './PendingStep';
+import { SuccessStep } from './SuccessStep';
+import { ErrorStep } from './ErrorStep';
 
 const { operations, selectors } = modules.transaction;
 
@@ -34,8 +36,12 @@ function SendTokensScreen(props) {
       Renderer = PendingStep;
       break;
     }
+    case 'sent': {
+      Renderer = SuccessStep;
+      break;
+    }
     case 'error': {
-      Renderer = SendStep;
+      Renderer = ErrorStep;
       break;
     }
   }

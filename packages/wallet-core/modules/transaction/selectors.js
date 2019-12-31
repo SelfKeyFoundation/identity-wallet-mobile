@@ -52,9 +52,13 @@ export const getTransaction = (state) => {
     address: getAddress(state),
     amount: amount,
     cryptoCurrency: getToken(state),
+    hash: getTransactionHash(state),
     from: ducks.wallet.selectors.getAddress(state),
     contractAddress: tokenDetails.tokenContract,
     remainingBalance: new BN(tokenDetails.amount).minus(amount).toString(),
+    errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
+    errorInfo: 'To learn more about transaction fees, click here.',
+    errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
     // amountUsd
     // usdFee
     // balance
