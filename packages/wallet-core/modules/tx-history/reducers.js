@@ -29,9 +29,29 @@ function addTransactionReducer(state, action) {
 }
 
 
+function updateTransactionReducer(state, action) {
+  const { hash, updatedData } = action.payload;
+
+  return {
+    ...state,
+    transactions: state.transactions.map(t => {
+      if (t.hash === hash) {
+        return {
+          ...t,
+          ...updatedData,
+        }
+      }
+
+      return t;
+    })
+  };
+}
+
+
 export const txHistoryReducers = {
   setTransactionsReducer,
   addTransactionReducer,
+  updateTransactionReducer,
 };
 
 const reducersMap = {

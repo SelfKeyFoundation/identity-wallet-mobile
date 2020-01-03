@@ -8,6 +8,10 @@ export const txHistoryActions = {
   addTransaction: (newTransaction) => ({
     type: types.ADD_TRANSACTION,
     payload: { newTransaction }
+  }),
+  updateTransaction: (hash, updatedData) => ({
+    type: types.UPDATE_TRANSACTION,
+    payload: { hash, updatedData },
   })
 };
 

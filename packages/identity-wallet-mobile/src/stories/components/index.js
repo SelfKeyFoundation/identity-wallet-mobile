@@ -6,12 +6,8 @@ import './tokens-empty-alert.stories.js';
 import './token-details.stories.js';
 import './receive-tokens.stories.js';
 import './send-tokens.stories.js';
-<<<<<<< HEAD
-=======
 import './send-tokens-pending.stories.js';
 import './send-tokens-success.stories.js';
-<<<<<<< HEAD
->>>>>>> 2655761... Send tokens - success screen
-=======
 import './send-tokens-error.stories.js';
->>>>>>> 4460098... Send tokens - error
+import './tx-history-row.stories.js';
+import './tx-history.stories.js';

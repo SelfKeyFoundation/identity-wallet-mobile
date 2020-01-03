@@ -36,6 +36,7 @@
     "buffer": "4.9.1",
     "console-browserify": "1.2.0",
     "constants-browserify": "1.0.0",
+    "dateformat": "^3.0.3",
     "dns.js": "1.0.1",
     "domain-browser": "1.2.0",
     "events": "1.1.1",

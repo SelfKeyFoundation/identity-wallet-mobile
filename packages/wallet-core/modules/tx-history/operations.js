@@ -9,6 +9,10 @@ const txHistoryModel = TxHistoryModel.getInstance();
 const chainId = 3;
 
 export const operations = {
+  updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
+    await txHistoryModel.updateById(hash, updatedData); 
+    await dispatch(txHistoryActions.updateTransaction(hash, updatedData));
+  },
   /**
    * Create txHistory
    */
@@ -22,12 +26,14 @@ export const operations = {
       gasPrice: transaction.gasPrice,
       gasLImit: transaction.gasLimit,
       tokenDecimal: transaction.tokenDecimal,
-      value: transaction.amount,
+      value: parseFloat(transaction.amount),
       nonce: transaction.nonce,
       contractAddress: transaction.contractAddress,
       // TODO: Figure out how to handle it
       txReceiptStatus: 0,
       isError: false,
+      timeStamp: Date.now(),
+      status: transaction.status
       // confirmations: 1,
       // blockNumber: ''
       // timeStamp: Date.now(),
@@ -63,7 +69,6 @@ export const operations = {
     //   gasPrice: +transaction.gasPrice,
     //   hash: transactionHash
     // };
-
   }
 };
 

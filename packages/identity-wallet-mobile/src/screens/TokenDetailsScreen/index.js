@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TokenDetailsScreen } from './TokenDetailsScreen';
-import { TokenDetails, TransactionsEmptyAlert } from '../../components';
+import { TokenDetails, TxHistoryHOC } from '../../components';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
@@ -78,7 +78,7 @@ function TokenDetailsContainer(props) {
         </Row>
         <Row marginTop={20}>
           <Col>
-            <TransactionsEmptyAlert tokenSymbol={tokenSymbol}/>
+            <TxHistoryHOC tokenSymbol={tokenSymbol} />
           </Col>
         </Row>
       </Grid>

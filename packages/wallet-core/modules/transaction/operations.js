@@ -41,25 +41,6 @@ function getFee(gasPrice, gasLimit) {
     .toString();
 }
 
-const createTxHistry = transactionHash => (dispatch, getState) => {
-	// const wallet = getWallet(getState());
-	// const transaction = getTransaction(getState());
-	// const { cryptoCurrency } = transaction;
-	// const tokenSymbol = cryptoCurrency === 'ETH' ? null : cryptoCurrency;
-	// const data = {
-	// 	...transaction,
-	// 	tokenSymbol,
-	// 	networkId: chainId,
-	// 	from: wallet.address,
-	// 	to: transaction.address,
-	// 	value: +transaction.amount,
-	// 	gasPrice: +transaction.gasPrice,
-	// 	hash: transactionHashXCr
-	// };
-
-	// dispatch(actions.createTxHistory(data));
-};
-
 // TODO: Compute gas for custom tokens
 export async function getGasLimit({ contractAddress, address, amount, from }) {
   const tokenContract = web3Service.web3.eth.Contract(
@@ -154,15 +135,25 @@ export const operations = {
     await dispatch(duck.actions.updateTransaction({
       nounce,
       transactionFeeOptions: getTransactionFeeOptions(state),
+      status: 'in_progress',
+      errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
+      errorInfo: 'To learn more about transaction fees, click here.',
+      errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
     }));
   },
 
-  
+  createTxHistoryOperation: () => async (dispatch, getState) => {
+    const state = getState();
+    const transaction = duck.selectors.getTransaction(state);
+    await dispatch(ducks.txHistory.operations.createTransactionOperation({
+      ...transaction,
+      status: 'sending'
+    }));
+  },
+
   sendTransaction: () => async (dispatch, getState) => {
     const state = getState();
     const transaction = duck.selectors.getTransaction(state);
-
-    console.log('#mzm send token', transaction);
 
     const transactionObject = {
       nonce: await getTransactionCount(transaction.from),
@@ -185,6 +176,10 @@ export const operations = {
       transactionObject.data = EthUtils.sanitizeHex(data);
     }
 
+    await dispatch(duck.actions.updateTransaction({
+      nonce: transactionObject.nonce,
+    }));
+  
     const transactionEventEmitter = web3Service.web3.eth.sendTransaction(transactionObject);
 
     transactionEventEmitter.on('transactionHash', async hash => {
@@ -194,9 +189,7 @@ export const operations = {
           transactionHash: hash
         })
       );
-      // await dispatch(push('/main/transaction-progress'));
-      // dispatch(createTxHistry(hash));
-      console.log(getState());
+      await dispatch(transactionOperations.createTxHistoryOperation());
     });
   
     transactionEventEmitter.on('receipt', async receipt => {
@@ -205,18 +198,23 @@ export const operations = {
           status: 'sent',
         })
       );
+      // TODO: update txHistory
+      await dispatch(ducks.txHistory.operations.updateTransactionOperation(transaction.hash, {
+        status: 'sent'
+      }));      
+      //
       await dispatch(ducks.wallet.operations.refreshWalletOperation());
-      console.log('receipt received', receipt);
     });
   
     transactionEventEmitter.on('error', async error => {
-      console.log(error.toString());
-      console.log(JSON.stringify(error));
       const message = error.toString().toLowerCase();
 
       if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
-        await dispatch(duck.operations.setErrors({
-          transaction: 'Transaction Error: You don\'t have enough Ethereum (ETH) for the network transaction fee. Please transfer ETH to your wallet and try again.',
+        await dispatch(duck.operations.updateTransaction({
+          errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
+          errorInfo: 'To learn more about transaction fees, click here.',
+          errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
+          status: 'error'
         }));
       }
     });

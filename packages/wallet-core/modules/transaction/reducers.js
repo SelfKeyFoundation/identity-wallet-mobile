@@ -38,7 +38,7 @@ export const initialState = {
     }
   ],
   // sending, success, in_progress
-  status: 'error',
+  status: 'in_progress',
   sendEnabled: true,
   advancedMode: false,
 	// amount: 0,
