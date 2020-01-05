@@ -10,7 +10,7 @@ const fixtures = [{
   contractAddress: 'contract-address',
   from: 'from-address',
   to: 'to-address',
-  value: 0.00000000001,
+  value: 0.001,
   tokenName: 'Ethereum',
   tokenSymbol: 'ETH',
   tokenDecimal: 10,
@@ -55,6 +55,15 @@ describe('core/db/models/TxHistoryModel', () => {
       expect(item.hash).toEqual(data.hash);
       expect(item.to).toEqual(data.to);
       expect(item.isError).toEqual(false);
+    });
+
+    it('updateItem', () => {
+      const data = fixtures[0];
+      model.updateById(data.hash, {
+        value: 0.00000000001
+      });
+      const item = model.findById(data.hash);
+      expect(item.value).toEqual(0.00000000001);
     });
   });
 });

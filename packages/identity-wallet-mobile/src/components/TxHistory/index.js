@@ -9,16 +9,18 @@ const PAGE_SIZE = 4;
 
 function parseItem(item) {
   return {
-    tokenSymbol: "eth",
-    tokenDecimal: 10,
-    amount: '0.0001',
-    status: 'sent',
-    time: Date.now(), 
+    tokenSymbol: item.tokenSymbol,
+    tokenDecimal: item.tokenDecimal,
+    amount: item.value,
+    status: item.status,
+    time: item.timestamp 
   }
 }
 
 export function TxHistoryHOC(props) {
   const transactions = useSelector(ducks.txHistory.selectors.getTransactions);
+
+  console.log('updated txHistory component', transactions);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const handleLoadMore = useCallback(() => setVisibleCount(visibleCount + PAGE_SIZE));
 

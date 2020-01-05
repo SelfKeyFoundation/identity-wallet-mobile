@@ -16,8 +16,8 @@ const loadAppOperation = () => async (dispatch, getState) => {
   await initRealm({
     // TODO: Remove it before the first internal release
     // We should rely on the migration system after the first release
-    // deleteRealmIfMigrationNeeded: true,
-    skipMigration: true,
+    deleteRealmIfMigrationNeeded: true,
+    // skipMigration: true,
   });
 
   await seedDb();
@@ -50,12 +50,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
 
   dispatch(appActions.setLoading(false));
   // TODO: Remove, testing purposes
-  await dispatch(modules.unlockWallet.operations.submitUnlockOperation({
-    password: '!@9Mnemdm'
-  }));
+  // await dispatch(modules.unlockWallet.operations.submitUnlockOperation({
+  //   password: ''
+  // }));
   // open send tokens modal
 
-  await dispatch(modules.transaction.operations.goToTransactionOperation('eth'));
+  // await dispatch(modules.transaction.operations.goToTransactionOperation('eth'));
   // navigate(Routes.APP_SEND_TOKENS);
 };
 

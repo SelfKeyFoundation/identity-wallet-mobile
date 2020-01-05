@@ -15,7 +15,7 @@ aa
       contractAddress: 'string?',
       from: 'string',
       to: 'string',
-      value: 'int',
+      value: 'double',
       tokenName: 'string?',
       tokenSymbol: 'string?',
       tokenDecimal: 'int?',
@@ -44,11 +44,11 @@ aa
     super(TxHistoryModel.schema);
   }
 
-  getIdProperty(){
-    return 'hash';
+  prepareIdValue(value) {
+    return `"${value}"`;
   }
 
   findByHash(hash) {
-    return this.findOne(`hash = '${hash}'`)
+    return this.findOne(`hash = "${hash}"`)
   }
 }

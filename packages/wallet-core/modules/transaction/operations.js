@@ -198,6 +198,9 @@ export const operations = {
           status: 'sent',
         })
       );
+
+      const transaction = duck.selectors.getTransaction(getState());
+ 
       // TODO: update txHistory
       await dispatch(ducks.txHistory.operations.updateTransactionOperation(transaction.hash, {
         status: 'sent'

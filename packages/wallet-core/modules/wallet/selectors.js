@@ -54,8 +54,6 @@ export const getTokenDetails = (symbol) => (state) => {
   const tokens = getTokens(state);
   const token = tokens.find(t => t.symbol.toUpperCase() === symbol);
 
-  debugger;
-
   return {
     name: getTokenName(token.symbol),
     // TODO: Remove this property 'code'

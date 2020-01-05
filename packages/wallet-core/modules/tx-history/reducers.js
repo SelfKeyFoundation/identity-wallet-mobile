@@ -57,7 +57,7 @@ export const txHistoryReducers = {
 const reducersMap = {
   [types.SET_TRANSACTIONS]: txHistoryReducers.setTransactionsReducer,
   [types.ADD_TRANSACTION]: txHistoryReducers.addTransactionReducer,
-
+  [types.UPDATE_TRANSACTION]: txHistoryReducers.updateTransactionReducer,
 };
 
 export default createReducer(initialState, reducersMap);

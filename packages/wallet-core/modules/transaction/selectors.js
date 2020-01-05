@@ -47,11 +47,12 @@ export const getTransaction = (state) => {
   return {
     nonce: transaction.nonce,
     tokenDecimal: tokenDetails.decimal,
+    tokenSymbol: token,
     gasPrice: getGasPrice(state),
     gasLimit: getGasLimit(state),
     address: getAddress(state),
     amount: amount,
-    cryptoCurrency: getToken(state),
+    cryptoCurrency: token,
     hash: getTransactionHash(state),
     from: ducks.wallet.selectors.getAddress(state),
     contractAddress: tokenDetails.tokenContract,

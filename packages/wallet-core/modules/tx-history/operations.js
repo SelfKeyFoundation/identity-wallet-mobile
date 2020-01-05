@@ -20,7 +20,7 @@ export const operations = {
     const newTransaction = {
       hash: transaction.hash,
       networkId: chainId,
-      tokenSymbol: transaction.token,
+      tokenSymbol: transaction.tokenSymbol,
       from: transaction.from,
       to: transaction.address,
       gasPrice: transaction.gasPrice,
@@ -41,8 +41,9 @@ export const operations = {
     };
 
     await txHistoryModel.create(newTransaction);
-    await dispatch(txHistoryActions.addTransaction(newTransaction));
+    const createdTx = await txHistoryModel.findById(newTransaction.hash);
 
+    await dispatch(txHistoryActions.addTransaction(newTransaction));
 
     // nonce: 0,
     // tokenDecimal: 10,

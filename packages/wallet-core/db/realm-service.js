@@ -60,9 +60,11 @@ export async function initRealm(opts = {}) {
     }
   }
 
-  if (!opts.deleteRealmIfMigrationNeeded) {
-    opts.migration =  (oldRealm, newRealm) => {}
-  }
+  // if (!opts.deleteRealmIfMigrationNeeded) {
+  //   opts.migration =  (oldRealm, newRealm) => {
+      
+  //   }
+  // }
 
   try {
     const instance = await Realm.open({
