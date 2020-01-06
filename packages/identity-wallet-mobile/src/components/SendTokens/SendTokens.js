@@ -147,154 +147,153 @@ export function SendTokens(props: SendTokensProps) {
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
 
   return (
-    <Modal
-      { ...props }
-      title="Send Custom Tokens"
-      footer={null}
-      noBodyPadding
-    >
-      <Body>
-        <Grid>
-          <Row>
-            <Col>
-              <TextInput
-                value={`${tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
-                label="Token"
-                disabled
-                labelStyle={{
-                  color: '#ADC8D8'
-                }}
-              />
-            </Col>
-          </Row>
-          <Row justifyContent="center" marginTop={15}>
-            <Col autoWidth>
-              <DefinitionTitle>
-                Available
-              </DefinitionTitle>
-            </Col>
-            <Col autoWidth>
-              <H3>
-                <FormattedNumber
-                  currency={tokenDetails.symbol}
-                  value={tokenDetails.amount}
-                />
-              </H3>
-            </Col>
-          </Row>
-          <Row alignBottom>
-            <Col>
-              <TextInput
-                label="Amount"
-                placeholder="0"
-                value={data.amount}
-                onChangeText={handleChange('amount')}
-              />
-            </Col>
-            <Col autoWidth>
-              <Button type="shell-primary" onPress={props.onMaxPress}>
-                Max
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col paddingTop={0}>
-              <Explanatory>
-                <FormattedNumber
-                  currency="usd"
-                  value={data.fiatAmount}
-                />
-              </Explanatory>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <TextInput
-                label="Send To"
-                placeholder="0x"
-                icon={<SKIcon name="icon-menu-qr" color="#00C0D9" size={20} onPress={props.onQRCodePress}/>}
-                error={errors.address}
-                errorMessage={errors.address}
-                value={data.address}
-                onChangeText={handleChange('address')}
-              />
-            </Col>
-          </Row>
-        </Grid>
-        <TransactionFeeGrid>
-          <Row>
-            <Col>
-              <DefinitionTitle>
-                Network
-              </DefinitionTitle>
-              <DefinitionTitle>
-                Transaction Fee:
-              </DefinitionTitle>
-            </Col>
-            <Col>
-              <H3 style={{ textAlign: 'right' }}>
-                <FormattedNumber
-                  currency="eth"
-                  decimal={10}
-                  value={selectedTransactionFee.ethAmount}
-                /> /
-              </H3>
-              <H3 style={{ textAlign: 'right' }}>
-                <FormattedNumber
-                  currency="usd"
-                  value={selectedTransactionFee.fiatAmount}
-                />
-              </H3>
-            </Col>
-          </Row>
-          <Row justifyContent="flex-end">
-            <Col autoWidth>
-              <LinkButtonWrapper onPress={props.onAdvancedPress}>
-                <Row>
-                  <Col>
-                    <Link>Advanced</Link>
-                  </Col>
-                  <Col paddingTop={13}>
-                    <SKIcon name="icon-expand" color="#00C0D9" size={11} />  
-                  </Col>
-                </Row>
-              </LinkButtonWrapper>
-            </Col>
-          </Row>
-        </TransactionFeeGrid>
-        { props.advancedMode && (
-          <AdvancedOptionsContainer>
-            <TransactionFeeSwitcher
-              options={props.transactionFeeOptions}
-              selected={data.transactionFee}
-              onSelect={handleChange('transactionFee')}
+    <Body>
+      <Grid>
+        <Row>
+          <Col>
+            <TextInput
+              value={`${tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
+              label="Token"
+              disabled
+              labelStyle={{
+                color: '#ADC8D8'
+              }}
             />
-          </AdvancedOptionsContainer>
-        )}
-        {
-          errors.transaction && (
-            <Grid>
+          </Col>
+        </Row>
+        <Row justifyContent="center" marginTop={15}>
+          <Col autoWidth>
+            <DefinitionTitle>
+              Available
+            </DefinitionTitle>
+          </Col>
+          <Col autoWidth>
+            <H3>
+              <FormattedNumber
+                currency={tokenDetails.symbol}
+                value={tokenDetails.amount}
+              />
+            </H3>
+          </Col>
+        </Row>
+        <Row alignBottom>
+          <Col>
+            <TextInput
+              label="Amount"
+              placeholder="0"
+              value={data.amount}
+              onChangeText={handleChange('amount')}
+            />
+          </Col>
+          <Col autoWidth>
+            <Button type="shell-primary" onPress={props.onMaxPress}>
+              Max
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col paddingTop={0}>
+            <Explanatory>
+              <FormattedNumber
+                currency="usd"
+                value={data.fiatAmount}
+              />
+            </Explanatory>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <TextInput
+              label="Send To"
+              placeholder="0x"
+              icon={<SKIcon name="icon-menu-qr" color="#00C0D9" size={20} onPress={props.onQRCodePress}/>}
+              error={errors.address}
+              errorMessage={errors.address}
+              value={data.address}
+              onChangeText={handleChange('address')}
+            />
+          </Col>
+        </Row>
+      </Grid>
+      <TransactionFeeGrid>
+        <Row>
+          <Col>
+            <DefinitionTitle>
+              Network
+            </DefinitionTitle>
+            <DefinitionTitle>
+              Transaction Fee:
+            </DefinitionTitle>
+          </Col>
+          <Col>
+            <H3 style={{ textAlign: 'right' }}>
+              <FormattedNumber
+                currency="eth"
+                decimal={10}
+                value={selectedTransactionFee.ethAmount}
+              /> /
+            </H3>
+            <H3 style={{ textAlign: 'right' }}>
+              <FormattedNumber
+                currency="usd"
+                value={selectedTransactionFee.fiatAmount}
+              />
+            </H3>
+          </Col>
+        </Row>
+        <Row justifyContent="flex-end">
+          <Col autoWidth>
+            <LinkButtonWrapper onPress={props.onAdvancedPress}>
               <Row>
                 <Col>
-                  <Alert type="error">
-                    { errors.transaction }
-                  </Alert>
+                  <Link>Advanced</Link>
+                </Col>
+                <Col paddingTop={13}>
+                  <SKIcon name="icon-expand" color="#00C0D9" size={11} />  
                 </Col>
               </Row>
-            </Grid>
-          )
-        }
-        <Grid>
-          <Row justifyContent="flex-end" marginTop={20}> 
-            <Col autoWidth>
-              <Button type="shell-primary" onPress={props.onCancel}>Cancel</Button>
-            </Col>
-            <Col autoWidth>
-              <Button type="full-primary" onPress={props.onSend}>Send {tokenDetails.symbol}</Button>
-            </Col>
-          </Row>
-        </Grid>
-      </Body>
-    </Modal>
+            </LinkButtonWrapper>
+          </Col>
+        </Row>
+      </TransactionFeeGrid>
+      { props.advancedMode && (
+        <AdvancedOptionsContainer>
+          <TransactionFeeSwitcher
+            options={props.transactionFeeOptions}
+            selected={data.transactionFee}
+            onSelect={handleChange('transactionFee')}
+          />
+        </AdvancedOptionsContainer>
+      )}
+      {
+        errors.transaction && (
+          <Grid>
+            <Row>
+              <Col>
+                <Alert type="error">
+                  { errors.transaction }
+                </Alert>
+              </Col>
+            </Row>
+          </Grid>
+        )
+      }
+      <Grid>
+        <Row justifyContent="flex-end" marginTop={20}> 
+          <Col autoWidth>
+            <Button type="shell-primary" onPress={props.onCancel}>Cancel</Button>
+          </Col>
+          <Col autoWidth>
+            <Button
+              type="full-primary"
+              onPress={props.onSend}
+              disabled={!props.canSend}
+            >
+              Send {tokenDetails.symbol}
+            </Button>
+          </Col>
+        </Row>
+      </Grid>
+    </Body>
   );
 }

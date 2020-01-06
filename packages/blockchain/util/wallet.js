@@ -6,7 +6,7 @@ export class Wallet {
     const pubKey = privateToPublic(privateKey);
     const addr = publicToAddress(pubKey).toString('hex');
 
-    this.privateKey = privateKey;
+    this.privateKey = toChecksumAddress(privateKey.toString('hex'));
     this.address = toChecksumAddress(addr);
   }
 }

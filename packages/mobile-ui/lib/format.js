@@ -26,7 +26,9 @@ export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal
    
   if (!currency) {
     formattedValue = formattedValue.replace(/\.0+$/, '');
-  } else if (!(/\.00$/).test(formattedValue)){
+  }
+
+  if (!(/\.00$/).test(formattedValue)){
     formattedValue = formattedValue.replace(/00+$/, '')
   }
 

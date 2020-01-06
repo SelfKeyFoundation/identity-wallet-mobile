@@ -22,7 +22,7 @@ export class WalletBuilder {
     return new WalletBuilder(rootNode);
   }
 
-  static async createFromJSON(privateKey, publicKey): WalletBuilder {
+  static createFromJSON(privateKey, publicKey): WalletBuilder {
     const rootNode = HDNode.fromJSON({
       xpriv: privateKey,
       xpub: publicKey,
@@ -37,7 +37,7 @@ export class WalletBuilder {
 
   createWallet(path): Wallet {
     const addrNode = this.root.derive(path);
-    const privateKey = addrNode._privateKey;
+    const privateKey = addrNode.privateKey;
 
     return new Wallet(privateKey);
   }

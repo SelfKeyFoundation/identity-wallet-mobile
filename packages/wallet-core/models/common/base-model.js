@@ -45,8 +45,12 @@ export class BaseModel {
     return Array.from(this._findAll()).map(this.toJson);
   }
 
+  prepareIdValue(value) {
+    return value;
+  }
+
   _findById(id) {
-    const items = this._findAll().filtered(`id = ${id}`);
+    const items = this._findAll().filtered(`${this.schema.primaryKey} = ${this.prepareIdValue(id)}`);
     return items[0];
   }
 
@@ -54,11 +58,12 @@ export class BaseModel {
     return this.toJson(this._findById(id));
   }
 
-  updateById(id, data) {
+  async updateById(id, data) {
+    const currentData = await this.findById(id);
     return this.realm.write(() => {
       return this.realm.create(this.schema.name, {
+        ...currentData,
         ...data,
-        id,
       }, true);
     });
   }

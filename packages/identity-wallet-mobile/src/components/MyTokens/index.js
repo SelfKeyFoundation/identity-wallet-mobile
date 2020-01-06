@@ -22,7 +22,7 @@ export function MyTokensHOC() {
   const tokens = useSelector(selectors.getTokens);
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokensFiatAmount = useSelector(selectors.getTokensFiatAmount)
-  const primaryToken = tokens[0];
+  const primaryToken = tokens[0] || {};
   // Exclude the primary token, KEY or KI
   const isEmpty = tokens.length === 1;
 

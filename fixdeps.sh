@@ -10,3 +10,5 @@ rm -rf ./packages/**/node_modules/react-redux
 rm -rf ./packages/**/node_modules/styled-components
 rm -rf ./packages/**/node_modules/ethereumjs-util
 rm -rf ./packages/**/node_modules/keccak
+mv ./packages/identity-wallet-mobile/node_modules/react-native-svg ./node_modules
+rm -rf ./packages/mobile-ui/node_modules/react-native-svg

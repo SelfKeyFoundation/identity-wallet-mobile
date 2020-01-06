@@ -45,6 +45,7 @@ export async function createVault(props: VaultConstructor) {
   await getKeychain().setItem(vaultId, {
     id: vaultId,
     privateKey: props.privateKey,
+    publicKey: props.publicKey,
     // TODO: create hash from password
     password: props.password,
     unlockPolicy: props.unlockPolicy,

@@ -3,12 +3,14 @@ import { createReducer } from '../../redux/reducers';
 import types from './types';
 
 export const initialState = {
-  address: '',
+  // address: '',
   // address: '0x4ac0d9ebd28118cab68a64ad8eb8c07c0120ebf8',
-  amount: 0,
+  amount: 0.01,
   // Fiat amount will be selected from wallet
   transactionFee: 'normal',
+  isProcessing: false,
   token: 'eth',
+  transactionHash: '0xe66cb2767a9c1726a1b86d44c031254aa143af7a',
   errors: {
     address: undefined,
     transaction: undefined,
@@ -65,7 +67,11 @@ function setAddressReducer(state, action) {
 }
 
 function setAmountReducer(state, action) {
-  const { amount } = action.payload;
+  let { amount } = action.payload;
+
+  if (amount > state.balance) {
+    amount = state.balance;
+  }
 
   return {
     ...state,
@@ -136,6 +142,24 @@ function setAdvancedModeReducer(state, action) {
   };
 }
 
+function updateTransactionReducer(state, action) {
+  const { payload } = action;
+
+  return {
+    ...state,
+    ...payload,
+  };
+}
+
+function setProcessingReducer(state, action) {
+  const { isProcessing } = action.payload;
+
+  return {
+    ...state,
+    isProcessing,
+  };
+}
+
 export const transactionReducers = {
   setAddressReducer,
   setAmountReducer,
@@ -145,7 +169,9 @@ export const transactionReducers = {
   setStatusReducer,
   setTokenReducer,
   setTransactionFeeReducer,
-  setAdvancedModeReducer
+  setAdvancedModeReducer,
+  updateTransactionReducer,
+  setProcessingReducer,
 };
 
 const reducersMap = {
@@ -158,7 +184,8 @@ const reducersMap = {
   [types.SET_TRANSACTION_FEE]: transactionReducers.setTransactionFeeReducer,
   [types.SET_TRANSACTION_FEE_OPTIONS]: transactionReducers.setTransactionFeeOptionsReducer,
   [types.SET_ADVANCED_MODE]: transactionReducers.setAdvancedModeReducer,
-
+  [types.UPDATE_TRANSACTION]: transactionReducers.updateTransactionReducer,
+  [types.SET_PROCESSING]: transactionReducers.setProcessingReducer,
 };
 
 export default createReducer(initialState, reducersMap);

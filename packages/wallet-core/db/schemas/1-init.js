@@ -16,21 +16,63 @@ export default {
       }
     },
     {
-      "name": "wallet",
+      "name": "Wallet",
+      "primaryKey": "address",
+      "properties": {
+        "address": "string",
+        "name": "string",
+        "vaultId": "string",
+        "type": "string",
+        "path": "string?",
+        "tokens": {
+          "type": "WalletToken[]",
+          "default": []
+        }
+      }
+    },
+    {
+      "name": "GuideSettings",
       "primaryKey": "id",
       "properties": {
-        "id": {
-          "type": "int"
+        "id": "int",
+        "termsAccepted": "bool"
+      }
+    },
+    {
+      "name": "Token",
+      "primaryKey": "id",
+      "properties": {
+        "id": "int",
+        "decimal": "int",
+        "address": "string",
+        "icon": "string?",
+        "isCustom": {
+          "type": "bool",
+          "default": false
         },
-        "name": {
-          "type": "string"
+        "symbol": "string",
+        "createdAt": "date",
+        "updatedAt": "date"
+      }
+    },
+    {
+      "name": "WalletToken",
+      "primaryKey": "id",
+      "properties": {
+        "id": "int",
+        "balance": {
+          "type": "string",
+          "default": "0"
         },
-        "address": {
-          "type": "string"
+        "balanceInFiat": {
+          "type": "float",
+          "default": 0
         },
-        "privateKey": {
-          "type": "string"
-        }
+        "hidden": {
+          "type": "bool",
+          "default": false
+        },
+        "tokenId": "int"
       }
     }
   ]
