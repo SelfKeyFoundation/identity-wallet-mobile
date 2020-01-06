@@ -9,6 +9,7 @@ export const transactionTypes = {
   SET_ERRORS: 'transaction/setErrors',
   SET_ADVANCED_MODE: 'transaction/setAdvancedMode',
   UPDATE_TRANSACTION: 'transaction/update',
+  SET_PROCESSING: 'transaction/setProcessing',
 };
 
 export default transactionTypes;

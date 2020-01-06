@@ -38,6 +38,12 @@ export const getFiatFee = (state) => getSelectedTransactionFee(state).fiatAmount
 export const getSendEnabled = (state) => getRoot(state).sendEnabled;
 export const getStatus = (state) => getRoot(state).status;
 export const getTransactionHash = (state) => getRoot(state).transactionHash;
+export const canSend = (state) => {
+  const errors = getErrors(state);
+
+  return !errors.address;
+}
+export const isProcessing = state => getRoot(state).isProcessing;
 export const getTransaction = (state) => {
   const transaction = getRoot(state);
   const token = getToken(state);

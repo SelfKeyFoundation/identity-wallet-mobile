@@ -284,7 +284,13 @@ export function SendTokens(props: SendTokensProps) {
             <Button type="shell-primary" onPress={props.onCancel}>Cancel</Button>
           </Col>
           <Col autoWidth>
-            <Button type="full-primary" onPress={props.onSend}>Send {tokenDetails.symbol}</Button>
+            <Button
+              type="full-primary"
+              onPress={props.onSend}
+              disabled={!props.canSend}
+            >
+              Send {tokenDetails.symbol}
+            </Button>
           </Col>
         </Row>
       </Grid>

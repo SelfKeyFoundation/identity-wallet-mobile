@@ -56,7 +56,7 @@ function SendTokensScreen(props) {
         footer={null}
         noBodyPadding
       >
-        <Renderer onClose={handleClose}/>
+        <Renderer onCancel={handleClose}/>
       </Modal>
     </React.Fragment>
   );

@@ -14,6 +14,7 @@ export function SendStep(props) {
   const address = useSelector(selectors.getAddress);
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const errors = useSelector(selectors.getErrors);
+  const canSend = useSelector(selectors.canSend);
   const transactionFee = useSelector(selectors.getTransactionFee);
   const transactionFeeOptions = useSelector(selectors.getTransactionFeeOptions);
   const tokens = useSelector(modules.wallet.selectors.getTokens);
@@ -43,6 +44,7 @@ export function SendStep(props) {
     <SendTokens
       onCancel={props.onCancel}
       errors={errors}
+      canSend={canSend}
       onQRCodePress={() => {
         console.log('QR Code');
       }}

@@ -80,7 +80,7 @@ const computeGasLimit = () => async (dispatch, getState) => {
   }
 };
 
-export const getTransactionFeeOptions = (state) => {
+const getTransactionFeeOptions = (state) => {
   const gasStationInfo = ducks.ethGasStation.selectors.getEthGasStationInfo(state);
   const gasLimit = ducks.transaction.selectors.getGasLimit(state);
     
@@ -122,7 +122,7 @@ export const operations = {
     await dispatch(ducks.ethGasStation.operations.loadDataOperation());
 
     const state = getState();
-    await dispatch(duck.actions.setToken(tokenSymbol));
+    // await dispatch(duck.actions.setToken(tokenSymbol));
 
     navigate(Routes.APP_SEND_TOKENS, {
       tokenSymbol
@@ -130,10 +130,13 @@ export const operations = {
 
     const address = ducks.wallet.selectors.getAddress(state);
     const nounce = await getTransactionCount(address);
-    // resolve transaction fee
+    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
 
     await dispatch(duck.actions.updateTransaction({
       nounce,
+      balance: tokenDetails.amount,
+      tokenDecimal: tokenDetails.decimal,
+      tokenSymbol: tokenSymbol,
       transactionFeeOptions: getTransactionFeeOptions(state),
       status: 'in_progress',
       errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
@@ -224,7 +227,23 @@ export const operations = {
   },
   setAddress: (address) => async (dispatch, getState) => {
     await dispatch(transactionActions.setAddress(address));
-    await dispatch(computeGasLimit());
+
+    try {
+      const web3Utils = web3Service.web3.utils;
+      const toChecksumAddress = web3Utils.toChecksumAddress(address);
+
+      if (web3Utils.isHex(address) || web3Utils.isAddress(toChecksumAddress)) {
+        await dispatch(transactionActions.setErrors({
+          address: undefined,
+        }));
+        await dispatch(computeGasLimit());
+        return;
+      }
+    } catch(err) {}
+
+    await dispatch(transactionActions.setErrors({
+      address: 'Invalid address. Please check and try again',
+    })); 
   },
   setAmount: (amount) => async (dispatch, getState) => {
     await dispatch(transactionActions.setAmount(amount));
