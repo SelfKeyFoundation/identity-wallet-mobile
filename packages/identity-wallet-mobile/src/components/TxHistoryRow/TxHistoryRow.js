@@ -51,23 +51,26 @@ const Amount = styled.Text`
   font-family: ${props => props.theme.fonts.bold};
 `;
 
-
 const statusDescriptionMap = {
   sent: 'Sent',
   received: 'Received',
-  sending: 'Sending'
+  sending: 'Sending',
+  receiving: 'Receiving'
 }
 
 const statusIconMap = {
   sent: 'icon-sent',
   received: 'icon-receive',
-  sending: 'icon-hourglass'
+  sending: 'icon-hourglass',
+  receiving: 'icon-hourglass'
 }
 
 const statusPrefixMap = {
   sent: '-',
   received: '+',
-  sending: '-'
+  sending: '-',
+  receiving: '+',
+
 }
 
 function getFormattedDate(time) {
@@ -79,7 +82,7 @@ function getFormattedDate(time) {
 }
 
 export function TxHistoryRow(props) {
-  const tokenSymbol = props.tokenSymbol.toUpperCase();
+  const tokenSymbol = tokenSymbol && props.tokenSymbol.toUpperCase();
   const date = getFormattedDate(props.time);
 
   return (

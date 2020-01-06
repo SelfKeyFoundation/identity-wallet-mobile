@@ -1,7 +1,8 @@
 import uuid from 'uuid/v4';
 import { TxHistoryModel } from './tx-history-model';
+import { createContext } from 'jest-runtime';
 
-const fixtures = [{
+const txMock = {
   hash: 'test-hash',
   blockNumber: 0,
   timeStamp: 10000,
@@ -17,14 +18,31 @@ const fixtures = [{
   transactionIndex: 0,
   gas: 12000,
   gasPrice: 0.0002,
-  // cumulativeGasUsed: 0,
   gasUsed: 10,
-  // input: 'string',
+  status: 'sent',
   confirmations: 1,
   isError: false,
   txReceiptStatus: 0,
   networkId: 1
-}];
+};
+
+function createTx(fromAddress, toAddress, status) {
+  return {
+    ...txMock,
+    hash: uuid(),
+    to: toAddress,
+    from: fromAddress,
+    status: status || txMock.status,
+  };
+}
+
+const fixtures = [
+  createTx('addr1', 'addr2'),
+  createTx('addr3', 'addr4'),
+  createTx('addr3', 'addr4'),
+  createTx('addr3', 'addr5'),
+];
+
 
 describe('core/db/models/TxHistoryModel', () => {
   const model = TxHistoryModel.getInstance();
@@ -60,10 +78,27 @@ describe('core/db/models/TxHistoryModel', () => {
     it('updateItem', () => {
       const data = fixtures[0];
       model.updateById(data.hash, {
-        value: 0.00000000001
+        value: 0.002
       });
+
       const item = model.findById(data.hash);
-      expect(item.value).toEqual(0.00000000001);
+      expect(item.value).toEqual(0.002);
+    });
+
+    describe('findByAddress', () => {
+      it('expect to have 1 transaction for addr1, addr2 and addr5', () => {
+        expect(model.findByAddress('addr1')).toHaveLength(1);
+        expect(model.findByAddress('addr2')).toHaveLength(1);
+        expect(model.findByAddress('addr5')).toHaveLength(1);
+      });
+
+      it('expect to have 2 transactions for addr4', () => {
+        expect(model.findByAddress('addr4')).toHaveLength(2);
+      });
+
+      it('expect to have 3 transactions for addr3', () => {
+        expect(model.findByAddress('addr3')).toHaveLength(3);
+      });
     });
   });
 });

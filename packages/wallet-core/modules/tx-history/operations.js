@@ -2,8 +2,10 @@ import txHistoryActions from './actions';
 import txHistoryDuck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
+import { TxHistoryService } from '@selfkey/wallet-core/services/tx-history-service';
 
 const txHistoryModel = TxHistoryModel.getInstance();
+const txHistoryService = TxHistoryService.getInstance();
 
 // TODO: Move to configs
 const chainId = 3;
@@ -12,6 +14,15 @@ export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
     await txHistoryModel.updateById(hash, updatedData); 
     await dispatch(txHistoryActions.updateTransaction(hash, updatedData));
+  },
+
+  loadTxHistoryOperation: () => async (dispatch, getState) => {
+    const state = getState();
+    const address = ducks.wallet.selectors.getAddress(state);
+    // TODO: Need to get lastBlock from wallet db and pass it here
+    await txHistoryService.syncByWallet(address, null);
+    const transactions = await txHistoryModel.findByAddress(address.toLowerCase());
+    await dispatch(txHistoryActions.setTransactions(transactions));
   },
   /**
    * Create txHistory

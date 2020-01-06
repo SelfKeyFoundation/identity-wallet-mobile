@@ -18,9 +18,8 @@ function parseItem(item) {
 }
 
 export function TxHistoryHOC(props) {
-  const transactions = useSelector(ducks.txHistory.selectors.getTransactions);
+  const transactions = useSelector(ducks.txHistory.selectors.getTransactionsByToken(props.tokenSymbol));
 
-  console.log('updated txHistory component', transactions);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const handleLoadMore = useCallback(() => setVisibleCount(visibleCount + PAGE_SIZE));
 
