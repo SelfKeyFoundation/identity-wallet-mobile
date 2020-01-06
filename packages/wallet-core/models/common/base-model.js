@@ -59,13 +59,18 @@ export class BaseModel {
   }
 
   async updateById(id, data) {
-    const currentData = await this.findById(id);
+    const currentData = this.findById(id);
     return this.realm.write(() => {
       return this.realm.create(this.schema.name, {
-        ...currentData,
+        ...(currentData || {}),
         ...data,
       }, true);
     });
+  }
+
+  async addOrUpdate(data) {
+    const id = data[this.schema.primaryKey];
+    return this.updateById(id, data);
   }
 
   generateId() {

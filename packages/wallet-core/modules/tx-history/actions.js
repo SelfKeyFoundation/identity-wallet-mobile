@@ -2,7 +2,7 @@ import types from './types';
 
 export const txHistoryActions = {
   setTransactions: (transactions) => ({
-    type: types.SET_ADDRESS,
+    type: types.SET_TRANSACTIONS,
     payload: { transactions },
   }),
   addTransaction: (newTransaction) => ({

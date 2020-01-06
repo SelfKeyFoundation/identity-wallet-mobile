@@ -48,7 +48,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
     navigate(Routes.UNLOCK_WALLET_FLOW);
   }
 
-  dispatch(appActions.setLoading(false));
+  // dispatch(appActions.setLoading(false));
   // TODO: Remove, testing purposes
   // await dispatch(modules.unlockWallet.operations.submitUnlockOperation({
   //   password: ''

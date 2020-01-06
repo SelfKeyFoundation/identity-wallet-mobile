@@ -5,6 +5,7 @@ import { exitApp } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
+import ducks from '../index';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -52,7 +53,8 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
   try {
     await Promise.all([
       loadWalletBalance(wallet),
-      loadWalletTokens(wallet)
+      loadWalletTokens(wallet),
+      dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
     ]);
   } catch(err) {
     console.error(err);

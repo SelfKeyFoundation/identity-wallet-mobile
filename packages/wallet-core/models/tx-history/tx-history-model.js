@@ -2,7 +2,7 @@ import { BaseModel } from '../common/base-model';
 
 export class TxHistoryModel extends BaseModel {
   static instance: TxHistoryModel;
-aa
+
   static schema = {
     name: 'TxHistory',
     primaryKey: 'hash',
@@ -20,6 +20,7 @@ aa
       tokenSymbol: 'string?',
       tokenDecimal: 'int?',
       transactionIndex: 'int?',
+      status: 'string?',
       gas:'int?',
       gasPrice: 'int',
       // cumulativeGasUsed: 'int',
@@ -50,5 +51,13 @@ aa
 
   findByHash(hash) {
     return this.findOne(`hash = "${hash}"`)
+  }
+
+  updatePendingTxsByPublicKey(address) {
+
+  }
+
+  findByAddress(address) {
+    return this.find(`to="${address}" OR from="${address}"`)
   }
 }
