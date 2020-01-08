@@ -152,7 +152,7 @@ export function SendTokens(props: SendTokensProps) {
         <Row>
           <Col>
             <TextInput
-              value={`${tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
+              value={`${tokenDetails.symbol && tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
               label="Token"
               disabled
               labelStyle={{

@@ -72,7 +72,7 @@ export function TxHistory(props) {
                   tokenDecimal={item.tokenDecimal}
                   amount={item.amount}
                   status={item.status}
-                  time={item.time}
+                  timeStamp={item.timeStamp}
                 />
               </Col>
             </BorderRow>

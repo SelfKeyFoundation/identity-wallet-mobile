@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
 
 const { operations, selectors } = modules.transaction;
 
 export default function ScanQRScreen(props) {
+  const [showQR, setShowQR] = useState(true);
   const referer = props.navigation.getParam('referer', 'dashboard');
   const dispatch = useDispatch();
   const handleClose = useCallback(() => {
@@ -16,7 +17,7 @@ export default function ScanQRScreen(props) {
     } else {
       navigate(Routes.APP_DASHBOARD);
     }
-  }, []);
+  }, [referer, navigate]);
 
   const handleSuccess = useCallback((address) => {
     if (referer === 'transaction') {
@@ -25,12 +26,30 @@ export default function ScanQRScreen(props) {
     } else {
       dispatch(operations.goToTransactionOperation('ETH', address));
     }
-  });
+  }, [referer, operations]);
 
-  return (
-    <ScanQR
-      onClose={handleClose}
-      onSuccess={handleSuccess}
-    />
-  );
+  useEffect(() => {
+    if (referer !== 'dashboard') {
+      return;
+    }
+
+    onNavigate((route) => {
+      if (route === Routes.APP_SCAN_QR) {
+        setShowQR(true);   
+      } else if (showQR) {
+        setShowQR(false);   
+      }
+    });
+  }, [referer]);
+
+  try {
+    return showQR && (
+      <ScanQR
+        onClose={handleClose}
+        onSuccess={handleSuccess}web
+      />
+    );
+  } catch(err) {
+    return null;
+  }
 }

@@ -17,7 +17,7 @@ export const getTokensFiatAmount = (state) => {
 }
 
 // TODO: Move to token utils
-function getTokenName(symbol) {
+function getTokenName(symbol = 'eth') {
   symbol = symbol.toUpperCase();
 
   if (symbol === 'ETH') {
@@ -32,7 +32,7 @@ function getTokenName(symbol) {
 }
 
 export const getTokens = (state) => getWallet(state).tokens || [];
-export const getTokenDetails = (symbol) => (state) => {
+export const getTokenDetails = (symbol = 'eth') => (state) => {
   symbol = symbol.toUpperCase();
 
   if (symbol === 'ETH') {
@@ -52,7 +52,7 @@ export const getTokenDetails = (symbol) => (state) => {
   }
 
   const tokens = getTokens(state);
-  const token = tokens.find(t => t.symbol.toUpperCase() === symbol);
+  const token = tokens.find(t => t.symbol && t.symbol.toUpperCase() === symbol);
 
   return {
     name: getTokenName(token.symbol),

@@ -10,7 +10,7 @@ const { operations, selectors } = modules.transaction;
 
 function getEtherscanUrl(hash) {
   // TODO: Handle mainnet url based on configs/env variables
-  return `https://ropsten.etherscan.io/address/${hash}`;
+  return `https://ropsten.etherscan.io/tx/${hash}`;
 }
 
 export function SuccessStep(props) {

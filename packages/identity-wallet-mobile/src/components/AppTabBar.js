@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabNavigation } from '@selfkey/mobile-ui';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { Routes, navigate } from '@selfkey/wallet-core/navigation';
 
 export function AppTabBar(props) {
   const { navigation } = props;
@@ -28,7 +28,7 @@ export function AppTabBar(props) {
   return (
     <TabNavigation
       activeId={route.key}
-      onPress={props.jumpTo}
+      onPress={navigate}
       items={items}
     />
   );

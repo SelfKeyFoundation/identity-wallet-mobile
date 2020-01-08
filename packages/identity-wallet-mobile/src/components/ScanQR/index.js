@@ -14,6 +14,7 @@ const Container = styled.View`
 const Header = styled.View`
   height: 80px;
   width: 100%;
+  padding-top: 10px;
 `;
 
 const Title = styled.Text`
@@ -27,9 +28,10 @@ const Title = styled.Text`
 
 const IconContainer = styled.View`
   position: absolute;
-  top: 5px;
-  left: 20px;
+  top: 0px;
+  left: 10px;
   padding: 20px;
+  z-index: 99999;
 `;
 
 const Footer = styled.View`
@@ -83,6 +85,8 @@ export function ScanQR(props) {
       <QRCodeContainer>
         <QRCodeScanner
           style={{flex:1}}
+          reactivate={true}
+          reactivateTimeout={20000}
           cameraStyle={{ height: Dimensions.get('window').height }}
           topViewStyle={{
             height: 0,
