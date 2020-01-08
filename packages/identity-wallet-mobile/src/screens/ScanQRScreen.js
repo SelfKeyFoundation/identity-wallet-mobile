@@ -1,26 +1,36 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import { SafeAreaView } from 'react-native';
+import React, { useCallback } from 'react';
+import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
+import { useDispatch, useSelector } from 'react-redux';
 
-const HeaderTitle = styled.Text`
-  color: ${props => props.theme.colors.white};
-  font-size: 18px;
-  font-family: ${props => props.theme.fonts.bold};
-  text-align: center;
-  margin-top: 15px;
-`;
+import modules from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 
-const Container = styled.View`
-  flex: 1;
-  background-color:  ${props => props.theme.colors.baseDark};
-`;
+const { operations, selectors } = modules.transaction;
 
-export default function ScanQRScreen() {
+export default function ScanQRScreen(props) {
+  const referer = props.navigation.getParam('referer', 'dashboard');
+  const dispatch = useDispatch();
+  const handleClose = useCallback(() => {
+    if (referer === 'transaction') {
+      navigate(Routes.APP_SEND_TOKENS);
+    } else {
+      navigate(Routes.APP_DASHBOARD);
+    }
+  }, []);
+
+  const handleSuccess = useCallback((address) => {
+    if (referer === 'transaction') {
+      dispatch(operations.setAddress(address));
+      navigate(Routes.APP_SEND_TOKENS);
+    } else {
+      dispatch(operations.goToTransactionOperation('ETH', address));
+    }
+  });
+
   return (
-    <Container>
-      <SafeAreaView>
-        <HeaderTitle>Scan QR</HeaderTitle>
-      </SafeAreaView>
-    </Container>
+    <ScanQR
+      onClose={handleClose}
+      onSuccess={handleSuccess}
+    />
   );
 }

@@ -26,6 +26,7 @@ export const appTabNavigation = createBottomTabNavigator({
 export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.APP_TAB_NAVIGATION]: appTabNavigation,
   [Routes.TOKEN_DETAILS]: TokenDetailsScreen,
+  [Routes.SCAN_QR]: ScanQRScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);
