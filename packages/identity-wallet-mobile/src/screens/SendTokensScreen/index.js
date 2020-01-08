@@ -4,7 +4,7 @@ import { Dashboard } from '../DashboardScreen/Dashboard';
 // import { Clipboard, Share, View } from 'react-native';
 import { SendTokens } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
 import { Modal } from '@selfkey/mobile-ui';
 import { SendStep } from './SendStep';
 import { PendingStep } from './PendingStep';
@@ -16,13 +16,22 @@ const { operations, selectors } = modules.transaction;
 function SendTokensScreen(props) {
   const [visible, setVisible] = useState(true);
   const status = useSelector(selectors.getStatus);
-  const handleClose = useCallback(() => {
+  const handleClose = useCallback((opts = { navigate: true }) => {
     setVisible(false);
-    navigate(Routes.APP_DASHBOARD);
+
+    if (opts.navigate) {
+      navigate(Routes.APP_DASHBOARD);
+    }
   }, [setVisible]);
 
   useEffect(() => {
     setVisible(true);
+
+    onNavigate((routeName) => {
+      if (routeName === Routes.APP_SEND_TOKENS) {
+        setVisible(true);
+      }
+    })
   }, [props]);
 
   let Renderer;
@@ -56,7 +65,7 @@ function SendTokensScreen(props) {
         footer={null}
         noBodyPadding
       >
-        <Renderer onCancel={handleClose}/>
+        <Renderer onCancel={handleClose} />
       </Modal>
     </React.Fragment>
   );

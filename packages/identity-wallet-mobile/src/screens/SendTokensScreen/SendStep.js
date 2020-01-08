@@ -23,7 +23,6 @@ export function SendStep(props) {
   const dispatch = useDispatch();
 
   const handleChange = useCallback((field, value) => {
-    console.log('handlechange', { field, value });
     switch(field) {
       case 'address': {
         dispatch(operations.setAddress(value));
@@ -40,14 +39,22 @@ export function SendStep(props) {
     }
   });
 
+  const handleQRCodePress = useCallback(() => {
+    navigate(Routes.SCAN_QR, {
+      referer: 'transaction'
+    });
+
+    props.onCancel({
+      navigate: false
+    });
+  })
+
   return (
     <SendTokens
       onCancel={props.onCancel}
       errors={errors}
       canSend={canSend}
-      onQRCodePress={() => {
-        console.log('QR Code');
-      }}
+      onQRCodePress={handleQRCodePress}
       onAdvancedPress={() => {
         dispatch(operations.setAdvancedMode(!isAdvancedMode));
       }}

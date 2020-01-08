@@ -118,7 +118,7 @@ const getTransactionFeeOptions = (state) => {
 }
 
 export const operations = {
-  goToTransactionOperation: (tokenSymbol) => async (dispatch, getState) => {
+  goToTransactionOperation: (tokenSymbol, addressTo) => async (dispatch, getState) => {
     await dispatch(ducks.ethGasStation.operations.loadDataOperation());
 
     const state = getState();
@@ -134,6 +134,7 @@ export const operations = {
 
     await dispatch(duck.actions.updateTransaction({
       nounce,
+      address: addressTo,
       balance: tokenDetails.amount,
       tokenDecimal: tokenDetails.decimal,
       tokenSymbol: tokenSymbol,
