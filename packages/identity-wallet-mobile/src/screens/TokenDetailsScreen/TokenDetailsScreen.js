@@ -1,6 +1,6 @@
 import React from 'react';
 import { TokenDetails } from '../../components';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { SKIcon } from '@selfkey/mobile-ui';
 
@@ -10,7 +10,7 @@ const Container = styled.SafeAreaView`
 `;
 
 const Header = styled.View`
-  margin: 10px 20px 25px 20px;
+  margin: 10px 20px 40px 20px;
 `;
 
 const Body = styled.ScrollView`
@@ -25,13 +25,17 @@ const Title = styled.Text`
   text-transform: uppercase;
   width: 100%;
   text-align: center;
+  position: absolute;
 `;
 
-const IconContainer = styled.TouchableWithoutFeedback`
-  position: absolute;
-  top: 5px;
-  left: -10px;
+const BackIcon = styled(SKIcon)`
   padding: 10px;
+`;
+
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
 `;
 
 export function TokenDetailsScreen(props) {
@@ -40,9 +44,13 @@ export function TokenDetailsScreen(props) {
     <Container>
       <Header>
         <Title>{props.title}</Title>
-        <IconContainer onPress={props.onBack}>
-          <SKIcon name="icon-nav-ar-left" size={12} color="#fff" />
-        </IconContainer>
+        
+          <IconContainer>
+            <TouchableWithoutFeedback onPress={props.onBack}>
+              <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+            </TouchableWithoutFeedback>
+          </IconContainer>
+        
       </Header>
       <Body>
         { props.children }

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-// import { Platform, StyleSheet, Text, View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from './selection.json';
 const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', 'icomoon.ttf');
