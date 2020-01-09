@@ -72,7 +72,7 @@ function TokenDetailsContainer(props) {
               fiatAmount={tokenDetails.balanceInFiat}
               lastPrice={tokenDetails.lastPrice}
               lastPriceCurrency="usd"
-              tokenContract={tokenDetails.contractAddress}
+              contractAddress={tokenDetails.contractAddress}
             />
           </Col>
         </Row>

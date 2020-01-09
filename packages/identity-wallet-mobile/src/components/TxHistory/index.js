@@ -13,7 +13,7 @@ function parseItem(item) {
     tokenDecimal: item.tokenDecimal,
     amount: item.value,
     status: item.status,
-    time: item.timestamp 
+    timeStamp: item.timeStamp 
   }
 }
 

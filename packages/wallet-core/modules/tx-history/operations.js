@@ -22,7 +22,7 @@ export const operations = {
     // TODO: Need to get lastBlock from wallet db and pass it here
     await txHistoryService.syncByWallet(address, null);
     const transactions = await txHistoryModel.findByAddress(address.toLowerCase());
-    await dispatch(txHistoryActions.setTransactions(transactions));
+    await dispatch(txHistoryActions.setTransactions(transactions.reverse()));
   },
   /**
    * Create txHistory

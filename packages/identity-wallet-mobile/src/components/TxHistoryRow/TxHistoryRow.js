@@ -83,7 +83,7 @@ function getFormattedDate(time) {
 
 export function TxHistoryRow(props) {
   const tokenSymbol = tokenSymbol && props.tokenSymbol.toUpperCase();
-  const date = getFormattedDate(props.time);
+  const date = getFormattedDate(props.timeStamp);
 
   return (
     <Grid>

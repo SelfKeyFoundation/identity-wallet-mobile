@@ -25,6 +25,10 @@ import { TouchableWithoutFeedback } from 'react-native';
 const Body = styled.View``;
 
 function formatAddress(address) {
+	if (!address) {
+		return ''
+	}
+
 	const firstPart = address.substring(0, 12);
 	const lastPart = address.substring(address.length - 6, address.length);
 

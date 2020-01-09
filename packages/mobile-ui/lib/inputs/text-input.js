@@ -18,6 +18,7 @@ const IconContainer = styled.View`
   position: absolute;
   right: 13px;
   top: 13px;
+  z-index: 99999;
 `;
 
 const renderInput = (inputProps: TextInputProps, theme: any) => (props: NativeTextInputProps) => {
