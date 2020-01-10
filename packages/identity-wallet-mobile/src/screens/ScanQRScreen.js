@@ -3,7 +3,7 @@ import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
+import { navigate, navigateBack, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
 
 const { operations, selectors } = modules.transaction;
 
@@ -13,16 +13,16 @@ export default function ScanQRScreen(props) {
   const dispatch = useDispatch();
   const handleClose = useCallback(() => {
     if (referer === 'transaction') {
-      navigate(Routes.APP_SEND_TOKENS);
-    } else {
-      navigate(Routes.APP_DASHBOARD);
+      dispatch(modules.app.operations.showSendTokensModal(true));      
     }
+    navigateBack();
   }, [referer, navigate]);
 
   const handleSuccess = useCallback((address) => {
     if (referer === 'transaction') {
       dispatch(operations.setAddress(address));
-      navigate(Routes.APP_SEND_TOKENS);
+      dispatch(modules.app.operations.showSendTokensModal(true));
+      navigateBack();
     } else {
       dispatch(operations.goToTransactionOperation('ETH', address));
     }

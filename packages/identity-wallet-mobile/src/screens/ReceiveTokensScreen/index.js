@@ -10,9 +10,14 @@ import { Snackbar } from 'react-native-paper';
 const { operations, selectors } = modules.wallet;
 
 function ReceiveTokensContainer(props) {
-  const tokenSymbol = props.navigation.getParam('tokenSymbol', 'ETH');
+  const receiveTokensModal = useSelector(modules.app.selectors.showReceiveTokensModal);
+  const {
+    tokenSymbol = 'ETH',
+    visible = false,
+  } = receiveTokensModal || {};
+
   const wallet = useSelector(selectors.getWallet);
-  const [visible, setVisible] = useState(true);
+  const dispatch = useDispatch();
   const { address } = wallet;
   const [snackBarMessage, setSnackMessage] = useState();
 
@@ -21,9 +26,11 @@ function ReceiveTokensContainer(props) {
   }, []);
 
   const handleClose = useCallback(() => {
-    setVisible(false);
-    navigate(Routes.APP_DASHBOARD);
-  }, [setVisible]);
+    dispatch(modules.app.operations.showReceiveTokensModal({
+      visible: false,
+      tokenSymbol,
+    }));
+  }, [tokenSymbol]);
 
   const handleCopy = useCallback(() => {
     Clipboard.setString(address);
@@ -36,13 +43,8 @@ function ReceiveTokensContainer(props) {
     });
   }, [address]);
 
-  useEffect(() => {
-    setVisible(true);
-  }, [props]);
-
   return (
     <React.Fragment>
-      <Dashboard />
       <ReceiveTokens
         tokenSymbol={tokenSymbol}
         tokenAddress={address}

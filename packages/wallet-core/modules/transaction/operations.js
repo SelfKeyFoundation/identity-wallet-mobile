@@ -136,9 +136,7 @@ export const operations = {
       tokenDecimal: tokenDetails.decimal,
     }));
 
-    navigate(Routes.APP_SEND_TOKENS, {
-      tokenSymbol
-    });
+    await dispatch(ducks.app.operations.showSendTokensModal(true));
 
     const nounce = await getTransactionCount(address);
     await dispatch(ducks.ethGasStation.operations.loadDataOperation());

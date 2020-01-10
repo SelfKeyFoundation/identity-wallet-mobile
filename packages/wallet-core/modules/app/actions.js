@@ -9,6 +9,14 @@ export const appActions = {
     type: appTypes.SET_GUIDE_SETTINGS,
     payload: { settings },
   }),
+  showSendTokensModal: (show) => ({
+    type: appTypes.SHOW_SEND_TOKENS_MODAL,
+    payload: { show },
+  }),
+  showReceiveTokensModal: (show) => ({
+    type: appTypes.SHOW_RECEIVE_TOKENS_MODAL,
+    payload: { show },
+  }),
 };
 
 export default appActions;

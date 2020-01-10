@@ -26,6 +26,9 @@ setNavigator({
 
 storiesOf('TokenDetailsScreen', module)
   .addDecorator(reduxMockDecorator({
+    app: {
+      showSendTokensModal: true,
+    },
     wallet: {
       balance: 1,
       tokens: [{

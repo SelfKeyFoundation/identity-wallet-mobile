@@ -38,9 +38,10 @@ function TokenDetailsContainer(props) {
   }, []);
 
   const handleReceive = useCallback((tokenSymbol) => {
-    navigate(Routes.APP_RECEIVE_TOKENS, {
-      tokenSymbol
-    });
+    dispatch(modules.app.operations.showReceiveTokensModal({
+      visible: true,
+      tokenSymbol,
+    }));
   }, []);
 
   const handleSend = useCallback((tokenSymbol) => {
@@ -64,7 +65,7 @@ function TokenDetailsContainer(props) {
               fiatDecimal={getFiatDecimal(tokenDetails)}
               tokenAmount={tokenDetails.amount}
               fiatCurrency="usd"
-              fiatAmount={tokenDetails.balanceInFiat}
+              fiatAmount={tokenDetails.fiatAmount}
               lastPrice={tokenDetails.lastPrice}
               lastPriceCurrency="usd"
               contractAddress={tokenDetails.contractAddress}
