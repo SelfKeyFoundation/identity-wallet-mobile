@@ -35,22 +35,17 @@ function TokenDetailsContainer(props) {
   const dispatch = useDispatch();
   const handleBack = useCallback(() => {
     navigate(Routes.APP_DASHBOARD);
-  });
+  }, []);
 
   const handleReceive = useCallback((tokenSymbol) => {
     navigate(Routes.APP_RECEIVE_TOKENS, {
       tokenSymbol
     });
-    
-  });
+  }, []);
 
   const handleSend = useCallback((tokenSymbol) => {
-    // call operation to set token symbol and then redirect
-    // navigate(Routes.APP_SEND_TOKENS, {
-    //   tokenSymbol
-    // });
     dispatch(modules.transaction.operations.goToTransactionOperation(tokenDetails.symbol));
-  });
+  }, [tokenDetails.symbol]);
 
   return (
     <TokenDetailsScreen

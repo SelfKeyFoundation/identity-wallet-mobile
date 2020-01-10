@@ -9,7 +9,7 @@ const { operations, selectors } = modules.transaction;
 
 export default function ScanQRScreen(props) {
   const [showQR, setShowQR] = useState(true);
-  const referer = props.navigation.getParam('referer', 'dashboard');
+  const referer = props.navigation && props.navigation.getParam('referer', 'dashboard');
   const dispatch = useDispatch();
   const handleClose = useCallback(() => {
     if (referer === 'transaction') {

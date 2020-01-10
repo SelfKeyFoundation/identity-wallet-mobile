@@ -5,7 +5,7 @@ import types from './types';
 export const initialState = {
   // address: '',
   // address: '0x4ac0d9ebd28118cab68a64ad8eb8c07c0120ebf8',
-  amount: 0.01,
+  amount: 0.00,
   // Fiat amount will be selected from wallet
   transactionFee: 'normal',
   isProcessing: false,
@@ -21,20 +21,20 @@ export const initialState = {
     {
       id: 'slow',
       name: 'Slow',
-      ethAmount: 0.00047,
-      fiatAmount: 0.1,
+      ethAmount: 0,
+      fiatAmount: 0,
       time: '5-30 min',
     }, {
       id: 'normal',
       name: 'Normal',
-      ethAmount: 0.0023,
-      fiatAmount: 0.5,
+      ethAmount: 0,
+      fiatAmount: 0,
       time: '2-5 min',
     }, {
       id: 'fast',
       name: 'Fast',
-      ethAmount: 0.0047,
-      fiatAmount: 1.00,
+      ethAmount: 0,
+      fiatAmount: 0,
       time: '< 2 min',
     }
   ],

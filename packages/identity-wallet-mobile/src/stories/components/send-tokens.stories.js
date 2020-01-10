@@ -10,6 +10,11 @@ storiesOf('components', module)
   .add('SendTokens', () => (
     <ScreenContainer>
       <SendTokens
+        tokenDetails={{
+          symbol: 'eth',
+          name: 'Ethereum',
+          amount: 1.4
+        }}
         visible={true}
         errors={{
           // transaction: 'Transaction Error: You don\'t have enough Ethereum (ETH) for the network transaction fee. Please transfer ETH to your wallet and try again.',
