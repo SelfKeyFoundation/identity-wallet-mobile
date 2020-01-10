@@ -16,8 +16,12 @@ const formatCurrency = (value, code) => {
 };
 
 export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal }) {
-  let formattedValue = value || 0;
-  
+  let formattedValue = parseFloat(value || 0);
+
+  if (formattedValue === NaN) {
+    formattedValue = 0;
+  }
+
   if (typeof formattedValue === 'number') {
     formattedValue = formattedValue.toFixed(decimal);
   }

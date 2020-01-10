@@ -310,13 +310,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 16,
     margin: 0,
-    minHeight: 40,
+    height: 46,
     textAlign: I18nManager.isRTL ? 'right' : 'left',
     zIndex: 1,
   },
   inputOutlined: {
     paddingTop: 0,
     paddingBottom: 0,
-    minHeight: 40,
+    height: 46,
   },
 });

@@ -10,7 +10,7 @@ export const initialState = {
   transactionFee: 'normal',
   isProcessing: false,
   token: 'eth',
-  transactionHash: '0xe66cb2767a9c1726a1b86d44c031254aa143af7a',
+  transactionHash: '',
   errors: {
     address: undefined,
     transaction: undefined,
