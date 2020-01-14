@@ -110,6 +110,13 @@ export function BackupWallet(props: BackupWalletProps) {
               </MnemonicContainer>
             </Col>
           </Row>
+          <Row justifyContent="center">
+            <Col autoWidth>
+              <Button type="link" onPress={props.onCopyPhrase}>
+                Copy Phrase
+              </Button>
+            </Col>
+          </Row>
           <Row marginTop={30}>
             <Col>
               <Alert>

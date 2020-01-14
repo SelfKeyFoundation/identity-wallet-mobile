@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
+import { Share } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { BackupWallet } from './BackupWallet';
 
 import modules from '@selfkey/wallet-core/modules';
@@ -14,10 +16,17 @@ function BackupWalletContainer(props) {
     dispatch(operations.submitWalletBackupOperation());
   }, []);
 
+  const handleCopyPhrase = useCallback(() => {
+    Share.share({
+      message: mnemonic,
+    });
+  }, [mnemonic]);
+
   return (
     <BackupWallet
       mnemonicPhrase={mnemonic}
       onSubmit={handleSubmit}
+      onCopyPhrase={handleCopyPhrase}
     />
   );
 }
