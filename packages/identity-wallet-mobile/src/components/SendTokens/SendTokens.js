@@ -55,8 +55,8 @@ const TabsRow = styled(Row)`
 
 const TabItem = styled(Col)`
   padding: 10px 15px;
-  border-width: ${({ selected }) => selected ? '2px' : 0}
-  border-color: #00C0D9;
+  border-width: 2px;
+  border-color: ${({ selected }) => selected ? '#00C0D9' : 'transparent'}
 `;
 
 export interface SendTokensProps {
@@ -230,7 +230,7 @@ export function SendTokens(props: SendTokensProps) {
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
                 currency="eth"
-                decimals={10}
+                decimal={10}
                 value={selectedTransactionFee.ethAmount}
               /> /
             </H3>
