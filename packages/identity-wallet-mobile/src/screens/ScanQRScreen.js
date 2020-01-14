@@ -46,7 +46,7 @@ export default function ScanQRScreen(props) {
     return showQR && (
       <ScanQR
         onClose={handleClose}
-        onSuccess={handleSuccess}web
+        onSuccess={handleSuccess}
       />
     );
   } catch(err) {
