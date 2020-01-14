@@ -26,7 +26,7 @@ function CreatePasswordContainer(props) {
       onSubmit={controller.handleSubmit}
       values={controller.values}
       errors={controller.errors}
-      passwordStrenght={controller.passwordStrenght}
+      passwordStrength={controller.passwordStrength}
     />
   );
 }

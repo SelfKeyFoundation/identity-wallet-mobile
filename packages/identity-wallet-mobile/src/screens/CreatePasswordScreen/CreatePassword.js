@@ -33,7 +33,7 @@ const errorMessages = {
   required: 'Password is required',
 };
 
-function getStrenghtMessage(value) {
+function getStrengthMessage(value) {
   if (value > 0.8) {
     return 'Strong';
   }
@@ -50,7 +50,7 @@ export interface CreatePasswordProps {
   values: any,
   onChange: (value: string) => void,
   onSubmit: () => void,
-  passwordStrenght: number;
+  passwordStrength: number;
 }
 
 const ContentGrid = styled(Grid)`
@@ -58,7 +58,7 @@ const ContentGrid = styled(Grid)`
   min-height: 450px;
 `;
 
-const StrenghtRow = styled(Row)`
+const StrengthRow = styled(Row)`
   margin-bottom: 5px;
 `;
 
@@ -121,13 +121,13 @@ export function CreatePassword(props: CreatePasswordProps) {
               />
             </Col>
           </InputRow>
-          <StrenghtRow>
+          <StrengthRow>
             <Col>
               <Explanatory>
-                Password Strenght: {getStrenghtMessage(props.passwordStrenght)}
+                Password Strength: {getStrengthMessage(props.passwordStrength)}
               </Explanatory>
             </Col>
-          </StrenghtRow>
+          </StrengthRow>
           {
             PasswordRequirements.map((item) => (
               <ValidationCheck
