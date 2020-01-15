@@ -35,13 +35,14 @@ export const getGasPrice = (state) => {
 
 export const getGasLimit = (state) => getRoot(state).gasLimit || DEFAULT_ETH_GAS_LIMIT;
 export const getFiatFee = (state) => getSelectedTransactionFee(state).fiatAmount;
-export const getSendEnabled = (state) => getRoot(state).sendEnabled;
 export const getStatus = (state) => getRoot(state).status;
 export const getTransactionHash = (state) => getRoot(state).transactionHash;
 export const canSend = (state) => {
   const errors = getErrors(state);
+  const amount = getAmount(state);
+  const address = getAddress(state);
 
-  return !errors.address;
+  return address && amount > 0 && !errors.address;
 }
 export const isProcessing = state => getRoot(state).isProcessing;
 export const getTransaction = (state) => {
@@ -61,7 +62,7 @@ export const getTransaction = (state) => {
     cryptoCurrency: token,
     hash: getTransactionHash(state),
     from: ducks.wallet.selectors.getAddress(state),
-    contractAddress: tokenDetails.tokenContract,
+    contractAddress: tokenDetails.contractAddress,
     remainingBalance: new BN(tokenDetails.amount).minus(amount).toString(),
     errorMessage: getRoot(state).errorMessage,
     errorInfo: getRoot(state).errorInfo,

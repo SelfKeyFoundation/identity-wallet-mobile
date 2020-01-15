@@ -118,34 +118,40 @@ const getTransactionFeeOptions = (state) => {
 }
 
 export const operations = {
+  /**
+   * Go to transaction operation
+   * 
+   * initialize the transaction with the initial state
+   */
   goToTransactionOperation: (tokenSymbol, addressTo) => async (dispatch, getState) => {
-    await dispatch(ducks.ethGasStation.operations.loadDataOperation());
-
     const state = getState();
-    // await dispatch(duck.actions.setToken(tokenSymbol));
+    const address = ducks.wallet.selectors.getAddress(state);
+    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
+
+    await dispatch(duck.actions.updateTransaction({
+      ...duck.initialState,
+      token: tokenSymbol,
+      address: addressTo,
+      balance: tokenDetails.amount,
+      tokenDecimal: tokenDetails.decimal,
+    }));
 
     navigate(Routes.APP_SEND_TOKENS, {
       tokenSymbol
     });
 
-    const address = ducks.wallet.selectors.getAddress(state);
     const nounce = await getTransactionCount(address);
-    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
+    await dispatch(ducks.ethGasStation.operations.loadDataOperation());
 
     await dispatch(duck.actions.updateTransaction({
       nounce,
-      address: addressTo,
-      balance: tokenDetails.amount,
-      tokenDecimal: tokenDetails.decimal,
-      tokenSymbol: tokenSymbol,
-      transactionFeeOptions: getTransactionFeeOptions(state),
-      status: 'in_progress',
-      errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
-      errorInfo: 'To learn more about transaction fees, click here.',
-      errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
+      transactionFeeOptions: getTransactionFeeOptions(getState()),
     }));
   },
 
+  /**
+   * Create tx History
+   */
   createTxHistoryOperation: () => async (dispatch, getState) => {
     const state = getState();
     const transaction = duck.selectors.getTransaction(state);
@@ -155,6 +161,11 @@ export const operations = {
     }));
   },
 
+  /**
+   * Send transaction
+   * 
+   * TODO: Clean the transaction when its finished
+   */
   sendTransaction: () => async (dispatch, getState) => {
     const state = getState();
     const transaction = duck.selectors.getTransaction(state);
@@ -226,6 +237,12 @@ export const operations = {
       }
     });
   },
+
+  /**
+   * Set address
+   * 
+   * Will also validate the address
+   */
   setAddress: (address) => async (dispatch, getState) => {
     await dispatch(transactionActions.setAddress(address));
 
@@ -246,6 +263,12 @@ export const operations = {
       address: 'Invalid address. Please check and try again',
     })); 
   },
+
+  /**
+   * Set amount
+   * The limit for amount is handled in the reducer
+   * 
+   */
   setAmount: (amount) => async (dispatch, getState) => {
     await dispatch(transactionActions.setAmount(amount));
     await dispatch(computeGasLimit());
