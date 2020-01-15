@@ -7,15 +7,15 @@ export { TxHistory };
 
 const PAGE_SIZE = 4;
 
-function parseItem(item) {
+const parseItem = (item) => {
   return {
     tokenSymbol: item.tokenSymbol,
     tokenDecimal: item.tokenDecimal,
     amount: item.value,
     status: item.status,
     timeStamp: item.timeStamp 
-  }
-}
+  };
+};
 
 export function TxHistoryHOC(props) {
   const transactions = useSelector(ducks.txHistory.selectors.getTransactionsByToken(props.tokenSymbol));
