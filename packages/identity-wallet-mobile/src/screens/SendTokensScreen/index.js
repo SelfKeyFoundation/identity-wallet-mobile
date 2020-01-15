@@ -14,25 +14,12 @@ import { ErrorStep } from './ErrorStep';
 const { operations, selectors } = modules.transaction;
 
 function SendTokensScreen(props) {
-  const [visible, setVisible] = useState(true);
+  const dispatch = useDispatch();
   const status = useSelector(selectors.getStatus);
-  const handleClose = useCallback((opts = { navigate: true }) => {
-    setVisible(false);
-
-    if (opts.navigate) {
-      navigate(Routes.APP_DASHBOARD);
-    }
-  }, [setVisible]);
-
-  useEffect(() => {
-    setVisible(true);
-
-    onNavigate((routeName) => {
-      if (routeName === Routes.APP_SEND_TOKENS) {
-        setVisible(true);
-      }
-    })
-  }, [props]);
+  const visible = useSelector(modules.app.selectors.showSendTokensModal);
+  const handleClose = useCallback(() => {
+    dispatch(modules.app.operations.showSendTokensModal(false));
+  }, []);
 
   let Renderer;
 
@@ -57,7 +44,6 @@ function SendTokensScreen(props) {
 
   return (
     <React.Fragment>
-      <Dashboard />
       <Modal
         visible={visible}
         onClose={handleClose}

@@ -4,6 +4,8 @@ import { NavigationContainer } from './navigation';
 import { connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
 import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
+import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
+import SendTokensScreen from './screens/SendTokensScreen';
 
 type AppProps = {
   isLoading: boolean,
@@ -20,6 +22,8 @@ export function App(props: AppProps) {
   return (
     <React.Fragment>
       <NavigationContainer />
+      <ReceiveTokensScreen />
+      <SendTokensScreen />
       {
         !isLoading && (
           <TermsOfServiceScreen />

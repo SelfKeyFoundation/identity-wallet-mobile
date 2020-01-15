@@ -14,6 +14,7 @@ function getEtherscanUrl(hash) {
 }
 
 export function ErrorStep(props) {
+  const dispatch = useDispatch();
   const token = useSelector(selectors.getToken);
   const amount = useSelector(selectors.getAmount);
   const address = useSelector(selectors.getAddress);
@@ -37,8 +38,9 @@ export function ErrorStep(props) {
   }, [transaction.errorInfoUrl]);
 
   const handleQRCode = useCallback(() => {
-    navigate(Routes.APP_RECEIVE_TOKENS, {
-      tokenSymbol: token,
+    dispatch(modules.app.operations.showSendTokensModal(false));
+    navigate(Routes.SCAN_QR, {
+      tokenSymbol: 'ETH',
     });
   }, []);
 

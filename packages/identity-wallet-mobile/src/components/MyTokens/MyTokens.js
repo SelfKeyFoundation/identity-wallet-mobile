@@ -166,6 +166,7 @@ export function MyTokens(props: MyTokensProps) {
               <TokenName>
                 <FormattedNumber
                   value={token.amount}
+                  decimal={10}
                 />
               </TokenName>
               <Explanatory>
