@@ -5,3 +5,5 @@ import './dashboard-screen.stories.js';
 import './token-details-screen.stories.js';
 import './scan-qr-screen.stories.js';
 import './send-transaction-screen.stories.js';
+import './confirm-mnemonic-screen.stories.js';
+

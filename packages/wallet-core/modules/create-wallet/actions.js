@@ -13,6 +13,34 @@ export const walletActions = {
       mnemonicPhrase,
     },
   }),
+  setConfirmationMnemonic: (mnemonic) => ({
+    type: types.SET_CONFIRMATION_MNEMONIC,
+    payload: {
+      mnemonic,
+    },
+  }),
+  addConfirmationWord: (word) => ({
+    type: types.ADD_CONFIRMATION_WORD,
+    payload: {
+      word,
+    },
+  }),
+  setShuffledMnemonic: (mnemonic) => ({
+    type: types.SET_SHUFFLED_MNEMONIC,
+    payload: {
+      mnemonic,
+    },
+  }),
+  clearConfirmation: (mnemonicPhrase) => ({
+    type: types.CLEAR_CONFIRMATION,
+    payload: {},
+  }),
+  setConfirmationError: (error) => ({
+    type: types.SET_CONFIRMATION_ERROR,
+    payload: {
+      error
+    },
+  }),
 };
 
 export default walletActions;
