@@ -115,6 +115,7 @@ export function TransactionFeeSwitcher(props: TransactionTabsProps) {
                   <ExplanatorySmall>
                     <FormattedNumber
                       currency="usd"
+                      decimal={3}
                       value={option.fiatAmount}
                     />
                   </ExplanatorySmall>
@@ -229,13 +230,14 @@ export function SendTokens(props: SendTokensProps) {
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
                 currency="eth"
-                decimal={10}
+                decimals={10}
                 value={selectedTransactionFee.ethAmount}
               /> /
             </H3>
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
                 currency="usd"
+                decimal={3}
                 value={selectedTransactionFee.fiatAmount}
               />
             </H3>
