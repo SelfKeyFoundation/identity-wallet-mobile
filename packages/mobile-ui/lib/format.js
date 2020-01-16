@@ -18,7 +18,7 @@ const formatCurrency = (value, code) => {
 export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal }) {
   let formattedValue = parseFloat(value || 0);
 
-  if (formattedValue === NaN) {
+  if (formattedValue == NaN) {
     formattedValue = 0;
   }
 
