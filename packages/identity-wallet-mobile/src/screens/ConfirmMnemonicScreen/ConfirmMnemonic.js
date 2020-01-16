@@ -76,7 +76,7 @@ const WordBoxText = styled.Text`
 export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
   const theme = useContext(ThemeContext);
   const { errorMessage } = props;
-  const mnemonicConfirmation = props.mnemonicConfirmation.split(' ');
+  const mnemonicConfirmation = props.mnemonicConfirmation.split(' ').filter(v => !!v);
   const mnemonic = props.mnemonic.split(' ');
 
   return (
@@ -119,7 +119,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
               }  
             </Col>
           </Row>
-          <Row marginTop={20} justifyContent="center">
+          {!!mnemonicConfirmation.length && <Row marginTop={20} justifyContent="center">
             <Col autoWidth>
               <TouchableWithoutFeedback onPress={props.onClear}>
                 <Row>
@@ -138,7 +138,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                 </Row>
               </TouchableWithoutFeedback>
             </Col>
-          </Row>
+          </Row>}
           <Row marginTop={20}>
             <Col>
               <PageDescription align="center">
