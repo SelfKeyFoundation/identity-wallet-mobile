@@ -13,7 +13,7 @@ storiesOf('Create Wallet', module)
       errors={{
         password: ['min_value', 'symbol_and_number'],
       }}
-      passwordStrenght="Weak"
+      passwordStrength="Weak"
       onChange={field => action('handleChange', field)}
     />
   ));

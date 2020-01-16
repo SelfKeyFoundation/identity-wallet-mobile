@@ -7,30 +7,30 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
 
-function computePasswordStrenght(value = '') {
-  let strenght = 0;
+function computePasswordStrength(value = '') {
+  let strength = 0;
 
   if (value.length > 6) {
-    strenght += 0.2;
+    strength += 0.2;
   }
 
   if (value.length >= 8) {
-    strenght += 0.1;
+    strength += 0.1;
   }
 
   if ((/[a-z]/g).test(value) && (/[A-Z]/g).test(value)) {
-    strenght += 0.2;
+    strength += 0.2;
   }
 
   if ((/[^a-zA-Z0-9]/g).test(value)) {
-    strenght += 0.2;
+    strength += 0.2;
   }
 
   if ((/[0-9]/g).test(value)) {
-    strenght += 0.2;
+    strength += 0.2;
   }
 
-  return strenght;
+  return strength;
 }
 
 const schema = Yup.object().shape({
@@ -57,7 +57,7 @@ export function useCreatePasswordController(props) {
   });
 
   return {
-    passwordStrenght: computePasswordStrenght(formik.values.password),
+    passwordStrength: computePasswordStrength(formik.values.password),
     handleChange: formik.handleChange,
     handleSubmit: formik.handleSubmit,
     values: formik.values,
