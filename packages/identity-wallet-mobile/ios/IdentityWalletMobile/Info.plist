@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>The SelfKey Wallet would like to access your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
