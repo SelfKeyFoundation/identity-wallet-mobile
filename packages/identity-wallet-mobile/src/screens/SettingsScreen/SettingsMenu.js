@@ -104,7 +104,7 @@ export function SettingsMenu(props) {
         <MenuItem hasBorder>
           Recovery Information
         </MenuItem>
-        <MenuItem>
+        <MenuItem onPress={props.onBackup}>
           Backup
         </MenuItem>
 

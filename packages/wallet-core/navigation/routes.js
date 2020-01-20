@@ -11,6 +11,7 @@ export const APP_MY_TOKENS = 'app/myTokens';
 export const APP_SCAN_QR = 'app/scanQr';
 export const TOKEN_DETAILS = 'app/tokenDetails';
 export const SCAN_QR = 'scanQR';
+export const CREATE_BACKUP = 'createBackup';
 
 export const CREATE_WALLET_FLOW = 'createWallet';
 export const CREATE_WALLET_PASSWORD = 'createWallet/password';

@@ -1,10 +1,12 @@
-let system;
+let System;
 
 export const setSystemImpl = (impl) => {
-  system = impl;
+  System = impl;
 };
 
 /**
  * Close the application
  */
-export const exitApp = () => system.exitApp();
+export const exitApp = () => System.exitApp();
+
+export { System };

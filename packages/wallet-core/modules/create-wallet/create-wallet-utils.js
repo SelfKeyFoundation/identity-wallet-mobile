@@ -15,6 +15,7 @@ export async function setupHDWallet({ mnemonic, password }) {
   const { xpriv, xpub } = builder.toJSON();
 
   const vault = await createVault({
+    mnemonic: mnemonic,
     privateKey: xpriv,
     publicKey: xpub,
     password: password,

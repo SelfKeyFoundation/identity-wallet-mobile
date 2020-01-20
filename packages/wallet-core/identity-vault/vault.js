@@ -5,6 +5,7 @@ export class IdentityVault {
   constructor(props: VaultConstructor) {
     this.id = props.publicKey;
     this.password = props.password;
+    this.menominc = props.mnemonic,
     this.db = props.db;
     this.privateKey = props.privateKey;
     this.publicKey = props.publicKey;
@@ -21,5 +22,12 @@ export class IdentityVault {
       privateKey: wallet.privateKey.toString(),
       publicKey: wallet.address.toString(),
     }
+  }
+
+  getKeyStoreItems() {
+    return [{
+      id: 'mnemonic',
+      value: this.menominc,
+    }]
   }
 }

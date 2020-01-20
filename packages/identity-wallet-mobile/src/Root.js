@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
+import './inject-system';
 import './rn-identity-vault/index';
 import './setup-redux';
 import './db';
-import './inject-system';
 import { createStoreProvider } from '@selfkey/wallet-core/redux';
 import { MobileUIProvider, Portal } from '@selfkey/mobile-ui';
 import { TermsOfService } from './components';
