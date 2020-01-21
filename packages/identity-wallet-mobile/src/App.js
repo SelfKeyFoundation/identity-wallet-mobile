@@ -6,7 +6,6 @@ import modules from '@selfkey/wallet-core/modules';
 import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
 import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';
-
 type AppProps = {
   isLoading: boolean,
   loadApp: () => any,

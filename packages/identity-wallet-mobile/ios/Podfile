@@ -33,7 +33,7 @@ target 'IdentityWalletMobile' do
   
   # pod 'RNSVG', :path => '../../../node_modules/react-native-svg'
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
-
+  # pod 'RNFS', :path => '../node_modules/react-native-fs'
   permissions_path = '../node_modules/react-native-permissions/ios'
 
   # pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"

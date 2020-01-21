@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
+    "keccak": "^3.0.0",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.3",
     "redux-promise": "^0.6.0",

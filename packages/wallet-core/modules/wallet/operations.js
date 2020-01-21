@@ -1,11 +1,13 @@
 import walletActions from './actions';
 import * as selectors from './selectors';
 import { WalletModel, TokenModel } from '../../models';
-import { exitApp } from '../../system';
+import { exitApp, System } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
 import ducks from '../index';
+import { encryptData, decryptData, generateBackup } from '../../identity-vault/backup';
+import { unlockVault } from '../../identity-vault';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -63,6 +65,38 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
   dispatch(walletActions.setWallet(wallet));
 };
 
+// const encryptedData = encryptData('testing', '1234');
+// console.log(encryptedData);
+// const decryptedData = decryptData(encryptedData, '1234');
+// console.log(decryptedData);
+
+const backupWalletOperation = (password) => async (dispatch, getState) => {
+  const { vaultId, path } = getState().wallet;
+  const vaultBackup = await generateBackup(vaultId, password);
+
+  vaultBackup.wallets.push({
+    path,
+  });
+
+  const encryptedBackup = encryptData(JSON.stringify(vaultBackup), password);
+  const fs = System.getFileSystem();
+  const filePath = `${fs.DocumentDirectoryPath}/wallet-backup.sk`;
+
+  await fs.writeFile(filePath, vaultBackup, 'utf8')
+    .then((res) => {
+      return System.shareFile({
+        filePath: filePath,
+        mimeType: 'application/zip',
+        fileName: 'wallet-backup'
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  
+  // TODO: Remove backup file from filesystem
+};
+
 /**
  * 
  * Load wallet
@@ -82,6 +116,7 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
 export const operations = {
   loadWalletOperation,
   refreshWalletOperation,
+  backupWalletOperation,
 };
 
 export const walletOperations = {
