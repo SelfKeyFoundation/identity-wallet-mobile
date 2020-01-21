@@ -113,7 +113,7 @@ export function SettingsMenu(props) {
             <SectionTitle>Choose Wallet</SectionTitle>
           </Col>
         </Row>
-        <MenuItem>
+        <MenuItem onPress={props.onSwitchAccount}>
           Switch Accounts
         </MenuItem>
 

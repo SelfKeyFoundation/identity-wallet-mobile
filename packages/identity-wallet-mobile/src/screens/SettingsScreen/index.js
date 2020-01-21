@@ -12,9 +12,14 @@ function SettingsScreenContainer(props) {
     navigate(Routes.CREATE_BACKUP);
   };
 
+  const handleSwitchAccount = () => {
+    navigate(Routes.WALLET_SELECTION);
+  };
+
   return (
     <SettingsMenu
       onBackup={handleBackup}
+      onSwitchAccount={handleSwitchAccount}
     />
   );
 } 
