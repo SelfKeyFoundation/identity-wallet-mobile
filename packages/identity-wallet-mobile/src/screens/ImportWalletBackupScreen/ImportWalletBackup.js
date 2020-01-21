@@ -1,0 +1,115 @@
+import React, { useContext } from 'react';
+import { TokenDetails } from '../../components';
+import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import styled from 'styled-components/native';
+import {
+  SKIcon,
+  Row,
+  Col,
+  H3,
+  Paragraph,
+  Grid,
+  Button,
+  ThemeContext,
+} from '@selfkey/mobile-ui';
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color:  ${props => props.theme.colors.baseDark};
+`;
+
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
+const Body = styled.ScrollView`
+  margin: 0 20px;
+`;
+
+const Title = styled.Text`
+  color: ${props => props.theme.colors.white};
+  font-size: 18px;
+  font-family: ${props => props.theme.fonts.bold};
+  line-height: 24px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const IconCol = styled(Col)`
+  align-items: center;
+`;
+
+const TitleCol = styled(Col)`
+  justify-content: center;
+`;
+
+const PageTitle = styled(H3)`
+  text-align: center;
+`;
+
+const PageDescription = styled(Paragraph)`
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+export function ImportWalletBackup(props) {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <Container>
+      <Header>
+        <IconContainer>
+          <TouchableWithoutFeedback onPress={props.onBack}>
+            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+          </TouchableWithoutFeedback>
+        </IconContainer>
+      </Header>
+      <Body>
+        <Row>
+          <IconCol>
+            <SKIcon name="icon-wallet" color={theme.colors.primary} size={66} />
+          </IconCol>
+        </Row>
+        <Row>
+          <TitleCol>
+            <PageTitle align="center">
+              Import Wallet From Backup File
+            </PageTitle>
+          </TitleCol>
+        </Row>
+        <Row>
+          <TitleCol>
+            <PageDescription>
+              Select the backup file and type your password
+            </PageDescription>
+          </TitleCol>
+        </Row>
+      </Body>
+      <Grid>
+        <Row>
+          <Col>
+            <Button
+              onPress={props.onSubmit}
+              type="full-primary"
+            >
+              Confirm
+            </Button>
+          </Col>
+        </Row>
+      </Grid>
+    </Container>
+  )
+}

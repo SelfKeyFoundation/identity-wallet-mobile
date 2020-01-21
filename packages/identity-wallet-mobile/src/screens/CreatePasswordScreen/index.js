@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreatePassword } from './CreatePassword';
 import { useCreatePasswordController } from './useCreatePasswordController';
 import modules from '@selfkey/wallet-core/modules';
+import { navigateBack } from '@selfkey/wallet-core/navigation';
 
 const { operations, selectors } = modules.createWallet;
 
@@ -20,8 +21,14 @@ function CreatePasswordContainer(props) {
     ),
   });
 
+  const canReturn = props.navigation.getParam('canReturn', false);
+  const handleBack = useCallback(() => {
+    navigateBack();
+  })
+
   return (
     <CreatePassword
+      onBack={canReturn && handleBack}
       onChange={controller.handleChange}
       onSubmit={controller.handleSubmit}
       values={controller.values}

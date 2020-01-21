@@ -39,7 +39,7 @@ export class WalletModel extends BaseModel {
   }
 
   findByAddress(address) {
-		return this.findOne('address = $0', address.toLowerCase());
+		return this.findOne('address = $0', address);
   }
 
   updateByAddress(address, data) {

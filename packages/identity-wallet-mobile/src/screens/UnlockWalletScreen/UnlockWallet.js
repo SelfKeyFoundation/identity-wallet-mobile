@@ -11,9 +11,12 @@ import {
   Row,
   Col,
   Button,
+  Link,
+  DefinitionTitle,
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const errorMessages = {
   wrong_password: 'Wrong password. Please try again.',
@@ -46,6 +49,19 @@ const TitleCol = styled(Col)`
 const PageTitle = styled(H3)`
   text-align: center;
 `;
+
+
+const UseDifferentWallet = styled(Link)`
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+`
+
+const OrText = styled(DefinitionTitle)`
+  color: white;
+  font-size: 16px;
+  text-align: center;
+`
 
 export function UnlockWallet(props: UnlockWalletProps) {
   const theme = useContext(ThemeContext);
@@ -94,6 +110,22 @@ export function UnlockWallet(props: UnlockWalletProps) {
               >
                 Unlock
               </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <OrText>or</OrText>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <TouchableWithoutFeedback
+                onPress={props.onChooseDifferentWallet}
+              >
+                <UseDifferentWallet>
+                  Use different wallet
+                </UseDifferentWallet>
+              </TouchableWithoutFeedback>
             </Col>
           </Row>
         </Grid>

@@ -5,7 +5,7 @@ import unlockWallet from './unlock-wallet';
 import transaction from './transaction';
 import ethGasStation from './eth-gas-station';
 import txHistory from './tx-history';
-
+import wallets from './wallets';
 
 export default {
   wallet,
@@ -15,4 +15,5 @@ export default {
   transaction,
   ethGasStation,
   txHistory,
+  wallets,
 };
