@@ -7,5 +7,4 @@ import './scan-qr-screen.stories.js';
 import './send-transaction-screen.stories.js';
 import './confirm-mnemonic-screen.stories.js';
 import './settings-screen.stories.js';
-
-
+import './choose-different-wallet-screen.stories';

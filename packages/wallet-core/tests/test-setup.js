@@ -1,17 +1,28 @@
+import crypto from 'crypto';
+setSystemImpl({
+  getCrypto() {
+    return crypto;
+  }
+})
+
 import { registerModels } from '../db/register-models';
 import * as TestKeychain from '@selfkey/wallet-core/identity-vault/mock/keychain-mock';
 import { setDatabaseImpl, setKeychainImpl} from '@selfkey/wallet-core/identity-vault';
 import { IdentityRealm } from '@selfkey/wallet-core/identity-vault/identity-realm';
 import fetch from 'node-fetch';
 import Realm from 'realm';
+
 import { setRealmImpl, initRealm, seedDb } from '../db/realm-service';
 import { setupHDWallet } from '../modules/create-wallet/create-wallet-utils';
 import models from '../models';
+
+
 // Setup redux
 // import '@selfkey/wallet-core/redux/middlewares/register-redux-logger';
 import '@selfkey/wallet-core/redux/middlewares/register-redux-thunk';
 import '@selfkey/wallet-core/redux/middlewares/register-redux-promise';
 import '@selfkey/wallet-core/register-core-modules';
+import { setSystemImpl } from '../system';
 
 global.fetch = fetch;
 
@@ -19,6 +30,8 @@ setDatabaseImpl(IdentityRealm);
 setKeychainImpl(TestKeychain);
 setRealmImpl(Realm);
 registerModels();
+
+
 
 let realm;
 

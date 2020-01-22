@@ -23,3 +23,6 @@ export const CREATE_WALLET_CONFIRM_MNEMONIC = 'createWallet/confirmMnemonic';
 
 export const UNLOCK_WALLET_FLOW = 'unlockWallet';
 export const UNLOCK_WALLET_PASSWORD = 'unlockWallet/password';
+export const CHOOSE_DIFFERENT_WALLET = 'chooseDifferentWallet';
+export const IMPORT_WALLET_BACKUP = 'importWalletBackup';
+export const WALLET_SELECTION = 'walletSelection';

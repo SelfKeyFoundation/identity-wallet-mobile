@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext, useCallback } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback } from 'react-native';
 import {
   Explanatory,
   ScreenContainer,
@@ -78,6 +78,16 @@ const PageTitle = styled(H3)`
   text-align: center;
 `;
 
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const IconContainer = styled.View`
+  position: absolute;
+  top: -27px;
+  left: -23px;
+`;
+
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.password || [];
@@ -92,6 +102,11 @@ export function CreatePassword(props: CreatePasswordProps) {
     <ScreenContainer sidePadding>
       <Container withMargin scrollable>
         <ContentGrid>
+          { props.onBack && <IconContainer>
+            <TouchableWithoutFeedback onPress={props.onBack}>
+              <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+            </TouchableWithoutFeedback>
+          </IconContainer> }
           <Row>
             <IconCol>
               <SKIcon name="icon-password" color={theme.colors.primary} size={66} />

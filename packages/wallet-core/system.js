@@ -1,4 +1,8 @@
-let System;
+let System = {
+  getCrypto() {
+    
+  }
+};
 
 export const setSystemImpl = (impl) => {
   System = impl;

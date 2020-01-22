@@ -4,6 +4,11 @@ import { unlockVault } from '../../identity-vault';
 import { WalletModel } from '../../models';
 import { navigate, Routes } from '../../navigation';
 
+/**
+ * Unlock the default wallet
+ *
+ * @param {*} form 
+ */
 const submitUnlockOperation = (form) => async (dispatch, getState) => {
   // Get the selected wallet, for now we are gonig to get the first one since the users can't create more than one
   const wallet = WalletModel.getInstance().findOne();
@@ -11,7 +16,6 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
 
   try {
     vault = await unlockVault(wallet.vaultId, form.password);
-    // clear errors
     dispatch(actions.setErrors({}));
   } catch (err) {
     dispatch(actions.setErrors({
@@ -26,8 +30,32 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   await navigate(Routes.APP_DASHBOARD);
 };
 
+/**
+ * Unlock the default wallet
+ *
+ * @param {*} form 
+ */
+const unlockWithAddressOperation = (address, password) => async (dispatch, getState) => {
+  // Get the selected wallet, for now we are gonig to get the first one since the users can't create more than one
+  const wallet = WalletModel.getInstance().findByAddress(address);
+  let vault;
+
+  try {
+    vault = await unlockVault(wallet.vaultId, password);
+  } catch (err) {
+    throw 'Password doesn\'t match'
+  }
+
+  await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
+
+  await navigate(Routes.APP_DASHBOARD);
+};
+
+
+
 export const operations = {
   submitUnlockOperation,
+  unlockWithAddressOperation,
 };
 
 export const unlockWalletOperations = {

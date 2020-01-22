@@ -54,11 +54,10 @@ const loadAppOperation = () => async (dispatch, getState) => {
   // Auto unlock, for development purposes
   // dispatch(modules.unlockWallet.operations.submitUnlockOperation({ password: '!@#456Asd'}));
   // navigate(Routes.APP_DASHBOARD);
-
   if (!wallets.length) {
     navigate(Routes.CREATE_WALLET_FLOW);
   } else {
-    navigate(Routes.UNLOCK_WALLET_FLOW);
+    navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
 
   // const mnemonic = 'identify twenty rate region kind any ready sunset hungry gauge vicious convincecho'

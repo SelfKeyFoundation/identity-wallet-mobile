@@ -4,10 +4,10 @@ import { getStorybookUI, configure, addDecorator } from '@storybook/react-native
 import { MobileUIProvider, Portal } from '@selfkey/mobile-ui';
 import SplashScreen from 'react-native-splash-screen';
 
-
 SplashScreen.hide();
 
 import './rn-addons';
+import '../src/inject-system';
 
 const styles = StyleSheet.create({
   container: {
