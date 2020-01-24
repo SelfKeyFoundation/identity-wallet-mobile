@@ -9,8 +9,10 @@ import {
   H3,
   Paragraph,
   Grid,
+  Alert,
   Button,
   ThemeContext,
+  TextInput
 } from '@selfkey/mobile-ui';
 
 const Container = styled.SafeAreaView`
@@ -65,6 +67,10 @@ const PageDescription = styled(Paragraph)`
   line-height: 24px;
 `;
 
+const Footer = styled(Grid)`
+  padding: 0 35px;
+`;
+
 export function ImportWalletBackup(props) {
   const theme = useContext(ThemeContext);
 
@@ -97,19 +103,58 @@ export function ImportWalletBackup(props) {
             </PageDescription>
           </TitleCol>
         </Row>
+        <Row alignItems="flex-end">
+          <Col>
+            <TextInput
+              value={props.file ? props.file.name : ''}
+              placeholder="Select a file..."
+              label="Backup file"
+              onChangeText={() => {}}
+              error={props.errors && props.errors.system}
+            />
+          </Col>
+          <Col autoWidth>
+            <Button type="full-primary" onPress={props.onSelectFile}>
+              Select
+            </Button>
+          </Col>
+        </Row>
+        { props.errors && props.errors.system && <Row marginTop={0}>
+          <Col>
+            <Alert type="error">
+              { props.errors.system }
+            </Alert>
+          </Col>
+        </Row> }
+        <Row>
+          <Col>
+            <TextInput
+              error={props.errors && props.errors.password}
+              errorMessage={props.errors && props.errors.password}
+              value={props.password}
+              placeholder="Password"
+              label="Enter the Password"
+              onChangeText={props.onPasswordChange}
+              secureTextEntry={true}
+              onSubmitEditing={props.onSubmit}
+            />
+          </Col>
+        </Row>
+        
       </Body>
-      <Grid>
+      <Footer>
         <Row>
           <Col>
             <Button
               onPress={props.onSubmit}
               type="full-primary"
+              isLoading={props.isLoading}
             >
-              Confirm
+              Import
             </Button>
           </Col>
         </Row>
-      </Grid>
+      </Footer>
     </Container>
   )
 }

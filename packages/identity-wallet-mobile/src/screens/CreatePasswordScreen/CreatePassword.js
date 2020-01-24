@@ -9,6 +9,8 @@ import {
   Paragraph,
   ThemeContext,
   Container,
+  DefinitionTitle,
+  Link,
   Grid,
   Row,
   Col,
@@ -88,6 +90,19 @@ const IconContainer = styled.View`
   left: -23px;
 `;
 
+const UseDifferentWallet = styled(Link)`
+  text-transform: uppercase;
+  width: 100%;
+  font-size: 14px;  
+  text-align: center;
+`
+
+const OrText = styled(DefinitionTitle)`
+  color: white;
+  font-size: 14px;
+  text-align: center;
+`
+
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.password || [];
@@ -165,6 +180,22 @@ export function CreatePassword(props: CreatePasswordProps) {
               >
                 Save Password
               </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <OrText>or</OrText>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <TouchableWithoutFeedback
+                onPress={props.onImportExistingWallet}
+              >
+                <UseDifferentWallet>
+                  Import Existing Wallet
+                </UseDifferentWallet>
+              </TouchableWithoutFeedback>
             </Col>
           </Row>
         </Grid>

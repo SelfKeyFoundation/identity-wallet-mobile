@@ -82,7 +82,7 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
   const fs = System.getFileSystem();
   const filePath = `${fs.DocumentDirectoryPath}/wallet-backup.sk`;
 
-  await fs.writeFile(filePath, vaultBackup, 'utf8')
+  await fs.writeFile(filePath, JSON.stringify(encryptedBackup), 'utf8')
     .then((res) => {
       return System.shareFile({
         filePath: filePath,

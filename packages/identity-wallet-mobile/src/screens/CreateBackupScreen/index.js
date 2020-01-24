@@ -7,17 +7,25 @@ import ducks from '@selfkey/wallet-core/modules';
 function CreateBackupContainer(props) {
   const dispatch = useDispatch();
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
   const handleBack = useCallback(() => navigate(Routes.APP_SETTINGS), []);
-  const handleChange = useCallback(password => setPassword(password));
+  const handleChange = useCallback(password => setPassword(password), []);
   const handleSubmit = useCallback(async () => {
+    if (isLoading) {
+      return;
+    }
+
+    setLoading(true);
+
     try {
       await dispatch(ducks.wallet.operations.backupWalletOperation(password));
       navigate(Routes.APP_SETTINGS)
     } catch(err) {
       setError(err.message);
     }
-  });
+    setLoading(false);
+  }, [isLoading, password]);
   
   return (
     <CreateBackup
@@ -26,6 +34,7 @@ function CreateBackupContainer(props) {
       password={password}
       error={error}
       onBack={handleBack}
+      isLoading={isLoading}
     />
   );
 }

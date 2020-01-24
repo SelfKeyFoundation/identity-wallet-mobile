@@ -9,19 +9,22 @@ function WalletSelectionContainer(props) {
     const [error, setError] = useState();
     const [wallet, setWallet] = useState();
     const [password, setPassword] = useState();
+    const [isLoading, setLoading] = useState();
     const dispatch = useDispatch();
     const handleBack = useCallback(() => {
       navigateBack();
     }, []);
 
     const handleSubmit = useCallback(async () => {
+      setLoading(true);
+
       try {
         await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation(wallet, password));
-        debugger;
       } catch(err) {
         setError(err);
       }
 
+      setLoading(false);
     }, [wallet, password]);
 
     const wallets = useSelector(ducks.wallets.selectors.getWallets);
@@ -42,6 +45,7 @@ function WalletSelectionContainer(props) {
         password={password}
         onPasswordChange={handlePassworChange}
         onWalletChange={handleWalletChange}
+        isLoading={isLoading}
       />
     );
   } catch(err) {

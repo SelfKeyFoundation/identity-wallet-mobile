@@ -1,7 +1,9 @@
 // @flow
 import { IdentityVault } from './vault';
 import type { VaultConstructor } from './types';
+import { System } from '../system';
 
+const crypto = System.getCrypto();
 
 // Realm should work for both desktop and mobile
 // Desktop application can inject a SQLite Implementation as well
@@ -32,6 +34,10 @@ function getDatabase() {
   return database;
 }
 
+function createHash(value) {
+  return crypto.createHash('sha256').update(value).digest('hex');
+}
+
 /**
  * Create vault
  * - Set items in the keychain
@@ -40,27 +46,36 @@ function getDatabase() {
  * @param {VaultConstructor} props
  */
 export async function createVault(props: VaultConstructor) {
-  const vaultId = props.publicKey;
+  const vaultId = createHash(props.rootPublicKey);
+  const password = createHash(props.password);
+  const dbKey = createHash(props.seed);
 
-  await getKeychain().setItem(vaultId, {
+  const vaultProps = {
     id: vaultId,
     mnemonic: props.mnemonic,
-    privateKey: props.privateKey,
-    publicKey: props.publicKey,
-    // TODO: create hash from password
-    password: props.password,
-    unlockPolicy: props.unlockPolicy,
-  });
+    rootSeed: props.seed,
+    password: password,
+    securityPolicy: props.securityPolicy,
+  };
 
-  const identityDb = await getDatabase().create({ vaultId, privateKey: props.privateKey });
+  await getKeychain().setItem(vaultId, vaultProps);
 
+  const identityDb = await getDatabase().create({ vaultId, privateKey: dbKey });
   const vault = new IdentityVault({
-    ...props,
-    id: vaultId,
+    ...vaultProps,
     db: identityDb,
   });
 
   return vault;
+}
+
+export async function vaultExists(vaultId) {
+  const vault = await getKeychain().getItem(vaultId);
+  return !!vault;
+}
+
+export function removeVault(vaultId) {
+  return getKeychain().removeItem(vaultId);
 }
 
 /**
@@ -73,14 +88,16 @@ export async function createVault(props: VaultConstructor) {
 export async function unlockVault(vaultId, password) {
   // TODO: create hash from password
   const props = await getKeychain().getItem(vaultId);
+  const passwordHash = createHash(password);
 
-  if (props.password !== password) {
+  if (props.password !== passwordHash) {
     throw {
       message: 'Password dosn\'t match',
     };
   }
 
-  const identityDb = await getDatabase().create({ vaultId, privateKey: props.privateKey });
+  const dbKey = createHash(props.rootSeed);  
+  const identityDb = await getDatabase().create({ vaultId, privateKey: dbKey });
 
   const vault = new IdentityVault({
     ...props,

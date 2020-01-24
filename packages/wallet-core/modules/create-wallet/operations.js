@@ -4,6 +4,9 @@ import { walletOperations } from '../wallet/operations';
 import * as selectors from './selectors';
 import { navigate, Routes } from '../../navigation';
 import { setupHDWallet } from './create-wallet-utils';
+import { decryptData } from '../../identity-vault/backup';
+import { vaultExists, removeVault } from '../../identity-vault';
+import ducks from '../index';
 
 function shuffleArray(array) {
   let i = array.length;
@@ -35,6 +38,39 @@ const submitWalletBackupOperation = (form) => async (dispatch, getState) => {
   await navigate(Routes.CREATE_WALLET_CONFIRM_MNEMONIC);
 };
 
+const createFromBackupOperation = (fileData, password) => async (dispatch, getState) => {
+  let data;
+
+  try {
+    data = decryptData(JSON.parse(fileData), password);
+    data = JSON.parse(data);
+  } catch(err) {
+    console.error(err);
+    if (err.message === 'wrong_password') {
+      throw {
+        message: 'Wrong password',
+      };
+    } else {
+      throw {
+        message: 'Unable to decrypt the backup file',
+      };
+    }
+  }
+
+  const exists = await vaultExists(data.vaultId)
+  
+  if (exists) {
+    await dispatch(ducks.unlockWallet.operations.unlockWithVaultIdOperation(data.vaultId, password));
+    return;
+  }
+
+  const mnemonic = data.keystore.find(item => item.id === 'mnemonic');
+  const { wallet, vault } = await setupHDWallet({ mnemonic: mnemonic.value, password });
+
+  await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
+  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
+};
+
 const submitConfirmationOperation = (form) => async (dispatch, getState) => {
   const state = getState();
   const mnemonic = selectors.getMnemonicPhrase(state);
@@ -64,6 +100,7 @@ export const operations = {
   submitPasswordConfirmationOperation,
   submitWalletBackupOperation,
   submitConfirmationOperation,
+  createFromBackupOperation,
 };
 
 export const createWalletOperations = {

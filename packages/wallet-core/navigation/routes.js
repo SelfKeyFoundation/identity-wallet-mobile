@@ -20,9 +20,9 @@ export const CREATE_WALLET_BACKUP = 'createWallet/backup';
 export const CREATE_WALLET_CONFIRM_BACKUP = 'createWallet/confirmBackup';
 export const CREATE_WALLET_SETUP_COMPLETE = 'createWallet/setupComplete';
 export const CREATE_WALLET_CONFIRM_MNEMONIC = 'createWallet/confirmMnemonic';
+export const CREATE_WALLET_IMPORT_BACKUP = 'createWallet/importBackup';
 
 export const UNLOCK_WALLET_FLOW = 'unlockWallet';
 export const UNLOCK_WALLET_PASSWORD = 'unlockWallet/password';
 export const CHOOSE_DIFFERENT_WALLET = 'chooseDifferentWallet';
-export const IMPORT_WALLET_BACKUP = 'importWalletBackup';
 export const WALLET_SELECTION = 'walletSelection';

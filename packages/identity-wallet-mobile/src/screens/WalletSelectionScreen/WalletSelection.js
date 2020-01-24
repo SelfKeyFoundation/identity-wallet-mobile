@@ -69,7 +69,7 @@ const PageDescription = styled(Paragraph)`
 `;
 
 const Footer = styled(Grid)`
-  padding: 0 35px;
+  padding: 0 35px 35px 35px;
 `
 
 const SelectInput = styled.View`
@@ -201,6 +201,7 @@ export function WalletSelection(props) {
             <Button
               onPress={props.onSubmit}
               type="full-primary"
+              isLoading={props.isLoading}
             >
               Unlock
             </Button>

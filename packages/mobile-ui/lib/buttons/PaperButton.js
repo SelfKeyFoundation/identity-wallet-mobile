@@ -238,7 +238,7 @@ class Button extends React.Component<Props, State> {
         <TouchableRipple
           borderless
           delayPressIn={0}
-          onPress={onPress}
+          onPress={!loading && onPress}
           onPressIn={this._handlePressIn}
           onPressOut={this._handlePressOut}
           accessibilityLabel={accessibilityLabel}
@@ -259,11 +259,11 @@ class Button extends React.Component<Props, State> {
             {loading ? (
               <ActivityIndicator
                 size="small"
-                color={textColor}
+                color="white"
                 style={styles.icon}
               />
             ) : null}
-            <Text
+            { !loading && <Text
               numberOfLines={1}
               style={[
                 styles.label,
@@ -279,7 +279,7 @@ class Button extends React.Component<Props, State> {
                     ? child.toUpperCase()
                     : child
               )}
-            </Text>
+            </Text>}
           </View>
         </TouchableRipple>
       </Surface>

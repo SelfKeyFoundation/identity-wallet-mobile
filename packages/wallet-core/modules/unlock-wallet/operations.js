@@ -51,11 +51,15 @@ const unlockWithAddressOperation = (address, password) => async (dispatch, getSt
   await navigate(Routes.APP_DASHBOARD);
 };
 
-
+const unlockWithVaultIdOperation = (vaultId, password) => async (dispatch, getState) => {
+  const wallet = await WalletModel.getInstance().findOne('vaultId = $0', vaultId);
+  await dispatch(unlockWithAddressOperation(wallet.address, password));
+};
 
 export const operations = {
   submitUnlockOperation,
   unlockWithAddressOperation,
+  unlockWithVaultIdOperation,
 };
 
 export const unlockWalletOperations = {
