@@ -16,20 +16,41 @@ function WalletSelectionContainer(props) {
     }, []);
 
     const handleSubmit = useCallback(async () => {
-      setLoading(true);
+      if (!wallet) {
+        setError({
+          wallet: 'Please select a wallet.'
+        })
+        return;
+      }
 
+      setLoading(true);
+      setError();
       try {
         await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation(wallet, password));
       } catch(err) {
-        setError(err);
+        setError({
+          password: 'Wrong password. Please try again.'
+        });
       }
 
       setLoading(false);
     }, [wallet, password]);
 
     const wallets = useSelector(ducks.wallets.selectors.getWallets);
-    const handleWalletChange = useCallback(value => setWallet(value), [setWallet]);
-    const handlePassworChange = useCallback(value => setPassword(value), [setPassword]);
+    const handleWalletChange = useCallback(value => {
+      setWallet(value);
+      setError();
+    }, [setWallet]);
+    const handlePassworChange = useCallback(value => {
+      setPassword(value);
+      setError();
+    }, [setPassword]);
+
+    const handleForgotPassword = useCallback(() => {
+      navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD, {
+        walletAddress: wallet
+      });
+    }, [wallet]);
 
     useEffect(() => {
       dispatch(ducks.wallets.operations.loadWalletsOperation());
@@ -41,11 +62,12 @@ function WalletSelectionContainer(props) {
         onSubmit={handleSubmit}
         error={error}
         wallets={wallets}
-        wallet={wallet}MOB
+        wallet={wallet}
         password={password}
         onPasswordChange={handlePassworChange}
         onWalletChange={handleWalletChange}
         isLoading={isLoading}
+        onForgot={handleForgotPassword}
       />
     );
   } catch(err) {

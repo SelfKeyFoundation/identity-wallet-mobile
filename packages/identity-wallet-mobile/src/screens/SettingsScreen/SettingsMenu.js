@@ -7,6 +7,7 @@ import {
   Col,
   DefinitionTitle,
 } from '@selfkey/mobile-ui';
+import APP_VERSION from '@selfkey/identity-wallet-mobile/app-version.json';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -139,7 +140,7 @@ export function SettingsMenu(props) {
         </MenuItem>
         <MenuItem
           menuControl={
-            <MenuRightText>0.1.6</MenuRightText>
+            <MenuRightText>{ APP_VERSION }</MenuRightText>
           }
         >
           Version

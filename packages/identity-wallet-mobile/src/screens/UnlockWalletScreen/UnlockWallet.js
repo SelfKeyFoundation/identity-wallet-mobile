@@ -64,6 +64,13 @@ const OrText = styled(DefinitionTitle)`
   text-align: center;
 `
 
+const ForgotLink = styled(Link)`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 13px;
+  line-height: 19px;
+`;
+
 export function UnlockWallet(props: UnlockWalletProps) {
   const theme = useContext(ThemeContext);
   const { errors = {} } = props;
@@ -101,6 +108,13 @@ export function UnlockWallet(props: UnlockWalletProps) {
               />
             </Col>
           </InputRow>
+          <Row>
+            <Col autoWidth>
+              <ForgotLink onPress={props.onForgot}>
+                Forgot?
+              </ForgotLink>
+            </Col>
+          </Row>
         </ContentGrid>
         <Grid>
           <Row>

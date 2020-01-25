@@ -22,7 +22,11 @@ function UnlockWalletContainer(props) {
 
   const handleDifferentWallet = useCallback(() => {
     navigate(Routes.CHOOSE_DIFFERENT_WALLET)
-  });
+  }, []);
+
+  const handleForgotPassword = useCallback(() => {
+    navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
+  }, []);
 
   return (
     <UnlockWallet
@@ -32,6 +36,7 @@ function UnlockWalletContainer(props) {
       values={controller.values}
       errors={errors}
       isLoading={isLoading}
+      onForgot={handleForgotPassword}
     />
   );
 }
