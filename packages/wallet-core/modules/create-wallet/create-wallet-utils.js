@@ -12,14 +12,12 @@ import { WalletModel, TokenModel, WalletTokenModel } from '../../models';
 export async function setupHDWallet({ mnemonic, password }) {
   const builder = await WalletBuilder.createFromMnemonic(mnemonic);
 
-  const { xpriv, xpub } = builder.toJSON();
-
   const vault = await createVault({
     mnemonic: mnemonic,
-    privateKey: xpriv,
-    publicKey: xpub,
+    seed: builder.seed,
+    rootPublicKey: builder.toJSON().xpub,
     password: password,
-    unlockPolicy: {
+    securityPolicy: {
       password: true,
       faceId: false,
       fingerprint: false,

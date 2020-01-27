@@ -7,8 +7,9 @@ import { Wallet } from './wallet';
 export class WalletBuilder {
   root: HDNode;
 
-  constructor(root: HDNode) {
+  constructor(root: HDNode, seed) {
     this.root = root;
+    this.seed = seed;
   }
 
   static generateMnemonic(): string {
@@ -19,7 +20,12 @@ export class WalletBuilder {
     const seed = await mnemonicToSeed(mnemonic);
     const rootNode = HDNode.fromMasterSeed(seed);
 
-    return new WalletBuilder(rootNode);
+    return new WalletBuilder(rootNode, seed.toString('hex'));
+  }
+
+  static createFromSeed(seed: string): WalletBuilder {
+    const rootNode = HDNode.fromMasterSeed(Buffer.from(seed, 'hex'));
+    return new WalletBuilder(rootNode, seed);
   }
 
   static createFromJSON(privateKey, publicKey): WalletBuilder {

@@ -102,6 +102,7 @@ export function CreateBackup(props: CreateBackupProps) {
               <Button
                 onPress={props.onSubmit}
                 type="full-primary"
+                isLoading={props.isLoading}
               >
                 Create Backup
               </Button>

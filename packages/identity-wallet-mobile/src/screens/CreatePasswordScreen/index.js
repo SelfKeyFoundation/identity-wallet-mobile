@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CreatePassword } from './CreatePassword';
 import { useCreatePasswordController } from './useCreatePasswordController';
 import modules from '@selfkey/wallet-core/modules';
-import { navigateBack } from '@selfkey/wallet-core/navigation';
+import { navigateBack, navigate, Routes } from '@selfkey/wallet-core/navigation';
 
 const { operations, selectors } = modules.createWallet;
 
@@ -26,6 +26,10 @@ function CreatePasswordContainer(props) {
     navigateBack();
   })
 
+  const handleImportExistingWallet = useCallback(() => {
+    navigate(Routes.CREATE_WALLET_IMPORT_BACKUP);
+  });
+
   return (
     <CreatePassword
       onBack={canReturn && handleBack}
@@ -34,6 +38,7 @@ function CreatePasswordContainer(props) {
       values={controller.values}
       errors={controller.errors}
       passwordStrength={controller.passwordStrength}
+      onImportExistingWallet={handleImportExistingWallet}
     />
   );
 }

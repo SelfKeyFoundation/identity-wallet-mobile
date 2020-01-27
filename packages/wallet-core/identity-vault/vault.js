@@ -3,18 +3,16 @@ import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 
 export class IdentityVault {
   constructor(props: VaultConstructor) {
-    this.id = props.publicKey;
+    this.id = props.id;
     this.password = props.password;
-    this.menominc = props.mnemonic,
-    this.db = props.db;
-    this.privateKey = props.privateKey;
-    this.publicKey = props.publicKey;
+    this.mnemonic = props.mnemonic,
+    this.rootSeed = props.rootSeed;
     this.securityPolicy = props.securityPolicy;
+    this.db = props.db;
   }
-  // Create methods to manage identity
 
   getETHWalletKeys(idx) {
-    const builder = WalletBuilder.createFromJSON(this.privateKey, this.publicKey);
+    const builder = WalletBuilder.createFromSeed(this.rootSeed)
     const path = builder.getETHPath(idx);
     const wallet = builder.createWallet(path);
 
@@ -27,7 +25,10 @@ export class IdentityVault {
   getKeyStoreItems() {
     return [{
       id: 'mnemonic',
-      value: this.menominc,
+      value: this.mnemonic,
+    }, {
+      id: 'securityPolicy',
+      value: this.securityPolicy,
     }]
   }
 }

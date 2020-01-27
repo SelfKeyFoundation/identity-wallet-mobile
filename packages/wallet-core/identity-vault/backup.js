@@ -1,11 +1,11 @@
 import { System } from '../system';
-const crypto = System.getCrypto();
 import { unlockVault } from './index';
 
-// import keccak from 'keccak';
+const crypto = System.getCrypto();
 
 export function encryptData(data, password, options = {}) {
-  const rounds = options.rounds || 262144;
+  // Need to have it on a separate thread so that we can increase it
+  const rounds = options.rounds || 4096;
   const iv = crypto.randomBytes(16);
   const salt = crypto.randomBytes(64);
   const derivedKey = crypto.pbkdf2Sync(password, salt, rounds, 32, 'sha256');
@@ -25,12 +25,15 @@ export function encryptData(data, password, options = {}) {
 }
 
 export function decryptData(data, password, options = {}) {
-  const rounds = options.rounds || 262144;
+  // Need to have it on a separate thread
+  const rounds = options.rounds || 1000;
   const derivedKey = crypto.pbkdf2Sync(password, Buffer.from(data.salt, 'hex'), rounds, 32, 'sha256');
   const mac = crypto.createHmac('sha256', password).update(derivedKey).digest('hex');
 
   if (mac !== data.mac) {
-    throw 'Wrong password';
+    throw {
+      message: 'wrong_password'
+    };
   }
 
   const decipher = crypto.createDecipheriv('aes-256-cbc', derivedKey, Buffer.from(data.iv, 'hex'));
@@ -46,16 +49,14 @@ export async function generateBackup(vaultId, password) {
 
   return {
     version: '0.1',
+    type: 'hd',
     /**
      * For the import process we can verify the public db for existent vaults with this ID
-     * If so, should allert the user that the vault is already in place and give the chooice to abort the import
+     * If so, should alert the user that the vault is already in place and give the chooice to abort the import
      * or replace the current vault data
      */
     vaultId: vaultId,
-    keystoreItems: [{
-      id: 'mnemonic',
-      value: vault.mnemonic
-    }],
+    keystore: vault.getKeyStoreItems(),
     identityItems: [],
     wallets: [],
   };

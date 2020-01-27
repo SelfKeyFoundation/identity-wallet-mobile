@@ -5,9 +5,8 @@ import {
   Text,
 } from 'react-native-paper';
 
-import PaperButton from './PaperButton';
-
-import { View } from 'react-native';
+import PaperButton from './PaperButton'; 
+import { View, ActivityIndicator } from 'react-native';
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
 
 export interface ButtonProps extends PaperButtonProps {
@@ -88,6 +87,7 @@ export const Button = (props: ButtonProps) => {
         ...contentStyle,
         ...(props.contentStyle || {})
       }}
+      loading={props.isLoading}
     >
       <Text
         style={{

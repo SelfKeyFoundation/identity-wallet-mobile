@@ -20,7 +20,6 @@ export const RNSystem = {
     } else {
       return RNSystem._shareFileAndroid({ filePath, filePath, mimeType });
     }
-    
   },
 
   getCrypto() {
@@ -35,6 +34,7 @@ export const RNSystem = {
     return Share.open({
       url: `file://${filePath}`,
       type: mimeType,
+      filename: fileName
     });
   },
 

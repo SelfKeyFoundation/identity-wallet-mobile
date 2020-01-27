@@ -139,7 +139,7 @@ export function SettingsMenu(props) {
         </MenuItem>
         <MenuItem
           menuControl={
-            <MenuRightText>0.1.4</MenuRightText>
+            <MenuRightText>0.1.6</MenuRightText>
           }
         >
           Version

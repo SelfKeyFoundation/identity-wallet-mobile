@@ -54,12 +54,13 @@ const PageTitle = styled(H3)`
 const UseDifferentWallet = styled(Link)`
   text-transform: uppercase;
   width: 100%;
+  font-size: 14px;  
   text-align: center;
 `
 
 const OrText = styled(DefinitionTitle)`
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
 `
 
@@ -107,6 +108,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
               <Button
                 onPress={props.onSubmit}
                 type="full-primary"
+                isLoading={props.isLoading}
               >
                 Unlock
               </Button>

@@ -1,6 +1,7 @@
 // @flow
 import { IdentityVault } from './vault';
 import type { IdentityKeychain, IdentityDatabase, VaultConstructor } from './types';
+import uuid from 'uuid/v4';
 
 type VaultFactoryConstructor = {
   keychain: IdentityKeychain,
@@ -24,12 +25,13 @@ export class VaultFactory {
    * @param {VaultConstructor} props
    */
   async createVault(props: VaultConstructor) {
-    const vaultId = 'default-vault';
+    const vaultId = uuid();
 
     await this.keychain.setItem(vaultId, {
       type: props.type,
       privateKey: props.privateKey,
       password: props.password,
+      mnemonic: props.mnemonic,
       unlockPolicy: props.unlockPolicy,
     });
 

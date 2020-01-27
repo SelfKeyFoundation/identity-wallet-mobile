@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UnlockWallet } from './UnlockWallet';
 import { useUnlockWalletController } from './useUnlockWalletController';
@@ -9,11 +9,14 @@ const { operations, selectors } = modules.unlockWallet;
 
 function UnlockWalletContainer(props) {
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState();
   const errors = useSelector(selectors.getErrors);
   const controller = useUnlockWalletController({
     ...props,
-    onSubmit: (values) => {
-      dispatch(operations.submitUnlockOperation(values));
+    onSubmit: async (values) => {
+      setLoading(true);
+      await dispatch(operations.submitUnlockOperation(values));
+      setLoading(false);
     },
   });
 
@@ -28,6 +31,7 @@ function UnlockWalletContainer(props) {
       onChooseDifferentWallet={handleDifferentWallet}
       values={controller.values}
       errors={errors}
+      isLoading={isLoading}
     />
   );
 }
