@@ -5,13 +5,9 @@ import { SendTokensSuccess } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
+import EthUtils from '@selfkey/blockchain/util/eth-utils';
 
 const { operations, selectors } = modules.transaction;
-
-function getEtherscanUrl(hash) {
-  // TODO: Handle mainnet url based on configs/env variables
-  return `https://ropsten.etherscan.io/tx/${hash}`;
-}
 
 export function SuccessStep(props) {
   const token = useSelector(selectors.getToken);
@@ -24,7 +20,7 @@ export function SuccessStep(props) {
   // const dispatch = useDstispatch();
 
   const handleViewOnEtherscan = useCallback(() => {
-    Linking.openURL(getEtherscanUrl(transaction.hash))
+    Linking.openURL(EthUtils.getTxReceiptUrl(transaction.hash))
   }, [transaction.hash]);
 
   return (

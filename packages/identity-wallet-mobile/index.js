@@ -1,10 +1,6 @@
-/**
- * @format
- */
-
 import './shim.js';
-
-//  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
+import { setEnv } from '@selfkey/configs';
+setEnv('prod');
 
 import {AppRegistry} from 'react-native';
 import {Root} from './src/Root';

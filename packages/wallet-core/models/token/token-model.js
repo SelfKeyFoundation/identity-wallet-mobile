@@ -29,6 +29,10 @@ export class TokenModel extends BaseModel {
     return TokenModel.instance;
   }
 
+  findBySymbol(symbol) {
+    return this.findOne('symbol = $0', symbol);
+  }
+
   constructor() {
     super(TokenModel.schema);
   }

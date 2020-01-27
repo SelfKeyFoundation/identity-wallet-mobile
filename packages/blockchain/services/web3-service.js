@@ -7,22 +7,22 @@ import { AsyncTaskQueue } from '../util/async-task-queue';
 import { abi as ABI } from '../contracts/selfkey-token.json';
 import EthUnits from '../util/eth-units';
 import EthUtils from '../util/eth-utils';
-
+import { getConfigs } from '@selfkey/configs';
 export const REQUEST_INTERVAL_DELAY = 500;
 
-export const SERVER_CONFIG = {
-	mew: {
-		1: { url: 'https://api.myetherapi.com/eth' },
-		3: { url: 'https://api.myetherapi.com/rop' }
-	},
-	infura: {
-		1: { url: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd' },
-		3: { url: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd' }
-	}
-};
+// export const SERVER_CONFIG = {
+// 	mew: {
+// 		1: { url: 'https://api.myetherapi.com/eth' },
+// 		3: { url: 'https://api.myetherapi.com/rop' }
+// 	},
+// 	infura: {
+// 		1: { url: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd' },
+// 		3: { url: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd' }
+// 	}
+// };
 
-// TODO: Create config file
-export const SELECTED_SERVER_URL = SERVER_CONFIG['infura']['3'].url;
+// // TODO: Create config file
+// export const SELECTED_SERVER_URL = SERVER_CONFIG['infura']['3'].url;
 
 export class Web3Service {
 	static _instance;
@@ -31,7 +31,7 @@ export class Web3Service {
   constructor() {
 		const engine = new ProviderEngine();
 		engine.addProvider(this.getWalletEthTxSubprovider());
-    engine.addProvider(new FetchSubprovider({ rpcUrl: SELECTED_SERVER_URL }));
+    engine.addProvider(new FetchSubprovider({ rpcUrl: getConfigs().rpcUrl }));
     engine.start();
 
     this.web3 = new Web3(

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@selfkey/blockchain": "1.0.0",
+    "@selfkey/configs": "1.0.0",
     "@selfkey/mobile-ui": "1.0.0",
     "@selfkey/wallet-core": "1.0.0",
     "@storybook/addon-actions": "5.2.6",

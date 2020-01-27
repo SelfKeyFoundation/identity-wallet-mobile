@@ -36,6 +36,8 @@
     "sinon": "^7.4.2"
   },
   "dependencies": {
+    "@selfkey/configs": "1.0.0",
+    "@selfkey/blockchain": "1.0.0",
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
     "keccak": "^3.0.0",
     "redux-logger": "^3.0.6",

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@selfkey/configs": "1.0.0",
     "async": "^3.1.0",
     "bignumber.js": "^9.0.0",
     "bip39": "^3.0.2",
