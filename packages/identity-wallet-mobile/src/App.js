@@ -6,6 +6,9 @@ import modules from '@selfkey/wallet-core/modules';
 import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
 import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';
+// import TransactionDetailsScreen from './modals/TransactionDetailsScreen';
+import { ModalRoot } from './modals';
+
 type AppProps = {
   isLoading: boolean,
   loadApp: () => any,
@@ -23,6 +26,7 @@ export function App(props: AppProps) {
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />
+      <ModalRoot />
       {
         !isLoading && (
           <TermsOfServiceScreen />

@@ -1,6 +1,6 @@
 import './shim.js';
 import { setEnv } from '@selfkey/configs';
-setEnv('prod');
+setEnv('dev');
 
 import {AppRegistry} from 'react-native';
 import {Root} from './src/Root';

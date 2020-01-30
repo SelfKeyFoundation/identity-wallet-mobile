@@ -9,7 +9,6 @@ import EthUtils from '@selfkey/blockchain/util/eth-utils';
 
 const { operations, selectors } = modules.transaction;
 
-
 export function PendingStep(props) {
   const token = useSelector(selectors.getToken);
   const amount = useSelector(selectors.getAmount);

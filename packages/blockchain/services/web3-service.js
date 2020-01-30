@@ -31,7 +31,7 @@ export class Web3Service {
   constructor() {
 		const engine = new ProviderEngine();
 		engine.addProvider(this.getWalletEthTxSubprovider());
-    engine.addProvider(new FetchSubprovider({ rpcUrl: getConfigs().rpcUrl }));
+		engine.addProvider(new FetchSubprovider({ rpcUrl: getConfigs().rpcUrl }));
     engine.start();
 
     this.web3 = new Web3(
