@@ -26,10 +26,10 @@ const loadAppOperation = () => async (dispatch, getState) => {
   const guideSettings = await getGuideSettings();
   dispatch(appActions.setGuideSettings(guideSettings));
 
-  // TODO: Remove in the future
   try {
     // TODO: Handle internet issues
-    await loadTokenPrices();
+    loadTokenPrices();
+    delay(1000);
   } catch(err) {
     console.error(err);
   }

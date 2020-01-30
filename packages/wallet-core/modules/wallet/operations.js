@@ -7,7 +7,8 @@ import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
 import ducks from '../index';
 import { encryptData, decryptData, generateBackup } from '../../identity-vault/backup';
-import { unlockVault } from '../../identity-vault';
+import { unlockVault, updatePassword } from '../../identity-vault';
+import { navigate, Routes } from '../../navigation';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -80,7 +81,7 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
 
   const encryptedBackup = encryptData(JSON.stringify(vaultBackup), password);
   const fs = System.getFileSystem();
-  const filePath = `${fs.DocumentDirectoryPath}/wallet-backup.sk`;
+  const filePath = `${fs.DocumentDirectoryPath}/wallet-backup.zip`;
 
   await fs.writeFile(filePath, JSON.stringify(encryptedBackup), 'utf8')
     .then((res) => {
@@ -113,10 +114,44 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   await dispatch(refreshWalletOperation());
 };
 
+/**
+ * 
+ * Load wallet
+ */
+const submitNewPasswordOperation = ({ password }) => async (dispatch, getState) => {
+  await dispatch(walletActions.setNewPassword(password));
+  navigate(Routes.WALLET_CONFIRM_NEW_PASSWORD);
+};
+
+/**
+ * 
+ * Load wallet
+ */
+const confirmNewPasswordOperation = ({ password }) => async (dispatch, getState) => {
+  const state = getState();
+  const newPassword = selectors.getNewPassword(state);
+
+  if (newPassword !== password) {
+    throw {
+      message: 'does_not_match',
+    };
+  }
+
+  const vault = selectors.getVault(state);
+
+  await updatePassword(vault.id, null, newPassword, {
+    currentPasswordHash: vault.password
+  });
+
+  navigate(Routes.APP_DASHBOARD);
+};
+
 export const operations = {
   loadWalletOperation,
   refreshWalletOperation,
   backupWalletOperation,
+  submitNewPasswordOperation,
+  confirmNewPasswordOperation
 };
 
 export const walletOperations = {

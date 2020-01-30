@@ -10,6 +10,8 @@ import MyTokensScreen from '../../screens/MyTokensScreen';
 import ScanQRScreen from '../../screens/ScanQRScreen';
 import CreateBackupScreen from '../../screens/CreateBackupScreen';
 import TokenDetailsScreen from '../../screens/TokenDetailsScreen';
+import CreateNewPasswordScreen from '../../screens/CreateNewPasswordScreen';
+import ConfirmNewPasswordScreen from '../../screens/ConfirmNewPasswordScreen';
 
 import { stackNavigatorConfig } from '../configs';
 
@@ -29,6 +31,9 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.TOKEN_DETAILS]: TokenDetailsScreen,
   [Routes.SCAN_QR]: ScanQRScreen,
   [Routes.CREATE_BACKUP]: CreateBackupScreen,
+  [Routes.WALLET_NEW_PASSWORD]: CreateNewPasswordScreen,
+  [Routes.WALLET_CONFIRM_NEW_PASSWORD]: ConfirmNewPasswordScreen,
+
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);

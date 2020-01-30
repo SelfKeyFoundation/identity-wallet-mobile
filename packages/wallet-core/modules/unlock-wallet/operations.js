@@ -1,9 +1,9 @@
 import actions from './actions';
 import { walletOperations } from '../wallet/operations';
-import { unlockVault } from '../../identity-vault';
+import { unlockVault, unlockVaultWithMnemonic } from '../../identity-vault';
 import { WalletModel } from '../../models';
 import { navigate, Routes } from '../../navigation';
-
+import ducks from '../index';
 /**
  * Unlock the default wallet
  *
@@ -29,6 +29,18 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   // Redirect to dashboard
   await navigate(Routes.APP_DASHBOARD);
 };
+
+const restoreAccessOperation = (mnemonic, walletAddress) => async (dispatch, getState) => {
+  const model = WalletModel.getInstance();
+  const wallet = walletAddress ? model.findByAddress(walletAddress): model.findOne();
+  const vault = await unlockVaultWithMnemonic(wallet.vaultId, mnemonic);
+
+  await dispatch(ducks.wallet.actions.setVault(vault));
+  await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
+
+  navigate(Routes.WALLET_NEW_PASSWORD);
+};
+
 
 /**
  * Unlock the default wallet
@@ -60,6 +72,7 @@ export const operations = {
   submitUnlockOperation,
   unlockWithAddressOperation,
   unlockWithVaultIdOperation,
+  restoreAccessOperation,
 };
 
 export const unlockWalletOperations = {

@@ -22,7 +22,11 @@ export const CREATE_WALLET_SETUP_COMPLETE = 'createWallet/setupComplete';
 export const CREATE_WALLET_CONFIRM_MNEMONIC = 'createWallet/confirmMnemonic';
 export const CREATE_WALLET_IMPORT_BACKUP = 'createWallet/importBackup';
 
+export const WALLET_NEW_PASSWORD = 'wallet/newPassword';
+export const WALLET_CONFIRM_NEW_PASSWORD = 'wallet/confirmNewPassword';
+
 export const UNLOCK_WALLET_FLOW = 'unlockWallet';
 export const UNLOCK_WALLET_PASSWORD = 'unlockWallet/password';
+export const UNLOCK_WALLET_FORGOT_PASSWORD = 'unlockWallet/forgotPassword';
 export const CHOOSE_DIFFERENT_WALLET = 'chooseDifferentWallet';
 export const WALLET_SELECTION = 'walletSelection';

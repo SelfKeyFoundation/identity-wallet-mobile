@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { TokenDetails } from '../../components';
-import { SafeAreaView, View, TouchableWithoutFeedback, Picker } from 'react-native';
+import { SafeAreaView, View, Text, TouchableWithoutFeedback, Picker } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -12,6 +12,8 @@ import {
   H3,
   Paragraph,
   ThemeContext,
+  ErrorMessage,
+  Link,
 } from '@selfkey/mobile-ui';
 import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
@@ -73,8 +75,9 @@ const Footer = styled(Grid)`
 `
 
 const SelectInput = styled.View`
-  background: #1B2229;
-  border: 1px solid #485A6E;
+  background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
+  color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
+  border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
   padding: 12px 15px;
   border-radius: 4px;
 `;
@@ -98,8 +101,16 @@ const SelectIcon = styled.View`
   position: absolute;
   right: 15px;
   top: 15px;
-`
+`;
 
+const ForgotLink = styled(Link)`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 13px;
+  line-height: 19px;
+`;
+
+// TODO: Move to the Design System package
 function Select(props) {
   const selectedItem = useMemo(() => {
     return props.items.find(item => item.value === props.selectedValue);
@@ -120,7 +131,7 @@ function Select(props) {
         onValueChange={props.onValueChange}
         selectedValue={props.selectedValue}
       >
-        <SelectInput>
+        <SelectInput hasError={props.error}>
           <SelectIcon>
             <SKIcon name="icon-expand_arrow-1" size={12} color="rgba(147,176,193,0.5)" />
           </SelectIcon>
@@ -131,6 +142,15 @@ function Select(props) {
           </SelectText>
         </SelectInput>
       </RNPickerSelect>
+      {
+        (props.error && props.errorMessage) ? (
+          <View style={{ marginBottom: 5, marginTop: 10 }}>
+            <ErrorMessage>
+              { props.errorMessage }
+            </ErrorMessage>
+          </View>
+        ) : null
+      }
     </View>
   )
 }
@@ -170,6 +190,8 @@ export function WalletSelection(props) {
           <Col>
             <Select
               label="Select a Wallet"
+              error={props.error && props.error.wallet}
+              errorMessage={props.error && props.error.wallet}
               onValueChange={props.onWalletChange}
               selectedValue={props.wallet}
               placeholder="Select a Wallet"
@@ -183,8 +205,8 @@ export function WalletSelection(props) {
         <Row>
           <Col>
             <TextInput
-              error={props.error}
-              errorMessage={props.error}
+              error={props.error && props.error.password}
+              errorMessage={props.error && props.error.password}
               value={props.password}
               placeholder="Password"
               label="Enter your Password"
@@ -194,6 +216,17 @@ export function WalletSelection(props) {
             />
           </Col>
         </Row>
+        {
+          props.wallet && (
+            <Row>
+              <Col autoWidth>
+                <ForgotLink onPress={props.onForgot}>
+                  Forgot?
+                </ForgotLink>
+              </Col>
+            </Row>
+          )
+        }
       </Body>
       <Footer>
         <Row>

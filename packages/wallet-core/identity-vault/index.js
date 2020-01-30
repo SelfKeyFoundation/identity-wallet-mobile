@@ -78,24 +78,7 @@ export function removeVault(vaultId) {
   return getKeychain().removeItem(vaultId);
 }
 
-/**
- * Given a vaultId and credentials, attempt to unlock the vault
- *
- * @param {*} vaultId
- * @param {*} password
- * @returns {IdentityVault} instance of the identity vault
- */
-export async function unlockVault(vaultId, password) {
-  // TODO: create hash from password
-  const props = await getKeychain().getItem(vaultId);
-  const passwordHash = createHash(password);
-
-  if (props.password !== passwordHash) {
-    throw {
-      message: 'Password dosn\'t match',
-    };
-  }
-
+async function prepareUnlockedVault(vaultId, props) {
   const dbKey = createHash(props.rootSeed);  
   const identityDb = await getDatabase().create({ vaultId, privateKey: dbKey });
 
@@ -105,4 +88,52 @@ export async function unlockVault(vaultId, password) {
   });
 
   return vault;
+}
+
+/**
+ * Given a vaultId and credentials, attempt to unlock the vault
+ *
+ * @param {*} vaultId
+ * @param {*} password
+ * @returns {IdentityVault} instance of the identity vault
+ */
+export async function unlockVault(vaultId, password) {
+  const props = await getKeychain().getItem(vaultId);
+  const passwordHash = createHash(password);
+
+  if (props.password !== passwordHash) {
+    throw {
+      message: 'wrong_password',
+    };
+  }
+
+  return prepareUnlockedVault(vaultId, props);
+}
+
+export async function unlockVaultWithMnemonic(vaultId, mnemonic) {
+   const props = await getKeychain().getItem(vaultId);
+
+   if (props.mnemonic !== mnemonic) {
+     throw {
+       message: 'wrong_mnemonic',
+     };
+   }
+ 
+   return prepareUnlockedVault(vaultId, props);
+}
+
+export async function updatePassword(vaultId, currentPassword, newPassword, options = {}) {
+  const props = await getKeychain().getItem(vaultId);
+  const passwordHash = options.currentPasswordHash ? options.currentPasswordHash : createHash(currentPassword);
+
+  if (props.password !== passwordHash) {
+    throw {
+      message: 'wrong_password',
+    };
+  }
+
+  await getKeychain().setItem(vaultId, {
+    ...props,
+    password: createHash(newPassword),
+  });
 }

@@ -22,7 +22,9 @@ function CreateBackupContainer(props) {
       await dispatch(ducks.wallet.operations.backupWalletOperation(password));
       navigate(Routes.APP_SETTINGS)
     } catch(err) {
-      setError(err.message);
+      if (err.message === 'wrong_password') {
+        setError('Wrong password. Please try again.');
+      }
     }
     setLoading(false);
   }, [isLoading, password]);

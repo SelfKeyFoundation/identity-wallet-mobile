@@ -27,14 +27,32 @@ function setWalletReducer(state, action) {
   };
 }
 
+function setNewPasswordReducer(state, action) {
+  return {
+    ...state,
+    newPassword: action.payload.password,
+  };
+}
+
+function setVaultReducer(state, action) {
+  return {
+    ...state,
+    vault: action.payload.vault,
+  };
+}
+
 export const walletReducers = {
   setWalletLoadingReducer,
   setWalletReducer,
+  setNewPasswordReducer,
+  setVaultReducer,
 };
 
 const reducersMap = {
   [walletTypes.SET_WALLET_LOADING]: walletReducers.setWalletLoadingReducer,
   [walletTypes.SET_WALLET]: walletReducers.setWalletReducer,
+  [walletTypes.SET_NEW_PASSWORD]: walletReducers.setNewPasswordReducer,
+  [walletTypes.SET_VAULT]: walletReducers.setVaultReducer,
 };
 
 export default createReducer(initialState, reducersMap);

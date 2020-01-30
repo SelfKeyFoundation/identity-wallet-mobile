@@ -10,6 +10,9 @@ export const getFiatAmount = (state) => {
   return balance * prices.priceUSD;
 }
 
+export const getNewPassword = (state) => getRoot(state).newPassword;
+export const getVault = (state) => getRoot(state).vault;
+
 export const getTokensFiatAmount = (state) => {
   const ethAmount = getFiatAmount(state) || 0;
   const tokensAmount = getTokens(state).reduce((sum, token) => sum + token.balanceInFiat, 0) || 0;

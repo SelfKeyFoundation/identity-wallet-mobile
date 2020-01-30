@@ -182,22 +182,26 @@ export function CreatePassword(props: CreatePasswordProps) {
               </Button>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <OrText>or</OrText>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <TouchableWithoutFeedback
-                onPress={props.onImportExistingWallet}
-              >
-                <UseDifferentWallet>
-                  Import Existing Wallet
-                </UseDifferentWallet>
-              </TouchableWithoutFeedback>
-            </Col>
-          </Row>
+          { props.onImportExistingWallet &&
+            <>
+              <Row>
+                <Col>
+                  <OrText>or</OrText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <TouchableWithoutFeedback
+                    onPress={props.onImportExistingWallet}
+                  >
+                    <UseDifferentWallet>
+                      Import Existing Wallet
+                    </UseDifferentWallet>
+                  </TouchableWithoutFeedback>
+                </Col>
+              </Row>
+            </>
+          }
         </Grid>
       </Container>
     </ScreenContainer>
