@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { ScreenContainer } from '@selfkey/mobile-ui';
-import { MyTokens, TokensEmptyAlert } from '../../components';
+import { ManageTokens, HideTokenModal } from '../../components';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -17,7 +17,7 @@ const tokens = [{
   fiatCurrency: 'usd',
   color: '#2DA1F8'
 }, {
-  id: '<eth-id>',
+  id: '<eth-id-1>',
   name: 'Ethereum',
   code: 'Eth',
   amount: 0,
@@ -25,7 +25,7 @@ const tokens = [{
   fiatCurrency: 'usd',
   color: '#9418DC'
 }, {
-  id: '<eth-id>',
+  id: '<eth-id-2>',
   name: 'Cordano',
   code: 'ADA',
   amount: 0,
@@ -33,7 +33,7 @@ const tokens = [{
   fiatCurrency: 'usd',
   color: '#9418DC'
 }, {
-  id: '<eth-id>',
+  id: '<eth-id-3>',
   name: 'Augur',
   code: 'AUG',
   amount: 0,
@@ -41,7 +41,7 @@ const tokens = [{
   fiatCurrency: 'usd',
   color: '#9418DC'
 }, {
-  id: '<eth-id>',
+  id: '<eth-id-4>',
   name: 'Golem',
   code: 'GTM',
   amount: 0,
@@ -51,16 +51,21 @@ const tokens = [{
 }]
 
 storiesOf('components', module)
-  .add('MyTokens', () => (
+  .add('ManageTokens', () => (
     <ScreenContainer>
       <Container>
-        <MyTokens
+        <ManageTokens
           tokens={tokens}
+          onAdd={console.log}
+          onRemove={console.log}
           tokensFiatAmount={0}
           tokensFiatCurrency="usd"
-          showViewAll={true}
-          onViewAll={console.log}
         />
       </Container>
+    </ScreenContainer>
+  ))
+  .add('Hide modal', () => (
+    <ScreenContainer>
+      <HideTokenModal visible={true} />
     </ScreenContainer>
   ));

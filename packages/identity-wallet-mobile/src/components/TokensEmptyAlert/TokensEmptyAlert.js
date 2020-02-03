@@ -34,13 +34,14 @@ const Paragraph = styled.Text`
   text-align: center;
 `;
 
-
-export function TokensEmptyAlert() {
+export function TokensEmptyAlert(props) {
   return (
     <Container>
       <SKIcon name="icon-info-large" color="#09A8BA" size={66} />
       <Title>You don’t have any tokens yet.</Title>
-      <Paragraph>Hit the ”Manage” button above to add ERC-20 tokens, or safely store KEY and ETH by sending it to your wallet.</Paragraph>
+      <Paragraph>
+        { props.children }
+      </Paragraph>
     </Container> 
   )
 }

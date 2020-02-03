@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView, ScrollView, RefreshControl } from 'react-native';
-import { TokenBoxCarouselHOC, MyTokensHOC } from '../../components';
+import { TokenBoxCarouselContainer, MyTokensContainer, TxHistoryContainer } from '../../components';
 import {
   ScreenContainer,
   Grid,
@@ -27,7 +27,11 @@ const CarouselRow = styled.View`
 `;
 
 const MyTokensRow = styled.View`
-  margin: 40px 20px 26px 20px;
+  margin: 40px 20px 10px 20px;
+`;
+
+const TxHistoryRow = styled.View`
+  margin: 20px 20px 50px 20px;
 `;
 
 export function Dashboard(props) {
@@ -41,11 +45,14 @@ export function Dashboard(props) {
           }
         >
           <CarouselRow>
-          <TokenBoxCarouselHOC />
+          <TokenBoxCarouselContainer />
           </CarouselRow>  
           <MyTokensRow>
-            <MyTokensHOC />
+            <MyTokensContainer />
           </MyTokensRow>
+          <TxHistoryRow>
+            <TxHistoryContainer />
+          </TxHistoryRow>
         </ScrollView>
       </SafeAreaView>
     </Container>

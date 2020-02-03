@@ -7,6 +7,8 @@ import {
   Grid,
   Col,
   Row,
+  Link,
+  ButtonLink,
   ThemeContext,
   Paragraph,
   Explanatory,
@@ -41,17 +43,6 @@ const TokenRow = styled.View`
   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
-const LinkButtonWrapper = styled.TouchableWithoutFeedback`
-  flex-direction: row;
-`;
-
-const LinkButtonText = styled.Text`
-  color: ${({ theme }) => theme.colors.primary };
-  font-size: 13px;
-  font-family: ${props => props.theme.fonts.regular};
-  text-transform: uppercase;
-`;
-
 const TokenName = styled.Text`
   color: ${({ theme }) => theme.colors.white };
   font-size: 18px;
@@ -59,33 +50,6 @@ const TokenName = styled.Text`
   margin-bottom: 3px;
   line-height: 22px;
 `;
-
-const LinkButton = (props) => {
-  let iconItem;
-
-  if (props.iconName) {
-    iconItem = (
-      <Col autoWidth>
-        <SKIcon name={props.iconName} size={16} color="#00C0D9"/>
-      </Col>
-    );
-  }
-
-  return (
-    <LinkButtonWrapper onPress={props.onPress}>
-      <Row>
-        { iconItem }
-        <Col>
-          <LinkButtonText>
-            { props.children }
-          </LinkButtonText>
-        </Col>
-      </Row>
-    </LinkButtonWrapper>
-  );
-}
-
-
 
 const TokenIconContainer = styled.View`
   background-color: ${(props) => props.color || '#2DA1F8' };
@@ -143,23 +107,23 @@ export function MyTokens(props: MyTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <LinkButton iconName="icon-menu-settings">
+          <ButtonLink iconName="icon-menu-settings" onPress={props.onManage}>
             Manage
-          </LinkButton>
+          </ButtonLink>
         </Col>
       </TitleRow>
       {
         props.tokens.map(token => (
           <TokenRow key={token.id}>
             <Col autoWidth noPadding>
-              <TokenIcon name={token.name} color={token.color} />
+              <TokenIcon name={token.name || token.symbol} color={token.color} />
             </Col>
             <Col noPadding paddingLeft={11}>
               <TokenName>
-                { token.name }
+                { token.name || token.symbol }
               </TokenName>
               <Explanatory>
-                { token.code && token.code.toUpperCase() }
+                { token.symbol && token.symbol.toUpperCase() }
               </Explanatory>
             </Col>
             <Col autoWidth alignItems="flex-end" noPadding>
@@ -178,6 +142,15 @@ export function MyTokens(props: MyTokensProps) {
             </Col>
           </TokenRow>
         ))
+      }
+      { props.showViewAll &&
+        <Row justifyContent="center" marginTop={25}>
+          <Col autoWidth>
+            <ButtonLink iconName="icon-expand_arrow-1" onPress={props.onViewAll} iconSize={11.13}>
+              View All Tokens
+            </ButtonLink>
+          </Col>
+        </Row>
       }
     </Container>
   );

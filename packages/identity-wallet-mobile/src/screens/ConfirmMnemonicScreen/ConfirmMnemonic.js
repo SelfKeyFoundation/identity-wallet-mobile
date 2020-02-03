@@ -11,7 +11,7 @@ import {
   Row,
   Col,
   Button,
-  ButtonLink,
+  ButtonLinkText,
   H3,
   Alert,
 } from '@selfkey/mobile-ui';
@@ -131,9 +131,9 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                     />
                   </Col>
                   <Col autoWidth>
-                    <ButtonLink>
+                    <ButtonLinkText>
                       Clear
-                    </ButtonLink>
+                    </ButtonLinkText>
                   </Col>
                 </Row>
               </TouchableWithoutFeedback>

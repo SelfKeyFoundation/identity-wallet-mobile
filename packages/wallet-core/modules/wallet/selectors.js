@@ -19,6 +19,14 @@ export const getTokensFiatAmount = (state) => {
   return (ethAmount + tokensAmount) || 0;
 }
 
+export const getCustomTokensFiatAmount = (state) => {
+  return getCustomTokens(state).reduce((sum, token) => sum + token.balanceInFiat, 0) || 0;
+}
+
+export const getCustomTokens = (state) => {
+  return getTokens(state).filter((token) => token.symbol !== 'KEY' && token.symbol !== 'KI');
+}
+
 // TODO: Move to token utils
 function getTokenName(symbol = 'eth') {
   symbol = symbol.toUpperCase();

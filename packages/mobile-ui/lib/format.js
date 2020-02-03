@@ -15,7 +15,7 @@ const formatCurrency = (value, code) => {
   return formatter ? formatter(value) : genericFormat(value, code);
 };
 
-export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal }) {
+export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal, cleanEmptyDecimals }) {
   let formattedValue = parseFloat(value || 0);
 
   if (formattedValue == NaN) {
@@ -28,11 +28,11 @@ export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal
   
   formattedValue = formattedValue.replace(regex, '$&,')
    
-  if (!currency) {
+  if (!currency || cleanEmptyDecimals) {
     formattedValue = formattedValue.replace(/\.0+$/, '');
   }
 
-  if (!(/\.00$/).test(formattedValue)){
+  if ((/\./).test(formattedValue) && !(/\.00$/).test(formattedValue)){
     formattedValue = formattedValue.replace(/00+$/, '')
   }
 

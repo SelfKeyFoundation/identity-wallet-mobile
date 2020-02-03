@@ -41,6 +41,10 @@ const BorderGrid = styled(Grid)`
 	border-bottom-width: 1px;
 `;
 
+const Footer = styled(Grid)`
+	padding: 25px 15px 50px 15px;
+`;
+
 type TransactionDetailsProps = {
 	token: string,
 	tokenAmount: number,
@@ -69,7 +73,7 @@ export function TransactionDetails(props: TransactionDetailsProps) {
 				</Row>
 				<Row justifyContent="center" marginBottom={8}>
 					<Col noPadding autoWidth>
-						<H3>{statusMap[transaciton.status]} {props.token.toUpperCase()}</H3>
+						<H3>{statusMap[props.status]} {props.token.toUpperCase()}</H3>
 					</Col>
 				</Row>
 				<Row justifyContent="center" marginBottom={3}>
@@ -129,13 +133,13 @@ export function TransactionDetails(props: TransactionDetailsProps) {
 					</Col>
 				</Row>
 			</BorderGrid>
-			<Grid>
-				<Row marginTop={30}>
+			<Footer>
+				<Row>
 					<Col>
 						<Button onPress={props.onViewOnEtherscan}>View on Etherscan</Button>
 					</Col>
 				</Row>
-			</Grid>
+			</Footer>
 		</Body>
 	);
 }
