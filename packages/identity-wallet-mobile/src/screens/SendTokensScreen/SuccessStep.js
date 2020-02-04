@@ -17,8 +17,6 @@ export function SuccessStep(props) {
   const transaction = useSelector(selectors.getTransaction);
   const tokenDetails = useSelector(modules.wallet.selectors.getTokenDetails(token));
   const ethFee = useSelector(selectors.getETHFee);
-  // const dispatch = useDstispatch();
-
   const handleViewOnEtherscan = useCallback(() => {
     Linking.openURL(EthUtils.getTxReceiptUrl(transaction.hash))
   }, [transaction.hash]);
