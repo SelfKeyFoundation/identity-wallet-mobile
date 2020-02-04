@@ -30,10 +30,6 @@ async function loadWalletTokens(wallet) {
 
     try {
       balance = await getTokenBalance(token.address, wallet.address);
-
-      if (balance === 'NaN') {
-        balance = 0;
-      }
     } catch(err) {
       console.error(err);
     }
@@ -46,7 +42,7 @@ async function loadWalletTokens(wallet) {
       decimal: token.decimal,
       address: token.address,
       balanceInFiat: price.priceUSD,
-      balance,
+      balance: balance || 0,
     }
   }));
 }

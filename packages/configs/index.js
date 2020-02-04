@@ -1,6 +1,6 @@
 let currentEnv = 'dev';
 
-const Configs = {
+const CONFIGS = {
   dev: {
     chainId: 3,
     etherscanUrl: 'https://ropsten.etherscan.io',
@@ -20,5 +20,5 @@ export function setEnv(env) {
 }
 
 export function getConfigs() {
-  return Configs[currentEnv];
+  return CONFIGS[currentEnv];
 }
