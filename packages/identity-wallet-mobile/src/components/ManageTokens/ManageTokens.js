@@ -159,7 +159,7 @@ export function ManageTokens(props: ManageTokensProps) {
         tokens.length ? null : (
           <EmptyAlertConatiner>
             <TokensEmptyAlert>
-              Hit the ”Add Token” button above to add any ERC-20 tokens.
+              Hit the "Add Token" button above to add any ERC-20 tokens.
             </TokensEmptyAlert>
           </EmptyAlertConatiner>
         )
