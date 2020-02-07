@@ -45,6 +45,7 @@ async function loadWalletTokens(wallet) {
   // Fetch tokens balance
   wallet.tokens = await Promise.all(
     wallet.tokens
+      .filter(token => !token.hidden)
       .map(async (walletToken) => {
         const token = await TokenModel.getInstance().findById(walletToken.tokenId || walletToken.id);
         let balance = 0;
@@ -86,7 +87,10 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
     await Promise.all([
       loadWalletBalance(wallet),
       loadWalletTokens(wallet),
-      dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
+      () => {
+        // It will be async
+        dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
+      }
     ]);
   } catch(err) {
     console.error(err);
@@ -113,12 +117,12 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
   const filePath = `${fs.DocumentDirectoryPath}/wallet-backup.zip`;
 
   await fs.writeFile(filePath, JSON.stringify(encryptedBackup), 'utf8')
-    .then((res) => {
-      return System.shareFile({
-        filePath: filePath,
+    .then(async (res) => {
+      await System.shareFile({
+        filePath: `file://${filePath}`,
         mimeType: 'application/zip',
         fileName: 'wallet-backup'
-      })
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -175,12 +179,71 @@ const confirmNewPasswordOperation = ({ password }) => async (dispatch, getState)
   navigate(Routes.APP_DASHBOARD);
 };
 
+const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
+  const state = getState();
+  const token = await dispatch(validateTokenOperation({ contractAddress }))
+  const { wallet } = getState();
+
+  const newToken = {
+    id: WalletTokenModel.getInstance().generateId(),
+    balance: '0',
+    balanceInFiat: 0,
+    hidden: false,
+    tokenId: token.id
+  }
+
+  wallet.tokens.push(newToken);
+
+  const walletModel = WalletModel.getInstance();
+  const dbWallet = await walletModel.findByAddress(wallet.address);
+
+  await walletModel.updateByAddress(dbWallet.address, {
+    tokens: [
+      ...dbWallet.tokens,
+      newToken,
+    ],
+  });
+
+  await loadWalletTokens(wallet);
+  dispatch(walletActions.setWallet(wallet));
+};
+
+const validateTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
+  const state = getState();
+  const token = await TokenModel.getInstance().findByAddress(contractAddress);
+
+  if (!token) {
+    throw {
+      code: 'address_not_found',
+    };
+  }
+
+  return token;
+};
+
+const hideTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
+  const state = getState();
+  const token = TokenModel.getInstance().findByAddress(contractAddress);
+  const walletToken = await WalletTokenModel.getInstance().findOne('tokenId = $0', token.id);
+
+  WalletTokenModel.getInstance().updateById(walletToken.id, {
+    hidden: true
+  });
+
+  const wallet = getState().wallet;
+  wallet.tokens = wallet.tokens.filter(token => token.address !== contractAddress);
+  dispatch(walletActions.setWallet(wallet));
+};
+
 export const operations = {
   loadWalletOperation,
   refreshWalletOperation,
   backupWalletOperation,
   submitNewPasswordOperation,
-  confirmNewPasswordOperation
+  confirmNewPasswordOperation,
+  addTokenOperation,
+  hideTokenOperation,
+  validateTokenOperation
 };
 
 export const walletOperations = {

@@ -1,7 +1,9 @@
 import React, { useCallback, useState, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ManageTokens } from './ManageTokens';
 import { HideTokenModal } from './HideTokenModal';
+import { AddTokenModal } from './AddTokenModal';
+
 import ducks from '@selfkey/wallet-core/modules';
 
 export * from './ManageTokens';
@@ -51,13 +53,29 @@ export * from './HideTokenModal';
 
 export function ManageTokensContainer(props) {
   const [tokenToRemove, setTokenToRemove] = useState(null);
+  const [showAdd, setShowAdd] = useState();
   const handleRemove = useCallback((token) => {
     setTokenToRemove(token);
   }, []);
+  const dispatch = useDispatch();
   const handleCancelRemove = useCallback(() => setTokenToRemove(null));
   const handleConfirmRemove = useCallback(() => {
     // TODO: dispatch event to remove the token, to be done in a separate issue
-    setTokenToRemove(null);
+    dispatch(ducks.wallet.operations.hideTokenOperation({ contractAddress: tokenToRemove.address }))
+      .then(() => setTokenToRemove(null));
+  }, [tokenToRemove]);
+
+  const handleShowAdd = useCallback(() => {
+    setShowAdd(true);
+  }, []);
+
+  const handleCloseAdd= useCallback(() => {
+    setShowAdd(false);
+  }, []);
+
+  const handleAdd = useCallback((contractAddress) => {
+    return dispatch(ducks.wallet.operations.addTokenOperation({ contractAddress }))
+      .then(handleCloseAdd)
   });
 
   const tokens = useSelector(ducks.wallet.selectors.getCustomTokens)
@@ -66,7 +84,7 @@ export function ManageTokensContainer(props) {
   return (
     <ManageTokens
       tokens={tokens}
-      onAdd={console.log}
+      onAdd={handleShowAdd}
       onRemove={handleRemove}
       tokensFiatAmount={fiatAmount}
       tokensFiatCurrency="usd"
@@ -77,6 +95,12 @@ export function ManageTokensContainer(props) {
         onClose={handleCancelRemove}
         onCancel={handleCancelRemove}
         onOk={handleConfirmRemove}
+      />
+      <AddTokenModal
+        visible={showAdd}
+        onAdd={handleAdd}
+        onClose={handleCloseAdd}
+        onCancel={handleCloseAdd}
       />
     </ManageTokens>
   )

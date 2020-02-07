@@ -242,6 +242,8 @@ export class TxHistoryService {
 	}
 
 	async getTxReceiptStatus(hash) {
+		const txReceipt = await this.getTransactionReceipt(hash);
+
 		if (txReceipt && txReceipt.status) {
 			return parseInt(txReceipt.status, 16);
 		}

@@ -97,6 +97,9 @@ export const TextInput = (props: TextInputProps) => {
           </View>
         ) : null
       }
+      {
+        props.feedback ? props.feedback : null
+      }
     </View>
   );
 };

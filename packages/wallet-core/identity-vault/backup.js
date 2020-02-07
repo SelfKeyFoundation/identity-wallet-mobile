@@ -26,7 +26,7 @@ export function encryptData(data, password, options = {}) {
 
 export function decryptData(data, password, options = {}) {
   // Need to have it on a separate thread
-  const rounds = options.rounds || 1000;
+  const rounds = options.rounds || 4096;
   const derivedKey = crypto.pbkdf2Sync(password, Buffer.from(data.salt, 'hex'), rounds, 32, 'sha256');
   const mac = crypto.createHmac('sha256', password).update(derivedKey).digest('hex');
 

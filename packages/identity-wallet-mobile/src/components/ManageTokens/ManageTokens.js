@@ -150,7 +150,7 @@ export function ManageTokens(props: ManageTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <ButtonLink iconName="icon-add" onPress={props.onAddToken}>
+          <ButtonLink iconName="icon-add" onPress={props.onAdd}>
             Add Token
           </ButtonLink>
         </Col>

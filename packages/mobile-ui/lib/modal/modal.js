@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
 
 
 export function Modal(props) {
+  const {
+    cancelProps = {},
+    okProps = {},
+  } = props;
+
   const content = (
     <Container>
       <InnerContainer>
@@ -85,12 +90,12 @@ export function Modal(props) {
       {
         props.footer !== undefined ? props.footer : (<Footer>
           <ButtonWrapper>
-            <Button type="shell-primary" onPress={props.onCancel}>
+            <Button type="shell-primary" onPress={props.onCancel} {...cancelProps}>
               {props.cancelText}
             </Button>
           </ButtonWrapper>
           <ButtonWrapper>
-            <Button onPress={props.onOk}>
+            <Button onPress={props.onOk} {...okProps}>
               {props.okText}
             </Button>
           </ButtonWrapper>

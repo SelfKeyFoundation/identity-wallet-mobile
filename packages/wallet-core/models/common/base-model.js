@@ -50,7 +50,7 @@ export class BaseModel {
   }
 
   _findById(id) {
-    const items = this._findAll().filtered(`${this.schema.primaryKey} = ${this.prepareIdValue(id)}`);
+    const items = this._findAll().filtered(`${this.schema.primaryKey} = $0`, id);
     return items[0];
   }
 
