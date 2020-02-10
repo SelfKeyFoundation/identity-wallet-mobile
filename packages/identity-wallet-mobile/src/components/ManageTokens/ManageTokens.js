@@ -150,7 +150,7 @@ export function ManageTokens(props: ManageTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <ButtonLink iconName="icon-add" onPress={props.onAddToken}>
+          <ButtonLink iconName="icon-add" onPress={props.onAdd}>
             Add Token
           </ButtonLink>
         </Col>
@@ -159,7 +159,7 @@ export function ManageTokens(props: ManageTokensProps) {
         tokens.length ? null : (
           <EmptyAlertConatiner>
             <TokensEmptyAlert>
-              Hit the ”Add Token” button above to add any ERC-20 tokens.
+              Hit the "Add Token" button above to add any ERC-20 tokens.
             </TokensEmptyAlert>
           </EmptyAlertConatiner>
         )

@@ -43,7 +43,6 @@ function ImportWalletBackupContainer(props) {
       })
       .then(async (res) => {
         const data = await fs.readFile(res.uri, 'utf8');
-        // create funtion to unlock the data
         setFile({
           name: res.name,
           data,
@@ -66,25 +65,31 @@ function ImportWalletBackupContainer(props) {
 
     setLoading(true);
 
-    try {
-      setErrors({
-        password: undefined,
-        system: undefined,
-      });
-      await dispatch(ducks.createWallet.operations.createFromBackupOperation(file.data, password));
-    } catch (err) {
-      if (err.message == 'wrong_password') {
-        setErrors({
-          password: 'Wrong password'
-        });
-      } else if (err.message == 'wrong_file') {
-        setErrors({
-          system: 'This is not a backup file'
-        });
-      }
-      console.log(err);
-    }
-    setLoading(false);
+    setErrors({
+      password: undefined,
+      system: undefined,
+    });
+
+    setTimeout(() => {
+      // Give some time to the setLoading propagate and refresh the UI
+      dispatch(ducks.createWallet.operations.createFromBackupOperation(file.data, password))
+      .catch((err) => {
+        if (err.message === 'wrong_password' || err === 'wrong_password') {
+          setErrors({
+            password: 'Wrong password'
+          });
+        } else if (err.message === 'wrong_file') {
+          setErrors({
+            system: 'This is not a backup file'
+          });
+        } else {
+          setErrors({
+            system: err.message || err,
+          });
+        }
+      })
+      .finally(() => setLoading(false))
+    }, 100);
   }, [password, file, setLoading, setErrors]);
 
   const handleBack = () => {

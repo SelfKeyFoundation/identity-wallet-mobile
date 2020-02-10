@@ -33,6 +33,10 @@ export class TokenModel extends BaseModel {
     return this.findOne('symbol = $0', symbol);
   }
 
+  findByAddress(address) {
+    return this.findOne('address = $0', address);
+  }
+
   constructor() {
     super(TokenModel.schema);
   }

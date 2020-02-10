@@ -69,9 +69,8 @@ export async function createVault(props: VaultConstructor) {
   return vault;
 }
 
-export async function vaultExists(vaultId) {
-  const vault = await getKeychain().getItem(vaultId);
-  return !!vault;
+export async function getVault(vaultId) {
+  return getKeychain().getItem(vaultId);
 }
 
 export function removeVault(vaultId) {
