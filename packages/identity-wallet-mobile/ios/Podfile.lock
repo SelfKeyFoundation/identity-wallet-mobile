@@ -70,6 +70,8 @@ PODS:
     - React
   - react-native-randombytes (3.5.3):
     - React
+  - react-native-sodium (0.3.5):
+    - React
   - react-native-splash-screen (3.2.0):
     - React
   - react-native-udp (2.6.1):
@@ -134,6 +136,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-randombytes (from `../node_modules/react-native-randombytes`)
+  - react-native-sodium (from `../node_modules/react-native-sodium`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-udp (from `../node_modules/react-native-udp`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -191,6 +194,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-document-picker"
   react-native-randombytes:
     :path: "../node_modules/react-native-randombytes"
+  react-native-sodium:
+    :path: "../node_modules/react-native-sodium"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
   react-native-udp:
@@ -254,6 +259,7 @@ SPEC CHECKSUMS:
   react-native-camera: 52114c432860b89986c9ee4919d00a48a6ba7abb
   react-native-document-picker: c36bf5f067a581657ecaf7124dcd921a8be19061
   react-native-randombytes: 3638d24759d67c68f6ccba60c52a7a8a8faa6a23
+  react-native-sodium: 87cdd32d3bc9f70eeeb925da8e8a4f7471253755
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-udp: 54a1aa9bf5c0824f930b1ba6dbfb3fd3e733bba9
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90

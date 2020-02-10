@@ -2,16 +2,11 @@
 // import request from 'request';
 import BigNumber from 'bignumber.js';
 import AsyncTaskQueue from '@selfkey/blockchain/util/async-task-queue';
-
-// import { Logger } from 'common/logger';
-import config from '@selfkey/wallet-core/config';
-// import Wallet from '../wallet/wallet';
-// import WalletSetting from '../wallet/wallet-setting';
-
-// const log = new Logger('tx-history-service');
-
+import { getConfigs } from '@selfkey/configs';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import { TxHistoryModel } from '@selfkey/wallet-core/models/index';
+
+const config = getConfigs();
 
 export const REQUEST_INTERVAL_DELAY = 600; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);

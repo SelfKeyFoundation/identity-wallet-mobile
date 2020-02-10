@@ -1,14 +1,15 @@
+import { getConfigs } from '@selfkey/configs';
+import { TxHistoryService } from '@selfkey/wallet-core/services/tx-history-service';
 import txHistoryActions from './actions';
 import txHistoryDuck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
-import { TxHistoryService } from '@selfkey/wallet-core/services/tx-history-service';
 
 const txHistoryModel = TxHistoryModel.getInstance();
 const txHistoryService = TxHistoryService.getInstance();
 
 // TODO: Move to configs
-const chainId = 3;
+const { chainId } = getConfigs();
 
 export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {

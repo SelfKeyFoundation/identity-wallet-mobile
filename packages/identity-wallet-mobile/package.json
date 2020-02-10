@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@selfkey/blockchain": "1.0.0",
+    "@selfkey/configs": "1.0.0",
     "@selfkey/mobile-ui": "1.0.0",
     "@selfkey/wallet-core": "1.0.0",
     "@storybook/addon-actions": "5.2.6",
@@ -65,6 +66,7 @@
     "react-native-reanimated": "1.2.0",
     "react-native-share": "https://github.com/react-native-community/react-native-share",
     "react-native-snap-carousel": "3.8.4",
+    "react-native-sodium": "^0.3.5",
     "react-native-splash-screen": "3.2.0",
     "react-native-svg": "9.6.4",
     "react-native-svg-transformer": "0.13.0",

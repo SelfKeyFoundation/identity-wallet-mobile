@@ -8,11 +8,6 @@ import { Snackbar } from 'react-native-paper';
 
 const { operations, selectors } = modules.transaction;
 
-function getEtherscanUrl(hash) {
-  // TODO: Handle mainnet url based on configs/env variables
-  return `https://ropsten.etherscan.io/address/${hash}`;
-}
-
 export function ErrorStep(props) {
   const dispatch = useDispatch();
   const token = useSelector(selectors.getToken);

@@ -11,3 +11,4 @@ import './send-tokens-success.stories.js';
 import './send-tokens-error.stories.js';
 import './tx-history-row.stories.js';
 import './tx-history.stories.js';
+import './transaction-details.stories.js';

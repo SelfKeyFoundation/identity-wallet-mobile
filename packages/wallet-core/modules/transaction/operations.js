@@ -7,7 +7,7 @@ import BN from 'bignumber.js';
 import transactionActions from './actions';
 import duck from './index';
 import ducks from '../index';
-
+import { getConfigs } from '@selfkey/configs';
 const web3Service = Web3Service.getInstance();
 
 // TODO: Move to separate file
@@ -21,7 +21,7 @@ const getTransactionCount = async address => {
 };
 
 // TODO: Use configs
-const chainId = 3;
+const { chainId } = getConfigs();
 
 const transferHex = '0xa9059cbb';
 

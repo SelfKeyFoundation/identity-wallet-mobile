@@ -10,6 +10,7 @@ import {
   Explanatory,
   Link
 } from '@selfkey/mobile-ui';
+import { TouchableWithoutFeedback } from 'react-native';
 import { TxHistoryRow } from '../';
 import styled from 'styled-components/native';
 
@@ -66,15 +67,17 @@ export function TxHistory(props) {
         props.items.map(item => {
           return (
             <BorderRow>
-              <Col noPadding>
-                <TxHistoryRow
-                  tokenSymbol={item.tokenSymbol}
-                  tokenDecimal={item.tokenDecimal}
-                  amount={item.amount}
-                  status={item.status}
-                  timeStamp={item.timeStamp}
-                />
-              </Col>
+              <TouchableWithoutFeedback onPress={() => props.onItemPress(item)}>
+                <Col noPadding>
+                  <TxHistoryRow
+                    tokenSymbol={item.tokenSymbol}
+                    tokenDecimal={item.tokenDecimal}
+                    amount={item.amount}
+                    status={item.status}
+                    timeStamp={item.timeStamp}
+                  />
+                </Col>
+              </TouchableWithoutFeedback>
             </BorderRow>
           );
         })

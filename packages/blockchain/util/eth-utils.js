@@ -1,11 +1,16 @@
 import { BigNumber } from 'bignumber.js';
 import Web3 from 'web3';
+import { getConfigs } from '@selfkey/configs';
 
 let web3;
 
 class EthUtils {
 	static set web3(value) {
 		web3 = value;
+	}
+
+	static getTxReceiptUrl(hash) {
+		return `${getConfigs().etherscanUrl}/tx/${hash}`;
 	}
 
 	static isChecksumAddress(address) {
