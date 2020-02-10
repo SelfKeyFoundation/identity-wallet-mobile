@@ -1,10 +1,31 @@
 import React, { useState, useCallback } from 'react';
+import { Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImportWalletBackup } from './ImportWalletBackup';
 import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
 import ducks from '@selfkey/wallet-core/modules';
 import DocumentPicker from 'react-native-document-picker';
 import fs from 'react-native-fs';
+
+const iOSMimeTypes = [
+  'public.png',
+  'public.jpeg',
+  'com.adobe.pdf',
+  'public.data',
+  'org.gnu.gnu-tar-archive',
+  'public.tar-archive',
+  'org.gnu.gnu-zip-archive',
+  'org.gnu.gnu-zip-tar-archive',
+  'public.bzip2-archive',
+  'public.tar-bzip2-archive',
+  'com.apple.binhex-archive',
+  'com.apple.macbinary-archive',
+  'com.allume.stuffit-archive',
+  'public.zip-archive',
+  'com.pkware.zip-archive',
+  'public.content',
+  'public.disk-image',
+];
 
 function ImportWalletBackupContainer(props) {
   const [isLoading, setLoading] = useState();
@@ -17,7 +38,9 @@ function ImportWalletBackupContainer(props) {
   const dispatch = useDispatch();
   const handleSelectFile = useCallback(() => {
     DocumentPicker
-      .pick({})
+      .pick({
+        type: Platform.OS === 'ios' ? iOSMimeTypes : DocumentPicker.types.allFiles,
+      })
       .then(async (res) => {
         const data = await fs.readFile(res.uri, 'utf8');
         // create funtion to unlock the data
@@ -29,6 +52,18 @@ function ImportWalletBackupContainer(props) {
   }, []);
   const handlePassword = useCallback((value) => setPassword(value), []);
   const handleSubmit = useCallback(async () => {
+    if (!file || !file.data) {
+      return setErrors({
+        system: 'Please select a backup file',
+      });
+    }
+
+    if (!password) {
+      return setErrors({
+        password: 'Please enter the password',
+      });
+    }
+
     setLoading(true);
 
     try {
