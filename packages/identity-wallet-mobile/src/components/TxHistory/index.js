@@ -19,16 +19,19 @@ const parseItem = (item) => {
   };
 };
 
-export function TxHistoryHOC(props) {
-  const transactions = useSelector(ducks.txHistory.selectors.getTransactionsByToken(props.tokenSymbol));
+export function TxHistoryContainer(props) {
+  const transactions = useSelector(props.tokenSymbol
+    ? ducks.txHistory.selectors.getTransactionsByToken(props.tokenSymbol)
+    : ducks.txHistory.selectors.getTransactions);
+
   const dispatch = useDispatch();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const handleLoadMore = useCallback(() => setVisibleCount(visibleCount + PAGE_SIZE));
 
   if (transactions.length === 0) {
-    return (
+    return props.showEmptyAlert ? (
       <TransactionsEmptyAlert tokenSymbol={props.tokenSymbol} />
-    );
+    ) : null;
   }
 
   const handleTxDetails = useCallback((item) => {

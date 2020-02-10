@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native';
+import { ManageTokensContainer } from '../../components';
 
 const HeaderTitle = styled.Text`
   color: ${props => props.theme.colors.white};
@@ -15,11 +16,18 @@ const Container = styled.View`
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
+const Body = styled.View`
+  margin: 10px 20px 0px 20px;
+`;
+
 export default function MyTokensScreen() {
   return (
     <Container>
       <SafeAreaView>
-        <HeaderTitle>My Tokens</HeaderTitle>
+        <HeaderTitle>Manage Tokens</HeaderTitle>
+        <Body>
+          <ManageTokensContainer />
+        </Body>
       </SafeAreaView>
     </Container>
   );

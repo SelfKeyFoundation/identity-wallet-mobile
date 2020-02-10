@@ -7,7 +7,7 @@ export * from './TokenBoxCarousel';
 
 const { selectors } = modules.wallet;
 
-export function TokenBoxCarouselHOC() {
+export function TokenBoxCarouselContainer() {
   const ethBalance = useSelector(selectors.getBalance);
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokens = useSelector(selectors.getTokens);

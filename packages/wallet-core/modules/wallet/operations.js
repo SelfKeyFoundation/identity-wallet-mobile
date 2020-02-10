@@ -1,6 +1,6 @@
 import walletActions from './actions';
 import * as selectors from './selectors';
-import { WalletModel, TokenModel } from '../../models';
+import { WalletModel, TokenModel, WalletTokenModel } from '../../models';
 import { exitApp, System } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
@@ -22,29 +22,58 @@ async function loadWalletBalance(wallet) {
   wallet.balance = await getBalanceByAddress(wallet.address);
 }
 
+const colors = [
+  '#ADC8D8',
+  '#93B0C1',
+  '#00C0D9',
+  '#475768',
+  '#697C95',
+  '#2DA1F8',
+  '#FE4B61',
+  '#50E3C2',
+  '#2798BC',
+  '#9418DC',
+  '#0C556C',
+];
+
+const computeColor = token => token.color ? token : ({
+  ...token,
+  color: colors[`${token.symbol}`.charAt(0) % colors.length]
+});
+
 async function loadWalletTokens(wallet) {
   // Fetch tokens balance
-  wallet.tokens = await Promise.all(wallet.tokens.map(async (walletToken) => {
-    const token = await TokenModel.getInstance().findById(walletToken.tokenId || walletToken.id);
-    let balance = 0;
+  wallet.tokens = await Promise.all(
+    wallet.tokens
+      .map(async (walletToken) => {
+        const token = await TokenModel.getInstance().findById(walletToken.tokenId || walletToken.id);
+        let balance = 0;
 
-    try {
-      balance = await getTokenBalance(token.address, wallet.address);
-    } catch(err) {
-      console.error(err);
-    }
+        try {
+          balance = await getTokenBalance(token.address, wallet.address);
 
-    const price = getTokenPrice(token.symbol);
+          if (balance === 'NaN') {
+            balance = 0;
+          }
+        } catch(err) {
+          console.error(err);
+        }
 
-    return {
-      id: token.id,
-      symbol: getSymbol(token.symbol),
-      decimal: token.decimal,
-      address: token.address,
-      balanceInFiat: price.priceUSD,
-      balance: balance || 0,
-    }
-  }));
+        const price = getTokenPrice(token.symbol);
+
+        return {
+          id: token.id,
+          fiatCurrency: 'usd',
+          symbol: getSymbol(token.symbol),
+          decimal: token.decimal,
+          address: token.address,
+          balanceInFiat: price.priceUSD,
+          balance,
+        };
+      })
+  );
+
+  wallet.tokens = wallet.tokens.map(computeColor);
 }
 
 /**

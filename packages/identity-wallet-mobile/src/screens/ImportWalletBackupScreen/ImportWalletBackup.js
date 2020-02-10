@@ -68,7 +68,7 @@ const PageDescription = styled(Paragraph)`
 `;
 
 const Footer = styled(Grid)`
-  padding: 20px 35px;
+  padding: 35px;
 `;
 
 export function ImportWalletBackup(props) {

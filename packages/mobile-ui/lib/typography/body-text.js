@@ -43,7 +43,7 @@ export const ExplanatorySmall = styled.Text`
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-export const ButtonLink = styled.Text`
+export const ButtonLinkText = styled.Text`
   color: ${props => props.theme.colors.primary};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};
