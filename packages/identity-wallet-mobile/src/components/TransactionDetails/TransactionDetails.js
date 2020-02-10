@@ -59,7 +59,7 @@ const statusMap = {
 	'received': 'Received',
 	'sent': 'Sent',
 	'receiving': 'Receiving',
-	'sending': 'sending',
+	'sending': 'Sending',
 }
 
 export function TransactionDetails(props: TransactionDetailsProps) {
@@ -79,7 +79,7 @@ export function TransactionDetails(props: TransactionDetailsProps) {
 				<Row justifyContent="center" marginBottom={3}>
 					<Col autoWidth noPadding>
 						<Ammount>
-							<FormattedNumber value={props.tokenAmount} currency={props.token} />
+							<FormattedNumber value={props.tokenAmount} currency={props.token} decimal={props.tokenDecimal}/>
 						</Ammount>
 					</Col>
 				</Row>
