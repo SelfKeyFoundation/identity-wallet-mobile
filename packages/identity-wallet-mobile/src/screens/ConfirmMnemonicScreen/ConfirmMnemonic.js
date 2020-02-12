@@ -76,7 +76,7 @@ const WordBoxText = styled.Text`
 export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
   const theme = useContext(ThemeContext);
   const { errorMessage } = props;
-  const mnemonicConfirmation = props.mnemonicConfirmation.split(' ').filter(v => !!v);
+  const { mnemonicConfirmation } = props;
   const mnemonic = props.mnemonic.split(' ');
 
   return (
@@ -103,7 +103,8 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                     <Row>
                       {
                         WordPlaceholder.slice(rowIdx, rowIdx + 4).map((_, idx) => {
-                          const word = mnemonicConfirmation[rowIdx * 4 + idx];
+                          const wordIndex = mnemonicConfirmation[rowIdx * 4 + idx];
+                          const word = mnemonic[wordIndex];
                           return (
                             <WordBox isEmpty={!word}>
                               <WordBoxText>
@@ -154,9 +155,10 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                     <Row>
                       {
                         WordPlaceholder.slice(rowIdx, rowIdx + 4).map((_, idx) => {
-                          const word = mnemonic[rowIdx * 4 + idx];
-                          const isFound = mnemonicConfirmation.find(w => w === word);
-                          const handlePress = () => props.onWordPress(word);
+                          const wordIndex = rowIdx * 4 + idx;
+                          const word = mnemonic[wordIndex];
+                          const isFound = mnemonicConfirmation.find(index => index === wordIndex) >= 0;
+                          const handlePress = () => props.onWordPress(wordIndex);
                           return (
                             <TouchableWithoutFeedback onPress={!isFound && handlePress}>
                               <WordBox disabled={isFound}>

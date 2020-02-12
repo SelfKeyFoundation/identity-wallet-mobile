@@ -10,6 +10,7 @@ function ConfirmMnemonicContainer(props) {
   const dispatch = useDispatch();
   const mnemonic = useSelector(selectors.getShuffledMnemonic);
   const mnemonicConfirmation = useSelector(selectors.getMnemonicConfirmation);
+  const shuffledMnemonic = useSelector(selectors.getShuffledMnemonic);
   const errorMessage = useSelector(selectors.getConfirmationError);
 
   const handleBack = useCallback(() => {
@@ -20,8 +21,8 @@ function ConfirmMnemonicContainer(props) {
     dispatch(operations.submitConfirmationOperation())
   });
 
-  const handleWordPress = useCallback(word => {
-    dispatch(operations.addConfirmationWord(word));
+  const handleWordPress = useCallback(index => {
+    dispatch(operations.addConfirmationWord(index));
   });
 
   const handleClear = useCallback(() => {
@@ -32,6 +33,7 @@ function ConfirmMnemonicContainer(props) {
     <ConfirmMnemonic
       onWordPress={handleWordPress}
       mnemonicConfirmation={mnemonicConfirmation}
+      shuffledMnemonic={shuffledMnemonic}
       mnemonic={mnemonic}
       onClear={handleClear}
       onSubmit={handleSubmit}

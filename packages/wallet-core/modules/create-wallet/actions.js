@@ -19,10 +19,10 @@ export const walletActions = {
       mnemonic,
     },
   }),
-  addConfirmationWord: (word) => ({
+  addConfirmationWord: (wordIndex) => ({
     type: types.ADD_CONFIRMATION_WORD,
     payload: {
-      word,
+      wordIndex,
     },
   }),
   setShuffledMnemonic: (mnemonic) => ({

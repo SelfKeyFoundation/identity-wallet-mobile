@@ -76,8 +76,15 @@ const submitConfirmationOperation = (form) => async (dispatch, getState) => {
   const state = getState();
   const mnemonic = selectors.getMnemonicPhrase(state);
   const confirmationMenmonic = selectors.getMnemonicConfirmation(state);
+  const shuffledMnemonic = selectors.getShuffledMnemonic(state).split(' ');
+  const confirmation = confirmationMenmonic
+    .map(index => shuffledMnemonic[index])
+    .join(' ')
+    .trim();
 
-  if (mnemonic !== confirmationMenmonic) {
+  debugger;
+
+  if (mnemonic !== confirmation) {
     await dispatch(actions.setConfirmationError('Current order doesn’t match your Recovery Phrase. Please try again.'))
     return;
   }
