@@ -82,8 +82,6 @@ const submitConfirmationOperation = (form) => async (dispatch, getState) => {
     .join(' ')
     .trim();
 
-  debugger;
-
   if (mnemonic !== confirmation) {
     await dispatch(actions.setConfirmationError('Current order doesn’t match your Recovery Phrase. Please try again.'))
     return;

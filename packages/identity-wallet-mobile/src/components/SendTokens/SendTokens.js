@@ -25,6 +25,7 @@ import {
   H3,
   FormattedNumber,
 } from '@selfkey/mobile-ui';
+import { SelectBox } from '../index';
 import { type Token } from '@selfkey/wallet-core/types/Token';
 
 const Body = styled.View`
@@ -140,8 +141,22 @@ export function TransactionFeeSwitcher(props: TransactionTabsProps) {
   );
 }
 
+function getTokenLabel(token) {
+  if (!token) {
+    return;
+  }
+
+  const symbol = token.symbol && token.symbol.toUpperCase()
+
+  if (!token.name) {
+    return symbol;
+  }
+
+  return `${symbol} - ${token.name}`;
+}
+
 export function SendTokens(props: SendTokensProps) {
-  const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails } = props;
+  const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails, tokenOptions } = props;
   const { token } = data;
   const handleChange = (fieldName) => (value) => props.onChange(fieldName, value);
 
@@ -152,17 +167,31 @@ export function SendTokens(props: SendTokensProps) {
       <Grid>
         <Row>
           <Col>
-            <TextInput
-              value={`${tokenDetails.symbol && tokenDetails.symbol.toUpperCase()} - ${tokenDetails.name}`}
+            { tokenDetails && !tokenOptions && <TextInput
+              value={getTokenLabel(tokenDetails)}
               label="Token"
               disabled
               labelStyle={{
                 color: '#ADC8D8'
               }}
-            />
+            /> }
+            {
+              tokenOptions && (
+                <SelectBox
+                  label="Select a token"
+                  onValueChange={props.onTokenSelect}
+                  selectedValue={tokenDetails && tokenDetails.symbol && tokenDetails.symbol.toUpperCase()}
+                  placeholder="Select a token"
+                  items={tokenOptions.map(token => ({
+                    label: getTokenLabel(token),
+                    value: token.symbol && token.symbol.toUpperCase(),
+                  }))}
+                />
+              )
+            }
           </Col>
         </Row>
-        <Row justifyContent="center" marginTop={15}>
+        { tokenDetails && <Row justifyContent="center" marginTop={15}>
           <Col autoWidth>
             <DefinitionTitle>
               Available
@@ -176,7 +205,7 @@ export function SendTokens(props: SendTokensProps) {
               />
             </H3>
           </Col>
-        </Row>
+        </Row>}
         <Row alignBottom>
           <Col>
             <TextInput
@@ -291,7 +320,7 @@ export function SendTokens(props: SendTokensProps) {
               onPress={props.onSend}
               disabled={!props.canSend}
             >
-              Send {tokenDetails.symbol}
+              Send {tokenDetails && tokenDetails.symbol}
             </Button>
           </Col>
         </Row>

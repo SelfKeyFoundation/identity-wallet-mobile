@@ -30,6 +30,10 @@ export function TokenBoxCarouselContainer() {
     // TODO: Get currency from user settings
     fiatCurrency: "usd",
     fiatAmount: fiatAmount
+  }, {
+    tokenCode: 'custom',
+    tokenName: 'Custom Tokens',
+    iconName: 'tokens'
   }];
 
   return (

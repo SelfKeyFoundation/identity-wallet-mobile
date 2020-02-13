@@ -8,6 +8,7 @@ const { operations, selectors } = ducks.createWallet;
 
 function ConfirmMnemonicContainer(props) {
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
   const mnemonic = useSelector(selectors.getShuffledMnemonic);
   const mnemonicConfirmation = useSelector(selectors.getMnemonicConfirmation);
   const shuffledMnemonic = useSelector(selectors.getShuffledMnemonic);
@@ -18,7 +19,12 @@ function ConfirmMnemonicContainer(props) {
   });
 
   const handleSubmit = useCallback(() => {
-    dispatch(operations.submitConfirmationOperation())
+    setLoading(true);
+
+    setTimeout(() => {
+      dispatch(operations.submitConfirmationOperation())
+        .finally(() => setLoading(false));
+    }, 100);
   });
 
   const handleWordPress = useCallback(index => {
@@ -36,6 +42,7 @@ function ConfirmMnemonicContainer(props) {
       shuffledMnemonic={shuffledMnemonic}
       mnemonic={mnemonic}
       onClear={handleClear}
+      isLoading={isLoading}
       onSubmit={handleSubmit}
       onBack={handleBack}
       errorMessage={errorMessage}

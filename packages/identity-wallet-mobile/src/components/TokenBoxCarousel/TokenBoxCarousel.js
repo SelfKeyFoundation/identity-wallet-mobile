@@ -4,11 +4,12 @@ import React from 'react';
 import { Dimensions, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { TokenBox } from '../TokenBox';
-import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
+import { IconKey, IconEth, IconTokens } from '@selfkey/mobile-ui/lib/svg-icons';
 
 const ICON_MAP = {
   key: IconKey,
   eth: IconEth,
+  tokens: IconTokens,
 }
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');

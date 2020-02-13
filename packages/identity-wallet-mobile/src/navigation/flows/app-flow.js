@@ -9,6 +9,7 @@ import SendTokensScreen from '../../screens/SendTokensScreen';
 import MyTokensScreen from '../../screens/MyTokensScreen';
 import ScanQRScreen from '../../screens/ScanQRScreen';
 import CreateBackupScreen from '../../screens/CreateBackupScreen';
+import CustomTokensScreen from '../../screens/CustomTokensScreen';
 import TokenDetailsScreen from '../../screens/TokenDetailsScreen';
 import CreateNewPasswordScreen from '../../screens/CreateNewPasswordScreen';
 import ConfirmNewPasswordScreen from '../../screens/ConfirmNewPasswordScreen';
@@ -29,6 +30,7 @@ export const appTabNavigation = createBottomTabNavigator({
 export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.APP_TAB_NAVIGATION]: appTabNavigation,
   [Routes.TOKEN_DETAILS]: TokenDetailsScreen,
+  [Routes.CUSTOM_TOKENS]: CustomTokensScreen,
   [Routes.SCAN_QR]: ScanQRScreen,
   [Routes.CREATE_BACKUP]: CreateBackupScreen,
   [Routes.WALLET_NEW_PASSWORD]: CreateNewPasswordScreen,

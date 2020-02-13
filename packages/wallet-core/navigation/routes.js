@@ -10,6 +10,7 @@ export const APP_SETTINGS = 'app/settings';
 export const APP_MY_TOKENS = 'app/myTokens';
 export const APP_SCAN_QR = 'app/scanQr';
 export const TOKEN_DETAILS = 'app/tokenDetails';
+export const CUSTOM_TOKENS = 'app/customTokens';
 export const TRANSACTION_DETAILS = 'app/transactionDetails';
 export const SCAN_QR = 'scanQR';
 export const CREATE_BACKUP = 'createBackup';

@@ -197,6 +197,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
             <Col autoWidth>
               <Button
                 onPress={props.onSubmit}
+                isLoading={props.isLoading}
                 type="full-primary"
               >
                 Continue
