@@ -41,8 +41,6 @@ const loadAppOperation = () => async (dispatch, getState) => {
   } else {
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
-
-  dispatch(ducks.unlockWallet.operations.submitUnlockOperation({ password: '!@9Mnemdm' }));
 };
 
 const acceptTermsOperation = () => async (dispatch, getState) => {
