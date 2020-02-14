@@ -13,6 +13,7 @@ import CustomTokensScreen from '../../screens/CustomTokensScreen';
 import TokenDetailsScreen from '../../screens/TokenDetailsScreen';
 import CreateNewPasswordScreen from '../../screens/CreateNewPasswordScreen';
 import ConfirmNewPasswordScreen from '../../screens/ConfirmNewPasswordScreen';
+import RecoveryInformationScreen from '../../screens/RecoveryInformationScreen';
 
 import { stackNavigatorConfig } from '../configs';
 
@@ -35,7 +36,7 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.CREATE_BACKUP]: CreateBackupScreen,
   [Routes.WALLET_NEW_PASSWORD]: CreateNewPasswordScreen,
   [Routes.WALLET_CONFIRM_NEW_PASSWORD]: ConfirmNewPasswordScreen,
-
+  [Routes.RECOVERY_INFORMATION]: RecoveryInformationScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);
