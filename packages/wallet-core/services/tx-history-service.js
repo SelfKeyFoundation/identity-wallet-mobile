@@ -6,22 +6,20 @@ import { getConfigs } from '@selfkey/configs';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import { TxHistoryModel } from '@selfkey/wallet-core/models/index';
 
-const config = getConfigs();
-
 export const REQUEST_INTERVAL_DELAY = 600; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);
 export const ENDPOINT_CONFIG = {
 	1: { url: 'https://api.etherscan.io/api' },
 	3: { url: 'http://api-ropsten.etherscan.io/api' }
 };
-export const API_ENDPOINT = ENDPOINT_CONFIG[config.chainId].url;
+export const getApiEndpoint = () => ENDPOINT_CONFIG[getConfigs().chainId].url;
 
 export const TX_HISTORY_ENDPOINT_CONFIG = {
 	1: { url: 'https://etherscan.io/tx' },
 	3: { url: 'https://ropsten.etherscan.io/tx' }
 };
 
-export const TX_HISTORY_API_ENDPOINT = TX_HISTORY_ENDPOINT_CONFIG[config.chainId].url;
+export const getTxHistoryApiEndpoint = () => TX_HISTORY_ENDPOINT_CONFIG[getConfigs().chainId].url;
 
 export let OFFSET = 1000;
 
@@ -91,19 +89,19 @@ export class TxHistoryService {
 		return this.makeRequest(args.method, args.url, args.data || null);
 	}
 	loadEthTxHistory(address, startblock, endblock, page) {
-		const ACTION_URL = `${API_ENDPOINT}${TX_LIST_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
+		const ACTION_URL = `${getApiEndpoint()}${TX_LIST_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	loadERCTxHistory(address, startblock, endblock, page) {
-		const ACTION_URL = `${API_ENDPOINT}${TOKEN_TX_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
+		const ACTION_URL = `${getApiEndpoint()}${TOKEN_TX_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getTransactionReceipt(txhash) {
-		const ACTION_URL = API_ENDPOINT + TX_RECEIPT_ACTION + '&txhash=' + txhash;
+		const ACTION_URL = getApiEndpoint() + TX_RECEIPT_ACTION + '&txhash=' + txhash;
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getMostResentBlock() {
-		const ACTION_URL = API_ENDPOINT + '?module=proxy&action=eth_blockNumber';
+		const ACTION_URL = getApiEndpoint() + '?module=proxy&action=eth_blockNumber';
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	async makeRequest(method, url) {
@@ -148,7 +146,7 @@ export class TxHistoryService {
 	}
 	async processTx(txs, walletAddress) {
 		let processedTx = {
-			networkId: config.chainId,
+			networkId: getConfigs().chainId,
 			createdAt: new Date().getTime()
 		};
 		let propperTx = txs.token ? txs.token : txs.eth;

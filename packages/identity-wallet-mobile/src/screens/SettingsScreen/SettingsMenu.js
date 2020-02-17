@@ -8,6 +8,13 @@ import {
   DefinitionTitle,
 } from '@selfkey/mobile-ui';
 import APP_VERSION from '@selfkey/identity-wallet-mobile/app-version.json';
+import { getCurrentEnv } from '@selfkey/configs';
+
+function getVersion() {
+  const env = getCurrentEnv();
+  const version = APP_VERSION.number + (env !== 'prod' ? ` (${env})` : '');
+  return `${version}`;
+}
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -138,10 +145,14 @@ export function SettingsMenu(props) {
         <MenuItem hasBorder onPress={props.onHelpAndSupport}>
           Help & Support
         </MenuItem>
+        {props.walletEnv.isDevEnabled && <MenuItem hasBorder onPress={props.onDeveloperSettings}>
+          Developer Settings
+        </MenuItem>}
         <MenuItem
           menuControl={
-            <MenuRightText>{ APP_VERSION }</MenuRightText>
+            <MenuRightText>{ getVersion(props.walletEnv) }</MenuRightText>
           }
+          onPress={props.onVersionPress}
         >
           Version
         </MenuItem>

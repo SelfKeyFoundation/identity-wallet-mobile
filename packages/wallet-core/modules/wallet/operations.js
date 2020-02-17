@@ -4,6 +4,7 @@ import { WalletModel, TokenModel, WalletTokenModel } from '../../models';
 import { exitApp, System } from '../../system';
 import { getBalanceByAddress, getTokenBalance } from './wallet-util';
 import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
+import { getTokenInfo } from '../../services/token-service';
 import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
 import ducks from '../index';
 import { encryptData, decryptData, generateBackup } from '../../identity-vault/backup';
@@ -188,12 +189,27 @@ const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) =>
   const token = await dispatch(validateTokenOperation({ contractAddress }))
   const { wallet } = getState();
 
+  const tokenModel = TokenModel.getInstance();
+  let dbToken = await tokenModel.findByAddress(contractAddress);
+
+  if (!dbToken) {
+    dbToken = await tokenModel.create({
+      id: tokenModel.generateId(),
+      decimal: token.decimal,
+      address: contractAddress,
+      isCustom: true,
+      symbol: token.symbol,
+      createdAt: new Date,
+      updatedAt: new Date,
+    });
+  }
+
   const newToken = {
     id: WalletTokenModel.getInstance().generateId(),
     balance: '0',
     balanceInFiat: 0,
     hidden: false,
-    tokenId: token.id
+    tokenId: dbToken.id
   }
 
   wallet.tokens.push(newToken);
@@ -214,9 +230,9 @@ const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) =>
 
 const validateTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
   const state = getState();
-  const token = await TokenModel.getInstance().findByAddress(contractAddress);
+  const token = await getTokenInfo(contractAddress);
 
-  if (!token) {
+  if (!token || !token.symbol) {
     throw {
       code: 'address_not_found',
     };

@@ -14,7 +14,7 @@ export function setItem(id: string, data: any, options: Keychain.Options = {}) {
 
   options.service = id;
 
-  return Keychain.setGenericPassword(jsonData, data.password, options);
+  return Keychain.setGenericPassword(jsonData, data.password || 'password', options);
 }
 
 /**

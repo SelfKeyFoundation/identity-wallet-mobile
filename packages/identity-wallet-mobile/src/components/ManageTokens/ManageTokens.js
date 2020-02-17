@@ -15,7 +15,7 @@ import {
   FormattedNumber
 } from '@selfkey/mobile-ui';
 import { TokensEmptyAlert } from '../index';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, ScrollView } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
 const screenWidth = Dimensions.get('window').width
@@ -33,7 +33,8 @@ const TotalTokenAmount = styled.Text`
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Container = styled.View``;
+const Container = styled.View`
+`;
 
 const TokenRow = styled.View`
   flex-direction: row;
@@ -103,6 +104,17 @@ const EmptyAlertConatiner = styled.View`
   margin-top: 10px;
 `;
 
+const TestView = styled.View`
+  height: 100px;
+  width: 100%;
+  background: red;
+  margin-bottom: 20px;
+`;
+
+const ScrollWrapper = styled.View`
+  margin-bottom: 400px;
+`;
+
 const removeOffset = -screenWidth;
 
 export interface Token {
@@ -164,58 +176,62 @@ export function ManageTokens(props: ManageTokensProps) {
           </EmptyAlertConatiner>
         )
       }
-      <SwipeListView
-          data={listData}
-          renderItem={ ({ item: token }, rowMap) => (
-            <TokenRow key={token.id}>
-              <Col autoWidth noPadding>
-                <TokenIcon name={token.name || token.symbol} color={token.color} />
-              </Col>
-              <Col noPadding paddingLeft={11}>
-                <TokenName>
-                  { token.name || token.symbol }
-                </TokenName>
-                <Explanatory>
-                  { token.symbol && token.symbol.toUpperCase() }
-                </Explanatory>
-              </Col>
-              <Col autoWidth alignItems="flex-end" noPadding>
-                <TokenName>
-                  <FormattedNumber
-                    value={token.amount}
-                    decimal={10}
-                  />
-                </TokenName>
-                <Explanatory>
-                  <FormattedNumber
-                    value={token.fiatAmount}
-                    currency={token.fiatCurrency}
-                    decimal={2}
-                  />
-                </Explanatory>
-              </Col>
-            </TokenRow>
-          )}
-          renderHiddenItem={ (data, rowMap) => (
-            <TokenOptionsRow key={data.item.id}>
-              <Col autoWidth noPadding>
-                <Row justifyContent="center">
-                  <Col autoWidth noPadding>
-                    <SKIcon name="icon-hide" color="#00C0D9" size={16} />
-                  </Col>
-                </Row>
-                <Row justifyContent="center" marginTop={10}>
-                  <Col autoWidth noPadding>
-                    <HideLink>Hide</HideLink>
-                  </Col>
-                </Row>
-              </Col>
-            </TokenOptionsRow>
-          )}
-          leftOpenValue={0}
-          rightOpenValue={-screenWidth}
-          onSwipeValueChange={handleSwipeChange}
-      />
+      <Row>
+        <Col marginBottom={40}>
+          <SwipeListView
+            data={listData}
+            renderItem={ ({ item: token }, rowMap) => (
+              <TokenRow key={token.id}>
+                <Col autoWidth noPadding>
+                  <TokenIcon name={token.name || token.symbol} color={token.color} />
+                </Col>
+                <Col noPadding paddingLeft={11}>
+                  <TokenName>
+                    { token.name || token.symbol }
+                  </TokenName>
+                  <Explanatory>
+                    { token.symbol && token.symbol.toUpperCase() }
+                  </Explanatory>
+                </Col>
+                <Col autoWidth alignItems="flex-end" noPadding>
+                  <TokenName>
+                    <FormattedNumber
+                      value={token.amount}
+                      decimal={10}
+                    />
+                  </TokenName>
+                  <Explanatory>
+                    <FormattedNumber
+                      value={token.fiatAmount}
+                      currency={token.fiatCurrency}
+                      decimal={2}
+                    />
+                  </Explanatory>
+                </Col>
+              </TokenRow>
+            )}
+            renderHiddenItem={ (data, rowMap) => (
+              <TokenOptionsRow key={data.item.id}>
+                <Col autoWidth noPadding>
+                  <Row justifyContent="center">
+                    <Col autoWidth noPadding>
+                      <SKIcon name="icon-hide" color="#00C0D9" size={16} />
+                    </Col>
+                  </Row>
+                  <Row justifyContent="center" marginTop={10}>
+                    <Col autoWidth noPadding>
+                      <HideLink>Hide</HideLink>
+                    </Col>
+                  </Row>
+                </Col>
+              </TokenOptionsRow>
+            )}
+            leftOpenValue={0}
+            rightOpenValue={-screenWidth}
+            onSwipeValueChange={handleSwipeChange}
+          />
+        </Col>
+      </Row>
     </Container>
   );
 }

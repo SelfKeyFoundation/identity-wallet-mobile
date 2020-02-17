@@ -8,7 +8,6 @@ import transactionActions from './actions';
 import duck from './index';
 import ducks from '../index';
 import { getConfigs } from '@selfkey/configs';
-const web3Service = Web3Service.getInstance();
 
 // TODO: Move to separate file
 const getTransactionCount = async address => {
@@ -17,11 +16,8 @@ const getTransactionCount = async address => {
 		args: [address, 'pending']
 	};
 
-	return web3Service.waitForTicket(params);
+	return Web3Service.getInstance().waitForTicket(params);
 };
-
-// TODO: Use configs
-const { chainId } = getConfigs();
 
 const transferHex = '0xa9059cbb';
 
@@ -43,12 +39,12 @@ function getFee(gasPrice, gasLimit) {
 
 // TODO: Compute gas for custom tokens
 export async function getGasLimit({ contractAddress, address, amount, from }) {
-  const tokenContract = web3Service.web3.eth.Contract(
-    web3Service.contractABI,
+  const tokenContract = Web3Service.getInstance().web3.eth.Contract(
+    Web3Service.getInstance().contractABI,
     contractAddress
   );
   const MAX_GAS = 4500000;
-  const amountInWei = web3Service.web3.utils.toWei(amount);
+  const amountInWei = Web3Service.getInstance().web3.utils.toWei(amount);
   const estimate = await tokenContract.methods
     .transfer(address, amountInWei)
     .estimateGas({ from });
@@ -103,7 +99,7 @@ const getTransactionFeeOptions = (state) => {
   }].map((option) => {
     const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'gwei', 'wei');
     const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
-    const feeInEth = web3Service.web3.utils.fromWei(
+    const feeInEth = Web3Service.getInstance().web3.utils.fromWei(
       feeInWei,
       'ether'
     );
@@ -227,7 +223,7 @@ export const operations = {
       nonce: transactionObject.nonce,
     }));
   
-    const transactionEventEmitter = web3Service.web3.eth.sendTransaction(transactionObject);
+    const transactionEventEmitter = Web3Service.getInstance().web3.eth.sendTransaction(transactionObject);
 
     transactionEventEmitter.on('transactionHash', async hash => {
       await dispatch(
@@ -279,7 +275,7 @@ export const operations = {
     await dispatch(transactionActions.setAddress(address));
 
     try {
-      const web3Utils = web3Service.web3.utils;
+      const web3Utils = Web3Service.getInstance().web3.utils;
       const toChecksumAddress = web3Utils.toChecksumAddress(address);
 
       if (web3Utils.isHex(address) || web3Utils.isAddress(toChecksumAddress)) {
