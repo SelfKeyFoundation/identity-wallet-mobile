@@ -42,7 +42,7 @@ function SettingsScreenContainer(props) {
 
   useEffect(() => {
     Keychain.getItem('wallet-env').then(walletEnv => {
-      setWalletEnv(walletEnv);  
+      setWalletEnv(walletEnv || {});  
     });
   }, []);
 

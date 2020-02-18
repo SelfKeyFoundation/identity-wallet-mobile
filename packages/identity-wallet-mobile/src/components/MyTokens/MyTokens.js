@@ -73,7 +73,7 @@ const TitleRow = styled.View`
 const TokenIcon = props => (
   <TokenIconContainer color={props.color}>
     <TokenIconTitle>
-      { props.name.substring(0, 1)}
+      { props.name && props.name.substring(0, 1)}
     </TokenIconTitle>
   </TokenIconContainer>
 );

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
 		047532E5621B452A8E759718 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C88BA48CFD94DD297DF642B /* Feather.ttf */; };
@@ -904,7 +905,7 @@
 				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.16;
+				MARKETING_VERSION = 0.1.18;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -932,7 +933,7 @@
 				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.16;
+				MARKETING_VERSION = 0.1.18;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

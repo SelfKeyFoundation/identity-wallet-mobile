@@ -69,7 +69,7 @@ async function loadWalletTokens(wallet) {
           symbol: getSymbol(token.symbol),
           decimal: token.decimal,
           address: token.address,
-          balanceInFiat: price.priceUSD,
+          balanceInFiat: parseFloat(balance) * price.priceUSD,
           balance,
         };
       })
@@ -149,7 +149,7 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   // TODO: Store balance in the database
   // When db balance is available can display it and fetch the real balance in background
   // It will make the loading process faster
-  await dispatch(refreshWalletOperation());
+  dispatch(refreshWalletOperation());
 };
 
 /**
