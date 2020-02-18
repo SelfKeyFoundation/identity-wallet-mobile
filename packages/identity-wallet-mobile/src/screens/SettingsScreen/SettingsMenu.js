@@ -132,10 +132,10 @@ export function SettingsMenu(props) {
             <SectionTitle>Support</SectionTitle>
           </Col>
         </Row>
-        <MenuItem hasBorder>
+        <MenuItem hasBorder onPress={props.onPrivacyPolicy}>
           Privacy Policy
         </MenuItem>
-        <MenuItem hasBorder>
+        <MenuItem hasBorder onPress={props.onHelpAndSupport}>
           Help & Support
         </MenuItem>
         <MenuItem

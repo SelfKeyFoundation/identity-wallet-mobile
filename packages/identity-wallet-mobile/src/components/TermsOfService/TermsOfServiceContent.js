@@ -321,7 +321,7 @@ export const TermsOfServiceContent = () => (
     </Paragraph>
     <Paragraph variant="body2" paragraph>
       Please refer to our Privacy Policy at
-      (https://selfkey.org/privacy-policy.html)
+      (https://selfkey.org/privacy-policy/)
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       11) INTELLECTUAL PROPERTY
