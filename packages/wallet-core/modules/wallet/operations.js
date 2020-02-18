@@ -23,8 +23,8 @@ async function loadWalletBalance(wallet) {
 }
 
 const colors = [
-  '#ADC8D8',
   '#93B0C1',
+  '#ADC8D8',
   '#00C0D9',
   '#475768',
   '#697C95',
@@ -38,7 +38,7 @@ const colors = [
 
 const computeColor = token => token.color ? token : ({
   ...token,
-  color: colors[`${token.symbol}`.charAt(0) % colors.length]
+  color: colors[`${token.symbol}`.charCodeAt(0) % colors.length]
 });
 
 async function loadWalletTokens(wallet) {
@@ -83,14 +83,12 @@ async function loadWalletTokens(wallet) {
 const refreshWalletOperation = () => async (dispatch, getState) => {
   const wallet = getState().wallet;
 
+  dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
+
   try {
     await Promise.all([
       loadWalletBalance(wallet),
       loadWalletTokens(wallet),
-      () => {
-        // It will be async
-        dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
-      }
     ]);
   } catch(err) {
     console.error(err);

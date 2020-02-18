@@ -19,20 +19,31 @@ const parseItem = (item) => {
   };
 };
 
-export function TxHistoryContainer(props) {
-  const transactions = useSelector(props.tokenSymbol
-    ? ducks.txHistory.selectors.getTransactionsByToken(props.tokenSymbol)
-    : ducks.txHistory.selectors.getTransactions);
+const TokenTransactions = ({ tokenSymbol, children }) => {
+  const transactions = useSelector(ducks.txHistory.selectors.getTransactionsByToken(tokenSymbol));
 
+  if (transactions.length === 0) {
+    return <TransactionsEmptyAlert tokenSymbol={tokenSymbol} />
+  }
+
+  return children({ transactions });
+}
+
+const AllTransactions = ({ children }) => {
+  const transactions = useSelector(ducks.txHistory.selectors.getTransactions);
+
+
+  if (transactions.length === 0) {
+    return null;
+  }
+
+  return children({ transactions });
+}
+
+export function TxHistoryContainer(props) {
   const dispatch = useDispatch();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const handleLoadMore = useCallback(() => setVisibleCount(visibleCount + PAGE_SIZE));
-
-  if (transactions.length === 0) {
-    return props.showEmptyAlert ? (
-      <TransactionsEmptyAlert tokenSymbol={props.tokenSymbol} />
-    ) : null;
-  }
 
   const handleTxDetails = useCallback((item) => {
     dispatch(ducks.modals.actions.showModal(Routes.MODAL_TRANSACTION_DETAILS, {
@@ -40,12 +51,28 @@ export function TxHistoryContainer(props) {
     }));
   }, []);
 
-  return (
+  const renderTxHistory = ({ transactions }) => (
     <TxHistory
       showLoadMore={transactions.length >= visibleCount}
       items={transactions.slice(0, visibleCount).map(parseItem)}
       onLoadMore={handleLoadMore}
       onItemPress={handleTxDetails}
     />
+  )
+
+  if (props.tokenSymbol) {
+    return (
+      <TokenTransactions
+        tokenSymbol={props.tokenSymbol}
+      >
+        {({ transactions }) => renderTxHistory({ transactions })}
+      </TokenTransactions>
+    )
+  }
+
+  return (
+    <AllTransactions>
+      {({ transactions }) => renderTxHistory({ transactions })}
+    </AllTransactions>
   )
 }
