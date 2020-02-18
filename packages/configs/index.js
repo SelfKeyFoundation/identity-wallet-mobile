@@ -1,4 +1,5 @@
-let currentEnv = 'dev';
+
+let currentEnv = 'prod';
 
 const CONFIGS = {
   dev: {
@@ -21,4 +22,8 @@ export function setEnv(env) {
 
 export function getConfigs() {
   return CONFIGS[currentEnv];
+}
+
+export function getCurrentEnv() {
+  return currentEnv;
 }

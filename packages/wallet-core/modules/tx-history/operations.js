@@ -5,15 +5,9 @@ import txHistoryDuck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
 
-const txHistoryModel = TxHistoryModel.getInstance();
-const txHistoryService = TxHistoryService.getInstance();
-
-// TODO: Move to configs
-const { chainId } = getConfigs();
-
 export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
-    await txHistoryModel.updateById(hash, updatedData); 
+    await TxHistoryModel.getInstance().updateById(hash, updatedData); 
     await dispatch(txHistoryActions.updateTransaction(hash, updatedData));
   },
 
@@ -21,8 +15,8 @@ export const operations = {
     const state = getState();
     const address = ducks.wallet.selectors.getAddress(state);
     // TODO: Need to get lastBlock from wallet db and pass it here
-    await txHistoryService.syncByWallet(address, null);
-    const transactions = await txHistoryModel.findByAddress(address.toLowerCase());
+    await TxHistoryService.getInstance().syncByWallet(address, null);
+    const transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
     await dispatch(txHistoryActions.setTransactions(transactions.reverse()));
   },
   /**
@@ -31,7 +25,7 @@ export const operations = {
   createTransactionOperation: (transaction) => async (dispatch, getState) => {
     const newTransaction = {
       hash: transaction.hash,
-      networkId: chainId,
+      networkId: getConfigs().chainId,
       tokenSymbol: transaction.tokenSymbol,
       from: transaction.from,
       to: transaction.address,
@@ -52,8 +46,8 @@ export const operations = {
       // transactionIndex: 0,
     };
 
-    await txHistoryModel.create(newTransaction);
-    const createdTx = await txHistoryModel.findById(newTransaction.hash);
+    await TxHistoryModel.getInstance().create(newTransaction);
+    const createdTx = await TxHistoryModel.getInstance().findById(newTransaction.hash);
 
     await dispatch(txHistoryActions.addTransaction(newTransaction));
 

@@ -16,7 +16,7 @@ const Container = styled.View`
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-const Body = styled.View`
+const Body = styled.ScrollView`
   margin: 10px 20px 0px 20px;
 `;
 

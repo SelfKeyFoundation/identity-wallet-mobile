@@ -36,13 +36,17 @@ export const AddTokenModal = props => {
   const [tokenSymbol, setTokenSymbol] = useState();
   const [tokenPlaces, setTokenPlaces] = useState();
   const [error, setError] = useState();
-  const [isAddressValid, setIsAddressValid] = useState(true);
+
+  const isTokenValid = !!tokenSymbol;
 
   const validateAddress = debounce(useCallback((contractAddress) => {
     if (contractAddress === address) {
       return;
     }
 
+    setError(false);
+    setTokenSymbol(null);
+    setTokenPlaces(null);
     setIsValidating(true);
 
     setTimeout(() => {
@@ -119,6 +123,7 @@ export const AddTokenModal = props => {
                 </Row>
               )}
               value={null}
+              icon={isTokenValid && <SKIcon name="icon-check-bold" color="#50E3C2" size={20} />}
               placeholder="Address"
               label="Token Address"
               onChangeText={handleAddressChange}
