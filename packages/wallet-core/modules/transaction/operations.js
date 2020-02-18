@@ -59,9 +59,10 @@ export async function getGasLimit({ contractAddress, address, amount, from }) {
 const computeGasLimit = () => async (dispatch, getState) => {
   const state = getState();
   const transaction = duck.selectors.getTransaction(state);
+  const token = transaction.token || transaction.cryptoCurrency;
 
   // TODO: Use constants
-  if (transaction.cryptoCurrency.toUpperCase() === 'ETH') {
+  if (token && token.toUpperCase() === 'ETH') {
     return;
   }
 
@@ -126,15 +127,38 @@ export const operations = {
   goToTransactionOperation: (tokenSymbol, addressTo) => async (dispatch, getState) => {
     const state = getState();
     const address = ducks.wallet.selectors.getAddress(state);
-    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
-
+    
     await dispatch(duck.actions.updateTransaction({
       ...duck.initialState,
-      token: tokenSymbol,
       address: addressTo,
-      balance: tokenDetails.amount,
-      tokenDecimal: tokenDetails.decimal,
     }));
+
+    // for testing
+    // tokenSymbol = 'all'
+
+    /*
+     * all: eth, key and custom tokens
+     * custom: custom erc20 tokens
+     */
+    
+    if (tokenSymbol === 'all' || tokenSymbol === 'custom'){
+      const tokenOptions = tokenSymbol === 'custom' ? ducks.wallet.selectors.getCustomTokens(state) : [
+        {
+          symbol: 'ETH',
+          name: 'Ethereum',
+        },
+        ...ducks.wallet.selectors.getTokens(state),
+      ];
+
+      await dispatch(duck.actions.updateTransaction({
+        ...duck.initialState,
+        address: addressTo,
+        token: undefined,
+        tokenOptions: tokenOptions,
+      }));
+    } else {
+      await dispatch(operations.setSelectedTokenOperation(tokenSymbol))
+    }
 
     await dispatch(ducks.app.operations.showSendTokensModal(true));
 
@@ -144,6 +168,16 @@ export const operations = {
     await dispatch(duck.actions.updateTransaction({
       nounce,
       transactionFeeOptions: getTransactionFeeOptions(getState()),
+    }));
+  },
+
+  setSelectedTokenOperation: (tokenSymbol) => async (dispatch, getState) => {
+    const state = getState();
+    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
+    await dispatch(duck.actions.updateTransaction({
+      token: tokenSymbol,
+      balance: tokenDetails && tokenDetails.amount,
+      tokenDecimal: tokenDetails && tokenDetails.decimal,
     }));
   },
 

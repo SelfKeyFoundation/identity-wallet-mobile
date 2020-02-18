@@ -129,6 +129,12 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
   // TODO: Remove backup file from filesystem
 };
 
+const getRecoveryInformationOperation = (password) => async (dispatch, getState) => {
+  const { vaultId } = getState().wallet;
+  const vault = await unlockVault(vaultId, password);
+  return vault.mnemonic;
+};
+
 /**
  * 
  * Load wallet
@@ -241,7 +247,8 @@ export const operations = {
   confirmNewPasswordOperation,
   addTokenOperation,
   hideTokenOperation,
-  validateTokenOperation
+  validateTokenOperation,
+  getRecoveryInformationOperation,
 };
 
 export const walletOperations = {

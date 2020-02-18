@@ -102,7 +102,7 @@ export function SettingsMenu(props) {
             <SectionTitle>Wallet Information</SectionTitle>
           </Col>
         </Row>
-        <MenuItem hasBorder>
+        <MenuItem hasBorder onPress={props.onRecoveryInformation}>
           Recovery Information
         </MenuItem>
         <MenuItem onPress={props.onBackup}>

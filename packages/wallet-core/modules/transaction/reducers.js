@@ -8,6 +8,7 @@ export const initialState = {
   amount: 0.00,
   // Fiat amount will be selected from wallet
   transactionFee: 'normal',
+  tokenOptions: undefined,
   isProcessing: false,
   token: 'eth',
   transactionHash: '',
@@ -67,10 +68,10 @@ function setAddressReducer(state, action) {
 }
 
 function setAmountReducer(state, action) {
-  let { amount } = action.payload;
+  let {amount} = action.payload;
 
-  if (amount > state.balance) {
-    amount = state.balance;
+  if (parseFloat(amount) > parseFloat(state.balance)) {
+    amount = `${state.balance || 0}`;
   }
 
   return {

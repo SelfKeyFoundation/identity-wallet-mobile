@@ -41,7 +41,6 @@ const loadAppOperation = () => async (dispatch, getState) => {
   } else {
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
-
 };
 
 const acceptTermsOperation = () => async (dispatch, getState) => {

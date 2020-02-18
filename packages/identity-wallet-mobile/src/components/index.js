@@ -17,3 +17,4 @@ export * from './TxHistoryRow';
 export * from './TxHistory';
 export * from './ScanQR';
 export * from './TransactionDetails';
+export * from './SelectBox';

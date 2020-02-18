@@ -109,10 +109,9 @@ function formatAddress(address) {
 
 export function TokenDetails(props: TokenDetailsProps) {
   const TokenIcon = props.iconComponent;
-
   const handleReceive= useCallback(() => {
     if (props.onReceive) {
-      props.onReceive(props.tokenCode);
+      props.onReceive(props.tokenCode === 'custom-tokens' ? 'Custom Tokens': props.tokenCode);
     }
   });
 
@@ -127,23 +126,23 @@ export function TokenDetails(props: TokenDetailsProps) {
             <Title>{props.tokenName}</Title>
           </Col>
         </Row>
-        <Row alignBottom marginBottom={10}>
+        { props.tokenAmount !== undefined && <Row alignBottom marginBottom={10}>
           <TokenAmount>
             <FormattedNumber value={props.tokenAmount} decimal={10}/>
           </TokenAmount>
           <TokenSymbol>{props.tokenCode}</TokenSymbol>
-        </Row>
-        <Row autoWidth alignBottom>
+        </Row>}
+        { props.tokenAmount !== undefined && <Row autoWidth alignBottom>
           <Explanatory>
             <FormattedNumber
               value={props.fiatAmount}
               currency={props.fiatCurrency}
             />
           </Explanatory>
-        </Row>
+        </Row>}
       </Header>
-      <Body>
-        <Row marginBottom={12}>
+      { props.tokenCode !== 'custom-tokens'&& <Body>
+        { props.lastPrice && <Row marginBottom={12}>
           <Col>
             <Label>Last Price</Label>
           </Col>
@@ -156,7 +155,7 @@ export function TokenDetails(props: TokenDetailsProps) {
               />
             </BodyText>
           </Col>
-        </Row>
+        </Row>}
         { props.contractAddress && <Row>
           <Col>
             <Label>Token Contract</Label>
@@ -167,7 +166,7 @@ export function TokenDetails(props: TokenDetailsProps) {
             </BodyText>
           </Col>
         </Row>}
-      </Body>
+      </Body>}
       <Footer>
         <FooterCol>
           <Button

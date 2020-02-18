@@ -13,6 +13,7 @@ export const getToken = (state) => getRoot(state).token;
 export const getTransactionFee = (state) => getRoot(state).transactionFee;
 export const getTransactionFeeOptions = (state) => getRoot(state).transactionFeeOptions;
 export const isAdvancedMode = (state) => getRoot(state).advancedMode;
+export const getTokenOptions = (state) => getRoot(state).tokenOptions;
 export const getSelectedTransactionFee = (state) => {
   const transactionFee = getTransactionFee(state);
   return getTransactionFeeOptions(state).find(opt => opt.id === transactionFee);
@@ -20,7 +21,12 @@ export const getSelectedTransactionFee = (state) => {
 
 export const getFiatAmount = (state) => {
   const { amount, token } = getRoot(state);
-  const price = getTokenPrice('ETH');
+
+  if (!token) {
+    return 0;
+  }
+
+  const price = getTokenPrice(token);
 
   return amount * price.priceUSD;
 };
@@ -60,6 +66,7 @@ export const getTransaction = (state) => {
     address: getAddress(state),
     amount: amount,
     cryptoCurrency: token,
+    token: token,
     hash: getTransactionHash(state),
     from: ducks.wallet.selectors.getAddress(state),
     contractAddress: tokenDetails.contractAddress,

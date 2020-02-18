@@ -13,12 +13,10 @@ function SettingsScreenContainer(props) {
     navigate(Routes.CREATE_BACKUP);
   };
 
-  const handleSwitchAccount = () => {
-    navigate(Routes.WALLET_SELECTION);
-  };
-
   const handlePrivacyPolicy = () => Linking.openURL('https://selfkey.org/privacy-policy/');
   const handleHelpAndSupport = () => Linking.openURL('https://help.selfkey.org/');
+  const handleSwitchAccount = () => navigate(Routes.WALLET_SELECTION);
+  const handleRecoveryInformation = () => navigate(Routes.RECOVERY_INFORMATION);
 
   return (
     <SettingsMenu
@@ -26,6 +24,7 @@ function SettingsScreenContainer(props) {
       onSwitchAccount={handleSwitchAccount}
       onPrivacyPolicy={handlePrivacyPolicy}
       onHelpAndSupport={handleHelpAndSupport}
+      onRecoveryInformation={handleRecoveryInformation}
     />
   );
 } 

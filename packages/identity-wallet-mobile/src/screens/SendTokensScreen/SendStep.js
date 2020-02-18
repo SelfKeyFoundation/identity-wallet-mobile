@@ -13,6 +13,7 @@ export function SendStep(props) {
   const amount = useSelector(selectors.getAmount);
   const address = useSelector(selectors.getAddress);
   const fiatAmount = useSelector(selectors.getFiatAmount);
+  const tokenOptions = useSelector(selectors.getTokenOptions);
   const errors = useSelector(selectors.getErrors);
   const canSend = useSelector(selectors.canSend);
   const transactionFee = useSelector(selectors.getTransactionFee);
@@ -37,6 +38,10 @@ export function SendStep(props) {
         break;
       }
     }
+  });
+
+  const handleTokenSelect = useCallback((token) => {
+    dispatch(operations.setSelectedTokenOperation(token));
   });
 
   const handleQRCodePress = useCallback(() => {
@@ -66,6 +71,8 @@ export function SendStep(props) {
       }}
       advancedMode={isAdvancedMode}
       onChange={handleChange}
+      tokenOptions={tokenOptions}
+      onTokenSelect={handleTokenSelect}
       data={{
         address,
         amount,
@@ -73,7 +80,7 @@ export function SendStep(props) {
         transactionFee,
         token,
       }}
-      tokenDetails={tokenDetails}
+      tokenDetails={token && tokenDetails}
       tokens={tokens}
       transactionFeeOptions={transactionFeeOptions}
     />

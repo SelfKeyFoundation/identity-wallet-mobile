@@ -24,7 +24,7 @@ export default function ScanQRScreen(props) {
       dispatch(modules.app.operations.showSendTokensModal(true));
       navigateBack();
     } else {
-      dispatch(operations.goToTransactionOperation('ETH', address));
+      dispatch(operations.goToTransactionOperation('all', address));
     }
   }, [referer, operations]);
 

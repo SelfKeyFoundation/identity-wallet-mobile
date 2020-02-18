@@ -8,6 +8,7 @@ import {
   Col,
   Row,
   ThemeContext,
+  ButtonLink,
   Paragraph,
   Explanatory,
   FormattedNumber,
@@ -58,6 +59,32 @@ export function TokenBox(props: TokenBoxProps) {
       tokenId: props.tokenCode
     });
   });
+
+  const handleCustomTokens = useCallback(() => {
+    navigate(Routes.CUSTOM_TOKENS);
+  });
+
+  if (props.tokenCode === 'custom') {
+    return (
+      <Container>
+        <Row marginBottom={10}>
+          <Col autoWidth>
+            <TokenIcon width={44} height={44}/>
+          </Col>
+          <Col>
+            <Title>{props.tokenName}</Title>
+          </Col>
+        </Row>
+        <Row alignBottom marginBottom={10} marginTop={10}>
+          <Col>
+            <ButtonLink onPress={handleCustomTokens} iconName="icon-swap" iconSize={16}>
+              Send & receive ERC-20 tokens
+            </ButtonLink>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
   return (
     <Container>
