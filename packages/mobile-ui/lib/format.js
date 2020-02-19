@@ -1,6 +1,6 @@
 // Basic currency format
 // Can be replace by any external library when needed
-
+import BN from 'bignumber.js';
 const regex = /\d(?=(\d{3})+\.)/g;
 
 const currencyFormat = {
@@ -23,7 +23,7 @@ export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal
   }
 
   if (typeof formattedValue === 'number') {
-    formattedValue = formattedValue.toFixed(decimal);
+    formattedValue = new BN(formattedValue).toFixed(decimal);
   }
   
   formattedValue = formattedValue.replace(regex, '$&,')

@@ -146,6 +146,13 @@ export function DevSettings(props) {
             />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Button onPress={props.onDeleteWallet}>
+              Delete Wallet
+            </Button>
+          </Col>
+        </Row>
       </Body>
     </Container>
   )

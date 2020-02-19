@@ -6,7 +6,7 @@ import { getConfigs } from '@selfkey/configs';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import { TxHistoryModel } from '@selfkey/wallet-core/models/index';
 
-export const REQUEST_INTERVAL_DELAY = 600; // millis
+export const REQUEST_INTERVAL_DELAY = 1000; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);
 export const ENDPOINT_CONFIG = {
 	1: { url: 'https://api.etherscan.io/api' },
@@ -22,6 +22,8 @@ export const TX_HISTORY_ENDPOINT_CONFIG = {
 export const getTxHistoryApiEndpoint = () => TX_HISTORY_ENDPOINT_CONFIG[getConfigs().chainId].url;
 
 export let OFFSET = 1000;
+
+const wait = time => new Promise(res => setTimeout(res, time));
 
 export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}`;
 export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}`;
@@ -299,10 +301,20 @@ export class TxHistoryService {
 
 					return resolve();
 				}
+				// TODO: Need to implement retries here
 				let ethTxList = await that.loadEthTxHistory(address, startBlock, endblock, page);
+				await wait(500);
 				let tokenTxList = await that.loadERCTxHistory(address, startBlock, endblock, page);
 
-				(ethTxList || []).concat(tokenTxList || []).forEach((tx, index) => {
+				if (!Array.isArray(tokenTxList)) {
+					tokenTxList = [];
+				}
+
+				if (!Array.isArray(ethTxList)) {
+					ethTxList = [];
+				}
+
+				ethTxList.concat(tokenTxList).forEach((tx, index) => {
 					let hash = tx.hash;
 					txHashes[hash] = txHashes[hash] || {};
 					let isToken = index >= ethTxList.length;

@@ -22,10 +22,10 @@ export default function ScanQRScreen(props) {
     if (referer === 'transaction') {
       dispatch(operations.setAddress(address));
       dispatch(modules.app.operations.showSendTokensModal(true));
-      navigateBack();
     } else {
       dispatch(operations.goToTransactionOperation('all', address));
     }
+    navigateBack();
   }, [referer, operations]);
 
   useEffect(() => {

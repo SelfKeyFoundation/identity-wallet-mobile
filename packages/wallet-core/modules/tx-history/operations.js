@@ -1,9 +1,13 @@
 import { getConfigs } from '@selfkey/configs';
 import { TxHistoryService } from '@selfkey/wallet-core/services/tx-history-service';
 import txHistoryActions from './actions';
-import txHistoryDuck from './index';
+import duck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
+
+function filterTransactions(tx) {
+  return !!tx.tokenSymbol;
+}
 
 export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
@@ -14,10 +18,18 @@ export const operations = {
   loadTxHistoryOperation: () => async (dispatch, getState) => {
     const state = getState();
     const address = ducks.wallet.selectors.getAddress(state);
+    await dispatch(duck.actions.setLoding(true));
+
+    // Fetch tx history from DB
+    let transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
+    await dispatch(txHistoryActions.setTransactions(transactions.reverse().filter(filterTransactions)));
+
     // TODO: Need to get lastBlock from wallet db and pass it here
     await TxHistoryService.getInstance().syncByWallet(address, null);
-    const transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
-    await dispatch(txHistoryActions.setTransactions(transactions.reverse()));
+    transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
+    await dispatch(txHistoryActions.setTransactions(transactions.reverse().filter(filterTransactions)));
+
+    await dispatch(duck.actions.setLoding(false));
   },
   /**
    * Create txHistory

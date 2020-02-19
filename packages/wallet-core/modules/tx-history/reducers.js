@@ -4,8 +4,17 @@ import types from './types';
 
 export const initialState = {
   transactions: [],
+  isLoading: false,
 };
 
+function setLoadingReducer(state, action) {
+  const { isLoading } = action.payload;
+
+  return {
+    ...state,
+    isLoading,
+  };
+}
 
 function setTransactionsReducer(state, action) {
   const { transactions } = action.payload;
@@ -52,12 +61,14 @@ export const txHistoryReducers = {
   setTransactionsReducer,
   addTransactionReducer,
   updateTransactionReducer,
+  setLoadingReducer,
 };
 
 const reducersMap = {
   [types.SET_TRANSACTIONS]: txHistoryReducers.setTransactionsReducer,
   [types.ADD_TRANSACTION]: txHistoryReducers.addTransactionReducer,
   [types.UPDATE_TRANSACTION]: txHistoryReducers.updateTransactionReducer,
+  [types.SET_LOADING]: txHistoryReducers.setLoadingReducer,
 };
 
 export default createReducer(initialState, reducersMap);

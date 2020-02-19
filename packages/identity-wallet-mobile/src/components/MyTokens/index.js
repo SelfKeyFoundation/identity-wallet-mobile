@@ -4,8 +4,9 @@ import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
 import { TokensEmptyAlert } from '../TokensEmptyAlert'
 import modules from '@selfkey/wallet-core/modules';
-import { MyTokens } from './MyTokens';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { MyTokens } from './MyTokens';
+
 export * from './MyTokens';
 
 const { selectors } = modules.wallet;
@@ -35,6 +36,12 @@ export function MyTokensContainer() {
     setViewAll(true);
   }, []);
 
+  const handleTokenDetails = useCallback((tokenSymbol) => {
+    navigate(Routes.TOKEN_DETAILS, {
+      tokenId: tokenSymbol
+    });
+  }, []);
+
   const defaultTokens = [{
       id: primaryToken.id,
       iconName: 'key',
@@ -56,7 +63,10 @@ export function MyTokensContainer() {
     },
   ];
 
-  const tokens = customTokens.length ? customTokens : defaultTokens;
+  const tokens = [
+    ...customTokens,
+    ...defaultTokens,
+  ];
 
   return (
     <View>
@@ -65,9 +75,10 @@ export function MyTokensContainer() {
           tokens={viewAll ? tokens : tokens.slice(0, 3)}
           tokensFiatAmount={tokensFiatAmount}
           tokensFiatCurrency="usd"
-          showViewAll={!viewAll && customTokens.length > 3}
+          showViewAll={!viewAll && tokens.length > 3}
           onViewAll={handleViewAll}
           onManage={handleManage}
+          onTokenDetails={handleTokenDetails}
         />
       </TokensContainer>
       {isEmpty && (

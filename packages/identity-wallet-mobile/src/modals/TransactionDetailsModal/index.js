@@ -37,10 +37,10 @@ function TokenDetailsContainer(props) {
     >
       <TransactionDetails
         onViewOnEtherscan={handleViewOnEtherscan}
-        token={transaction.tokenSymbol}
+        token={tokenSymbol}
         date={transaction.timeStamp}
         fiatAmount={fiatAmount}
-        tokenAmount={transaction.value}
+        tokenAmount={value}
         addressTo={transaction.to}
         addressFrom={transaction.from}
         isError={transaction.isError}

@@ -12,6 +12,10 @@ export const txHistoryActions = {
   updateTransaction: (hash, updatedData) => ({
     type: types.UPDATE_TRANSACTION,
     payload: { hash, updatedData },
+  }),
+  setLoding: (isLoading) => ({
+    type: types.SET_LOADING,
+    payload: { isLoading },
   })
 };
 

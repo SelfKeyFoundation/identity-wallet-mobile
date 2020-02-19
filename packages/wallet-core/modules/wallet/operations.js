@@ -42,29 +42,36 @@ const computeColor = token => token.color ? token : ({
   color: colors[`${token.symbol}`.charCodeAt(0) % colors.length]
 });
 
-async function loadWalletTokens(wallet) {
+async function loadWalletTokens(wallet, checkBalance) {
   // Fetch tokens balance
   wallet.tokens = await Promise.all(
     wallet.tokens
-      .filter(token => !token.hidden)
-      .map(async (walletToken) => {
-        const token = await TokenModel.getInstance().findById(walletToken.tokenId || walletToken.id);
+      .map(async (tk) => {
+        const walletTokenId = tk.parsed ? tk.walletTokenId : tk.id;
+        const walletToken = await WalletTokenModel.getInstance().findById(walletTokenId);
+
+        const token = await TokenModel.getInstance().findById(walletToken.tokenId);
         let balance = 0;
 
-        try {
-          balance = await getTokenBalance(token.address, wallet.address);
+        if (checkBalance) {
+          try {
+            balance = await getTokenBalance(token.address, wallet.address);
 
-          if (balance === 'NaN') {
-            balance = 0;
+            if (balance === 'NaN') {
+              balance = 0;
+            }
+          } catch(err) {
+            console.error(err);
           }
-        } catch(err) {
-          console.error(err);
         }
 
         const price = getTokenPrice(token.symbol);
 
         return {
+          parsed: true,
           id: token.id,
+          walletTokenId: walletToken.id,
+          hidden: walletToken.hidden,
           fiatCurrency: 'usd',
           symbol: getSymbol(token.symbol),
           decimal: token.decimal,
@@ -74,10 +81,12 @@ async function loadWalletTokens(wallet) {
         };
       })
   );
-
-  wallet.tokens = wallet.tokens.map(computeColor);
+  
+  wallet.tokens = wallet.tokens.map(computeColor).filter(token => {
+    return !token.hidden
+  });
 }
-
+// today weather slow hospital sleep aerobic mesh tone culture quarter around soap
 /**
  * Refresh wallet balance and tokens balance
  */
@@ -89,7 +98,7 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
   try {
     await Promise.all([
       loadWalletBalance(wallet),
-      loadWalletTokens(wallet),
+      loadWalletTokens(wallet, true),
     ]);
   } catch(err) {
     console.error(err);
@@ -97,11 +106,6 @@ const refreshWalletOperation = () => async (dispatch, getState) => {
 
   dispatch(walletActions.setWallet(wallet));
 };
-
-// const encryptedData = encryptData('testing', '1234');
-// console.log(encryptedData);
-// const decryptedData = decryptData(encryptedData, '1234');
-// console.log(decryptedData);
 
 const backupWalletOperation = (password) => async (dispatch, getState) => {
   const { vaultId, path } = getState().wallet;
@@ -144,6 +148,7 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   const { privateKey } = vault.getETHWalletKeys(0);
   unlockWalletWithPrivateKey(privateKey)
 
+  await loadWalletTokens(wallet);
   await dispatch(walletActions.setWallet(wallet));
 
   // TODO: Store balance in the database
@@ -230,12 +235,28 @@ const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) =>
 
 const validateTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
   const state = getState();
-  const token = await getTokenInfo(contractAddress);
+  const { wallet } = state;
+
+  let token;
+
+  try {
+    token = await getTokenInfo(contractAddress);
+  } catch(err) {
+    token = null;
+  }
 
   if (!token || !token.symbol) {
     throw {
       code: 'address_not_found',
     };
+  }
+
+  let dbToken = await TokenModel.getInstance().findByAddress(contractAddress);
+
+  if (dbToken && wallet.tokens.find(t => t.id === dbToken.id)) {
+    throw {
+      code: 'already_used',
+    }; 
   }
 
   return token;
@@ -244,15 +265,51 @@ const validateTokenOperation = ({ contractAddress }) => async (dispatch, getStat
 const hideTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
   const state = getState();
   const token = TokenModel.getInstance().findByAddress(contractAddress);
-  const walletToken = await WalletTokenModel.getInstance().findOne('tokenId = $0', token.id);
+  const walletTokens = await WalletTokenModel.getInstance().find('tokenId = $0', token.id);
 
-  WalletTokenModel.getInstance().updateById(walletToken.id, {
-    hidden: true
-  });
+  await Promise.all(walletTokens.map(walletToken => {
+    return WalletTokenModel.getInstance().updateById(walletToken.id, {
+      hidden: true
+    });
+  }));
 
   const wallet = getState().wallet;
-  wallet.tokens = wallet.tokens.filter(token => token.address !== contractAddress);
+
+  wallet.tokens = wallet.tokens.map(token => {
+    if (token.address === contractAddress) {
+      return {
+        ...token,
+        hidden: true,
+      };
+    }
+
+    return token;
+  }).filter(token => !token.hidden);
+ 
   dispatch(walletActions.setWallet(wallet));
+};
+
+const removeWalletOperation = () => async (dispatch, getState) => {
+  const wallet = getState().wallet;
+
+  await Promise.all(wallet.tokens.map((token) => {
+    return WalletTokenModel.getInstance().removeById(token.id);
+  }));
+
+  await WalletModel.getInstance().removeById(wallet.address);
+
+  const wallets = await WalletModel.getInstance().findAll();
+
+  if (!wallets.length) {
+    navigate(Routes.CREATE_WALLET_FLOW);
+  } else {
+    navigate(Routes.UNLOCK_WALLET_PASSWORD);
+  }
+
+  await dispatch(walletActions.setWallet({
+    tokens: [],
+    address: undefined,
+  }));
 };
 
 export const operations = {
@@ -265,6 +322,7 @@ export const operations = {
   hideTokenOperation,
   validateTokenOperation,
   getRecoveryInformationOperation,
+  removeWalletOperation,
 };
 
 export const walletOperations = {

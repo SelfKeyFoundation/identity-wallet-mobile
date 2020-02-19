@@ -15,7 +15,7 @@ import {
   FormattedNumber
 } from '@selfkey/mobile-ui';
 import { TokensEmptyAlert } from '../index';
-import { View, Text, Dimensions, ScrollView } from 'react-native';
+import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
 const screenWidth = Dimensions.get('window').width
@@ -181,34 +181,36 @@ export function ManageTokens(props: ManageTokensProps) {
           <SwipeListView
             data={listData}
             renderItem={ ({ item: token }, rowMap) => (
-              <TokenRow key={token.id}>
-                <Col autoWidth noPadding>
-                  <TokenIcon name={token.name || token.symbol} color={token.color} />
-                </Col>
-                <Col noPadding paddingLeft={11}>
-                  <TokenName>
-                    { token.name || token.symbol }
-                  </TokenName>
-                  <Explanatory>
-                    { token.symbol && token.symbol.toUpperCase() }
-                  </Explanatory>
-                </Col>
-                <Col autoWidth alignItems="flex-end" noPadding>
-                  <TokenName>
-                    <FormattedNumber
-                      value={token.amount}
-                      decimal={10}
-                    />
-                  </TokenName>
-                  <Explanatory>
-                    <FormattedNumber
-                      value={token.fiatAmount}
-                      currency={token.fiatCurrency}
-                      decimal={2}
-                    />
-                  </Explanatory>
-                </Col>
-              </TokenRow>
+              <TouchableWithoutFeedback onPress={() => props.onTokenDetails(token.symbol)}>
+                <TokenRow key={token.id}>
+                  <Col autoWidth noPadding>
+                    <TokenIcon name={token.name || token.symbol} color={token.color} />
+                  </Col>
+                  <Col noPadding paddingLeft={11}>
+                    <TokenName>
+                      { token.name || token.symbol }
+                    </TokenName>
+                    <Explanatory>
+                      { token.symbol && token.symbol.toUpperCase() }
+                    </Explanatory>
+                  </Col>
+                  <Col autoWidth alignItems="flex-end" noPadding>
+                    <TokenName>
+                      <FormattedNumber
+                        value={token.amount}
+                        decimal={10}
+                      />
+                    </TokenName>
+                    <Explanatory>
+                      <FormattedNumber
+                        value={token.fiatAmount}
+                        currency={token.fiatCurrency}
+                        decimal={2}
+                      />
+                    </Explanatory>
+                  </Col>
+                </TokenRow>
+              </TouchableWithoutFeedback>
             )}
             renderHiddenItem={ (data, rowMap) => (
               <TokenOptionsRow key={data.item.id}>

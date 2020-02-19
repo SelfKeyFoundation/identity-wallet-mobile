@@ -14,6 +14,7 @@ import {
   Explanatory,
   FormattedNumber
 } from '@selfkey/mobile-ui';
+import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
 
@@ -114,33 +115,35 @@ export function MyTokens(props: MyTokensProps) {
       </TitleRow>
       {
         props.tokens.map(token => (
-          <TokenRow key={token.id}>
-            <Col autoWidth noPadding>
-              <TokenIcon name={token.name || token.symbol} color={token.color} />
-            </Col>
-            <Col noPadding paddingLeft={11}>
-              <TokenName>
-                { token.name || token.symbol }
-              </TokenName>
-              <Explanatory>
-                { token.symbol && token.symbol.toUpperCase() }
-              </Explanatory>
-            </Col>
-            <Col autoWidth alignItems="flex-end" noPadding>
-              <TokenName>
-                <FormattedNumber
-                  value={token.amount}
-                  decimal={10}
-                />
-              </TokenName>
-              <Explanatory>
-                <FormattedNumber
-                  value={token.fiatAmount}
-                  currency={token.fiatCurrency}
-                />
-              </Explanatory>
-            </Col>
-          </TokenRow>
+          <TouchableWithoutFeedback onPress={() => props.onTokenDetails(token.symbol)}>
+            <TokenRow key={token.id}>
+              <Col autoWidth noPadding>
+                <TokenIcon name={token.name || token.symbol} color={token.color} />
+              </Col>
+              <Col noPadding paddingLeft={11}>
+                <TokenName>
+                  { token.name || token.symbol }
+                </TokenName>
+                <Explanatory>
+                  { token.symbol && token.symbol.toUpperCase() }
+                </Explanatory>
+              </Col>
+              <Col autoWidth alignItems="flex-end" noPadding>
+                <TokenName>
+                  <FormattedNumber
+                    value={token.amount}
+                    decimal={10}
+                  />
+                </TokenName>
+                <Explanatory>
+                  <FormattedNumber
+                    value={token.fiatAmount}
+                    currency={token.fiatCurrency}
+                  />
+                </Explanatory>
+              </Col>
+            </TokenRow>
+          </TouchableWithoutFeedback>
         ))
       }
       { props.showViewAll &&
