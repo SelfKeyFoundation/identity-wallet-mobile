@@ -13,7 +13,6 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   const wallet = WalletModel.getInstance().findOne();
   let vault;
 
-  debugger;
   try {
     vault = await unlockVault(wallet.vaultId, form.password);
     dispatch(actions.setErrors({}));
