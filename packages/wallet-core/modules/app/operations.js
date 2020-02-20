@@ -1,7 +1,7 @@
 import appActions from './actions';
 import { initRealm, seedDb } from '@selfkey/wallet-core/db/realm-service';
 import { navigate, Routes } from '../../navigation';
-import { WalletModel, GuideSettingsModel } from '../../models';
+import { WalletModel, GuideSettingsModel, WalletTokenModel } from '../../models';
 import { exitApp } from '../../system';
 import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
@@ -16,8 +16,8 @@ const loadAppOperation = () => async (dispatch, getState) => {
   await initRealm({
     // TODO: Remove it before the first internal release
     // We should rely on the migration system after the first release
-    deleteRealmIfMigrationNeeded: true,
     // skipMigration: true,
+    // deleteRealmIfMigrationNeeded: true,
   });
 
   await seedDb();

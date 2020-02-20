@@ -67,14 +67,21 @@ export function SendTokensPending(props: SendTokensPendingProps) {
 				<Row justifyContent="center" marginBottom={3}>
 					<Col autoWidth noPadding>
 						<Ammount>
-							<FormattedNumber value={props.tokenAmount} currency={props.token} />
+							<FormattedNumber
+								value={props.tokenAmount}
+								currency={props.token}
+								decimal={props.tokenDetails.decimal}
+							/>
 						</Ammount>
 					</Col>
 				</Row>
 				<Row justifyContent="center">
 					<Col autoWidth noPadding>
 						<Explanatory>
-							<FormattedNumber value={props.fiatAmount} currency="usd" />
+							<FormattedNumber
+								value={props.fiatAmount}
+								currency="usd"
+							/>
 						</Explanatory>
 					</Col>
 				</Row>
@@ -96,7 +103,7 @@ export function SendTokensPending(props: SendTokensPendingProps) {
 					</Col>
 					<Col>
 						<H3 style={{ textAlign: 'right' }}>
-							<FormattedNumber value={props.remainingBalance} currency={props.token} />
+							<FormattedNumber value={props.remainingBalance} currency={props.token} decimal={props.tokenDetails.decimal} />
 						</H3>
 					</Col>
 				</Row>

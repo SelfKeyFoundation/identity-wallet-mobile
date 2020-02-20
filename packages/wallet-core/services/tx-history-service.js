@@ -20,12 +20,15 @@ export const TX_HISTORY_ENDPOINT_CONFIG = {
 };
 
 export const getTxHistoryApiEndpoint = () => TX_HISTORY_ENDPOINT_CONFIG[getConfigs().chainId].url;
+const API_KEY = 'Y559IXGJE6MS2QCHK1PAQJS3Q92E893T16';
 
 export let OFFSET = 1000;
 
-export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}`;
-export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}`;
-export const TX_RECEIPT_ACTION = '?module=proxy&action=eth_getTransactionReceipt';
+const wait = time => new Promise(res => setTimeout(res, time));
+
+export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
+export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
+export const TX_RECEIPT_ACTION = `?module=proxy&action=eth_getTransactionReceipt&apikey=${API_KEY}`;
 
 // in order to change key name in runtime
 export const KEY_MAP = {
@@ -101,7 +104,7 @@ export class TxHistoryService {
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getMostResentBlock() {
-		const ACTION_URL = getApiEndpoint() + '?module=proxy&action=eth_blockNumber';
+		const ACTION_URL = getApiEndpoint() + `?module=proxy&action=eth_blockNumber&apikey=${API_KEY}`;
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	async makeRequest(method, url) {

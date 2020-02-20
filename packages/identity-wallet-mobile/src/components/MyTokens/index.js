@@ -73,7 +73,7 @@ export function MyTokensContainer() {
       {isEmpty && (
         <EmptyTokensContainer>
           <TokensEmptyAlert>
-            Hit the ”Manage” button above to add ERC-20 tokens, or safely store KEY and ETH by sending it to your wallet.
+            Hit the "Manage" button above to add ERC-20 tokens, or safely store KEY and ETH by sending it to your wallet.
           </TokensEmptyAlert>
         </EmptyTokensContainer>
       )}

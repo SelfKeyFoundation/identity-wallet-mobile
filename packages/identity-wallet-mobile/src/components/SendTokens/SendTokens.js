@@ -202,6 +202,7 @@ export function SendTokens(props: SendTokensProps) {
               <FormattedNumber
                 currency={tokenDetails.symbol}
                 value={tokenDetails.amount}
+                decimal={tokenDetails.decimal}
               />
             </H3>
           </Col>

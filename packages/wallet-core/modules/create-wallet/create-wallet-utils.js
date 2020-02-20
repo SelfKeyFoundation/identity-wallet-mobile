@@ -40,6 +40,7 @@ export async function setupHDWallet({ mnemonic, password }) {
   const wallet = await WalletModel.getInstance().create({
     address: hdWallet.address,
     name: 'SelfKey Wallet',
+    balance: '0',
     vaultId: vault.id,
     type: 'hd',
     path: path,
