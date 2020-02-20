@@ -10,6 +10,7 @@ import ducks from '../index';
 import { encryptData, decryptData, generateBackup } from '../../identity-vault/backup';
 import { unlockVault, updatePassword } from '../../identity-vault';
 import { navigate, Routes } from '../../navigation';
+import { getConfigs } from '@selfkey/configs';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -20,7 +21,14 @@ function getSymbol(symbol) {
 }
 
 async function loadWalletBalance(wallet) {
-  wallet.balance = await getBalanceByAddress(wallet.address);
+  const balance = await getBalanceByAddress(wallet.address);
+
+  wallet.balance = balance;
+
+  // persist information in the db
+  await WalletModel.getInstance().updateByAddress(wallet.address, {
+    balance,
+  });
 }
 
 const colors = [
@@ -42,21 +50,35 @@ const computeColor = token => token.color ? token : ({
   color: colors[`${token.symbol}`.charCodeAt(0) % colors.length]
 });
 
+function getPrimaryToken() {
+  const primaryToken = getConfigs().primaryToken;
+  const token = TokenModel.getInstance().findBySymbol(primaryToken);
+
+  return token;
+}
+
 async function loadWalletTokens(wallet, checkBalance) {
   // Fetch tokens balance
   wallet.tokens = await Promise.all(
     wallet.tokens
-      .map(async (tk) => {
+      .map(async (tk, idx) => {
         const walletTokenId = tk.parsed ? tk.walletTokenId : tk.id;
         const walletToken = await WalletTokenModel.getInstance().findById(walletTokenId);
 
+        if (idx === 0) {
+          const primaryToken = getPrimaryToken();
+          walletToken.tokenId = primaryToken.id;
+        }
+
         const token = await TokenModel.getInstance().findById(walletToken.tokenId);
-        let balance = 0;
+        let balance = walletToken.balance || 0;
 
         if (checkBalance) {
           try {
             balance = await getTokenBalance(token.address, wallet.address);
-
+            await WalletTokenModel.getInstance().updateById(walletToken.id, {
+              balance,
+            });
             if (balance === 'NaN') {
               balance = 0;
             }
@@ -86,7 +108,7 @@ async function loadWalletTokens(wallet, checkBalance) {
     return !token.hidden
   });
 }
-// today weather slow hospital sleep aerobic mesh tone culture quarter around soap
+
 /**
  * Refresh wallet balance and tokens balance
  */
@@ -293,7 +315,7 @@ const removeWalletOperation = () => async (dispatch, getState) => {
   const wallet = getState().wallet;
 
   await Promise.all(wallet.tokens.map((token) => {
-    return WalletTokenModel.getInstance().removeById(token.id);
+    return WalletTokenModel.getInstance().removeById(token.walletTokenId);
   }));
 
   await WalletModel.getInstance().removeById(wallet.address);

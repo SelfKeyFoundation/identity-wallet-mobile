@@ -3,7 +3,7 @@ const models = [];
 let realmInstance;
 import migrations from './migrations';
 import schemas from './schemas';
-import { CURRENT_SCHEMA_VERSION,  SCHEMA_NAME } from '../models';
+import { CURRENT_SCHEMA_VERSION, SCHEMA_NAME } from '../models';
 import { seedDb } from './seed';
 
 export { seedDb };

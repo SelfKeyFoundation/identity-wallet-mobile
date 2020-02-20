@@ -1,7 +1,7 @@
 /* AUTO GENERATED FILE - DON'T CHANGE THE CONTENT */
 
 export default {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "schema": [
     {
       "name": "test",
@@ -21,6 +21,14 @@ export default {
       "properties": {
         "address": "string",
         "name": "string",
+        "balance": {
+          "type": "string?",
+          "default": "0"
+        },
+        "unlockCount": {
+          "type": "int?",
+          "default": 0
+        },
         "vaultId": "string",
         "type": "string",
         "path": "string?",

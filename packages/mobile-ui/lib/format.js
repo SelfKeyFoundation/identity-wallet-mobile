@@ -18,6 +18,10 @@ const formatCurrency = (value, code) => {
 export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal, cleanEmptyDecimals }) {
   let formattedValue = parseFloat(value || 0);
 
+  if (currency === 'usd' && value < 0.01 && value > 0) {
+    decimal = 8;    
+  }
+
   if (formattedValue == NaN) {
     formattedValue = 0;
   }

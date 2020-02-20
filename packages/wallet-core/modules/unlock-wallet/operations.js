@@ -10,10 +10,10 @@ import ducks from '../index';
  * @param {*} form 
  */
 const submitUnlockOperation = (form) => async (dispatch, getState) => {
-  // Get the selected wallet, for now we are gonig to get the first one since the users can't create more than one
   const wallet = WalletModel.getInstance().findOne();
   let vault;
 
+  debugger;
   try {
     vault = await unlockVault(wallet.vaultId, form.password);
     dispatch(actions.setErrors({}));

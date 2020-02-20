@@ -58,6 +58,10 @@ export class TxHistoryModel extends BaseModel {
   }
 
   findByAddress(address) {
-    return this.find(`to="${address}" OR from="${address}"`)
+    const result = this._findAll()
+      .filtered(`to="${address}" OR from="${address}"`)
+      .sorted('timeStamp', true);
+
+    return this.toJsonArray(result);
   }
 }

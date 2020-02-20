@@ -67,7 +67,7 @@ export function SendTokensSuccess(props: SendTokensSuccessProps) {
 				<Row justifyContent="center" marginBottom={3}>
 					<Col autoWidth noPadding>
 						<Ammount>
-							<FormattedNumber value={props.tokenAmount} currency={props.token} />
+							<FormattedNumber value={props.tokenAmount} currency={props.token} decimal={props.tokenDetails.decimal} />
 						</Ammount>
 					</Col>
 				</Row>
@@ -96,7 +96,7 @@ export function SendTokensSuccess(props: SendTokensSuccessProps) {
 					</Col>
 					<Col>
 						<H3 style={{ textAlign: 'right' }}>
-							<FormattedNumber value={props.remainingBalance} currency={props.token} />
+							<FormattedNumber value={props.remainingBalance} currency={props.token} decimal={props.tokenDetails.decimal} />
 						</H3>
 					</Col>
 				</Row>
