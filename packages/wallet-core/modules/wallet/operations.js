@@ -79,14 +79,13 @@ async function loadWalletTokens(wallet, checkBalance) {
             await WalletTokenModel.getInstance().updateById(walletToken.id, {
               balance,
             });
+
             if (balance === 'NaN') {
               balance = 0;
             }
           } catch(err) {
             console.error(err);
           }
-        } catch(err) {
-          console.error(err);
         }
 
         const price = getTokenPrice(token.symbol);
