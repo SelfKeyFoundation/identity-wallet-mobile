@@ -42,6 +42,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
   }
 
   // navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
+
   dispatch(appActions.setLoading(false));
 };
 
