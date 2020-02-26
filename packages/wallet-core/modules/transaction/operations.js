@@ -138,7 +138,7 @@ export const operations = {
      */
     
     if (tokenSymbol === 'all' || tokenSymbol === 'custom'){
-      const tokenOptions = tokenSymbol === 'custom' ? ducks.wallet.selectors.getCustomTokens(state) : [
+      const tokenOptions = tokenSymbol === 'custom' ? ducks.wallet.selectors.getTokens(state) : [
         {
           symbol: 'ETH',
           name: 'Ethereum',
@@ -246,7 +246,7 @@ export const operations = {
       await dispatch(transactionOperations.createTxHistoryOperation());
     });
   
-    transactionEventEmitter.on('receipt', async receipt => {
+    transactionEventEmitter.on('receipt', async (receipt) => {
       await dispatch(
         duck.actions.updateTransaction({
           status: 'sent',
@@ -256,12 +256,24 @@ export const operations = {
 
       const transaction = duck.selectors.getTransaction(getState());
  
-      // TODO: update txHistory
       await dispatch(ducks.txHistory.operations.updateTransactionOperation(transaction.hash, {
-        status: 'sent'
-      }));      
-      //
-      await dispatch(ducks.wallet.operations.refreshWalletOperation());
+        hash: receipt.transactionHash,
+        status: 'sent',
+        timeStamp: Date.now(),
+        networkId: getConfigs().chainId,
+        tokenSymbol: transaction.tokenSymbol,
+        nonce: transaction.nonce,
+        isError: false,
+        blockHash: receipt.blockHash,
+        blockNumber: receipt.blockNumber,
+        contractAddress: transaction.contractAddress,
+        from: receipt.from.toLowerCase(),
+        to: receipt.to.toLowerCase(),
+        transactionIndex: receipt.transactionIndex,
+        value: parseFloat(transaction.amount),
+      }));
+
+      await dispatch(ducks.wallet.operations.refreshBalanceOperation(true));
     });
   
     transactionEventEmitter.on('error', async error => {

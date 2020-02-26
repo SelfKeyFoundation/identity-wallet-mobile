@@ -106,7 +106,7 @@ export function TokenBox(props: TokenBoxProps) {
       </Row>
       <Row alignBottom marginBottom={10}>
         <TokenAmount>
-          <FormattedNumber value={props.tokenAmount || 0} decimal={10}/>
+          <FormattedNumber value={props.tokenAmount || 0} decimal={8}/>
         </TokenAmount>
         <TokenSymbol>{props.tokenCode}</TokenSymbol>
       </Row>

@@ -131,8 +131,8 @@ export function MyTokens(props: MyTokensProps) {
               <Col autoWidth alignItems="flex-end" noPadding>
                 <TokenName>
                   <FormattedNumber
-                    value={token.amount}
-                    decimal={10}
+                    value={token.balance}
+                    decimal={token.decimal}
                   />
                 </TokenName>
                 <Explanatory>

@@ -47,7 +47,8 @@ export function MyTokensContainer() {
       iconName: 'key',
       name: "SelfKey",
       symbol: primaryToken.symbol,
-      amount: primaryToken.balance,
+      balance: primaryToken.balance,
+      decimal: primaryToken.decimal,
       fiatCurrency: "usd",
       fiatAmount: primaryToken.balanceInFiat,
       color: '#2DA1F8'
@@ -56,7 +57,8 @@ export function MyTokensContainer() {
       iconName: 'eth',
       name: "Ethereum",
       symbol: "eth",
-      amount: ethBalance,
+      decimal: 10,
+      balance: ethBalance,
       fiatCurrency: "usd",
       fiatAmount: fiatAmount,
       color: '#9418DC'
