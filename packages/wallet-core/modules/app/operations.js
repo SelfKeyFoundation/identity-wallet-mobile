@@ -37,10 +37,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
   const wallets = await WalletModel.getInstance().findAll();
 
   if (!wallets.length) {
-    navigate(Routes.CREATE_WALLET_FLOW);
+    navigate(Routes.CREATE_WALLET_PASSWORD);
   } else {
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
+
+  dispatch(appActions.setLoading(false));
 };
 
 const acceptTermsOperation = () => async (dispatch, getState) => {
