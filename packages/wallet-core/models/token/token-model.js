@@ -11,6 +11,7 @@ export class TokenModel extends BaseModel {
       decimal: 'int',
       address: 'string',
       icon: 'string?',
+      name: 'string?',
       isCustom: {
         type: 'bool',
         default: false,

@@ -197,13 +197,13 @@ export function ManageTokens(props: ManageTokensProps) {
                   <Col autoWidth alignItems="flex-end" noPadding>
                     <TokenName>
                       <FormattedNumber
-                        value={token.amount}
+                        value={token.balance}
                         decimal={10}
                       />
                     </TokenName>
                     <Explanatory>
                       <FormattedNumber
-                        value={token.fiatAmount}
+                        value={token.balanceInFiat}
                         currency={token.fiatCurrency}
                         decimal={2}
                       />
