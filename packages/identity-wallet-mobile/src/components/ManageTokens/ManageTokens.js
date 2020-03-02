@@ -1,6 +1,6 @@
 
 // @flow
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   ScreenContainer,
   SKIcon,
@@ -34,6 +34,7 @@ const TotalTokenAmount = styled.Text`
 `;
 
 const Container = styled.View`
+  flex: 1;
 `;
 
 const TokenRow = styled.View`
@@ -137,19 +138,27 @@ export interface ManageTokensProps {
 
 export function ManageTokens(props: ManageTokensProps) {
   const { tokenToRemove, tokens, tokensFiatAmount, tokensFiatCurrency, onRemove  } = props;
+  const [openedRow, setOpenedRow] = useState();
   const listData = useMemo(() => tokens.map(token => ({
     ...token,
     key: token.id
   })).filter(item => !(tokenToRemove && item.id === tokenToRemove.id)), [tokens, tokenToRemove]);
 
-  const handleSwipeChange = useCallback((swipeData) => {
-    // const { key, value } = swipeData;
-  
-    // if (value < removeOffset) {
-    //   const itemToRemove = listData.find(token => token.id === key);
-    //   onRemove(itemToRemove);
-    // }
-  }, [tokens, onRemove]);
+  const handleRowOpen = rowKey => {
+    setOpenedRow(rowKey)
+  };
+
+  const handleRowClose = () => {
+    setOpenedRow(null);
+  };
+
+  const handleTokenDetails = token => () => {
+    if (openedRow) {
+      return null;
+    }
+
+    props.onTokenDetails(token.symbol)
+  };
 
   return (
     <Container>
@@ -183,8 +192,9 @@ export function ManageTokens(props: ManageTokensProps) {
         <Col marginBottom={40}>
           <SwipeListView
             data={listData}
+            previewRowKey="0"
             renderItem={ ({ item: token }, rowMap) => (
-              <TouchableWithoutFeedback onPress={() => props.onTokenDetails(token.symbol)}>
+              <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
                 <TokenRow key={token.id}>
                   <Col autoWidth noPadding>
                     <TokenIcon name={token.name || token.symbol} color={token.color} />
@@ -233,9 +243,10 @@ export function ManageTokens(props: ManageTokensProps) {
                 </TouchableWithoutFeedback>
               </TokenOptionsRow>
             )}
+            onRowOpen={handleRowOpen}
+            onRowClose={handleRowClose}
             leftOpenValue={0}
             rightOpenValue={-70}
-            onSwipeValueChange={handleSwipeChange}
           />
         </Col>
       </Row>

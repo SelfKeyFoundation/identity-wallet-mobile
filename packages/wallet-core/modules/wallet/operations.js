@@ -119,10 +119,25 @@ async function loadWalletTokens(wallet, checkBalance) {
         };
       })
   );
-  
+  // Mock data for tokens, used for testing purposes
+  // wallet.tokens = new Array(15).fill(0).map((_, index) => {
+  //   return {
+  //     parsed: true,
+  //     id: index + 1,
+  //     walletTokenId: `${index}`,
+  //     hidden: false,
+  //     fiatCurrency: 'usd',
+  //     name: `Test Token ${index}`,
+  //     symbol: `TST${index}`,
+  //     decimal: 10,
+  //     address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
+  //     balanceInFiat: 1000,
+  //     balance: 10,
+  //   };
+  // });
   wallet.tokens = wallet.tokens.map(computeColor).filter(token => {
     return !token.hidden
-  });
+  })
 }
 
 /**

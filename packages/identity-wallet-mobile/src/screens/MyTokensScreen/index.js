@@ -16,19 +16,24 @@ const Container = styled.View`
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-const Body = styled.ScrollView`
-  margin: 10px 20px 0px 20px;
+const Body = styled.View`
+  flex: 1;
+  margin: 10px 20px 60px 20px;
+`;
+
+const Wrapper = styled.SafeAreaView`
+  flex: 1;
 `;
 
 export default function MyTokensScreen() {
   return (
     <Container>
-      <SafeAreaView>
+      <Wrapper>
         <HeaderTitle>Manage Tokens</HeaderTitle>
         <Body>
           <ManageTokensContainer />
         </Body>
-      </SafeAreaView>
+      </Wrapper>
     </Container>
   );
 }
