@@ -76,15 +76,15 @@ function ImportWalletBackupContainer(props) {
       .catch((err) => {
         if (err.message === 'wrong_password' || err === 'wrong_password') {
           setErrors({
-            password: 'Wrong password'
+            password: 'Wrong password.'
           });
         } else if (err.message === 'wrong_file') {
           setErrors({
-            system: 'This is not a backup file'
+            system: 'This is not a backup file.'
           });
         } else {
           setErrors({
-            system: err.message || err,
+            system: 'This wallet already exists.',
           });
         }
       })
