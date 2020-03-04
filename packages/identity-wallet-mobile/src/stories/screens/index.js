@@ -9,3 +9,5 @@ import './confirm-mnemonic-screen.stories.js';
 import './settings-screen.stories.js';
 import './choose-different-wallet-screen.stories';
 import './forgot-password-screen.stories';
+import './import-from-desktop-screen.stories';
+

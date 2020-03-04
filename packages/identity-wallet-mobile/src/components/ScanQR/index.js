@@ -86,7 +86,7 @@ export function ScanQR(props) {
         <QRCodeScanner
           style={{flex:1}}
           reactivate={true}
-          reactivateTimeout={20000}
+          reactivateTimeout={10000}
           cameraStyle={{ height: Dimensions.get('window').height }}
           topViewStyle={{
             height: 0,
@@ -101,7 +101,7 @@ export function ScanQR(props) {
       </QRCodeContainer>
       <Wrapper>
         <Header>
-          <Title>Scan QR Code</Title>          
+          <Title>{props.title}</Title>          
           <IconContainer>
             <TouchableWithoutFeedback onPress={props.onClose} style={{ padding: 20 }}>
               <SKIcon name="icon-nav-ar-left" size={12} color="#fff" />
@@ -165,8 +165,8 @@ export function ScanQR(props) {
           </View>
         </Body>
         <Footer>
-          <Description>Scan any ERC-20 Token QR Code</Description>
-          <SmallDescription>Place Code inside the box</SmallDescription>
+          <Description>{props.description}</Description>
+          <SmallDescription>{props.smallDescription}</SmallDescription>
         </Footer>
       </Wrapper>
     </Container>

@@ -47,6 +47,9 @@ export default function ScanQRScreen(props) {
       <ScanQR
         onClose={handleClose}
         onSuccess={handleSuccess}
+        title="Scan QR Code"
+        description="Scan any ERC-20 Token QR Code"
+        smallDescription="Place Code inside the box"
       />
     );
   } catch(err) {
