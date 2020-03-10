@@ -9,6 +9,14 @@ export class WalletModel extends BaseModel {
     properties: {
       address: 'string',
       name: 'string',
+      balance: {
+        type: 'string?',
+        default: '0',
+      },
+      unlockCount: {
+        type: 'int?',
+        default: 0,
+      },
       vaultId: 'string',
       /**
        * hd-wallet or private-key

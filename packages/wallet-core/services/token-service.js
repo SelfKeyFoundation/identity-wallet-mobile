@@ -29,11 +29,11 @@ export async function getTokenInfo(contractAddress) {
     symbol = await tokenContract.methods.symbol().call();
   } catch (error) {
     if (error.message.indexOf('Number can only safely store up to 53 bits') !== -1) {
-      tokenContract = new this.Web3Service.getInstance().web3.eth.Contract(
+      tokenContract = new Web3Service.getInstance().web3.eth.Contract(
         customSymbolABI,
         contractAddress
       );
-      symbol = this.Web3Service.getInstance().web3.utils.hexToAscii(
+      symbol = Web3Service.getInstance().web3.utils.hexToAscii(
         await tokenContract.methods.symbol().call()
       );
     }

@@ -24,6 +24,7 @@ export function SuccessStep(props) {
   return (
     <SendTokensSuccess
       fiatAmount={fiatAmount}
+      tokenDetails={tokenDetails}
       token={token}
       tokenAmount={amount}
       networkFee={ethFee}

@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { ManageTokens } from './ManageTokens';
 import { HideTokenModal } from './HideTokenModal';
 import { AddTokenModal } from './AddTokenModal';
@@ -77,6 +78,12 @@ export function ManageTokensContainer(props) {
     return dispatch(ducks.wallet.operations.addTokenOperation({ contractAddress }))
       .then(handleCloseAdd)
   });
+  
+  const handleTokenDetails = useCallback((tokenSymbol) => {
+    navigate(Routes.TOKEN_DETAILS, {
+      tokenId: tokenSymbol
+    });
+  }, []);
 
   const tokens = useSelector(ducks.wallet.selectors.getCustomTokens)
   const fiatAmount = useSelector(ducks.wallet.selectors.getCustomTokensFiatAmount);
@@ -86,6 +93,7 @@ export function ManageTokensContainer(props) {
       tokens={tokens}
       onAdd={handleShowAdd}
       onRemove={handleRemove}
+      onTokenDetails={handleTokenDetails}
       tokensFiatAmount={fiatAmount}
       tokensFiatCurrency="usd"
       tokenToRemove={tokenToRemove}

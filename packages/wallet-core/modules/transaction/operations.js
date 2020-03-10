@@ -196,6 +196,16 @@ export const operations = {
    */
   sendTransaction: () => async (dispatch, getState) => {
     const state = getState();
+    const { isSending } = duck.selectors.getRoot(state);
+
+    if (isSending) {
+      return;
+    }
+
+    await dispatch(duck.actions.updateTransaction({
+      isSending: true,
+    }));
+
     const transaction = duck.selectors.getTransaction(state);
 
     const transactionObject = {
@@ -205,7 +215,7 @@ export const operations = {
     };
   
     // TODO: Use constants to define ETH
-    if (transaction.cryptoCurrency.toUpperCase() === 'ETH') {
+    if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === 'ETH') {
       transactionObject.to = EthUtils.sanitizeHex(transaction.address);
       transactionObject.value = EthUnits.unitToUnit(transaction.amount, 'ether', 'wei');
     } else {
@@ -229,7 +239,8 @@ export const operations = {
       await dispatch(
         duck.actions.updateTransaction({
           status: 'pending',
-          transactionHash: hash
+          transactionHash: hash,
+          isSending: false,
         })
       );
       await dispatch(transactionOperations.createTxHistoryOperation());
@@ -239,6 +250,7 @@ export const operations = {
       await dispatch(
         duck.actions.updateTransaction({
           status: 'sent',
+          isSending: false,
         })
       );
 
@@ -257,6 +269,7 @@ export const operations = {
 
       if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
         await dispatch(duck.operations.updateTransaction({
+          isSending: false,
           errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
           errorInfo: 'To learn more about transaction fees, click here.',
           errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',

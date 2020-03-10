@@ -11,6 +11,7 @@ const { operations, selectors } = modules.transaction;
 export function SendStep(props) {
   const token = useSelector(selectors.getToken);
   const amount = useSelector(selectors.getAmount);
+  const isSending = useSelector(selectors.isSending);
   const address = useSelector(selectors.getAddress);
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokenOptions = useSelector(selectors.getTokenOptions);
@@ -52,7 +53,9 @@ export function SendStep(props) {
     props.onCancel({
       navigate: false
     });
-  })
+  });
+
+  const handleSend = useCallback(() => dispatch(operations.sendTransaction()), []);
 
   return (
     <SendTokens
@@ -63,12 +66,11 @@ export function SendStep(props) {
       onAdvancedPress={() => {
         dispatch(operations.setAdvancedMode(!isAdvancedMode));
       }}
-      onSend={() => {
-        dispatch(operations.sendTransaction());
-      }}
+      onSend={handleSend}
       onMaxPress={() => {
         dispatch(operations.setAmount(tokenDetails.amount))
       }}
+      isSending={isSending}
       advancedMode={isAdvancedMode}
       onChange={handleChange}
       tokenOptions={tokenOptions}

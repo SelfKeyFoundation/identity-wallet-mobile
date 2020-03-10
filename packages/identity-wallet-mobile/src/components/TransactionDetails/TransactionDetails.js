@@ -73,13 +73,17 @@ export function TransactionDetails(props: TransactionDetailsProps) {
 				</Row>
 				<Row justifyContent="center" marginBottom={8}>
 					<Col noPadding autoWidth>
-						<H3>{statusMap[props.status]} {props.token.toUpperCase()}</H3>
+						<H3>{statusMap[props.status]} {props.token && props.token.toUpperCase()}</H3>
 					</Col>
 				</Row>
 				<Row justifyContent="center" marginBottom={3}>
 					<Col autoWidth noPadding>
 						<Ammount>
-							<FormattedNumber value={props.tokenAmount} currency={props.token} decimal={props.tokenDecimal}/>
+							<FormattedNumber
+								value={props.tokenAmount}
+								currency={props.token}
+								decimal={props.tokenDecimal}
+							/>
 						</Ammount>
 					</Col>
 				</Row>

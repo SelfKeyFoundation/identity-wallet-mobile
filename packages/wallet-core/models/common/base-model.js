@@ -74,7 +74,7 @@ export class BaseModel {
   }
 
   generateId() {
-    const items = this.findAll();
+    const items = this._findAll().sorted(this.schema.primaryKey);
     if (!items.length) {
       return 1;
     }
@@ -97,6 +97,10 @@ export class BaseModel {
 
     return data;
   }
+
+  toJsonArray(items) {
+    return Array.from(items).map(this.toJson) 
+  }
   /**
    * Query example: color = "tan" AND name BEGINSWITH "B"
    * @param {string} query query string
@@ -108,6 +112,16 @@ export class BaseModel {
    */
   find(query, ...args) {
     let results = this._findAll();
+
+    if (query) {
+      results = results.filtered(query, ...args);
+    }
+
+    return this.toJsonArray(results);
+  }
+
+  findSorted(query, sort, ...args) {
+    let results = this._findAll().sorted(sort);
 
     if (query) {
       results = results.filtered(query, ...args);

@@ -28,10 +28,15 @@ function SettingsScreenContainer(props) {
     Keychain.setItem('wallet-env', updatedWalletEnv);
   }, [walletEnv]);
 
+  const handleDeleteWallet = useCallback(() => {
+    dispatch(ducks.wallet.operations.removeWalletOperation());
+  });
+
   return (
     <DevSettings
       onBack={navigateBack}
       selectedEnv={walletEnv && walletEnv.value}
+      onDeleteWallet={handleDeleteWallet}
       envs={[{
         label: 'Ropsten Testnet',
         value: 'dev'

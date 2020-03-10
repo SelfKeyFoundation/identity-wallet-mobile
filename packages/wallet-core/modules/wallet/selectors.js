@@ -29,7 +29,7 @@ export const getCustomTokens = (state) => {
 
 // TODO: Move to token utils
 function getTokenName(symbol = 'eth') {
-  symbol = symbol.toUpperCase();
+  symbol = symbol && symbol.toUpperCase();
 
   if (symbol === 'ETH') {
     return 'Ethereum';
@@ -44,7 +44,7 @@ function getTokenName(symbol = 'eth') {
 
 export const getTokens = (state) => getWallet(state).tokens || [];
 export const getTokenDetails = (symbol = 'eth') => (state) => {
-  symbol = symbol.toUpperCase();
+  symbol = symbol && symbol.toUpperCase();
 
   if (symbol === 'ETH') {
     return {
@@ -69,6 +69,7 @@ export const getTokenDetails = (symbol = 'eth') => (state) => {
     name: getTokenName(token.symbol),
     // TODO: Remove this property 'code'
     code: token.symbol,
+    color: token.color,
     symbol: token.symbol,
     amount: token.balance,
     decimal: token.decimal,

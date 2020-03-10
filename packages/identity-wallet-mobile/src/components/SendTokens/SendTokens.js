@@ -156,7 +156,7 @@ function getTokenLabel(token) {
 }
 
 export function SendTokens(props: SendTokensProps) {
-  const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails, tokenOptions } = props;
+  const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails, tokenOptions, isSending } = props;
   const { token } = data;
   const handleChange = (fieldName) => (value) => props.onChange(fieldName, value);
 
@@ -202,6 +202,7 @@ export function SendTokens(props: SendTokensProps) {
               <FormattedNumber
                 currency={tokenDetails.symbol}
                 value={tokenDetails.amount}
+                decimal={tokenDetails.decimal}
               />
             </H3>
           </Col>
@@ -319,6 +320,7 @@ export function SendTokens(props: SendTokensProps) {
               type="full-primary"
               onPress={props.onSend}
               disabled={!props.canSend}
+              isLoading={isSending}
             >
               Send {tokenDetails && tokenDetails.symbol}
             </Button>

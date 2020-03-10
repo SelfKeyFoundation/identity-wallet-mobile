@@ -23,7 +23,7 @@ export function getUsdPrice(amount, token = 'ETH') {
 }
 
 export function getTokenPrice(symbol) {
-  let parsedSymbol = symbol.toUpperCase();
+  let parsedSymbol = symbol && symbol.toUpperCase();
 
   if (parsedSymbol === 'KI') {
     parsedSymbol = 'KEY';

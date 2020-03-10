@@ -6,7 +6,7 @@ import { getConfigs } from '@selfkey/configs';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import { TxHistoryModel } from '@selfkey/wallet-core/models/index';
 
-export const REQUEST_INTERVAL_DELAY = 600; // millis
+export const REQUEST_INTERVAL_DELAY = 1000; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);
 export const ENDPOINT_CONFIG = {
 	1: { url: 'https://api.etherscan.io/api' },
@@ -20,12 +20,15 @@ export const TX_HISTORY_ENDPOINT_CONFIG = {
 };
 
 export const getTxHistoryApiEndpoint = () => TX_HISTORY_ENDPOINT_CONFIG[getConfigs().chainId].url;
+const API_KEY = 'Y559IXGJE6MS2QCHK1PAQJS3Q92E893T16';
 
 export let OFFSET = 1000;
 
-export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}`;
-export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}`;
-export const TX_RECEIPT_ACTION = '?module=proxy&action=eth_getTransactionReceipt';
+const wait = time => new Promise(res => setTimeout(res, time));
+
+export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
+export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
+export const TX_RECEIPT_ACTION = `?module=proxy&action=eth_getTransactionReceipt&apikey=${API_KEY}`;
 
 // in order to change key name in runtime
 export const KEY_MAP = {
@@ -101,7 +104,7 @@ export class TxHistoryService {
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getMostResentBlock() {
-		const ACTION_URL = getApiEndpoint() + '?module=proxy&action=eth_blockNumber';
+		const ACTION_URL = getApiEndpoint() + `?module=proxy&action=eth_blockNumber&apikey=${API_KEY}`;
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	async makeRequest(method, url) {
@@ -299,10 +302,20 @@ export class TxHistoryService {
 
 					return resolve();
 				}
+				// TODO: Need to implement retries here
 				let ethTxList = await that.loadEthTxHistory(address, startBlock, endblock, page);
+				await wait(500);
 				let tokenTxList = await that.loadERCTxHistory(address, startBlock, endblock, page);
 
-				(ethTxList || []).concat(tokenTxList || []).forEach((tx, index) => {
+				if (!Array.isArray(tokenTxList)) {
+					tokenTxList = [];
+				}
+
+				if (!Array.isArray(ethTxList)) {
+					ethTxList = [];
+				}
+
+				ethTxList.concat(tokenTxList).forEach((tx, index) => {
 					let hash = tx.hash;
 					txHashes[hash] = txHashes[hash] || {};
 					let isToken = index >= ethTxList.length;

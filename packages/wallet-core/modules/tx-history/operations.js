@@ -1,9 +1,13 @@
 import { getConfigs } from '@selfkey/configs';
 import { TxHistoryService } from '@selfkey/wallet-core/services/tx-history-service';
 import txHistoryActions from './actions';
-import txHistoryDuck from './index';
+import duck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
+
+function filterTransactions(tx) {
+  return !!tx.tokenSymbol;
+}
 
 export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
@@ -11,15 +15,26 @@ export const operations = {
     await dispatch(txHistoryActions.updateTransaction(hash, updatedData));
   },
 
-  loadTxHistoryOperation: () => async (dispatch, getState) => {
+  loadTxHistoryOperation: (force) => async (dispatch, getState) => {
     const state = getState();
     const address = ducks.wallet.selectors.getAddress(state);
+    await dispatch(duck.actions.setLoding(true));
+
+    // Fetch tx history from DB
+    let transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
+    await dispatch(txHistoryActions.setTransactions(transactions.filter(filterTransactions)));
+
+    const lastTransaction = transactions[0];
+    const lastBlock = lastTransaction && lastTransaction.blockHash;
+
     // TODO: Need to get lastBlock from wallet db and pass it here
-    await TxHistoryService.getInstance().syncByWallet(address, null);
-    const transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
-    await dispatch(txHistoryActions.setTransactions(transactions.reverse()));
+    await TxHistoryService.getInstance().syncByWallet(address, force ? null : lastBlock);
+    transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
+    await dispatch(txHistoryActions.setTransactions(transactions.filter(filterTransactions)));
+
+    await dispatch(duck.actions.setLoding(false));
   },
-  /**
+  /**0x580177142Ec093380A45f821351328C24d8D6FDC
    * Create txHistory
    */
   createTransactionOperation: (transaction) => async (dispatch, getState) => {

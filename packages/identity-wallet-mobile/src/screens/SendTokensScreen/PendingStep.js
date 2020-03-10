@@ -27,6 +27,7 @@ export function PendingStep(props) {
     <SendTokensPending
       fiatAmount={fiatAmount}
       token={token}
+      tokenDetails={tokenDetails}
       tokenAmount={amount}
       networkFee={ethFee}
       remainingBalance={transaction.remainingBalance}
