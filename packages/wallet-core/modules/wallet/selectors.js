@@ -48,7 +48,7 @@ export const getTokenDetails = (symbol = 'eth') => (state) => {
 
   if (symbol === 'ETH') {
     return {
-      name: getTokenName(symbol),
+      name: 'Ethereum',
       // TODO: Remove this property 'code'
       code: 'ETH',
       symbol: 'ETH',
@@ -66,7 +66,7 @@ export const getTokenDetails = (symbol = 'eth') => (state) => {
   const token = tokens.find(t => t.symbol && t.symbol.toUpperCase() === symbol);
 
   return {
-    name: getTokenName(token.symbol),
+    name: token.name || getTokenName(token.symbol),
     // TODO: Remove this property 'code'
     code: token.symbol,
     color: token.color,

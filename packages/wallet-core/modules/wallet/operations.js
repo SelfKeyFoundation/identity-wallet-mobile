@@ -20,6 +20,20 @@ function getSymbol(symbol) {
   return symbol;
 }
 
+function getTokenName(symbol = 'eth') {
+  symbol = symbol && symbol.toUpperCase();
+
+  if (symbol === 'ETH') {
+    return 'Ethereum';
+  }
+
+  if (symbol === 'KI' || symbol === 'KEY') {
+    return 'SelfKey';
+  }
+
+  return symbol;
+}
+
 async function loadWalletBalance(wallet) {
   const balance = await getBalanceByAddress(wallet.address);
 
@@ -96,6 +110,7 @@ async function loadWalletTokens(wallet, checkBalance) {
           walletTokenId: walletToken.id,
           hidden: walletToken.hidden,
           fiatCurrency: 'usd',
+          name: token.name || getTokenName(token.symbol),
           symbol: getSymbol(token.symbol),
           decimal: token.decimal,
           address: token.address,
@@ -204,9 +219,6 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   await loadWalletTokens(wallet);
   await dispatch(walletActions.setWallet(wallet));
 
-  // TODO: Store balance in the database
-  // When db balance is available can display it and fetch the real balance in background
-  // It will make the loading process faster
   dispatch(refreshWalletOperation());
 };
 
@@ -258,10 +270,14 @@ const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) =>
       decimal: token.decimal,
       address: contractAddress,
       isCustom: true,
+      name: token.name,
       symbol: token.symbol,
       createdAt: new Date,
       updatedAt: new Date,
     });
+  } else {
+    dbToken.name = token.name;
+    await tokenModel.updateById(dbToken.id, dbToken);
   }
 
   const newToken = {

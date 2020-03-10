@@ -24,9 +24,13 @@ export async function getTokenInfo(contractAddress) {
 
   const decimal = parseInt(await tokenContract.methods.decimals().call());
   let symbol = '';
+  let name = '';
 
   try {
     symbol = await tokenContract.methods.symbol().call();
+    name = await tokenContract.methods.name().call();
+
+    debugger;
   } catch (error) {
     if (error.message.indexOf('Number can only safely store up to 53 bits') !== -1) {
       tokenContract = new Web3Service.getInstance().web3.eth.Contract(
@@ -36,12 +40,17 @@ export async function getTokenInfo(contractAddress) {
       symbol = Web3Service.getInstance().web3.utils.hexToAscii(
         await tokenContract.methods.symbol().call()
       );
+
+      name = Web3Service.getInstance().web3.utils.hexToAscii(
+        await tokenContract.methods.name().call()
+      );
     }
   }
 
   return {
     address: contractAddress,
     symbol,
-    decimal
+    decimal,
+    name,
   };
 }

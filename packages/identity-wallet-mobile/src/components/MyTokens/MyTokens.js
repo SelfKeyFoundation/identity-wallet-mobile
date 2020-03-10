@@ -54,13 +54,16 @@ const TokenName = styled.Text`
 
 const TokenIconContainer = styled.View`
   background-color: ${(props) => props.color || '#2DA1F8' };
-  padding: 11px 17px 14px 18px;
+  padding: 11px 0 14px 0;
+  width: 44px;
   border-radius: 5px;
 `;
 
 const TokenIconTitle = styled.Text`
   color: ${({ theme }) => theme.colors.white };
   font-size: 16px;
+  text-align: center;
+  width: 100%;
   line-height: 19px;
   font-family: ${props => props.theme.fonts.regular};
   text-transform: uppercase;
