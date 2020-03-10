@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ImportFromDesktop } from './ImportFromDesktop';
 import { ImportMessage } from './ImportMessage';
 import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
@@ -7,10 +7,13 @@ import { Modal } from '@selfkey/mobile-ui';
 import ducks from '@selfkey/wallet-core/modules';
 import { PasswordScreen } from './PasswordScreen';
 
+const keystore = 'eyJ2ZXJzaW9uIjozLCJpZCI6IjJmM2QxNTkxLTNhYjYtNDI3MC05YjYzLWQ5NGUxYWVhZDk2ZSIsImFkZHJlc3MiOiJiNGQ5NjUzYjlkOWZlZjhjZjM0MDdiZmY2ZDIxZGIyNWQ3NGRkZGM2IiwiY3J5cHRvIjp7ImNpcGhlcnRleHQiOiIzOGQzNTA3Zjk5OTY0ZGY3ODc0NGIyMWU1YmNmZTgxZjVlOWEzMDA1YTExMTc1YmFmYmJmZDQ1MWRjMTgxY2ViIiwiY2lwaGVycGFyYW1zIjp7Iml2IjoiZDY1ZTdhMGYyZTVmYjM1NGI0ODQzNDM5MjczMzE2YjEifSwiY2lwaGVyIjoiYWVzLTEyOC1jdHIiLCJrZGYiOiJzY3J5cHQiLCJrZGZwYXJhbXMiOnsiZGtsZW4iOjMyLCJzYWx0IjoiOTkwZWI5NGMyYmE5YzUwMGYwMTYwM2RjZTEwNDIwMGQ1N2EwZGU4NTU4NWY5MWUxYzUwMmJkMjczYTE1YWM1NiIsIm4iOjgxOTIsInIiOjgsInAiOjF9LCJtYWMiOiI0MWEwODFjMjljN2MzNDYzOGU4Zjk5Y2ZlZDU3NGM3YzBmODAzOWU4ZWYyNWRlMGQ5NDc2ZDJjZDJjZmFjMWY5In19';
+
 function ImportFromDesktopContainer(props) {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(true);
   const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState('test');
+  const [data, setData] = useState(keystore);
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
@@ -31,8 +34,9 @@ function ImportFromDesktopContainer(props) {
     setLoading(true);
 
     // submit data and password to be decrypted
-    console.log('submit password', password);
+    // console.log('submit password', password);
 
+    dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password));
     setLoading(false);
   };
 

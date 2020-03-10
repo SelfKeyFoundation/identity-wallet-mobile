@@ -52,3 +52,39 @@ export async function setupHDWallet({ mnemonic, password }) {
     vault,
   }
 }
+
+export async function setupPrivateKeyWallet({ privateKey, address, password }) {
+  const vault = await createVault({
+    privateKey,
+    address,
+    password: password,
+    securityPolicy: {
+      password: true,
+      faceId: false,
+      fingerprint: false,
+    },
+  });
+
+  const primaryToken = await TokenModel.getInstance().findBySymbol(getConfigs().primaryToken);
+  const tokens = [{
+    id: WalletTokenModel.getInstance().generateId(),
+    balance: '0',
+    balanceInFiat: 0,
+    hidden: false,
+    tokenId: primaryToken.id
+  }];
+
+  const wallet = await WalletModel.getInstance().create({
+    address: address,
+    name: 'SelfKey Wallet',
+    balance: '0',
+    vaultId: vault.id,
+    type: 'privateKey',
+    tokens,
+  });
+
+  return {
+    wallet,
+    vault,
+  }
+}

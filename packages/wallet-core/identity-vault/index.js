@@ -46,13 +46,15 @@ function createHash(value) {
  * @param {VaultConstructor} props
  */
 export async function createVault(props: VaultConstructor) {
-  const vaultId = createHash(props.rootPublicKey);
+  const vaultId = createHash(props.rootPublicKey || props.address);
   const password = createHash(props.password);
   const dbKey = createHash(props.seed);
 
   const vaultProps = {
     id: vaultId,
     mnemonic: props.mnemonic,
+    privateKey: props.privateKey,
+    address: props.address,
     rootSeed: props.seed,
     password: password,
     securityPolicy: props.securityPolicy,

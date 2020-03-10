@@ -1,9 +1,11 @@
 import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 import actions from './actions';
 import { walletOperations } from '../wallet/operations';
+import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import * as selectors from './selectors';
+import { decode } from 'base-64';
 import { navigate, Routes } from '../../navigation';
-import { setupHDWallet } from './create-wallet-utils';
+import { setupHDWallet, setupPrivateKeyWallet } from './create-wallet-utils';
 import { decryptData } from '../../identity-vault/backup';
 import { getVault, removeVault } from '../../identity-vault';
 import ducks from '../index';
@@ -72,6 +74,32 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
+/**
+   * TODO:
+   * - [x] decrypt keystore using web3
+   * - [ ] create method to setupPrivateKeyWallet - in progress
+   * - [ ] handle errors
+   */
+const imporw
+betFromDesktopOperation = (keystoreEncrypted, password) => async (dispatch, getState) => {
+  const { web3 } = Web3Service.getInstance();
+  const keystore = decode(keystoreEncrypted);
+  const web3Wallet = web3.eth.accounts.wallet.decrypt([keystore], password);
+
+  const { address, privateKey } = web3Wallet.accounts[0];
+
+  const setupData = await setupPrivateKeyWallet({
+    privateKey,
+    address,
+    password
+  });
+
+  console.log(setupData);
+
+  // await dispatch(walletOperations.loadWalletOperation(setupData));
+  // await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
+};
+
 const submitConfirmationOperation = (form) => async (dispatch, getState) => {
   const state = getState();
   const mnemonic = selectors.getMnemonicPhrase(state);
@@ -107,6 +135,7 @@ export const operations = {
   submitWalletBackupOperation,
   submitConfirmationOperation,
   createFromBackupOperation,
+  importFromDesktopOperation,
 };
 
 export const createWalletOperations = {
