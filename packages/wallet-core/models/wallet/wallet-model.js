@@ -17,6 +17,10 @@ export class WalletModel extends BaseModel {
         type: 'int?',
         default: 0,
       },
+      txHistoryLastSyncedBlock: {
+        type: 'int?',
+        default: 0,
+      },
       vaultId: 'string',
       /**
        * hd-wallet or private-key

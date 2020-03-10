@@ -92,7 +92,10 @@ export class Web3Service {
 
 		const balanceWei = await tokenContract.methods.balanceOf(address).call();
 		const decimals = await tokenContract.methods.decimals().call();
-		return EthUtils.getBalanceDecimal(balanceWei || 0, decimals);
+
+		const balance = EthUtils.getBalanceDecimal(balanceWei || 0, decimals);
+
+		return balance;
   }
   
   waitForTicket(args) {

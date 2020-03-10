@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 import AsyncTaskQueue from '@selfkey/blockchain/util/async-task-queue';
 import { getConfigs } from '@selfkey/configs';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
-import { TxHistoryModel } from '@selfkey/wallet-core/models/index';
+import { TxHistoryModel, WalletModel } from '@selfkey/wallet-core/models/index';
 
 export const REQUEST_INTERVAL_DELAY = 1000; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);
@@ -269,20 +269,16 @@ export class TxHistoryService {
 			}
 		}
 	}
-	getWalletSetting(walletId) {
-		return WalletSetting.findByWalletId(walletId);
-	}
-	async syncByWallet(address, walletId, showProgress, reload = false) {
+
+	async syncByWallet(address, reload = false) {
 		let self = this.constructor;
-		if (showProgress) {
-			self.isSyncingMap[address] = true;
-		}
+		// if (showProgress) {
+		// 	self.isSyncingMap[address] = true;
+		// }
 		let endblock = await this.getMostResentBlock();
+		const wallet = await WalletModel.getInstance().findById(address);
 		endblock = parseInt(endblock, 16);
-		// TODO: Get txHistoryLastSyncedBlock from wallet settings
-		// let walletSetting = await this.getWalletSetting(walletId);
-		// let startBlock = reload ? 0 : walletSetting.txHistoryLastSyncedBlock || 0;
-		const startBlock = 0;
+		let startBlock = reload ? 0 : wallet.txHistoryLastSyncedBlock || 0;
 		let page = 1;
 		let txHashes = {};
 		return new Promise((resolve, reject) => {
@@ -291,14 +287,9 @@ export class TxHistoryService {
 				if (!hasNext) {
 					await that.processTxHistory(txHashes, address);
 
-					if (showProgress) {
-						self.isSyncingMap[address] = false;
-					}
-
-					// TODO: Update txHistoryLastSyncedBlock on wallet settings
-					// walletSetting = await that.getWalletSetting(walletId);
-					// walletSetting.txHistoryLastSyncedBlock = endblock;
-					// await WalletSetting.updateById(walletSetting.id, walletSetting);
+					await WalletModel.getInstance().updateById(address, {
+						txHistoryLastSyncedBlock: endblock
+					});
 
 					return resolve();
 				}
@@ -332,7 +323,7 @@ export class TxHistoryService {
 		for (let wallet of wallets) {
 			let address = wallet.address.toLowerCase();
 			address = address.startsWith('0x') ? address : `0x${address}`;
-			await this.syncByWallet(address, wallet.id);
+			await this.syncByWallet(address);
 			await this.removeNotMinedPendingTxs(address);
 		}
 	}
@@ -362,7 +353,7 @@ export class TxHistoryService {
 	async reload(wallet) {
 		let address = wallet.address.toLowerCase();
 		address = address.startsWith('0x') ? address : `0x${address}`;
-		await this.syncByWallet(address, wallet.id, true, true);
+		await this.syncByWallet(address, true);
 		await this.removeNotMinedPendingTxs(address);
   }
   

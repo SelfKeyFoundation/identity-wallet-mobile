@@ -11,7 +11,8 @@ function filterTransactions(tx) {
 
 export const operations = {
   updateTransactionOperation: (hash, updatedData) => async (dispatch, getState) => {
-    await TxHistoryModel.getInstance().updateById(hash, updatedData); 
+    await TxHistoryModel.getInstance().addOrUpdate(updatedData);
+    const txs = await TxHistoryModel.getInstance().findAll();
     await dispatch(txHistoryActions.updateTransaction(hash, updatedData));
   },
 
@@ -22,13 +23,14 @@ export const operations = {
 
     // Fetch tx history from DB
     let transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
-    await dispatch(txHistoryActions.setTransactions(transactions.filter(filterTransactions)));
+    const txs = transactions.filter(filterTransactions);
+    await dispatch(txHistoryActions.setTransactions(txs));
 
     const lastTransaction = transactions[0];
     const lastBlock = lastTransaction && lastTransaction.blockHash;
 
     // TODO: Need to get lastBlock from wallet db and pass it here
-    await TxHistoryService.getInstance().syncByWallet(address, force ? null : lastBlock);
+    await TxHistoryService.getInstance().syncByWallet(address, force);
     transactions = await TxHistoryModel.getInstance().findByAddress(address.toLowerCase());
     await dispatch(txHistoryActions.setTransactions(transactions.filter(filterTransactions)));
 

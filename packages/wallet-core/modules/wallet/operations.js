@@ -79,12 +79,13 @@ async function loadWalletTokens(wallet, checkBalance) {
             await WalletTokenModel.getInstance().updateById(walletToken.id, {
               balance,
             });
-            if (balance === 'NaN') {
-              balance = 0;
-            }
           } catch(err) {
             console.error(err);
           }
+        }
+
+        if (balance === 'NaN') {
+          balance = 0;
         }
 
         const price = getTokenPrice(token.symbol);
@@ -112,10 +113,33 @@ async function loadWalletTokens(wallet, checkBalance) {
 /**
  * Refresh wallet balance and tokens balance
  */
-const refreshWalletOperation = () => async (dispatch, getState) => {
+const refreshWalletOperation = (asyncHistory) => async (dispatch, getState) => {
   const wallet = getState().wallet;
 
-  dispatch(ducks.txHistory.operations.loadTxHistoryOperation())
+  try {
+    if (asyncHistory) {
+      await dispatch(ducks.txHistory.operations.loadTxHistoryOperation(true));
+    } else {
+      dispatch(ducks.txHistory.operations.loadTxHistoryOperation());
+    }
+  } catch(err) {
+    console.error(err);
+  }
+
+  try {
+    await Promise.all([
+      loadWalletBalance(wallet),
+      loadWalletTokens(wallet, true),
+    ]);
+  } catch(err) {
+    console.error(err);
+  }
+
+  dispatch(walletActions.setWallet(wallet));
+};
+
+const refreshBalanceOperation =  () => async (dispatch, getState) => {
+  const wallet = getState().wallet;
 
   try {
     await Promise.all([
@@ -152,8 +176,15 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
     .catch((err) => {
       console.log(err);
     });
-  
+
   // TODO: Remove backup file from filesystem
+};
+
+const changePasswordOperation = (password) => async (dispatch, getState) => {
+  const { vaultId } = getState().wallet;
+  const vault = await unlockVault(vaultId, password);
+  await dispatch(ducks.wallet.actions.setVault(vault));
+  navigate(Routes.WALLET_NEW_PASSWORD);
 };
 
 const getRecoveryInformationOperation = (password) => async (dispatch, getState) => {
@@ -207,6 +238,8 @@ const confirmNewPasswordOperation = ({ password }) => async (dispatch, getState)
   await updatePassword(vault.id, null, newPassword, {
     currentPasswordHash: vault.password
   });
+
+  await dispatch(walletActions.setNewPassword(''));
 
   navigate(Routes.APP_DASHBOARD);
 };
@@ -337,6 +370,8 @@ const removeWalletOperation = () => async (dispatch, getState) => {
 export const operations = {
   loadWalletOperation,
   refreshWalletOperation,
+  refreshBalanceOperation,
+  changePasswordOperation,
   backupWalletOperation,
   submitNewPasswordOperation,
   confirmNewPasswordOperation,

@@ -130,7 +130,7 @@ export function SettingsMenu(props) {
             <SectionTitle>Security Settings</SectionTitle>
           </Col>
         </Row>
-        <MenuItem>
+        <MenuItem onPress={props.onChangePassword}>
           Change Passcode
         </MenuItem>
 

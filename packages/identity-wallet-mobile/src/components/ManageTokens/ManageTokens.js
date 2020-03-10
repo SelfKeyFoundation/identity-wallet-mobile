@@ -140,12 +140,12 @@ export function ManageTokens(props: ManageTokensProps) {
   })).filter(item => !(tokenToRemove && item.id === tokenToRemove.id)), [tokens, tokenToRemove]);
 
   const handleSwipeChange = useCallback((swipeData) => {
-    const { key, value } = swipeData;
+    // const { key, value } = swipeData;
   
-    if (value < removeOffset) {
-      const itemToRemove = listData.find(token => token.id === key);
-      onRemove(itemToRemove);
-    }
+    // if (value < removeOffset) {
+    //   const itemToRemove = listData.find(token => token.id === key);
+    //   onRemove(itemToRemove);
+    // }
   }, [tokens, onRemove]);
 
   return (
@@ -214,22 +214,24 @@ export function ManageTokens(props: ManageTokensProps) {
             )}
             renderHiddenItem={ (data, rowMap) => (
               <TokenOptionsRow key={data.item.id}>
-                <Col autoWidth noPadding>
-                  <Row justifyContent="center">
-                    <Col autoWidth noPadding>
-                      <SKIcon name="icon-hide" color="#00C0D9" size={16} />
-                    </Col>
-                  </Row>
-                  <Row justifyContent="center" marginTop={10}>
-                    <Col autoWidth noPadding>
-                      <HideLink>Hide</HideLink>
-                    </Col>
-                  </Row>
-                </Col>
+                <TouchableWithoutFeedback onPress={() => props.onRemove(data.item)}>
+                  <Col autoWidth noPadding>
+                    <Row justifyContent="center">
+                      <Col autoWidth noPadding>
+                        <SKIcon name="icon-hide" color="#00C0D9" size={16} />
+                      </Col>
+                    </Row>
+                    <Row justifyContent="center" marginTop={10}>
+                      <Col autoWidth noPadding>
+                        <HideLink>Hide</HideLink>
+                      </Col>
+                    </Row>
+                  </Col>
+                </TouchableWithoutFeedback>
               </TokenOptionsRow>
             )}
             leftOpenValue={0}
-            rightOpenValue={-screenWidth}
+            rightOpenValue={-70}
             onSwipeValueChange={handleSwipeChange}
           />
         </Col>

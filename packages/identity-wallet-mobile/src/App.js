@@ -1,5 +1,6 @@
 // @flow
 import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from './navigation';
 import { connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
@@ -22,6 +23,7 @@ export function App(props: AppProps) {
 
   return (
     <React.Fragment>
+      <StatusBar barStyle="light-content" />
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />

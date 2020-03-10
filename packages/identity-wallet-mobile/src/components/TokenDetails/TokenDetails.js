@@ -141,8 +141,8 @@ export function TokenDetails(props: TokenDetailsProps) {
           </Explanatory>
         </Row>}
       </Header>
-      { props.tokenCode !== 'custom-tokens'&& <Body>
-        { props.lastPrice && <Row marginBottom={12}>
+      { props.tokenCode === 'custom-tokens' ? null : <Body>
+        { props.lastPrice ? <Row marginBottom={12}>
           <Col>
             <Label>Last Price</Label>
           </Col>
@@ -155,8 +155,8 @@ export function TokenDetails(props: TokenDetailsProps) {
               />
             </BodyText>
           </Col>
-        </Row>}
-        { props.contractAddress && <Row>
+        </Row> : null}
+        { props.contractAddress ? <Row>
           <Col>
             <Label>Token Contract</Label>
           </Col>
@@ -165,7 +165,7 @@ export function TokenDetails(props: TokenDetailsProps) {
               { formatAddress(props.contractAddress) }
             </BodyText>
           </Col>
-        </Row>}
+        </Row> : null}
       </Body>}
       <Footer>
         <FooterCol>

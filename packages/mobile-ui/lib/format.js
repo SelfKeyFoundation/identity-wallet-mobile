@@ -40,6 +40,10 @@ export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal
     formattedValue = formattedValue.replace(/00+$/, '')
   }
 
+  if ((/\.$/).test(formattedValue)) {
+    formattedValue = formattedValue.replace(/\./, '');
+  }
+
   if (currency) {
     return formatCurrency(formattedValue, currency);
   }

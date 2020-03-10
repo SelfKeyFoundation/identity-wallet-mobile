@@ -11,7 +11,7 @@ function DashboardContainer(props) {
   const dispatch = useDispatch();
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
-    await dispatch(operations.refreshWalletOperation());
+    await dispatch(operations.refreshWalletOperation(true));
     setRefreshing(false);
   }, []);
 

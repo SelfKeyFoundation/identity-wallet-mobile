@@ -18,6 +18,7 @@ function SettingsScreenContainer(props) {
   const handleHelpAndSupport = () => Linking.openURL('https://help.selfkey.org/');
   const [walletEnv, setWalletEnv] = useState({});
   const handleSwitchAccount = () => navigate(Routes.WALLET_SELECTION);
+  const handleChangePassword = () => navigate(Routes.CHANGE_PASSWORD);
   const handleDeveloperSettings = () => navigate(Routes.DEVELOPER_SETTINGS);
   const handleRecoveryInformation = () => navigate(Routes.RECOVERY_INFORMATION);
   const handleVersionPress = () => {
@@ -53,6 +54,7 @@ function SettingsScreenContainer(props) {
       onPrivacyPolicy={handlePrivacyPolicy}
       onHelpAndSupport={handleHelpAndSupport}
       onRecoveryInformation={handleRecoveryInformation}
+      onChangePassword={handleChangePassword}
       onVersionPress={handleVersionPress}
       onDeveloperSettings={handleDeveloperSettings}
       walletEnv={walletEnv}

@@ -123,7 +123,7 @@ export const AddTokenModal = props => {
                   </Col>
                 </Row>
               )}
-              value={null}
+              value={address}
               icon={isTokenValid && <SKIcon name="icon-check-bold" color="#50E3C2" size={20} />}
               placeholder="Address"
               label="Token Address"
