@@ -1,4 +1,5 @@
 
+const configListeners = [];
 let currentEnv = 'prod';
 
 const CONFIGS = {
@@ -7,17 +8,35 @@ const CONFIGS = {
     etherscanUrl: 'https://ropsten.etherscan.io',
     rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KI',
+    flags: {
+      importFromDesktop: true,
+      importFromMnemonic: false,
+    }
   },
   prod: {
     chainId: 1,
     etherscanUrl: 'https://etherscan.io',
     rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KEY',
+    flags:{
+      importFromDesktop: false,
+      importFromMnemonic: false,
+    }
   }
+}
+
+function notifyListeners() {
+  const configs = getConfigs();
+  configListeners.forEach(callback => callback.apply(null, [configs]));
 }
 
 export function setEnv(env) {
   currentEnv = env;
+  notifyListeners();
+}
+
+export function onConfigChange(listener) {
+  configListeners.push(listener);
 }
 
 export function getConfigs() {

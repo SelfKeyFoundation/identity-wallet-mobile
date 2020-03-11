@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useEffect, useState } from 'react';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native';
 import {
   Explanatory,
@@ -20,6 +20,7 @@ import {
 import styled from 'styled-components/native';
 import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
+import { getConfigs, onConfigChange } from '@selfkey/configs';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -106,14 +107,10 @@ const OrText = styled(DefinitionTitle)`
 
 let index = 0;
 
-const data = [
-    { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' },
-    { key: 'import_backup_file', label: 'Import Backup File' },
-    { key: 'import_from_desktop', label: 'Import from Desktop Application' },
-];
 
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
+  const [importOptions, setImportOptions] = useState([]);
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
 
@@ -122,6 +119,33 @@ export function CreatePassword(props: CreatePasswordProps) {
     props.onChange('password')(cleanedValue);
   });
 
+  //
+  const computeOptions = (configs) => {
+    const importOptions = [];
+
+    if (configs.flags.importFromMnemonic) {
+      importOptions.push(
+        { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' }
+      );
+    }
+
+    importOptions.push(
+      { key: 'import_backup_file', label: 'Import Backup File' }
+    );
+
+    if (configs.flags.importFromDesktop) {
+      importOptions.push(
+        { key: 'import_from_desktop', label: 'Import from Desktop Application' }
+      );
+    }
+
+    setImportOptions(importOptions);
+  }
+
+  useEffect(() => {
+    onConfigChange(computeOptions);  
+  }, []);
+  
   const handleSelectChange = (option) => {
     switch (option.key) {
       case 'import_from_desktop': {
@@ -218,7 +242,7 @@ export function CreatePassword(props: CreatePasswordProps) {
               <Row>
                 <Col>
                   <ModalSelector
-                    data={data}
+                    data={importOptions}
                     cancelText="Cancel"
                     onChange={handleSelectChange}
                   >
