@@ -1,6 +1,7 @@
 import { WalletBuilder } from '@selfkey/blockchain/util/wallet-builder';
 import actions from './actions';
 import { walletOperations } from '../wallet/operations';
+import { WalletModel  } from '../../models/wallet/wallet-model';
 import { Web3Service } from '@selfkey/blockchain/services/web3-service';
 import * as selectors from './selectors';
 import { decode } from 'base-64';
@@ -80,13 +81,22 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
    * - [ ] create method to setupPrivateKeyWallet - in progress
    * - [ ] handle errors
    */
-const imporw
-betFromDesktopOperation = (keystoreEncrypted, password) => async (dispatch, getState) => {
+const importFromDesktopOperation = (keystoreEncrypted, password) => async (dispatch, getState) => {
   const { web3 } = Web3Service.getInstance();
   const keystore = decode(keystoreEncrypted);
   const web3Wallet = web3.eth.accounts.wallet.decrypt([keystore], password);
 
   const { address, privateKey } = web3Wallet.accounts[0];
+
+  const currentWallet = WalletModel.getInstance().findByAddress(address);
+
+  debugger;
+
+  if (currentWallet) {
+    throw {
+      message: 'Wallet already exists',
+    }
+  }
 
   const setupData = await setupPrivateKeyWallet({
     privateKey,
@@ -94,10 +104,9 @@ betFromDesktopOperation = (keystoreEncrypted, password) => async (dispatch, getS
     password
   });
 
-  console.log(setupData);
-
-  // await dispatch(walletOperations.loadWalletOperation(setupData));
-  // await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
+  await dispatch(walletOperations.loadWalletOperation(setupData));
+  
+  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
 const submitConfirmationOperation = (form) => async (dispatch, getState) => {

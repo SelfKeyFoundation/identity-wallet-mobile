@@ -7,8 +7,6 @@ import { Modal } from '@selfkey/mobile-ui';
 import ducks from '@selfkey/wallet-core/modules';
 import { PasswordScreen } from './PasswordScreen';
 
-const keystore = 'eyJ2ZXJzaW9uIjozLCJpZCI6IjJmM2QxNTkxLTNhYjYtNDI3MC05YjYzLWQ5NGUxYWVhZDk2ZSIsImFkZHJlc3MiOiJiNGQ5NjUzYjlkOWZlZjhjZjM0MDdiZmY2ZDIxZGIyNWQ3NGRkZGM2IiwiY3J5cHRvIjp7ImNpcGhlcnRleHQiOiIzOGQzNTA3Zjk5OTY0ZGY3ODc0NGIyMWU1YmNmZTgxZjVlOWEzMDA1YTExMTc1YmFmYmJmZDQ1MWRjMTgxY2ViIiwiY2lwaGVycGFyYW1zIjp7Iml2IjoiZDY1ZTdhMGYyZTVmYjM1NGI0ODQzNDM5MjczMzE2YjEifSwiY2lwaGVyIjoiYWVzLTEyOC1jdHIiLCJrZGYiOiJzY3J5cHQiLCJrZGZwYXJhbXMiOnsiZGtsZW4iOjMyLCJzYWx0IjoiOTkwZWI5NGMyYmE5YzUwMGYwMTYwM2RjZTEwNDIwMGQ1N2EwZGU4NTU4NWY5MWUxYzUwMmJkMjczYTE1YWM1NiIsIm4iOjgxOTIsInIiOjgsInAiOjF9LCJtYWMiOiI0MWEwODFjMjljN2MzNDYzOGU4Zjk5Y2ZlZDU3NGM3YzBmODAzOWU4ZWYyNWRlMGQ5NDc2ZDJjZDJjZmFjMWY5In19';
-
 function ImportFromDesktopContainer(props) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(true);
@@ -24,7 +22,7 @@ function ImportFromDesktopContainer(props) {
     setPassword(null);
     setData(null);
   };
-  const handleSubmitPassword = () => {
+  const handleSubmitPassword = async () => {
     if (!password) {
       setError('Password is required');
       return;
@@ -33,10 +31,12 @@ function ImportFromDesktopContainer(props) {
     setError(null);
     setLoading(true);
 
-    // submit data and password to be decrypted
-    // console.log('submit password', password);
+    try {
+      await dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password));
+    } catch(err) {
+      setError(err.message);
+    }
 
-    dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password));
     setLoading(false);
   };
 

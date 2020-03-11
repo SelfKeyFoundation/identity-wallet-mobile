@@ -19,6 +19,7 @@ import {
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { ValidationCheck } from './ValidationCheck';
+import ModalSelector from 'react-native-modal-selector'
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -103,6 +104,14 @@ const OrText = styled(DefinitionTitle)`
   text-align: center;
 `
 
+let index = 0;
+
+const data = [
+    { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' },
+    { key: 'import_backup_file', label: 'Import Backup File' },
+    { key: 'import_from_desktop', label: 'Import from Desktop Application' },
+];
+
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.password || [];
@@ -112,6 +121,23 @@ export function CreatePassword(props: CreatePasswordProps) {
     const cleanedValue = value.replace(/[ \n]/g, '');
     props.onChange('password')(cleanedValue);
   });
+
+  const handleSelectChange = (option) => {
+    switch (option.key) {
+      case 'import_from_desktop': {
+        props.onImportFromDesktop();
+        break;
+      }
+      case 'import_backup_file': {
+        props.onImportBackupFile();
+        break;
+      }
+      case 'enter_recovery_phrase': {
+        props.onEnterRecoveryPhrase();
+        break;
+      }
+    }
+  }
 
   return (
     <ScreenContainer sidePadding>
@@ -182,8 +208,8 @@ export function CreatePassword(props: CreatePasswordProps) {
               </Button>
             </Col>
           </Row>
-          { props.onImportExistingWallet &&
-            <>
+          { props.onImportBackupFile &&
+            <React.Fragment>
               <Row>
                 <Col>
                   <OrText>or</OrText>
@@ -191,18 +217,23 @@ export function CreatePassword(props: CreatePasswordProps) {
               </Row>
               <Row>
                 <Col>
-                  <TouchableWithoutFeedback
-                    onPress={props.onImportExistingWallet}
+                  <ModalSelector
+                    data={data}
+                    cancelText="Cancel"
+                    onChange={handleSelectChange}
                   >
-                    <UseDifferentWallet>
-                      Import Existing Wallet
-                    </UseDifferentWallet>
-                  </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback>
+                      <UseDifferentWallet>
+                        Import Existing Wallet
+                      </UseDifferentWallet>
+                    </TouchableWithoutFeedback>
+                  </ModalSelector>
                 </Col>
               </Row>
-            </>
+            </React.Fragment>
           }
         </Grid>
+        
       </Container>
     </ScreenContainer>
   );
