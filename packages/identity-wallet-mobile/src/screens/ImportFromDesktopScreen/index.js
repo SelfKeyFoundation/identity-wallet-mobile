@@ -7,8 +7,6 @@ import { Modal } from '@selfkey/mobile-ui';
 import ducks from '@selfkey/wallet-core/modules';
 import { PasswordScreen } from './PasswordScreen';
 
-const wait = (time) => new Promise(res => setTimeout(res, time));
-
 function ImportFromDesktopContainer(props) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(true);
