@@ -54,8 +54,6 @@ export async function setupHDWallet({ mnemonic, password }) {
 }
 
 export async function setupPrivateKeyWallet({ privateKey, address, password }) {
-  debugger;
-
   const vault = await createVault({
     privateKey,
     address,

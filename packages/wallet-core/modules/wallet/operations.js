@@ -228,7 +228,12 @@ const getRecoveryInformationOperation = (password) => async (dispatch, getState)
  * Load wallet
  */
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
-  const { privateKey } = vault.getETHWalletKeys(0);
+  let { privateKey} = vault;
+
+  if (!privateKey) {
+    privateKey = vault.getETHWalletKeys(0).privateKey;
+  }
+
   unlockWalletWithPrivateKey(privateKey)
 
   await loadWalletTokens(wallet);

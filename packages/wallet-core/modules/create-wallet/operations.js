@@ -90,8 +90,6 @@ const importFromDesktopOperation = (keystoreEncrypted, password) => async (dispa
 
   const currentWallet = WalletModel.getInstance().findByAddress(address);
 
-  debugger;
-
   if (currentWallet) {
     throw {
       message: 'Wallet already exists',

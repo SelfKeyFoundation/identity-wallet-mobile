@@ -29,8 +29,6 @@ export async function getTokenInfo(contractAddress) {
   try {
     symbol = await tokenContract.methods.symbol().call();
     name = await tokenContract.methods.name().call();
-
-    debugger;
   } catch (error) {
     if (error.message.indexOf('Number can only safely store up to 53 bits') !== -1) {
       tokenContract = new Web3Service.getInstance().web3.eth.Contract(

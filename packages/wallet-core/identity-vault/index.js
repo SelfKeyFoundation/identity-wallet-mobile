@@ -81,7 +81,7 @@ export function removeVault(vaultId) {
 }
 
 async function prepareUnlockedVault(vaultId, props) {
-  const dbKey = createHash(props.rootSeed);  
+  const dbKey = createHash(props.rootSeed || props.privateKey);
   const identityDb = await getDatabase().create({ vaultId, privateKey: dbKey });
 
   const vault = new IdentityVault({
@@ -120,7 +120,7 @@ export async function unlockVaultWithMnemonic(vaultId, mnemonic) {
        message: 'wrong_mnemonic',
      };
    }
- 
+
    return prepareUnlockedVault(vaultId, props);
 }
 
