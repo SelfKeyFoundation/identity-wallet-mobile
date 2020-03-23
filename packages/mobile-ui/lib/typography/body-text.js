@@ -34,6 +34,7 @@ export const DefinitionDescription = styled.Text`
 export const Explanatory = styled.Text`
   color: ${props => props.theme.colors.typography};
   font-size: 13px;
+  line-height: 19px;
   font-family: ${props => props.theme.fonts.lato};
 `;
 

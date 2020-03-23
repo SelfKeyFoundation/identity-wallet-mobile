@@ -13127,6 +13127,13 @@ react-native-modal-selector@^1.0.2:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-modal-selector@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-1.1.5.tgz#17fed51943f5025875c0af8f2bd2cbbfcbb3fd6e"
+  integrity sha512-4qjMDSHCoWJSSxCsiNvKQiAH0LMg5ef/dijmlac7km+UzMeAzD6GIub9Xa1vSoQojRkF7NEz5ug+g8giOxDIaA==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-modal@^11.0.2:
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.4.0.tgz#29f2fd241aed864f3c7ce25a941498ebe2ab217a"
@@ -13241,11 +13248,6 @@ react-native-snap-carousel@3.8.4:
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
-
-react-native-sodium@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/react-native-sodium/-/react-native-sodium-0.3.5.tgz#a57c167e9b7a122fa1ae915a2af8cd629e07c0aa"
-  integrity sha512-jHsASHrumkwkutaz8vJup19xcUkoDH/5Z1JK2xY9hTWa81A3H+TySx7PoEOB+4jLw+ywmfm+4XqLyiYlczYjkQ==
 
 react-native-splash-screen@3.2.0:
   version "3.2.0"

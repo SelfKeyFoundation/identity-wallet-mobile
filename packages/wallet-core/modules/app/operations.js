@@ -29,7 +29,6 @@ const loadAppOperation = () => async (dispatch, getState) => {
   try {
     // TODO: Handle internet issues
     loadTokenPrices();
-    delay(1000);
   } catch(err) {
     console.error(err);
   }
@@ -42,6 +41,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
 
+  // navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
   dispatch(appActions.setLoading(false));
 };
 

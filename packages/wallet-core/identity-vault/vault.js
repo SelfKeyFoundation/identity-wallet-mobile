@@ -5,7 +5,9 @@ export class IdentityVault {
   constructor(props: VaultConstructor) {
     this.id = props.id;
     this.password = props.password;
-    this.mnemonic = props.mnemonic,
+    this.mnemonic = props.mnemonic;
+    this.privateKey = props.privateKey;
+    this.address = props.address;
     this.rootSeed = props.rootSeed;
     this.securityPolicy = props.securityPolicy;
     this.db = props.db;

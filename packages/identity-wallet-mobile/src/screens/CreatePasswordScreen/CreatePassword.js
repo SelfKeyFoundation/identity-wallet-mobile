@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useEffect, useState } from 'react';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native';
 import {
   Explanatory,
@@ -19,6 +19,8 @@ import {
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { ValidationCheck } from './ValidationCheck';
+import ModalSelector from 'react-native-modal-selector'
+import { getConfigs, onConfigChange } from '@selfkey/configs';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -103,8 +105,12 @@ const OrText = styled(DefinitionTitle)`
   text-align: center;
 `
 
+let index = 0;
+
+
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
+  const [importOptions, setImportOptions] = useState([]);
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
 
@@ -112,6 +118,50 @@ export function CreatePassword(props: CreatePasswordProps) {
     const cleanedValue = value.replace(/[ \n]/g, '');
     props.onChange('password')(cleanedValue);
   });
+
+  //
+  const computeOptions = (configs) => {
+    const importOptions = [];
+
+    if (configs.flags.importFromMnemonic) {
+      importOptions.push(
+        { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' }
+      );
+    }
+
+    importOptions.push(
+      { key: 'import_backup_file', label: 'Import Backup File' }
+    );
+
+    if (configs.flags.importFromDesktop) {
+      importOptions.push(
+        { key: 'import_from_desktop', label: 'Import from Desktop Application' }
+      );
+    }
+
+    setImportOptions(importOptions);
+  }
+
+  useEffect(() => {
+    onConfigChange(computeOptions);  
+  }, []);
+  
+  const handleSelectChange = (option) => {
+    switch (option.key) {
+      case 'import_from_desktop': {
+        props.onImportFromDesktop();
+        break;
+      }
+      case 'import_backup_file': {
+        props.onImportBackupFile();
+        break;
+      }
+      case 'enter_recovery_phrase': {
+        props.onEnterRecoveryPhrase();
+        break;
+      }
+    }
+  }
 
   return (
     <ScreenContainer sidePadding>
@@ -182,8 +232,8 @@ export function CreatePassword(props: CreatePasswordProps) {
               </Button>
             </Col>
           </Row>
-          { props.onImportExistingWallet &&
-            <>
+          { props.onImportBackupFile &&
+            <React.Fragment>
               <Row>
                 <Col>
                   <OrText>or</OrText>
@@ -191,18 +241,23 @@ export function CreatePassword(props: CreatePasswordProps) {
               </Row>
               <Row>
                 <Col>
-                  <TouchableWithoutFeedback
-                    onPress={props.onImportExistingWallet}
+                  <ModalSelector
+                    data={importOptions}
+                    cancelText="Cancel"
+                    onChange={handleSelectChange}
                   >
-                    <UseDifferentWallet>
-                      Import Existing Wallet
-                    </UseDifferentWallet>
-                  </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback>
+                      <UseDifferentWallet>
+                        Import Existing Wallet
+                      </UseDifferentWallet>
+                    </TouchableWithoutFeedback>
+                  </ModalSelector>
                 </Col>
               </Row>
-            </>
+            </React.Fragment>
           }
         </Grid>
+        
       </Container>
     </ScreenContainer>
   );

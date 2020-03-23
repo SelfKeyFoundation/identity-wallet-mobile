@@ -26,9 +26,8 @@ function CreatePasswordContainer(props) {
     navigateBack();
   })
 
-  const handleImportExistingWallet = useCallback(() => {
-    navigate(Routes.CREATE_WALLET_IMPORT_BACKUP);
-  });
+  const handleImpotBackupFile = () => navigate(Routes.CREATE_WALLET_IMPORT_BACKUP);
+  const handleImpotFromDesktop = () => navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
 
   return (
     <CreatePassword
@@ -38,7 +37,11 @@ function CreatePasswordContainer(props) {
       values={controller.values}
       errors={controller.errors}
       passwordStrength={controller.passwordStrength}
-      onImportExistingWallet={handleImportExistingWallet}
+      onImportFromDesktop={handleImpotFromDesktop}
+      onImportBackupFile={handleImpotBackupFile}
+      onEnterRecoveryPhrase={() => {
+        // to be created
+      }}
     />
   );
 }

@@ -46,14 +46,17 @@ function createHash(value) {
  * @param {VaultConstructor} props
  */
 export async function createVault(props: VaultConstructor) {
-  const vaultId = createHash(props.rootPublicKey);
+  const vaultId = createHash(props.rootPublicKey || props.address);
   const password = createHash(props.password);
-  const dbKey = createHash(props.seed);
+  const dbKey = createHash(props.seed || props.privateKey);
 
   const vaultProps = {
     id: vaultId,
     mnemonic: props.mnemonic,
+    privateKey: props.privateKey,
+    address: props.address,
     rootSeed: props.seed,
+    privateKey: props.privateKey,
     password: password,
     securityPolicy: props.securityPolicy,
   };
@@ -78,7 +81,7 @@ export function removeVault(vaultId) {
 }
 
 async function prepareUnlockedVault(vaultId, props) {
-  const dbKey = createHash(props.rootSeed);  
+  const dbKey = createHash(props.rootSeed || props.privateKey);
   const identityDb = await getDatabase().create({ vaultId, privateKey: dbKey });
 
   const vault = new IdentityVault({
@@ -117,7 +120,7 @@ export async function unlockVaultWithMnemonic(vaultId, mnemonic) {
        message: 'wrong_mnemonic',
      };
    }
- 
+
    return prepareUnlockedVault(vaultId, props);
 }
 
