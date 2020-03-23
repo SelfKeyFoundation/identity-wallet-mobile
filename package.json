@@ -53,6 +53,7 @@
       "**/mobile-ui-storybook/react-native-**",
       "**/mobile-ui-storybook/@react-native-community/**",
       "**/realm",
+      "**/@sentry/**",
       "**/eslint",
       "**/acorn",
       "**/jest",

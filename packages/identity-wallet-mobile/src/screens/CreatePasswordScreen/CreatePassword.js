@@ -97,20 +97,16 @@ const UseDifferentWallet = styled(Link)`
   width: 100%;
   font-size: 14px;  
   text-align: center;
-`
+`;
 
 const OrText = styled(DefinitionTitle)`
   color: white;
   font-size: 14px;
   text-align: center;
-`
-
-let index = 0;
-
+`;
 
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
-  const [importOptions, setImportOptions] = useState([]);
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
 
@@ -119,33 +115,11 @@ export function CreatePassword(props: CreatePasswordProps) {
     props.onChange('password')(cleanedValue);
   });
 
-  //
-  const computeOptions = (configs) => {
-    const importOptions = [];
+  const importOptions = [
+    { key: 'import_backup_file', label: 'Import Backup File' },
+    { key: 'import_from_desktop', label: 'Import from Desktop Application' }
+  ];
 
-    if (configs.flags.importFromMnemonic) {
-      importOptions.push(
-        { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' }
-      );
-    }
-
-    importOptions.push(
-      { key: 'import_backup_file', label: 'Import Backup File' }
-    );
-
-    if (configs.flags.importFromDesktop) {
-      importOptions.push(
-        { key: 'import_from_desktop', label: 'Import from Desktop Application' }
-      );
-    }
-
-    setImportOptions(importOptions);
-  }
-
-  useEffect(() => {
-    onConfigChange(computeOptions);  
-  }, []);
-  
   const handleSelectChange = (option) => {
     switch (option.key) {
       case 'import_from_desktop': {
