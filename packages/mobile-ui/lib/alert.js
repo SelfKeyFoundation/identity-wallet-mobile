@@ -38,11 +38,11 @@ export function Alert(props: AlertProps) {
 
   return (
     <Container>
-      <LeftSide>
+      { props.noIcon ? null : <LeftSide>
         <View>
           <SKIcon name={iconName} color={iconColor} size={16} />
         </View>
-      </LeftSide>
+      </LeftSide> }
       <RightSide>
         <TextComponent>{props.children}</TextComponent>
       </RightSide>

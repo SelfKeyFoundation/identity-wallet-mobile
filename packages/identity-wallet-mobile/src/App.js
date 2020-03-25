@@ -20,16 +20,17 @@ export function App(props: AppProps) {
 
   useEffect(() => {
     loadApp();
-    const matomo = new MatomoTracker(1, 'http://192.168.0.111:8080/matomo.php');
-
-    matomo.track({
-      url: 'http://example.com/track/this/url',
-      action_name: 'This will be shown in your dashboard',
-      ua: 'Node.js v0.10.24',
-      cvar: JSON.stringify({
-        '1': ['custom variable name', 'custom variable value']
-      })
-    });
+    // const matomo = new MatomoTracker({
+    //   url: 'http://192.168.0.111:8080/matomo.php',
+    //   siteId: 1,
+    // });
+    // matomo.track({
+    //   url: 'app://unlockWallet',
+    //   action_name: 'pageView',
+    //   // cvar: JSON.stringify({
+    //   //   '1': ['deviceType', 'smartphone']
+    //   // })
+    // });
   }, []);
 
   return (

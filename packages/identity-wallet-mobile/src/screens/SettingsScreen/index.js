@@ -10,6 +10,7 @@ import * as Keychain from '../../rn-identity-vault/keychain';
 
 function SettingsScreenContainer(props) {
   const dispatch = useDispatch();
+  const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
   const handleBackup = () => {
     navigate(Routes.CREATE_BACKUP);
   };
@@ -53,7 +54,7 @@ function SettingsScreenContainer(props) {
       onSwitchAccount={handleSwitchAccount}
       onPrivacyPolicy={handlePrivacyPolicy}
       onHelpAndSupport={handleHelpAndSupport}
-      onRecoveryInformation={handleRecoveryInformation}
+      onRecoveryInformation={isHDWallet && handleRecoveryInformation}
       onChangePassword={handleChangePassword}
       onVersionPress={handleVersionPress}
       onDeveloperSettings={handleDeveloperSettings}

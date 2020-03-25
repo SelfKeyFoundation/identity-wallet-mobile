@@ -108,13 +108,16 @@ export function UnlockWallet(props: UnlockWalletProps) {
               />
             </Col>
           </InputRow>
-          <Row>
-            <Col autoWidth>
-              <ForgotLink onPress={props.onForgot}>
-                Forgot?
-              </ForgotLink>
-            </Col>
-          </Row>
+          { props.onForgot ? (
+              <Row>
+                <Col autoWidth>
+                  <ForgotLink onPress={props.onForgot}>
+                    Forgot?
+                  </ForgotLink>
+                </Col>
+              </Row>
+            ) : null
+          }
         </ContentGrid>
         <Grid>
           <Row>

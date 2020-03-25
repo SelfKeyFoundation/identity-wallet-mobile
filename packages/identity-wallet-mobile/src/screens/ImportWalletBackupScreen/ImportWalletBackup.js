@@ -121,7 +121,7 @@ export function ImportWalletBackup(props) {
         </Row>
         { props.errors && props.errors.system && <Row marginTop={0}>
           <Col>
-            <Alert type="error">
+            <Alert type="error" noIcon>
               { props.errors.system }
             </Alert>
           </Col>

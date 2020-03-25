@@ -2,14 +2,15 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UnlockWallet } from './UnlockWallet';
 import { useUnlockWalletController } from './useUnlockWalletController';
-import modules from '@selfkey/wallet-core/modules';
+import ducks from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 
-const { operations, selectors } = modules.unlockWallet;
+const { operations, selectors } = ducks.unlockWallet;
 
 function UnlockWalletContainer(props) {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState();
+  const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
   const errors = useSelector(selectors.getErrors);
   const controller = useUnlockWalletController({
     ...props,
@@ -36,7 +37,7 @@ function UnlockWalletContainer(props) {
       values={controller.values}
       errors={errors}
       isLoading={isLoading}
-      onForgot={handleForgotPassword}
+      onForgot={isHDWallet && handleForgotPassword}
     />
   );
 }

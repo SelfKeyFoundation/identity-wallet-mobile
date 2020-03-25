@@ -22,6 +22,7 @@ function ImportFromDesktopContainer(props) {
     setPassword(null);
     setData(null);
   };
+
   const handleSubmitPassword = async () => {
     if (!password) {
       setError('Password is required');

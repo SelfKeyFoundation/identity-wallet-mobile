@@ -25,9 +25,22 @@ export class IdentityVault {
   }
 
   getKeyStoreItems() {
+    if (this.mnemonic) {
+      return [{
+        id: 'mnemonic',
+        value: this.mnemonic,
+      }, {
+        id: 'securityPolicy',
+        value: this.securityPolicy,
+      }];
+    }
+
     return [{
-      id: 'mnemonic',
-      value: this.mnemonic,
+      id: 'privateKey',
+      value: this.privateKey,
+    }, {
+      id: 'address',
+      value: this.address,
     }, {
       id: 'securityPolicy',
       value: this.securityPolicy,
