@@ -8,22 +8,19 @@ import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
 import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';
 import { ModalRoot } from './modals';
-import { MatomoTracker } from './MatomoTracker';
+import { WalletTracker } from './WalletTracker';
 
 type AppProps = {
   isLoading: boolean,
   loadApp: () => any,
 };
 
+
 export function App(props: AppProps) {
   const { loadApp, isLoading } = props;
 
   useEffect(() => {
     loadApp();
-    // const matomo = new MatomoTracker({
-    //   url: 'http://192.168.0.111:8080/matomo.php',
-    //   siteId: 1,
-    // });
     // matomo.track({
     //   url: 'app://unlockWallet',
     //   action_name: 'pageView',
@@ -31,6 +28,12 @@ export function App(props: AppProps) {
     //   //   '1': ['deviceType', 'smartphone']
     //   // })
     // });
+
+    // matomo.trackCustomEvent('app/open', {
+    //   level: 'machine'
+    // });
+
+    WalletTracker.trackPageView('unlockWallet')
   }, []);
 
   return (

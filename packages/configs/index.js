@@ -8,6 +8,8 @@ const CONFIGS = {
     etherscanUrl: 'https://ropsten.etherscan.io',
     rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KI',
+    matomoUrl: 'http://192.168.0.111:8080/matomo.php',
+    matomoSiteId: 1,
     flags: {
       importFromDesktop: true,
       importFromMnemonic: false,
@@ -18,6 +20,8 @@ const CONFIGS = {
     etherscanUrl: 'https://etherscan.io',
     rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KEY',
+    matomoUrl: 'http://192.168.0.111:8080/matomo.php',
+    matomoSiteId: 1,
     flags:{
       importFromDesktop: false,
       importFromMnemonic: false,

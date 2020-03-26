@@ -18,6 +18,8 @@ import {
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native';
 
+import { WalletTracker } from '../../WalletTracker';
+
 const errorMessages = {
   wrong_password: 'Wrong password. Please try again.',
 };
@@ -75,6 +77,15 @@ export function UnlockWallet(props: UnlockWalletProps) {
   const theme = useContext(ThemeContext);
   const { errors = {} } = props;
 
+  const handleUnlock = () => {
+    props.onSubmit();
+    WalletTracker.trackEvent({
+      category: 'unlockWallet/unlockButton',
+      action: 'press',
+      level: 'machine'
+    })
+  }
+
   return (
     <ScreenContainer sidePadding>
       <Container withMargin scrollable>
@@ -123,7 +134,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleUnlock}
                 type="full-primary"
                 isLoading={props.isLoading}
               >
