@@ -3,7 +3,7 @@ import { MatomoTracker } from './MatomoTracker';
 import { getConfigs, onConfigChange } from '@selfkey/configs';
 import { updateViewCount } from '@selfkey/wallet-core/modules/app/app-module-utils';
 
-let matomo = new MatomoTracker({
+const matomo = new MatomoTracker({
   url: getConfigs().matomoUrl,
   siteId: getConfigs().matomoSiteId,
 });
@@ -37,7 +37,6 @@ export class WalletTracker {
       }
     };
 
-    console.log('trackEvent', event);
     matomo.trackCustomEvent(event)  
   }
 }

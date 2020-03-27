@@ -1,20 +1,16 @@
-/**
- * A Node.js wrapper for the Matomo (http://matomo.org) tracking HTTP API
- * https://github.com/matomo-org/matomo-nodejs-tracker
- *
- * @author  Frederic Hemberger, Matomo Team
- * @license MIT
- */
-
 import DeviceInfo from 'react-native-device-info';
+import { Dimensions } from 'react-native';
 import uuid from 'uuid/v4';
-const qs = require('querystring');
+import qs from 'querystring';
+
+const { width, height } = Dimensions.get('window');
 
 export class MatomoTracker {
-  constructor({ url, siteId }) {
+  constructor({ url, siteId, res }) {
     this.url = url;
     this.siteId = siteId;
     this.isReady = false;
+    this.res = `${width}x${height}`;
     this.readyListeners = [];
 
     DeviceInfo.getUserAgent().then(value => {
@@ -62,7 +58,7 @@ export class MatomoTracker {
      * - Add screen size
      */
     options.ua = this.userAgent;
-    // options.res = '350x200';
+    options.res = this.res;
 
     return options;
   }
