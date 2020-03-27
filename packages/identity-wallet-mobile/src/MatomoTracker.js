@@ -25,18 +25,39 @@ export class MatomoTracker {
   }
 
   onReady() {
-    this.readyListeners.forEach((callback) => callback.apply(null, []));   
+    this.beforeReady().then(() => {
+      this.readyListeners.forEach((callback) => callback.apply(null, []));   
+    })
   }
 
-  buildOptions(opts) {
+  beforeReady() {
+    return Promise.resolve({});
+  }
+
+  buildOptions(opts = {}) {
     // https://developer.matomo.org/api-reference/tracking-api
-    const options = opts || {};
+    const options =  {...opts};
     options.idsite = this.siteId;
     options.rec = 1;
 
     if (this.pageViewId) {
       options.pv_id = this.pageViewId;
     }
+
+    if (this.visitCount) {
+      options._idvc = this.visitCount;
+    }
+
+    if (this.userId) {
+      options.uid = this.userId;
+    }
+
+    if (this.lastVisitorId !== this.userId) {
+      options.new_visit = 1;
+    }
+
+    this.lastVisitorId = this.userId;
+
     /**
      * - Add screen size
      */

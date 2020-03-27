@@ -1,6 +1,6 @@
 // @flow
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, NativeModules } from 'react-native';
 import { NavigationContainer } from './navigation';
 import { connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
@@ -20,20 +20,19 @@ export function App(props: AppProps) {
   const { loadApp, isLoading } = props;
 
   useEffect(() => {
-    loadApp();
-    // matomo.track({
-    //   url: 'app://unlockWallet',
-    //   action_name: 'pageView',
-    //   // cvar: JSON.stringify({
-    //   //   '1': ['deviceType', 'smartphone']
-    //   // })
-    // });
+    loadApp().finally(() => {
+      WalletTracker.trackEvent({
+        action: 'loaded',
+        category: 'app',
+        level: 'machine'
+      });
 
-    // matomo.trackCustomEvent('app/open', {
-    //   level: 'machine'
-    // });
-
-    WalletTracker.trackPageView('unlockWallet')
+      // NativeModules.Bulb.closeApp();
+      // const RNSelfKeyWallet = NativeModules.SelfKeyWallet;
+      // RNSelfKeyWallet.getUserId((error, value) => {
+      //   debugger;
+      // });
+    });
   }, []);
 
   return (

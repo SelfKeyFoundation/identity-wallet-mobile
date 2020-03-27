@@ -1,11 +1,19 @@
 
 import { MatomoTracker } from './MatomoTracker';
 import { getConfigs, onConfigChange } from '@selfkey/configs';
+import { updateViewCount } from '@selfkey/wallet-core/modules/app/app-module-utils';
 
 let matomo = new MatomoTracker({
   url: getConfigs().matomoUrl,
   siteId: getConfigs().matomoSiteId,
 });
+
+matomo.beforeReady = async () => {
+  await updateViewCount().then(settings => {
+    matomo.userId = settings.userId;
+    matomo.visitCount = settings.views;
+  });
+};
 
 onConfigChange(() => {
   matomo.url = getConfigs().matomoUrl;
@@ -18,19 +26,18 @@ export class WalletTracker {
   }
 
   static trackEvent({ category, action, name, value, level, variables = {} }) {
-    matomo.trackCustomEvent({
+    const event = {
       category,
       action,
       name,
       value,
-      // dimensions: [{
-      //   id: 1,
-      //   value: level || 'machine',
-      // }],
       variables: {
         level: level || 'machine',
         ...variables
       }
-    })  
+    };
+
+    console.log('trackEvent', event);
+    matomo.trackCustomEvent(event)  
   }
 }
