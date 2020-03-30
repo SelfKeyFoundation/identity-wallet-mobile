@@ -134,7 +134,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 32
-        versionName "0.1.24"ixing issues to import the wallet
+        versionName "0.1.24"
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
