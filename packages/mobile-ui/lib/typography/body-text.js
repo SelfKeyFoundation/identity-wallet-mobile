@@ -5,6 +5,13 @@ export const Paragraph = styled.Text`
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
   margin-bottom: 10px;
+  font-weight: ${props => {
+    if (props.variant === 'h3') {
+      return 'bold';
+    }
+
+    return 'normal';
+  }};
 `;
 
 export const Ammount = styled.Text`

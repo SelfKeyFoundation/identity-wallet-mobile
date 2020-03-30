@@ -4,17 +4,20 @@ import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import ducks from '@selfkey/wallet-core/modules';
 import { Linking } from 'react-native';
 import styled from 'styled-components/native';
-import { Grid, Row, Col } from '@selfkey/mobile-ui';
+import { Grid, Row, Col, Modal } from '@selfkey/mobile-ui';
 import { SettingsMenu } from './SettingsMenu';
 import * as Keychain from '../../rn-identity-vault/keychain';
+import { PrivacyPolicyContent } from './PrivacyPolicyContent';
 
 function SettingsScreenContainer(props) {
   const dispatch = useDispatch();
+  const [privacyPolicyVisible, setPrivacyPolicyVisible] = useState(false);
+  const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
   const handleBackup = () => {
     navigate(Routes.CREATE_BACKUP);
   };
   const [versionPressCount, setVersionPressCount] = useState(1);
-  const handlePrivacyPolicy = () => Linking.openURL('https://selfkey.org/privacy-policy/');
+  const togglePrivacyPolicy = () => setPrivacyPolicyVisible(!privacyPolicyVisible);
   const handleHelpAndSupport = () => Linking.openURL('https://help.selfkey.org/');
   const [walletEnv, setWalletEnv] = useState({});
   const handleSwitchAccount = () => navigate(Routes.WALLET_SELECTION);
@@ -48,17 +51,28 @@ function SettingsScreenContainer(props) {
   }, []);
 
   return (
-    <SettingsMenu
-      onBackup={handleBackup}
-      onSwitchAccount={handleSwitchAccount}
-      onPrivacyPolicy={handlePrivacyPolicy}
-      onHelpAndSupport={handleHelpAndSupport}
-      onRecoveryInformation={handleRecoveryInformation}
-      onChangePassword={handleChangePassword}
-      onVersionPress={handleVersionPress}
-      onDeveloperSettings={handleDeveloperSettings}
-      walletEnv={walletEnv}
-    />
+    <React.Fragment>
+      <SettingsMenu
+        onBackup={handleBackup}
+        onSwitchAccount={handleSwitchAccount}
+        onPrivacyPolicy={togglePrivacyPolicy}
+        onHelpAndSupport={handleHelpAndSupport}
+        onRecoveryInformation={isHDWallet && handleRecoveryInformation}
+        onChangePassword={handleChangePassword}
+        onVersionPress={handleVersionPress}
+        onDeveloperSettings={handleDeveloperSettings}
+        walletEnv={walletEnv}
+      />
+      <Modal
+        visible={privacyPolicyVisible}
+        title="Privacy Policy"
+        cancelText="Close"
+        onClose={togglePrivacyPolicy}
+        onCancel={togglePrivacyPolicy}
+      >
+        <PrivacyPolicyContent />
+      </Modal>
+    </React.Fragment>
   );
 } 
 

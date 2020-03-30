@@ -1,5 +1,6 @@
 // @flow
 import React, { useContext, useCallback } from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import {
   ScreenContainer,
   TextInput,
@@ -48,6 +49,24 @@ const PageTitle = styled(H3)`
   text-align: center;
 `;
 
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
+const Body = styled(Container)`
+  margin: 0 35px 35px 35px;
+`
+
 export function EnterPassword(props: RecoveryInformationProps) {
   const theme = useContext(ThemeContext);
   const handlePasswordChange = useCallback((value) => {
@@ -56,7 +75,14 @@ export function EnterPassword(props: RecoveryInformationProps) {
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin scrollable>
+      <Header>
+        <IconContainer>
+          <TouchableWithoutFeedback onPress={props.onBack}>
+            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+          </TouchableWithoutFeedback>
+        </IconContainer>
+      </Header>
+      <Body scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
@@ -109,7 +135,7 @@ export function EnterPassword(props: RecoveryInformationProps) {
             </Col>
           </Row>
         </Grid>
-      </Container>
+      </Body>
     </ScreenContainer>
   );
 }
