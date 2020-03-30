@@ -10,6 +10,14 @@ const matomo = new MatomoTracker({
 
 matomo.beforeReady = async () => {
   await updateViewCount().then(settings => {
+    if (settings.views <= 1) {
+      WalletTracker.trackEvent({
+        action: 'install',
+        category: 'app',
+        level: 'machine'
+      });
+    }
+
     matomo.userId = settings.userId;
     matomo.visitCount = settings.views;
   });
