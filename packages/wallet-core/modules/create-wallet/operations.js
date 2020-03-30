@@ -10,6 +10,7 @@ import { setupHDWallet, setupPrivateKeyWallet } from './create-wallet-utils';
 import { decryptData } from '../../identity-vault/backup';
 import { getVault, removeVault } from '../../identity-vault';
 import ducks from '../index';
+import { System } from '../../system';
 
 function shuffleArray(array) {
   let i = array.length;
@@ -75,30 +76,41 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
-/**
-   * TODO:
-   * - [x] decrypt keystore using web3
-   * - [ ] create method to setupPrivateKeyWallet - in progress
-   * - [ ] handle errors
-   */
+
+function decodeQRData(imported, password){
+  const crypto = System.getCrypto();
+  const iv = Buffer.from(imported.substr(0, 32), 'hex');
+  const ctext = imported.substr(32);
+  const hash = crypto.createHash('sha256');
+  hash.update(password);
+  const key = hash.digest();
+  const decipher = crypto.createDecipheriv("aes-256-ctr", key, iv);
+  return decipher.update(ctext, 'hex') + decipher.final('hex');
+}
+
 const importFromDesktopOperation = (keystoreEncrypted, password) => async (dispatch, getState) => {
   const { web3 } = Web3Service.getInstance();
-  const keystore = decode(keystoreEncrypted);
-  const web3Wallet = web3.eth.accounts.wallet.decrypt([keystore], password);
+  const data = decodeQRData(keystoreEncrypted, password);
 
-  const { address, privateKey } = web3Wallet.accounts[0];
+  if (!data) {
+    throw {
+      message: 'wrong_password',
+    };
+  }
 
-  const currentWallet = WalletModel.getInstance().findByAddress(address);
+  const { address, privateKey } = web3.eth.accounts.privateKeyToAccount(data);
+  const currentWallet = WalletModel.getInstance().findByAddress(address.toLowerCase());
+  const wallets = WalletModel.getInstance().findAll();
 
   if (currentWallet) {
     throw {
-      message: 'Wallet already exists',
+      message: 'wallet_exists',
     }
   }
 
   const setupData = await setupPrivateKeyWallet({
-    privateKey,
-    address,
+    privateKey: privateKey.toLowerCase(),
+    address: address.toLowerCase(),
     password
   });
 

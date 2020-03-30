@@ -33,8 +33,14 @@ function ImportFromDesktopContainer(props) {
 
     setTimeout(() => {
       dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password))
-        .then(() => setLoading(false))
-        .catch(err => setError(err.message));
+        .catch(err => {
+          if (err && err.message === 'wallet_exists') {
+            setError('Wallet already exists');
+          } else {
+            setError('Incorrect password')
+          }
+        })
+        .finally(() => setLoading(false))
     }, 500);
   };
 
