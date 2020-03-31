@@ -8,6 +8,7 @@ import { Grid, Row, Col, Modal } from '@selfkey/mobile-ui';
 import { SettingsMenu } from './SettingsMenu';
 import * as Keychain from '../../rn-identity-vault/keychain';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';
+import { WalletTracker } from '../../WalletTracker';
 
 function SettingsScreenContainer(props) {
   const dispatch = useDispatch();
