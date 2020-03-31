@@ -60,6 +60,7 @@ export type ModalProps = {
   children: any;
   cancelText: string;
   okText: string;
+  visible: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -94,11 +95,13 @@ export function Modal(props) {
               {props.cancelText}
             </Button>
           </ButtonWrapper>
-          <ButtonWrapper>
-            <Button onPress={props.onOk} {...okProps}>
-              {props.okText}
-            </Button>
-          </ButtonWrapper>
+          { props.okText && (
+            <ButtonWrapper>
+              <Button onPress={props.onOk} {...okProps}>
+                {props.okText}
+              </Button>
+            </ButtonWrapper>
+          )}
         </Footer>)
       }
       </InnerContainer>
