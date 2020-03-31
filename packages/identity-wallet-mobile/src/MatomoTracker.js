@@ -67,6 +67,7 @@ export class MatomoTracker {
     const doTrack = () => {
       const options = this.buildOptions(opts);
       const requestUrl = this.url + '?' + qs.stringify(options);
+      console.log('Track', options);
       return fetch(requestUrl);
     }
 
