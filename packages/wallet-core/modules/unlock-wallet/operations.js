@@ -21,7 +21,7 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
       password: 'wrong_password',
     }));
 
-    return;
+    return false;
   }
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));

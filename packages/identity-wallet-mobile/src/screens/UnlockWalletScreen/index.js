@@ -4,6 +4,8 @@ import { UnlockWallet } from './UnlockWallet';
 import { useUnlockWalletController } from './useUnlockWalletController';
 import ducks from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { WalletTracker } from '../../WalletTracker';
+const TRACKER_PAGE = 'unlockWallet';
 
 const { operations, selectors } = ducks.unlockWallet;
 
@@ -16,23 +18,65 @@ function UnlockWalletContainer(props) {
     ...props,
     onSubmit: async (values) => {
       setLoading(true);
-      await dispatch(operations.submitUnlockOperation(values));
+      const success = await dispatch(operations.submitUnlockOperation(values));
+
+      if (!success) {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/errorMessage`,
+          action: 'displayed',
+          level: 'machine'
+        }); 
+      }
+
       setLoading(false);
     },
   });
 
-  const handleDifferentWallet = useCallback(() => {
+  const handleDifferentWallet = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/chooseDifferentWalletButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
     navigate(Routes.CHOOSE_DIFFERENT_WALLET)
-  }, []);
+  };
 
   const handleForgotPassword = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/forgotPasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
     navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
   }, []);
 
+  const handleUnlockPress = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/unlockButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    controller.handleSubmit();
+  };
+
+  const handlePasswordSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/passwordInput`,
+      action: 'submit',
+      level: 'machine'
+    });
+
+    controller.handleSubmit();
+  };
+  
   return (
     <UnlockWallet
       onChange={controller.handleChange}
-      onSubmit={controller.handleSubmit}
+      onUnlockPress={handleUnlockPress}
+      onPasswordSubmit={handlePasswordSubmit}
       onChooseDifferentWallet={handleDifferentWallet}
       values={controller.values}
       errors={errors}

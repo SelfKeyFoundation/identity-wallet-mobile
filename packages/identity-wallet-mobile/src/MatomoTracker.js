@@ -10,14 +10,14 @@ export class MatomoTracker {
     this.url = url;
     this.siteId = siteId;
     this.isReady = false;
-    this.res = `${width}x${height}`;
+    this.res = `${parseInt(width)}x${parseInt(height)}`;
     this.readyListeners = [];
 
     DeviceInfo.getUserAgent().then(value => {
       this.userAgent = value;
       this.isReady = true;
       this.onReady();
-    })
+    });
   }
 
   onReady() {
@@ -71,7 +71,7 @@ export class MatomoTracker {
       return fetch(requestUrl);
     }
 
-    if (this.isReady) {
+    if  (this.isReady) {
       return doTrack();
     }
 

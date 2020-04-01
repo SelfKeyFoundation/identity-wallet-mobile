@@ -21,7 +21,7 @@ const CONFIGS = {
     rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KEY',
     matomoUrl: 'https://analytics.selfkey.org/matomo.php',
-    matomoSiteId: 4,
+    matomoSiteId: 3,
     flags: {
       importFromDesktop: true,
       importFromMnemonic: false,

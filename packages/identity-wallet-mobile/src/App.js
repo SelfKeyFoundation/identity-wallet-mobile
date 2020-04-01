@@ -15,7 +15,6 @@ type AppProps = {
   loadApp: () => any,
 };
 
-
 export function App(props: AppProps) {
   const { loadApp, isLoading } = props;
 

@@ -1,16 +1,56 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TermsOfService, TermsOfServiceAgreement } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
+import { WalletTracker } from '../../WalletTracker';
 
 const { operations, selectors } = modules.app;
 
 function TermsOfServiceContainer(props) {
   const dispatch = useDispatch();
   const [displayAgreement, setDisplayAggrement] = useState(true);
-  const handleAgreementAccept = useCallback(() => dispatch(operations.acceptTermsOperation()));
-  const handleAgreementReject = useCallback(() => dispatch(operations.rejectTermsOperation()));
-  const toggleAgreement = useCallback(() => setDisplayAggrement(!displayAgreement), [displayAgreement]);
+  const handleAgreementAccept = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `termsOfService/iAcceptButton`,
+      action: 'press',
+      level: 'machine'
+    });
+    dispatch(operations.acceptTermsOperation());
+  });
+  const handleAgreementReject = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `termsOfService/closeAppButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    dispatch(operations.rejectTermsOperation());
+  });
+  const toggleAgreement = useCallback(() => {
+    if (!displayAgreement) {
+      WalletTracker.trackEvent({
+        category: `termsOfService/returnToTOSButton`,
+        action: 'press',
+        level: 'machine'
+      });
+    } else {
+      WalletTracker.trackEvent({
+        category: `termsOfService/cancelButton`,
+        action: 'press',
+        level: 'machine'
+      });
+    }
+
+    setDisplayAggrement(!displayAgreement);
+  }, [displayAgreement]);
+
+  useEffect(() => {
+    WalletTracker.trackEvent({
+      category: `termsOfService/modal`,
+      action: 'show',
+      level: 'machine'
+    });
+  }, []);
 
   return (
     <React.Fragment>
