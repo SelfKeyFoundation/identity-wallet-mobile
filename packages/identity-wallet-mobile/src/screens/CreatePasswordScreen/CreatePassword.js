@@ -21,6 +21,9 @@ import styled from 'styled-components/native';
 import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from '@selfkey/configs';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'chooseDifferentWallet';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -123,19 +126,56 @@ export function CreatePassword(props: CreatePasswordProps) {
   const handleSelectChange = (option) => {
     switch (option.key) {
       case 'import_from_desktop': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/importFromDesktop`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onImportFromDesktop();
         break;
       }
       case 'import_backup_file': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/importBackupFile`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onImportBackupFile();
         break;
       }
       case 'enter_recovery_phrase': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/enterRecoveryPhrase`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onEnterRecoveryPhrase();
         break;
       }
     }
   }
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/savePasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  }
+
+  const handleTextSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/passwordInput`,
+      action: 'submit',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  }
+
+  
 
   return (
     <ScreenContainer sidePadding>
@@ -171,7 +211,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                 label="Set Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={handleTextSubmit}
               />
             </Col>
           </InputRow>
@@ -199,7 +239,7 @@ export function CreatePassword(props: CreatePasswordProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
               >
                 Save Password

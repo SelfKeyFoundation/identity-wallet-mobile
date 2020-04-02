@@ -18,6 +18,10 @@ import {
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'confirmMnemonic';
+
 const errorMessages = {
   required: 'Password is required',
   match_with_password: 'Wrong confirmation password',
@@ -79,6 +83,36 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
   const { mnemonicConfirmation } = props;
   const mnemonic = props.mnemonic.split(' ');
 
+  const handleClear = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/clearButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onClear();
+  };
+
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  };
+
   return (
     <ScreenContainer sidePadding>
       <Container withMargin scrollable>
@@ -122,7 +156,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
           </Row>
           {!!mnemonicConfirmation.length && <Row marginTop={20} justifyContent="center">
             <Col autoWidth>
-              <TouchableWithoutFeedback onPress={props.onClear}>
+              <TouchableWithoutFeedback onPress={handleClear}>
                 <Row>
                   <Col autoWidth>
                     <SKIcon
@@ -188,7 +222,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
           <Row justifyContent="flex-end">
             <Col autoWidth>
               <Button
-                onPress={props.onBack}
+                onPress={handleBack}
                 type="shell-primary"
               >
                 Back
@@ -196,7 +230,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
             </Col>
             <Col autoWidth>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 isLoading={props.isLoading}
                 type="full-primary"
               >
