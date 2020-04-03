@@ -8,6 +8,10 @@ import {
   Row,
   Col,
 } from '@selfkey/mobile-ui';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'dashboard';
+
 
 const HeaderTitle = styled.Text`
   color: ${props => props.theme.colors.white};
@@ -35,13 +39,24 @@ const TxHistoryRow = styled.View`
 `;
 
 export function Dashboard(props) {
+
+  const handleRefresh = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/refreshButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onRefresh(); 
+  }
+
   return (
     <Container>
       <SafeAreaView>
         <HeaderTitle>Dashboard</HeaderTitle>
         <ScrollView
           refreshControl={
-            <RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />
+            <RefreshControl refreshing={props.refreshing} onRefresh={handleRefresh} />
           }
         >
           <CarouselRow>
