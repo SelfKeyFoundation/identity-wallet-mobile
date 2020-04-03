@@ -5,6 +5,9 @@ import { SendTokens } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'sendTokens';
 
 const { operations, selectors } = modules.transaction;
 
@@ -35,6 +38,12 @@ export function SendStep(props) {
         break;
       }
       case 'transactionFee': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/transactionFee-${value}`,
+          action: 'press',
+          level: 'wallet'
+        });
+
         dispatch(operations.setTransactionFee(value));
         break;
       }
@@ -42,10 +51,22 @@ export function SendStep(props) {
   });
 
   const handleTokenSelect = useCallback((token) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/tokenDropDown`,
+      action: 'select',
+      level: 'wallet'
+    });
+
     dispatch(operations.setSelectedTokenOperation(token));
   });
 
   const handleQRCodePress = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/scanQRCode`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     navigate(Routes.SCAN_QR, {
       referer: 'transaction'
     });
@@ -55,21 +76,55 @@ export function SendStep(props) {
     });
   });
 
-  const handleSend = useCallback(() => dispatch(operations.sendTransaction()), []);
+  const handleSend = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/sendButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    dispatch(operations.sendTransaction())
+  };
+
+  const handleAdvancedOptions = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/advancedOptionsButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    dispatch(operations.setAdvancedMode(!isAdvancedMode));
+  };
+
+  const handleMax = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/maxAmountButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    dispatch(operations.setAmount(tokenDetails.amount))
+  };
+
+  const handleCancel = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/cancelButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    props.onCancel();
+  };
 
   return (
     <SendTokens
-      onCancel={props.onCancel}
+      onCancel={handleCancel}
       errors={errors}
       canSend={canSend}
       onQRCodePress={handleQRCodePress}
-      onAdvancedPress={() => {
-        dispatch(operations.setAdvancedMode(!isAdvancedMode));
-      }}
+      onAdvancedPress={handleAdvancedOptions}
       onSend={handleSend}
-      onMaxPress={() => {
-        dispatch(operations.setAmount(tokenDetails.amount))
-      }}
+      onMaxPress={handleMax}
       isSending={isSending}
       advancedMode={isAdvancedMode}
       onChange={handleChange}

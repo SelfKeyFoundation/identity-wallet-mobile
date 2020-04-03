@@ -170,6 +170,7 @@ export function MyTokens(props: MyTokensProps) {
                   <FormattedNumber
                     value={token.balance}
                     decimal={token.decimal}
+                    digitLimit={9}
                   />
                 </TokenName>
                 <Explanatory>

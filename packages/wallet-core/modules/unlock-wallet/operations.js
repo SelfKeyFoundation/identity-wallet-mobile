@@ -27,6 +27,8 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
   // Redirect to dashboard
   await navigate(Routes.APP_DASHBOARD);
+
+  return true;
 };
 
 const restoreAccessOperation = (mnemonic, walletAddress) => async (dispatch, getState) => {

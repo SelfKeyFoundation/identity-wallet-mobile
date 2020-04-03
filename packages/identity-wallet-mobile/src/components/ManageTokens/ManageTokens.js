@@ -254,7 +254,8 @@ export function ManageTokens(props: ManageTokensProps) {
                     <TokenName>
                       <FormattedNumber
                         value={token.balance}
-                        decimal={10}
+                        decimal={token.decimal || 10}
+                        digitLimit={9}
                       />
                     </TokenName>
                     <Explanatory>

@@ -12,7 +12,6 @@ import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'tokenDetails';
 
-
 const { selectors } = modules.wallet;
 
 const TransactionsContainer = styled.View`
@@ -114,6 +113,7 @@ function TokenDetailsContainer(props) {
               iconComponent={ICON_MAP[tokenDetails.code] || getCustomTokenIcon(tokenDetails.name, tokenDetails.color)}
               tokenName={tokenDetails.name}
               tokenCode={tokenDetails.code}
+              tokenDecimal={tokenDetails.decimal}
               fiatDecimal={getFiatDecimal(tokenDetails)}
               tokenAmount={tokenDetails.amount}
               fiatCurrency="usd"

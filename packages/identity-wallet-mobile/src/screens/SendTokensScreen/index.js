@@ -10,6 +10,9 @@ import { SendStep } from './SendStep';
 import { PendingStep } from './PendingStep';
 import { SuccessStep } from './SuccessStep';
 import { ErrorStep } from './ErrorStep';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'sendTokens';
 
 const { operations, selectors } = modules.transaction;
 
@@ -18,6 +21,12 @@ function SendTokensScreen(props) {
   const status = useSelector(selectors.getStatus);
   const visible = useSelector(modules.app.selectors.showSendTokensModal);
   const handleClose = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/closeButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     dispatch(modules.app.operations.showSendTokensModal(false));
   }, []);
 

@@ -5,6 +5,9 @@ import { SendTokensError } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'sendTokens/error';
 
 const { operations, selectors } = modules.transaction;
 
@@ -19,20 +22,42 @@ export function ErrorStep(props) {
   const ethFee = useSelector(selectors.getETHFee);
   const [snackBarMessage, setSnackMessage] = useState();
 
+  useEffect(() => {
+    WalletTracker.trackPageView(TRACKER_PAGE);
+  }, []);
+
   const hideSnackBar = useCallback((message) => {
     setSnackMessage(undefined)
   }, []);
 
   const handleCopy = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/copyAddressButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Clipboard.setString(address);
     setSnackMessage('Address Copied.');
   }, [address]);
 
   const handleInfo = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/errorInfoLink`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Linking.openURL(transaction.errorInfoUrl)
   }, [transaction.errorInfoUrl]);
 
   const handleQRCode = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/QRCodeButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     dispatch(modules.app.operations.showSendTokensModal(false));
     navigate(Routes.SCAN_QR, {
       tokenSymbol: 'ETH',
