@@ -14,6 +14,9 @@ import {
   ThemeContext,
   TextInput
 } from '@selfkey/mobile-ui';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'importWalletBackup';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -74,11 +77,41 @@ const Footer = styled(Grid)`
 export function ImportWalletBackup(props) {
   const theme = useContext(ThemeContext);
 
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/password/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onBack();
+  }
+
+  const handleFileSelect = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/selectFileButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSelectFile();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSubmit();
+  };
+
   return (
     <Container>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
+          <TouchableWithoutFeedback onPress={handleBack}>
             <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
           </TouchableWithoutFeedback>
         </IconContainer>
@@ -114,7 +147,7 @@ export function ImportWalletBackup(props) {
             />
           </Col>
           <Col autoWidth>
-            <Button type="full-primary" onPress={props.onSelectFile}>
+            <Button type="full-primary" onPress={handleFileSelect}>
               Select
             </Button>
           </Col>
@@ -136,7 +169,7 @@ export function ImportWalletBackup(props) {
               label="Enter the Password"
               onChangeText={props.onPasswordChange}
               secureTextEntry={true}
-              onSubmitEditing={props.onSubmit}
+              onSubmitEditing={handleSubmit}
             />
           </Col>
         </Row>
@@ -146,7 +179,7 @@ export function ImportWalletBackup(props) {
         <Row>
           <Col>
             <Button
-              onPress={props.onSubmit}
+              onPress={handleSubmit}
               type="full-primary"
               isLoading={props.isLoading}
             >

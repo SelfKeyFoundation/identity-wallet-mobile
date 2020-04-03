@@ -6,6 +6,9 @@ import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation'
 import { Modal } from '@selfkey/mobile-ui';
 import ducks from '@selfkey/wallet-core/modules';
 import { PasswordScreen } from './PasswordScreen';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'importFromDesktop';
 
 function ImportFromDesktopContainer(props) {
   const dispatch = useDispatch();
@@ -17,13 +20,33 @@ function ImportFromDesktopContainer(props) {
 
   const handleQRCode = (value) => setData(value);
   const handlePassword = value => setPassword(value);
-  const handleConfirmModal = () => setShowModal(false);
+  const handleConfirmModal = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/stepsConfirm`,
+      action: 'press',
+      level: 'system'
+    });
+
+    setShowModal(false);
+  };
   const handleBackPassword = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/password/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
     setPassword(null);
     setData(null);
   };
 
   const handleSubmitPassword = async () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/password/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
     if (!password) {
       setError('Password is required');
       return;
@@ -45,6 +68,16 @@ function ImportFromDesktopContainer(props) {
     }, 500);
   };
 
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    navigateBack();
+  }
+
   useEffect(() => {
     setShowModal(true);
   }, []);
@@ -54,8 +87,8 @@ function ImportFromDesktopContainer(props) {
       <React.Fragment>
         <Modal
           visible={showModal}
-          onClose={navigateBack}
-          onCancel={navigateBack}
+          onClose={handleBack}
+          onCancel={handleBack}
           okText="Import Wallet"
           cancelText="Cancel"
           onOk={handleConfirmModal}

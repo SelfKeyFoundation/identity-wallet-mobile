@@ -15,6 +15,9 @@ import {
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'createBackup';
 
 const errorMessages = {
   required: 'Password is required',
@@ -73,11 +76,31 @@ export function CreateBackup(props: CreateBackupProps) {
     props.onChange(value);
   });
 
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSubmit();
+  };
+
   return (
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
+          <TouchableWithoutFeedback onPress={handleBack}>
             <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
           </TouchableWithoutFeedback>
         </IconContainer>
@@ -109,7 +132,7 @@ export function CreateBackup(props: CreateBackupProps) {
                 label="Enter Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={handleSubmit}
               />
             </Col>
           </InputRow>
@@ -118,7 +141,7 @@ export function CreateBackup(props: CreateBackupProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
                 isLoading={props.isLoading}
               >

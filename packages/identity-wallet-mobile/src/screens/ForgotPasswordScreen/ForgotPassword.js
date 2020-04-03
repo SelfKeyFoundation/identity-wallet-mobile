@@ -18,6 +18,9 @@ import {
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'forgotPassword';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -82,13 +85,32 @@ const PageDescription = styled(Paragraph)`
 
 export function ForgotPassword(props: ForgotPasswordProps) {
   const theme = useContext(ThemeContext);
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSubmit();
+  };
 
   return (
     <ScreenContainer sidePadding>
       <Container withMargin scrollable>
         <ContentGrid>
           { props.onBack && <IconContainer>
-            <TouchableWithoutFeedback onPress={props.onBack}>
+            <TouchableWithoutFeedback onPress={handleBack}>
               <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
             </TouchableWithoutFeedback>
           </IconContainer> }
@@ -120,7 +142,7 @@ export function ForgotPassword(props: ForgotPasswordProps) {
                 placeholder="12 word phrase"
                 label="Recovery Phrase"
                 onChangeText={props.onChange}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={handleSubmit}
               />
             </Col>
           </InputRow>
@@ -129,7 +151,7 @@ export function ForgotPassword(props: ForgotPasswordProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
                 isLoading={props.isLoading}
               >

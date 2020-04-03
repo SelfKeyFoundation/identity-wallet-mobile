@@ -72,7 +72,6 @@ const MnemonicWord = styled.Text`
 export function BackupWallet(props: BackupWalletProps) {
   const theme = useContext(ThemeContext);
   const { mnemonicPhrase } = props;
-
   const handleCopyPhrase = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/copyPhraseButton`,
