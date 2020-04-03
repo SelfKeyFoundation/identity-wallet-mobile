@@ -8,6 +8,10 @@ import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import modules from '@selfkey/wallet-core/modules';
 import styled from 'styled-components/native';
 import { Grid, Row, Col } from '@selfkey/mobile-ui';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'tokenDetails';
+
 
 const { selectors } = modules.wallet;
 
@@ -61,6 +65,14 @@ function TokenDetailsContainer(props) {
   const dispatch = useDispatch();
 
   const handleReceive = useCallback((tokenSymbol) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/receiveButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    WalletTracker.trackPageView('app/receiveTokens');
+
     dispatch(modules.app.operations.showReceiveTokensModal({
       visible: true,
       tokenSymbol,
@@ -68,13 +80,30 @@ function TokenDetailsContainer(props) {
   }, []);
 
   const handleSend = useCallback((tokenSymbol) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/sendButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    WalletTracker.trackPageView('app/sendTokens');
     dispatch(modules.transaction.operations.goToTransactionOperation(tokenDetails.symbol));
   }, [tokenDetails.symbol]);
+
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    navigateBack();
+  };
 
   return (
     <TokenDetailsScreen
       title={tokenDetails.code}
-      onBack={navigateBack}
+      onBack={handleBack}
     >
       <Grid>
         <Row>

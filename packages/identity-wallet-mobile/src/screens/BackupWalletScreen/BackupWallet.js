@@ -77,7 +77,7 @@ export function BackupWallet(props: BackupWalletProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/copyPhraseButton`,
       action: 'press',
-      level: 'machine'
+      level: 'wallet'
     });
 
     props.onCopyPhrase();
@@ -87,7 +87,7 @@ export function BackupWallet(props: BackupWalletProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/submitButton`,
       action: 'press',
-      level: 'machine'
+      level: 'wallet'
     });
 
     props.onSubmit();

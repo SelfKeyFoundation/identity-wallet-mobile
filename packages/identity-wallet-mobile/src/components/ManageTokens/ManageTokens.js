@@ -152,7 +152,7 @@ export function ManageTokens(props: ManageTokensProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/itemRow`,
       action: 'open',
-      level: 'machine'
+      level: 'wallet'
     });
 
     setOpenedRow(rowKey)
@@ -162,7 +162,7 @@ export function ManageTokens(props: ManageTokensProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/itemRow`,
       action: 'close',
-      level: 'machine'
+      level: 'wallet'
     });
 
     setOpenedRow(null);
@@ -176,7 +176,7 @@ export function ManageTokens(props: ManageTokensProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/tokenDetailsRow`,
       action: 'press',
-      level: 'machine'
+      level: 'wallet'
     });
 
     props.onTokenDetails(token.symbol)
@@ -186,7 +186,7 @@ export function ManageTokens(props: ManageTokensProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/addButton`,
       action: 'press',
-      level: 'machine'
+      level: 'wallet'
     });
 
     props.onAdd();
@@ -196,7 +196,7 @@ export function ManageTokens(props: ManageTokensProps) {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/removeButton`,
       action: 'press',
-      level: 'machine'
+      level: 'wallet'
     });
 
     props.onRemove(item);
