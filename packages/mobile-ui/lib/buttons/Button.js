@@ -32,6 +32,7 @@ export const Button = (props: ButtonProps) => {
     fontSize: 14,
     textTransform: 'uppercase',
     color: theme.colors.baseDark,
+    letterSpacing: 0,
   };
 
   if (props.type === 'full-primary' && disabled) {
