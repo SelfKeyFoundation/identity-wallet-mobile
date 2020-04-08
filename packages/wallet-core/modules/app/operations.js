@@ -50,9 +50,9 @@ const acceptTermsOperation = () => async (dispatch, getState) => {
   const state = getState();
   const settings = selectors.getGuideSettings(state);
 
-  settings.termsAccepted = true;
-
-  await GuideSettingsModel.getInstance().updateById(1, settings);
+  await GuideSettingsModel.getInstance().updateById(1, {
+    termsAccepted: true
+  });
 
   dispatch(appActions.setGuideSettings(settings));
 };

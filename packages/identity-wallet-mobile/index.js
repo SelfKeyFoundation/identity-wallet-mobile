@@ -22,11 +22,13 @@ WalletTracker.trackEvent({
 AppRegistry.registerComponent(appName, () => Root);
 
 AppState.addEventListener('change', (nextAppState) => {
-  if (nextAppState === 'inactive') {
+  if (nextAppState === 'inactive' || nextAppState === 'background') {
     WalletTracker.trackEvent({
       action: 'closed',
       category: 'app',
       level: 'machine'
+    }, {
+      priority: 0
     });
   }   
 });

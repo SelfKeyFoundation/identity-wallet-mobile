@@ -9,7 +9,7 @@ export async function getGuideSettings() {
     settings = {
       id: 1,
       termsAccepted: false,
-      views: 0,
+      views: 1,
       userId: uuid(),
     };
 
@@ -27,9 +27,9 @@ export async function updateViewCount() {
   const model = GuideSettingsModel.getInstance();
   const settings = await getGuideSettings();
 
-  settings.views = (settings.views || 0) + 1;
-
-  await model.updateById(settings.id, settings);
+  await model.updateById(settings.id, {
+    views: (settings.views || 1) + 1,
+  });
 
   return settings;
 }

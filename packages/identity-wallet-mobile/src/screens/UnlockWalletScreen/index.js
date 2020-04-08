@@ -20,13 +20,11 @@ function UnlockWalletContainer(props) {
       setLoading(true);
       const success = await dispatch(operations.submitUnlockOperation(values));
 
-      if (!success) {
-        WalletTracker.trackEvent({
-          category: `${TRACKER_PAGE}/errorMessage`,
-          action: 'displayed',
-          level: 'machine'
-        }); 
-      }
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/unlock`,
+        action: success ? 'success' : 'failed',
+        level: 'machine'
+      }); 
 
       setLoading(false);
     },

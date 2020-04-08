@@ -192,7 +192,14 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                           const wordIndex = rowIdx * 4 + idx;
                           const word = mnemonic[wordIndex];
                           const isFound = mnemonicConfirmation.find(index => index === wordIndex) >= 0;
-                          const handlePress = () => props.onWordPress(wordIndex);
+                          const handlePress = () => {
+                            WalletTracker.trackEvent({
+                              category: `${TRACKER_PAGE}/mnemonicWord`,
+                              action: 'press',
+                              level: 'machine'
+                            });
+                            props.onWordPress(wordIndex);
+                          }
                           return (
                             <TouchableWithoutFeedback onPress={!isFound && handlePress}>
                               <WordBox disabled={isFound}>

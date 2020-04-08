@@ -19,19 +19,13 @@ export function App(props: AppProps) {
   const { loadApp, isLoading } = props;
 
   useEffect(() => {
-    loadApp().finally(() => {
-      WalletTracker.trackEvent({
-        action: 'loaded',
-        category: 'app',
-        level: 'machine'
-      });
-
-      // NativeModules.Bulb.closeApp();
-      // const RNSelfKeyWallet = NativeModules.SelfKeyWallet;
-      // RNSelfKeyWallet.getUserId((error, value) => {
-      //   debugger;
-      // });
+    WalletTracker.trackEvent({
+      action: 'loaded',
+      category: 'app',
+      level: 'machine'
     });
+
+    loadApp();
   }, []);
 
   return (

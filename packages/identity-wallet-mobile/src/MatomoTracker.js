@@ -11,7 +11,8 @@ export class MatomoTracker {
     this.siteId = siteId;
     this.isReady = false;
     this.res = `${parseInt(width)}x${parseInt(height)}`;
-    this.readyListeners = [];
+    this.trackingQueue = [];
+    this.pageViewId = uuid();
 
     DeviceInfo.getUserAgent().then(value => {
       this.userAgent = value;
@@ -20,9 +21,46 @@ export class MatomoTracker {
     });
   }
 
+  flush() {
+    clearTimeout(this.trackingQueueTimeout);
+    return this.flushTrackingQueue();
+  }
+
+  async flushTrackingQueue() {
+    await fetch(this.url, {
+      method: 'post',
+      body: JSON.stringify({
+        requests: this.trackingQueue.map(({ opts, trackOptions }) => {
+          const options = this.buildOptions(opts, trackOptions);
+          return '?' + qs.stringify(options);
+        })
+      }),
+    });
+
+    this.trackingQueue = [];
+  }
+
+  handleTrackingQueue() {
+    if (!this.isReady || this.trackingQueueStarted || this.trackingQueue === 0) {
+      this.trackingQueueStarted = false;
+      return;
+    }
+
+    this.trackingQueueStarted = true;
+
+    this.trackingQueueTimeout = setTimeout(async () => {
+      if (!this.trackingQueue.length) {
+        return;
+      }
+
+      await this.flushTrackingQueue();
+      this.handleTrackingQueue();
+    }, 500);
+  }
+
   onReady() {
     this.beforeReady().then(() => {
-      this.readyListeners.forEach((callback) => callback.apply(null, []));   
+      this.handleTrackingQueue();
     })
   }
 
@@ -30,14 +68,14 @@ export class MatomoTracker {
     return Promise.resolve({});
   }
 
-  buildOptions(opts = {}) {
+  buildOptions(opts = {}, trackOptions) {
     // https://developer.matomo.org/api-reference/tracking-api
     const options =  {...opts};
     options.idsite = this.siteId;
     options.rec = 1;
 
-    if (this.pageViewId) {
-      options.pv_id = this.pageViewId;
+    if (trackOptions.pageViewId) {
+      options.pv_id = trackOptions.pageViewId;
     }
 
     if (this.visitCount) {
@@ -63,29 +101,44 @@ export class MatomoTracker {
     return options;
   }
 
-  track(opts) {
-    const doTrack = () => {
-      const options = this.buildOptions(opts);
-      const requestUrl = this.url + '?' + qs.stringify(options);
-      console.log('Track', options);
-      return fetch(requestUrl);
+  track(opts, trackOptions = {}) {
+    if (!trackOptions.pageViewId) {
+      trackOptions.pageViewId = this.pageViewId;
     }
 
-    if  (this.isReady) {
-      return doTrack();
+    if (trackOptions.priority === 0) {
+      const options = this.buildOptions(opts, trackOptions);
+      const params = '?' + qs.stringify(options);  
+      return fetch(`${this.url}${params}`);
     }
 
-    this.readyListeners.push(doTrack);
+    const trackingParams = {
+      opts,
+      trackOptions
+    };
+
+    if (trackOptions.priority === 1) {
+      this.trackingQueue = [
+        trackingParams,
+        ...this.trackingQueue,
+      ]
+    } else {
+      this.trackingQueue.push(trackingParams);
+    }
+
+    if (this.isReady) {
+      this.handleTrackingQueue();
+    }
   }
 
-  trackPageView(route) {
+  trackPageView(route, trackOptions) {
     this.pageViewId = uuid();
     return this.track({
       url: `app://${route}`
-    });
+    }, trackOptions);
   }
 
-  trackCustomEvent({ category, action, name, value, variables, dimensions = [] }) {
+  trackCustomEvent({ category, action, name, value, variables, dimensions = [] }, trackOptions) {
     const event = {
       e_c: category,
       e_a: action,
@@ -107,6 +160,6 @@ export class MatomoTracker {
       event[`dimension${dimension.id}`] = dimension.value;
     });
 
-    return this.track(event);
+    return this.track(event, trackOptions);
   }
 }

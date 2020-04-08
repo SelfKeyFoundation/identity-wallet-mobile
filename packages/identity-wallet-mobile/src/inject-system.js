@@ -4,9 +4,18 @@ import Share from 'react-native-share';
 import fs from 'react-native-fs';
 import { Platform } from 'react-native'
 import crypto from 'crypto';
+import { WalletTracker } from  './WalletTracker';
 
 export const RNSystem = {
-  exitApp() {
+  exitApp: async () => {
+    WalletTracker.trackEvent({
+      action: 'closed',
+      category: 'app',
+      level: 'machine'
+    });
+
+    await WalletTracker.flush();
+
     RNExitApp.exitApp();
   },
 
