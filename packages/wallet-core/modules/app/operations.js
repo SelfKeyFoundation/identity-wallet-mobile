@@ -54,7 +54,10 @@ const acceptTermsOperation = () => async (dispatch, getState) => {
     termsAccepted: true
   });
 
-  dispatch(appActions.setGuideSettings(settings));
+  dispatch(appActions.setGuideSettings({
+    ...settings,
+    termsAccepted: true
+  }));
 };
 
 const rejectTermsOperation = () => async (dispatch, getState) => {
