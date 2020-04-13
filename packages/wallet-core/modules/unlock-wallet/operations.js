@@ -3,6 +3,7 @@ import { walletOperations } from '../wallet/operations';
 import { unlockVault, unlockVaultWithMnemonic } from '../../identity-vault';
 import { WalletModel } from '../../models';
 import { navigate, Routes } from '../../navigation';
+import { System } from '../../system';
 import ducks from '../index';
 /**
  * Unlock the default wallet
@@ -16,6 +17,12 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   try {
     vault = await unlockVault(wallet.vaultId, form.password);
     dispatch(actions.setErrors({}));
+
+    System.getTracker().trackEvent({
+      category: `unlockWallet/unlock`,
+      action: 'success',
+      level: 'machine'
+    });
   } catch (err) {
     dispatch(actions.setErrors({
       password: 'wrong_password',
@@ -60,6 +67,12 @@ const unlockWithAddressOperation = (address, password) => async (dispatch, getSt
   }
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
+
+  System.getTracker().trackEvent({
+    category: `unlockWallet/unlock`,
+    action: 'success',
+    level: 'machine'
+  });
 
   await navigate(Routes.APP_DASHBOARD);
 };

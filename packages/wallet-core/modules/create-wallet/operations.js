@@ -71,6 +71,11 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
   try {
     if (!!vault) {
       await dispatch(ducks.unlockWallet.operations.unlockWithVaultIdOperation(data.vaultId, password));
+      System.getTracker().trackEvent({
+        category: `importFromBackupFile/backupImported`,
+        action: 'success',
+        level: 'app'
+      });
       return;
     }
   } catch(err) {
@@ -91,6 +96,12 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
     const mnemonic = data.keystore.find(item => item.id === 'mnemonic');
     setupData = await setupHDWallet({ mnemonic: mnemonic.value, password });
   }
+
+  System.getTracker().trackEvent({
+    category: `importFromBackupFile/backupImported`,
+    action: 'success',
+    level: 'app'
+  });
 
   await dispatch(walletOperations.loadWalletOperation(setupData));
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
@@ -134,6 +145,13 @@ const importFromDesktopOperation = (keystoreEncrypted, password) => async (dispa
   });
 
   await dispatch(walletOperations.loadWalletOperation(setupData));
+
+  System.getTracker().trackEvent({
+    category: `importFromDesktop/walletImport`,
+    action: 'success',
+    level: 'machine'
+  });
+
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 

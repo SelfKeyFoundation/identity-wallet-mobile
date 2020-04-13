@@ -20,7 +20,7 @@ import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
 
 import { WalletTracker } from '../../WalletTracker';
 
-const TRACKER_PAGE = 'myTokens';
+const TRACKER_PAGE = 'dashboard/myTokens';
 
 const Title = styled.Text`
   color: ${props => props.theme.colors.white};
@@ -114,7 +114,7 @@ export function MyTokens(props: MyTokensProps) {
 
   const handleTokenDetails = (token) => () => {
     WalletTracker.trackEvent({
-      category: `${TRACKER_PAGE}/tokenDetailsRow`,
+      category: `${TRACKER_PAGE}/tokenDetailsRow/${token.symbol}`,
       action: 'press',
       level: 'machine'
     });
@@ -145,7 +145,7 @@ export function MyTokens(props: MyTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <ButtonLink iconName="icon-menu-settings" onPress={props.onManage}>
+          <ButtonLink iconName="icon-menu-settings" onPress={handleManage}>
             Manage
           </ButtonLink>
         </Col>

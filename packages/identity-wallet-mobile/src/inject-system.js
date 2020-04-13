@@ -19,6 +19,10 @@ export const RNSystem = {
     RNExitApp.exitApp();
   },
 
+  getTracker() {
+    return WalletTracker;
+  },
+
   shareFile({
     filePath,
     fileName,

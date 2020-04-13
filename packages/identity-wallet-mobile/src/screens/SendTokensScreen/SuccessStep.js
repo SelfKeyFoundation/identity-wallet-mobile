@@ -31,7 +31,11 @@ export function SuccessStep(props) {
   }, [transaction.hash]);
 
   useEffect(() => {
-    WalletTracker.trackPageView(TRACKER_PAGE);
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}`,
+      action: 'show',
+      level: 'wallet'
+    });
   }, []);
 
   return (

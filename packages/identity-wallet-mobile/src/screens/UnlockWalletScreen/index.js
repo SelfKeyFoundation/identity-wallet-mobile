@@ -18,13 +18,24 @@ function UnlockWalletContainer(props) {
     ...props,
     onSubmit: async (values) => {
       setLoading(true);
-      const success = await dispatch(operations.submitUnlockOperation(values));
+      const success = await dispatch(operations.submitUnlockOperation({
+        ...values,
+        onSuccess() {
+          WalletTracker.trackEvent({
+            category: `${TRACKER_PAGE}/unlock`,
+            action: 'success',
+            level: 'machine'
+          });   
+        }
+      }));
 
-      WalletTracker.trackEvent({
-        category: `${TRACKER_PAGE}/unlock`,
-        action: success ? 'success' : 'failed',
-        level: 'machine'
-      }); 
+      if (!success) {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/unlock`,
+          action: 'failed',
+          level: 'machine'
+        }); 
+      }
 
       setLoading(false);
     },

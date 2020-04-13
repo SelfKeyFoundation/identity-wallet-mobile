@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CreateBackup } from './CreateBackup';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import ducks from '@selfkey/wallet-core/modules';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'createBackup';
 
 function CreateBackupContainer(props) {
   const dispatch = useDispatch();
@@ -20,6 +23,12 @@ function CreateBackupContainer(props) {
 
     try {
       await dispatch(ducks.wallet.operations.backupWalletOperation(password));
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/backupCreated`,
+        action: 'success',
+        level: 'wallet'
+      });
+
       navigate(Routes.APP_SETTINGS)
     } catch(err) {
       if (err.message === 'wrong_password') {

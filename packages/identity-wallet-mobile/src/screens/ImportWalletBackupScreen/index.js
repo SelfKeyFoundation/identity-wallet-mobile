@@ -26,6 +26,9 @@ const iOSMimeTypes = [
   'public.content',
   'public.disk-image',
 ];
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'importWalletBackup';
 
 function ImportWalletBackupContainer(props) {
   const [isLoading, setLoading] = useState();
@@ -72,7 +75,15 @@ function ImportWalletBackupContainer(props) {
 
     setTimeout(() => {
       // Give some time to the setLoading propagate and refresh the UI
-      dispatch(ducks.createWallet.operations.createFromBackupOperation(file.data, password))
+      dispatch(ducks.createWallet.operations.createFromBackupOperation(file.data, password, {
+        onSuccess() {
+          WalletTracker.trackEvent({
+            category: `${TRACKER_PAGE}/backupImported`,
+            action: 'success',
+            level: 'system'
+          });
+        }
+      }))
       .catch((err) => {
         if (err.message === 'wrong_password' || err === 'wrong_password') {
           setErrors({

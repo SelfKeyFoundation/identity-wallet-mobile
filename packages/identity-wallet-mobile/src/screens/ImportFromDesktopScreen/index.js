@@ -56,7 +56,15 @@ function ImportFromDesktopContainer(props) {
     setLoading(true);
 
     setTimeout(() => {
-      dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password))
+      dispatch(ducks.createWallet.operations.importFromDesktopOperation(data, password, {
+        onSuccess() {
+          WalletTracker.trackEvent({
+            category: `${TRACKER_PAGE}/walletImported`,
+            action: 'success',
+            level: 'system'
+          });
+        },
+      }))
         .catch(err => {
           if (err && err.message === 'wallet_exists') {
             setError('Wallet already exists');

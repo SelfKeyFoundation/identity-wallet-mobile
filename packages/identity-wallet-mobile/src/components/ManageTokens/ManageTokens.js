@@ -174,7 +174,7 @@ export function ManageTokens(props: ManageTokensProps) {
     }
 
     WalletTracker.trackEvent({
-      category: `${TRACKER_PAGE}/tokenDetailsRow`,
+      category: `${TRACKER_PAGE}/tokenDetailsRow/${token.symbol}`,
       action: 'press',
       level: 'wallet'
     });

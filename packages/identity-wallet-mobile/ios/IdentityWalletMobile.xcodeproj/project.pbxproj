@@ -38,6 +38,7 @@
 		96C3C0255A3C4FD9B0F06C77 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C510A69F980D40058348FCBC /* MaterialIcons.ttf */; };
 		9717AC7A242CFF880006426F /* SelfKeyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC77242CFF870006426F /* SelfKeyWallet.swift */; };
 		9717AC7C242CFF930006426F /* SelfKeyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC7B242CFF930006426F /* SelfKeyWallet.m */; };
+		978EE436243F3F580021C5FC /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 978EE435243F3F580021C5FC /* libDoubleConversion.a */; };
 		9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */; };
 		BB0958F5D6224DE694BE0F5B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3637AE1285B8482BABCEED24 /* Entypo.ttf */; };
 		C59E017F37D8DB73F303FC49 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */; };
@@ -132,6 +133,7 @@
 		9717AC77242CFF870006426F /* SelfKeyWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfKeyWallet.swift; sourceTree = "<group>"; };
 		9717AC7B242CFF930006426F /* SelfKeyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfKeyWallet.m; sourceTree = "<group>"; };
 		9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		978EE435243F3F580021C5FC /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F694D3EA7FE80F82307048 /* Pods-IdentityWalletMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobileTests/Pods-IdentityWalletMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8A2A1170FA44D3591372D4F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		A91A5CF337D743C083660895 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				978EE436243F3F580021C5FC /* libDoubleConversion.a in Frameworks */,
 				30D7D7D61D3C68348E8E62AF /* libPods-IdentityWalletMobile.a in Frameworks */,
 				CFF7A8AA952148AF8A722EA3 /* libRealmReact.a in Frameworks */,
 				968010D0DD014B4BB771E278 /* libc++.tbd in Frameworks */,
@@ -226,6 +229,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				978EE435243F3F580021C5FC /* libDoubleConversion.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */,
@@ -935,7 +939,7 @@
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -969,7 +973,7 @@
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

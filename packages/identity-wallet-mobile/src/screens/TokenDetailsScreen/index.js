@@ -99,6 +99,14 @@ function TokenDetailsContainer(props) {
     navigateBack();
   };
 
+  useEffect(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/${tokenSymbol}`,
+      action: 'show',
+      level: 'wallet'
+    });
+  }, []);
+
   return (
     <TokenDetailsScreen
       title={tokenDetails.code}

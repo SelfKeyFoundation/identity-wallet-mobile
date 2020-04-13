@@ -15,6 +15,18 @@
     "lint:style": "stylelint './src/**/*.js'",
     "flow": "flow"
   },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/IdentityWalletMobile/Build/Products/Debug-iphonesimulator/IdentityWalletMobile.app",
+        "build": "xcodebuild -project ios/IdentityWalletMobile.xcodeproj -scheme \"IdentityWalletMobile 2\"  -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11"
+        }
+      }
+    }
+  },
   "dependencies": {
     "@selfkey/blockchain": "1.0.0",
     "@selfkey/configs": "1.0.0",
@@ -40,6 +52,7 @@
     "console-browserify": "1.2.0",
     "constants-browserify": "1.0.0",
     "dateformat": "^3.0.3",
+    "detox": "^16.1.1",
     "dns.js": "1.0.1",
     "domain-browser": "1.2.0",
     "events": "1.1.1",

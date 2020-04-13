@@ -116,6 +116,14 @@ export function SendStep(props) {
     props.onCancel();
   };
 
+  useEffect(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/${token}`,
+      action: 'show',
+      level: 'wallet'
+    });
+  }, []);
+
   return (
     <SendTokens
       onCancel={handleCancel}

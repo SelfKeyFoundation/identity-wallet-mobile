@@ -21,7 +21,17 @@ WalletTracker.trackEvent({
 
 AppRegistry.registerComponent(appName, () => Root);
 
+let loaded = false;
+
 AppState.addEventListener('change', (nextAppState) => {
+  if (nextAppState === 'active' && loaded) {
+    WalletTracker.trackEvent({
+      action: 'resumed',
+      category: 'app',
+      level: 'machine'
+    });
+  }
+
   if (nextAppState === 'inactive' || nextAppState === 'background') {
     WalletTracker.trackEvent({
       action: 'closed',
@@ -30,5 +40,7 @@ AppState.addEventListener('change', (nextAppState) => {
     }, {
       priority: 0
     });
-  }   
+  }
+
+  loaded = true;
 });

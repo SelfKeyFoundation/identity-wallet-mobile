@@ -23,7 +23,11 @@ export function PendingStep(props) {
   // const dispatch = useDstispatch();
 
   useEffect(() => {
-    WalletTracker.trackPageView(TRACKER_PAGE);
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}`,
+      action: 'show',
+      level: 'wallet'
+    });
   }, []);
 
   const handleViewOnEtherscan = useCallback(() => {

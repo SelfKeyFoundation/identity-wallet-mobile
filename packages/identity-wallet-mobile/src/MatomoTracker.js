@@ -27,17 +27,18 @@ export class MatomoTracker {
   }
 
   async flushTrackingQueue() {
+    const items = this.trackingQueue;
+    this.trackingQueue = [];
+
     await fetch(this.url, {
       method: 'post',
       body: JSON.stringify({
-        requests: this.trackingQueue.map(({ opts, trackOptions }) => {
+        requests: items.map(({ opts, trackOptions }) => {
           const options = this.buildOptions(opts, trackOptions);
           return '?' + qs.stringify(options);
         })
       }),
     });
-
-    this.trackingQueue = [];
   }
 
   handleTrackingQueue() {

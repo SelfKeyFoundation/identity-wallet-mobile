@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import modules from '@selfkey/wallet-core/modules';
 import { navigate, navigateBack, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
-
+ 
 const { operations, selectors } = modules.transaction;
+import { WalletTracker } from '../WalletTracker';
+
+const TRACKER_PAGE = 'scanQRCode';
 
 export default function ScanQRScreen(props) {
   const [showQR, setShowQR] = useState(true);
@@ -19,6 +22,12 @@ export default function ScanQRScreen(props) {
   }, [referer, navigate]);
 
   const handleSuccess = useCallback((address) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/addressScanned`,
+      action: 'success',
+      level: 'wallet'
+    });
+
     if (referer === 'transaction') {
       dispatch(operations.setAddress(address));
       dispatch(modules.app.operations.showSendTokensModal(true));
