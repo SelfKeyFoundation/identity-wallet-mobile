@@ -14,6 +14,7 @@ import {
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const errorMessages = {
   required: 'Password is required',
@@ -32,6 +33,10 @@ const ContentGrid = styled(Grid)`
   min-height: 450px;
 `;
 
+const Body = styled(Container)`
+  margin: 0 35px 35px 35px;
+`;
+
 const InputRow = styled(Row)`
   margin-top: 30px;
 `;
@@ -48,22 +53,43 @@ const PageTitle = styled(H3)`
   text-align: center;
 `;
 
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
 export function ChangePassword(props: ChangePasswordProps) {
   const theme = useContext(ThemeContext);
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin scrollable>
+      <Header>
+        <IconContainer>
+          <TouchableWithoutFeedback onPress={props.onBack}>
+            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+          </TouchableWithoutFeedback>
+        </IconContainer>
+      </Header>
+      <Body scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
-              <SKIcon name="icon-password-ok" color={theme.colors.primary} size={66} />
+              <SKIcon name="icon-password" color={theme.colors.primary} size={66} />
             </IconCol>
           </Row>
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Update Passcode
+                Change Password
               </PageTitle>
             </TitleCol>
           </Row>
@@ -74,7 +100,7 @@ export function ChangePassword(props: ChangePasswordProps) {
                 errorMessage={props.error.password}
                 value={props.password}
                 placeholder="Current password"
-                label="Current passcode"
+                label="Current password"
                 onChangeText={props.onPasswordChange}
                 onSubmitEditing={props.onSubmit}
                 secureTextEntry={true}
@@ -86,14 +112,6 @@ export function ChangePassword(props: ChangePasswordProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onBack}
-                type="shell-primary"
-              >
-                Back
-              </Button>
-            </Col>
-            <Col>
-              <Button
                 onPress={props.onSubmit}
                 type="full-primary"
                 isLoading={props.isLoading}
@@ -103,7 +121,7 @@ export function ChangePassword(props: ChangePasswordProps) {
             </Col>
           </Row>
         </Grid>
-      </Container>
+      </Body>
     </ScreenContainer>
   );
 }

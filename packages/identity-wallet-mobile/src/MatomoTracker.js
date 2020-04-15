@@ -17,9 +17,8 @@ export class MatomoTracker {
 
     DeviceInfo.getUserAgent().then(async (value) => {
       this.userAgent = value;
-      this.isReady = true;
       this.deviceId = await DeviceInfo.getDeviceName();
-
+      this.isReady = true;
       this.onReady();
     });
   }
