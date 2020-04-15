@@ -45,6 +45,7 @@ const PageTitle = styled(H3)`
 const PageDescription = styled(Paragraph)`
   text-align: center;
   font-size: 16px;
+  line-height: 24px;
 `;
 
 const MnemonicContainer = styled.View`

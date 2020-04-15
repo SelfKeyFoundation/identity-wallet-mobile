@@ -12,8 +12,18 @@ function CreateBackupContainer(props) {
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
   const handleBack = useCallback(() => navigate(Routes.APP_SETTINGS), []);
   const handleChange = useCallback(password => setPassword(password), []);
+  const handleForgotPassword = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/forgotPasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
+  }, []);
   const handleSubmit = useCallback(async () => {
     if (isLoading) {
       return;
@@ -46,6 +56,7 @@ function CreateBackupContainer(props) {
       error={error}
       onBack={handleBack}
       isLoading={isLoading}
+      onForgot={isHDWallet && handleForgotPassword}
     />
   );
 }

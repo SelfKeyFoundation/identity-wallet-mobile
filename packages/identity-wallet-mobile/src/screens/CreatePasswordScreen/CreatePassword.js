@@ -79,10 +79,11 @@ const IconCol = styled(Col)`
 
 const TitleCol = styled(Col)`
   justify-content: center;
-`;
-
+  `;
+  
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 const BackIcon = styled(SKIcon)`

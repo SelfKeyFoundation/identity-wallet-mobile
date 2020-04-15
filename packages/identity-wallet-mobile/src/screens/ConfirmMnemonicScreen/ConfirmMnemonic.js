@@ -50,6 +50,7 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 const PageDescription = styled(Paragraph)`

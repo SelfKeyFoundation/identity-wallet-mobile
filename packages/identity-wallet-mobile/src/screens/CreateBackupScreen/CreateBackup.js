@@ -12,6 +12,7 @@ import {
   Row,
   Col,
   Button,
+  Link,
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
@@ -50,6 +51,7 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 const IconContainer = styled.View`
@@ -68,7 +70,14 @@ const Header = styled.View`
 
 const Body = styled(Container)`
   margin: 0 35px 35px 35px;
-`
+`;
+
+const ForgotLink = styled(Link)`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 13px;
+  line-height: 19px;
+`;
 
 export function CreateBackup(props: CreateBackupProps) {
   const theme = useContext(ThemeContext);
@@ -109,16 +118,16 @@ export function CreateBackup(props: CreateBackupProps) {
         <ContentGrid>
           <Row>
             <IconCol>
-              <SKIcon name="icon-password-ok" color={theme.colors.primary} size={66} />
+              <SKIcon name="icon-password" color={theme.colors.primary} size={66} />
             </IconCol>
           </Row>
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Enter your password
+                Enter password to backup your
               </PageTitle>
               <PageTitle align="center">
-                to create the backup
+                SelfKey Identity Wallet
               </PageTitle>
             </TitleCol>
           </Row>
@@ -129,13 +138,23 @@ export function CreateBackup(props: CreateBackupProps) {
                 errorMessage={props.error}
                 value={props.password}
                 placeholder="Password"
-                label="Enter Password"
+                label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
                 onSubmitEditing={handleSubmit}
               />
             </Col>
           </InputRow>
+          { props.onForgot ? (
+            <Row>
+              <Col autoWidth>
+                <ForgotLink onPress={props.onForgot}>
+                  Forgot?
+                </ForgotLink>
+              </Col>
+            </Row>
+          ) : null
+        }
         </ContentGrid>
         <Grid>
           <Row>

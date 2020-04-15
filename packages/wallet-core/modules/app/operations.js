@@ -38,6 +38,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
   if (!wallets.length) {
     navigate(Routes.CREATE_WALLET_PASSWORD);
   } else {
+    dispatch(ducks.wallet.actions.setWallet(wallets[0]));
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
 
