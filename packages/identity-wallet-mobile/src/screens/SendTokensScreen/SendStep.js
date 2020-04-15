@@ -118,11 +118,11 @@ export function SendStep(props) {
 
   useEffect(() => {
     WalletTracker.trackEvent({
-      category: `${TRACKER_PAGE}/${token}`,
+      category: token ? `${TRACKER_PAGE}/${token}` : TRACKER_PAGE,
       action: 'show',
       level: 'wallet'
     });
-  }, []);
+  }, [token]);
 
   return (
     <SendTokens

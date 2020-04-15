@@ -2,6 +2,7 @@ import DeviceInfo from 'react-native-device-info';
 import { Dimensions } from 'react-native';
 import uuid from 'uuid/v4';
 import qs from 'querystring';
+import appVersion from '../app-version.json';
 
 const { width, height } = Dimensions.get('window');
 
@@ -14,9 +15,11 @@ export class MatomoTracker {
     this.trackingQueue = [];
     this.pageViewId = uuid();
 
-    DeviceInfo.getUserAgent().then(value => {
+    DeviceInfo.getUserAgent().then(async (value) => {
       this.userAgent = value;
       this.isReady = true;
+      this.deviceId = await DeviceInfo.getDeviceName();
+
       this.onReady();
     });
   }
@@ -90,6 +93,11 @@ export class MatomoTracker {
     if (this.lastVisitorId !== this.userId) {
       options.new_visit = 1;
     }
+
+    options._cvar = JSON.stringify({
+      '1': ['Device', this.deviceId],
+      '2': ['App Version', appVersion.number],
+    })
 
     this.lastVisitorId = this.userId;
 
