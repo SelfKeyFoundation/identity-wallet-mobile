@@ -44,11 +44,12 @@ const renderItem = ({ item }) => {
 
 export function TokenBoxCarousel(props: TokenBoxCarouselProps) {
   return (
-    <View>
+    <View style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: 0, height: 230 }}>
       <Carousel
         data={props.items}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
+        sliderHeight={230}
         itemWidth={itemWidth}
         loop={true}
         activeSlideAlignment="center"

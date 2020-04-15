@@ -17,6 +17,7 @@ import {
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { WalletTracker } from '../../WalletTracker';
 
@@ -39,9 +40,8 @@ const Container = styled.View`
 
 `;
 
-const TokenRow = styled.View`
+const TokenRow = styled(LinearGradient)`
   flex-direction: row;
-  background: #2E3945;
   padding: 15px;
   margin-top: 15px;
   border-radius: 4px;
@@ -153,7 +153,7 @@ export function MyTokens(props: MyTokensProps) {
       {
         props.tokens.map(token => (
           <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
-            <TokenRow key={token.id}>
+            <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
               <Col autoWidth noPadding>
                 <TokenIcon name={token.name || token.symbol} color={token.color} />
               </Col>
