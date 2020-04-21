@@ -8,6 +8,9 @@ import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 import modules from '@selfkey/wallet-core/modules';
 import styled from 'styled-components/native';
 import { Grid, Row, Col } from '@selfkey/mobile-ui';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'customTokens';
 
 const { selectors } = modules.wallet;
 
@@ -18,10 +21,22 @@ const TransactionsContainer = styled.View`
 function CustomTokensContainer(props) {
   const dispatch = useDispatch();
   const handleBack = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
     navigate(Routes.APP_DASHBOARD);
   }, []);
 
   const handleReceive = useCallback((tokenSymbol) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/receiveButton`,
+      action: 'press',
+      level: 'system'
+    });
+
     dispatch(modules.app.operations.showReceiveTokensModal({
       visible: true,
       tokenSymbol,
@@ -29,6 +44,12 @@ function CustomTokensContainer(props) {
   }, []);
 
   const handleSend = useCallback((tokenSymbol) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/sendButton`,
+      action: 'press',
+      level: 'system'
+    });
+
     dispatch(modules.transaction.operations.goToTransactionOperation('custom'));
   }, []);
 

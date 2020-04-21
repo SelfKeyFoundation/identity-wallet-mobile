@@ -29,10 +29,12 @@ export const ErrorMessage = styled.Text`
   color: ${props => props.theme.colors.error};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};
+  line-height: 19px;
 `;
 
 export const WarningMessage = styled.Text`
   color: ${props => props.theme.colors.warning};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};
+  line-height: 19px;
 `;

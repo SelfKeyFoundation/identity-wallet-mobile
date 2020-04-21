@@ -1,5 +1,6 @@
 // @flow
 import React, { useContext, useCallback } from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import {
   ScreenContainer,
   TextInput,
@@ -11,9 +12,13 @@ import {
   Row,
   Col,
   Button,
+  Link,
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'createBackup';
 
 const errorMessages = {
   required: 'Password is required',
@@ -46,6 +51,32 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
+`;
+
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
+const Body = styled(Container)`
+  margin: 0 35px 35px 35px;
+`;
+
+const ForgotLink = styled(Link)`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 13px;
+  line-height: 19px;
 `;
 
 export function CreateBackup(props: CreateBackupProps) {
@@ -54,22 +85,49 @@ export function CreateBackup(props: CreateBackupProps) {
     props.onChange(value);
   });
 
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSubmit();
+  };
+
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin scrollable>
+      <Header>
+        <IconContainer>
+          <TouchableWithoutFeedback onPress={handleBack}>
+            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+          </TouchableWithoutFeedback>
+        </IconContainer>
+      </Header>
+      <Body scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
-              <SKIcon name="icon-password-ok" color={theme.colors.primary} size={66} />
+              <SKIcon name="icon-password" color={theme.colors.primary} size={66} />
             </IconCol>
           </Row>
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Enter your password
+                Enter password to backup your
               </PageTitle>
               <PageTitle align="center">
-                to create the backup
+                SelfKey Identity Wallet
               </PageTitle>
             </TitleCol>
           </Row>
@@ -80,27 +138,29 @@ export function CreateBackup(props: CreateBackupProps) {
                 errorMessage={props.error}
                 value={props.password}
                 placeholder="Password"
-                label="Enter Password"
+                label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={handleSubmit}
               />
             </Col>
           </InputRow>
+          { props.onForgot ? (
+            <Row>
+              <Col autoWidth>
+                <ForgotLink onPress={props.onForgot}>
+                  Forgot?
+                </ForgotLink>
+              </Col>
+            </Row>
+          ) : null
+        }
         </ContentGrid>
         <Grid>
           <Row>
             <Col>
               <Button
-                onPress={props.onBack}
-                type="shell-primary"
-              >
-                Back
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
                 isLoading={props.isLoading}
               >
@@ -109,7 +169,7 @@ export function CreateBackup(props: CreateBackupProps) {
             </Col>
           </Row>
         </Grid>
-      </Container>
+      </Body>
     </ScreenContainer>
   );
 }

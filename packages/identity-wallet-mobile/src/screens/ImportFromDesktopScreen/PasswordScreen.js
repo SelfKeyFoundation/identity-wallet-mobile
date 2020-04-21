@@ -112,7 +112,7 @@ export function PasswordScreen(props: CreateBackupProps) {
                 errorMessage={props.error}
                 value={props.password}
                 placeholder="Password"
-                label="Enter Password"
+                label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
                 onSubmitEditing={props.onSubmit}

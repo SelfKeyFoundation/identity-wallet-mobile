@@ -1,4 +1,5 @@
 import { NavigationActions } from 'react-navigation';
+import { WalletTracker } from '../WalletTracker';
 
 export class ReactNativeNavigator {
   constructor(navigator) {
@@ -9,6 +10,8 @@ export class ReactNativeNavigator {
     if (!this.navigator) {
       return;
     }
+
+    WalletTracker.trackPageView(routeName);
 
     const route = typeof routeName === 'object'
       ? routeName

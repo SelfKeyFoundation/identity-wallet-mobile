@@ -3,6 +3,7 @@ import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
 export const getRoot = state => state.wallet;
 export const getWallet = (state) => getRoot(state) || {};
 export const getAddress = (state) => getWallet(state).address;
+export const isHDWallet = (state) => getWallet(state).type === 'hd';
 export const getBalance = (state) => getWallet(state).balance || 0;
 export const getFiatAmount = (state) => {
   const prices = getTokenPrice('ETH');

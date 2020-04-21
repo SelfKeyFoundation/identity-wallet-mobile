@@ -1,5 +1,7 @@
 // @flow
 import React, { useContext } from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
+import styled from 'styled-components/native';
 import {
   ScreenContainer,
   TextInput,
@@ -16,18 +18,22 @@ import {
   Alert,
 } from '@selfkey/mobile-ui';
 
-// import { Alert } from '@selfkey/mobile-ui/lib/alert';
-
-import styled from 'styled-components/native';
-
 export interface BackupWalletProps {
   mnemonicPhrase: string;
   onSubmit: () => void;
 }
 
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
 const ContentGrid = styled(Grid)`
   flex: 1;
   min-height: 450px;
+`;
+
+const Body = styled(Container)`
+  margin: 0 35px 35px 35px;
 `;
 
 const IconCol = styled(Col)`
@@ -45,6 +51,7 @@ const PageTitle = styled(H3)`
 const PageDescription = styled(Paragraph)`
   text-align: center;
   font-size: 16px;
+  line-height: 24px;
 `;
 
 const MnemonicContainer = styled.View`
@@ -69,23 +76,40 @@ const MnemonicWord = styled.Text`
   font-size: 16px;
 `;
 
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
 export function MnemonicScreen(props: BackupWalletProps) {
   const theme = useContext(ThemeContext);
   const { mnemonicPhrase } = props;
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin>
-        <ContentGrid>
-          <Row>
-            <IconCol>
-              <SKIcon name="icon-safe" color={theme.colors.primary} size={66} />
-            </IconCol>
-          </Row>
+    <Header>
+      <IconContainer>
+        <TouchableWithoutFeedback onPress={props.onBack}>
+          <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+        </TouchableWithoutFeedback>
+      </IconContainer>
+    </Header>
+    <Body scrollable>
+      <ContentGrid>
+        <Row>
+          <IconCol>
+            <SKIcon name="icon-safe" color={theme.colors.primary} size={66} />
+          </IconCol>
+        </Row>
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Recovery Information
+                Recover your wallet
               </PageTitle>
             </TitleCol>
           </Row>
@@ -132,19 +156,7 @@ export function MnemonicScreen(props: BackupWalletProps) {
             </Col>
           </Row>
         </ContentGrid>
-        <Grid>
-          <Row>
-            <Col>
-              <Button
-                onPress={props.onSubmit}
-                type="full-primary"
-              >
-                I’ve written it down
-              </Button>
-            </Col>
-          </Row>
-        </Grid>
-      </Container>
+      </Body>
     </ScreenContainer>
   );
 }

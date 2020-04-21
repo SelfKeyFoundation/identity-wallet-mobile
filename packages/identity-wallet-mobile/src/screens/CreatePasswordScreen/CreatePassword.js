@@ -21,6 +21,9 @@ import styled from 'styled-components/native';
 import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from '@selfkey/configs';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'chooseDifferentWallet';
 
 const PasswordRequirements = [{
   id: 'min_value',
@@ -76,10 +79,11 @@ const IconCol = styled(Col)`
 
 const TitleCol = styled(Col)`
   justify-content: center;
-`;
-
+  `;
+  
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 const BackIcon = styled(SKIcon)`
@@ -97,20 +101,16 @@ const UseDifferentWallet = styled(Link)`
   width: 100%;
   font-size: 14px;  
   text-align: center;
-`
+`;
 
 const OrText = styled(DefinitionTitle)`
   color: white;
   font-size: 14px;
   text-align: center;
-`
-
-let index = 0;
-
+`;
 
 export function CreatePassword(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
-  const [importOptions, setImportOptions] = useState([]);
   const passwordErrors = props.errors.password || [];
   const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
 
@@ -119,49 +119,64 @@ export function CreatePassword(props: CreatePasswordProps) {
     props.onChange('password')(cleanedValue);
   });
 
-  //
-  const computeOptions = (configs) => {
-    const importOptions = [];
+  const importOptions = [
+    { key: 'import_backup_file', label: 'Import Backup File' },
+    { key: 'import_from_desktop', label: 'Import from Desktop Application' }
+  ];
 
-    if (configs.flags.importFromMnemonic) {
-      importOptions.push(
-        { key: 'enter_recovery_phrase', label: 'Enter Recovery Phrase' }
-      );
-    }
-
-    importOptions.push(
-      { key: 'import_backup_file', label: 'Import Backup File' }
-    );
-
-    if (configs.flags.importFromDesktop) {
-      importOptions.push(
-        { key: 'import_from_desktop', label: 'Import from Desktop Application' }
-      );
-    }
-
-    setImportOptions(importOptions);
-  }
-
-  useEffect(() => {
-    onConfigChange(computeOptions);  
-  }, []);
-  
   const handleSelectChange = (option) => {
     switch (option.key) {
       case 'import_from_desktop': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/importFromDesktop`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onImportFromDesktop();
         break;
       }
       case 'import_backup_file': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/importBackupFile`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onImportBackupFile();
         break;
       }
       case 'enter_recovery_phrase': {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/enterRecoveryPhrase`,
+          action: 'press',
+          level: 'machine'
+        });
         props.onEnterRecoveryPhrase();
         break;
       }
     }
   }
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/savePasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  }
+
+  const handleTextSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/passwordInput`,
+      action: 'submit',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  }
+
+  
 
   return (
     <ScreenContainer sidePadding>
@@ -197,7 +212,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                 label="Set Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={handleTextSubmit}
               />
             </Col>
           </InputRow>
@@ -225,7 +240,7 @@ export function CreatePassword(props: CreatePasswordProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
               >
                 Save Password

@@ -18,6 +18,10 @@ import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
 
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'dashboard/myTokens';
+
 const Title = styled.Text`
   color: ${props => props.theme.colors.white};
   font-size: 24px;
@@ -98,6 +102,36 @@ export interface MyTokensProps {
 }
 
 export function MyTokens(props: MyTokensProps) {
+  const handleManage = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/manageButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onManage();
+  }
+
+  const handleTokenDetails = (token) => () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/tokenDetailsRow/${token.symbol}`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onTokenDetails(token.symbol);
+  }
+
+  const handleViewAll = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/viewAllButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onViewAll();
+  }
+
   return (
     <Container>
       <TitleRow>
@@ -111,14 +145,14 @@ export function MyTokens(props: MyTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <ButtonLink iconName="icon-menu-settings" onPress={props.onManage}>
+          <ButtonLink iconName="icon-menu-settings" onPress={handleManage}>
             Manage
           </ButtonLink>
         </Col>
       </TitleRow>
       {
         props.tokens.map(token => (
-          <TouchableWithoutFeedback onPress={() => props.onTokenDetails(token.symbol)}>
+          <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
             <TokenRow key={token.id}>
               <Col autoWidth noPadding>
                 <TokenIcon name={token.name || token.symbol} color={token.color} />
@@ -136,6 +170,7 @@ export function MyTokens(props: MyTokensProps) {
                   <FormattedNumber
                     value={token.balance}
                     decimal={token.decimal}
+                    digitLimit={9}
                   />
                 </TokenName>
                 <Explanatory>
@@ -152,7 +187,7 @@ export function MyTokens(props: MyTokensProps) {
       { props.showViewAll &&
         <Row justifyContent="center" marginTop={25}>
           <Col autoWidth>
-            <ButtonLink iconName="icon-expand_arrow-1" onPress={props.onViewAll} iconSize={11.13}>
+            <ButtonLink iconName="icon-expand_arrow-1" onPress={handleViewAll} iconSize={11.13}>
               View All Tokens
             </ButtonLink>
           </Col>

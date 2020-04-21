@@ -9,6 +9,8 @@ export class GuideSettingsModel extends BaseModel {
     properties: {
       id: 'int',
       termsAccepted: 'bool',
+      userId: 'string?',
+      views: 'int?'
     },
   }
 

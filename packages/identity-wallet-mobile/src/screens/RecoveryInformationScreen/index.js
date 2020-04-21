@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EnterPassword } from './EnterPassword';
 import { MnemonicScreen } from './MnemonicScreen';
 import { Share } from 'react-native';
-
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import ducks from '@selfkey/wallet-core/modules';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'recoveryInformation';
 
 function RecoveryInformationContainer(props) {
   const dispatch = useDispatch();
@@ -13,8 +15,26 @@ function RecoveryInformationContainer(props) {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [mnemonic, setMnemonic] = useState();
-  const handleBack = useCallback(() => navigate(Routes.APP_SETTINGS), []);
+  const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
+  const handleBack = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    navigate(Routes.APP_SETTINGS);
+  }, []);
   const handleChange = useCallback(password => setPassword(password), []);
+  const handleForgotPassword = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/forgotPasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
+  }, []);
   const handleSubmit = useCallback(async () => {
     if (isLoading) {
       return;
@@ -25,6 +45,11 @@ function RecoveryInformationContainer(props) {
 
     try {
       const mnemonic = await dispatch(ducks.wallet.operations.getRecoveryInformationOperation(password));
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/showMnemonic`,
+        action: 'success',
+        level: 'wallet'
+      });
       setMnemonic(mnemonic);
       setPassword(null);
     } catch(err) {
@@ -38,7 +63,13 @@ function RecoveryInformationContainer(props) {
     setLoading(false);
   }, [isLoading, password]);
 
-  const handleMnemonicSubmit = useCallback(() => {
+  const handleMnemonicBack = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
     handleBack();
     setTimeout(() => {
       setMnemonic(null);
@@ -54,7 +85,7 @@ function RecoveryInformationContainer(props) {
       <MnemonicScreen
         mnemonicPhrase={mnemonic}
         onCopyPhrase={handleCopy}
-        onSubmit={handleMnemonicSubmit}
+        onBack={handleMnemonicBack}
       />
     )
   }
@@ -67,6 +98,7 @@ function RecoveryInformationContainer(props) {
       error={error}
       onBack={handleBack}
       isLoading={isLoading}
+      onForgot={isHDWallet && handleForgotPassword}
     />
   );
 }

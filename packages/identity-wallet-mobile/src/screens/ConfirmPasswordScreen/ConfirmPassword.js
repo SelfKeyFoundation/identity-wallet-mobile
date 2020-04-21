@@ -14,6 +14,9 @@ import {
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'chooseDifferentWallet';
 
 const errorMessages = {
   required: 'Password is required',
@@ -46,6 +49,7 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 export function ConfirmPassword(props: ConfirmPasswordProps) {
@@ -56,6 +60,36 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
     const cleanedValue = value.replace(/[ \n]/g, '');
     props.onChange('confirmPassword')(cleanedValue);
   });
+
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/confirmPasswordButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  };
+
+  const handleInputSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/passwordInput`,
+      action: 'submit',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  };
 
   return (
     <ScreenContainer sidePadding>
@@ -95,7 +129,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onBack}
+                onPress={handleBack}
                 type="shell-primary"
               >
                 Back
@@ -103,7 +137,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
             </Col>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
               >
                 Confirm Password

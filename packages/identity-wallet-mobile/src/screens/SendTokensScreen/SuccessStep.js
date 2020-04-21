@@ -6,6 +6,9 @@ import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
 import EthUtils from '@selfkey/blockchain/util/eth-utils';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'sendTokens/success';
 
 const { operations, selectors } = modules.transaction;
 
@@ -18,8 +21,22 @@ export function SuccessStep(props) {
   const tokenDetails = useSelector(modules.wallet.selectors.getTokenDetails(token));
   const ethFee = useSelector(selectors.getETHFee);
   const handleViewOnEtherscan = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/viewOnEtherscan`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Linking.openURL(EthUtils.getTxReceiptUrl(transaction.hash))
   }, [transaction.hash]);
+
+  useEffect(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}`,
+      action: 'show',
+      level: 'wallet'
+    });
+  }, []);
 
   return (
     <SendTokensSuccess

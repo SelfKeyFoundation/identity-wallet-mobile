@@ -27,7 +27,6 @@ function ChangePasswordContainer(props) {
       await dispatch(ducks.wallet.operations.changePasswordOperation(password, newPassword, confirmPassword));
       navigate(Routes.APP_SETTINGS)
     } catch(err) {
-      debugger;
       if (err.message === 'wrong_password') {
         setError({
           password: 'Wrong password. Please try again.',
