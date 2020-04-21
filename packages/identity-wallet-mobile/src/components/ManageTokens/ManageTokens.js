@@ -18,6 +18,10 @@ import { TokensEmptyAlert } from '../index';
 import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'manageTokens';
+
 const screenWidth = Dimensions.get('window').width
 
 const Title = styled.Text`
@@ -145,10 +149,22 @@ export function ManageTokens(props: ManageTokensProps) {
   })).filter(item => !(tokenToRemove && item.id === tokenToRemove.id)), [tokens, tokenToRemove]);
 
   const handleRowOpen = rowKey => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/itemRow`,
+      action: 'open',
+      level: 'wallet'
+    });
+
     setOpenedRow(rowKey)
   };
 
   const handleRowClose = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/itemRow`,
+      action: 'close',
+      level: 'wallet'
+    });
+
     setOpenedRow(null);
   };
 
@@ -157,8 +173,35 @@ export function ManageTokens(props: ManageTokensProps) {
       return null;
     }
 
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/tokenDetailsRow/${token.symbol}`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     props.onTokenDetails(token.symbol)
   };
+
+  const handleAdd = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/addButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    props.onAdd();
+  };
+
+  const handleRemove = (item) => () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/removeButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    props.onRemove(item);
+  }
+
 
   return (
     <Container>
@@ -174,7 +217,7 @@ export function ManageTokens(props: ManageTokensProps) {
           </TotalTokenAmount>
         </Col>
         <Col autoWidth marginTop={15}>
-          <ButtonLink iconName="icon-add" onPress={props.onAdd}>
+          <ButtonLink iconName="icon-add" onPress={handleAdd}>
             Add Token
           </ButtonLink>
         </Col>
@@ -211,7 +254,8 @@ export function ManageTokens(props: ManageTokensProps) {
                     <TokenName>
                       <FormattedNumber
                         value={token.balance}
-                        decimal={10}
+                        decimal={token.decimal || 10}
+                        digitLimit={9}
                       />
                     </TokenName>
                     <Explanatory>
@@ -227,7 +271,7 @@ export function ManageTokens(props: ManageTokensProps) {
             )}
             renderHiddenItem={ (data, rowMap) => (
               <TokenOptionsRow key={data.item.id}>
-                <TouchableWithoutFeedback onPress={() => props.onRemove(data.item)}>
+                <TouchableWithoutFeedback onPress={handleRemove(data.item)}>
                   <Col autoWidth noPadding>
                     <Row justifyContent="center">
                       <Col autoWidth noPadding>

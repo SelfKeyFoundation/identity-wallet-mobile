@@ -15,10 +15,10 @@ import {
   H4,
   Alert,
 } from '@selfkey/mobile-ui';
-
-// import { Alert } from '@selfkey/mobile-ui/lib/alert';
-
 import styled from 'styled-components/native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'backupWallet';
 
 export interface BackupWalletProps {
   mnemonicPhrase: string;
@@ -45,6 +45,7 @@ const PageTitle = styled(H3)`
 const PageDescription = styled(Paragraph)`
   text-align: center;
   font-size: 16px;
+  line-height: 24px;
 `;
 
 const MnemonicContainer = styled.View`
@@ -72,6 +73,25 @@ const MnemonicWord = styled.Text`
 export function BackupWallet(props: BackupWalletProps) {
   const theme = useContext(ThemeContext);
   const { mnemonicPhrase } = props;
+  const handleCopyPhrase = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/copyPhraseButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    props.onCopyPhrase();
+  }
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    props.onSubmit();
+  }
 
   return (
     <ScreenContainer sidePadding>
@@ -112,7 +132,7 @@ export function BackupWallet(props: BackupWalletProps) {
           </Row>
           <Row justifyContent="center">
             <Col autoWidth>
-              <Button type="link" onPress={props.onCopyPhrase}>
+              <Button type="link" onPress={handleCopyPhrase}>
                 Copy Phrase
               </Button>
             </Col>
@@ -136,7 +156,7 @@ export function BackupWallet(props: BackupWalletProps) {
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 type="full-primary"
               >
                 I’ve written it down

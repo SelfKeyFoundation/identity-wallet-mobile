@@ -1,6 +1,6 @@
 // @flow
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, NativeModules } from 'react-native';
 import { NavigationContainer } from './navigation';
 import { connect } from '@selfkey/wallet-core/redux';
 import modules from '@selfkey/wallet-core/modules';
@@ -8,6 +8,7 @@ import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
 import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';
 import { ModalRoot } from './modals';
+import { WalletTracker } from './WalletTracker';
 
 type AppProps = {
   isLoading: boolean,
@@ -18,6 +19,12 @@ export function App(props: AppProps) {
   const { loadApp, isLoading } = props;
 
   useEffect(() => {
+    WalletTracker.trackEvent({
+      action: 'loaded',
+      category: 'app',
+      level: 'machine'
+    });
+
     loadApp();
   }, []);
 

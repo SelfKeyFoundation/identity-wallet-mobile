@@ -6,6 +6,9 @@ import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
 import EthUtils from '@selfkey/blockchain/util/eth-utils';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'sendTokens/pending';
 
 const { operations, selectors } = modules.transaction;
 
@@ -19,7 +22,21 @@ export function PendingStep(props) {
   const ethFee = useSelector(selectors.getETHFee);
   // const dispatch = useDstispatch();
 
+  useEffect(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}`,
+      action: 'show',
+      level: 'wallet'
+    });
+  }, []);
+
   const handleViewOnEtherscan = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/viewOnEtherscan`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Linking.openURL(EthUtils.getTxReceiptUrl(transaction.hash))
   }, [transaction.hash]);
 

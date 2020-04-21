@@ -18,6 +18,10 @@ import {
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'confirmMnemonic';
+
 const errorMessages = {
   required: 'Password is required',
   match_with_password: 'Wrong confirmation password',
@@ -46,6 +50,7 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 const PageDescription = styled(Paragraph)`
@@ -78,6 +83,36 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
   const { errorMessage } = props;
   const { mnemonicConfirmation } = props;
   const mnemonic = props.mnemonic.split(' ');
+
+  const handleClear = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/clearButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onClear();
+  };
+
+  const handleBack = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/backButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onBack();
+  };
+
+  const handleSubmit = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    props.onSubmit();
+  };
 
   return (
     <ScreenContainer sidePadding>
@@ -122,7 +157,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
           </Row>
           {!!mnemonicConfirmation.length && <Row marginTop={20} justifyContent="center">
             <Col autoWidth>
-              <TouchableWithoutFeedback onPress={props.onClear}>
+              <TouchableWithoutFeedback onPress={handleClear}>
                 <Row>
                   <Col autoWidth>
                     <SKIcon
@@ -158,7 +193,14 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                           const wordIndex = rowIdx * 4 + idx;
                           const word = mnemonic[wordIndex];
                           const isFound = mnemonicConfirmation.find(index => index === wordIndex) >= 0;
-                          const handlePress = () => props.onWordPress(wordIndex);
+                          const handlePress = () => {
+                            WalletTracker.trackEvent({
+                              category: `${TRACKER_PAGE}/mnemonicWord`,
+                              action: 'press',
+                              level: 'machine'
+                            });
+                            props.onWordPress(wordIndex);
+                          }
                           return (
                             <TouchableWithoutFeedback onPress={!isFound && handlePress}>
                               <WordBox disabled={isFound}>
@@ -188,7 +230,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
           <Row justifyContent="flex-end">
             <Col autoWidth>
               <Button
-                onPress={props.onBack}
+                onPress={handleBack}
                 type="shell-primary"
               >
                 Back
@@ -196,7 +238,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
             </Col>
             <Col autoWidth>
               <Button
-                onPress={props.onSubmit}
+                onPress={handleSubmit}
                 isLoading={props.isLoading}
                 type="full-primary"
               >

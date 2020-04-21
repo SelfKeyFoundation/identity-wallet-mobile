@@ -49,7 +49,7 @@ export async function generateBackup(vaultId, password) {
 
   return {
     version: '0.1',
-    type: 'hd',
+    type: vault.mnemonic ? 'hd' : 'privateKey',
     /**
      * For the import process we can verify the public db for existent vaults with this ID
      * If so, should alert the user that the vault is already in place and give the chooice to abort the import

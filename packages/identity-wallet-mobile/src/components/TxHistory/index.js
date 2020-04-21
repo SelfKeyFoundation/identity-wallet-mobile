@@ -5,7 +5,9 @@ import { TxHistory } from './TxHistory';
 import { TransactionsEmptyAlert } from '../TransactionsEmptyAlert';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 export { TxHistory };
+import { WalletTracker } from '../../WalletTracker';
 
+const TRACKER_PAGE = 'txHistory';
 const PAGE_SIZE = 4;
 
 const parseItem = (item) => {
@@ -43,9 +45,22 @@ const AllTransactions = ({ children }) => {
 export function TxHistoryContainer(props) {
   const dispatch = useDispatch();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const handleLoadMore = useCallback(() => setVisibleCount(visibleCount + PAGE_SIZE));
+  const handleLoadMore = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/loadMoreButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+    setVisibleCount(visibleCount + PAGE_SIZE);
+  });
 
   const handleTxDetails = useCallback((item) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/txDetails`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     dispatch(ducks.modals.actions.showModal(Routes.MODAL_TRANSACTION_DETAILS, {
       hash: item.hash,
     }));

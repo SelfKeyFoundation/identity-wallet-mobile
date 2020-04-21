@@ -18,6 +18,7 @@ import {
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native';
 
+
 const errorMessages = {
   wrong_password: 'Wrong password. Please try again.',
 };
@@ -48,6 +49,7 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
 `;
 
 
@@ -104,23 +106,26 @@ export function UnlockWallet(props: UnlockWalletProps) {
                 label="Password"
                 onChangeText={props.onChange('password')}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={props.onPasswordSubmit}
               />
             </Col>
           </InputRow>
-          <Row>
-            <Col autoWidth>
-              <ForgotLink onPress={props.onForgot}>
-                Forgot?
-              </ForgotLink>
-            </Col>
-          </Row>
+          { props.onForgot ? (
+              <Row>
+                <Col autoWidth>
+                  <ForgotLink onPress={props.onForgot}>
+                    Forgot?
+                  </ForgotLink>
+                </Col>
+              </Row>
+            ) : null
+          }
         </ContentGrid>
         <Grid>
           <Row>
             <Col>
               <Button
-                onPress={props.onSubmit}
+                onPress={props.onUnlockPress}
                 type="full-primary"
                 isLoading={props.isLoading}
               >

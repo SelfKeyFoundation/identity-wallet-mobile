@@ -109,9 +109,12 @@ export function SettingsMenu(props) {
             <SectionTitle>Wallet Information</SectionTitle>
           </Col>
         </Row>
-        <MenuItem hasBorder onPress={props.onRecoveryInformation}>
-          Recovery Information
-        </MenuItem>
+        { props.onRecoveryInformation ? (
+            <MenuItem hasBorder onPress={props.onRecoveryInformation}>
+              Recovery Information
+            </MenuItem>
+          ) : null
+        }
         <MenuItem onPress={props.onBackup}>
           Backup
         </MenuItem>

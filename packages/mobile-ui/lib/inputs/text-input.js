@@ -42,6 +42,7 @@ const renderInput = (inputProps: TextInputProps, theme: any) => (props: NativeTe
   return (
     <NativeTextInput
       {...props}
+      autoCorrect={false}
       style={style}
     />
   );

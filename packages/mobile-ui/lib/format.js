@@ -15,11 +15,19 @@ const formatCurrency = (value, code) => {
   return formatter ? formatter(value) : genericFormat(value, code);
 };
 
-export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal, cleanEmptyDecimals }) {
+export function FormattedNumber({ value = 0, decimal = 2, currency, fixedDecimal, cleanEmptyDecimals, digitLimit }) {
   let formattedValue = parseFloat(value || 0);
 
   if (currency === 'usd' && value < 0.01 && value > 0) {
     decimal = 8;    
+  }
+
+  if (digitLimit) {
+    let v = parseInt(formattedValue).toFixed(0);
+
+    if ((v.length + decimal) > digitLimit) {
+      decimal = digitLimit - v.length;
+    }
   }
 
   if (formattedValue == NaN) {

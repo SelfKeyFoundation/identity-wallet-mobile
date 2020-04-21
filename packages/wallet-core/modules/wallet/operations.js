@@ -273,6 +273,12 @@ const confirmNewPasswordOperation = ({ password }) => async (dispatch, getState)
 
   await dispatch(walletActions.setNewPassword(''));
 
+  System.getTracker().trackEvent({
+    category: `confirmNewPassword/changePassword`,
+    action: 'success',
+    level: 'app'
+  });
+
   navigate(Routes.APP_DASHBOARD);
 };
 

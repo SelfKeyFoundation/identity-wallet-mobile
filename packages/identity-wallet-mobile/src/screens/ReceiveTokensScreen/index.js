@@ -6,6 +6,9 @@ import { ReceiveTokens } from '../../components';
 import modules from '@selfkey/wallet-core/modules';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
 import { Snackbar } from 'react-native-paper';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'receiveTokens';
 
 const { operations, selectors } = modules.wallet;
 
@@ -26,6 +29,12 @@ function ReceiveTokensContainer(props) {
   }, []);
 
   const handleClose = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/closeButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     dispatch(modules.app.operations.showReceiveTokensModal({
       visible: false,
       tokenSymbol,
@@ -33,11 +42,23 @@ function ReceiveTokensContainer(props) {
   }, [tokenSymbol]);
 
   const handleCopy = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/copyButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Clipboard.setString(address);
     setSnackMessage('Address Copied');
   }, [address]);
 
   const handleShare = useCallback(() => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/shareButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
     Share.share({
       message: address,
     });

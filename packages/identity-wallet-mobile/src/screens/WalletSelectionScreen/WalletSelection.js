@@ -157,6 +157,9 @@ function Select(props) {
 export function WalletSelection(props) {
   const theme = useContext(ThemeContext);
 
+  const selectedWallet = props.wallets.find(w => w.address === props.wallet);
+  const isHDWallet = selectedWallet && selectedWallet.type === 'hd';
+
   return (
     <Container>
       <Header>
@@ -217,7 +220,7 @@ export function WalletSelection(props) {
           </Col>
         </Row>
         {
-          props.wallet && (
+          isHDWallet ? (
             <Row>
               <Col autoWidth>
                 <ForgotLink onPress={props.onForgot}>
@@ -225,7 +228,7 @@ export function WalletSelection(props) {
                 </ForgotLink>
               </Col>
             </Row>
-          )
+          ) : null
         }
       </Body>
       <Footer>

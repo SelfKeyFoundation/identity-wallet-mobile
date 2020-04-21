@@ -128,7 +128,7 @@ export function TokenDetails(props: TokenDetailsProps) {
         </Row>
         { props.tokenAmount !== undefined && <Row alignBottom marginBottom={10}>
           <TokenAmount>
-            <FormattedNumber value={props.tokenAmount} decimal={10}/>
+            <FormattedNumber value={props.tokenAmount} decimal={props.tokenDecimal || 10} digitLimit={9} />
           </TokenAmount>
           <TokenSymbol>{props.tokenCode}</TokenSymbol>
         </Row>}

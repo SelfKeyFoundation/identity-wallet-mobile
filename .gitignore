@@ -30,6 +30,7 @@ build/
 .idea
 .gradle
 local.properties
+sentry.properties
 *.iml
 
 # node.js

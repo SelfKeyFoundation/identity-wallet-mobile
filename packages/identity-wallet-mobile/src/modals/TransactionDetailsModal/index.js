@@ -8,6 +8,9 @@ import styled from 'styled-components/native';
 import { Modal } from '@selfkey/mobile-ui';
 import EthUtils from '@selfkey/blockchain/util/eth-utils';
 import { Linking } from 'react-native';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'txDetailsModal';
 
 function TokenDetailsContainer(props) {
   const { visible, params, onClose } = props;
@@ -19,9 +22,25 @@ function TokenDetailsContainer(props) {
     return getUsdPrice(value, tokenSymbol)
   }, [value, tokenSymbol]);
 
-  const handleViewOnEtherscan = useCallback(() => {
-    Linking.openURL(EthUtils.getTxReceiptUrl(hash))
-  }, [hash]);
+  const handleViewOnEtherscan = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/viewOnEtherscanLink`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    Linking.openURL(EthUtils.getTxReceiptUrl(hash));
+  };
+
+  const handleClose = () => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/closeButton`,
+      action: 'press',
+      level: 'wallet'
+    });
+
+    onClose();
+  };
 
   if (!transaction) {
     return null;
@@ -30,7 +49,7 @@ function TokenDetailsContainer(props) {
   return (
     <Modal
       visible={visible}
-      onClose={onClose}
+      onClose={handleClose}
       title="Transaction Details"
       footer={null}
       noBodyPadding

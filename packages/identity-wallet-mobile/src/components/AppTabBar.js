@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabNavigation } from '@selfkey/mobile-ui';
 import { Routes, navigate } from '@selfkey/wallet-core/navigation';
+import { WalletTracker } from '../WalletTracker';
 
 export function AppTabBar(props) {
   const { navigation } = props;
@@ -25,10 +26,23 @@ export function AppTabBar(props) {
     id: Routes.APP_SETTINGS,
   }];
 
+  const handleNavigate = (route) => {
+    const item = items.find(item => item.id === route);
+    const itemLabel = item && item.label;
+
+    WalletTracker.trackEvent({
+      category: `navigation/${itemLabel}`,
+      action: 'press',
+      level: 'machine'
+    });
+
+    navigate(route);
+  }
+
   return (
     <TabNavigation
       activeId={route.key}
-      onPress={navigate}
+      onPress={handleNavigate}
       items={items}
     />
   );

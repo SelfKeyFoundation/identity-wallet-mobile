@@ -1,5 +1,6 @@
 // @flow
 import React, { useContext, useCallback } from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import {
   ScreenContainer,
   TextInput,
@@ -11,6 +12,7 @@ import {
   Row,
   Col,
   Button,
+  Link,
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
@@ -46,6 +48,32 @@ const TitleCol = styled(Col)`
 
 const PageTitle = styled(H3)`
   text-align: center;
+  padding-top: 5px;
+`;
+
+const IconContainer = styled.View`
+  position: absolute;
+  top: -2px;
+  left: -8px;
+`;
+
+const BackIcon = styled(SKIcon)`
+  padding: 10px;
+`;
+
+const Header = styled.View`
+  margin: 10px 20px 40px 20px;
+`;
+
+const Body = styled(Container)`
+  margin: 0 35px 35px 35px;
+`;
+
+const ForgotLink = styled(Link)`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 13px;
+  line-height: 19px;
 `;
 
 export function EnterPassword(props: RecoveryInformationProps) {
@@ -56,20 +84,27 @@ export function EnterPassword(props: RecoveryInformationProps) {
 
   return (
     <ScreenContainer sidePadding>
-      <Container withMargin scrollable>
+      <Header>
+        <IconContainer>
+          <TouchableWithoutFeedback onPress={props.onBack}>
+            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
+          </TouchableWithoutFeedback>
+        </IconContainer>
+      </Header>
+      <Body scrollable>
         <ContentGrid>
           <Row>
             <IconCol>
-              <SKIcon name="icon-password-ok" color={theme.colors.primary} size={66} />
+              <SKIcon name="icon-password" color={theme.colors.primary} size={66} />
             </IconCol>
           </Row>
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Enter your password
+                Enter password to display the
               </PageTitle>
               <PageTitle align="center">
-                to get the recovery information
+                recovery informations for this wallet
               </PageTitle>
             </TitleCol>
           </Row>
@@ -80,36 +115,37 @@ export function EnterPassword(props: RecoveryInformationProps) {
                 errorMessage={props.error}
                 value={props.password}
                 placeholder="Password"
-                label="Enter Password"
+                label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
                 onSubmitEditing={props.onSubmit}
               />
             </Col>
           </InputRow>
+          { props.onForgot ? (
+            <Row>
+              <Col autoWidth>
+                <ForgotLink onPress={props.onForgot}>
+                  Forgot?
+                </ForgotLink>
+              </Col>
+            </Row>
+          ) : null }
         </ContentGrid>
         <Grid>
           <Row>
-            <Col>
-              <Button
-                onPress={props.onBack}
-                type="shell-primary"
-              >
-                Back
-              </Button>
-            </Col>
             <Col>
               <Button
                 onPress={props.onSubmit}
                 type="full-primary"
                 isLoading={props.isLoading}
               >
-                Continue
+                Display Recovery Info
               </Button>
             </Col>
           </Row>
         </Grid>
-      </Container>
+      </Body>
     </ScreenContainer>
   );
 }

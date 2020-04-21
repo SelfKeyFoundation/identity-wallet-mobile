@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { WalletSelection } from './WalletSelection';
 import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
 import ducks from '@selfkey/wallet-core/modules';
+import { WalletTracker } from '../../WalletTracker';
+
+const TRACKER_PAGE = 'chooseDifferentWallet';
 
 function WalletSelectionContainer(props) {
   try {
@@ -12,14 +15,32 @@ function WalletSelectionContainer(props) {
     const [isLoading, setLoading] = useState();
     const dispatch = useDispatch();
     const handleBack = useCallback(() => {
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/backButton`,
+        action: 'press',
+        level: 'machine'
+      });
+
       navigateBack();
     }, []);
 
     const handleSubmit = useCallback(async () => {
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/unlockButton`,
+        action: 'press',
+        level: 'machine'
+      });
+
       if (!wallet) {
         setError({
           wallet: 'Please select a wallet.'
         })
+
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/error`,
+          action: 'display',
+          level: 'machine'
+        });
         return;
       }
 
@@ -28,6 +49,12 @@ function WalletSelectionContainer(props) {
       try {
         await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation(wallet, password));
       } catch(err) {
+        WalletTracker.trackEvent({
+          category: `${TRACKER_PAGE}/error`,
+          action: 'display',
+          level: 'machine'
+        });
+
         setError({
           password: 'Wrong password. Please try again.'
         });
@@ -47,6 +74,12 @@ function WalletSelectionContainer(props) {
     }, [setPassword]);
 
     const handleForgotPassword = useCallback(() => {
+      WalletTracker.trackEvent({
+        category: `${TRACKER_PAGE}/forgotPasswordButton`,
+        action: 'press',
+        level: 'machine'
+      });
+
       navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD, {
         walletAddress: wallet
       });

@@ -58,24 +58,54 @@ const createFromBackupOperation = (fileData, password) => async (dispatch, getSt
     }
   }
 
+  const wallets = await WalletModel.getInstance().findAll();
   const vault = await getVault(data.vaultId)
+  const walletFound = wallets.find(w => w.vaultId === data.vaultId);
+
+  if (walletFound) {
+    throw {
+      message: 'wallet_exists',
+    }
+  }
 
   try {
     if (!!vault) {
       await dispatch(ducks.unlockWallet.operations.unlockWithVaultIdOperation(data.vaultId, password));
+      System.getTracker().trackEvent({
+        category: `importFromBackupFile/backupImported`,
+        action: 'success',
+        level: 'app'
+      });
       return;
     }
   } catch(err) {
     console.error(err);
   }
 
-  const mnemonic = data.keystore.find(item => item.id === 'mnemonic');
-  const setupData = await setupHDWallet({ mnemonic: mnemonic.value, password });
+  let setupData
+
+  if (data.type === 'privateKey') {
+    const privateKey = data.keystore.find(item => item.id === 'privateKey');
+    const address = data.keystore.find(item => item.id === 'address');
+    setupData = await setupPrivateKeyWallet({
+      privateKey: privateKey.value,
+      address: address.value,
+      password
+    });
+  } else {
+    const mnemonic = data.keystore.find(item => item.id === 'mnemonic');
+    setupData = await setupHDWallet({ mnemonic: mnemonic.value, password });
+  }
+
+  System.getTracker().trackEvent({
+    category: `importFromBackupFile/backupImported`,
+    action: 'success',
+    level: 'app'
+  });
 
   await dispatch(walletOperations.loadWalletOperation(setupData));
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
-
 
 function decodeQRData(imported, password){
   const crypto = System.getCrypto();
@@ -115,7 +145,13 @@ const importFromDesktopOperation = (keystoreEncrypted, password) => async (dispa
   });
 
   await dispatch(walletOperations.loadWalletOperation(setupData));
-  
+
+  System.getTracker().trackEvent({
+    category: `importFromDesktop/walletImport`,
+    action: 'success',
+    level: 'machine'
+  });
+
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
