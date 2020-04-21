@@ -259,8 +259,7 @@ class Button extends React.Component<Props, State> {
             {loading ? (
               <ActivityIndicator
                 size="small"
-                color="white"
-                style={styles.icon}
+                color="#1E262E"
               />
             ) : null}
             { !loading && <Text
@@ -269,6 +268,9 @@ class Button extends React.Component<Props, State> {
                 styles.label,
                 compact && styles.compactLabel,
                 textStyle,
+                !icon && {
+                  marginHorizontal: 16,  
+                },
                 { fontFamily },
               ]}
             >
@@ -301,13 +303,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-
+    marginRight: 15,
   },
   label: {
     textAlign: 'center',
     letterSpacing: 0,
     marginVertical: 9,
-    marginHorizontal: 16,
+    marginHorizontal: 0,
   },
   compactLabel: {
     marginHorizontal: 8,
