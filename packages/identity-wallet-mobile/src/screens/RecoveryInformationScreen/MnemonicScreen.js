@@ -109,7 +109,7 @@ export function MnemonicScreen(props: BackupWalletProps) {
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Recovery your wallet
+                Recover your wallet
               </PageTitle>
             </TitleCol>
           </Row>
