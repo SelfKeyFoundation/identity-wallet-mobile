@@ -3,7 +3,6 @@ import { IdentityVault } from './vault';
 import type { VaultConstructor } from './types';
 import { System } from '../system';
 
-const crypto = System.getCrypto();
 
 // Realm should work for both desktop and mobile
 // Desktop application can inject a SQLite Implementation as well
@@ -35,7 +34,7 @@ function getDatabase() {
 }
 
 function createHash(value) {
-  return crypto.createHash('sha256').update(value).digest('hex');
+  return System.getCrypto().createHash('sha256').update(value).digest('hex');
 }
 
 /**
