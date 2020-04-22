@@ -1,4 +1,4 @@
-import { getTop20Tokens } from './create-wallet-utils';
+import { getTop20Tokens, setupHDWallet, addTop20Tokens } from './create-wallet-utils';
 import top20Tokens from '../../assets/data/top-20-tokens.json';
 import { TokenModel } from '../../models';
 
@@ -32,5 +32,29 @@ describe('Create Wallet Utils', () => {
         expect(assetToken.address).toEqual(dbToken.address);
       }
     });
+  });
+
+  describe('insertTop20Tokens', () => {
+    let wallet;
+
+    beforeAll(async () => {
+      const result = await setupHDWallet({
+        mnemonic: 'test',
+        password: 'test',
+        addTop20: false,
+      });
+
+      wallet = result.wallet;
+    })
+
+    it('expect to create wallet without top20 tokens', () => {
+      expect(wallet.tokens).toHaveLength(1);
+    });
+
+    it('expect to add top20 tokens into existing wallet', async () => {
+      const updatedWallet = await addTop20Tokens(wallet);
+
+      expect(updatedWallet.tokens).toHaveLength(21);
+    })
   });
 });

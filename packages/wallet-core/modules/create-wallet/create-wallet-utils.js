@@ -37,28 +37,62 @@ export async function getTop20Tokens() {
   }));
 }
 
-export async function createDefaultTokens() {
+// add top 20 tokens into already existing wallet
+export async function addTop20Tokens(wallet) {
+  const tokens = await getTop20Tokens();
+  let walletTokenId = WalletTokenModel.getInstance().generateId();
+  
+  const walletTokens = Array.from(wallet.tokens);
+
+  tokens.forEach((token) => {
+    const tokenFound = walletTokens.find(t => t.tokenId === token.tokenId);
+
+    if (tokenFound) {
+      return;
+    }
+
+    walletTokens.push({
+      id: walletTokenId++,
+      balance: '0',
+      balanceInFiat: 0,
+      hidden: false,
+      ...token,
+    });
+  });
+
+  wallet.tokens = walletTokens;
+
+  await WalletModel.getInstance().updateById(wallet.id, wallet);
+
+  return wallet;
+}
+
+export async function getDefaultTokens({ addTop20 = false } = {}) {
   const primaryToken = await TokenModel.getInstance().findBySymbol(getConfigs().primaryToken);
-  const defaultTokens = await getTop20Tokens();
-  const tokens = [
-    { tokenId: primaryToken.id },
-    ...defaultTokens,
-  ];
+  let tokens = [{
+    tokenId: primaryToken.id
+  }];
+
+  if (addTop20) {
+    const top20 = await getTop20Tokens();
+    tokens = [
+      ...tokens,
+      ...top20,
+    ];
+  }
 
   const walletTokenId = WalletTokenModel.getInstance().generateId();
-
-  const mapTokens = (item, idx) => ({
+  const result = tokens.map((item, idx) => ({
     id: walletTokenId + idx,
     balance: '0',
     balanceInFiat: 0,
     hidden: false,
     ...item,
-  });
-
-  const result = tokens.map(mapTokens);
+  }));
 
   return result;
 }
+
 /**
  * This process will:
  * - Create identity vault
@@ -66,7 +100,7 @@ export async function createDefaultTokens() {
  *
  * @param {*} params
  */
-export async function setupHDWallet({ mnemonic, password }) {
+export async function setupHDWallet({ mnemonic, password, addTop20 }) {
   const builder = await WalletBuilder.createFromMnemonic(mnemonic);
 
   const vault = await createVault({
@@ -91,7 +125,7 @@ export async function setupHDWallet({ mnemonic, password }) {
     vaultId: vault.id,
     type: 'hd',
     path: path,
-    tokens: await createDefaultTokens(),
+    tokens: await getDefaultTokens({ addTop20 }),
   });
 
   return {
@@ -100,7 +134,7 @@ export async function setupHDWallet({ mnemonic, password }) {
   }
 }
 
-export async function setupPrivateKeyWallet({ privateKey, address, password }) {
+export async function setupPrivateKeyWallet({ privateKey, address, password, addTop20 }) {
   const vault = await createVault({
     privateKey,
     address,
@@ -118,7 +152,7 @@ export async function setupPrivateKeyWallet({ privateKey, address, password }) {
     balance: '0',
     vaultId: vault.id,
     type: 'privateKey',
-    tokens: await createDefaultTokens(),
+    tokens: await getDefaultTokens({ addTop20 }),
   });
 
   return {
