@@ -11,6 +11,7 @@ import { encryptData, decryptData, generateBackup } from '../../identity-vault/b
 import { unlockVault, updatePassword } from '../../identity-vault';
 import { navigate, Routes } from '../../navigation';
 import { getConfigs } from '@selfkey/configs';
+import { addTop20Tokens } from '../create-wallet/create-wallet-utils';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -119,22 +120,7 @@ async function loadWalletTokens(wallet, checkBalance) {
         };
       })
   );
-  // Mock data for tokens, used for testing purposes
-  // wallet.tokens = new Array(15).fill(0).map((_, index) => {
-  //   return {
-  //     parsed: true,
-  //     id: index + 1,
-  //     walletTokenId: `${index}`,
-  //     hidden: false,
-  //     fiatCurrency: 'usd',
-  //     name: `Test Token ${index}`,
-  //     symbol: `TST${index}`,
-  //     decimal: 10,
-  //     address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
-  //     balanceInFiat: 1000,
-  //     balance: 10,
-  //   };
-  // });
+
   wallet.tokens = wallet.tokens.map(computeColor).filter(token => {
     return !token.hidden
   })
@@ -206,8 +192,6 @@ const backupWalletOperation = (password) => async (dispatch, getState) => {
     .catch((err) => {
       console.log(err);
     });
-
-  // TODO: Remove backup file from filesystem
 };
 
 const changePasswordOperation = (password) => async (dispatch, getState) => {
@@ -235,6 +219,8 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   }
 
   unlockWalletWithPrivateKey(privateKey)
+
+  wallet = await addTop20Tokens(wallet);
 
   await loadWalletTokens(wallet);
   await dispatch(walletActions.setWallet(wallet));
