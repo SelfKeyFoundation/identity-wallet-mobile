@@ -10,35 +10,16 @@ export const TermsOfServiceContent = () => (
       SelfKey Foundation
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      By downloading, using or accessing the SelfKey Identity
-      Wallet (the “SelfKey Wallet”) you agree to the following
-      terms and conditions of use (collectively, these “Terms”).
-      Please read these Terms carefully. If you do not agree to
-      all of these Terms, please do not use the SelfKey Wallet.
-      Your use of the SelfKey Wallet constitutes your acceptance
-      of and agreement to abide by each of these Terms.
+      By downloading, using or accessing the SelfKey Identity Wallet (the “SelfKey Wallet”) you agree to the following terms and conditions of use (collectively, these “Terms”). Please read these Terms carefully. If you do not agree to all of these Terms, please do not use the SelfKey Wallet. Your use of the SelfKeyWallet constitutes your acceptance of and agreement to abide by each of these Terms.
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      These Terms may be modified, changed, supplemented or
-      updated by the SelfKey Foundation (“SelfKey”, “we”, “us” or
-      “our”) in our sole discretion at any time without advance
-      notice. We suggest that you visit this page regularly to
-      keep up to date with any changes. Your continued use of the
-      SelfKey Wallet will confirm your acceptance of these Terms
-      as modified, changed, supplemented or updated. If you do not
-      agree to such revised terms you must stop using the SelfKey
-      Wallet.
+      These Terms may be modified, changed, supplemented or updated by SelfKey Wallet LLC (“SelfKey”, “we”, “us” or “our”) in our sole discretion at any time without advance notice. We suggest that you visit this pageregularly to keep up to date with any changes. Your continued use of theSelfKey Wallet will confirm your acceptance of these Terms as modified, changed, supplemented or updated. If you do not agree to such revisedterms you must stop using the SelfKey Wallet.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       2) REPRESENTATIONS AND WARRANTIES
     </Paragraph>
     <Paragraph variant="subtitle1" paragraph>
-      2.1 You expressly understand and agree that your use of the
-      SelfKey Wallet is at your sole risk. The SelfKey Wallet is
-      provided without warranties of any kind, either express or
-      implied, including, without limitation, implied warranties
-      of merchantability, fitness for a particular purpose or
-      non-infringement.
+      2.1 You expressly understand and agree that your use of the SelfKey Wallet is at your sole risk. The SelfKey Wallet is provided without warranties of any kind, either express or implied, including, without limitation, impliedwarranties of merchantability, fitness for a particular purpose or non-infringement.
     </Paragraph>
     <List>
       <ListItem>
@@ -218,63 +199,31 @@ export const TermsOfServiceContent = () => (
       funds or property from a SelfKey Wallet.
     </Paragraph>
     <Paragraph variant="subtitle1" paragraph>
-      5.6 Any and all indemnities, warranties, terms and
-      conditions (whether express or implied) are hereby excluded
-      to the fullest extent permitted under the law of the Cayman
-      Islands.
+      5.6 Any and all indemnities, warranties, terms and conditions (whetherexpress or implied) are hereby excluded to the fullest extent permitted under the law of Nevis.
     </Paragraph>
     <Paragraph variant="subtitle1" paragraph>
-      5.7 SelfKey will not be liable, in contract, or tort
-      (including, without limitation, negligence), other than
-      where we have been fraudulent or made negligent
-      misrepresentations.
+      5.7 SelfKey will not be liable, in contract, or tort (including, without limitation, negligence), other than where we have been fraudulent or made negligent misrepresentations.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       6) NO WAIVER
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      From time to time, SelfKey may fail to require or strictly
-      enforce compliance in relation to any provision in these
-      Terms. SelfKey may also fail to exercise any or all of its
-      rights empowered herein. Any such failure shall not be
-      construed as a waiver or relinquishment of SelfKey&#39;s
-      right to assert or rely upon any such provision or right in
-      that or in any other instance. If applicable, an express
-      waiver given by SelfKey of any condition, provision, or
-      requirement of these Terms shall not constitute a waiver of
-      any future obligation to comply with such condition,
-      provision or requirement.
+      From time to time, SelfKey may fail to require or strictly enforce compliance in relation to any provision in these Terms. SelfKey may also fail to exercise any or all of its rights empowered herein. Any such failure shall not be construed as a waiver or relinquishment of SelfKey's right to assert or rely upon any such provision or right in that or in any other instance. If applicable, an express waiver given by SelfKey of any condition, provision, or requirement of these Terms shall not constitute a waiver of any future obligation to comply with such condition, provision or requirement.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       7) SEVERABILITY
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      If any portion of these Terms is held to be illegal,
-      unenforceable or invalid, whether in whole or part, under
-      the laws of any jurisdiction, that portion shall be severed,
-      and such illegality, unenforceability or invalidity shall
-      not affect the legality, enforceability or validity of the
-      rest of these Terms in that jurisdiction, nor the legality,
-      enforceability or validity of these Terms in any other
-      jurisdiction.
+      If any portion of these Terms is held to be illegal, unenforceable or invalid,whether in whole or part, under the laws of any jurisdiction, that portion shall be severed, and such illegality, unenforceability or invalidity shall not affect the legality, enforceability or validity of the rest of these Terms in that jurisdiction, nor the legality, enforceability or validity of these Terms in any other jurisdiction.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       8) GOVERNING LAW AND JURISDICTION
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      These Terms are governed by the laws of the Cayman Islands.
-      Any present or future law which operates to vary the
-      obligations of SelfKey in connection with these Terms with
-      the result that SelfKey’s rights, powers or remedies are
-      adversely affected (including by way of delay or
-      postponement) is excluded except to the extent that its
-      exclusion is prohibited or rendered ineffective by law.
+      These Terms are governed by the laws of Nevis. Any present or future law which operates to vary the obligations of SelfKey in connection with these Terms with the result that SelfKey’s rights, powers or remedies are adverselyaffected (including by way of delay or postponement) is excluded except to the extent that its exclusion is prohibited or rendered ineffective by law.
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      You agree to submit any Dispute (as defined below) to
-      arbitration. To the extent that the agreement to arbitrate
-      is ineffective or void, you agree to submit to the exclusive
-      jurisdiction of the courts of the Cayman Islands.
+      You agree to submit any Dispute (as defined below) to arbitration. To the extent that the agreement to arbitrate is ineffective or void, you agree to submit to the exclusive jurisdiction of the courts of Nevis.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       9) SUBMISSION TO ARBITRATION
@@ -284,17 +233,14 @@ export const TermsOfServiceContent = () => (
       or proceeding arising out of or related to these Terms (any
       &#34;Dispute&#34;) that is not settled by you and SelfKey
       within 30 days from the date that either party notifies the
-      other party in writing of the Dispute shall be referred to
-      and finally settled by arbitration in accordance with the
-      provisions of the Cayman Islands Arbitration Law, 2012.
-      Further, the parties hereby agree that:
+      other party in writing of the Dispute shall be referred to and finally settled by arbitration in accordance with the provisions of Nevis Arbitration Law, 2012.Further, the parties hereby agree that:
     </Paragraph>
     <List>
       <ListItem>
-        The law of this section is Cayman Islands law;
+        The law of this section is Nevis law;
       </ListItem>
       <ListItem>
-        The seat of arbitration will be the Cayman Islands;
+        The seat of arbitration will be Nevis;
       </ListItem>
       <ListItem>
         The number of arbitrators will be three;
@@ -303,7 +249,7 @@ export const TermsOfServiceContent = () => (
         If the parties do not agree on the arbitrator to be
         appointed within 30 Days of the Dispute proceeding to
         arbitration, the arbitrator is to be appointed by the
-        Grand Court of the Cayman Islands; and
+        Grand Court of Nevis; and
       </ListItem>
       <ListItem>
         The arbitration proceedings will be conducted in
@@ -361,66 +307,35 @@ export const TermsOfServiceContent = () => (
       13) TRANSACTIONS
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      In order to be completed, all proposed virtual currency
-      transactions must be confirmed and recorded in the public
-      ledger associated with the relevant currency network. Such
-      networks are decentralised, peer-to-peer networks supported
-      by independent third-parties, which are not owned,
-      controlled or operated by SelfKey.
+      In order to be completed, all proposed virtual currency transactions must be confirmed and recorded in the public ledger associated with the relevantcurrency network. Such networks are decentralised, peer-to-peer networks supported by independent third-parties, which are not owned, controlled or operated by SelfKey.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       14) NO STORAGE OR TRANSMISSION OF VIRTUAL CURRENCY
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      Cyrptographic tokens are an intangible, digital asset. They
-      exist only by virtue of the ownership record maintained in
-      the underlying currency network. Any transfer of title that
-      might occur in any virtual currency occurs on the
-      decentralised ledger within the virtual currency network.
-      SelfKey does not guarantee the transfer of title or right in
-      any virtual currency.
+      Cyrptographic tokens are an intangible, digital asset. They exist only by virtue of the ownership record maintained in the underlying currency network. Any transfer of title that might occur in any virtual currency occurson the decentralised ledger within the virtual currency network. SelfKey does not guarantee the transfer of title or right in any virtual currency.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       15) RELATIONSHIP
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      Nothing in these Terms is intended to nor shall it create
-      any partnership, joint venture, agency, consultancy or
-      trusteeship, you and SelfKey being with respect to one
-      another independent contractors.
+      Nothing in these Terms is intended to nor shall it create any partnership, joint venture, agency, consultancy or trusteeship, you and SelfKey being with respect to one another independent contractors.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       16) TAXES
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      It is your responsibility to determine what, if any, taxes
-      apply to the transactions made using your Selfkey Wallet and
-      it is your responsibility to report and remit the correct
-      tax to the appropriate tax authority. SelfKey is not
-      responsible for determining whether taxes apply to your
-      virtual currency transactions or for collecting, reporting,
-      withholding or remitting any taxes arising from any such
-      transactions.
+      It is your responsibility to determine what, if any, taxes apply to the transactions made using your Selfkey Wallet and it is your responsibility to report and remit the correct tax to the appropriate tax authority. SelfKey is not responsible for determining whether taxes apply to your virtual currency transactions or for collecting, reporting, withholding or remitting any taxesarising from any such transactions.
     </Paragraph>
     <Paragraph variant="h3" paragraph>
       17) GENERAL
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      These Terms are governed by the laws of the Cayman Islands.
-      All claims arising out of or relating to these Terms will be
-      litigated exclusively in the courts of the Cayman Islands
-      and you consent to personal jurisdiction in those courts.
+      These Terms are governed by the laws of Nevis. All claims arising out of or relating to these Terms will be litigated exclusively in the courts of Nevis andyou consent to personal jurisdiction in those courts.
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      These Terms control the relationship between us and you.
-      They do not create any third-party beneficiary rights. If
-      you do not comply with these Terms, and we don’t take action
-      right away, this does not mean that we are giving up any
-      rights that we may have, such as taking action in the
-      future. If it turns out that a particular term is not
-      enforceable, the term will be modified such that it is
-      enforceable and this will not affect any other terms
-      contained herein.
+      These Terms control the relationship between us and you. They do not create any third-party beneficiary rights. If you do not comply with these Terms, and we don’t take action right away, this does not mean that we are giving up any rights that we may have, such as taking action in the future. If it turns out that a particular term is not enforceable, the term will be 
+      modified such that it is enforceable and this will not affect any other terms contained herein.
     </Paragraph>
     <Paragraph variant="body2" paragraph>
       If you have any questions regarding these Terms, please
@@ -430,14 +345,28 @@ export const TermsOfServiceContent = () => (
       </Link>
     </Paragraph>
     <Paragraph variant="body2" paragraph>
-      SelfKey reserves all rights in the look and feel of the
-      SelfKey Wallet. Some parts of the SelfKey Wallet. are
-      licensed under third-party open source licenses. We also
-      make some of our own code available under open source
-      licenses. As for other parts of the SelfKey Wallet, you may
-      not copy or adapt any portion of our code or visual design
-      elements (including logos) without express written
-      permission from SelfKey unless otherwise permitted by law.
+      SelfKey reserves all rights in the look and feel of the SelfKey Wallet. Some parts of the SelfKey Wallet. are licensed under third-party open source licenses. We also make some of our own code available under open source licenses. As for other parts of the SelfKey Wallet, you may not copy or adapt any portion of our code or visual design elements (including logos) without express written permission from SelfKey unless otherwise permitted by law.
+    </Paragraph>
+    <Paragraph variant="h3" paragraph>
+      18) CRASH REPORT & ANALYTIC
+    </Paragraph>
+    <Paragraph variant="body" paragraph>
+      You agree to share basic data and analytics to help SelfKey improve the SelfKey wallet application. This information is non-personal identifiableinformation, and limited to general usage of wallet, (for example, where a user got stuck in a purchasing processs).
+    </Paragraph>
+    <Paragraph variant="h3" paragraph>
+      19) AFFILIATE FEES
+    </Paragraph>
+    <Paragraph variant="body" paragraph>
+      The SelfKey wallet may contain advertisements, sponsored content, paidinsertions, affiliate links or other forms of monetization.We make no representations, warranties, or assurances as to the accuracy,currency or completeness of the content contain on this application, ourwebsite or any sites or services linked to or from the SelfKey wallet.
+    </Paragraph>
+    <Paragraph variant="body" paragraph>
+      You are assuming all risks, and you agree that we are not liable in any wayfor any program, product or service that we may promote, market, share or sell on or through our Website or application.
+    </Paragraph>
+    <Paragraph variant="h3" paragraph>
+      20) Transfer of information
+    </Paragraph>
+    <Paragraph variant="body" paragraph>
+      At times, you may be able to transfer personal data to another service, for example, without limitation, signing up for a service in the marketplace. This transfer of information is facilitated by sending the data from the wallet, to the relying party, or 3rdparty. This transfer is consented by you, in the wallet, at the time of transfer. SelfKey will never sell your information to another service. This concept of Self Sovereign identity means you are in control at all times, and you, as the user, are choosing to send this data, as and when you choose, if at all.
     </Paragraph>
   </React.Fragment>
 );
