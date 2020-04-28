@@ -7,8 +7,9 @@ import ducks from '../index';
 
 const loadWalletsOperation = () => async (dispatch, getState) => {
   // load wallets from db and populate reducer
-  const wallets = await WalletModel.getInstance().findAll();
+  const wallets = await WalletModel.getInstance().findSorted(null, [['lastUnlockDate', true]]);
   await dispatch(duck.actions.setWallets(wallets));
+  return wallets[0].address;
 };
 
 export const operations = {
