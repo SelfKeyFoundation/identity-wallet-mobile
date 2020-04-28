@@ -207,6 +207,13 @@ const getRecoveryInformationOperation = (password) => async (dispatch, getState)
   return vault.mnemonic;
 };
 
+async function updateWalletLastUnlock({ address }) {
+  const model = WalletModel.getInstance();
+
+  await model.updateByAddress(address, {
+    lastUnlockDate: new Date(),
+  });
+}
 /**
  * 
  * Load wallet
@@ -217,6 +224,8 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   if (!privateKey) {
     privateKey = vault.getETHWalletKeys(0).privateKey;
   }
+
+  await updateWalletLastUnlock(wallet);
 
   unlockWalletWithPrivateKey(privateKey)
 
