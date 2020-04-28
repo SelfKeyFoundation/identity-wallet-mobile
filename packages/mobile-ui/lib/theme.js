@@ -15,6 +15,7 @@ export const Theme = {
     success: colors.mountainMeadow,
     warning: colors.flamenco,
     error: colors.bittersweet,
+    backdrop: 'rgba(105,124,149,0.9)',
   },
   fonts: {
     regular: 'Lato-Regular',

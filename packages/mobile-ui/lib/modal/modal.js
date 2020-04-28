@@ -6,9 +6,12 @@ import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
 import { SKIcon } from '../icons';
+import DeviceInfo from 'react-native-device-info';
 
 const Container = styled.View`
-  padding: 40px 20px;
+  padding: ${() => {
+    return DeviceInfo.hasNotch() ? '45px 20px 40px 20px' : '20px';
+  }};
   height: 100%;
 `;
 
@@ -22,7 +25,8 @@ const InnerContainer = styled.View`
 
 const Header = styled.View`
   background: #2A3540;
-  border: 1px solid #374758;
+  border: 0 solid #374758;
+  border-bottom-width: 1px;
   flex-direction: row;
   padding: 20px 15px;
 `;
@@ -69,7 +73,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export function Modal(props) {
   const {
     cancelProps = {},
@@ -110,7 +113,13 @@ export function Modal(props) {
 
   return (
     <Portal>
-      <PaperModal visible={props.visible} onDismiss={props.onClose}>
+      <PaperModal
+        visible={props.visible}
+        onDismiss={props.onClose}
+        contentContainerStyle={{
+          backgroundColor: 'rgba(105,124,149,0.9)'
+        }}
+      >
         { content }
       </PaperModal>
     </Portal>
