@@ -156,39 +156,46 @@ function Select(props) {
 }
 export function WalletSelection(props) {
   const theme = useContext(ThemeContext);
-
+  const { isUnlockScreen } = props;
   const selectedWallet = props.wallets.find(w => w.address === props.wallet);
   const isHDWallet = selectedWallet && selectedWallet.type === 'hd';
 
   return (
     <Container>
       <Header>
-        <IconContainer>
+        {isUnlockScreen ? null :<IconContainer>
           <TouchableWithoutFeedback onPress={props.onBack}>
             <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
           </TouchableWithoutFeedback>
-        </IconContainer>
+        </IconContainer> }
       </Header>
       <Body>
         <Row>
           <IconCol>
-            <SKIcon name="icon-wallet" color={theme.colors.primary} size={66} />
+            <SKIcon name={isUnlockScreen ? 'icon-password' : 'icon-wallet'} color={theme.colors.primary} size={66} />
           </IconCol>
         </Row>
         <Row>
           <TitleCol>
             <PageTitle align="center">
-              Choose a Different Wallet
+              { isUnlockScreen ? 'Enter password to unlock your' : 'Choose a Different Wallet' }
             </PageTitle>
           </TitleCol>
         </Row>
-        <Row>
+        {isUnlockScreen ? <Row marginBottom={40}>
+          <TitleCol noPadding>
+            <PageTitle align="center">
+              SelfKey Identity Wallet
+            </PageTitle>
+          </TitleCol>
+        </Row> : null}
+        {isUnlockScreen ? null : <Row>
           <TitleCol>
             <PageDescription>
               Select the wallet address and enter the password to unlock the wallet.
             </PageDescription>
           </TitleCol>
-        </Row>
+        </Row>}
         <Row>
           <Col>
             <Select
@@ -212,7 +219,7 @@ export function WalletSelection(props) {
               errorMessage={props.error && props.error.password}
               value={props.password}
               placeholder="Password"
-              label="Enter your Password"
+              label={isUnlockScreen ? 'Password' : "Enter your Password"}
               onChangeText={props.onPasswordChange}
               secureTextEntry={true}
               onSubmitEditing={props.onSubmit}

@@ -5,8 +5,8 @@ import { WalletTokenModel } from './wallet-token/wallet-token-model';
 import { GuideSettingsModel } from './guide-settings/guide-settings-model';
 import { TxHistoryModel } from './tx-history/tx-history-model';
 
-export const CURRENT_SCHEMA_VERSION = 5;
-export const SCHEMA_NAME = '5-token-updates';
+export const CURRENT_SCHEMA_VERSION = 6;
+export const SCHEMA_NAME = '6-wallet-updates';
 
 export {
   WalletModel,

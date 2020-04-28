@@ -9,6 +9,7 @@ const TRACKER_PAGE = 'chooseDifferentWallet';
 
 function WalletSelectionContainer(props) {
   try {
+    const isUnlockScreen = props.navigation.getParam('isUnlockScreen');
     const [error, setError] = useState();
     const [wallet, setWallet] = useState();
     const [password, setPassword] = useState();
@@ -86,11 +87,15 @@ function WalletSelectionContainer(props) {
     }, [wallet]);
 
     useEffect(() => {
-      dispatch(ducks.wallets.operations.loadWalletsOperation());
+      dispatch(ducks.wallets.operations.loadWalletsOperation())
+      .then((selectedAddress) => {
+        setWallet(selectedAddress);
+      });
     }, []);
   
     return (
       <WalletSelection
+        isUnlockScreen={isUnlockScreen}
         onBack={handleBack}
         onSubmit={handleSubmit}
         error={error}

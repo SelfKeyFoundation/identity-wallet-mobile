@@ -37,12 +37,14 @@ const loadAppOperation = () => async (dispatch, getState) => {
 
   if (!wallets.length) {
     navigate(Routes.CREATE_WALLET_PASSWORD);
+  } else if (wallets.length > 1) {
+    navigate(Routes.WALLET_SELECTION, {
+      isUnlockScreen: true,
+    });
   } else {
     dispatch(ducks.wallet.actions.setWallet(wallets[0]));
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   }
-
-  // navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
 
   dispatch(appActions.setLoading(false));
 };

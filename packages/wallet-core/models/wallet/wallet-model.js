@@ -17,6 +17,7 @@ export class WalletModel extends BaseModel {
         type: 'int?',
         default: 0,
       },
+      lastUnlockDate: 'date?',
       txHistoryLastSyncedBlock: {
         type: 'int?',
         default: 0,
