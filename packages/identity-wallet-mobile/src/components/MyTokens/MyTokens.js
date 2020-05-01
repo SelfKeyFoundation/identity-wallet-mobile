@@ -28,6 +28,7 @@ const Title = styled.Text`
   font-size: 24px;
   font-family: ${props => props.theme.fonts.regular};
   margin-bottom: 4px;
+  margin-top: 0;
 `;
 
 const TotalTokenAmount = styled.Text`
@@ -36,8 +37,10 @@ const TotalTokenAmount = styled.Text`
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Container = styled.View`
+const Container = styled.View``;
 
+const TokenRowWrapper = styled.View`
+  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
 const TokenRow = styled(LinearGradient)`
@@ -45,7 +48,6 @@ const TokenRow = styled(LinearGradient)`
   padding: 15px;
   margin-top: 15px;
   border-radius: 4px;
-  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
 const TokenName = styled.Text`
@@ -74,7 +76,7 @@ const TokenIconTitle = styled.Text`
 `;
 
 const TitleRow = styled.View`
-  margin: 14px;
+  margin: 0 14px 2px 14px;
   flex-direction: row;
 `;
 
@@ -135,7 +137,7 @@ export function MyTokens(props: MyTokensProps) {
   return (
     <Container>
       <TitleRow>
-        <Col>
+        <Col paddingTop={0}>
           <Title>My Tokens</Title>
           <TotalTokenAmount>
             <FormattedNumber
@@ -153,34 +155,36 @@ export function MyTokens(props: MyTokensProps) {
       {
         props.tokens.map(token => (
           <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
-            <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-              <Col autoWidth noPadding>
-                <TokenIcon name={token.name || token.symbol} color={token.color} />
-              </Col>
-              <Col noPadding paddingLeft={11}>
-                <TokenName>
-                  { token.name || token.symbol }
-                </TokenName>
-                <Explanatory>
-                  { token.symbol && token.symbol.toUpperCase() }
-                </Explanatory>
-              </Col>
-              <Col autoWidth alignItems="flex-end" noPadding>
-                <TokenName>
-                  <FormattedNumber
-                    value={token.balance}
-                    decimal={token.decimal}
-                    digitLimit={9}
-                  />
-                </TokenName>
-                <Explanatory>
-                  <FormattedNumber
-                    value={token.fiatAmount}
-                    currency={token.fiatCurrency}
-                  />
-                </Explanatory>
-              </Col>
-            </TokenRow>
+            <TokenRowWrapper>
+              <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+                <Col autoWidth noPadding>
+                  <TokenIcon name={token.name || token.symbol} color={token.color} />
+                </Col>
+                <Col noPadding paddingLeft={11}>
+                  <TokenName>
+                    { token.name || token.symbol }
+                  </TokenName>
+                  <Explanatory>
+                    { token.symbol && token.symbol.toUpperCase() }
+                  </Explanatory>
+                </Col>
+                <Col autoWidth alignItems="flex-end" noPadding>
+                  <TokenName>
+                    <FormattedNumber
+                      value={token.balance}
+                      decimal={token.decimal}
+                      digitLimit={9}
+                    />
+                  </TokenName>
+                  <Explanatory>
+                    <FormattedNumber
+                      value={token.fiatAmount}
+                      currency={token.fiatCurrency}
+                    />
+                  </Explanatory>
+                </Col>
+              </TokenRow>
+            </TokenRowWrapper>
           </TouchableWithoutFeedback>
         ))
       }
