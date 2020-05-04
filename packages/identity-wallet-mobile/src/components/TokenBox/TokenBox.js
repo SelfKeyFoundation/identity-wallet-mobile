@@ -15,6 +15,7 @@ import {
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface TokenBoxProps {
   iconComponent: any;
@@ -32,11 +33,14 @@ const Title = styled.Text`
   margin-top: 10px;
 `;
 
-const Container = styled.View`
+const Wrapper = styled.View`
+    box-shadow: 2px 10px 24px rgba(0,0,0,0.6);
+`;
+
+const Container = styled(LinearGradient)`
   background: #2E3945;
-  padding: 21px;
+  padding: 15px 21px;
   border-radius: 4px;
-  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
 const TokenAmount = styled.Text`
@@ -66,7 +70,31 @@ export function TokenBox(props: TokenBoxProps) {
 
   if (props.tokenCode === 'custom') {
     return (
-      <Container>
+      <Wrapper>
+        <Container colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+          <Row marginBottom={10}>
+            <Col autoWidth>
+              <TokenIcon width={44} height={44}/>
+            </Col>
+            <Col>
+              <Title>{props.tokenName}</Title>
+            </Col>
+          </Row>
+          <Row alignBottom marginBottom={10} marginTop={10}>
+            <Col>
+              <ButtonLink onPress={handleCustomTokens} iconName="icon-swap" iconSize={16}>
+                Send & receive ERC-20 tokens
+              </ButtonLink>
+            </Col>
+          </Row>
+        </Container>
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <Container colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
         <Row marginBottom={10}>
           <Col autoWidth>
             <TokenIcon width={44} height={44}/>
@@ -74,54 +102,34 @@ export function TokenBox(props: TokenBoxProps) {
           <Col>
             <Title>{props.tokenName}</Title>
           </Col>
-        </Row>
-        <Row alignBottom marginBottom={10} marginTop={10}>
-          <Col>
-            <ButtonLink onPress={handleCustomTokens} iconName="icon-swap" iconSize={16}>
-              Send & receive ERC-20 tokens
-            </ButtonLink>
+          <Col autoWidth>
+            <SKIcon
+              name="icon-swap"
+              size={26}
+              color="#93B0C1"
+              onPress={handleDetails}
+            />
           </Col>
         </Row>
+        <Row alignBottom marginBottom={10}>
+          <TokenAmount>
+            <FormattedNumber
+              value={props.tokenAmount || 0}
+              decimal={8}
+              digitLimit={9}
+            />
+          </TokenAmount>
+          <TokenSymbol>{props.tokenCode}</TokenSymbol>
+        </Row>
+        <Row autoWidth alignBottom>
+          <Explanatory>
+            <FormattedNumber
+              value={props.fiatAmount}
+              currency={props.fiatCurrency}
+            />
+          </Explanatory>
+        </Row>
       </Container>
+    </Wrapper>
     );
-  }
-
-  return (
-    <Container>
-      <Row marginBottom={10}>
-        <Col autoWidth>
-          <TokenIcon width={44} height={44}/>
-        </Col>
-        <Col>
-          <Title>{props.tokenName}</Title>
-        </Col>
-        <Col autoWidth>
-          <SKIcon
-            name="icon-swap"
-            size={26}
-            color="#93B0C1"
-            onPress={handleDetails}
-          />
-        </Col>
-      </Row>
-      <Row alignBottom marginBottom={10}>
-        <TokenAmount>
-          <FormattedNumber
-            value={props.tokenAmount || 0}
-            decimal={8}
-            digitLimit={9}
-          />
-        </TokenAmount>
-        <TokenSymbol>{props.tokenCode}</TokenSymbol>
-      </Row>
-      <Row autoWidth alignBottom>
-        <Explanatory>
-          <FormattedNumber
-            value={props.fiatAmount}
-            currency={props.fiatCurrency}
-          />
-        </Explanatory>
-      </Row>
-    </Container>
-  );
 }

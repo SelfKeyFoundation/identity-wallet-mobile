@@ -30,7 +30,8 @@ target 'IdentityWalletMobile' do
 
   pod 'react-native-randombytes', :path => '../node_modules/react-native-randombytes'
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
-  
+  pod 'BVLinearGradient', :path => '../../../node_modules/react-native-linear-gradient'
+
   # pod 'RNSVG', :path => '../../../node_modules/react-native-svg'
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
   # pod 'RNFS', :path => '../node_modules/react-native-fs'

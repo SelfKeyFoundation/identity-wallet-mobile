@@ -19,6 +19,7 @@ import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback } from 're
 import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
+import LinearGradient from 'react-native-linear-gradient';
 
 const TRACKER_PAGE = 'manageTokens';
 
@@ -41,13 +42,16 @@ const Container = styled.View`
   flex: 1;
 `;
 
-const TokenRow = styled.View`
+const TokenRowWrapper = styled.View`
+  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
+`;
+
+const TokenRow = styled(LinearGradient)`
   flex-direction: row;
   background: #2E3945;
   padding: 15px;
   margin-top: 15px;
   border-radius: 4px;
-  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
 const TokenOptionsRow = styled.View`
@@ -88,7 +92,7 @@ const TokenIconTitle = styled.Text`
 `;
 
 const TitleRow = styled.View`
-  margin: 14px;
+  margin: 14px 14px 0 14px;
   flex-direction: row;
 `;
 
@@ -238,35 +242,37 @@ export function ManageTokens(props: ManageTokensProps) {
             previewRowKey="0"
             renderItem={ ({ item: token }, rowMap) => (
               <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
-                <TokenRow key={token.id}>
-                  <Col autoWidth noPadding>
-                    <TokenIcon name={token.name || token.symbol} color={token.color} />
-                  </Col>
-                  <Col noPadding paddingLeft={11}>
-                    <TokenName>
-                      { token.name || token.symbol }
-                    </TokenName>
-                    <Explanatory>
-                      { token.symbol && token.symbol.toUpperCase() }
-                    </Explanatory>
-                  </Col>
-                  <Col autoWidth alignItems="flex-end" noPadding>
-                    <TokenName>
-                      <FormattedNumber
-                        value={token.balance}
-                        decimal={token.decimal || 10}
-                        digitLimit={9}
-                      />
-                    </TokenName>
-                    <Explanatory>
-                      <FormattedNumber
-                        value={token.balanceInFiat}
-                        currency={token.fiatCurrency}
-                        decimal={2}
-                      />
-                    </Explanatory>
-                  </Col>
-                </TokenRow>
+                <TokenRowWrapper>
+                  <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+                    <Col autoWidth noPadding>
+                      <TokenIcon name={token.name || token.symbol} color={token.color} />
+                    </Col>
+                    <Col noPadding paddingLeft={11}>
+                      <TokenName>
+                        { token.name || token.symbol }
+                      </TokenName>
+                      <Explanatory>
+                        { token.symbol && token.symbol.toUpperCase() }
+                      </Explanatory>
+                    </Col>
+                    <Col autoWidth alignItems="flex-end" noPadding>
+                      <TokenName>
+                        <FormattedNumber
+                          value={token.balance}
+                          decimal={token.decimal || 10}
+                          digitLimit={9}
+                        />
+                      </TokenName>
+                      <Explanatory>
+                        <FormattedNumber
+                          value={token.balanceInFiat}
+                          currency={token.fiatCurrency}
+                          decimal={2}
+                        />
+                      </Explanatory>
+                    </Col>
+                  </TokenRow>
+                </TokenRowWrapper>
               </TouchableWithoutFeedback>
             )}
             renderHiddenItem={ (data, rowMap) => (

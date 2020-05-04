@@ -16,6 +16,7 @@ import {
 
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface TokenDetailsProps {
   iconComponent: any;
@@ -117,88 +118,90 @@ export function TokenDetails(props: TokenDetailsProps) {
 
   return (
     <Container>
-      <Header>
-        <Row marginBottom={10}>
-          <Col autoWidth>
-            { TokenIcon && <TokenIcon width={44} height={44}/> }
-          </Col>
-          <Col>
-            <Title>{props.tokenName}</Title>
-          </Col>
-        </Row>
-        { props.tokenAmount !== undefined && <Row alignBottom marginBottom={10}>
-          <TokenAmount>
-            <FormattedNumber value={props.tokenAmount} decimal={props.tokenDecimal || 10} digitLimit={9} />
-          </TokenAmount>
-          <TokenSymbol>{props.tokenCode}</TokenSymbol>
-        </Row>}
-        { props.tokenAmount !== undefined && <Row autoWidth alignBottom>
-          <Explanatory>
-            <FormattedNumber
-              value={props.fiatAmount}
-              currency={props.fiatCurrency}
-            />
-          </Explanatory>
-        </Row>}
-      </Header>
-      { props.tokenCode === 'custom-tokens' ? null : <Body>
-        { props.lastPrice ? <Row marginBottom={12}>
-          <Col>
-            <Label>Last Price</Label>
-          </Col>
-          <Col autoWidth>
-            <BodyText>
+      <LinearGradient colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+        <Header>
+          <Row marginBottom={10}>
+            <Col autoWidth>
+              { TokenIcon && <TokenIcon width={44} height={44}/> }
+            </Col>
+            <Col>
+              <Title>{props.tokenName}</Title>
+            </Col>
+          </Row>
+          { props.tokenAmount !== undefined && <Row alignBottom marginBottom={10}>
+            <TokenAmount>
+              <FormattedNumber value={props.tokenAmount} decimal={props.tokenDecimal || 10} digitLimit={9} />
+            </TokenAmount>
+            <TokenSymbol>{props.tokenCode}</TokenSymbol>
+          </Row>}
+          { props.tokenAmount !== undefined && <Row autoWidth alignBottom>
+            <Explanatory>
               <FormattedNumber
-                value={props.lastPrice}
-                decimal={props.fiatDecimal || 2}
-                currency={props.lastPriceCurrency}
+                value={props.fiatAmount}
+                currency={props.fiatCurrency}
               />
-            </BodyText>
-          </Col>
-        </Row> : null}
-        { props.contractAddress ? <Row>
-          <Col>
-            <Label>Token Contract</Label>
-          </Col>
-          <Col autoWidth>
-            <BodyText>
-              { formatAddress(props.contractAddress) }
-            </BodyText>
-          </Col>
-        </Row> : null}
-      </Body>}
-      <Footer>
-        <FooterCol>
-          <Button
-            type="shell-primary"
-            onPress={handleReceive}
-            icon={<SKIcon name="icon-qr" size={24} color="#00C0D9" />}
-            buttonStyle={{
-              height: 50,
-            }}
-            contentStyle={{
-              height: 47,
-            }}
-          >
-              Receive
-          </Button>
-        </FooterCol>
-        <FooterCol>
-          <Button
-            type="shell-primary"
-            onPress={props.onSend}
-            icon={<SKIcon name="icon-send" size={24} color="#00C0D9" />}
-            buttonStyle={{
-              height: 50,
-            }}
-            contentStyle={{
-              height: 47,
-            }}
-          >
-            Send
-          </Button>
-        </FooterCol>
-      </Footer>
+            </Explanatory>
+          </Row>}
+        </Header>
+        { props.tokenCode === 'custom-tokens' ? null : <Body>
+          { props.lastPrice ? <Row marginBottom={12}>
+            <Col>
+              <Label>Last Price</Label>
+            </Col>
+            <Col autoWidth>
+              <BodyText>
+                <FormattedNumber
+                  value={props.lastPrice}
+                  decimal={props.fiatDecimal || 2}
+                  currency={props.lastPriceCurrency}
+                />
+              </BodyText>
+            </Col>
+          </Row> : null}
+          { props.contractAddress ? <Row>
+            <Col>
+              <Label>Token Contract</Label>
+            </Col>
+            <Col autoWidth>
+              <BodyText>
+                { formatAddress(props.contractAddress) }
+              </BodyText>
+            </Col>
+          </Row> : null}
+        </Body>}
+        <Footer>
+          <FooterCol>
+            <Button
+              type="shell-primary"
+              onPress={handleReceive}
+              icon={<SKIcon name="icon-qr" size={24} color="#00C0D9" />}
+              buttonStyle={{
+                height: 50,
+              }}
+              contentStyle={{
+                height: 47,
+              }}
+            >
+                Receive
+            </Button>
+          </FooterCol>
+          <FooterCol>
+            <Button
+              type="shell-primary"
+              onPress={props.onSend}
+              icon={<SKIcon name="icon-send" size={24} color="#00C0D9" />}
+              buttonStyle={{
+                height: 50,
+              }}
+              contentStyle={{
+                height: 47,
+              }}
+            >
+              Send
+            </Button>
+          </FooterCol>
+        </Footer>
+      </LinearGradient>
     </Container>
   );
 }

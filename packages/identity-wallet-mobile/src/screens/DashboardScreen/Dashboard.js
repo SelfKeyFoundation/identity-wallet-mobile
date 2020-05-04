@@ -31,7 +31,7 @@ const CarouselRow = styled.View`
 `;
 
 const MyTokensRow = styled.View`
-  margin: 40px 20px 10px 20px;
+  margin: -10px 20px 10px 20px;
 `;
 
 const TxHistoryRow = styled.View`
@@ -60,7 +60,7 @@ export function Dashboard(props) {
           }
         >
           <CarouselRow>
-          <TokenBoxCarouselContainer />
+            <TokenBoxCarouselContainer />
           </CarouselRow>  
           <MyTokensRow>
             <MyTokensContainer />
