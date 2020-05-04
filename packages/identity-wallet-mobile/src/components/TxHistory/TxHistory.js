@@ -15,15 +15,6 @@ import { TxHistoryRow } from '../';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-// const Container = styled.View`
-//   background: #2E3945;
-//   border-radius: 4px;
-//   padding: 40px 30px 50px 30px;
-//   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
-//   align-items: center;
-//   flex-direction: column;
-// `;
-
 const Title = styled.Text`
   color: ${props => props.theme.colors.white};
   font-size: 20px;
