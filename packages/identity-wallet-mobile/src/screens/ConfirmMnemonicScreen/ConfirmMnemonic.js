@@ -138,7 +138,8 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                     <Row>
                       {
                         WordPlaceholder.slice(rowIdx, rowIdx + 4).map((_, idx) => {
-                          const wordIndex = mnemonicConfirmation[rowIdx * 4 + idx];
+                          const item = mnemonicConfirmation[rowIdx * 4 + idx];
+                          const wordIndex = item && item.index;
                           const word = mnemonic[wordIndex];
                           return (
                             <WordBox isEmpty={!word}>
@@ -192,7 +193,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                         WordPlaceholder.slice(rowIdx, rowIdx + 4).map((_, idx) => {
                           const wordIndex = rowIdx * 4 + idx;
                           const word = mnemonic[wordIndex];
-                          const isFound = mnemonicConfirmation.find(index => index === wordIndex) >= 0;
+                          const isFound = mnemonicConfirmation.find((item) => (item && item.index) === wordIndex);
                           const handlePress = () => {
                             WalletTracker.trackEvent({
                               category: `${TRACKER_PAGE}/mnemonicWord`,
@@ -201,6 +202,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                             });
                             props.onWordPress(wordIndex);
                           }
+
                           return (
                             <TouchableWithoutFeedback onPress={!isFound && handlePress}>
                               <WordBox disabled={isFound}>

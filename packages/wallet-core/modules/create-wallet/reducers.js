@@ -29,22 +29,33 @@ function setConfirmationMnemonicReducer(state, action) {
 
 function addConfirmationWordReducer(state, action) {
   // const word = state.shuffledMnemonic.split(' ')[;
+  const confirmation = [...state.mnemonicConfirmation];
+  const nextIndex = confirmation.findIndex(w => w === null);
+
+  confirmation[nextIndex] = {
+    index: action.payload.wordIndex,
+  };
 
   return {
     ...state,
-    mnemonicConfirmation: [
-      ...(state.mnemonicConfirmation || []),
-      action.payload.wordIndex
-    ],
+    mnemonicConfirmation: confirmation,
   };
 }
 
 function clearConfirmationReducer(state) {
   const { mnemonicConfirmation } = state;
+  const confirmation = [...mnemonicConfirmation].reverse();
+  const toRemove = confirmation.findIndex(v => v && !v.fixed);
+
+  if (toRemove >= 0) {
+    confirmation[toRemove] = null; 
+  }
+
+  confirmation.reverse();
 
   return {
     ...state,
-    mnemonicConfirmation: mnemonicConfirmation.slice(0, mnemonicConfirmation.length - 1),
+    mnemonicConfirmation: confirmation,
     confirmationError: undefined,
   };
 }

@@ -161,7 +161,7 @@ const submitConfirmationOperation = (form) => async (dispatch, getState) => {
   const confirmationMenmonic = selectors.getMnemonicConfirmation(state);
   const shuffledMnemonic = selectors.getShuffledMnemonic(state).split(' ');
   const confirmation = confirmationMenmonic
-    .map(index => shuffledMnemonic[index])
+    .map(item => shuffledMnemonic[item.index])
     .join(' ')
     .trim();
 
@@ -179,9 +179,33 @@ const submitConfirmationOperation = (form) => async (dispatch, getState) => {
 
 const generateMnemonic = () => async (dispatch, getState) => {
   const mnemonic = WalletBuilder.generateMnemonic();
-  const shuffledMnemonic = shuffleArray(mnemonic.split(' ')).join(' ');
+  const shuffledMnemonic = shuffleArray(mnemonic.split(' '));
   await dispatch(actions.setMnemonicPhrase(mnemonic));
-  await dispatch(actions.setShuffledMnemonic(shuffledMnemonic));
+  await dispatch(actions.setShuffledMnemonic(shuffledMnemonic.join(' ')));
+
+  const confirmation = new Array(12).fill(null);
+
+  const maxNumber = 6;
+  const mnemonicArray = mnemonic.split(' ');
+  let filledSlots = 0;
+
+  while(filledSlots < maxNumber) {
+    const index = Math.ceil(Math.random() * 12) - 1;
+
+    if (!confirmation[index]) {
+      const word = mnemonicArray[index]
+      const shuffledIndex = shuffledMnemonic.findIndex(w => w === word);
+
+      confirmation[index] = {
+        fixed: true,
+        index: shuffledIndex,
+      };
+
+      filledSlots++
+    }
+  }
+
+  await dispatch(actions.setConfirmationMnemonic(confirmation));
 };
 
 export const operations = {
