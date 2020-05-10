@@ -30,6 +30,8 @@ function ChooseDifferentWalletContainer(props) {
     }); 
   });
 
+  const handleImportFromDesktop = () => navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
+
   const handleBack = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,
@@ -45,6 +47,7 @@ function ChooseDifferentWalletContainer(props) {
       onNewAddress={handleNewAddress}
       onExistingAddress={handleExistingAddress}
       onBack={handleBack}
+      onImportFromDesktop={handleImportFromDesktop}
     />
   );
 } 

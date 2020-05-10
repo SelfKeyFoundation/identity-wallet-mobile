@@ -86,6 +86,8 @@ function WalletSelectionContainer(props) {
       });
     }, [wallet]);
 
+    const handleCreateWallet = () => navigate(Routes.CHOOSE_DIFFERENT_WALLET);
+
     useEffect(() => {
       dispatch(ducks.wallets.operations.loadWalletsOperation())
       .then((selectedAddress) => {
@@ -106,6 +108,7 @@ function WalletSelectionContainer(props) {
         onWalletChange={handleWalletChange}
         isLoading={isLoading}
         onForgot={handleForgotPassword}
+        onCreateWallet={handleCreateWallet}
       />
     );
   } catch(err) {

@@ -207,11 +207,13 @@ const getRecoveryInformationOperation = (password) => async (dispatch, getState)
   return vault.mnemonic;
 };
 
-async function updateWalletLastUnlock({ address }) {
+async function updateWalletLastUnlock(wallet) {
   const model = WalletModel.getInstance();
 
-  await model.updateByAddress(address, {
-    lastUnlockDate: new Date(),
+  wallet.lastUnlockDate = new Date();
+
+  await model.updateByAddress(wallet.address, {
+    lastUnlockDate: wallet.lastUnlockDate,
   });
 }
 /**

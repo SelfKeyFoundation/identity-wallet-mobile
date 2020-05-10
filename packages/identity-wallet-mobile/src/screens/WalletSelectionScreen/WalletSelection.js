@@ -14,6 +14,7 @@ import {
   ThemeContext,
   ErrorMessage,
   Link,
+  DefinitionTitle,
 } from '@selfkey/mobile-ui';
 import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
@@ -109,6 +110,19 @@ const ForgotLink = styled(Link)`
   font-size: 13px;
   line-height: 19px;
 `;
+const UseDifferentWallet = styled(Link)`
+  text-transform: uppercase;
+  width: 100%;
+  font-size: 14px;  
+  text-align: center;
+`
+
+const OrText = styled(DefinitionTitle)`
+  color: white;
+  font-size: 14px;
+  text-align: center;
+`
+
 
 // TODO: Move to the Design System package
 function Select(props) {
@@ -250,6 +264,28 @@ export function WalletSelection(props) {
             </Button>
           </Col>
         </Row>
+        {
+          isUnlockScreen ? (
+            <React.Fragment>
+              <Row>
+                <Col>
+                  <OrText>or</OrText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <TouchableWithoutFeedback
+                    onPress={props.onCreateWallet}
+                  >
+                    <UseDifferentWallet>
+                      Create New Wallet
+                    </UseDifferentWallet>
+                  </TouchableWithoutFeedback>
+                </Col>
+              </Row>
+            </React.Fragment>
+          ) : null
+        }
       </Footer>
     </Container>
   )
