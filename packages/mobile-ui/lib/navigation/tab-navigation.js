@@ -33,7 +33,7 @@ const TabText = styled.Text`
   font-size: 10px;
 `;
 
-interface TabNavigationItem {
+interface TabNavigationItemProps {
   id: string;
   label: string;
   icon: string;
@@ -45,7 +45,7 @@ export interface TabNavigationProps {
   selectedOption: string,
 }
 
-export function TabNavigationItem(props: TabNavigationItem) {
+export function TabNavigationItem(props: TabNavigationItemProps) {
   const theme = useContext(ThemeContext);
 
   return (

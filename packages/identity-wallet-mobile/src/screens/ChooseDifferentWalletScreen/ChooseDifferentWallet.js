@@ -113,7 +113,6 @@ export function ChooseDifferentWallet(props) {
             </PageDescription>
           </TitleCol>
         </Row>
-
         <TouchableWithoutFeedback onPress={props.onExistingAddress}>
           <MenuOption>
             <Col autoWidth noPadding>
@@ -121,12 +120,11 @@ export function ChooseDifferentWallet(props) {
             </Col>
             <Col noPadding marginLeft={20}>
               <MenuOptionText>
-                Existing Address
+                Existing Address On Device
               </MenuOptionText>
             </Col>
           </MenuOption>
         </TouchableWithoutFeedback>
-
         <TouchableWithoutFeedback onPress={props.onNewAddress}>
           <MenuOption>
             <Col autoWidth noPadding>
@@ -134,7 +132,19 @@ export function ChooseDifferentWallet(props) {
             </Col>
             <Col noPadding marginLeft={20}>
               <MenuOptionText>
-                New Address
+                Create a New Address
+              </MenuOptionText>
+            </Col>
+          </MenuOption>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={props.onImportFromDesktop}>
+          <MenuOption>
+            <Col autoWidth noPadding>
+              <SKIcon name="icon-import-address" color={theme.colors.primary} size={24}/>
+            </Col>
+            <Col noPadding marginLeft={20}>
+              <MenuOptionText>
+                Import From Desktop
               </MenuOptionText>
             </Col>
           </MenuOption>
