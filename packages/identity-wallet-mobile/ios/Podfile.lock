@@ -60,13 +60,13 @@ PODS:
     - React-cxxreact (= 0.60.5)
     - React-jsi (= 0.60.5)
   - React-jsinspector (0.60.5)
-  - react-native-camera (3.15.0):
+  - react-native-camera (3.24.1):
     - React
-    - react-native-camera/RCT (= 3.15.0)
-    - react-native-camera/RN (= 3.15.0)
-  - react-native-camera/RCT (3.15.0):
+    - react-native-camera/RCT (= 3.24.1)
+    - react-native-camera/RN (= 3.24.1)
+  - react-native-camera/RCT (3.24.1):
     - React
-  - react-native-camera/RN (3.15.0):
+  - react-native-camera/RN (3.24.1):
     - React
   - react-native-document-picker (3.2.4):
     - React
@@ -272,7 +272,7 @@ SPEC CHECKSUMS:
   React-jsi: 4d8c9efb6312a9725b18d6fc818ffc103f60fec2
   React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
-  react-native-camera: 52114c432860b89986c9ee4919d00a48a6ba7abb
+  react-native-camera: 6d47390c89812306baa37b88508a1f110b4a9794
   react-native-document-picker: c36bf5f067a581657ecaf7124dcd921a8be19061
   react-native-randombytes: 3638d24759d67c68f6ccba60c52a7a8a8faa6a23
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
