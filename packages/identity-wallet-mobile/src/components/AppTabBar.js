@@ -21,6 +21,10 @@ export function AppTabBar(props) {
     label: 'Scan QR',
     id: Routes.APP_SCAN_QR,
   }, {
+    icon: 'icon-menu-profile',
+    label: 'My Profile',
+    id: Routes.APP_MY_PROFILE,
+  }, {
     icon: 'icon-menu-settings',
     label: 'Settings',
     id: Routes.APP_SETTINGS,

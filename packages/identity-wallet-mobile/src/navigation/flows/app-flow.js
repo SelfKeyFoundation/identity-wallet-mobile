@@ -16,6 +16,7 @@ import ConfirmNewPasswordScreen from '../../screens/ConfirmNewPasswordScreen';
 import RecoveryInformationScreen from '../../screens/RecoveryInformationScreen';
 import ChangePasswordScreen from '../../screens/ChangePasswordScreen';
 import DevSettingsScreen from '../../screens/DevSettingsScreen';
+import MyProfileScreen from '../../screens/MyProfileScreen';
 
 import { stackNavigatorConfig } from '../configs';
 
@@ -26,6 +27,7 @@ export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_SETTINGS]: SettingsScreen,
   [Routes.APP_SCAN_QR]: ScanQRScreen,
   [Routes.APP_MY_TOKENS]: MyTokensScreen,
+  [Routes.APP_MY_PROFILE]: MyProfileScreen,
 }, {
   tabBarComponent: AppTabBar,
 });
