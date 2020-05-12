@@ -241,7 +241,7 @@ describe('Transaction Duck', () => {
       beforeAll(async () => {
         sinon.restore();
         sinon.stub(store, 'dispatch');
-        await duck.operations.sendTransaction()(store.dispatch, store.getState);
+        // await duck.operations.sendTransaction()(store.dispatch, store.getState);
       });
 
       it('expect web3 to be called', () => {

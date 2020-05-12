@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Allow SelfKey Wallet to use your camera to scan qr codes</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
