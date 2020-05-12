@@ -3,6 +3,9 @@ import { getRealmInstance } from '../../db/realm-service';
 export class BaseModel {
   constructor(schema) {
     this.schema = schema;
+    this.ModelClass = null;
+
+    this.toJson = this.toJson.bind(this);
   }
 
   get realm() {
@@ -11,6 +14,11 @@ export class BaseModel {
 
   create(props) {
     let result;
+
+    if (this.beforeCreate) {
+     props = this.beforeCreate(props);
+    }
+
     this.realm.write(() => {
       result = this.realm.create(this.schema.name, props);
     });
@@ -60,6 +68,11 @@ export class BaseModel {
 
   async updateById(id, data) {
     const currentData = this.findById(id);
+
+    if (this.beforeUpdate) {
+      data = this.beforeUpdate(data);
+    }
+
     return this.realm.write(() => {
       return this.realm.create(this.schema.name, {
         ...(currentData || {}),
@@ -95,6 +108,10 @@ export class BaseModel {
       data[key] = realmObject[key];
     });
 
+    if (this.applyCustomMapping) {
+      return this.applyCustomMapping(data);
+    }
+  
     return data;
   }
 
