@@ -71,6 +71,10 @@ class TextInputOutlined extends React.Component {
       inputTextColor = colors.text;
       activeColor = error ? colors.error : colors.primary;
       placeholderColor = outlineColor = colors.placeholder;
+
+      if (error) {
+        placeholderColor = colors.error;
+      }
     }
 
     const labelHalfWidth = parentState.labelLayout.width / 2;
@@ -145,7 +149,7 @@ class TextInputOutlined extends React.Component {
               borderRadius: theme.roundness,
               borderWidth: hasActiveOutline ? 1 : 1,
               borderColor: hasActiveOutline ? activeColor : outlineColor,
-              backgroundColor: '#1B2229'
+              backgroundColor: (error && !hasActiveOutline) ? 'rgba(255,106,106,0.02)' : '#1B2229'
             },
             parentState.focused && {
               shadowColor: hasActiveOutline ? activeColor : outlineColor,

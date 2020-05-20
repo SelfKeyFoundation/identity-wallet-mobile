@@ -5,6 +5,7 @@ import {
 } from 'react-native-paper';
 
 import SKTextInput from './SKTextInput';
+import { Row, Col } from '../grid';
 import styled from 'styled-components/native';
 import {
   TextInput as NativeTextInput,
@@ -56,18 +57,30 @@ export const TextInput = (props: TextInputProps) => {
 
   return (
     <View>
-      <View style={{ marginBottom: 10, marginTop: 10 }}>
-        <Text
-          style={[{
-            color: props.disabled ? theme.colors.disabled : theme.colors.typography,
-            textTransform: 'uppercase',
-            fontFamily: theme.fonts.bold,
-            fontSize: 12,
-          }, props.labelStyle]}
-        >
-          { label }
-        </Text>
-      </View>
+      <Row style={{ marginBottom: 10, marginTop: 10, marginLeft: 0, marginRight: 0 }}>
+        <Col noPadding autoWidth>
+          <Text
+            style={[{
+              color: props.disabled ? theme.colors.disabled : theme.colors.typography,
+              textTransform: 'uppercase',
+              fontFamily: theme.fonts.bold,
+              fontSize: 12,
+            }, props.labelStyle]}
+          >
+            { label }
+          </Text>
+        </Col>
+        { props.required ? <Col noPadding>
+          {
+            <Text style={{
+              color: props.disabled ? theme.colors.disabled : theme.colors.typography,
+              textTransform: 'uppercase',
+              fontFamily: theme.fonts.bold,
+              fontSize: 12,
+            }}>*</Text>
+          }
+        </Col> : null }
+      </Row>
       <View>
         <SKTextInput
           {...oProps}
