@@ -8,7 +8,7 @@ export class IdentityModel extends BaseModel {
     primaryKey: 'id',
     properties: {
       id: 'int',
-      walletId: 'int',
+      walletId: 'string',
       name: 'string?',
       // type: 'string'
       profilePicture: 'data?',
@@ -38,5 +38,9 @@ export class IdentityModel extends BaseModel {
 
   constructor() {
     super(IdentityModel.schema);
+  }
+
+  findAllByWalletId(walletId) {
+    return this.find('walletId = $0', walletId); 
   }
 }

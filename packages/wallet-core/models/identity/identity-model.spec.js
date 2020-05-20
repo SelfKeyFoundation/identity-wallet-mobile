@@ -16,6 +16,13 @@ const fixtures = [
     profilePicture: null,
     isSetupFinished: true,
   },
+  {
+    id: 3,
+    walletId: 2,
+    name: 'Test Identity 2',
+    profilePicture: null,
+    isSetupFinished: true,
+  },
 ];
 
 describe('core/db/models/IdentityModel', () => {
@@ -38,6 +45,14 @@ describe('core/db/models/IdentityModel', () => {
     it('findAll', () => {
       const items = model.findAll();
       expect(items.length).toEqual(fixtures.length);
+    });
+
+    it('findAllByWalletId', () => {
+      let items = model.findAllByWalletId(1);
+      expect(items.length).toEqual(1);
+
+      items = model.findAllByWalletId(2);
+      expect(items.length).toEqual(2);
     });
   });
 });

@@ -206,7 +206,7 @@ export class RepositoryModel extends BaseModel {
 
     await this.updateById(local.id, {
       content: remote.content,
-      expires: new Date(Date.now() + remote.expires),
+      expires: Date.now() + remote.expires,
       name: remote.name,
     });
 

@@ -33,7 +33,7 @@ export class IdAttributeTypeModel extends BaseModel {
 	};
 	
 	applyCustomMapping(item) {
-    item.content = JSON.parse(item.content);
+    item.content = item.content ? JSON.parse(item.content) : {};
     return item;
   }
 
@@ -100,7 +100,7 @@ export class IdAttributeTypeModel extends BaseModel {
 	async addRemote(url) {
 		let [remote, attrType] = await Promise.all([this.loadRemote(url), this.findByUrl(url)]);
 		if (!remote) {
-			log.error('could not load attribute type %s from remote', url);
+			log.error(`could not load attribute type ${url} from remote`);
 			return;
 		}
 
@@ -117,6 +117,7 @@ export class IdAttributeTypeModel extends BaseModel {
 
 			return attrType;
 		} catch (error) {
+      console.error(error);
 			log.error(error);
 			throw error;
 		}
