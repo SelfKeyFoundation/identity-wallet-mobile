@@ -1,6 +1,9 @@
-export const identityAttributes = {};
+import { Logger } from '@selfkey/wallet-core/utils/logger';
+import * as jsonSchema from './json-schema-utils';
 
-identityAttributes.denormalizeDocumentsSchema = (
+const log = new Logger('identity-attribute-utils');
+
+export const denormalizeDocumentsSchema = (
 	typeSchema,
 	value,
 	documents = [],
@@ -42,7 +45,7 @@ identityAttributes.denormalizeDocumentsSchema = (
 				if (!value.hasOwnProperty(key)) {
 					return acc;
 				}
-				let denormalized = identityAttributes.denormalizeDocumentsSchema(
+				let denormalized = denormalizeDocumentsSchema(
 					typeSchema.properties[key],
 					value[key],
 					acc.documents,
@@ -59,7 +62,7 @@ identityAttributes.denormalizeDocumentsSchema = (
 	if (typeSchema.type === 'array' && Array.isArray(value)) {
 		return value.reduce(
 			(acc, itm) => {
-				let normalized = identityAttributes.denormalizeDocumentsSchema(
+				let normalized = denormalizeDocumentsSchema(
 					typeSchema.items,
 					itm,
 					acc.documents,
@@ -75,7 +78,7 @@ identityAttributes.denormalizeDocumentsSchema = (
 	return { value, documents };
 };
 
-identityAttributes.normalizeDocumentsSchema = (
+export const normalizeDocumentsSchema = (
 	typeSchema,
 	value,
 	documents = [],
@@ -110,7 +113,7 @@ identityAttributes.normalizeDocumentsSchema = (
 				if (!value.hasOwnProperty(key)) {
 					return acc;
 				}
-				let normalized = identityAttributes.normalizeDocumentsSchema(
+				let normalized = normalizeDocumentsSchema(
 					typeSchema.properties[key],
 					value[key],
 					acc.documents,
@@ -127,7 +130,7 @@ identityAttributes.normalizeDocumentsSchema = (
 	if (typeSchema.type === 'array' && Array.isArray(value)) {
 		return value.reduce(
 			(acc, itm) => {
-				let normalized = identityAttributes.normalizeDocumentsSchema(
+				let normalized = normalizeDocumentsSchema(
 					typeSchema.items,
 					itm,
 					acc.documents,
@@ -144,10 +147,10 @@ identityAttributes.normalizeDocumentsSchema = (
 	return { value, documents };
 };
 
-identityAttributes.validate = (schema, attribute, documents, validateSchema = true) => {
+export const validate = (schema, attribute, documents, validateSchema = true) => {
 	try {
 		const cleanSchema = jsonSchema.removeMeta(schema);
-		const denormalized = identityAttributes.denormalizeDocumentsSchema(
+		const denormalized = denormalizeDocumentsSchema(
 			cleanSchema,
 			attribute,
 			documents
@@ -159,7 +162,7 @@ identityAttributes.validate = (schema, attribute, documents, validateSchema = tr
 	}
 };
 
-identityAttributes.getDocumentsErrors = documents => {
+export const getDocumentsErrors = documents => {
 	if (!documents) {
 		return;
 	}

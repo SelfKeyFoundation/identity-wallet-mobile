@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
 import * as jsonSchema from './json-schema-utils';
+import * as identityAttributes from './identity-attribute-utils';
 import { getWallet } from '../wallet/selectors';
 import {
 	BASIC_CORPORATE_ATTRIBUTES,
@@ -184,9 +185,9 @@ export const selectIdentities = createSelector(
 	selectProps('rootIdentities'),
 	({ identities, identitiesById }, { rootIdentities = true }) => {
 		const fullIdentities = identities.map(id => identitiesById[id]);
-		if (rootIdentities) {
-			return fullIdentities.filter(ident => ident.rootIdentity);
-		}
+		// if (rootIdentities) {
+		// 	return fullIdentities.filter(ident => ident.rootIdentity);
+		// }
 		return fullIdentities;
 	}
 );
@@ -505,7 +506,7 @@ export const selectIndividualProfile = createSelector(
 const selectChildrenProfiles = createSelector(
 	state => state,
 	selectChildrenIdentities,
-	(state, childrenIdentities) =>
+	(state, childrenIdentities = []) =>
 		childrenIdentities.map(child =>
 			child.type === 'individual' || !child.type
 				? selectIndividualProfile(state, { identityId: child.id })

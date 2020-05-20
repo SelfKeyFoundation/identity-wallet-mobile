@@ -32,10 +32,10 @@ export const identityActions = {
 			attributes
 		}
 	}),
-	// deleteIdAttributes: identityId => ({
-	// 	type: types.IDENTITY_ATTRIBUTES_DELETE,
-	// 	payload: identityId
-	// }),
+	deleteIdAttributes: identityId => ({
+		type: types.IDENTITY_ATTRIBUTES_DELETE,
+		payload: identityId
+	}),
 	// deleteIdAttribute: attributeId => ({
 	// 	type: types.IDENTITY_ATTRIBUTE_DELETE,
 	// 	payload: attributeId
@@ -60,10 +60,10 @@ export const identityActions = {
 	// 	type: types.IDENTITY_DOCUMENT_UPDATE,
 	// 	payload: attribute
 	// }),
-	// updateIdAttribute: attribute => ({
-	// 	type: types.IDENTITY_ATTRIBUTE_UPDATE,
-	// 	payload: attribute
-	// }),
+	updateIdAttribute: attribute => ({
+		type: types.IDENTITY_ATTRIBUTE_UPDATE,
+		payload: attribute
+	}),
 	// deleteDocument: documentId => ({
 	// 	type: types.IDENTITY_DOCUMENT_DELETE,
 	// 	payload: documentId
