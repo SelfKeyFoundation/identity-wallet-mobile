@@ -4,9 +4,14 @@ import { TokenModel } from './token/token-model';
 import { WalletTokenModel } from './wallet-token/wallet-token-model';
 import { GuideSettingsModel } from './guide-settings/guide-settings-model';
 import { TxHistoryModel } from './tx-history/tx-history-model';
+import { RepositoryModel } from './identity/repository-model';
+import { IdentityModel } from './identity/identity-model';
+import { IdAttributeModel } from './identity/id-attribute-model';
+import { IdAttributeTypeModel } from './identity/id-attribute-type-model';
+import { UISchemaModel } from  './identity/ui-schema-model';
 
-export const CURRENT_SCHEMA_VERSION = 6;
-export const SCHEMA_NAME = '6-wallet-updates';
+export const CURRENT_SCHEMA_VERSION = 7;
+export const SCHEMA_NAME = '7-identity';
 
 export {
   WalletModel,
@@ -15,6 +20,11 @@ export {
   TokenModel,
   WalletTokenModel,
   TxHistoryModel,
+  RepositoryModel,
+  IdentityModel,
+  IdAttributeModel,
+  IdAttributeTypeModel,
+  UISchemaModel,
 };
 
 export default [
@@ -24,4 +34,9 @@ export default [
   TokenModel,
   WalletTokenModel,
   TxHistoryModel,
+  RepositoryModel,
+  IdentityModel,
+  IdAttributeModel,
+  IdAttributeTypeModel,
+  UISchemaModel,
 ];

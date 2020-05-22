@@ -4,6 +4,7 @@ import schema2 from './2-wallet-updates';
 import schema3 from './3-wallet-updates-2';
 import schema4 from './4-4-token-updates';
 import schema5 from './5-5-token-updates';
+import schema6 from './6-6-wallet-updates';
 
 export default [
   schema1,
@@ -11,4 +12,5 @@ export default [
   schema3,
   schema4,
   schema5,
+  schema6,
 ];
