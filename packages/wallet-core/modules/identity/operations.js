@@ -77,7 +77,7 @@ export const loadIdentityOperation = () => async (dispatch, getState) => {
 	await dispatch(identityOperations.loadRepositoriesOperation());
 
 	try {
-		// await dispatch(identityOperations.updateExpiredRepositoriesOperation());
+		await dispatch(identityOperations.updateExpiredRepositoriesOperation());
 	} catch (error) {
 		console.error(error);
 		log.error(`failed to update repositories from remote ${error}`);
@@ -86,7 +86,7 @@ export const loadIdentityOperation = () => async (dispatch, getState) => {
 	await dispatch(identityOperations.loadIdAttributeTypesOperation());
 
 	try {
-		// await dispatch(identityOperations.updateExpiredIdAttributeTypesOperation());
+		await dispatch(identityOperations.updateExpiredIdAttributeTypesOperation());
 	} catch (error) {
 		console.error(error);
 		log.error(`failed to update id attribute types from remote ${error}`);
@@ -95,7 +95,7 @@ export const loadIdentityOperation = () => async (dispatch, getState) => {
 	await dispatch(identityOperations.loadUISchemasOperation());
 
 	try {
-		// await dispatch(identityOperations.updateExpiredUISchemasOperation());
+		await dispatch(identityOperations.updateExpiredUISchemasOperation());
 	} catch (error) {
 		console.error(error);
 		log.error(`failed to update id attribute types from remote ${error}`);
@@ -281,6 +281,7 @@ export const operations = {
 	navigateToProfileOperation,
 	updateIdentitySetupOperation,
 	editIdAttributeOperation,
+	updateProfilePictureOperation
 };
 
 export const identityOperations = {

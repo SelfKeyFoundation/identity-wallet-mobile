@@ -10,8 +10,8 @@ import { IdAttributeModel } from './identity/id-attribute-model';
 import { IdAttributeTypeModel } from './identity/id-attribute-type-model';
 import { UISchemaModel } from  './identity/ui-schema-model';
 
-export const CURRENT_SCHEMA_VERSION = 7;
-export const SCHEMA_NAME = '7-identity';
+export const CURRENT_SCHEMA_VERSION = 8;
+export const SCHEMA_NAME = '7-identity-updated';
 
 export {
   WalletModel,

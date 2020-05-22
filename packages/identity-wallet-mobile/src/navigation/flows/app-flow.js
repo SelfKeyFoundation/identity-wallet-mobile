@@ -17,7 +17,7 @@ import RecoveryInformationScreen from '../../screens/RecoveryInformationScreen';
 import ChangePasswordScreen from '../../screens/ChangePasswordScreen';
 import DevSettingsScreen from '../../screens/DevSettingsScreen';
 import MyProfileScreen from '../../screens/MyProfileScreen';
-
+import DocumentScannerScreen from '../../screens/DocumentScannerScreen';
 import { stackNavigatorConfig } from '../configs';
 
 export const appTabNavigation = createBottomTabNavigator({
@@ -42,6 +42,7 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.WALLET_CONFIRM_NEW_PASSWORD]: ConfirmNewPasswordScreen,
   [Routes.RECOVERY_INFORMATION]: RecoveryInformationScreen,
   [Routes.DEVELOPER_SETTINGS]: DevSettingsScreen,
+  [Routes.DOCUMENT_SCANNER]: DocumentScannerScreen,
   [Routes.CHANGE_PASSWORD]: ChangePasswordScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here

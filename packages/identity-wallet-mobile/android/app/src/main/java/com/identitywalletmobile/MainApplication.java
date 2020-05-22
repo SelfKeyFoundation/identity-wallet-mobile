@@ -7,6 +7,8 @@ import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
+// import com.documentscanner.DocumentScannerPackage;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.oblador.vectoricons.VectorIconsPackage;

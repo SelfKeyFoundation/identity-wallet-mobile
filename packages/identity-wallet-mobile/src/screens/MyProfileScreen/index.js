@@ -11,8 +11,6 @@ function MyProfileContainer(props) {
   const [editPicture, setEditPicture] = useState();
   const profile = useSelector(ducks.identity.selectors.selectProfile);
 
-  console.log(profile);
-
   const handleAttributeEdit = (attrId) => {
     setEditAttribute(attrId);
   };
@@ -27,6 +25,7 @@ function MyProfileContainer(props) {
 
   const handleAttributeModalClose = () => setEditAttribute(null);
   const handlePictureModalClose = () => setEditPicture(false);
+  const {identity = {}} = profile;
 
   return (
     <React.Fragment>
@@ -49,6 +48,8 @@ function MyProfileContainer(props) {
           <EditPictureModal
             visible={true}
             onClose={handlePictureModalClose}
+            identityId={identity.id}
+            profilePicture={identity.profilePicture}
           />
         ) : null
       }

@@ -7,6 +7,7 @@ import ethGasStation from './eth-gas-station';
 import txHistory from './tx-history';
 import wallets from './wallets';
 import modals from './modals';
+import identity from './identity';
 
 export default {
   wallet,
@@ -18,4 +19,5 @@ export default {
   txHistory,
   wallets,
   modals,
+  identity,
 };

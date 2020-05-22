@@ -54,6 +54,11 @@ target 'IdentityWalletMobile' do
   # pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   # pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
 
+  # pod 'RNPdfScanner', :path => '../node_modules/react-native-document-scanner'
+
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+
   target 'IdentityWalletMobileTests' do
     inherit! :search_paths
     # Pods for testing

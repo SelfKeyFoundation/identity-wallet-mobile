@@ -125,6 +125,8 @@ function SettingsScreenContainer(props) {
     setVersionPressCount(versionPressCount + 1);
   };
 
+  const handleDocumentScanner = () => navigate(Routes.DOCUMENT_SCANNER);
+
   useEffect(() => {
     Keychain.getItem('wallet-env').then(walletEnv => {
       setWalletEnv(walletEnv || {});  
@@ -142,6 +144,7 @@ function SettingsScreenContainer(props) {
         onChangePassword={handleChangePassword}
         onVersionPress={handleVersionPress}
         onDeveloperSettings={handleDeveloperSettings}
+        onDocumentScanner={handleDocumentScanner}
         walletEnv={walletEnv}
       />
       <Modal

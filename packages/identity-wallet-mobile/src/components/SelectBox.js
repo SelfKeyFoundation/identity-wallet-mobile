@@ -58,6 +58,19 @@ export function SelectBox(props) {
     }));
   }, [props.items]);
 
+  if (props.disabled) {
+    return (
+      <TextInput
+        value={selectedItem ? selectedItem.label : props.placeholder}
+        label={props.label}
+        labelStyle={{
+          color: '#ADC8D8'
+        }}
+        disabled
+      />
+    )
+  }
+
   return (
     <View>
       <FormLabel>{props.label}</FormLabel>

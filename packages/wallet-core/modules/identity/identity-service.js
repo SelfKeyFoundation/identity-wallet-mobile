@@ -120,9 +120,13 @@ export class IdentityService {
 		throw 'Method not implemented';
 	}
 
-	static updateIdentityProfilePicture(profilePicture, id) {
-		// return Identity.updateProfilePicture({ id, profilePicture });
-		throw 'Method not implemented';
+	static async updateIdentityProfilePicture(profilePicture, id) {
+		await IdentityModel.getInstance().updateById(id, {
+			profilePicture,
+		});
+
+		return IdentityModel.getInstance().findById(id);
+		// throw 'Method not implemented';
 	}
 
 	// updateIdentityDID(did, id) {

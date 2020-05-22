@@ -1,4 +1,4 @@
-import { TokenModel } from '../models';
+import { TokenModel, RepositoryModel } from '../models';
 import tokensData from '../assets/data/eth-tokens.json';
 
 async function loadTokens() {
@@ -29,6 +29,25 @@ async function loadTokens() {
   await Promise.all(operation);
 }
 
+async function loadIdentity() {
+  const repoModel = RepositoryModel.getInstance();
+  const foundItems = await repoModel.findAll();
+
+  if (foundItems.length) {
+    return;
+  }
+
+  await repoModel.create({
+    id: repoModel.generateId(),
+    url: 'http://platform.selfkey.org/repository.json',
+		name: 'Selfkey.org',
+		eager: true,
+		content: {},
+		expires: 0,
+  });
+}
+
 export async function seedDb() {
   await loadTokens();
+  await loadIdentity();
 }

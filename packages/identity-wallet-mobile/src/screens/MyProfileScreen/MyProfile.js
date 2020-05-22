@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView, ScrollView, RefreshControl, View, TouchableWithoutFeedback } from 'react-native';
 import { DocumentsEmptyAlert } from '../../components';
@@ -169,7 +169,6 @@ const OptionsMenuAnchor = (props) => {
 
   const handlePress = () => {
     viewRef.current.measure((fx, fy, width, height, px, py) => {
-      console.log({ fx, fy, width, height, px, py });
       props.onPress({
         id,
         x: px,
@@ -179,7 +178,7 @@ const OptionsMenuAnchor = (props) => {
   };
 
   return (
-    <View ref={viewRef}>
+    <View ref={viewRef} renderToHardwareTextureAndroid={true}>
       <TouchableWithoutFeedback onPress={handlePress}>
         <IconWrapper>
           <SKIcon
@@ -242,7 +241,7 @@ function getAttributeValue(attributes, attributeUrl) {
 
 export function MyProfile(props) {
   const { profile } = props;
-  const { allAttributes = [], basicAttributes = [] } = profile;
+  const { allAttributes = [], basicAttributes = [], identity = {} } = profile;
   const [currentOptionsMenu, setCurrentOptionsMenu] = useState();
   const [scrollY, setScrollY] = useState(0);
 
@@ -281,7 +280,7 @@ export function MyProfile(props) {
         <TouchableWithoutFeedback onPress={props.onPictureEdit}>
           <RoundedImage
             source={{
-              uri: defaultImageUri
+              uri: identity.profilePicture || defaultImageUri
             }}
           />
         </TouchableWithoutFeedback>

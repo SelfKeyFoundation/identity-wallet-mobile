@@ -11,13 +11,13 @@ export class IdentityModel extends BaseModel {
       walletId: 'string',
       name: 'string?',
       // type: 'string'
-      profilePicture: 'data?',
+      profilePicture: 'string?',
       isSetupFinished: {
         type: 'bool',
         default: false,
       }
       // id: { type: 'integer' },
-      // walletId: { type: 'integer' },
+      // walletId: { type: 'integer' },z
       // parentId: { type: ['integer', null] },
       // rootIdentity: { type: 'boolean', default: true },
       // name: { type: 'string' },

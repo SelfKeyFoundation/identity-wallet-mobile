@@ -1,9 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import ducks from '@selfkey/wallet-core/modules';
 import { TabNavigation } from '@selfkey/mobile-ui';
 import { Routes, navigate } from '@selfkey/wallet-core/navigation';
 import { WalletTracker } from '../WalletTracker';
 
 export function AppTabBar(props) {
+  const dispatch = useDispatch();
   const { navigation } = props;
   const { routes } = navigation.state;
   const route = routes[navigation.state.index];
@@ -30,6 +33,7 @@ export function AppTabBar(props) {
     id: Routes.APP_SETTINGS,
   }];
 
+
   const handleNavigate = (route) => {
     const item = items.find(item => item.id === route);
     const itemLabel = item && item.label;
@@ -39,6 +43,11 @@ export function AppTabBar(props) {
       action: 'press',
       level: 'machine'
     });
+
+    if (route === Routes.APP_MY_PROFILE) {
+      dispatch(ducks.identity.operations.navigateToProfileOperation());
+      return;
+    }
 
     navigate(route);
   }

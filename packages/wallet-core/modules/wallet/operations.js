@@ -235,6 +235,8 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
 
   await loadWalletTokens(wallet);
   await dispatch(walletActions.setWallet(wallet));
+  await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
+  await dispatch(ducks.identity.operations.unlockIdentityOperation());
 
   dispatch(refreshWalletOperation());
 };

@@ -14,8 +14,6 @@ const loadAppOperation = () => async (dispatch, getState) => {
   dispatch(appActions.setLoading(true));
 
   await initRealm({
-    // TODO: Remove it before the first internal release
-    // We should rely on the migration system after the first release
     // skipMigration: true,
     // deleteRealmIfMigrationNeeded: true,
   });
@@ -27,8 +25,8 @@ const loadAppOperation = () => async (dispatch, getState) => {
   dispatch(appActions.setGuideSettings(guideSettings));
 
   try {
-    // TODO: Handle internet issues
     loadTokenPrices();
+    dispatch(ducks.identity.operations.loadIdentityOperation());
   } catch(err) {
     console.error(err);
   }
