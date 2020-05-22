@@ -8,11 +8,11 @@ export const initialState = {
 	idAtrributeTypesById: {},
 	uiSchemas: [],
 	uiSchemasById: {},
-	// documents: [],
-	// documentsById: {},
+	documents: [],
+	documentsById: {},
 	attributes: [],
 	attributesById: {},
-	// countries: [],
+	countries: [],
 	identities: [],
 	identitiesById: {},
 	currentIdentity: null
@@ -111,17 +111,17 @@ const setIdAttributesReducer = (state, action) => {
 	return { ...state, attributes, attributesById };
 };
 
-// const deleteIdAttributesReducer = (state, action) => {
-// 	let attributes = state.attributes
-// 		.map(attrId => state.attributesById[attrId])
-// 		.filter(attr => attr.identityId !== action.payload);
-// 	let attributesById = attributes.reduce((acc, curr) => {
-// 		acc[curr.id] = curr;
-// 		return acc;
-// 	}, {});
-// 	attributes = attributes.map(attr => attr.id);
-// 	return { ...state, attributes, attributesById };
-// };
+const deleteIdAttributesReducer = (state, action) => {
+	let attributes = state.attributes
+		.map(attrId => state.attributesById[attrId])
+		.filter(attr => attr.identityId !== action.payload);
+	let attributesById = attributes.reduce((acc, curr) => {
+		acc[curr.id] = curr;
+		return acc;
+	}, {});
+	attributes = attributes.map(attr => attr.id);
+	return { ...state, attributes, attributesById };
+};
 
 const addIdAttributeReducer = (state, action) => {
 	let attributes = [...state.attributes, action.payload.id];
@@ -135,17 +135,17 @@ const addIdAttributeReducer = (state, action) => {
 // 	return { ...state, documents, documentsById };
 // };
 
-// const updateIdAttributeReducer = (state, action) => {
-// 	if (!state.attributes.includes(action.payload.id)) return state;
-// 	let attributesById = {
-// 		...state.attributesById,
-// 		[action.payload.id]: {
-// 			...state.attributesById[action.payload.id],
-// 			...action.payload
-// 		}
-// 	};
-// 	return { ...state, attributesById };
-// };
+const updateIdAttributeReducer = (state, action) => {
+	if (!state.attributes.includes(action.payload.id)) return state;
+	let attributesById = {
+		...state.attributesById,
+		[action.payload.id]: {
+			...state.attributesById[action.payload.id],
+			...action.payload
+		}
+	};
+	return { ...state, attributesById };
+};
 
 // const updateDocumentReducer = (state, action) => {
 // 	if (!state.documents.includes(action.payload.id)) return state;
@@ -221,12 +221,12 @@ export const identityReducers = {
 	// setDocumentsReducer,
 	// deleteDocumentsReducer,
 	setIdAttributesReducer,
-	// deleteIdAttributesReducer,
+	deleteIdAttributesReducer,
 	// setAttributeDocumentsReducer,
 	// deleteAttributeDocumentsReducer,
 	addIdAttributeReducer,
 	// addDocumentReducer,
-	// updateIdAttributeReducer,
+	updateIdAttributeReducer,
 	// updateDocumentReducer,
 	// deleteDocumentReducer,
 	// deleteIdAttributeReducer,
@@ -247,12 +247,12 @@ const reducersMap = {
 	// [types.]: identityReducers.setDocumentsReducer,
 	// [types.]: identityReducers.deleteDocumentsReducer,
 	[types.IDENTITY_ATTRIBUTES_SET]: identityReducers.setIdAttributesReducer,
-	// [types.]: identityReducers.deleteIdAttributesReducer,
+	[types.IDENTITY_ATTRIBUTES_DELETE]: identityReducers.deleteIdAttributesReducer,
 	// [types.]: identityReducers.setAttributeDocumentsReducer,
 	// [types.]: identityReducers.deleteAttributeDocumentsReducer,
 	[types.IDENTITY_ATTRIBUTE_ADD]: identityReducers.addIdAttributeReducer,
 	// [types.]: identityReducers.addDocumentReducer,
-	// [types.]: identityReducers.updateIdAttributeReducer,
+	[types.IDENTITY_ATTRIBUTE_UPDATE]: identityReducers.updateIdAttributeReducer,
 	// [types.]: identityReducers.updateDocumentReducer,
 	// [types.]: identityReducers.deleteDocumentReducer,
 	// [types.]: identityReducers.deleteIdAttributeReducer,
