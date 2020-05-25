@@ -3,6 +3,7 @@ import actions from './actions';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
 import duck from './index';
 import ducks from '../index';
+import { System } from '../../system';
 import {
 	ENTITY_NAME_ATTRIBUTE,
 	ENTITY_TYPE_ATTRIBUTE,
@@ -16,6 +17,7 @@ import {
 	corporateMemberAttributes
 } from './constants';
 import { navigate, Routes } from "../../navigation";
+import { WalletModel } from "../../models";
 
 const log = new Logger('identity-operations');
 
@@ -39,6 +41,12 @@ export const editIdAttributeOperation = attribute => async (dispatch, getState) 
 	await IdentityService.editIdAttribute(attribute);
 	// await dispatch(operations.loadDocumentsForAttributeOperation(attribute.id));
 	await dispatch(actions.updateIdAttribute(attribute));
+
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile/idAttribute`,
+		action: 'edit',
+		level: 'wallet'
+	});
 };
 
 // ########################
@@ -172,10 +180,6 @@ const loadIdentitiesOperation = walletId => async (dispatch, getState) => {
 };
 
 const createIndividualProfile = (identityId, data) => async (dispatch, getState) => {
-	// How it looks like an identityId?
-	// identityId = 6 => got from state.currentIdentity
-	// data = {"email":"maycon.mello@test.com","error":"","errorEmail":false,"firstName":"Test","isDisabled":false,"lastName":"Tester","nickName":"Maycon"}
-
 	const idAttributeTypes = duck.selectors.selectAttributeTypesFiltered(getState(), {
 		entityType: 'individual'
 	});
@@ -185,8 +189,9 @@ const createIndividualProfile = (identityId, data) => async (dispatch, getState)
 		return idAttributeTypes.find(idAttributeType => idAttributeType.url === url).id;
 	};
 
-	// TODO: Update wallet nick name
-	// await dispatch(walletOperations.updateWalletName(data.nickName, identity.walletId));
+	await WalletModel.getInstance().updateByAddress(identity.walletId, {
+		name: data.nickName,
+	});
 
 	await dispatch(
 		identityOperations.createIdAttributeOperation({
@@ -214,7 +219,15 @@ const createIndividualProfile = (identityId, data) => async (dispatch, getState)
 
 	await dispatch(identityOperations.updateIdentitySetupOperation(true, identityId));
 
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile`,
+		action: 'created',
+		level: 'wallet'
+	});
+
 	navigate(Routes.APP_MY_PROFILE);
+
+	await dispatch(ducks.modals.operations.hideModal(Routes.MODAL_CREATE_SELFKEY_ID));
 };
 
 const loadIdAttributesOperation = identityId => async (dispatch, getState) => {
@@ -250,13 +263,31 @@ const createIdAttributeOperation = (attribute, identityId) => async (dispatch, g
 const updateProfilePictureOperation = (picture, identityId) => async (dispatch, getState) => {
 	let identity = await IdentityService.updateIdentityProfilePicture(picture, identityId);
 	await dispatch(actions.updateIdentity(identity));
+
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile/picture`,
+		action: 'edit',
+		level: 'wallet'
+	});
 };
 
 
 export const navigateToProfileOperation = () => async (dispatch, getState) => {
 	const identity = duck.selectors.selectIdentity(getState());
 
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile`,
+		action: 'navigate',
+		level: 'wallet'
+	});
+
 	if (!identity.isSetupFinished) {
+		System.getTracker().trackEvent({
+			category: `skProfile/createSelfKeyIdModal`,
+			action: 'navigate',
+			level: 'wallet'
+		});
+
 		dispatch(ducks.modals.operations.showModal(Routes.MODAL_CREATE_SELFKEY_ID));
 		return;
 	}

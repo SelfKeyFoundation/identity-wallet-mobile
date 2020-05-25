@@ -220,7 +220,7 @@ export function WalletSelection(props) {
               selectedValue={props.wallet}
               placeholder="Select a Wallet"
               items={props.wallets.map(w => ({
-                label: formatAddress(w.address),
+                label: w.name ? `${w.name} - ${formatAddress(w.address)}` : formatAddress(w.address),
                 value: w.address,
               }))}
             />
