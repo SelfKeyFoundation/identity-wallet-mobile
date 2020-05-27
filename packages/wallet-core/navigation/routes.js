@@ -12,7 +12,7 @@ export const APP_SCAN_QR = 'app/scanQr';
 export const TOKEN_DETAILS = 'app/tokenDetails';
 export const CUSTOM_TOKENS = 'app/customTokens';
 export const TRANSACTION_DETAILS = 'app/transactionDetails';
-
+export const DOCUMENT_SCANNER = 'app/documentScanner';
 export const APP_MY_PROFILE = 'app/profile';
 
 export const SCAN_QR = 'scanQR';
@@ -42,3 +42,4 @@ export const CHOOSE_DIFFERENT_WALLET = 'chooseDifferentWallet';
 export const WALLET_SELECTION = 'walletSelection';
 
 export const MODAL_TRANSACTION_DETAILS = 'modal/transactionDetails';
+export const MODAL_CREATE_SELFKEY_ID = 'modal/createSelfKeyId';

@@ -4,9 +4,11 @@ import ducks from '@selfkey/wallet-core/modules';
 import { Routes } from '@selfkey/wallet-core/navigation';
 
 import TransactionDetailsModal from './TransactionDetailsModal';
+import CreateSelfKeyIdModal from './CreateSelfKeyIdModal';
 
 const ModalMapper = {
   [Routes.MODAL_TRANSACTION_DETAILS]: TransactionDetailsModal,
+  [Routes.MODAL_CREATE_SELFKEY_ID]: CreateSelfKeyIdModal,
 }
 
 export function ModalRoot() {

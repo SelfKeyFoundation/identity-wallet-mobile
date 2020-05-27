@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 export const Grid = styled.View`
   flex-direction: column;
   flex-basis: auto;
+  margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
+  margin-bottom: ${props => props.marginBottom ? `${props.marginBottom}px` : 0};
 `;
 
 export const Row = styled.View`
@@ -51,6 +53,10 @@ export const Col = styled.View`
 
     if (props.paddingTop !== undefined) {
       top = `${props.paddingTop}px`;
+    }
+
+    if (props.paddingBottom !== undefined) {
+      bottom = `${props.paddingBottom}px`;
     }
 
     return `${top} ${right} ${bottom} ${left}`;
