@@ -21,6 +21,36 @@ import { WalletModel } from "../../models";
 
 const log = new Logger('identity-operations');
 
+export const loadIdentityOperation = (isLocal) => async (dispatch, getState) => {
+	// TODO: Implement forceUpdateAttributes
+	await dispatch(identityOperations.loadRepositoriesOperation());
+
+	try {
+		await dispatch(identityOperations.updateExpiredRepositoriesOperation(isLocal));
+	} catch (error) {
+		console.error(error);
+		log.error(`failed to update repositories from remote ${error}`);
+	}
+
+	await dispatch(identityOperations.loadIdAttributeTypesOperation());
+
+	try {
+		await dispatch(identityOperations.updateExpiredIdAttributeTypesOperation(isLocal));
+	} catch (error) {
+		console.error(error);
+		log.error(`failed to update id attribute types from remote ${error}`);
+	}
+
+	await dispatch(identityOperations.loadUISchemasOperation());
+
+	try {
+		await dispatch(identityOperations.updateExpiredUISchemasOperation(isLocal));
+	} catch (error) {
+		console.error(error);
+		log.error(`failed to update id attribute types from remote ${error}`);
+	}
+}
+
 // ########################
 // ##### Repositories #####
 // ########################
@@ -30,7 +60,7 @@ export const loadRepositoriesOperation = () => async (dispatch, getState) => {
 	await dispatch(actions.setRepositories(repos));
 }
 
-export const updateExpiredRepositoriesOperation = () => async (dispatch, getState) => {
+export const updateExpiredRepositoriesOperation = (isLocal) => async (dispatch, getState) => {
 	const expired = duck.selectors.selectExpiredRepositories(getState());
 	log.debug(`Detected expired repositories ${expired.map(e => e.url)}`);
 	await IdentityService.updateRepositories(expired);
@@ -42,11 +72,11 @@ export const editIdAttributeOperation = attribute => async (dispatch, getState) 
 	// await dispatch(operations.loadDocumentsForAttributeOperation(attribute.id));
 	await dispatch(actions.updateIdAttribute(attribute));
 
-	System.getTracker().trackEvent({
-		category: `selfKeyProfile/idAttribute`,
-		action: 'edit',
-		level: 'wallet'
-	});
+	// System.getTracker().trackEvent({
+	// 	category: `selfKeyProfile/idAttribute`,
+	// 	action: 'edit',
+	// 	level: 'wallet'
+	// });
 };
 
 // ########################
@@ -58,10 +88,10 @@ export const loadIdAttributeTypesOperation = () => async (dispatch, getState) =>
 	log.debug(`Identity attribute types loaded ${attributeTypes.map(t => t.url)}`, );
 }
 
-export const updateExpiredIdAttributeTypesOperation = () => async (dispatch, getState) => {
+export const updateExpiredIdAttributeTypesOperation = (isLocal) => async (dispatch, getState) => {
 	let expired = duck.selectors.selectExpiredIdAttributeTypes(getState());
 	log.debug(`Detected expired identity attribute types ${expired.map(e => e.url)}`);
-	await IdentityService.updateIdAttributeTypes(expired);
+	await IdentityService.updateIdAttributeTypes(expired, isLocal);
 	await dispatch(identityOperations.loadIdAttributeTypesOperation());
 }
 
@@ -73,41 +103,10 @@ export const loadUISchemasOperation = () => async (dispatch, getState) => {
 	await dispatch(actions.setUISchemas(uiSchemas));
 }
 
-export const updateExpiredUISchemasOperation = () => async (dispatch, getState) => {
+export const updateExpiredUISchemasOperation = (isLocal) => async (dispatch, getState) => {
 	let expired = duck.selectors.selectExpiredUISchemas(getState());
-	await IdentityService.updateUISchemas(expired);
+	await IdentityService.updateUISchemas(expired, isLocal);
 	await dispatch(identityOperations.loadUISchemasOperation());
-}
-
-
-export const loadIdentityOperation = () => async (dispatch, getState) => {
-	// TODO: Implement forceUpdateAttributes
-	await dispatch(identityOperations.loadRepositoriesOperation());
-
-	try {
-		await dispatch(identityOperations.updateExpiredRepositoriesOperation());
-	} catch (error) {
-		console.error(error);
-		log.error(`failed to update repositories from remote ${error}`);
-	}
-
-	await dispatch(identityOperations.loadIdAttributeTypesOperation());
-
-	try {
-		await dispatch(identityOperations.updateExpiredIdAttributeTypesOperation());
-	} catch (error) {
-		console.error(error);
-		log.error(`failed to update id attribute types from remote ${error}`);
-	}
-
-	await dispatch(identityOperations.loadUISchemasOperation());
-
-	try {
-		await dispatch(identityOperations.updateExpiredUISchemasOperation());
-	} catch (error) {
-		console.error(error);
-		log.error(`failed to update id attribute types from remote ${error}`);
-	}
 }
 
 const lockIdentityOperation = identityId => async (dispatch, getState) => {
@@ -219,11 +218,11 @@ const createIndividualProfile = (identityId, data) => async (dispatch, getState)
 
 	await dispatch(identityOperations.updateIdentitySetupOperation(true, identityId));
 
-	System.getTracker().trackEvent({
-		category: `selfKeyProfile`,
-		action: 'created',
-		level: 'wallet'
-	});
+	// System.getTracker().trackEvent({
+	// 	category: `selfKeyProfile`,
+	// 	action: 'created',
+	// 	level: 'wallet'
+	// });
 
 	navigate(Routes.APP_MY_PROFILE);
 
@@ -264,29 +263,28 @@ const updateProfilePictureOperation = (picture, identityId) => async (dispatch, 
 	let identity = await IdentityService.updateIdentityProfilePicture(picture, identityId);
 	await dispatch(actions.updateIdentity(identity));
 
-	System.getTracker().trackEvent({
-		category: `selfKeyProfile/picture`,
-		action: 'edit',
-		level: 'wallet'
-	});
+	// System.getTracker().trackEvent({
+	// 	category: `selfKeyProfile/picture`,
+	// 	action: 'edit',
+	// 	level: 'wallet'
+	// });
 };
-
 
 export const navigateToProfileOperation = () => async (dispatch, getState) => {
 	const identity = duck.selectors.selectIdentity(getState());
 
-	System.getTracker().trackEvent({
-		category: `selfKeyProfile`,
-		action: 'navigate',
-		level: 'wallet'
-	});
+	// System.getTracker().trackEvent({
+	// 	category: `selfKeyProfile`,
+	// 	action: 'navigate',
+	// 	level: 'wallet'
+	// });
 
 	if (!identity.isSetupFinished) {
-		System.getTracker().trackEvent({
-			category: `skProfile/createSelfKeyIdModal`,
-			action: 'navigate',
-			level: 'wallet'
-		});
+		// System.getTracker().trackEvent({
+		// 	category: `skProfile/createSelfKeyIdModal`,
+		// 	action: 'navigate',
+		// 	level: 'wallet'
+		// });
 
 		dispatch(ducks.modals.operations.showModal(Routes.MODAL_CREATE_SELFKEY_ID));
 		return;

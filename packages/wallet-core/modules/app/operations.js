@@ -1,7 +1,7 @@
 import appActions from './actions';
 import { initRealm, seedDb } from '@selfkey/wallet-core/db/realm-service';
 import { navigate, Routes } from '../../navigation';
-import { WalletModel, GuideSettingsModel, WalletTokenModel } from '../../models';
+import { WalletModel, GuideSettingsModel, WalletTokenModel, IdAttributeTypeModel } from '../../models';
 import { exitApp } from '../../system';
 import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
@@ -23,6 +23,12 @@ const loadAppOperation = () => async (dispatch, getState) => {
   // Load guide settings
   const guideSettings = await getGuideSettings();
   dispatch(appActions.setGuideSettings(guideSettings));
+
+  const idAttributes = await IdAttributeTypeModel.getInstance().findAll();
+
+  if (!idAttributes.length) {
+    await dispatch(ducks.identity.operations.loadIdentityOperation(true));
+  }
 
   try {
     loadTokenPrices();

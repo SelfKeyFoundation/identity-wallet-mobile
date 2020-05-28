@@ -1,21 +1,56 @@
 import Ajv from 'ajv';
 import RefParser from 'json-schema-ref-parser';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
-
+import platformData from './platform-data.json';
 import { sleep } from '../../utils/async';
 
 const log = new Logger('json-schema-utils');
+
+// const platformData = {
+// 	repositories: {},
+// 	schemas: {},
+// }
+
+// let timeout;
+
+// function printPlatformData() {
+// 	clearTimeout(timeout);
+
+// 	timeout = setTimeout(() => {
+// 		console.log(platformData);
+// 		console.log(JSON.stringify(platformData));
+// 	}, 5000);
+// }
+
+export const loadLocalRepository = (url) => platformData.repositories[url];
+
+export const loadLocalSchema = (url) => platformData.schemas[url];
 
 export const loadRemoteRepository = async (url, options = {}, attempt = 1) => {
 	if (options.env === 'dev') {
 		url = url.replace('/repository.json', '/dev-repository.json');
 	}
+
+	if (options.isLocal) {
+		let data = loadLocalRepository(url);
+
+		if (data) {
+			return data;
+		}
+	}
+
 	try {
 		let res = await fetch(url);
 		if (res.status >= 400) {
 			throw new Error('Failed to fetch repository from remote');
 		}
-		return await res.json();
+		const data = await res.json();
+	
+		// platformData.repositories[url] = data;
+
+		// printPlatformData();
+
+		return data;
 	} catch (error) {
 		log.error(`Load repository ${url} attempt ${attempt} error, ${error}`);
 		if (attempt <= 3) {
@@ -71,12 +106,26 @@ export const loadRemoteSchema = async (url, options = {}, attempt = 1) => {
 	if (options.env === 'dev') {
 		url = url.replace('/schema/', '/dev-schema/');
 	}
+	if (options.isLocal) {
+		let data = loadLocalSchema(url);
+
+		if (data) {
+			return data;
+		}
+	}
+
 	try {
 		let res = await fetch(url);
 		if (res.status >= 400) {
 			throw new Error('Failed to fetch schema from remote');
 		}
-		return await res.json();
+		const data = await res.json();
+
+		// platformData.schemas[url] = data;
+
+		// printPlatformData();
+
+		return data;
 	} catch (error) {
 		log.error('Load schema %s attempt %d error, %s', url, attempt, error);
 		if (attempt <= 3) {

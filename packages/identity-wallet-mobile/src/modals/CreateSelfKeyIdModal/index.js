@@ -9,7 +9,7 @@ import { getUsdPrice } from '@selfkey/blockchain/services/price-service';
 import ducks from '@selfkey/wallet-core/modules';
 import styled from 'styled-components/native';
 import EthUtils from '@selfkey/blockchain/util/eth-utils';
-import { Linking } from 'react-native';
+import { Linking, KeyboardAvoidingView, Platform } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
 import {
   ScreenContainer,
@@ -71,18 +71,19 @@ function CreateSelfKeyIdModal(props) {
       onClose={handleClose}
       title="Profile Details"
       footer={null}
+      avoidKeyboard={true}
     >
       <Grid>
         <Row justifyContent="center" marginBottom={15} marginTop={5}>
-					<Col noPadding autoWidth>
+          <Col noPadding autoWidth>
             <SKIcon name="icon-id" color="#0ABBD0" size={62} />
-					</Col>
+          </Col>
         </Row>
         <Row justifyContent="center" marginBottom={15}>
-					<Col noPadding autoWidth>
+          <Col noPadding autoWidth>
             <H3>SelfKey ID</H3>
-					</Col>
-				</Row>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <TextInput

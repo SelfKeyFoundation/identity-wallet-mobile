@@ -75,9 +75,9 @@ export class UISchemaModel extends BaseModel {
     return item;
   }
 
-  async loadRemote(url) {
+  async loadRemote(url, isLocal) {
     const env = getCurrentEnv();
-		const remote = await jsonSchema.loadRemoteSchema(url, { env });
+		const remote = await jsonSchema.loadRemoteSchema(url, { env, isLocal });
 
 		let remoteSchema = {
 			url,
@@ -88,9 +88,9 @@ export class UISchemaModel extends BaseModel {
 		return remoteSchema;
 	}
 
-	async addRemote(url, repositoryId, attributeTypeId) {
+	async addRemote(url, repositoryId, attributeTypeId, isLocal) {
 		let [remote, attrType] = await Promise.all([
-			this.loadRemote(url),
+			this.loadRemote(url, isLocal),
 			this.findByUrl(url, repositoryId)
     ]);
 

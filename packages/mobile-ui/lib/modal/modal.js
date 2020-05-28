@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
@@ -120,7 +120,18 @@ export function Modal(props) {
           backgroundColor: 'rgba(105,124,149,0.9)'
         }}
       >
-        { content }
+        {
+          props.avoidKeyboard ? 
+          (
+            <ScrollView>
+              <KeyboardAvoidingView
+                behavior="padding"
+              >
+                { content }
+              </KeyboardAvoidingView>
+            </ScrollView>
+          ) : content
+        }
       </PaperModal>
     </Portal>
   );

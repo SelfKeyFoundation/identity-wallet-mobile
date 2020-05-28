@@ -1502,106 +1502,6 @@
     react-native-safe-area-view "^0.14.1"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
 
-"@sentry/browser@^5.15.4":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.15.5.tgz#d9a51f1388581067b50d30ed9b1aed2cbb333a36"
-  integrity sha512-rqDvjk/EvogfdbZ4TiEpxM/lwpPKmq23z9YKEO4q81+1SwJNua53H60dOk9HpRU8nOJ1g84TMKT2Ov8H7sqDWA==
-  dependencies:
-    "@sentry/core" "5.15.5"
-    "@sentry/types" "5.15.5"
-    "@sentry/utils" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/cli@^1.51.0":
-  version "1.52.3"
-  resolved "https://registry.yarnpkg.com/@sentry/cli/-/cli-1.52.3.tgz#270ed167c7dae2f85eb4622ad3a4ec12ab67e6d2"
-  integrity sha512-QOSIg5hxAEa6v6H7oEeF6A/Rpa0wloMhbu0Qed6zHv3lyoqf0Z34Kq2jCXdqGsOE3IzkO+3CNy81F6361j5TKg==
-  dependencies:
-    https-proxy-agent "^5.0.0"
-    mkdirp "^0.5.5"
-    node-fetch "^2.6.0"
-    progress "^2.0.3"
-    proxy-from-env "^1.1.0"
-
-"@sentry/core@5.15.5", "@sentry/core@^5.15.4":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.15.5.tgz#40ea79bff5272d3fbbeeb4a98cdc59e1adbd2c92"
-  integrity sha512-enxBLv5eibBMqcWyr+vApqeix8uqkfn0iGsD3piKvoMXCgKsrfMwlb/qo9Ox0lKr71qIlZVt+9/A2vZohdgnlg==
-  dependencies:
-    "@sentry/hub" "5.15.5"
-    "@sentry/minimal" "5.15.5"
-    "@sentry/types" "5.15.5"
-    "@sentry/utils" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/hub@5.15.5":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.15.5.tgz#f5abbcdbe656a70e2ff02c02a5a4cffa0f125935"
-  integrity sha512-zX9o49PcNIVMA4BZHe//GkbQ4Jx+nVofqU/Il32/IbwKhcpPlhGX3c1sOVQo4uag3cqd/JuQsk+DML9TKkN0Lw==
-  dependencies:
-    "@sentry/types" "5.15.5"
-    "@sentry/utils" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/integrations@^5.15.4":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.15.5.tgz#7f7bc488d838cd50e9ca50d5f933680632827826"
-  integrity sha512-s9N9altnGkDH+vNNUZu1dKuMVLAgJNYtgs6DMJTrZRswFl8gzZytYTZCdpzjBgTsqkLaGbRDIjQeE/yP3gnrqw==
-  dependencies:
-    "@sentry/types" "5.15.5"
-    "@sentry/utils" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/minimal@5.15.5":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-5.15.5.tgz#a0e4e071f01d9c4d808094ae7203f6c4cca9348a"
-  integrity sha512-zQkkJ1l9AjmU/Us5IrOTzu7bic4sTPKCatptXvLSTfyKW7N6K9MPIIFeSpZf9o1yM2sRYdK7GV08wS2eCT3JYw==
-  dependencies:
-    "@sentry/hub" "5.15.5"
-    "@sentry/types" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/react-native@^1.3.3":
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-1.3.7.tgz#3372b1c1c391f4d8fcff501e4eaf166b81d4917d"
-  integrity sha512-Nv19bQOimEU4v8tvaiRD4M9mhbiU4HL8JJypA84HCYAG3CeBIQAwrA0lHIgk08ieBz7VKYzOJHBzOANDw3mAjg==
-  dependencies:
-    "@sentry/browser" "^5.15.4"
-    "@sentry/core" "^5.15.4"
-    "@sentry/integrations" "^5.15.4"
-    "@sentry/types" "^5.15.4"
-    "@sentry/utils" "^5.15.4"
-    "@sentry/wizard" "^1.1.1"
-
-"@sentry/types@5.15.5", "@sentry/types@^5.15.4":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.15.5.tgz#16c97e464cf09bbd1d2e8ce90d130e781709076e"
-  integrity sha512-F9A5W7ucgQLJUG4LXw1ZIy4iLevrYZzbeZ7GJ09aMlmXH9PqGThm1t5LSZlVpZvUfQ2rYA8NU6BdKJSt7B5LPw==
-
-"@sentry/utils@5.15.5", "@sentry/utils@^5.15.4":
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.15.5.tgz#dec1d4c79037c4da08b386f5d34409234dcbfb15"
-  integrity sha512-Nl9gl/MGnzSkuKeo3QaefoD/OJrFLB8HmwQ7HUbTXb6E7yyEzNKAQMHXGkwNAjbdYyYbd42iABP6Y5F/h39NtA==
-  dependencies:
-    "@sentry/types" "5.15.5"
-    tslib "^1.9.3"
-
-"@sentry/wizard@^1.1.1":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@sentry/wizard/-/wizard-1.1.2.tgz#95ba10c892ac144dc60f131fdcc7b2e79fb681be"
-  integrity sha512-z7Ck5uli91omT+xSGzOXA3XNj0IUFritzZ5Qjf/KcuSUZuyqLCH2olAR6pXl262tC6kBbWw/xb+AOgPsAQ7u/Q==
-  dependencies:
-    "@sentry/cli" "^1.51.0"
-    chalk "^2.4.1"
-    glob "^7.1.3"
-    inquirer "^6.2.0"
-    lodash "^4.17.15"
-    opn "^5.4.0"
-    r2 "^2.0.1"
-    read-env "^1.3.0"
-    xcode "2.0.0"
-    yargs "^12.0.2"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -3059,13 +2959,6 @@ agent-base@4, agent-base@^4.3.0:
   integrity sha512-salcGninV0nPrwpGNn4VTXBb1SOuXQBiqbrNXoeizJsHrsL6ERFM2Ne3JUSBWRE6aeNJI2ROP/WEEIDUiDe3cg==
   dependencies:
     es6-promisify "^5.0.0"
-
-agent-base@6:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.0.tgz#5d0101f19bbfaed39980b22ae866de153b93f09a"
-  integrity sha512-j1Q7cSCqN+AwrmDd+pzgqc0/NpC655x2bUf5ZjRIO77DcNBFmh+OgRNzF6OKdCC9RSCb19fGd99+bhXFdkRNqw==
-  dependencies:
-    debug "4"
 
 "airbnb-js-shims@^1 || ^2":
   version "2.2.1"
@@ -5072,11 +4965,6 @@ camelcase-keys@^4.0.0:
     map-obj "^2.0.0"
     quick-lru "^1.0.0"
 
-camelcase@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
-  integrity sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
-
 camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
@@ -5114,15 +5002,15 @@ case-sensitive-paths-webpack-plugin@^2.2.0:
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz#23ac613cc9a856e4f88ff8bb73bbb5e989825cf7"
   integrity sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ==
 
-caseless@^0.12.0, caseless@~0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
-  integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
-
 caseless@~0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
   integrity sha1-cVuW6phBWTzDMGeSP17GDr2k99c=
+
+caseless@~0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
+  integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
 ccount@^1.0.0:
   version "1.0.5"
@@ -5991,17 +5879,17 @@ debug@3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
-  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
-  dependencies:
-    ms "^2.1.1"
-
 debug@^3.1.0, debug@^3.2.5, debug@^3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
+  dependencies:
+    ms "^2.1.1"
+
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
 
@@ -8917,14 +8805,6 @@ https-proxy-agent@^2.2.0, https-proxy-agent@^2.2.1, https-proxy-agent@^2.2.4:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-https-proxy-agent@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.0.tgz#e2a90542abb68a762e0a0850f6c9edadfd8506b2"
-  integrity sha512-EkYm5BcKUGiduxzSt3Eppko+PiNWNEpa4ySk9vTC6wDsQJW9rHSa+UhGNJoRYp7bz6Ht1eaRIa6QaJqO5rCFbA==
-  dependencies:
-    agent-base "6"
-    debug "4"
-
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -11567,7 +11447,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-"mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
+"mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
@@ -11761,7 +11641,7 @@ node-fetch@^1.0.1, node-fetch@^1.7.3, node-fetch@~1.7.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.0.0-alpha.8, node-fetch@^2.1.1, node-fetch@^2.2.0, node-fetch@^2.5.0, node-fetch@^2.6.0:
+node-fetch@^2.1.1, node-fetch@^2.2.0, node-fetch@^2.5.0, node-fetch@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
@@ -12154,13 +12034,6 @@ opn@4.0.2:
   dependencies:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
-
-opn@^5.4.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/opn/-/opn-5.5.0.tgz#fc7164fab56d235904c51c3b27da6758ca3b9bfc"
-  integrity sha512-PqHpggC9bLV0VeWcdKhkpxY+3JTzetLSqTCWL/z/tFIbI6G8JCjondXklT1JinczLz2Xib62sSp0T/gKT4KksA==
-  dependencies:
-    is-wsl "^1.1.0"
 
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.3"
@@ -13012,7 +12885,7 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -13049,11 +12922,6 @@ proxy-addr@~2.0.5:
   dependencies:
     forwarded "~0.1.2"
     ipaddr.js "1.9.1"
-
-proxy-from-env@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
-  integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
 prr@~0.0.0:
   version "0.0.0"
@@ -13206,15 +13074,6 @@ quick-lru@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
-
-r2@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/r2/-/r2-2.0.1.tgz#94cd802ecfce9a622549c8182032d8e4a2b2e612"
-  integrity sha512-EEmxoxYCe3LHzAUhRIRxdCKERpeRNmlLj6KLUSORqnK6dWl/K5ShmDGZqM2lRZQeqJgF+wyqk0s1M7SWUveNOQ==
-  dependencies:
-    caseless "^0.12.0"
-    node-fetch "^2.0.0-alpha.8"
-    typedarray-to-buffer "^3.1.2"
 
 raf@^3.4.0, raf@^3.4.1:
   version "3.4.1"
@@ -13524,12 +13383,6 @@ react-native-document-picker@^3.2.4:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.4.0.tgz#7bbd110b8474a3322ac3178ec5446e2df64c8339"
   integrity sha512-YdjiiElDdvOj55IDPNJ0kxXxzDRWyDymV/iYZJt34ueRWWFLIff+DymSjBc0QljrIFv7pODws2lo81+5Y0ww0w==
-
-"react-native-document-scanner@https://github.com/Michaelvilleneuve/react-native-document-scanner":
-  version "1.4.3"
-  resolved "https://github.com/Michaelvilleneuve/react-native-document-scanner#1c03ac3d7f806dd2c052362ac947cb90096fbc6f"
-  dependencies:
-    react "16.0.0-beta.5"
 
 react-native-exit-app@1.1.0:
   version "1.1.0"
@@ -14042,16 +13895,6 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@16.0.0-beta.5:
-  version "16.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-beta.5.tgz#b4abba9bce7db72c30633db54a148614b6574e79"
-  integrity sha512-FZSIxm5aO24tzl+11WWZSlYY9QCM3qm32f0+VEmAimm5ZFAiXdcHPdsWnCW00zkHIXszh9AWeOXu0OEqq30FSQ==
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.6"
-
 react@16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
@@ -14091,13 +13934,6 @@ reactotron-react-native@4.0.2:
     query-string "6.8.1"
     reactotron-core-client "2.8.6"
     rn-host-detect "1.1.5"
-
-read-env@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/read-env/-/read-env-1.3.0.tgz#e26e1e446992b3216e9a3c6f6ac51064fe91fdff"
-  integrity sha512-DbCgZ8oHwZreK/E2E27RGk3EUPapMhYGSGIt02k9sX6R3tCFc4u4tkltKvkCvzEQ3SOLUaiYHAnGb+TdsnPp0A==
-  dependencies:
-    camelcase "5.0.0"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
@@ -16479,7 +16315,7 @@ typed-styles@^0.0.7:
   resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
   integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
 
-typedarray-to-buffer@^3.1.2, typedarray-to-buffer@^3.1.5:
+typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
@@ -17532,14 +17368,6 @@ x-is-string@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/x-is-string/-/x-is-string-0.1.0.tgz#474b50865af3a49a9c4657f05acd145458f77d82"
   integrity sha1-R0tQhlrzpJqcRlfwWs0UVFj3fYI=
-
-xcode@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/xcode/-/xcode-2.0.0.tgz#134f1f94c26fbfe8a9aaa9724bfb2772419da1a2"
-  integrity sha512-5xF6RCjAdDEiEsbbZaS/gBRt3jZ/177otZcpoLCjGN/u1LrfgH7/Sgeeavpr/jELpyDqN2im3AKosl2G2W8hfw==
-  dependencies:
-    simple-plist "^1.0.0"
-    uuid "^3.3.2"
 
 xcode@^2.0.0:
   version "2.1.0"

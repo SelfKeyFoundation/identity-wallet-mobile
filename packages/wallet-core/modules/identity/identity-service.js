@@ -6,8 +6,8 @@ export class IdentityService {
 		return RepositoryModel.getInstance().findAll();
 	}
 
-	static updateRepositories(repos) {
-		return Promise.all(repos.map(repo => RepositoryModel.getInstance().addRemoteRepo(repo.url)));
+	static updateRepositories(repos, isLocal) {
+		return Promise.all(repos.map(repo => RepositoryModel.getInstance().addRemoteRepo(repo.url, isLocal)));
 	}
 
 	static getExpiredRepositories() {
@@ -20,8 +20,8 @@ export class IdentityService {
 		return IdAttributeTypeModel.getInstance().findAll();
 	}
 
-	static updateIdAttributeTypes(idAttributeTypes) {
-		return Promise.all(idAttributeTypes.map(type => IdAttributeTypeModel.getInstance().addRemote(type.url)));
+	static updateIdAttributeTypes(idAttributeTypes, isLocal) {
+		return Promise.all(idAttributeTypes.map(type => IdAttributeTypeModel.getInstance().addRemote(type.url, isLocal)));
 	}
 
 	static loadUISchemas() {
@@ -62,7 +62,7 @@ export class IdentityService {
 		});
 	}
 
-	static updateUISchemas(schemas) {
+	static updateUISchemas(schemas, isLocal) {
 		const uiSchemaModel = UISchemaModel.getInstance();
 
 		return Promise.all(
@@ -71,7 +71,8 @@ export class IdentityService {
 					let res = await uiSchemaModel.addRemote(
 						schema.url,
 						schema.repositoryId,
-						schema.attributeTypeId
+						schema.attributeTypeId,
+						isLocal
 					);
 					return res;
 				} catch (error) {

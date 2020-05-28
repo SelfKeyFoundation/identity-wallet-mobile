@@ -74,12 +74,12 @@ export class IdAttributeTypeModel extends BaseModel {
     return this.findOne('url = $0', url); 
   }
 
-  async loadRemote(url) {
+  async loadRemote(url, isLocal) {
 		const repositoryModel = RepositoryModel.getInstance();
 		const env = getCurrentEnv();
 
 		let defaultRepo = null;
-		let remote = await jsonSchema.loadRemoteSchema(url, { env });
+		let remote = await jsonSchema.loadRemoteSchema(url, { env, isLocal });
 		remote = await jsonSchema.dereference(remote, { env });
 		let repoUrl = jsonSchema.getDefaultRepo(remote, { env });
 		if (repoUrl) {
@@ -97,8 +97,8 @@ export class IdAttributeTypeModel extends BaseModel {
 		return remoteAttrType;
 	}
 
-	async addRemote(url) {
-		let [remote, attrType] = await Promise.all([this.loadRemote(url), this.findByUrl(url)]);
+	async addRemote(url, isLocal ) {
+		let [remote, attrType] = await Promise.all([this.loadRemote(url, isLocal), this.findByUrl(url)]);
 		if (!remote) {
 			log.error(`could not load attribute type ${url} from remote`);
 			return;

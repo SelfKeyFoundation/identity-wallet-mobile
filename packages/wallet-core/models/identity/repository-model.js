@@ -1,7 +1,7 @@
 import { getCurrentEnv } from '@selfkey/configs';
 import { BaseModel } from '../common/base-model';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
-import { loadRemoteRepository } from '../../modules/identity/json-schema-utils';
+import { loadRemoteRepository, loadLocalRepository } from '../../modules/identity/json-schema-utils';
 import { IdAttributeTypeModel, UISchemaModel } from '..';
 // import { UiSchema } from './ui-schema';
 // import config from 'common/config';
@@ -48,8 +48,9 @@ export class RepositoryModel extends BaseModel {
     return RepositoryModel.instance;
   }
 
-  async loadRemote(url) {
-		let remoteRepo = await loadRemoteRepository(url, { env: getCurrentEnv() });
+  async loadRemote(url, isLocal) {
+		let remoteRepo = await loadRemoteRepository(url, { env: getCurrentEnv(), isLocal });
+
 		return {
 			url,
 			name: remoteRepo.name,
@@ -185,8 +186,8 @@ export class RepositoryModel extends BaseModel {
 		}
   }
 
-	async addRemoteRepo(url) {
-		let [remote, local] = await Promise.all([this.loadRemote(url), this.findByUrl(url)]);
+	async addRemoteRepo(url, isLocal) {
+		let [remote, local] = await Promise.all([this.loadRemote(url, isLocal), this.findByUrl(url)]);
 		if (!remote) {
 			log.error('could not load repo %s from remote', url);
 			return;

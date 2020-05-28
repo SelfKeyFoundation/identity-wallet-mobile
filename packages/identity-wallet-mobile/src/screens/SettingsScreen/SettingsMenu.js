@@ -109,9 +109,11 @@ export function SettingsMenu(props) {
             <SectionTitle>Wallet Information</SectionTitle>
           </Col>
         </Row>
-        <MenuItem onPress={props.onDocumentScanner} hasBorder>
-          Document Scanner
-        </MenuItem>
+        {
+          // <MenuItem onPress={props.onDocumentScanner} hasBorder>
+          //   Document Scanner
+          // </MenuItem>
+        }
         { props.onRecoveryInformation ? (
             <MenuItem hasBorder onPress={props.onRecoveryInformation}>
               Recovery Information
