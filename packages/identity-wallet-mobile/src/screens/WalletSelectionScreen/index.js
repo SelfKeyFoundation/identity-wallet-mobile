@@ -15,6 +15,7 @@ function WalletSelectionContainer(props) {
     const [password, setPassword] = useState();
     const [isLoading, setLoading] = useState();
     const dispatch = useDispatch();
+    const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
     const handleBack = useCallback(() => {
       WalletTracker.trackEvent({
         category: `${TRACKER_PAGE}/backButton`,
@@ -48,7 +49,7 @@ function WalletSelectionContainer(props) {
       setLoading(true);
       setError();
       try {
-        await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation(wallet, password));
+        await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation({ address: wallet, password }));
       } catch(err) {
         WalletTracker.trackEvent({
           category: `${TRACKER_PAGE}/error`,
@@ -94,7 +95,23 @@ function WalletSelectionContainer(props) {
         setWallet(selectedAddress);
       });
     }, []);
+
+    const handleBiometricsUnlock = async () => {
+      setLoading(true);
   
+      setTimeout(async () => {
+        await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation({
+          address: wallet,
+          biometrics: true,
+        }));
+
+  
+        setLoading(false);
+      }, 200);
+    };
+
+    const selectedWallet = wallets.find(w => w.address === wallet);
+
     return (
       <WalletSelection
         isUnlockScreen={isUnlockScreen}
@@ -109,6 +126,10 @@ function WalletSelectionContainer(props) {
         isLoading={isLoading}
         onForgot={handleForgotPassword}
         onCreateWallet={handleCreateWallet}
+        supportedBiometryType={supportedBiometryType}
+        biometricsEnabled={selectedWallet.biometricsEnabled}
+        onBiometricsUnlock={handleBiometricsUnlock}
+        selectedWallet={selectedWallet}
       />
     );
   } catch(err) {

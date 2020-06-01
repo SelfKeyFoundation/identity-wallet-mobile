@@ -408,6 +408,19 @@ const removeWalletOperation = () => async (dispatch, getState) => {
   }));
 };
 
+const setBiometricsEnabledOperation = (enabled) => async (dispatch, getState) => {
+  const { wallet } = getState();
+
+  await WalletModel.getInstance().updateByAddress(wallet.address, {
+    biometricsEnabled: enabled,
+  });
+
+  await dispatch(walletActions.setWallet({
+    ...wallet,
+    biometricsEnabled: enabled,
+  }));
+}
+
 export const operations = {
   loadWalletOperation,
   refreshWalletOperation,
@@ -421,6 +434,7 @@ export const operations = {
   validateTokenOperation,
   getRecoveryInformationOperation,
   removeWalletOperation,
+  setBiometricsEnabledOperation
 };
 
 export const walletOperations = {

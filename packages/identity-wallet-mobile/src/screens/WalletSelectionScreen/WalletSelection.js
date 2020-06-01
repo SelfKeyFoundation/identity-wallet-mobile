@@ -4,6 +4,7 @@ import { SafeAreaView, View, Text, TouchableWithoutFeedback, Picker } from 'reac
 import styled from 'styled-components/native';
 import {
   SKIcon,
+  IconTouchId,
   Row,
   Col,
   Grid,
@@ -168,10 +169,72 @@ function Select(props) {
     </View>
   )
 }
+
+const BiometryLabelMap = {
+  FaceID: 'Face ID',
+  TouchID: 'Touch ID',
+  Fingerprint: 'Fingerprint',
+};
+
+function renderUnlockOptions(props) {
+  const { biometricsEnabled, supportedBiometryType } = props;
+
+  if (!supportedBiometryType || !biometricsEnabled) {
+    return (
+      <Row>
+        <Col>
+          <Button
+            onPress={props.Submit}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <Row alignItems="center" justifyContent="center" marginBottom={20}>
+        <Col autoWidth>
+          {
+            supportedBiometryType === 'FaceID' ? (
+              <SKIcon name="icon-face-id" color="#09A8BA" size={67} />
+            ) : <IconTouchId />
+          }
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onBiometricsUnlock}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock With { BiometryLabelMap[supportedBiometryType] }
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onSubmit}
+            type="shell-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock with Password
+          </Button>
+        </Col>
+      </Row>
+    </React.Fragment>
+  );
+}
+
 export function WalletSelection(props) {
   const theme = useContext(ThemeContext);
-  const { isUnlockScreen } = props;
-  const selectedWallet = props.wallets.find(w => w.address === props.wallet);
+  const { isUnlockScreen, selectedWallet } = props;
   const isHDWallet = selectedWallet && selectedWallet.type === 'hd';
 
   return (
@@ -253,17 +316,9 @@ export function WalletSelection(props) {
         }
       </Body>
       <Footer>
-        <Row>
-          <Col>
-            <Button
-              onPress={props.onSubmit}
-              type="full-primary"
-              isLoading={props.isLoading}
-            >
-              Unlock
-            </Button>
-          </Col>
-        </Row>
+        {
+          renderUnlockOptions(props)
+        }
         {
           isUnlockScreen ? (
             <React.Fragment>

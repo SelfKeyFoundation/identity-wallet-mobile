@@ -17,6 +17,10 @@ export const appActions = {
     type: appTypes.SHOW_RECEIVE_TOKENS_MODAL,
     payload: { show },
   }),
+  setSupportedBiometryType: (value) => ({
+    type: appTypes.SET_SUPPORTED_BIOMETRY_TYPE,
+    payload: { value },
+  })
 };
 
 export default appActions;

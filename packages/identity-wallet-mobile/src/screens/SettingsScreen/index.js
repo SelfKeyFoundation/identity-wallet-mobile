@@ -15,6 +15,10 @@ function SettingsScreenContainer(props) {
   const [privacyPolicyVisible, setPrivacyPolicyVisible] = useState(false);
   const [walletEnv, setWalletEnv] = useState({});
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
+  const appSettings = useSelector(ducks.app.selectors.getGuideSettings);
+  const wallet = useSelector(ducks.wallet.selectors.getWallet);
+  const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
+
   const handleBackup = () => {
     WalletTracker.trackEvent({
       category: `settings/backupButton`,
@@ -125,6 +129,10 @@ function SettingsScreenContainer(props) {
     setVersionPressCount(versionPressCount + 1);
   };
 
+  const handleBiometricsChange = (value) => {
+    dispatch(ducks.wallet.operations.setBiometricsEnabledOperation(value));
+  };
+
   const handleDocumentScanner = () => navigate(Routes.DOCUMENT_SCANNER);
 
   useEffect(() => {
@@ -144,8 +152,12 @@ function SettingsScreenContainer(props) {
         onChangePassword={handleChangePassword}
         onVersionPress={handleVersionPress}
         onDeveloperSettings={handleDeveloperSettings}
+        onBiometricsChange={handleBiometricsChange}
         onDocumentScanner={handleDocumentScanner}
         walletEnv={walletEnv}
+        appSettings={appSettings}
+        biometricsEnabled={wallet.biometricsEnabled}
+        supportedBiometryType={supportedBiometryType}
       />
       <Modal
         visible={privacyPolicyVisible}

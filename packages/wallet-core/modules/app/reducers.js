@@ -7,6 +7,7 @@ export const initialState = {
   guideSettings: undefined,
   showSendTokensModal: false,
   showReceiveTokensModal: false,
+  biometricsMethod: null,
 };
 
 function setAppLoadingReducer(state, action) {
@@ -37,11 +38,19 @@ function showReceiveTokensModalReducer(state, action) {
   };
 }
 
+function setSupportedBiometryTypeReducer(state, action) {
+  return {
+    ...state,
+    supportedBiometryType: action.payload.value,
+  };
+}
+
 export const appReducers = {
   setAppLoadingReducer,
   setGuideSettingsReducer,
   showSendTokensModalReducer,
-  showReceiveTokensModalReducer
+  showReceiveTokensModalReducer,
+  setSupportedBiometryTypeReducer,
 };
 
 const reducersMap = {
@@ -49,6 +58,7 @@ const reducersMap = {
   [appTypes.SET_GUIDE_SETTINGS]: appReducers.setGuideSettingsReducer,
   [appTypes.SHOW_SEND_TOKENS_MODAL]: appReducers.showSendTokensModalReducer,
   [appTypes.SHOW_RECEIVE_TOKENS_MODAL]: appReducers.showReceiveTokensModalReducer,
+  [appTypes.SET_SUPPORTED_BIOMETRY_TYPE]: appReducers.setSupportedBiometryTypeReducer,
 };
 
 export default createReducer(initialState, reducersMap);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -74,7 +74,7 @@ const MenuItemWrapper = styled(Col)`
   margin-bottom: ${props => props.hasBorder ? '1px' : '0'};
 `;
 
-function MenuItem({ hasBorder, children, onPress, menuControl }) {
+function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding }) {
   return (
     <MenuItemRow>
       <TouchableWithoutFeedback onPress={onPress}>
@@ -83,10 +83,30 @@ function MenuItem({ hasBorder, children, onPress, menuControl }) {
             <Col noPadding>
               <OptionTitle>{ children }</OptionTitle>
             </Col>
-            <Col autoWidth>
+            <Col autoWidth noPadding={controlNoPadding}>
               {
                 menuControl ? menuControl : <SKIcon name="arrow-right" size={13} color="#93B0C1" />
               }
+            </Col>
+            <Col autoWidth style={{ width: 20 }}/>
+          </Row>
+        </MenuItemWrapper>
+      </TouchableWithoutFeedback>
+    </MenuItemRow>
+  )
+}
+
+function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
+  return (
+    <MenuItemRow>
+      <TouchableWithoutFeedback onPress={onPress}>
+        <MenuItemWrapper hasBorder={hasBorder}>
+          <Row>
+            <Col noPadding>
+              <OptionTitle>{ children }</OptionTitle>
+            </Col>
+            <Col autoWidth noPadding>
+              <Switch />
             </Col>
             <Col autoWidth style={{ width: 20 }}/>
           </Row>
@@ -138,10 +158,21 @@ export function SettingsMenu(props) {
             <SectionTitle>Security Settings</SectionTitle>
           </Col>
         </Row>
+        {props.supportedBiometryType && <MenuItem
+          hasBorder={true}
+          controlNoPadding={true}
+          menuControl={
+            <Switch
+              onValueChange={props.onBiometricsChange}
+              value={props.biometricsEnabled}
+            />
+          }
+        >
+          {props.supportedBiometryType}
+        </MenuItem>}
         <MenuItem onPress={props.onChangePassword}>
           Change Passcode
         </MenuItem>
-
         <Row marginTop={20}>
           <Col paddingLeft={20}>
             <SectionTitle>Support</SectionTitle>

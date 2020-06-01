@@ -7,6 +7,7 @@ import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
 import { loadTokenPrices } from '@selfkey/blockchain/services/price-service';
 import ducks from '../index';
+import { getSupportedBiometryType } from '@selfkey/identity-wallet-mobile/src/rn-identity-vault/keychain';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
@@ -24,6 +25,10 @@ const loadAppOperation = () => async (dispatch, getState) => {
   const guideSettings = await getGuideSettings();
   dispatch(appActions.setGuideSettings(guideSettings));
 
+  getSupportedBiometryType().then(value => {
+    dispatch(appActions.setSupportedBiometryType(value));
+  });
+
   const idAttributes = await IdAttributeTypeModel.getInstance().findAll();
 
   if (!idAttributes.length) {
@@ -38,16 +43,20 @@ const loadAppOperation = () => async (dispatch, getState) => {
   }
 
   const wallets = await WalletModel.getInstance().findAll();
+  const defaultWallet = wallets[0];
 
-  if (!wallets.length) {
-    navigate(Routes.CREATE_WALLET_PASSWORD);
+  if (defaultWallet) {
+    dispatch(ducks.wallet.actions.setWallet(defaultWallet));
+  }
+
+  if (wallets.length === 1) {
+    navigate(Routes.UNLOCK_WALLET_PASSWORD);
   } else if (wallets.length > 1) {
     navigate(Routes.WALLET_SELECTION, {
       isUnlockScreen: true,
     });
   } else {
-    dispatch(ducks.wallet.actions.setWallet(wallets[0]));
-    navigate(Routes.UNLOCK_WALLET_PASSWORD);
+    navigate(Routes.CREATE_WALLET_PASSWORD);
   }
 
   dispatch(appActions.setLoading(false));

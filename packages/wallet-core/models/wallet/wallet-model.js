@@ -13,6 +13,10 @@ export class WalletModel extends BaseModel {
         type: 'string?',
         default: '0',
       },
+      biometricsEnabled: {
+        type: 'bool?',
+        default: true
+      },
       unlockCount: {
         type: 'int?',
         default: 0,

@@ -32,8 +32,8 @@ export function removeItem(id: string) {
  * Get data from the keychain
  * @param {*} id
  */
-export async function getItem(id: string): any {
-  const result = await Keychain.getGenericPassword({ service: id });
+export async function getItem(id: string, options = {}): any {
+  const result = await Keychain.getGenericPassword({ service: id, ...options });
 
   if (!result) {
     return;
@@ -58,13 +58,13 @@ export function getSupportedBiometryType() {
   return Keychain.getSupportedBiometryType();
 }
 
-getItem('test').then((data) => {
-  // console.log(data);
-  debugger;
-}).catch(err => {
-  // console.log(err);
-  debugger;
-})
+// getItem('test').then((data) => {
+//   // console.log(data);
+//   debugger;
+// }).catch(err => {
+//   // console.log(err);
+//   debugger;
+// })
 
 // Keychain.setGenericPassword('test', 'test2', {
 //   accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,

@@ -13,3 +13,7 @@ export const showSendTokensModal = (state) => {
 export const showReceiveTokensModal = (state) => {
   return getRoot(state).showReceiveTokensModal;
 };
+
+export const getSupportedBiometryType = (state) => {
+  return getRoot(state).supportedBiometryType;
+};

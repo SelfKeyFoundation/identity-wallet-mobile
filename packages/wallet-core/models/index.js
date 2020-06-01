@@ -10,8 +10,9 @@ import { IdAttributeModel } from './identity/id-attribute-model';
 import { IdAttributeTypeModel } from './identity/id-attribute-type-model';
 import { UISchemaModel } from  './identity/ui-schema-model';
 
-export const CURRENT_SCHEMA_VERSION = 8;
-export const SCHEMA_NAME = '7-identity-updated';
+// change to 9
+export const CURRENT_SCHEMA_VERSION = 10;
+export const SCHEMA_NAME = '9-biometrics-update';
 
 export {
   WalletModel,

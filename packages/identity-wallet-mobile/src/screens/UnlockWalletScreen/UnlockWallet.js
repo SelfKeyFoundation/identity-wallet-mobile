@@ -14,6 +14,7 @@ import {
   Link,
   DefinitionTitle,
   H3,
+  IconTouchId,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native';
@@ -52,19 +53,18 @@ const PageTitle = styled(H3)`
   padding-top: 5px;
 `;
 
-
 const UseDifferentWallet = styled(Link)`
   text-transform: uppercase;
   width: 100%;
   font-size: 14px;  
   text-align: center;
-`
+`;
 
 const OrText = styled(DefinitionTitle)`
   color: white;
   font-size: 14px;
   text-align: center;
-`
+`;
 
 const ForgotLink = styled(Link)`
   text-transform: uppercase;
@@ -72,6 +72,68 @@ const ForgotLink = styled(Link)`
   font-size: 13px;
   line-height: 19px;
 `;
+
+const BiometryLabelMap = {
+  FaceID: 'Face ID',
+  TouchID: 'Touch ID',
+  Fingerprint: 'Fingerprint',
+};
+
+function renderUnlockOptions(props) {
+  const { biometricsEnabled, supportedBiometryType } = props;
+
+  if (!supportedBiometryType || !biometricsEnabled) {
+    return (
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onUnlockPress}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <Row alignItems="center" justifyContent="center" marginBottom={20}>
+        <Col autoWidth>
+          {
+            supportedBiometryType === 'FaceID' ? (
+              <SKIcon name="icon-face-id" color="#09A8BA" size={67} />
+            ) : <IconTouchId />
+          }
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onBiometricsUnlock}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock With { BiometryLabelMap[supportedBiometryType] }
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onUnlockPress}
+            type="shell-primary"
+            isLoading={props.isLoading}
+          >
+            Unlock with Password
+          </Button>
+        </Col>
+      </Row>
+    </React.Fragment>
+  )
+}
 
 export function UnlockWallet(props: UnlockWalletProps) {
   const theme = useContext(ThemeContext);
@@ -122,17 +184,9 @@ export function UnlockWallet(props: UnlockWalletProps) {
           }
         </ContentGrid>
         <Grid>
-          <Row>
-            <Col>
-              <Button
-                onPress={props.onUnlockPress}
-                type="full-primary"
-                isLoading={props.isLoading}
-              >
-                Unlock
-              </Button>
-            </Col>
-          </Row>
+          {
+            renderUnlockOptions(props)
+          }
           <Row>
             <Col>
               <OrText>or</OrText>
@@ -144,7 +198,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
                 onPress={props.onChooseDifferentWallet}
               >
                 <UseDifferentWallet>
-                  Use different wallet
+                  Create New Wallet
                 </UseDifferentWallet>
               </TouchableWithoutFeedback>
             </Col>

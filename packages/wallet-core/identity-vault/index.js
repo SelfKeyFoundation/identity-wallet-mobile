@@ -37,6 +37,10 @@ function createHash(value) {
   return System.getCrypto().createHash('sha256').update(value).digest('hex');
 }
 
+function getBiometricsVaultId(vaultId) {
+  return `biometrics.${vaultId}`;
+}
+
 /**
  * Create vault
  * - Set items in the keychain
@@ -109,6 +113,42 @@ export async function unlockVault(vaultId, password) {
   }
 
   return prepareUnlockedVault(vaultId, props);
+}
+
+
+export async function unlockVaultWithBiometrics(vaultId) {
+  const Keychain = getKeychain();
+  const method = await Keychain.getSupportedBiometryType();
+  const biometricsVaultId = getBiometricsVaultId(vaultId);
+  let vaultProps = await Keychain.getItem(vaultId);
+  let biometricProps = await Keychain.getItem(biometricsVaultId, {
+    authenticationPrompt: {
+      title: 'Unlock your SelfKey wallet'
+    }
+  });
+
+  if (!biometricProps) {
+    if (method === 'Fingerprint') {
+      await Keychain.setItem(biometricsVaultId, {}, {
+        accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,
+        authenticationType: Keychain.BIOMETRY_TYPE.FINGERPRINT,
+        storage: Keychain.STORAGE_TYPE.RSA,
+      });
+      
+    } else {
+      await Keychain.setItem(biometricsVaultId, vaultProps, {
+        accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY, 
+      });
+    }
+
+    await Keychain.getItem(biometricsVaultId, {
+      authenticationPrompt: {
+        title: 'Unlock your SelfKey wallet'
+      }
+    });
+  }
+
+  return prepareUnlockedVault(vaultId, vaultProps);
 }
 
 export async function unlockVaultWithMnemonic(vaultId, mnemonic) {

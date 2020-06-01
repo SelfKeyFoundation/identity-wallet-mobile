@@ -9,6 +9,7 @@ export * from './typography';
 export * from './inputs/text-input';
 export * from './navigation';
 export * from './icons';
+export * from './svg-icons';
 export * from './grid';
 export { Alert } from './alert';
 export * from './modal';

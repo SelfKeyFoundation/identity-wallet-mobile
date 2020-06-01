@@ -70,8 +70,6 @@ PODS:
     - React
   - react-native-document-picker (3.4.0):
     - React
-  - react-native-document-scanner (1.4.3):
-    - React
   - react-native-image-picker (2.3.1):
     - React
   - react-native-randombytes (3.5.3):
@@ -142,7 +140,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
-  - react-native-document-scanner (from `../node_modules/react-native-document-scanner`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-randombytes (from `../node_modules/react-native-randombytes`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -203,8 +200,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
-  react-native-document-scanner:
-    :path: "../node_modules/react-native-document-scanner"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-randombytes:
@@ -274,7 +269,6 @@ SPEC CHECKSUMS:
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
   react-native-camera: c4b1136c213f12b6437f12d78eb1805ca664918c
   react-native-document-picker: d694111879537cec2c258a1dcd2243d9df746824
-  react-native-document-scanner: ff13091b7685b2bb29ffecce968ef0a15af9eb80
   react-native-image-picker: 6a850c41f57f0848d918c2a77aedd7aa272ffa30
   react-native-randombytes: 3638d24759d67c68f6ccba60c52a7a8a8faa6a23
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
