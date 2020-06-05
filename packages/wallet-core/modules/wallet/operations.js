@@ -8,7 +8,7 @@ import { getTokenInfo } from '../../services/token-service';
 import { unlockWalletWithPrivateKey } from '../../services/wallet-service';
 import ducks from '../index';
 import { encryptData, decryptData, generateBackup } from '../../identity-vault/backup';
-import { unlockVault, updatePassword } from '../../identity-vault';
+import { unlockVault, updatePassword, unlockVaultWithBiometrics } from '../../identity-vault';
 import { navigate, Routes } from '../../navigation';
 import { getConfigs } from '@selfkey/configs';
 import { addTop20Tokens } from '../create-wallet/create-wallet-utils';
@@ -169,9 +169,9 @@ const refreshBalanceOperation =  () => async (dispatch, getState) => {
   dispatch(walletActions.setWallet(wallet));
 };
 
-const backupWalletOperation = (password) => async (dispatch, getState) => {
+const backupWalletOperation = ({ password, biometrics }) => async (dispatch, getState) => {
   const { vaultId, path } = getState().wallet;
-  const vaultBackup = await generateBackup(vaultId, password);
+  const vaultBackup = await generateBackup(vaultId, password, biometrics);
 
   vaultBackup.wallets.push({
     path,
@@ -201,9 +201,16 @@ const changePasswordOperation = (password) => async (dispatch, getState) => {
   navigate(Routes.WALLET_NEW_PASSWORD);
 };
 
-const getRecoveryInformationOperation = (password) => async (dispatch, getState) => {
+const getRecoveryInformationOperation = ({ password, biometrics }) => async (dispatch, getState) => {
   const { vaultId } = getState().wallet;
-  const vault = await unlockVault(vaultId, password);
+  let vault;
+
+  if (biometrics === true) {
+    vault = await unlockVaultWithBiometrics(vaultId);
+  } else {
+    vault = await unlockVault(vaultId, password);
+  }
+
   return vault.mnemonic;
 };
 

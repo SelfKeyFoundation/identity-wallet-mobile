@@ -1,5 +1,5 @@
 import { System } from '../system';
-import { unlockVault } from './index';
+import { unlockVault, unlockVaultWithBiometrics } from './index';
 
 const crypto = System.getCrypto();
 
@@ -44,8 +44,14 @@ export function decryptData(data, password, options = {}) {
   return decrypted.toString('utf8');
 }
 
-export async function generateBackup(vaultId, password) {
-  const vault = await unlockVault(vaultId, password);
+export async function generateBackup(vaultId, password, isBiometrics) {
+  let vault;
+
+  if (isBiometrics) {
+    vault = await unlockVaultWithBiometrics(vaultId);
+  } else {
+    vault = await unlockVault(vaultId, password);
+  }
 
   return {
     version: '0.1',

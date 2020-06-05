@@ -11,7 +11,8 @@ import {
   FormText,
   Explanatory,
   TableText,
-  SKIcon
+  SKIcon,
+  IconAddImage
 } from '@selfkey/mobile-ui';
 import { WalletTracker } from '../../WalletTracker';
 import { FIRST_NAME_ATTRIBUTE, EMAIL_ATTRIBUTE, LAST_NAME_ATTRIBUTE } from '@selfkey/wallet-core/modules/identity/constants';
@@ -40,6 +41,18 @@ const RoundedImage = styled.Image`
   overflow: hidden;
   border: 2px solid #313D49;
   margin: 10px auto;
+`;
+
+const RoundedContainer = styled.View`
+  width: 85px;
+  height: 85px;
+  border-radius: 75px;
+  overflow: hidden;
+  border: 2px solid #313D49;
+  margin: 10px auto;
+  background: #313D49;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ProfileName = styled.Text`
@@ -232,7 +245,7 @@ const OptionsView = (props) => {
   )
 }
 
-const defaultImageUri = 'https://www.t-nation.com/system/publishing/articles/10005529/original/6-Reasons-You-Should-Never-Open-a-Gym.png';
+// const defaultImageUri = 'https://www.t-nation.com/system/publishing/articles/10005529/original/6-Reasons-You-Should-Never-Open-a-Gym.png';
 
 function getAttributeValue(attributes, attributeUrl) {
   const attr = attributes.find(item => item.type.url === attributeUrl);
@@ -278,11 +291,19 @@ export function MyProfile(props) {
       <SafeAreaView style={{ position: 'relative' }}>
         <HeaderTitle>SelfKey Profile</HeaderTitle>
         <TouchableWithoutFeedback onPress={props.onPictureEdit}>
-          <RoundedImage
-            source={{
-              uri: identity.profilePicture || defaultImageUri
-            }}
-          />
+          {
+            identity.profilePicture ? (
+              <RoundedImage
+                source={{
+                  uri: identity.profilePicture
+                }}
+              />
+            ) : (
+              <RoundedContainer>
+                <IconAddImage width={40} height={40} />
+              </RoundedContainer>
+            )
+          }
         </TouchableWithoutFeedback>
         <ProfileName>{getAttributeValue(basicAttributes, FIRST_NAME_ATTRIBUTE)} {getAttributeValue(basicAttributes, LAST_NAME_ATTRIBUTE)}</ProfileName>
         <ProfileEmail>{getAttributeValue(basicAttributes, EMAIL_ATTRIBUTE)}</ProfileEmail>

@@ -3,6 +3,7 @@ import IconEth from './icon-dashboard-eth.svg';
 import IconTokens from './icon-dashboard-tokens.svg';
 import IconSwap from './icon-swap.svg';
 import IconTouchId from './icon-touch-id.svg';
+import IconAddImage from './icon-add-image.svg';
 
 export {
   IconKey,
@@ -10,4 +11,5 @@ export {
   IconTokens,
   IconSwap,
   IconTouchId,
+  IconAddImage,
 };

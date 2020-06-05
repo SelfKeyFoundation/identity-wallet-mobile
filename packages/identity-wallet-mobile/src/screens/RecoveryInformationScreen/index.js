@@ -16,6 +16,8 @@ function RecoveryInformationContainer(props) {
   const [error, setError] = useState();
   const [mnemonic, setMnemonic] = useState();
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
+  const wallet = useSelector(ducks.wallet.selectors.getWallet);
+  const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
   const handleBack = useCallback(() => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,
@@ -35,7 +37,7 @@ function RecoveryInformationContainer(props) {
 
     navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
   }, []);
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(async (biometrics) => {
     if (isLoading) {
       return;
     }
@@ -44,7 +46,11 @@ function RecoveryInformationContainer(props) {
     setError(null);
 
     try {
-      const mnemonic = await dispatch(ducks.wallet.operations.getRecoveryInformationOperation(password));
+      const mnemonic = await dispatch(ducks.wallet.operations.getRecoveryInformationOperation({
+        password: password,
+        biometrics: biometrics,
+      }));
+
       WalletTracker.trackEvent({
         category: `${TRACKER_PAGE}/showMnemonic`,
         action: 'success',
@@ -99,6 +105,8 @@ function RecoveryInformationContainer(props) {
       onBack={handleBack}
       isLoading={isLoading}
       onForgot={isHDWallet && handleForgotPassword}
+      supportedBiometryType={supportedBiometryType}
+      biometricsEnabled={wallet.biometricsEnabled}
     />
   );
 }

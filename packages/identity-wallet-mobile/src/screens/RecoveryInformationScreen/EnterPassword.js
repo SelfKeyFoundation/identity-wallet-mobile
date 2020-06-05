@@ -76,6 +76,68 @@ const ForgotLink = styled(Link)`
   line-height: 19px;
 `;
 
+const BiometryLabelMap = {
+  FaceID: 'Face ID',
+  TouchID: 'Touch ID',
+  Fingerprint: 'Fingerprint',
+};
+
+function renderUnlockOptions(props) {
+  const { biometricsEnabled, supportedBiometryType } = props;
+
+  if (!supportedBiometryType || !biometricsEnabled) {
+    return (
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onSubmit}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+            Display Recovery Info
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <Row alignItems="center" justifyContent="center" marginBottom={20}>
+        <Col autoWidth>
+          {
+            supportedBiometryType === 'FaceID' ? (
+              <SKIcon name="icon-face-id" color="#09A8BA" size={67} />
+            ) : <IconTouchId />
+          }
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onSubmit.bind(null, true)}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+           Confirm With { BiometryLabelMap[supportedBiometryType] }
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={props.onSubmit}
+            type="shell-primary"
+            isLoading={props.isLoading}
+          >
+            Confirm With Password
+          </Button>
+        </Col>
+      </Row>
+    </React.Fragment>
+  )
+}
+
 export function EnterPassword(props: RecoveryInformationProps) {
   const theme = useContext(ThemeContext);
   const handlePasswordChange = useCallback((value) => {
@@ -133,17 +195,22 @@ export function EnterPassword(props: RecoveryInformationProps) {
           ) : null }
         </ContentGrid>
         <Grid>
-          <Row>
-            <Col>
-              <Button
-                onPress={props.onSubmit}
-                type="full-primary"
-                isLoading={props.isLoading}
-              >
-                Display Recovery Info
-              </Button>
-            </Col>
-          </Row>
+          {
+            renderUnlockOptions(props)
+          }
+          {
+            // <Row>
+            //   <Col>
+            //     <Button
+            //       onPress={props.onSubmit}
+            //       type="full-primary"
+            //       isLoading={props.isLoading}
+            //     >
+            //       Display Recovery Info
+            //     </Button>
+            //   </Col>
+            // </Row>
+          }
         </Grid>
       </Body>
     </ScreenContainer>

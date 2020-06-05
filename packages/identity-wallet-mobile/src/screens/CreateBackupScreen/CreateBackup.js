@@ -14,6 +14,7 @@ import {
   Button,
   Link,
   H3,
+  IconTouchId,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
@@ -79,6 +80,79 @@ const ForgotLink = styled(Link)`
   line-height: 19px;
 `;
 
+const BiometryLabelMap = {
+  FaceID: 'Face ID',
+  TouchID: 'Touch ID',
+  Fingerprint: 'Fingerprint',
+};
+
+function renderUnlockOptions(props) {
+  const { biometricsEnabled, supportedBiometryType } = props;
+  const handleSubmit = (biometrics) => {
+    WalletTracker.trackEvent({
+      category: `${TRACKER_PAGE}/submitButton`,
+      action: 'press',
+      level: 'system'
+    });
+
+    props.onSubmit(biometrics);
+  };
+
+  if (!supportedBiometryType || !biometricsEnabled) {
+    return (
+      <Row>
+        <Col>
+          <Button
+            onPress={handleSubmit}
+            type="full-primary"
+          >
+            I’ve written it down
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <Row alignItems="center" justifyContent="center" marginBottom={20}>
+        <Col autoWidth>
+          {
+            supportedBiometryType === 'FaceID' ? (
+              <SKIcon name="icon-face-id" color="#09A8BA" size={67} />
+            ) : <IconTouchId />
+          }
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={handleSubmit.bind(null, true)}
+            type="full-primary"
+            isLoading={props.isLoading}
+          >
+           Confirm With { BiometryLabelMap[supportedBiometryType] }
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            onPress={handleSubmit}
+            type="shell-primary"
+            isLoading={props.isLoading}
+          >
+            Confirm With Password
+            {
+              // Display Recovery Info
+            }
+          </Button>
+        </Col>
+      </Row>
+    </React.Fragment>
+  );
+}
+
 export function CreateBackup(props: CreateBackupProps) {
   const theme = useContext(ThemeContext);
   const handlePasswordChange = useCallback((value) => {
@@ -93,16 +167,6 @@ export function CreateBackup(props: CreateBackupProps) {
     });
 
     props.onBack();
-  };
-
-  const handleSubmit = () => {
-    WalletTracker.trackEvent({
-      category: `${TRACKER_PAGE}/submitButton`,
-      action: 'press',
-      level: 'system'
-    });
-
-    props.onSubmit();
   };
 
   return (
@@ -141,7 +205,7 @@ export function CreateBackup(props: CreateBackupProps) {
                 label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={handleSubmit}
+                onSubmitEditing={props.onSubmit}
               />
             </Col>
           </InputRow>
@@ -157,17 +221,9 @@ export function CreateBackup(props: CreateBackupProps) {
         }
         </ContentGrid>
         <Grid>
-          <Row>
-            <Col>
-              <Button
-                onPress={handleSubmit}
-                type="full-primary"
-                isLoading={props.isLoading}
-              >
-                Create Backup
-              </Button>
-            </Col>
-          </Row>
+          {
+            renderUnlockOptions(props)
+          }
         </Grid>
       </Body>
     </ScreenContainer>

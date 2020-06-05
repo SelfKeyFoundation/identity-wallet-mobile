@@ -13,6 +13,8 @@ function CreateBackupContainer(props) {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
+  const wallet = useSelector(ducks.wallet.selectors.getWallet);
+  const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
   const handleBack = useCallback(() => navigate(Routes.APP_SETTINGS), []);
   const handleChange = useCallback(password => setPassword(password), []);
   const handleForgotPassword = useCallback(() => {
@@ -24,7 +26,8 @@ function CreateBackupContainer(props) {
 
     navigate(Routes.UNLOCK_WALLET_FORGOT_PASSWORD)
   }, []);
-  const handleSubmit = useCallback(async () => {
+
+  const handleSubmit = useCallback(async (biometrics) => {
     if (isLoading) {
       return;
     }
@@ -32,7 +35,11 @@ function CreateBackupContainer(props) {
     setLoading(true);
 
     try {
-      await dispatch(ducks.wallet.operations.backupWalletOperation(password));
+      await dispatch(ducks.wallet.operations.backupWalletOperation({
+        password,
+        biometrics,
+      }));
+
       WalletTracker.trackEvent({
         category: `${TRACKER_PAGE}/backupCreated`,
         action: 'success',
@@ -57,6 +64,8 @@ function CreateBackupContainer(props) {
       onBack={handleBack}
       isLoading={isLoading}
       onForgot={isHDWallet && handleForgotPassword}
+      supportedBiometryType={supportedBiometryType}
+      biometricsEnabled={wallet.biometricsEnabled}
     />
   );
 }

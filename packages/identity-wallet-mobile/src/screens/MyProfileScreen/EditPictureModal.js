@@ -28,7 +28,8 @@ import {
   Col,
   Button,
   H3,
-  Alert
+  Alert,
+  IconAddImage
 } from '@selfkey/mobile-ui';
 import ImagePicker from 'react-native-image-picker';
 import fs from 'react-native-fs';
@@ -56,6 +57,18 @@ const RoundedImage = styled.Image`
   overflow: hidden;
   border: 4px solid #313D49;
   margin: 22px auto;
+`;
+
+const RoundedContainer = styled.View`
+  width: 170px;
+  height: 170px;
+  border-radius: 75px;
+  overflow: hidden;
+  border: 4px solid #313D49;
+  margin: 22px auto;
+  background: #313D49;
+  align-items: center;
+  justify-content: center;
 `;
 
 const requiredMessage = 'This field is required';
@@ -200,7 +213,11 @@ export function EditPictureModal(props) {
       footer={null}
     >
       { isLoading ? <ImageLoading />
-        : <RoundedImage source={{ uri: imageUri || defaultImage }} />
+        : imageUri ? <RoundedImage source={{ uri: imageUri }} /> : (
+          <RoundedContainer>
+            <IconAddImage />
+          </RoundedContainer>
+        )
       }
       <Grid marginBottom={20} marginTop={10}>
         <Row>
