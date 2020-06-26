@@ -17,21 +17,26 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   try {
     if (form.biometrics) {
       vault = await unlockVaultWithBiometrics(wallet.vaultId);
+      System.getTracker().trackEvent({
+        category: `unlockWallet/biometricUnlock`,
+        action: 'success',
+        level: 'machine'
+      });
     } else {
       vault = await unlockVault(wallet.vaultId, form.password);
+      System.getTracker().trackEvent({
+        category: `unlockWallet/unlock`,
+        action: 'success',
+        level: 'machine'
+      });
     }
     dispatch(actions.setErrors({}));
-
-    System.getTracker().trackEvent({
-      category: `unlockWallet/unlock`,
-      action: 'success',
-      level: 'machine'
-    });
   } catch (err) {
-    console.error(err);
-    dispatch(actions.setErrors({
-      password: 'wrong_password',
-    }));
+    if (!form.biometrics) {
+      dispatch(actions.setErrors({
+        password: 'wrong_password',
+      }));
+    }
 
     return false;
   }
@@ -72,7 +77,10 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
       vault = await unlockVault(wallet.vaultId, password);
     }
   } catch (err) {
-    console.error(err);
+    if (biometrics) {
+      return;
+    }
+
     throw 'Password doesn\'t match'
   }
 

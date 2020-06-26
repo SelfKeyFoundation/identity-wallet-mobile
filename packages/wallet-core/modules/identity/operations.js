@@ -72,11 +72,11 @@ export const editIdAttributeOperation = attribute => async (dispatch, getState) 
 	// await dispatch(operations.loadDocumentsForAttributeOperation(attribute.id));
 	await dispatch(actions.updateIdAttribute(attribute));
 
-	// System.getTracker().trackEvent({
-	// 	category: `selfKeyProfile/idAttribute`,
-	// 	action: 'edit',
-	// 	level: 'wallet'
-	// });
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile/idAttribute`,
+		action: 'edit',
+		level: 'wallet'
+	});
 };
 
 // ########################
@@ -218,11 +218,11 @@ const createIndividualProfile = (identityId, data) => async (dispatch, getState)
 
 	await dispatch(identityOperations.updateIdentitySetupOperation(true, identityId));
 
-	// System.getTracker().trackEvent({
-	// 	category: `selfKeyProfile`,
-	// 	action: 'created',
-	// 	level: 'wallet'
-	// });
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile`,
+		action: 'created',
+		level: 'wallet'
+	});
 
 	navigate(Routes.APP_MY_PROFILE);
 
@@ -263,28 +263,28 @@ const updateProfilePictureOperation = (picture, identityId) => async (dispatch, 
 	let identity = await IdentityService.updateIdentityProfilePicture(picture, identityId);
 	await dispatch(actions.updateIdentity(identity));
 
-	// System.getTracker().trackEvent({
-	// 	category: `selfKeyProfile/picture`,
-	// 	action: 'edit',
-	// 	level: 'wallet'
-	// });
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile/picture`,
+		action: 'edit',
+		level: 'wallet'
+	});
 };
 
 export const navigateToProfileOperation = () => async (dispatch, getState) => {
 	const identity = duck.selectors.selectIdentity(getState());
 
-	// System.getTracker().trackEvent({
-	// 	category: `selfKeyProfile`,
-	// 	action: 'navigate',
-	// 	level: 'wallet'
-	// });
+	System.getTracker().trackEvent({
+		category: `selfKeyProfile`,
+		action: 'navigate',
+		level: 'wallet'
+	});
 
 	if (!identity.isSetupFinished) {
-		// System.getTracker().trackEvent({
-		// 	category: `skProfile/createSelfKeyIdModal`,
-		// 	action: 'navigate',
-		// 	level: 'wallet'
-		// });
+		System.getTracker().trackEvent({
+			category: `skProfile/createSelfKeyIdModal`,
+			action: 'navigate',
+			level: 'wallet'
+		});
 
 		dispatch(ducks.modals.operations.showModal(Routes.MODAL_CREATE_SELFKEY_ID));
 		return;

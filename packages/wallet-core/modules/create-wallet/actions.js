@@ -41,6 +41,12 @@ export const walletActions = {
       error
     },
   }),
+  setBiometricsEnabled: (enabled) => ({
+    type: types.SET_BIOMETRICS_ENABLED,
+    payload: {
+      enabled
+    },
+  }),
 };
 
 export default walletActions;

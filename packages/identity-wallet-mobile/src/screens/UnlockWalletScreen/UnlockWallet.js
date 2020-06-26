@@ -15,6 +15,7 @@ import {
   DefinitionTitle,
   H3,
   IconTouchId,
+  Alert
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native';
@@ -109,12 +110,23 @@ function renderUnlockOptions(props) {
           }
         </Col>
       </Row>
+      {
+        // props.showBiometricsAlert && 
+        // <Row>
+        //   <Col>
+        //     <Alert>
+        //       Please try again later or use password instead.
+        //     </Alert>
+        //   </Col>
+        // </Row>
+      }
       <Row>
         <Col>
           <Button
             onPress={props.onBiometricsUnlock}
             type="full-primary"
-            isLoading={props.isLoading}
+            isLoading={props.isBiometricsLoading}
+            disabled={props.isLoading}
           >
             Unlock With { BiometryLabelMap[supportedBiometryType] }
           </Button>
@@ -126,6 +138,7 @@ function renderUnlockOptions(props) {
             onPress={props.onUnlockPress}
             type="shell-primary"
             isLoading={props.isLoading}
+            disabled={props.isBiometricsLoading}
           >
             Unlock with Password
           </Button>
@@ -196,6 +209,7 @@ export function UnlockWallet(props: UnlockWalletProps) {
             <Col>
               <TouchableWithoutFeedback
                 onPress={props.onChooseDifferentWallet}
+                disabled={props.isLoading || props.isBiometricsLoading}
               >
                 <UseDifferentWallet>
                   Create New Wallet

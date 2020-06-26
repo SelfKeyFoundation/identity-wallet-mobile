@@ -418,8 +418,16 @@ const removeWalletOperation = () => async (dispatch, getState) => {
 const setBiometricsEnabledOperation = (enabled) => async (dispatch, getState) => {
   const { wallet } = getState();
 
+  debugger;
+
   await WalletModel.getInstance().updateByAddress(wallet.address, {
     biometricsEnabled: enabled,
+  });
+
+  System.getTracker().trackEvent({
+    category: `wallet/setBiometricsEnabled`,
+    action: 'false',
+    level: 'app'
   });
 
   await dispatch(walletActions.setWallet({

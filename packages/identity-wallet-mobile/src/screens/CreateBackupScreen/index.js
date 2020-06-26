@@ -10,6 +10,7 @@ const TRACKER_PAGE = 'createBackup';
 function CreateBackupContainer(props) {
   const dispatch = useDispatch();
   const [password, setPassword] = useState('');
+  const [isBiometricsLoading, setBiometricsLoading] = useState();
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
@@ -32,7 +33,11 @@ function CreateBackupContainer(props) {
       return;
     }
 
-    setLoading(true);
+    if (biometrics) {
+      setBiometricsLoading(true);
+    } else {
+      setLoading(true);
+    }
 
     try {
       await dispatch(ducks.wallet.operations.backupWalletOperation({
@@ -48,11 +53,16 @@ function CreateBackupContainer(props) {
 
       navigate(Routes.APP_SETTINGS)
     } catch(err) {
-      if (err.message === 'wrong_password') {
+      if (!biometrics && err.message === 'wrong_password') {
         setError('Wrong password. Please try again.');
       }
     }
-    setLoading(false);
+    
+    if (biometrics) {
+      setBiometricsLoading(false);
+    } else {
+      setLoading(false);
+    }
   }, [isLoading, password]);
   
   return (
@@ -66,6 +76,7 @@ function CreateBackupContainer(props) {
       onForgot={isHDWallet && handleForgotPassword}
       supportedBiometryType={supportedBiometryType}
       biometricsEnabled={wallet.biometricsEnabled}
+      isBiometricsLoading={isBiometricsLoading}
     />
   );
 }

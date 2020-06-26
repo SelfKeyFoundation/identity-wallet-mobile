@@ -13,6 +13,7 @@ function RecoveryInformationContainer(props) {
   const dispatch = useDispatch();
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const [isBiometricsLoading, setBiometricsLoading] = useState();
   const [error, setError] = useState();
   const [mnemonic, setMnemonic] = useState();
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
@@ -42,7 +43,12 @@ function RecoveryInformationContainer(props) {
       return;
     }
 
-    setLoading(true);
+    if (biometrics) {
+      setBiometricsLoading(true);
+    } else {
+      setLoading(true);
+    }
+
     setError(null);
 
     try {
@@ -59,14 +65,20 @@ function RecoveryInformationContainer(props) {
       setMnemonic(mnemonic);
       setPassword(null);
     } catch(err) {
-      if (err.message === 'wrong_password') {
-        setError('Wrong password. Please try again.');
-      } else {
-        setError(err.message || err);
+      if (!biometrics) {
+        if (err.message === 'wrong_password') {
+          setError('Wrong password. Please try again.');
+        } else {
+          setError(err.message || err);
+        }
       }
     }
 
-    setLoading(false);
+    if (biometrics) {
+      setBiometricsLoading(false);
+    } else {
+      setLoading(false);
+    }
   }, [isLoading, password]);
 
   const handleMnemonicBack = useCallback(() => {
@@ -107,6 +119,7 @@ function RecoveryInformationContainer(props) {
       onForgot={isHDWallet && handleForgotPassword}
       supportedBiometryType={supportedBiometryType}
       biometricsEnabled={wallet.biometricsEnabled}
+      isBiometricsLoading={isBiometricsLoading}
     />
   );
 }

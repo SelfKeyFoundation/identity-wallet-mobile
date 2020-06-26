@@ -53,7 +53,7 @@ const Divider = styled.View`
 const RoundedImage = styled.Image`
   width: 170px;
   height: 170px;
-  border-radius: 75px;
+  border-radius: 170px;
   overflow: hidden;
   border: 4px solid #313D49;
   margin: 22px auto;
@@ -62,7 +62,7 @@ const RoundedImage = styled.Image`
 const RoundedContainer = styled.View`
   width: 170px;
   height: 170px;
-  border-radius: 75px;
+  border-radius: 170px;
   overflow: hidden;
   border: 4px solid #313D49;
   margin: 22px auto;

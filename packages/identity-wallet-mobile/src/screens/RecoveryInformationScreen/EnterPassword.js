@@ -14,6 +14,7 @@ import {
   Button,
   Link,
   H3,
+  IconTouchId,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
 
@@ -117,7 +118,8 @@ function renderUnlockOptions(props) {
           <Button
             onPress={props.onSubmit.bind(null, true)}
             type="full-primary"
-            isLoading={props.isLoading}
+            isLoading={props.isBiometricsLoading}
+            disabled={props.isLoading}
           >
            Confirm With { BiometryLabelMap[supportedBiometryType] }
           </Button>
@@ -126,9 +128,10 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={props.onSubmit}
+            onPress={props.onSubmit.bind(null, false)}
             type="shell-primary"
             isLoading={props.isLoading}
+            disabled={props.isBiometricsLoading}
           >
             Confirm With Password
           </Button>

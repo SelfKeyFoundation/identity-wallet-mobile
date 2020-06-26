@@ -129,7 +129,8 @@ function renderUnlockOptions(props) {
           <Button
             onPress={handleSubmit.bind(null, true)}
             type="full-primary"
-            isLoading={props.isLoading}
+            isLoading={props.isBiometricsLoading}
+            disabled={props.isLoading}
           >
            Confirm With { BiometryLabelMap[supportedBiometryType] }
           </Button>
@@ -138,9 +139,10 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={handleSubmit}
+            onPress={handleSubmit.bind(null, false)}
             type="shell-primary"
             isLoading={props.isLoading}
+            disabled={props.isBiometricsLoading}
           >
             Confirm With Password
             {

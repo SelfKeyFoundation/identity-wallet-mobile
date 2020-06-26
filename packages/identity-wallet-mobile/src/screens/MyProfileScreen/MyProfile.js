@@ -37,7 +37,7 @@ const Container = styled.ScrollView`
 const RoundedImage = styled.Image`
   width: 85px;
   height: 85px;
-  border-radius: 75px;
+  border-radius: 85px;
   overflow: hidden;
   border: 2px solid #313D49;
   margin: 10px auto;
@@ -46,7 +46,7 @@ const RoundedImage = styled.Image`
 const RoundedContainer = styled.View`
   width: 85px;
   height: 85px;
-  border-radius: 75px;
+  border-radius: 85px;
   overflow: hidden;
   border: 2px solid #313D49;
   margin: 10px auto;
@@ -319,7 +319,7 @@ export function MyProfile(props) {
           <Row>
             <Col>
               <SectionTitle>Informations</SectionTitle>
-              <SectionDescription>4 entries</SectionDescription>
+              <SectionDescription>{profile.basicAttributes.length} entries</SectionDescription>
             </Col>
           </Row>
         </SectionHeader>
@@ -343,19 +343,21 @@ export function MyProfile(props) {
             })
           }
         </Grid>
-        <SectionHeader>
-          <Row>
-            <Col>
-              <SectionTitle>Documents</SectionTitle>
-              <SectionDescription>0 documents</SectionDescription>
-            </Col>
-          </Row>
-        </SectionHeader>
-        <EmptyItemsConatiner>
-          <DocumentsEmptyAlert>
-            Hit the “Add new” button above to add documents relevant to your identity, needed for marketplace KYC processes.
-          </DocumentsEmptyAlert>
-        </EmptyItemsConatiner>
+        {
+          // <SectionHeader>
+          //   <Row>
+          //     <Col>
+          //       <SectionTitle>Documents</SectionTitle>
+          //       <SectionDescription>0 documents</SectionDescription>
+          //     </Col>
+          //   </Row>
+          // </SectionHeader>
+          // <EmptyItemsConatiner>
+          //   <DocumentsEmptyAlert>
+          //     Hit the “Add new” button above to add documents relevant to your identity, needed for marketplace KYC processes.
+          //   </DocumentsEmptyAlert>
+          // </EmptyItemsConatiner>
+        }
         { currentOptionsMenu ? <Backdrop onPress={handleCloseMenu} /> : null }
         { currentOptionsMenu ? (
           <OptionsView

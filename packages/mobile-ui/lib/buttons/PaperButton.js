@@ -259,7 +259,7 @@ class Button extends React.Component<Props, State> {
             {loading ? (
               <ActivityIndicator
                 size="small"
-                color="#1E262E"
+                color={mode === 'outlined' ? theme.colors.primary : '#1E262E'}
               />
             ) : null}
             { !loading && <Text

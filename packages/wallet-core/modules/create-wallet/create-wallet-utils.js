@@ -100,7 +100,7 @@ export async function getDefaultTokens({ addTop20 = false } = {}) {
  *
  * @param {*} params
  */
-export async function setupHDWallet({ mnemonic, password, addTop20 }) {
+export async function setupHDWallet({ mnemonic, password, addTop20, biometricsEnabled }) {
   const builder = await WalletBuilder.createFromMnemonic(mnemonic);
 
   const vault = await createVault({
@@ -126,12 +126,13 @@ export async function setupHDWallet({ mnemonic, password, addTop20 }) {
     type: 'hd',
     path: path,
     tokens: await getDefaultTokens({ addTop20 }),
+    biometricsEnabled,
   });
 
   return {
     wallet,
     vault,
-  }
+  };
 }
 
 export async function setupPrivateKeyWallet({ privateKey, address, password, addTop20 }) {

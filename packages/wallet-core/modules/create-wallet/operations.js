@@ -170,8 +170,8 @@ const submitConfirmationOperation = (form) => async (dispatch, getState) => {
     return;
   }
 
-  const { password } = state.createWallet;
-  const { wallet, vault } = await setupHDWallet({ mnemonic, password });
+  const { password, biometricsEnabled } = state.createWallet;
+  const { wallet, vault } = await setupHDWallet({ mnemonic, password, biometricsEnabled });
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
   await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);

@@ -134,10 +134,9 @@ export async function unlockVaultWithBiometrics(vaultId) {
         authenticationType: Keychain.BIOMETRY_TYPE.FINGERPRINT,
         storage: Keychain.STORAGE_TYPE.RSA,
       });
-      
     } else {
       await Keychain.setItem(biometricsVaultId, vaultProps, {
-        accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY, 
+        accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE, 
       });
     }
 

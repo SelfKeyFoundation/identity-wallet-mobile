@@ -42,7 +42,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>Allow SelfKey to be unlock your wallet with FaceID</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Allow SelfKey to use your location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow SelfKey Wallet to use photos from your library</string>
 	<key>UIAppFonts</key>

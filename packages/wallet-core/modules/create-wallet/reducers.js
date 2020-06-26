@@ -4,6 +4,7 @@ import types from './types';
 
 export const initialState = {
   password: undefined,
+  biometricsEnabled: false,
 };
 
 function setPasswordReducer(state, action) {
@@ -74,6 +75,13 @@ function setConfirmationErrorReducer(state, action) {
   };
 }
 
+function setBiometricsEnabledReducer(state, action) {
+  return {
+    ...state,
+    biometricsEnabled: action.payload.enabled,
+  };
+}
+
 export const createWalletReducers = {
   setPasswordReducer,
   setMnemonicPhraseReducer,
@@ -82,6 +90,7 @@ export const createWalletReducers = {
   setConfirmationMnemonicReducer,
   setShuffledMnemonicReducer,
   setConfirmationErrorReducer,
+  setBiometricsEnabledReducer,
 };
 
 const reducersMap = {
@@ -92,6 +101,7 @@ const reducersMap = {
   [types.SET_CONFIRMATION_MNEMONIC]: setConfirmationMnemonicReducer,
   [types.SET_SHUFFLED_MNEMONIC]: setShuffledMnemonicReducer,
   [types.SET_CONFIRMATION_ERROR]: setConfirmationErrorReducer,
+  [types.SET_BIOMETRICS_ENABLED]: setBiometricsEnabledReducer,
 };
 
 export default createReducer(initialState, reducersMap);

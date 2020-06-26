@@ -77,22 +77,20 @@ export function AttributeModal(props) {
   
   const showErrors = formik.submitCount > 0;
   
-  console.log(attribute);
-
   return (
     <Modal
       visible={visible}
       onClose={onClose}
-      title="Edit Attribute"
+      title="Edit Information"
       footer={null}
     >
       <Grid marginBottom={20} marginTop={0}>
         <Row>
           <Col>
             <SelectBox
-              label="Attribute"
+              label="Type"
               selectedValue={attributeId}
-              placeholder="Select an attribute"
+              placeholder="Select a type"
               items={[{
                 label: attributeLabel,
                 value: attributeId,

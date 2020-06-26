@@ -6,6 +6,7 @@ export const walletTypes = {
   SET_SHUFFLED_MNEMONIC: 'createWallet/setShuffledMnemonic',
   CLEAR_CONFIRMATION: 'createWallet/clearConfirmation',
   SET_CONFIRMATION_ERROR: 'createWallet/setConfirmationError',
+  SET_BIOMETRICS_ENABLED: 'createWallet/setBiometricsEnabled',
 };
 
 export default walletTypes;

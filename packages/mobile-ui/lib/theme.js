@@ -8,7 +8,7 @@ export const Theme = {
     typography: colors.spindle,
     white: colors.white,
     grey: colors.slateGrey,
-    disabled: '#465466',
+    disabled: '#697C95',
     baseLight: colors.cello,
     baseDark: colors.blueCharcoal,
     base: colors.midnight,

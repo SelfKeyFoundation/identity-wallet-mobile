@@ -14,6 +14,7 @@ function WalletSelectionContainer(props) {
     const [wallet, setWallet] = useState();
     const [password, setPassword] = useState();
     const [isLoading, setLoading] = useState();
+    const [isBiometricsLoading, setBiometricsLoading] = useState();
     const dispatch = useDispatch();
     const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
     const handleBack = useCallback(() => {
@@ -97,7 +98,7 @@ function WalletSelectionContainer(props) {
     }, []);
 
     const handleBiometricsUnlock = async () => {
-      setLoading(true);
+      setBiometricsLoading(true);
   
       setTimeout(async () => {
         await dispatch(ducks.unlockWallet.operations.unlockWithAddressOperation({
@@ -105,8 +106,7 @@ function WalletSelectionContainer(props) {
           biometrics: true,
         }));
 
-  
-        setLoading(false);
+        setBiometricsLoading(false);
       }, 200);
     };
 
@@ -130,6 +130,7 @@ function WalletSelectionContainer(props) {
         biometricsEnabled={selectedWallet.biometricsEnabled}
         onBiometricsUnlock={handleBiometricsUnlock}
         selectedWallet={selectedWallet}
+        isBiometricsLoading={isBiometricsLoading}
       />
     );
   } catch(err) {

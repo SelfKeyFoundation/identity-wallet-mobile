@@ -211,7 +211,8 @@ function renderUnlockOptions(props) {
           <Button
             onPress={props.onBiometricsUnlock}
             type="full-primary"
-            isLoading={props.isLoading}
+            isLoading={props.isBiometricsLoading}
+            disabled={props.isLoading}
           >
             Unlock With { BiometryLabelMap[supportedBiometryType] }
           </Button>
@@ -223,6 +224,7 @@ function renderUnlockOptions(props) {
             onPress={props.onSubmit}
             type="shell-primary"
             isLoading={props.isLoading}
+            disabled={props.isBiometricsLoading}
           >
             Unlock with Password
           </Button>
