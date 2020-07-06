@@ -30,9 +30,31 @@ const submitPasswordOperation = (form) => async (dispatch, getState) => {
   await navigate(Routes.CREATE_WALLET_CONFIRM_PASSWORD);
 };
 
-const submitPasswordConfirmationOperation = (form) => async (dispatch, getState) => {
-  await dispatch(generateMnemonic());
-  await navigate(Routes.CREATE_WALLET_BACKUP);
+const submitPasswordConfirmationOperation = (form, options = {}) => async (dispatch, getState) => {
+  const state = getState();
+  const mnemonic = selectors.getMnemonicPhrase(state);
+  const password = selectors.getPassword(state);
+
+  if (!mnemonic) {
+    await dispatch(generateMnemonic());
+    await navigate(Routes.CREATE_WALLET_BACKUP);
+    return;
+  }
+
+  const setupData = await setupHDWallet({
+    mnemonic,
+    password,
+    biometricsEnabled: options.biometrics
+  });
+
+  System.getTracker().trackEvent({
+    category: `importFromBackupFile/backupImported`,
+    action: 'success',
+    level: 'app'
+  });
+
+  await dispatch(walletOperations.loadWalletOperation(setupData));
+  await navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
 };
 
 const submitWalletBackupOperation = (form) => async (dispatch, getState) => {
@@ -208,6 +230,34 @@ const generateMnemonic = () => async (dispatch, getState) => {
   await dispatch(actions.setConfirmationMnemonic(confirmation));
 };
 
+const importFromSeedSubmitOperation = () => async (dispatch, getState) => {
+  const state = getState();
+  const mnemonic = selectors.getMnemonicPhrase(state);
+  const isValid = await WalletBuilder.validateMnemonic(mnemonic);
+
+  if (!isValid) {
+    throw {
+      message: 'Invalid seed phrase',
+    };
+  }
+
+  const builder = await WalletBuilder.createFromMnemonic(mnemonic);
+  const path = builder.getETHPath(0);
+  const hdWallet = builder.createWallet(path);
+  const walletFound = await WalletModel.getInstance().findByAddress(hdWallet.address);
+
+  if (walletFound) {
+    throw {
+      message: 'This seed phrase is already in use',
+    };
+  }
+
+  await navigate(Routes.CREATE_WALLET_PASSWORD, {
+    canImport: false,
+    canReturn: true,
+  });
+};
+
 export const operations = {
   submitPasswordOperation,
   submitPasswordConfirmationOperation,
@@ -215,6 +265,7 @@ export const operations = {
   submitConfirmationOperation,
   createFromBackupOperation,
   importFromDesktopOperation,
+  importFromSeedSubmitOperation,
 };
 
 export const createWalletOperations = {

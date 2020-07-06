@@ -31,7 +31,7 @@ function ChooseDifferentWalletContainer(props) {
   });
 
   const handleImportFromDesktop = () => navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
-
+  const handleImportFromSeedPhrase = () => navigate(Routes.CREATE_WALLET_IMPORT_FROM_SEED);
   const handleBack = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,
@@ -48,6 +48,7 @@ function ChooseDifferentWalletContainer(props) {
       onExistingAddress={handleExistingAddress}
       onBack={handleBack}
       onImportFromDesktop={handleImportFromDesktop}
+      onImportFromSeedPhrase={handleImportFromSeedPhrase}
     />
   );
 } 

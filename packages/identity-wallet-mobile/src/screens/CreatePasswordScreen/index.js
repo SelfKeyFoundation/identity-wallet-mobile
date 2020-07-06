@@ -24,6 +24,7 @@ function CreatePasswordContainer(props) {
   });
 
   const canReturn = props.navigation.getParam('canReturn', false);
+  const canImport = props.navigation.getParam('canImport', true);
   const handleBack = useCallback(() => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,
@@ -32,10 +33,13 @@ function CreatePasswordContainer(props) {
     });
 
     navigateBack();
-  })
+  });
 
   const handleImpotBackupFile = () => navigate(Routes.CREATE_WALLET_IMPORT_BACKUP);
   const handleImpotFromDesktop = () => navigate(Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP);
+  const handleImportFromMnemonic = () => {
+    navigate(Routes.CREATE_WALLET_IMPORT_FROM_SEED);
+  };
 
   return (
     <CreatePassword
@@ -46,10 +50,8 @@ function CreatePasswordContainer(props) {
       errors={controller.errors}
       passwordStrength={controller.passwordStrength}
       onImportFromDesktop={handleImpotFromDesktop}
-      onImportBackupFile={handleImpotBackupFile}
-      onEnterRecoveryPhrase={() => {
-        // to be created
-      }}
+      onImportBackupFile={canImport && handleImpotBackupFile}
+      onImportFromMnemonic={handleImportFromMnemonic}
     />
   );
 }

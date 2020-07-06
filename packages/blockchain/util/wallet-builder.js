@@ -1,5 +1,5 @@
 // @flow
-import { mnemonicToSeed, generateMnemonic } from 'bip39';
+import { mnemonicToSeed, generateMnemonic, validateMnemonic } from 'bip39';
 import HDNode from 'hdkey';
 import bs58 from 'bs58';
 import { Wallet } from './wallet';
@@ -14,6 +14,10 @@ export class WalletBuilder {
 
   static generateMnemonic(): string {
     return generateMnemonic();
+  }
+
+  static validateMnemonic(mnemonic) {
+    return validateMnemonic(mnemonic);
   }
 
   static async createFromMnemonic(mnemonic: string): WalletBuilder {

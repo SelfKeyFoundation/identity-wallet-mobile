@@ -149,6 +149,18 @@ export function ChooseDifferentWallet(props) {
             </Col>
           </MenuOption>
         </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={props.onImportFromSeedPhrase}>
+          <MenuOption>
+            <Col autoWidth noPadding>
+              <SKIcon name="icon-import-address" color={theme.colors.primary} size={24}/>
+            </Col>
+            <Col noPadding marginLeft={20}>
+              <MenuOptionText>
+                Import From Seed Phrase
+              </MenuOptionText>
+            </Col>
+          </MenuOption>
+        </TouchableWithoutFeedback>
       </Body>
     </Container>
   )

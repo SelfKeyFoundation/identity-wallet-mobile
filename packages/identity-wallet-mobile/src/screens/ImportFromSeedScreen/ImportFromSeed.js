@@ -18,7 +18,6 @@ import {
   H3,
 } from '@selfkey/mobile-ui';
 import styled from 'styled-components/native';
-import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from '@selfkey/configs';
 import { WalletTracker } from '../../WalletTracker';
@@ -109,54 +108,8 @@ const OrText = styled(DefinitionTitle)`
   text-align: center;
 `;
 
-export function CreatePassword(props: CreatePasswordProps) {
+export function ImportFromSeed(props: CreatePasswordProps) {
   const theme = useContext(ThemeContext);
-  const passwordErrors = props.errors.password || [];
-  const passwordInlineErrors = passwordErrors.filter(error => error === 'required');
-
-  const handlePasswordChange = useCallback((value = '') => {
-    const cleanedValue = value.replace(/[ \n]/g, '');
-    props.onChange('password')(cleanedValue);
-  });
-
-  const importOptions = [
-    { key: 'import_backup_file', label: 'Import Backup File' },
-    { key: 'import_from_desktop', label: 'Import from Desktop Application' },
-    { key: 'enter_recovery_phrase', label: 'Import from Seed Phrase' },
-  ];
-
-  const handleSelectChange = (option) => {
-    switch (option.key) {
-      case 'import_from_desktop': {
-        WalletTracker.trackEvent({
-          category: `${TRACKER_PAGE}/importFromDesktop`,
-          action: 'press',
-          level: 'machine'
-        });
-        props.onImportFromDesktop();
-        break;
-      }
-      case 'import_backup_file': {
-        WalletTracker.trackEvent({
-          category: `${TRACKER_PAGE}/importBackupFile`,
-          action: 'press',
-          level: 'machine'
-        });
-        props.onImportBackupFile();
-        break;
-      }
-      case 'enter_recovery_phrase': {
-        WalletTracker.trackEvent({
-          category: `${TRACKER_PAGE}/enterRecoveryPhrase`,
-          action: 'press',
-          level: 'machine'
-        });
-        props.onImportFromMnemonic();
-        break;
-      }
-    }
-  }
-
   const handleSubmit = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/savePasswordButton`,
@@ -177,8 +130,6 @@ export function CreatePassword(props: CreatePasswordProps) {
     props.onSubmit();
   }
 
-  
-
   return (
     <ScreenContainer sidePadding>
       <Container withMargin scrollable>
@@ -196,7 +147,7 @@ export function CreatePassword(props: CreatePasswordProps) {
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Set a password to unlock your
+                Enter the seed phrase to create your
               </PageTitle>
               <PageTitle align="center">
                 SelfKey Identity Wallet
@@ -206,74 +157,30 @@ export function CreatePassword(props: CreatePasswordProps) {
           <InputRow>
             <Col>
               <TextInput
-                error={passwordInlineErrors.length}
-                errorMessage={errorMessages[passwordInlineErrors[0]]}
-                value={props.values.password}
-                placeholder="Password"
-                label="Set Password"
-                onChangeText={handlePasswordChange}
-                secureTextEntry={true}
+                error={props.error}
+                errorMessage={props.error}
+                value={props.mnemonicPhrase}
+                placeholder="Enter your seed phrase"
+                label="Seed phrase"
+                onChangeText={props.onMnemonicChange}
                 onSubmitEditing={handleTextSubmit}
               />
             </Col>
           </InputRow>
-          <StrengthRow>
-            <Col>
-              <Explanatory>
-                Password Strength: {getStrengthMessage(props.passwordStrength)}
-              </Explanatory>
-            </Col>
-          </StrengthRow>
-          {
-            PasswordRequirements.map((item) => (
-              <ValidationCheck
-                key={item.id}
-                errors={passwordErrors}
-                hasValue={!!props.values.password}
-                theme={theme}
-                text={item.text}
-                id={item.id}
-              />
-            ))
-          }
         </ContentGrid>
         <Grid>
           <Row>
             <Col>
               <Button
                 onPress={handleSubmit}
+                isLoading={props.isLoading}
                 type="full-primary"
-              > 
-                Save Password
+              >
+                Confirm
               </Button>
             </Col>
           </Row>
-          { props.onImportBackupFile &&
-            <React.Fragment>
-              <Row>
-                <Col>
-                  <OrText>or</OrText>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <ModalSelector
-                    data={importOptions}
-                    cancelText="Cancel"
-                    onChange={handleSelectChange}
-                  >
-                    <TouchableWithoutFeedback>
-                      <UseDifferentWallet>
-                        Import Existing Wallet
-                      </UseDifferentWallet>
-                    </TouchableWithoutFeedback>
-                  </ModalSelector>
-                </Col>
-              </Row>
-            </React.Fragment>
-          }
         </Grid>
-        
       </Container>
     </ScreenContainer>
   );

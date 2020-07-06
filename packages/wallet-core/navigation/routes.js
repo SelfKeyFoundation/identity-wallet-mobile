@@ -30,6 +30,7 @@ export const CREATE_WALLET_SETUP_COMPLETE = 'createWallet/setupComplete';
 export const CREATE_WALLET_CONFIRM_MNEMONIC = 'createWallet/confirmMnemonic';
 export const CREATE_WALLET_IMPORT_BACKUP = 'createWallet/importBackup';
 export const CREATE_WALLET_IMPORT_FROM_DESKTOP = 'createWallet/importFromDesktop';
+export const CREATE_WALLET_IMPORT_FROM_SEED = 'createWallet/importFromSeed';
 
 
 export const WALLET_NEW_PASSWORD = 'wallet/newPassword';

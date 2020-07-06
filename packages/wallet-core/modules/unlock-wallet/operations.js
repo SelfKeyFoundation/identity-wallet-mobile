@@ -59,7 +59,6 @@ const restoreAccessOperation = (mnemonic, walletAddress) => async (dispatch, get
   navigate(Routes.WALLET_NEW_PASSWORD);
 };
 
-
 /**
  * Unlock the default wallet
  *
@@ -73,8 +72,18 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
   try {
     if (biometrics) {
       vault = await unlockVaultWithBiometrics(wallet.vaultId);
+      System.getTracker().trackEvent({
+        category: `unlockWallet/biometricUnlock`,
+        action: 'success',
+        level: 'machine'
+      });
     } else {
       vault = await unlockVault(wallet.vaultId, password);
+      System.getTracker().trackEvent({
+        category: `unlockWallet/unlock`,
+        action: 'success',
+        level: 'machine'
+      });
     }
   } catch (err) {
     if (biometrics) {
@@ -85,13 +94,6 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
   }
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
-
-  System.getTracker().trackEvent({
-    category: `unlockWallet/unlock`,
-    action: 'success',
-    level: 'machine'
-  });
-
   await navigate(Routes.APP_DASHBOARD);
 };
 

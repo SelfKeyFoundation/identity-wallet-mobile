@@ -7,6 +7,7 @@ import ConfirmMnemonicScreen from '../../screens/ConfirmMnemonicScreen';
 import SetupCompleteScreen from '../../screens/SetupCompleteScreen';
 import ImportWalletBackupScreen from '../../screens/ImportWalletBackupScreen';
 import ImportFromDesktopScreen from '../../screens/ImportFromDesktopScreen';
+import ImportFromSeedScreen from '../../screens/ImportFromSeedScreen';
 
 import { stackNavigatorConfig } from '../configs';
 
@@ -18,4 +19,5 @@ export const createWalletFlow = createStackNavigator({
   [Routes.CREATE_WALLET_SETUP_COMPLETE]: SetupCompleteScreen,
   [Routes.CREATE_WALLET_IMPORT_BACKUP]: ImportWalletBackupScreen,
   [Routes.CREATE_WALLET_IMPORT_FROM_DESKTOP]: ImportFromDesktopScreen,
+  [Routes.CREATE_WALLET_IMPORT_FROM_SEED]: ImportFromSeedScreen,
 }, stackNavigatorConfig);

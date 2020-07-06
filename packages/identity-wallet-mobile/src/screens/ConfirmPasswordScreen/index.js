@@ -1,34 +1,44 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmPassword } from './ConfirmPassword';
 import { useConfirmPasswordController } from './useConfirmPasswordController';
 import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+// import { WalletTracker } from '../../WalletTracker';
+import { Modal, Paragraph } from '@selfkey/mobile-ui';
+import ducks from '@selfkey/wallet-core/modules';
 
-import modules from '@selfkey/wallet-core/modules';
-
-const { operations, selectors } = modules.createWallet;
+const { operations, selectors } = ducks.createWallet;
 
 function ConfirmPasswordContainer(props) {
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
   const password = useSelector(selectors.getPassword);
-
+  const [values, setValues] = useState();
+  // const mnemonic = useSelector(selectors.getMnemonicPhrase);
+  // const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
+  // const [showBiometricsModal, setShowBiometricsModal] = useState(false);
   const controller = useConfirmPasswordController({
     password,
-    onSubmit: form => dispatch(
-      operations.submitPasswordConfirmationOperation(form)
-    ),
+    onSubmit: form => {
+      setLoading(true);
+      dispatch(operations.submitPasswordConfirmationOperation(form))
+        .finally(() => setLoading(false));
+    },
   });
 
   const handleBack = useCallback(() => navigate(Routes.CREATE_WALLET_PASSWORD), []);
 
   return (
-    <ConfirmPassword
-      onChange={controller.handleChange}
-      onSubmit={controller.handleSubmit}
-      values={controller.values}
-      errors={controller.errors}
-      onBack={handleBack}
-    />
+    <React.Fragment>
+      <ConfirmPassword
+        isLoading={isLoading}
+        onChange={controller.handleChange}
+        onSubmit={controller.handleSubmit}
+        values={controller.values}
+        errors={controller.errors}
+        onBack={handleBack}
+      />
+    </React.Fragment>
   );
 }
 

@@ -92,7 +92,7 @@ async function loadWalletTokens(wallet, checkBalance) {
           try {
             balance = await getTokenBalance(token.address, wallet.address);
             await WalletTokenModel.getInstance().updateById(walletToken.id, {
-              balance,
+              balance: balance.toString(),
             });
           } catch(err) {
             console.error(err);
@@ -223,6 +223,7 @@ async function updateWalletLastUnlock(wallet) {
     lastUnlockDate: wallet.lastUnlockDate,
   });
 }
+
 /**
  * 
  * Load wallet
@@ -234,18 +235,26 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
     privateKey = vault.getETHWalletKeys(0).privateKey;
   }
 
-  await updateWalletLastUnlock(wallet);
+  async function loadIt() {
+    await updateWalletLastUnlock(wallet);
+    wallet = await addTop20Tokens(wallet);
+    await loadWalletTokens(wallet);
+    await dispatch(walletActions.setWallet(wallet));
+    dispatch(refreshWalletOperation());
+    dispatch(ducks.createWallet.operations.setMnemonicPhrase(null));
+    dispatch(ducks.createWallet.operations.setPassword(null));
+    dispatch(ducks.createWallet.operations.setConfirmationMnemonic([]));
+    await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
+    await dispatch(ducks.identity.operations.unlockIdentityOperation());
+  }
 
-  unlockWalletWithPrivateKey(privateKey)
+  setTimeout(() => {
+    unlockWalletWithPrivateKey(privateKey);
+    loadIt();
+  }, 200);
 
-  wallet = await addTop20Tokens(wallet);
-
-  await loadWalletTokens(wallet);
+  await loadWalletTokens(wallet, false);
   await dispatch(walletActions.setWallet(wallet));
-  await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
-  await dispatch(ducks.identity.operations.unlockIdentityOperation());
-
-  dispatch(refreshWalletOperation());
 };
 
 /**
@@ -418,15 +427,13 @@ const removeWalletOperation = () => async (dispatch, getState) => {
 const setBiometricsEnabledOperation = (enabled) => async (dispatch, getState) => {
   const { wallet } = getState();
 
-  debugger;
-
   await WalletModel.getInstance().updateByAddress(wallet.address, {
     biometricsEnabled: enabled,
   });
 
   System.getTracker().trackEvent({
     category: `wallet/setBiometricsEnabled`,
-    action: 'false',
+    action: enabled,
     level: 'app'
   });
 

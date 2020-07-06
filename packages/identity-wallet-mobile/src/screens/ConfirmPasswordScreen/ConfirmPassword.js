@@ -55,7 +55,6 @@ const PageTitle = styled(H3)`
 export function ConfirmPassword(props: ConfirmPasswordProps) {
   const theme = useContext(ThemeContext);
   const passwordErrors = props.errors.confirmPassword || [];
-
   const handlePasswordChange = useCallback((value = '') => {
     const cleanedValue = value.replace(/[ \n]/g, '');
     props.onChange('confirmPassword')(cleanedValue);
@@ -138,6 +137,7 @@ export function ConfirmPassword(props: ConfirmPasswordProps) {
             <Col>
               <Button
                 onPress={handleSubmit}
+                isLoading={props.isLoading}
                 type="full-primary"
               >
                 Confirm Password

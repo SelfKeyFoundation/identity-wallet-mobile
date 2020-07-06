@@ -40,9 +40,10 @@ export async function getTop20Tokens() {
 // add top 20 tokens into already existing wallet
 export async function addTop20Tokens(wallet) {
   const tokens = await getTop20Tokens();
+  const dbWallet = WalletModel.getInstance().findByAddress(wallet.address);
+  const walletTokens = Array.from(dbWallet.tokens);
   let walletTokenId = WalletTokenModel.getInstance().generateId();
-  
-  const walletTokens = Array.from(wallet.tokens);
+  let tokenAdded = false;
 
   tokens.forEach((token) => {
     const tokenFound = walletTokens.find(t => t.tokenId === token.tokenId);
@@ -51,16 +52,29 @@ export async function addTop20Tokens(wallet) {
       return;
     }
 
+    tokenAdded = true;
+
     walletTokens.push({
+      ...token,
       id: walletTokenId++,
       balance: '0',
       balanceInFiat: 0,
       hidden: false,
-      ...token,
     });
   });
 
-  wallet.tokens = walletTokens;
+  if (!tokenAdded) {
+    return wallet;
+  }
+
+  wallet.tokens = walletTokens.map(t => {
+    const balance = t.balance !== undefined && t.balance.toString();
+
+    return {
+      ...t,
+      balance,
+    };
+  });
 
   await WalletModel.getInstance().updateById(wallet.id, wallet);
 
@@ -100,7 +114,7 @@ export async function getDefaultTokens({ addTop20 = false } = {}) {
  *
  * @param {*} params
  */
-export async function setupHDWallet({ mnemonic, password, addTop20, biometricsEnabled }) {
+export async function setupHDWallet({ mnemonic, password, addTop20 }) {
   const builder = await WalletBuilder.createFromMnemonic(mnemonic);
 
   const vault = await createVault({
@@ -126,7 +140,7 @@ export async function setupHDWallet({ mnemonic, password, addTop20, biometricsEn
     type: 'hd',
     path: path,
     tokens: await getDefaultTokens({ addTop20 }),
-    biometricsEnabled,
+    biometricsEnabled: null
   });
 
   return {
@@ -154,6 +168,7 @@ export async function setupPrivateKeyWallet({ privateKey, address, password, add
     vaultId: vault.id,
     type: 'privateKey',
     tokens: await getDefaultTokens({ addTop20 }),
+    biometricsEnabled: null
   });
 
   return {
