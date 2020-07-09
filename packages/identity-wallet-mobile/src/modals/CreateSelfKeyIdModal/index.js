@@ -44,6 +44,7 @@ const schema = Yup.object().shape({
 
 function CreateSelfKeyIdModal(props) {
   const { visible, params, onClose } = props;
+  const [isLoading, setLoading] = useState();
   const dispatch = useDispatch();
   const identity = useSelector(ducks.identity.selectors.selectIdentity);
   const formik = useFormik({
@@ -55,7 +56,12 @@ function CreateSelfKeyIdModal(props) {
     },
     validationSchema: schema,
     onSubmit: values => {
-      dispatch(ducks.identity.operations.createIndividualProfile(identity.id, values));
+      setLoading(true);
+      setTimeout(() => {
+        dispatch(ducks.identity.operations.createIndividualProfile(identity.id, values)).finally(() => {
+          setLoading(false);
+        });
+      }, 200);
     },
   });
 
@@ -146,7 +152,10 @@ function CreateSelfKeyIdModal(props) {
         </Row>
         <Row marginBottom={5}>
           <Col>
-            <Button onPress={formik.handleSubmit}>
+            <Button
+              onPress={formik.handleSubmit}
+              isLoading={isLoading}
+            >
               Create SelfKey ID
             </Button>
           </Col>

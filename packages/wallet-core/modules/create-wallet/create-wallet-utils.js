@@ -67,18 +67,19 @@ export async function addTop20Tokens(wallet) {
     return wallet;
   }
 
-  wallet.tokens = walletTokens.map(t => {
-    const balance = t.balance !== undefined && t.balance.toString();
+  const updatedWallet = {
+    tokens: walletTokens.map(t => {
+      const balance = t.balance !== undefined && t.balance.toString();
+  
+      return {
+        ...t,
+        balance,
+      };
+    })
+  };
 
-    return {
-      ...t,
-      balance,
-    };
-  });
-
-  await WalletModel.getInstance().updateById(wallet.id, wallet);
-
-  return wallet;
+  await WalletModel.getInstance().updateById(wallet.id, updatedWallet);
+  return updatedWallet;
 }
 
 export async function getDefaultTokens({ addTop20 = false } = {}) {

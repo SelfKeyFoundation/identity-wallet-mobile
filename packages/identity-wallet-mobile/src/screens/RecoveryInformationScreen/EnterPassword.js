@@ -91,7 +91,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={props.onSubmit}
+            onPress={() => props.onSubmit(false)}
             type="full-primary"
             isLoading={props.isLoading}
           >
@@ -116,7 +116,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={props.onSubmit.bind(null, true)}
+            onPress={() => props.onSubmit(true)}
             type="full-primary"
             isLoading={props.isBiometricsLoading}
             disabled={props.isLoading}
@@ -128,7 +128,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={props.onSubmit.bind(null, false)}
+            onPress={() => props.onSubmit(false)}
             type="shell-primary"
             isLoading={props.isLoading}
             disabled={props.isBiometricsLoading}
@@ -183,7 +183,7 @@ export function EnterPassword(props: RecoveryInformationProps) {
                 label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={() => props.onSubmit()}
               />
             </Col>
           </InputRow>

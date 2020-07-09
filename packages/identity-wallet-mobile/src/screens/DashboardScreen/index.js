@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dashboard } from './Dashboard';
 import TermsOfServiceScreen from '../TermsOfServiceScreen';
@@ -10,6 +10,7 @@ const { operations, selectors } = ducks.wallet;
 
 function DashboardContainer(props) {
   const [refreshing, setRefreshing] = useState(false);
+  const [showBiometricsModal, setShowBiomericsModal] = useState();
   const wallet = useSelector(selectors.getWallet);
   const dispatch = useDispatch();
   const handleRefresh = useCallback(async () => {
@@ -25,6 +26,7 @@ function DashboardContainer(props) {
       level: 'wallet'
     });
     dispatch(operations.setBiometricsEnabledOperation(false));
+    setShowBiomericsModal(false);
   };
 
   const handleBiometricsOk = () => {
@@ -34,9 +36,14 @@ function DashboardContainer(props) {
       level: 'wallet'
     });
     dispatch(operations.setBiometricsEnabledOperation(true));
+    setShowBiomericsModal(false);
   };
 
-  const showBiometricsModal = supportedBiometryType && wallet.biometricsEnabled === null;
+  useEffect(() => {
+    if (supportedBiometryType && wallet.biometricsEnabled === null) {
+      setShowBiomericsModal(true);
+    }
+  }, []);
 
   return (
     <React.Fragment>

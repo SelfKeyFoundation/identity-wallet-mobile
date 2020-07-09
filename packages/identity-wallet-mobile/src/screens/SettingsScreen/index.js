@@ -156,7 +156,7 @@ function SettingsScreenContainer(props) {
         onDocumentScanner={handleDocumentScanner}
         walletEnv={walletEnv}
         appSettings={appSettings}
-        biometricsEnabled={wallet.biometricsEnabled}
+        biometricsEnabled={!!wallet.biometricsEnabled}
         supportedBiometryType={supportedBiometryType}
       />
       <Modal

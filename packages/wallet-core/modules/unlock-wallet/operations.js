@@ -77,7 +77,7 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
         action: 'success',
         level: 'machine'
       });
-    } else {
+    } else {  
       vault = await unlockVault(wallet.vaultId, password);
       System.getTracker().trackEvent({
         category: `unlockWallet/unlock`,

@@ -36,14 +36,17 @@ function getTokenName(symbol = 'eth') {
 }
 
 async function loadWalletBalance(wallet) {
+  const updatedData = {};
   const balance = await getBalanceByAddress(wallet.address);
 
-  wallet.balance = balance;
+  updatedData.balance = balance;
 
   // persist information in the db
   await WalletModel.getInstance().updateByAddress(wallet.address, {
     balance,
   });
+
+  return updatedData;
 }
 
 const colors = [
@@ -73,8 +76,9 @@ function getPrimaryToken() {
 }
 
 async function loadWalletTokens(wallet, checkBalance) {
+  const updatedData = {};
   // Fetch tokens balance
-  wallet.tokens = await Promise.all(
+  updatedData.tokens = await Promise.all(
     wallet.tokens
       .map(async (tk, idx) => {
         const walletTokenId = tk.parsed ? tk.walletTokenId : tk.id;
@@ -121,9 +125,11 @@ async function loadWalletTokens(wallet, checkBalance) {
       })
   );
 
-  wallet.tokens = wallet.tokens.map(computeColor).filter(token => {
+  updatedData.tokens = updatedData.tokens.map(computeColor).filter(token => {
     return !token.hidden
-  })
+  });
+
+  return updatedData;
 }
 
 /**
@@ -142,31 +148,34 @@ const refreshWalletOperation = (asyncHistory) => async (dispatch, getState) => {
     console.error(err);
   }
 
+  const updateState = (updatedWallet) => {
+    dispatch(walletActions.setWallet(updatedWallet));
+  };
+
   try {
     await Promise.all([
-      loadWalletBalance(wallet),
-      loadWalletTokens(wallet, true),
+      loadWalletBalance(wallet).then(updateState),
+      loadWalletTokens(wallet, true).then(updateState),
     ]);
   } catch(err) {
     console.error(err);
   }
-
-  dispatch(walletActions.setWallet(wallet));
 };
 
 const refreshBalanceOperation =  () => async (dispatch, getState) => {
   const wallet = getState().wallet;
+  const updateState = (updatedWallet) => {
+    dispatch(walletActions.setWallet(updatedWallet));
+  };
 
   try {
     await Promise.all([
-      loadWalletBalance(wallet),
-      loadWalletTokens(wallet, true),
+      loadWalletBalance(wallet).then(updateState),
+      loadWalletTokens(wallet, true).then(updateState),
     ]);
   } catch(err) {
     console.error(err);
   }
-
-  dispatch(walletActions.setWallet(wallet));
 };
 
 const backupWalletOperation = ({ password, biometrics }) => async (dispatch, getState) => {
@@ -217,11 +226,15 @@ const getRecoveryInformationOperation = ({ password, biometrics }) => async (dis
 async function updateWalletLastUnlock(wallet) {
   const model = WalletModel.getInstance();
 
-  wallet.lastUnlockDate = new Date();
+  const lastUnlockDate = new Date();
 
   await model.updateByAddress(wallet.address, {
-    lastUnlockDate: wallet.lastUnlockDate,
+    lastUnlockDate: lastUnlockDate,
   });
+
+  return {
+    lastUnlockDate,
+  };
 }
 
 /**
@@ -235,26 +248,30 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
     privateKey = vault.getETHWalletKeys(0).privateKey;
   }
 
+  const updateState = (updatedWallet) => {
+    dispatch(walletActions.setWallet(updatedWallet));
+  };
+
   async function loadIt() {
-    await updateWalletLastUnlock(wallet);
-    wallet = await addTop20Tokens(wallet);
-    await loadWalletTokens(wallet);
-    await dispatch(walletActions.setWallet(wallet));
+    await updateWalletLastUnlock(wallet).then(updateState);
+    await addTop20Tokens(wallet).then(updateState);
+    await loadWalletTokens(wallet).then(updateState);
     dispatch(refreshWalletOperation());
-    dispatch(ducks.createWallet.operations.setMnemonicPhrase(null));
-    dispatch(ducks.createWallet.operations.setPassword(null));
-    dispatch(ducks.createWallet.operations.setConfirmationMnemonic([]));
     await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
     await dispatch(ducks.identity.operations.unlockIdentityOperation());
   }
 
   setTimeout(() => {
     unlockWalletWithPrivateKey(privateKey);
-    loadIt();
-  }, 200);
+    dispatch(ducks.createWallet.operations.setMnemonicPhrase(null));
+    dispatch(ducks.createWallet.operations.setPassword(null));
+    dispatch(ducks.createWallet.operations.setConfirmationMnemonic([]));
+    setTimeout(() => {
+      loadIt();
+    }, 1000);
+  }, 500);
 
-  await loadWalletTokens(wallet, false);
-  await dispatch(walletActions.setWallet(wallet));
+  await loadWalletTokens(wallet, false).then(updateState);
 };
 
 /**
@@ -426,6 +443,10 @@ const removeWalletOperation = () => async (dispatch, getState) => {
 
 const setBiometricsEnabledOperation = (enabled) => async (dispatch, getState) => {
   const { wallet } = getState();
+  await dispatch(walletActions.setWallet({
+    ...wallet,
+    biometricsEnabled: enabled,
+  }));
 
   await WalletModel.getInstance().updateByAddress(wallet.address, {
     biometricsEnabled: enabled,
@@ -436,11 +457,6 @@ const setBiometricsEnabledOperation = (enabled) => async (dispatch, getState) =>
     action: enabled,
     level: 'app'
   });
-
-  await dispatch(walletActions.setWallet({
-    ...wallet,
-    biometricsEnabled: enabled,
-  }));
 }
 
 export const operations = {

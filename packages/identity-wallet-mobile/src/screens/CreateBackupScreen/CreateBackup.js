@@ -103,10 +103,10 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={handleSubmit}
+            onPress={() => handleSubmit(false)}
             type="full-primary"
           >
-            I’ve written it down
+            Create Backup
           </Button>
         </Col>
       </Row>
@@ -127,7 +127,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={handleSubmit.bind(null, true)}
+            onPress={() => handleSubmit(true)}
             type="full-primary"
             isLoading={props.isBiometricsLoading}
             disabled={props.isLoading}
@@ -139,7 +139,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={handleSubmit.bind(null, false)}
+            onPress={() => handleSubmit(false)}
             type="shell-primary"
             isLoading={props.isLoading}
             disabled={props.isBiometricsLoading}
@@ -207,7 +207,7 @@ export function CreateBackup(props: CreateBackupProps) {
                 label="Password"
                 onChangeText={handlePasswordChange}
                 secureTextEntry={true}
-                onSubmitEditing={props.onSubmit}
+                onSubmitEditing={() => props.onSubmit(false)}
               />
             </Col>
           </InputRow>

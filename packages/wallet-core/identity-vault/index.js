@@ -41,6 +41,10 @@ function getBiometricsVaultId(vaultId) {
   return `biometrics.${vaultId}`;
 }
 
+export async function removeVault(address) {
+
+}
+
 /**
  * Create vault
  * - Set items in the keychain
@@ -52,6 +56,14 @@ export async function createVault(props: VaultConstructor) {
   const vaultId = createHash(props.rootPublicKey || props.address);
   const password = createHash(props.password);
   const dbKey = createHash(props.seed || props.privateKey);
+
+  try {
+    await getKeychain().removeItem(vaultId);
+  } catch(err) {}
+
+  try {
+    await getKeychain().removeItem(getBiometricsVaultId(vaultId));
+  } catch(err) {}
 
   const vaultProps = {
     id: vaultId,
