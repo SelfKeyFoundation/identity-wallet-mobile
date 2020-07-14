@@ -47,6 +47,8 @@ module.exports = (async () => {
       path.resolve(__dirname, "../blockchain"),
       path.resolve(__dirname, "../configs"),
       path.resolve(__dirname, "../wallet-core"),
+      path.resolve(__dirname, '../rjsf-native'),
+      path.resolve(__dirname, '../rjsf-core'),
       path.resolve(__dirname, "../../node_modules"),
       path.resolve(__dirname, "../mobile-ui/node_modules"),
       // path.resolve(__dirname, "./node_modules/styled-components/native"),

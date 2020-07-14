@@ -243,13 +243,16 @@ async function updateWalletLastUnlock(wallet) {
  */
 const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) => {
   let { privateKey} = vault;
-
   if (!privateKey) {
     privateKey = vault.getETHWalletKeys(0).privateKey;
   }
 
   const updateState = (updatedWallet) => {
     dispatch(walletActions.setWallet(updatedWallet));
+    wallet = {
+      ...wallet,
+      ...updatedWallet,
+    }
   };
 
   async function loadIt() {
@@ -270,6 +273,8 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
       loadIt();
     }, 1000);
   }, 500);
+
+  dispatch(walletActions.setWallet(wallet));
 
   await loadWalletTokens(wallet, false).then(updateState);
 };

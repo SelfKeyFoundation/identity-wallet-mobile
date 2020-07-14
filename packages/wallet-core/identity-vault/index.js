@@ -41,10 +41,6 @@ function getBiometricsVaultId(vaultId) {
   return `biometrics.${vaultId}`;
 }
 
-export async function removeVault(address) {
-
-}
-
 /**
  * Create vault
  * - Set items in the keychain

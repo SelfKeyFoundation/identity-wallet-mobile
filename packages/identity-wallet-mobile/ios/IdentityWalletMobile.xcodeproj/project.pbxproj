@@ -918,7 +918,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6C99KF3727;
 				HEADER_SEARCH_PATHS = (
@@ -928,7 +928,7 @@
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3.12;
+				MARKETING_VERSION = 0.3.13;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -953,7 +953,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6C99KF3727;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -962,7 +962,7 @@
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3.12;
+				MARKETING_VERSION = 0.3.13;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

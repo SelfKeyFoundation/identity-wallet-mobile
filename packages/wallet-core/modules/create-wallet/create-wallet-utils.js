@@ -78,7 +78,8 @@ export async function addTop20Tokens(wallet) {
     })
   };
 
-  await WalletModel.getInstance().updateById(wallet.id, updatedWallet);
+  await WalletModel.getInstance().updateById(wallet.address, updatedWallet);
+
   return updatedWallet;
 }
 

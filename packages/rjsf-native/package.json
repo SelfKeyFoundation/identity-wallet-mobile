@@ -1,0 +1,44 @@
+{
+  "name": "@selfkey/rjsf-native",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest",
+    "lint:style": "stylelint './**/*.js'"
+  },
+  "dependencies": {
+    "react": "16.9.0",
+    "@selfkey/rjsf-core": "2.2.1",
+    "@selfkey/mobile-ui": "1.0.0",
+    "styled-components": "4.3.2",
+    "react-native": "0.60.5"
+  },
+  "peerDependencies": {
+    "react": "16.9.0",
+    "react-native": "0.60.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.5.5",
+    "@babel/runtime": "7.5.5",
+    "@selfkey/eslint-config": "1.0.0",
+    "babel-jest": "24.8.0",
+    "babel-loader": "8.0.6",
+    "babel-plugin-styled-components": "1.10.6",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "eslint": "6.1.0",
+    "jest": "24.8.0",
+    "jest-enzyme": "7.1.0",
+    "jest-styled-components": "6.3.3",
+    "metro-react-native-babel-preset": "0.54.1",
+    "react-dom": "16.9.0",
+    "react-test-renderer": "16.9.0",
+    "stylelint": "10.1.0",
+    "stylelint-config-recommended": "2.2.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-processor-styled-components": "1.8.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

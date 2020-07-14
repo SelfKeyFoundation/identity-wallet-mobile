@@ -14,3 +14,5 @@ export * from './grid';
 export { Alert } from './alert';
 export * from './modal';
 export * from './format';
+export { View } from 'react-native';
+export * from './forms';
