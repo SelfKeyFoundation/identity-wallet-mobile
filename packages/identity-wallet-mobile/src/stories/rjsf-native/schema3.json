@@ -1,0 +1,53 @@
+{
+	"$id": "http://platform.selfkey.org/schema/attribute/nationality.json",
+	"$schema": "http://platform.selfkey.org/schema/attribute/nationality.json",
+	"description": "Please specify your current nationality.",
+	"entityType": ["individual"],
+	"identityAttribute": true,
+	"identityAttributeRepository": "http://platform.selfkey.org/repository.json",
+	"properties": {
+		"image": {
+      "$id": "http://platform.selfkey.org/schema/file/image.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "format": "file",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "mimeType": {
+          "enum": ["image/jpeg", "image/png", "application/pdf"],
+          "type": "string"
+        },
+        "size": {
+          "maximum": 50000000,
+          "type": "integer"
+        }
+      },
+      "required": ["mimeType", "size", "content"],
+      "title": "Image",
+      "type": "object"
+    },
+    "images": {
+			"$id": "http://platform.selfkey.org/schema/file/multi-image.json",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"items": {
+				"$id": "http://platform.selfkey.org/schema/file/image.json",
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"format": "file",
+				"properties": {
+					"content": { "type": "string" },
+					"mimeType": { "enum": ["image/jpeg", "image/png", "application/pdf"], "type": "string" },
+					"size": { "maximum": 50000000, "type": "integer" }
+				},
+				"required": ["mimeType", "size", "content"],
+				"title": "Image",
+				"type": "object"
+			},
+			"title": "Multiple Images",
+			"type": "array"
+		}
+	},
+	"required": [],
+	"title": "Nationality",
+	"type": "object"
+}

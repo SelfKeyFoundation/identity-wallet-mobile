@@ -506,6 +506,7 @@ class ArrayField extends Component {
         });
       }),
       className: `field field-array field-array-of-${itemsSchema.type}`,
+      onChange: this.props.onChange,
       DescriptionField,
       disabled,
       idSchema,

@@ -8,10 +8,13 @@
     "lint:style": "stylelint './**/*.js'"
   },
   "dependencies": {
+    "dateformat": "^3.0.3",
     "react": "16.9.0",
-    "styled-components": "4.3.2",
     "react-native": "0.60.5",
-    "react-native-device-info": "^5.5.3"
+    "react-native-datepicker": "^1.7.2",
+    "react-native-device-info": "^5.5.3",
+    "react-native-picker-select": "^6.3.4",
+    "styled-components": "4.3.2"
   },
   "peerDependencies": {
     "react": "16.9.0",
@@ -20,9 +23,6 @@
     "react-native-vector-icons": "6.6.0"
   },
   "devDependencies": {
-    "react-native-svg": "9.6.4",
-    "react-native-paper": "2.16.0",
-    "react-native-vector-icons": "6.6.0",
     "@babel/core": "7.5.5",
     "@babel/runtime": "7.5.5",
     "@selfkey/eslint-config": "1.0.0",
@@ -37,6 +37,9 @@
     "jest-styled-components": "6.3.3",
     "metro-react-native-babel-preset": "0.54.1",
     "react-dom": "16.9.0",
+    "react-native-paper": "2.16.0",
+    "react-native-svg": "9.6.4",
+    "react-native-vector-icons": "6.6.0",
     "react-test-renderer": "16.9.0",
     "stylelint": "10.1.0",
     "stylelint-config-recommended": "2.2.0",

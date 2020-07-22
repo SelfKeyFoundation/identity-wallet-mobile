@@ -12,7 +12,8 @@
     "@selfkey/rjsf-core": "2.2.1",
     "@selfkey/mobile-ui": "1.0.0",
     "styled-components": "4.3.2",
-    "react-native": "0.60.5"
+    "react-native": "0.60.5",
+    "react-native-document-picker": "^3.2.4"
   },
   "peerDependencies": {
     "react": "16.9.0",

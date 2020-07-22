@@ -3,6 +3,8 @@ import { utils } from '@selfkey/rjsf-core';
 import { ArrayFieldTemplateProps, IdSchema } from '@selfkey/rjsf-core';
 import AddButton from '../AddButton/AddButton';
 import IconButton from '../IconButton/IconButton';
+import FileWidget from '../FileWidget/FileWidget';
+
 import {
   Grid,
   Col,
@@ -18,7 +20,11 @@ const {
 
 const ArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   const { schema, registry = getDefaultRegistry() } = props;
-  
+
+  if (props.uiSchema['ui:hidden'] === true) {
+    return null;
+  }
+
   // TODO: update types so we don't have to cast registry 
   if (isMultiSelect(schema, (registry).rootSchema)) {
     return <DefaultFixedArrayFieldTemplate {...props} />;
@@ -168,6 +174,16 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 };
 
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
+  debugger;
+  const items = props.schema.items;
+
+  // check
+  if (items && items.format === 'file') {
+    return (
+      <FileWidget {...props} multiple />
+    );
+  }
+
   return (
     <Row elevation={2}>
       <Col p={2}>

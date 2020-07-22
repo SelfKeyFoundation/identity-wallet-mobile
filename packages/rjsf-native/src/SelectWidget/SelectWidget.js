@@ -8,6 +8,7 @@ import {
   Col,
   Row,
   Explanatory,
+  SelectBox
 } from '@selfkey/mobile-ui';
 
 
@@ -65,24 +66,19 @@ const SelectWidget = ({
   rawErrors = [],
 }: WidgetProps) => {
   const { enumOptions, enumDisabled } = options;
-  
-  const emptyValue = multiple ? [] : "";
-  
-  const _onChange = ({
-    target: { value },
-  }: React.ChangeEvent<{ name?: string; value: unknown }>) =>
-  onChange(processValue(schema, value));
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
-  onBlur(id, processValue(schema, value));
-  const _onFocus = ({
-    target: { value },
-  }: React.FocusEvent<HTMLInputElement>) =>
-  onFocus(id, processValue(schema, value));
-  
+  const emptyValue = multiple ? [] : "";  
+  const _onChange = (value) => onChange(processValue(schema, value));
+
   return (
-    <Col>
-      <Explanatory>Select Widget</Explanatory>
-    </Col>
+    <SelectBox
+      label={label || schema.title}
+      onValueChange={_onChange}
+      selectedValue={value}
+      required={required}
+      disabled={disabled || readonly}
+      placeholder="Select a token"
+      items={enumOptions}
+    />
     // <TextField
     // id={id}
     // label={label || schema.title}

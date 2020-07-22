@@ -4,6 +4,8 @@ import React from 'react';
 // import { makeStyles } from '@material-ui/styles';
 
 import { ObjectFieldTemplateProps } from '@selfkey/rjsf-core';
+import FileWidget from '../FileWidget/FileWidget';
+
 import {
   ScreenContainer,
   Modal,
@@ -23,16 +25,24 @@ import {
   FormattedNumber,
 } from '@selfkey/mobile-ui';
 
-const ObjectFieldTemplate = ({
-  DescriptionField,
-  description,
-  TitleField,
-  title,
-  properties,
-  required,
-  uiSchema,
-  idSchema,
-}: ObjectFieldTemplateProps) => {
+const ObjectFieldTemplate = (props) => {
+  const {
+    DescriptionField,
+    description,
+    TitleField,
+    title,
+    properties,
+    required,
+    uiSchema,
+    idSchema,
+    schema
+  } = props;
+
+  if (schema.format === 'file') {
+    return (
+      <FileWidget {...props} />
+    )
+  }
 
   return (
     <React.Fragment>

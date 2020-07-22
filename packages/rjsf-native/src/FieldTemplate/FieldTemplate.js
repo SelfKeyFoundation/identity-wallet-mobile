@@ -39,12 +39,14 @@ const FieldTemplate = ({
   return (
     // <FormLabel>Field Template</FormLabel>
     <FormControl>
-      {children}  
-      {displayLabel && rawDescription ? (
-        <ExplanatorySmall variant="caption" color="textSecondary">
-          {rawDescription}
-        </ExplanatorySmall>
-      ) : null}
+      {children}
+      {
+        // displayLabel && rawDescription ? (
+        //   <ExplanatorySmall variant="caption" color="textSecondary">
+        //     {rawDescription}
+        //   </ExplanatorySmall>
+        // ) : null
+      }
       {
         //   {rawErrors.length > 0 && (
         //     <List dense={true} disablePadding={true}>

@@ -1,0 +1,107 @@
+{
+  "$id": "http://platform.selfkey.org/schema/attribute/passport.json",
+  "$schema": "http://platform.selfkey.org/schema/identity-attribute.json",
+  "description": "Please provide an image of your passport. It must still be valid.",
+  "entityType": ["individual"],
+  "identityAttribute": true,
+  "identityAttributeRepository": "http://platform.selfkey.org/repository.json",
+  "properties": {
+    "expires": {
+      "$id": "http://platform.selfkey.org/schema/misc/expiry-date.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "format": "date",
+      "title": "Expiry Date",
+      "type": "string"
+    },
+    "extra": {
+      "$id": "http://platform.selfkey.org/schema/misc/extra-images.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "description": "Please add any extra images that are relevant",
+      "items": {
+        "$id": "http://platform.selfkey.org/schema/file/image.json",
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "format": "file",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "mimeType": {
+            "enum": ["image/jpeg", "image/png", "application/pdf"],
+            "type": "string"
+          },
+          "size": {
+            "maximum": 50000000,
+            "type": "integer"
+          }
+        },
+        "required": ["mimeType", "size", "content"],
+        "title": "Image",
+        "type": "object"
+      },
+      "title": "Extra Images",
+      "type": "array"
+    },
+    "image": {
+      "$id": "http://platform.selfkey.org/schema/file/image.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "format": "file",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "mimeType": {
+          "enum": ["image/jpeg", "image/png", "application/pdf"],
+          "type": "string"
+        },
+        "size": {
+          "maximum": 50000000,
+          "type": "integer"
+        }
+      },
+      "required": ["mimeType", "size", "content"],
+      "title": "Image",
+      "type": "object"
+    },
+    "issued": {
+      "$id": "http://platform.selfkey.org/schema/misc/issue-date.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "format": "date",
+      "title": "Issue Date",
+      "type": "string"
+    },
+    "selfie": {
+      "$id": "http://platform.selfkey.org/schema/misc/selfie.json",
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "description": "Take a selfie, making sure the image is clear, and your face isn't covered by any items, such as glasses.",
+      "properties": {
+        "image": {
+          "$id": "http://platform.selfkey.org/schema/file/image.json",
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "format": "file",
+          "properties": {
+            "content": {
+              "type": "string"
+            },
+            "mimeType": {
+              "enum": ["image/jpeg", "image/png", "application/pdf"],
+              "type": "string"
+            },
+            "size": {
+              "maximum": 50000000,
+              "type": "integer"
+            }
+          },
+          "required": ["mimeType", "size", "content"],
+          "title": "Image",
+          "type": "object"
+        }
+      },
+      "required": ["image"],
+      "title": "Selfie",
+      "type": "object"
+    }
+  },
+  "required": ["image", "issued", "expires", "selfie"],
+  "title": "Passport",
+  "type": "object"
+}

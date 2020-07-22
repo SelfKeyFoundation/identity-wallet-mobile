@@ -23,6 +23,7 @@ import {
   TextInput,
   H3,
   FormattedNumber,
+  DatePicker
 } from '@selfkey/mobile-ui';
 
 import { WidgetProps, utils } from "@selfkey/rjsf-core";
@@ -60,6 +61,19 @@ const TextWidget = ({
     /* TODO: , rootSchema */
   );
 
+
+  if (schema.format === 'date') {
+    return (
+      <DatePicker
+        label={displayLabel ? label || schema.title : false}
+        required={required}
+        disabled={disabled || readonly}
+        value={value}
+        onChange={_onChange}
+      />
+    )
+  }
+
   return (
     <TextInput
       label={displayLabel ? label || schema.title : false}
@@ -70,6 +84,7 @@ const TextWidget = ({
       onChangeText={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
+      placeholder={schema.description}
     />
   );
 };
