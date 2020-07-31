@@ -174,7 +174,6 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 };
 
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
-  debugger;
   const items = props.schema.items;
 
   // check
