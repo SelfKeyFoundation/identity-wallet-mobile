@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, ScrollView, RefreshControl, View, TouchableWithoutFeedback } from 'react-native';
+import { SafeAreaView, ScrollView, RefreshControl, View, TouchableWithoutFeedback, Linking, Text } from 'react-native';
 import { DocumentsEmptyAlert } from '../../components';
 import {
   ScreenContainer,
@@ -12,10 +12,14 @@ import {
   Explanatory,
   TableText,
   SKIcon,
+  ButtonLink,
   IconAddImage
 } from '@selfkey/mobile-ui';
+import FileViewer from "react-native-file-viewer";
+import fs from 'react-native-fs';
 import { WalletTracker } from '../../WalletTracker';
 import { FIRST_NAME_ATTRIBUTE, EMAIL_ATTRIBUTE, LAST_NAME_ATTRIBUTE } from '@selfkey/wallet-core/modules/identity/constants';
+import { setFileViewer } from '@selfkey/rjsf-native/src/RNForm';
 
 const TRACKER_PAGE = 'dashboard';
 
@@ -32,6 +36,7 @@ const HeaderTitle = styled.Text`
 const Container = styled.ScrollView`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
+  padding-bottom: 50px;
 `;
 
 const RoundedImage = styled.Image`
@@ -175,6 +180,16 @@ const Backdrop = props => {
   )
 }
 
+setFileViewer(path => {
+  let filePath = path;
+
+  if (!(/(file|content):\/\//i).test(path)) {
+    filePath = `${fs.DocumentDirectoryPath}/${path}`;
+  }
+
+  FileViewer.open(filePath);
+});
+
 const OptionsMenuAnchor = (props) => {
   const { id } = props;
   const viewRef = useRef();
@@ -252,15 +267,76 @@ function getAttributeValue(attributes, attributeUrl) {
   return attr && attr.data.value;
 }
 
+function renderAttrValue(attr) {
+  const value = attr.data.value;
+  const schema = attr.type.content;
+  let stringValue = value.toString();
+
+  if (schema.type === 'object') {
+    stringValue = Object.keys(value).map((key) => {
+      const item = value[key];
+      const propSchema = schema.properties[key];
+
+      if (propSchema.enum) {
+        const enumIndex = propSchema.enum.findIndex((eItem) => item === eItem);
+        return propSchema.enumNames[enumIndex];
+      }
+
+      return item;
+    }).join(', ');
+  }
+
+  return stringValue;
+}
+
+function getFiles(value, files = []) {
+	if (typeof value === 'array') {
+		return Promise.all(value.map(v => getFiles(v, files)));
+	}
+
+	if (typeof value === 'object') {
+    if (value.mimeType) {
+      files.push(value);
+    }
+
+    Object.keys(value).map(async (key) => {
+			getFiles(value[key], files);
+		})
+	}
+
+	return files;
+}
+
+function renderDocumentValue(attr) {
+  const value = attr.data.value;
+  let images = getFiles(value);
+
+  if (images) {
+    if (images.length == 1) {
+      const image = images[0];
+      return (
+        <TouchableWithoutFeedback onPress={() => FileViewer.open(`${fs.DocumentDirectoryPath}/${image.content}`)}>
+          <Text>{ image.fileName }</Text>
+        </TouchableWithoutFeedback>
+      );
+    }
+
+    return `${images.length} files`;
+  }
+
+  return '1 file';
+}
+
 export function MyProfile(props) {
   const { profile } = props;
   const { allAttributes = [], basicAttributes = [], identity = {} } = profile;
   const [currentOptionsMenu, setCurrentOptionsMenu] = useState();
   const [scrollY, setScrollY] = useState(0);
 
-  const handleOptions = ({ id, x, y }) => {
+  const handleOptions = (isDocument) => ({ id, x, y }) => {
     setCurrentOptionsMenu({
       id,
+      isDocument,
       x,
       y: y + scrollY
     });
@@ -271,14 +347,21 @@ export function MyProfile(props) {
   }
 
   const handleEdit = () => {
-    const { id } = currentOptionsMenu;
+    const { id, isDocument } = currentOptionsMenu;
     const attribute = profile.allAttributes.find(attr => attr.id === id);
-    props.onAttributeEdit(attribute);
+
+    if (isDocument) {
+      props.onEditDocument(attribute);
+    } else {
+      props.onEditAttribute(attribute);
+    }
+
     handleCloseMenu();
   }
 
   const handleDelete = () => {
     const { id } = currentOptionsMenu;
+    props.onDeleteAttribute(id);
     handleCloseMenu();
   }
 
@@ -319,23 +402,28 @@ export function MyProfile(props) {
           <Row>
             <Col>
               <SectionTitle>Informations</SectionTitle>
-              <SectionDescription>{profile.basicAttributes.length} entries</SectionDescription>
+              <SectionDescription>{profile.infoAttributes.length} entries</SectionDescription>
+            </Col>
+            <Col autoWidth>
+              <ButtonLink iconName="icon-add" onPress={props.onAddAttribute}>
+                Add New
+              </ButtonLink>
             </Col>
           </Row>
         </SectionHeader>
         <Grid>
           {
-            profile.basicAttributes.map((attribute) => {
+            profile.infoAttributes.map((attribute) => {
               return (
                 <AttrRow>
                   <Col>
                     <AttrLabel>{attribute.type.content.title}</AttrLabel>
-                    <AttrValue>{attribute.data.value}</AttrValue>
+                    <AttrValue>{renderAttrValue(attribute)}</AttrValue>
                   </Col>
                   <Col autoWidth>
                     <OptionsMenuAnchor
                       id={attribute.id}
-                      onPress={handleOptions}
+                      onPress={handleOptions()}
                     />
                   </Col>
                 </AttrRow>
@@ -343,20 +431,48 @@ export function MyProfile(props) {
             })
           }
         </Grid>
+        <SectionHeader>
+          <Row>
+            <Col>
+              <SectionTitle>Documents</SectionTitle>
+              <SectionDescription>{profile.documentAttributes.length} documents</SectionDescription>
+            </Col>
+            <Col autoWidth>
+              <ButtonLink iconName="icon-add" onPress={props.onAddDocument}>
+                Add New
+              </ButtonLink>
+            </Col>
+          </Row>
+        </SectionHeader>
         {
-          // <SectionHeader>
-          //   <Row>
-          //     <Col>
-          //       <SectionTitle>Documents</SectionTitle>
-          //       <SectionDescription>0 documents</SectionDescription>
-          //     </Col>
-          //   </Row>
-          // </SectionHeader>
-          // <EmptyItemsConatiner>
-          //   <DocumentsEmptyAlert>
-          //     Hit the “Add new” button above to add documents relevant to your identity, needed for marketplace KYC processes.
-          //   </DocumentsEmptyAlert>
-          // </EmptyItemsConatiner>
+          !profile.documentAttributes.length ? (
+            <EmptyItemsConatiner>
+              <DocumentsEmptyAlert>
+                Hit the “Add New” button above to add documents relevant to your identity, needed for marketplace KYC processes.
+              </DocumentsEmptyAlert>
+            </EmptyItemsConatiner>
+          ) : (
+            <Grid marginBottom={100}>
+              {
+                profile.documentAttributes.map((attribute) => {
+                  return (
+                    <AttrRow>
+                      <Col>
+                        <AttrLabel>{attribute.type.content.title}</AttrLabel>
+                        <AttrValue>{renderDocumentValue(attribute)}</AttrValue>
+                      </Col>
+                      <Col autoWidth>
+                        <OptionsMenuAnchor
+                          id={attribute.id}
+                          onPress={handleOptions(true)}
+                        />
+                      </Col>
+                    </AttrRow>
+                  )
+                })
+              }
+            </Grid>
+          )
         }
         { currentOptionsMenu ? <Backdrop onPress={handleCloseMenu} /> : null }
         { currentOptionsMenu ? (

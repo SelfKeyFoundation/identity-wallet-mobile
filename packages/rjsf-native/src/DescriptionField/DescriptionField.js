@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { FieldProps } from '@selfkey/rjsf-core';
-
+import { Text } from 'react-native';
+import styled from 'styled-components/native';
 // import { makeStyles } from '@material-ui/styles';
 // import Typography from '@material-ui/core/Typography';
 import {
@@ -19,7 +20,6 @@ import {
   Link,
   DefinitionTitle,
   ExplanatorySmall,
-  FormLabel,
   TextInput,
   H3,
   FormattedNumber,
@@ -29,15 +29,17 @@ import {
 //     marginTop: 5,
 //   },
 // });
+export const FormLabel = styled.Text`
+  color: ${props => props.theme.colors.typography};
+  font-size: 13px;
+  font-family: ${props => props.theme.fonts.regular};
+`;
+
 
 const DescriptionField = ({ description }: FieldProps) => {
   if (description) {
-    // const classes = useStyles();
-
     return (
-      <FormLabel>
-        {description}
-      </FormLabel>
+      <FormLabel>{ description }</FormLabel>
     );
   }
 

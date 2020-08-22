@@ -167,13 +167,13 @@ const updateIdAttributeReducer = (state, action) => {
 // 	return { ...state, documentsById, documents };
 // };
 
-// const deleteIdAttributeReducer = (state, action) => {
-// 	if (!state.attributes.includes(action.payload)) return state;
-// 	let attributes = state.attributes.filter(id => id !== action.payload);
-// 	let attributesById = { ...state.attributesById };
-// 	delete attributesById[action.payload];
-// 	return { ...state, attributesById, attributes };
-// };
+const deleteIdAttributeReducer = (state, action) => {
+	if (!state.attributes.includes(action.payload)) return state;
+	let attributes = state.attributes.filter(id => id !== action.payload);
+	let attributesById = { ...state.attributesById };
+	delete attributesById[action.payload];
+	return { ...state, attributesById, attributes };
+};
 
 const setIdentitiesReducer = (state, action) => {
 	const identities = (action.payload || []).map(idnt => idnt.id);
@@ -229,7 +229,7 @@ export const identityReducers = {
 	updateIdAttributeReducer,
 	// updateDocumentReducer,
 	// deleteDocumentReducer,
-	// deleteIdAttributeReducer,
+	deleteIdAttributeReducer,
 	setIdentitiesReducer,
 	addIdentityReducer,
 	updateIdentityReducer,
@@ -255,7 +255,7 @@ const reducersMap = {
 	[types.IDENTITY_ATTRIBUTE_UPDATE]: identityReducers.updateIdAttributeReducer,
 	// [types.]: identityReducers.updateDocumentReducer,
 	// [types.]: identityReducers.deleteDocumentReducer,
-	// [types.]: identityReducers.deleteIdAttributeReducer,
+	[types.IDENTITY_ATTRIBUTE_DELETE]: identityReducers.deleteIdAttributeReducer,
 	[types.IDENTITIES_SET]: identityReducers.setIdentitiesReducer,
 	[types.IDENTITY_ADD]: identityReducers.addIdentityReducer,
 	[types.IDENTITY_UPDATE]: identityReducers.updateIdentityReducer,

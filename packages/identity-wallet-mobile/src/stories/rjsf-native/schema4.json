@@ -1,0 +1,25 @@
+{
+	"description": "Please provide an image of your passport. It must still be valid.",
+	"entityType": ["individual"],
+	"identityAttribute": true,
+	"identityAttributeRepository": "http://platform.selfkey.org/repository.json",
+	"properties": {
+		"expires": {
+			"format": "date",
+			"title": "Expiry Date",
+			"type": "string"
+		},
+		"email": {
+			"format": "email",
+			"title": "Email",
+			"type": "string"
+		},
+		"name": {
+			"title": "Name",
+			"type": "string"
+		}
+	},
+	"required": ["email", "expires", "name"],
+	"title": "Passport",
+	"type": "object"
+}

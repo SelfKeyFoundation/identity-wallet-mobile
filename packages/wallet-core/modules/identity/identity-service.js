@@ -46,7 +46,6 @@ export class IdentityService {
 
 	static createIdAttribute(attribute) {
 		const model = IdAttributeModel.getInstance();
-
 		// let documents = (attribute.documents || []).map(doc => {
 		// 	doc = { ...doc };
 		// 	if (doc.content) {
@@ -88,9 +87,9 @@ export class IdentityService {
 		return IdAttributeModel.getInstance().findAllByIdentityId(identityId)
 	}
 
-	// removeIdAttribute(attributeId) {
-	// 	return IdAttribute.delete(attributeId);
-	// }
+	static removeIdAttribute(attributeId) {
+		return IdAttributeModel.getInstance().removeById(attributeId);
+	}
 
 	static editIdAttribute(attribute) {
 		if (attribute.documents) {

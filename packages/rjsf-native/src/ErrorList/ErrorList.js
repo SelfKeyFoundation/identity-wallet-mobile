@@ -20,9 +20,10 @@ import {
 import { ErrorListProps } from '@selfkey/rjsf-core';
 
 const ErrorList = ({ errors }: ErrorListProps) => (
-  <Col>
-    <Explanatory>Error list</Explanatory>
-  </Col>
+  // <Col>
+  //   <Explanatory>Error list</Explanatory>
+  // </Col>
+  null
   // <Paper elevation={2}>
   //   <Box mb={2} p={2}>
   //     <Typography variant="h6">

@@ -13,6 +13,7 @@
     "react-native": "0.60.5",
     "react-native-datepicker": "^1.7.2",
     "react-native-device-info": "^5.5.3",
+    "react-native-dark-mode": "0.2.2",
     "react-native-picker-select": "^6.3.4",
     "styled-components": "4.3.2"
   },

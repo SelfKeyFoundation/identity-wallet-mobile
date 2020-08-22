@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -7,6 +7,7 @@ import { RNForm } from '@selfkey/rjsf-native';
 import { SelectBox } from '../../components';
 import ducks from '@selfkey/wallet-core/modules';
 import { containsFile, removeMeta } from '@selfkey/wallet-core/modules/identity/json-schema-utils';
+
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
 import {
@@ -39,30 +40,19 @@ const LabelGrid = styled(Grid)`
   border-bottom-width: 1px;
 `;
 
+
 const requiredMessage = 'This field is required';
-
-const schemas = {
-  string: Yup.object().shape({
-    value: Yup.string().required(requiredMessage),
-  }),
-  email: Yup.object().shape({
-    value: Yup.string().required(requiredMessage).email('Email provided is invalid'),
-  }),
-}
-
-const emailSchema = Yup.object().shape({
-  value: Yup.string().required(requiredMessage).email('Email provided is invalid'),
-});
+;
 
 function prepareSchema(attribute) {
-  return removeMeta(attribute.content);
+  const content = removeMeta(attribute.content);
+  delete content.title;
+  return content;
 }
 
-const formActions = {};
-let currentFormData;
 let currentLabel;
 
-export function AttributeModal(props) {
+export function DocumentModal(props) {
   const { visible, onClose, profile } = props;
   const isEditMode = !!props.attribute;
   const dispatch = useDispatch();
@@ -72,21 +62,23 @@ export function AttributeModal(props) {
   const [label, setLabel] = useState(isEditMode && props.attribute.name);
   const [labelError, setLabelError] = useState(null);
   const [formData, setFormData] = useState(isEditMode ? props.attribute.data.value : null);
+  const attributeId = attribute && attribute.id;
+  let attrList = idAttributes.filter((attr) => containsFile(attr.content));
 
   useEffect(() => {
     currentLabel = isEditMode ? props.attribute.name : null;
   }, []);
-
-  const attributeId = attribute && attribute.id;
-  let attrList = idAttributes.filter((attr) => !containsFile(attr.content));
 
   attrList = attrList.map((attr) => ({
     label: attr.content.title,
     value: attr.id,
   }));
 
-  const uiSchema = useMemo(() => attribute && uiSchemas.find((item) => item.attributeTypeId === attributeId), [attributeId, uiSchemas]);
-
+  const uiSchema = attribute && uiSchemas.find((item) => item.attributeTypeId === attribute.id);
+  const handleLabelChange = value => {
+    currentLabel = value;
+    setLabel(value);
+  }
   const handleAttributeSelect = (value) => {
     const attr = idAttributes.find(item => item.id === value);
     setAttribute(attr);
@@ -95,7 +87,9 @@ export function AttributeModal(props) {
   const handleSubmit = (formProps) => {
     const { formData } = formProps;
 
-    if (!label) {
+    setFormData(formData);
+
+    if (!currentLabel) {
       setLabelError('This field is required');
       return;
     } else {
@@ -123,81 +117,18 @@ export function AttributeModal(props) {
     onClose();
   };
 
-  const handleLabelChange = value => {
-    currentLabel = value;
-    setLabel(value);
-  }
-
-  formActions.handleSubmit = handleSubmit;
-
-  const form = useMemo(() => {
-    return (
-      attribute ? (
-        <RNForm
-          schema={prepareSchema(attribute)}
-          uiSchema={uiSchema.content}
-          onSubmit={(formProps) => {
-            const { formData } = formProps;
-            setFormData(formData);
-            setTimeout(() => formActions.handleSubmit(formProps), 200);
-          }}
-          onChange={(formProps) => {
-            currentFormData = formProps.formData;
-          }}
-          formData={formData}
-        >
-          {
-            ({ onSubmit }) => {
-              return (
-                <Grid marginTop={32} marginBottom={5}>
-                  <Row justifyContent="flex-end">
-                    <Col autoWidth>
-                      <Button type="shell-primary" onPress={onClose}>Cancel</Button>
-                    </Col>
-                    <Col autoWidth style={{ width: 95 }}>
-                      <Button type="primary" onPress={() => {
-                        if (!currentLabel) {
-                          setLabelError('This field is required');
-                        } else {
-                          setLabelError(null);
-                        }
-
-                        setTimeout(onSubmit, 200);
-                      }}>Save</Button>
-                    </Col>
-                  </Row>
-                </Grid> 
-              )
-            }
-          }
-        </RNForm>
-      ) : (
-        <Grid marginTop={32} marginBottom={5}>
-          <Row justifyContent="flex-end">
-            <Col autoWidth>
-              <Button type="shell-primary" onPress={onClose}>Cancel</Button>
-            </Col>
-            <Col autoWidth style={{ width: 95 }}>
-              <Button type="primary">Save</Button>
-            </Col>
-          </Row>
-        </Grid>
-      )
-    )
-  }, [formData, uiSchema.content, attribute])
-
   return (
     <Modal
       visible={visible}
       onClose={onClose}
-      title={`${isEditMode ? 'Edit' : 'Add'} Information`}
+      title={`${isEditMode ? 'Edit' : 'Add'} Documents`}
       footer={null}
     >
-      <Grid marginBottom={5} marginTop={0}>
+      <Grid marginBottom={20} marginTop={0}>
         <Row>
           <Col>
             <SelectBox
-              label="Information"
+              label="Document Type"
               selectedValue={attributeId}
               placeholder="Select"
               items={attrList}
@@ -224,7 +155,57 @@ export function AttributeModal(props) {
           </Row>
         </LabelGrid>
         ) : null }
-      { form }
+      {
+        attribute ? (
+          <RNForm
+            schema={prepareSchema(attribute)}
+            uiSchema={uiSchema.content}
+            onSubmit={handleSubmit}
+            formData={formData}
+            onChange={(evt) => {
+              const { formData } = evt;
+              setFormData(formData)
+            }}
+          >
+            {
+              ({ onSubmit }) => {
+                return (
+                  <Grid marginTop={32} marginBottom={5}>
+                    <Row justifyContent="flex-end">
+                      <Col autoWidth>
+                        <Button type="shell-primary" onPress={onClose}>Cancel</Button>
+                      </Col>
+                      <Col autoWidth style={{ width: 95 }}>
+                        <Button type="primary" onPress={() => {
+                          if (!currentLabel) {
+                            setLabelError('This field is required');
+                            return;
+                          } else {
+                            setLabelError(null);
+                          }
+
+                          onSubmit();
+                        }}>Save</Button>
+                      </Col>
+                    </Row>
+                  </Grid> 
+                )
+              }
+            }
+          </RNForm>
+        ) : (
+          <Grid marginTop={32} marginBottom={5}>
+            <Row justifyContent="flex-end">
+              <Col autoWidth>
+                <Button type="shell-primary" onPress={onClose}>Cancel</Button>
+              </Col>
+              <Col autoWidth style={{ width: 95 }}>
+                <Button type="primary">Save</Button>
+              </Col>
+            </Row>
+          </Grid>
+        )
+      }
     </Modal>
   );
 }

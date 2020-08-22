@@ -21,7 +21,7 @@ export const identityTypes = {
 	IDENTITY_ATTRIBUTE_UPDATE: 'identity/attribute/UPDATE',
 	// IDENTITY_ATTRIBUTE_EDIT: 'identity/attribute/EDIT',
 	IDENTITY_ATTRIBUTES_DELETE: 'identity/attributes/DELETE',
-	// IDENTITY_ATTRIBUTE_DELETE: 'identity/attributes/DELETE_ONE',
+	IDENTITY_ATTRIBUTE_DELETE: 'identity/attributes/DELETE_ONE',
 	// IDENTITY_ATTRIBUTE_DOCUMENTS_LOAD: 'identity/attribute_documents/LOAD',
 	// IDENTITY_ATTRIBUTE_DOCUMENTS_SET: 'identity/attribute_documents/SET',
 	// IDENTITY_ATTRIBUTE_DOCUMENTS_DELETE: 'identity/attribute_documents/DELETE',

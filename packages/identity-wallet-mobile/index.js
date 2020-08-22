@@ -9,8 +9,8 @@ Keychain.getItem('wallet-env').then(currentEnv => {
 });
 
 import {AppRegistry, AppState } from 'react-native';
-// import {Root} from './src/Root';
-import Root from './storybook';
+import {Root} from './src/Root';
+// import Root from './storybook';
 import {name as appName} from './app.json';
 
 WalletTracker.trackEvent({

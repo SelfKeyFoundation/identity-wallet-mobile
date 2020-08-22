@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import RNDatePicker from 'react-native-datepicker';
 import styled from 'styled-components/native';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { useDarkMode } from 'react-native-dark-mode';
 import { SKIcon } from './icons';
 import { Row, Col } from './grid';
+import { ThemeContext } from './mobile-ui-provider';
 
 const FormInputContainer = styled.View`
 
@@ -13,7 +15,7 @@ const InputContainer = styled.View`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
   color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
   border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
-  padding: 12px 15px;
+  padding: 5px 15px;
   border-radius: 4px;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +41,11 @@ const FormLabel = styled.Text`
   margin-bottom: 10px;
 `;
 
+
 export function DatePicker(props) {
+  // Can be removed when upgrading to react-native 0.62
+  const isDarkMode = useDarkMode();
+  const theme = useContext(ThemeContext);
   const inputRef = useRef();
 
   const handlePress = () => {
@@ -69,7 +75,7 @@ export function DatePicker(props) {
     <FormInputContainer>
       <FormLabel>{props.label}{props.required ? '*' : ''}</FormLabel>
       <TouchableWithoutFeedback onPress={handlePress}>
-      <InputContainer>
+      <InputContainer hasError={props.error}>
         <InputItem style={{ flex: 1 }}>
           <RNDatePicker
             date={value}
@@ -81,6 +87,9 @@ export function DatePicker(props) {
             showIcon={false}
             ref={inputRef}
             customStyles={{
+              datePicker: {
+                backgroundColor: isDarkMode ? "#222" : "white"
+              },
               dateInput: {
                 borderWidth: 0,
                 alignItems: 'flex-start',
@@ -112,6 +121,21 @@ export function DatePicker(props) {
         </InputItem>
       </InputContainer>
       </TouchableWithoutFeedback>
+      {
+        (props.error && props.errorMessage) ? (
+          <View style={{ marginBottom: 5, marginTop: 10 }}>
+            <Text
+              style={{
+                color: theme.colors.error,
+                fontFamily: theme.fonts.regular,
+                fontSize: 13,
+              }}
+            >
+              { props.errorMessage }
+            </Text>
+          </View>
+        ) : null
+      }
     </FormInputContainer>
   )
 }

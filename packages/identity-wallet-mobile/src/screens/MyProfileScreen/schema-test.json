@@ -1,0 +1,92 @@
+{
+	"$id": "http://platform.selfkey.org/schema/attribute/drivers-license.json",
+	"$schema": "http://platform.selfkey.org/schema/identity-attribute.json",
+	"identityAttribute": true,
+	"identityAttributeRepository": "http://platform.selfkey.org/repository.json",
+	"entityType": ["individual"],
+	"title": "Driver's License",
+	"description": "Please provide images of the front and back sides of your driver's license.",
+	"type": "object",
+	"properties": {
+		"front": {
+			"title": "Front image",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"$id": "http://platform.selfkey.org/schema/file/image.json",
+			"type": "object",
+			"format": "file",
+			"properties": {
+				"mimeType": { "type": "string", "enum": ["image/jpeg", "image/png", "application/pdf"] },
+				"size": { "type": "integer", "maximum": 50000000 },
+				"content": { "type": "string" }
+			},
+			"required": ["mimeType", "size", "content"]
+		},
+		"back": {
+			"title": "Back image",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"$id": "http://platform.selfkey.org/schema/file/image.json",
+			"type": "object",
+			"format": "file",
+			"properties": {
+				"mimeType": { "type": "string", "enum": ["image/jpeg", "image/png", "application/pdf"] },
+				"size": { "type": "integer", "maximum": 50000000 },
+				"content": { "type": "string" }
+			},
+			"required": ["mimeType", "size", "content"]
+		},
+		"expires": {
+			"$id": "http://platform.selfkey.org/schema/misc/expiry-date.json",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"title": "Expiry Date",
+			"type": "string",
+			"format": "date"
+		},
+		"selfie": {
+			"$id": "http://platform.selfkey.org/schema/misc/selfie.json",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"title": "Selfie",
+			"description": "Take a selfie, making sure the image is clear, and your face isn't covered by any items, such as glasses.",
+			"type": "object",
+			"properties": {
+				"image": {
+					"$schema": "http://json-schema.org/draft-07/schema",
+					"$id": "http://platform.selfkey.org/schema/file/image.json",
+					"type": "object",
+					"title": "Image",
+					"format": "file",
+					"properties": {
+						"mimeType": {
+							"type": "string",
+							"enum": ["image/jpeg", "image/png", "application/pdf"]
+						},
+						"size": { "type": "integer", "maximum": 50000000 },
+						"content": { "type": "string" }
+					},
+					"required": ["mimeType", "size", "content"]
+				}
+			},
+			"required": ["image"]
+		},
+		"extra": {
+			"$id": "http://platform.selfkey.org/schema/misc/extra-images.json",
+			"$schema": "http://json-schema.org/draft-07/schema",
+			"title": "Extra Images",
+			"description": "Please add any extra images that are relevant",
+			"type": "array",
+			"items": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "http://platform.selfkey.org/schema/file/image.json",
+				"type": "object",
+				"title": "Image",
+				"format": "file",
+				"properties": {
+					"mimeType": { "type": "string", "enum": ["image/jpeg", "image/png", "application/pdf"] },
+					"size": { "type": "integer", "maximum": 50000000 },
+					"content": { "type": "string" }
+				},
+				"required": ["mimeType", "size", "content"]
+			}
+		}
+	},
+	"required": ["front", "back", "expires"]
+}

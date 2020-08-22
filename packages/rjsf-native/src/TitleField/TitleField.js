@@ -1,30 +1,14 @@
 import React from 'react';
-
 import { FieldProps } from '@selfkey/rjsf-core';
+import styled from 'styled-components/native';
 
-// import Box from '@material-ui/core/Box';
-// import Divider from '@material-ui/core/Divider';
-// import Typography from '@material-ui/core/Typography';
-import {
-  ScreenContainer,
-  Modal,
-  Button,
-  SKIcon,
-  Grid,
-  Col,
-  Row,
-  Alert,
-  ThemeContext,
-  Paragraph,
-  Explanatory,
-  Link,
-  DefinitionTitle,
-  ExplanatorySmall,
-  FormLabel,
-  TextInput,
-  H3,
-  FormattedNumber,
-} from '@selfkey/mobile-ui';
+const FormLabel = styled.Text`
+  color: ${props => props.theme.colors.typography};
+  font-size: 12px;  
+  font-family: ${props => props.theme.fonts.bold};
+  text-transform: uppercase;
+  margin-bottom: 10px;
+`;
 
 const TitleField = ({ title }: FieldProps) => (
   <React.Fragment>
@@ -34,7 +18,7 @@ const TitleField = ({ title }: FieldProps) => (
       //   <Divider />
       // </Box>
     }
-    <DefinitionTitle>{title}</DefinitionTitle>
+    <FormLabel>{title}</FormLabel>
   </React.Fragment>
 );
 

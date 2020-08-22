@@ -32,25 +32,42 @@ const { getDisplayLabel } = utils;
 
 export type TextWidgetProps = WidgetProps & TextFieldProps;
 
-const TextWidget = ({
-  id,
-  required,
-  readonly,
-  disabled,
-  type,
-  label,
-  value,
-  onChange,
-  onBlur,
-  onFocus,
-  autofocus,
-  options,
-  schema,
-  uiSchema,
-  rawErrors = [],
-  formContext,
-  ...textFieldProps
-}: TextWidgetProps) => {
+export function getMessage(props) {
+  const rawError = props.rawErrors && props.rawErrors[0];
+  // const propName = 'email';
+
+  if (!rawError) {
+    return null;
+  }
+
+  if (rawError == 'is a required property') {
+    return 'This field is required';
+  }
+
+  return `Please enter a valid ${props.label.toLowerCase()}`;
+}
+
+
+const TextWidget = (props: TextWidgetProps) => {
+  const {
+    id,
+    required,
+    readonly,
+    disabled,
+    type,
+    label,
+    value,
+    onChange,
+    onBlur,
+    onFocus,
+    autofocus,
+    options,
+    schema,
+    uiSchema,
+    rawErrors = [],
+    formContext,
+    ...textFieldProps
+  } = props;
   const _onChange = (value) => onChange(value === "" ? options.emptyValue : value);
   const _onBlur = (value) => onBlur(id, value);
   const _onFocus = (value) => onFocus(id, value);
@@ -70,6 +87,8 @@ const TextWidget = ({
         disabled={disabled || readonly}
         value={value}
         onChange={_onChange}
+        error={rawErrors.length > 0}
+        errorMessage={getMessage(props)}
       />
     )
   }
@@ -81,6 +100,7 @@ const TextWidget = ({
       disabled={disabled || readonly}
       value={value || value === 0 ? value : ""}
       error={rawErrors.length > 0}
+      errorMessage={getMessage(props)}
       onChangeText={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}

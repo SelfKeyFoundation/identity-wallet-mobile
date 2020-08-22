@@ -52,6 +52,7 @@ const ObjectFieldTemplate = (props) => {
           title={title}
           required={required}
         />
+        // null
       )}
       {description && (
         <DescriptionField

@@ -14,6 +14,7 @@ import {
 
 import { WidgetProps } from "@selfkey/rjsf-core";
 import { utils } from "@selfkey/rjsf-core";
+import { getMessage } from "../TextWidget";
 
 const { asNumber, guessType } = utils;
 
@@ -49,22 +50,23 @@ const processValue = (schema: any, value: any) => {
   return value;
 };
 
-const SelectWidget = ({
-  schema,
-  id,
-  options,
-  label,
-  required,
-  disabled,
-  readonly,
-  value,
-  multiple,
-  autofocus,
-  onChange,
-  onBlur,
-  onFocus,
-  rawErrors = [],
-}: WidgetProps) => {
+const SelectWidget = (props: WidgetProps) => {
+  const {
+    schema,
+    id,
+    options,
+    label,
+    required,
+    disabled,
+    readonly,
+    value,
+    multiple,
+    autofocus,
+    onChange,
+    onBlur,
+    onFocus,
+    rawErrors = [],
+  } = props;
   const { enumOptions, enumDisabled } = options;
   const emptyValue = multiple ? [] : "";  
   const _onChange = (value) => onChange(processValue(schema, value));
@@ -76,7 +78,9 @@ const SelectWidget = ({
       selectedValue={value}
       required={required}
       disabled={disabled || readonly}
-      placeholder="Select a token"
+      placeholder="Select"
+      error={rawErrors.length > 0}
+      errorMessage={getMessage(props)}
       items={enumOptions}
     />
     // <TextField

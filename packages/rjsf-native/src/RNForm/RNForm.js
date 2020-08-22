@@ -14,25 +14,38 @@ import {
 
 const RNForm: React.ComponentClass<FormProps<any>> | StatelessComponent<FormProps<any>>  = withTheme(Theme);
 
-const getFormView = (parentProps) => (props) => {  
+let fileViewer = () => {};
+
+export const setFileViewer = (viewer) => {
+  fileViewer = viewer;
+}
+
+export const viewFile = (filePath) => {
+  fileViewer(filePath);
+}
+
+const getFormView = (parentProps) => (props) => {
+  const formProps = {
+    ...props,
+    onSubmit: () => {
+      const target = {
+        blur() {}
+      };
+
+      props.onSubmit({
+        preventDefault() {},
+        persist() {},
+        target: target,
+        currentTarget: target,
+      })
+    }
+  }
+
   return (
     <View>
       { props.children }
-      { parentProps.children ? parentProps.children(props) : (
-        <Button onPress={(event) => {
-          const target = {
-            blur() {
-
-            }
-          };
-
-          props.onSubmit({
-            preventDefault() {},
-            persist() {},
-            target: target,
-            currentTarget: target,
-          })
-        }}>
+      { parentProps.children ? parentProps.children(formProps) : (
+        <Button onPress={formProps.onSubmit}>
           Submit
         </Button>
       )}

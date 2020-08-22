@@ -101,9 +101,13 @@ PODS:
     - React-Core (= 0.60.5)
   - React-RCTWebSocket (0.60.5):
     - React-Core (= 0.60.5)
+  - ReactNativeDarkMode (0.2.2):
+    - React
   - RNDeviceInfo (5.5.3):
     - React
   - RNExitApp (1.1.0):
+    - React
+  - RNFileViewer (2.1.1):
     - React
   - RNFS (2.13.2):
     - React
@@ -154,8 +158,10 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
+  - ReactNativeDarkMode (from `../node_modules/react-native-dark-mode`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNExitApp (from `../node_modules/react-native-exit-app`)
+  - RNFileViewer (from `../node_modules/react-native-file-viewer`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -228,10 +234,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   React-RCTWebSocket:
     :path: "../node_modules/react-native/Libraries/WebSocket"
+  ReactNativeDarkMode:
+    :path: "../node_modules/react-native-dark-mode"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNExitApp:
     :path: "../node_modules/react-native-exit-app"
+  RNFileViewer:
+    :path: "../node_modules/react-native-file-viewer"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
@@ -283,8 +293,10 @@ SPEC CHECKSUMS:
   React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
+  ReactNativeDarkMode: 0178ffca3b10f6a7c9f49d6f9810232b328fa949
   RNDeviceInfo: 310c1f43d418d950a193c7650de2f9559c906048
   RNExitApp: c4e052df2568b43bec8a37c7cd61194d4cfee2c3
+  RNFileViewer: db62d60dd19007c54b2c959b5e675a46d59f8a43
   RNFS: d229ee245fa9685417e6d9367031d670d723547e
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNKeychain: bf2d7e9a0ae7a073c07770dd2aa6d11c67581733

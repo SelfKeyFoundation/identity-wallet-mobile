@@ -1,3 +1,4 @@
+import uuid from 'uuid/v4';
 import { IdentityService } from "./identity-service";
 import actions from './actions';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
@@ -18,6 +19,7 @@ import {
 } from './constants';
 import { navigate, Routes } from "../../navigation";
 import { WalletModel } from "../../models";
+import { containsFile } from "./json-schema-utils";
 
 const log = new Logger('identity-operations');
 
@@ -68,6 +70,7 @@ export const updateExpiredRepositoriesOperation = (isLocal) => async (dispatch, 
 }
 
 export const editIdAttributeOperation = attribute => async (dispatch, getState) => {
+	attribute.data.value = await processFiles(attribute.data.value)
 	await IdentityService.editIdAttribute(attribute);
 	// await dispatch(operations.loadDocumentsForAttributeOperation(attribute.id));
 	await dispatch(actions.updateIdAttribute(attribute));
@@ -132,6 +135,12 @@ const lockIdentityOperation = identityId => async (dispatch, getState) => {
 	// 	identityId: identity.id
 	// });
 	// await Promise.all(members.map(m => dispatch(identityOperations.lockIdentityOperation(m.id))));
+};
+
+const removeIdAttributeOperation = attributeId => async (dispatch, getState) => {
+	await IdentityService.removeIdAttribute(attributeId);
+	// await dispatch(actions.deleteDocumentsForAttribute(attributeId));
+	await dispatch(actions.deleteIdAttribute(attributeId));
 };
 
 const unlockIdentityOperation = identityId => async (dispatch, getState) => {
@@ -240,6 +249,49 @@ const updateIdentitySetupOperation = (isSetupFinished, id) => async (dispatch, g
 	await dispatch(actions.updateIdentity(identity));
 };
 
+function getFileExtension(fileName) {
+	const result = (/\.([0-9a-z]+)(?=[?#])|(\.)(?:[\w]+)$/gmi).exec(fileName);
+	return result && result[0];
+}
+/**
+ * 
+ * @param {*} attribute 
+ */
+async function processFiles(value, parent) {
+	if (typeof value === 'string') {
+		if (!(/(file|content):\/\//i).test(value)) {
+			console.log(`value ${value} is not a file`);
+			return value;
+		}
+
+		console.log(`value ${value} is a file. Copying it to the app folder...`);
+		console.log(parent);
+		const fs = System.getFileSystem();
+		const rootDir = fs.DocumentDirectoryPath;
+		const internalFileId = `document-${uuid()}${getFileExtension(parent.fileName)}`;
+		const fileData = await fs.readFile(value, 'base64');
+		const newPath = `${rootDir}/${internalFileId}`;
+		// // Resolve extension
+		await fs.writeFile(newPath, fileData, 'base64');
+
+		// return internalFileId;
+		return internalFileId;
+	}
+
+	if (typeof value === 'array') {
+		return Promise.all(value.map(processFiles));
+	}
+
+	if (typeof value === 'object') {
+		await Promise.all(Object.keys(value).map(async (key) => {
+			value[key] = await processFiles(value[key], value);
+		}));
+
+	}
+
+	return value;
+}
+
 const createIdAttributeOperation = (attribute, identityId) => async (dispatch, getState) => {
 	let identity = null;
 
@@ -253,6 +305,7 @@ const createIdAttributeOperation = (attribute, identityId) => async (dispatch, g
 		identityId = identity.id;
 	}
 
+	attribute.data.value = await processFiles(attribute.data.value)
 	attribute = { ...attribute, identityId };
 	attribute = await IdentityService.createIdAttribute(attribute);
 	// await dispatch(operations.loadDocumentsForAttributeOperation(attribute.id));
@@ -310,7 +363,8 @@ export const operations = {
 	navigateToProfileOperation,
 	updateIdentitySetupOperation,
 	editIdAttributeOperation,
-	updateProfilePictureOperation
+	updateProfilePictureOperation,
+	removeIdAttributeOperation
 };
 
 export const identityOperations = {

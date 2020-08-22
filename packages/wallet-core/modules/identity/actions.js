@@ -36,10 +36,10 @@ export const identityActions = {
 		type: types.IDENTITY_ATTRIBUTES_DELETE,
 		payload: identityId
 	}),
-	// deleteIdAttribute: attributeId => ({
-	// 	type: types.IDENTITY_ATTRIBUTE_DELETE,
-	// 	payload: attributeId
-	// }),
+	deleteIdAttribute: attributeId => ({
+		type: types.IDENTITY_ATTRIBUTE_DELETE,
+		payload: attributeId
+	}),
 	addIdAttribute: attribute => ({
 		type: types.IDENTITY_ATTRIBUTE_ADD,
 		payload: attribute
