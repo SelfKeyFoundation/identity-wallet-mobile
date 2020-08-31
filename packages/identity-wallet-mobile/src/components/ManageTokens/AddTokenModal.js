@@ -25,7 +25,7 @@ const ValidationFeedback = styled(Explanatory)`
 `;
 
 const ERROR_MESSAGE_MAP = {
-  address_not_found: 'Token contract does not exist. Please double check and try again.',
+  address_not_found: 'Token contract does not exist or not supported. Please double check and try again.',
   already_used: 'Address is already being used.',
 }
 

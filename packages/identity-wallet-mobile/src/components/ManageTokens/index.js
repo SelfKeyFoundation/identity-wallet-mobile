@@ -16,11 +16,9 @@ export * from './HideTokenModal';
 export function ManageTokensContainer(props) {
   const [tokenToRemove, setTokenToRemove] = useState(null);
   const [showAdd, setShowAdd] = useState();
-  const handleRemove = useCallback((token) => {
-    setTokenToRemove(token);
-  }, []);
+  const handleRemove = (token) => setTokenToRemove(token);
   const dispatch = useDispatch();
-  const handleCancelRemove = useCallback(() => {
+  const handleCancelRemove = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/hideTokenModal/closeButton`,
       action: 'press',
@@ -28,24 +26,25 @@ export function ManageTokensContainer(props) {
     });
 
     setTokenToRemove(null)
-  });
-  const handleConfirmRemove = useCallback(() => {
+  };
+
+  const handleConfirmRemove = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/hideTokenModal/confirmButton`,
       action: 'press',
       level: 'machine'
     });
 
-    // TODO: dispatch event to remove the token, to be done in a separate issue
+    if (!tokenToRemove) {
+      return;
+    }
+
     dispatch(ducks.wallet.operations.hideTokenOperation({ contractAddress: tokenToRemove.address }))
       .then(() => setTokenToRemove(null));
-  }, [tokenToRemove]);
+  };
 
-  const handleShowAdd = useCallback(() => {
-    setShowAdd(true);
-  }, []);
-
-  const handleCloseAdd= useCallback(() => {
+  const handleShowAdd = () => setShowAdd(true);
+  const handleCloseAdd= () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/addTokenModal/closeButton`,
       action: 'press',
@@ -53,9 +52,9 @@ export function ManageTokensContainer(props) {
     });
 
     setShowAdd(false);
-  }, []);
+  };
 
-  const handleAdd = useCallback((contractAddress) => {
+  const handleAdd = (contractAddress) => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/addTokenModal/submitButton`,
       action: 'press',
@@ -64,13 +63,13 @@ export function ManageTokensContainer(props) {
 
     return dispatch(ducks.wallet.operations.addTokenOperation({ contractAddress }))
       .then(handleCloseAdd)
-  });
+  };
 
-  const handleTokenDetails = useCallback((tokenSymbol) => {
+  const handleTokenDetails = (tokenSymbol) => {
     navigate(Routes.TOKEN_DETAILS, {
       tokenId: tokenSymbol
     });
-  }, []);
+  };
 
   const tokens = useSelector(ducks.wallet.selectors.getCustomTokens)
   const fiatAmount = useSelector(ducks.wallet.selectors.getCustomTokensFiatAmount);

@@ -355,16 +355,21 @@ const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) =>
 
   const walletModel = WalletModel.getInstance();
   const dbWallet = await walletModel.findByAddress(wallet.address);
+  const dbTokens = dbWallet.tokens;
 
   await walletModel.updateByAddress(dbWallet.address, {
     tokens: [
-      ...dbWallet.tokens,
+      ...dbTokens,
       newToken,
     ],
   });
 
-  await loadWalletTokens(wallet);
-  dispatch(walletActions.setWallet(wallet));
+  const updatedData = await loadWalletTokens(wallet);
+
+  dispatch(walletActions.setWallet({
+    ...wallet,
+    ...updatedData
+  }));
 };
 
 const validateTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
@@ -409,16 +414,16 @@ const hideTokenOperation = ({ contractAddress }) => async (dispatch, getState) =
 
   const wallet = getState().wallet;
 
-  wallet.tokens = wallet.tokens.map(token => {
-    if (token.address === contractAddress) {
+  wallet.tokens = wallet.tokens.map(item => {
+    if (item && item.address === contractAddress) {
       return {
-        ...token,
+        ...item,
         hidden: true,
       };
     }
 
-    return token;
-  }).filter(token => !token.hidden);
+    return item;
+  }).filter(item => !item.hidden);
  
   dispatch(walletActions.setWallet(wallet));
 };

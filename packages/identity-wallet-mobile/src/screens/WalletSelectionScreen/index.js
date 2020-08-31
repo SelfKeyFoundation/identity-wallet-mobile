@@ -127,7 +127,7 @@ function WalletSelectionContainer(props) {
         onForgot={handleForgotPassword}
         onCreateWallet={handleCreateWallet}
         supportedBiometryType={supportedBiometryType}
-        biometricsEnabled={selectedWallet.biometricsEnabled}
+        biometricsEnabled={selectedWallet && selectedWallet.biometricsEnabled}
         onBiometricsUnlock={handleBiometricsUnlock}
         selectedWallet={selectedWallet}
         isBiometricsLoading={isBiometricsLoading}

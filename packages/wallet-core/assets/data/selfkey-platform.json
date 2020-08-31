@@ -2395,7 +2395,7 @@
 		},
 		{},
 		{
-			"ui:order": ["address_line_1", "address_line_2"]
+			"ui:order": ["address_line_1", "address_line_2", "city", "province", "postalcode"]
 		},
 		{
 			"ui:order": ["image", "issued", "extra"],

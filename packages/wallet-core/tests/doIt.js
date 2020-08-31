@@ -7,5 +7,5 @@ require('@babel/register')({
   ignore: [/node_modules/],
 });
 
-// require('./transaction-test');
-require('./tx-history-service-test');
+require('./transaction-test');
+// require('./tx-history-service-test');

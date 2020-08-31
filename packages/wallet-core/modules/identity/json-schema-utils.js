@@ -27,6 +27,8 @@ export const loadLocalRepository = (url) => platformData.repositories[url];
 export const loadLocalSchema = (url) => platformData.schemas[url];
 
 export const loadRemoteRepository = async (url, options = {}, attempt = 1) => {
+	console.log(`Loading remote schema: ${url}, options: ${JSON.stringify(options)}, attempt: ${attempt}`)
+
 	if (options.env === 'dev') {
 		url = url.replace('/repository.json', '/dev-repository.json');
 	}
@@ -103,6 +105,8 @@ export const removeMeta = (schema, maxDepth = 10) => {
 };
 
 export const loadRemoteSchema = async (url, options = {}, attempt = 1) => {
+	console.log(`Loading remote schema: ${url}, options: ${JSON.stringify(options)}, attempt: ${attempt}`)
+
 	if (options.env === 'dev') {
 		url = url.replace('/schema/', '/dev-schema/');
 	}

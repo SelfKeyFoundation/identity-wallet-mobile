@@ -64,7 +64,11 @@ export const loadRepositoriesOperation = () => async (dispatch, getState) => {
 
 export const updateExpiredRepositoriesOperation = (isLocal) => async (dispatch, getState) => {
 	const expired = duck.selectors.selectExpiredRepositories(getState());
-	log.debug(`Detected expired repositories ${expired.map(e => e.url)}`);
+
+	if (expired.length) {
+		log.debug(`Detected expired repositories ${expired.map(e => e.url).join(',')}`);
+	}
+
 	await IdentityService.updateRepositories(expired);
 	await dispatch(identityOperations.loadRepositoriesOperation());
 }
@@ -93,7 +97,9 @@ export const loadIdAttributeTypesOperation = () => async (dispatch, getState) =>
 
 export const updateExpiredIdAttributeTypesOperation = (isLocal) => async (dispatch, getState) => {
 	let expired = duck.selectors.selectExpiredIdAttributeTypes(getState());
-	log.debug(`Detected expired identity attribute types ${expired.map(e => e.url)}`);
+	if (expired.length) {
+		log.debug(`Detected expired identity attribute types ${expired.map(e => e.url)}`);
+	}
 	await IdentityService.updateIdAttributeTypes(expired, isLocal);
 	await dispatch(identityOperations.loadIdAttributeTypesOperation());
 }

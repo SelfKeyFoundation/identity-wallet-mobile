@@ -134,8 +134,8 @@ android {
         applicationId "com.identitywalletmobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 77
-        versionName "0.3.18"
+        versionCode 81
+        versionName "0.3.22"
         missingDimensionStrategy 'react-native-camera', 'general'
         multiDexEnabled true
     }
