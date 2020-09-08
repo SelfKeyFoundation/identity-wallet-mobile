@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { ScreenContainer } from '@selfkey/mobile-ui';
+import { ScreenContainer } from 'design-system';
 import { ManageTokens, HideTokenModal } from '../../components';
 import styled from 'styled-components/native';
 

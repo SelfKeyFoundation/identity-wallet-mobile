@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TransactionDetails } from '../../components';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import { getUsdPrice } from '@selfkey/blockchain/services/price-service';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import { getUsdPrice } from 'blockchain/services/price-service';
+import ducks from 'core/modules';
 import styled from 'styled-components/native';
-import { Modal } from '@selfkey/mobile-ui';
-import EthUtils from '@selfkey/blockchain/util/eth-utils';
+import { Modal } from 'design-system';
+import EthUtils from 'blockchain/util/eth-utils';
 import { Linking } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
 

@@ -15,7 +15,7 @@ import {
   Link,
   H3,
   IconTouchId,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 
 const errorMessages = {

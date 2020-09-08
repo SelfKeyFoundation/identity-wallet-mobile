@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { Routes } from 'core/navigation';
 
 import { LoadingScreen } from '../../screens/loading-screen';
 import { stackNavigatorConfig } from '../configs';

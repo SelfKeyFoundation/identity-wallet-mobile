@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ducks from '@selfkey/wallet-core/modules';
+import ducks from 'core/modules';
 import { TxHistory } from './TxHistory';
 import { TransactionsEmptyAlert } from '../TransactionsEmptyAlert';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes } from 'core/navigation';
 export { TxHistory };
 import { WalletTracker } from '../../WalletTracker';
 

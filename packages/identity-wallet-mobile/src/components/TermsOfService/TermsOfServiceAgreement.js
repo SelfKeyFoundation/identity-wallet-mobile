@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from '@selfkey/mobile-ui';
+import { Modal } from 'design-system';
 import { TermsOfServiceContent } from './TermsOfServiceContent';
 
 export const TermsOfServiceAgreement = props => (

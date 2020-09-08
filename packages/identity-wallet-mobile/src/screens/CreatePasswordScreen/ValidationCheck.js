@@ -5,7 +5,7 @@ import {
   SKIcon,
   Row,
   Col,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 
 const IconCol = styled(Col)`

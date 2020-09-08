@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChangePassword } from './ChangePassword';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import ducks from 'core/modules';
 
 function ChangePasswordContainer(props) {
   const dispatch = useDispatch();

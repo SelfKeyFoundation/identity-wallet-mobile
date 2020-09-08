@@ -13,10 +13,10 @@ import {
   Paragraph,
   Explanatory,
   FormattedNumber
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
-import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
+import { IconKey, IconEth } from 'design-system/svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { WalletTracker } from '../../WalletTracker';

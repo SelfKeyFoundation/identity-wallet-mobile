@@ -2,9 +2,9 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dashboard } from './Dashboard';
 import TermsOfServiceScreen from '../TermsOfServiceScreen';
-import ducks from '@selfkey/wallet-core/modules';
+import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
-import { Modal, Paragraph } from '@selfkey/mobile-ui';
+import { Modal, Paragraph } from 'design-system';
 
 const { operations, selectors } = ducks.wallet;
 

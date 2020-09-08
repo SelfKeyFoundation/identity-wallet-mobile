@@ -12,9 +12,9 @@ import {
   Paragraph,
   Explanatory,
   FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes } from 'core/navigation';
 import LinearGradient from 'react-native-linear-gradient';
 
 export interface TokenBoxProps {

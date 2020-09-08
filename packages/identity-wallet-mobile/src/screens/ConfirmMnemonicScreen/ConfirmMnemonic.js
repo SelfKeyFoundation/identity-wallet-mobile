@@ -14,7 +14,7 @@ import {
   ButtonLinkText,
   H3,
   Alert,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 

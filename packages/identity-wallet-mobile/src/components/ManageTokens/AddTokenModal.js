@@ -16,9 +16,9 @@ import {
   Col,
   Button,
   H3,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { ActivityIndicator } from 'react-native';
-import ducks from '@selfkey/wallet-core/modules';
+import ducks from 'core/modules';
 
 const ValidationFeedback = styled(Explanatory)`
   color: #00C0D9;

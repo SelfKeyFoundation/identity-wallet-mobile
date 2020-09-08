@@ -12,7 +12,7 @@ import {
   Explanatory,
   DefinitionTitle,
   FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 // import QRCode from 'react-native-qrcode';
 import QRCode from 'react-native-qrcode-svg';
 import styled from 'styled-components/native';

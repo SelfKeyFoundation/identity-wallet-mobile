@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmPassword } from '../ConfirmPasswordScreen/ConfirmPassword';
 import { useConfirmPasswordController } from '../ConfirmPasswordScreen/useConfirmPasswordController';
-import { navigateBack } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigateBack } from 'core/navigation';
+import ducks from 'core/modules';
 
 function ConfirmNewPasswordContainer(props) {
   const dispatch = useDispatch();

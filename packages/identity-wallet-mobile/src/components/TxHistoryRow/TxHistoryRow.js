@@ -8,7 +8,7 @@ import {
   FormattedNumber,
   Grid,
   Explanatory
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 
 import dateFormat from 'dateformat';

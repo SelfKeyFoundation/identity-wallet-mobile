@@ -13,7 +13,7 @@ import {
   Paragraph,
   Explanatory,
   FormattedNumber
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { TokensEmptyAlert } from '../index';
 import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';

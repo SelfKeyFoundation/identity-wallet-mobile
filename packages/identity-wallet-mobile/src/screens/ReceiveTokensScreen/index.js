@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dashboard } from '../DashboardScreen/Dashboard';
 import { Clipboard, Share, View } from 'react-native';
 import { ReceiveTokens } from '../../components';
-import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import modules from 'core/modules';
+import { navigate, Routes } from 'core/navigation';
 import { Snackbar } from 'react-native-paper';
 import { WalletTracker } from '../../WalletTracker';
 

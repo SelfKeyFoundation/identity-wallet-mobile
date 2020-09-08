@@ -16,7 +16,7 @@ import {
   H3,
   IconTouchId,
   Alert
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native';
 

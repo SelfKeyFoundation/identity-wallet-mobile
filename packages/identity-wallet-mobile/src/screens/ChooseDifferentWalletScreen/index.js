@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChooseDifferentWallet } from './ChooseDifferentWallet';
-import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes, navigateBack } from 'core/navigation';
+import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'chooseDifferentWallet';

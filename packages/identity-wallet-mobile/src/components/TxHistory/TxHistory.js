@@ -9,7 +9,7 @@ import {
   Grid,
   Explanatory,
   Link
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { TouchableWithoutFeedback } from 'react-native';
 import { TxHistoryRow } from '../';
 import styled from 'styled-components/native';

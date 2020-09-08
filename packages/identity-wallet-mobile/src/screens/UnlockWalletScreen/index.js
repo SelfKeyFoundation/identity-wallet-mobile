@@ -2,8 +2,8 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UnlockWallet } from './UnlockWallet';
 import { useUnlockWalletController } from './useUnlockWalletController';
-import ducks from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import ducks from 'core/modules';
+import { navigate, Routes } from 'core/navigation';
 import { WalletTracker } from '../../WalletTracker';
 const TRACKER_PAGE = 'unlockWallet';
 

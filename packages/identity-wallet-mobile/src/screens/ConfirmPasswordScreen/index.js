@@ -2,10 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmPassword } from './ConfirmPassword';
 import { useConfirmPasswordController } from './useConfirmPasswordController';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes } from 'core/navigation';
 // import { WalletTracker } from '../../WalletTracker';
-import { Modal, Paragraph } from '@selfkey/mobile-ui';
-import ducks from '@selfkey/wallet-core/modules';
+import { Modal, Paragraph } from 'design-system';
+import ducks from 'core/modules';
 
 const { operations, selectors } = ducks.createWallet;
 

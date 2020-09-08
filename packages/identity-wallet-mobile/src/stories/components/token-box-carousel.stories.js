@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { ScreenContainer } from '@selfkey/mobile-ui';
+import { ScreenContainer } from 'design-system';
 import { TokenBoxCarousel, TokenBox } from '../../components';
 import styled from 'styled-components/native';
-import { IconKey, IconEth } from '@selfkey/mobile-ui/lib/svg-icons';
+import { IconKey, IconEth } from 'design-system/svg-icons';
 
 const Container = styled.View`
   margin: 20px;

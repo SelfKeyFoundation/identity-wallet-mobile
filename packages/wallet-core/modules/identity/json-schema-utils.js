@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import RefParser from 'json-schema-ref-parser';
+// import RefParser from 'json-schema-ref-parser';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
 import platformData from './platform-data.json';
 import { sleep } from '../../utils/async';
@@ -141,14 +141,14 @@ export const loadRemoteSchema = async (url, options = {}, attempt = 1) => {
 };
 
 export const dereference = (schema, options) => {
-	const resolver = {
-		order: 1,
-		canRead: /platform\.selfkey\.org/i,
-		async read(file) {
-			return loadRemoteSchema(file.url, options);
-		}
-	};
-	return RefParser.dereference(schema, { resolve: { selfkey: resolver } });
+	// const resolver = {
+	// 	order: 1,
+	// 	canRead: /platform\.selfkey\.org/i,
+	// 	async read(file) {
+	// 		return loadRemoteSchema(file.url, options);
+	// 	}
+	// };
+	// return RefParser.dereference(schema, { resolve: { selfkey: resolver } });
 };
 
 export const getDefaultRepo = (schema, options) => {

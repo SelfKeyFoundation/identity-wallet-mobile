@@ -8,7 +8,7 @@
  *  Desktop wallet can inject it's own implementation of database and keychain,
  *  just by following the same interface
  */
-import { setDatabaseImpl, setKeychainImpl } from '@selfkey/wallet-core/identity-vault';
+import { setDatabaseImpl, setKeychainImpl } from 'core/identity-vault';
 import { IdentityRealm } from './identity-realm';
 import * as Keychain from './keychain';
 

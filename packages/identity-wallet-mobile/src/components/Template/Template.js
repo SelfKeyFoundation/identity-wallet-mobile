@@ -18,7 +18,7 @@ import {
   Explanatory,
   DefinitionTitle,
   FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 
 type TemplateProps = {

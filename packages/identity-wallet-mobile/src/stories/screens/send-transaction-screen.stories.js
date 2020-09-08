@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import SendTokensScreen from '../../screens/SendTokensScreen';
-import { reduxMockDecorator } from '@selfkey/wallet-core/utils/storybook-utils';
+import { reduxMockDecorator } from 'core/utils/storybook-utils';
 
 storiesOf('Send Transaction Screen', module)
   .addDecorator(reduxMockDecorator({

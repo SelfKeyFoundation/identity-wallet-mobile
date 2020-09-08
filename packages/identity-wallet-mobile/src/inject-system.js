@@ -1,4 +1,4 @@
-import { setSystemImpl } from '@selfkey/wallet-core/system';
+import { setSystemImpl } from 'core/system';
 import RNExitApp from 'react-native-exit-app';
 import Share from 'react-native-share';
 import fs from 'react-native-fs';

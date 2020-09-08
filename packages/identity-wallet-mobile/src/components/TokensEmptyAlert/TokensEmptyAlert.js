@@ -4,7 +4,7 @@ import {
   SKIcon,
   Row,
   Col,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import { navigate, Routes } from 'core/navigation';
 import { ManageTokens } from './ManageTokens';
 import { HideTokenModal } from './HideTokenModal';
 import { AddTokenModal } from './AddTokenModal';
@@ -8,7 +8,7 @@ import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'manageTokens';
 
-import ducks from '@selfkey/wallet-core/modules';
+import ducks from 'core/modules';
 
 export * from './ManageTokens';
 export * from './HideTokenModal';

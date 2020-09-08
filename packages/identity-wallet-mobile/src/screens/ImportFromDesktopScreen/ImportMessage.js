@@ -6,7 +6,7 @@ import {
   H2,
   Explanatory,
   Grid,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 const BigNumber = styled(H2)`
   color: ${props => props.theme.colors.typography};

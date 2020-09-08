@@ -1,9 +1,9 @@
 
 import { MatomoTracker } from './MatomoTracker';
 import { getConfigs, onConfigChange } from '@selfkey/configs';
-import { updateViewCount } from '@selfkey/wallet-core/modules/app/app-module-utils';
-import { getRealmInstance } from '@selfkey/wallet-core/db/realm-service';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { updateViewCount } from 'core/modules/app/app-module-utils';
+import { getRealmInstance } from 'core/db/realm-service';
+import { Routes } from 'core/navigation';
 
 const matomo = new MatomoTracker({
   url: getConfigs().matomoUrl,

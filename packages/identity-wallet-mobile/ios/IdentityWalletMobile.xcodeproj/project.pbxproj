@@ -8,50 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
-		047532E5621B452A8E759718 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C88BA48CFD94DD297DF642B /* Feather.ttf */; };
-		07EE25ED8EAA43048BE83897 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C56D4BDC01840ADBC76EEBD /* AntDesign.ttf */; };
-		093E5AE0F02A4E7B9AB828E2 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42A6675579E4488FBE49F2D6 /* MaterialCommunityIcons.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		282C408378884F4CA6098663 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E515B5AD097A47FF8E6B578C /* Zocial.ttf */; };
-		2A989ED33C25465D8836C076 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 178B81E8AC524DE58113962D /* libz.tbd */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
-		30CB1EF90BCE44A4AB206ED9 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F015BD8CD7274D2294ADCC68 /* FontAwesome5_Solid.ttf */; };
-		30D7D7D61D3C68348E8E62AF /* libPods-IdentityWalletMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */; };
-		341CFD908ADA4CE39D4F3A23 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B68A6188B5742138411191B /* EvilIcons.ttf */; };
-		448A8434168E45689A06C18E /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CF5E07627EB481DAF91E69A /* Fontisto.ttf */; };
 		494DFD93DE3A440BA115C5AC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53255243B8F048318A89B822 /* Lato-Black.ttf */; };
 		4A5ECFA6F90F4D1AA6BBA52F /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A30CDB0FCAF4EEE81CEE2BC /* icomoon.ttf */; };
 		56D1A6EF9BE8457C8D2A28A1 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */; };
 		623002EDFFDF4188B3800E26 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */; };
-		67AE33A83089434D9602E23F /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DADDA4DF74B4A59A4C46AA9 /* Foundation.ttf */; };
-		6F21DF3FD3D04B1C99722893 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF73DB8A25C74C8297BA8C4F /* Octicons.ttf */; };
 		7245CA228751471887AC85E2 /* Lato-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */; };
 		8527F5A0AD1648D3993989E8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B12524E93A3431586D04C4D /* Lato-Light.ttf */; };
-		89CEFCC0667049278FDDF4D1 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 693FDFFF94F842B0ADABA526 /* Ionicons.ttf */; };
-		968010D0DD014B4BB771E278 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A91A5CF337D743C083660895 /* libc++.tbd */; };
-		96C3C0255A3C4FD9B0F06C77 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C510A69F980D40058348FCBC /* MaterialIcons.ttf */; };
+		8E65AD729A1ABB9A07022FED /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01876B57EA021CE064BB0EAA /* libPods-IdentityWalletMobile-tvOS.a */; };
 		9717AC7A242CFF880006426F /* SelfKeyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC77242CFF870006426F /* SelfKeyWallet.swift */; };
 		9717AC7C242CFF930006426F /* SelfKeyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC7B242CFF930006426F /* SelfKeyWallet.m */; };
-		978EE436243F3F580021C5FC /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 978EE435243F3F580021C5FC /* libDoubleConversion.a */; };
 		9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */; };
-		BB0958F5D6224DE694BE0F5B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3637AE1285B8482BABCEED24 /* Entypo.ttf */; };
-		C59E017F37D8DB73F303FC49 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */; };
-		CFF7A8AA952148AF8A722EA3 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9262D7A52241019E666788 /* libRealmReact.a */; };
-		D13DA9DC589747C63FA99321 /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */; };
+		A7420698E63AC99E7960134F /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D97453BDC3220FB2E5B82C0 /* libPods-IdentityWalletMobile-tvOSTests.a */; };
+		D9A08660B002DCB7D4534931 /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A149F458273FEF60B3C82369 /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a */; };
 		DBBD5F2686C9498183416BDF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37840D12A64A4BDB83682940 /* Lato-Regular.ttf */; };
-		E369141D0E474450B8A46B01 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0210BDD48B64834879421CF /* FontAwesome5_Regular.ttf */; };
 		E56F21EE223D4962965B26C6 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */; };
-		E72ACDB18B62D824FD7BA6E8 /* libPods-IdentityWalletMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */; };
 		E7F0902F6AC24B239E984BF1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */; };
-		F18C721DE55F41A1BF63F377 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8A2A1170FA44D3591372D4F /* FontAwesome.ttf */; };
-		F562A2AE9B9349F3A313613B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 199E2A9865EB457799A2223A /* SimpleLineIcons.ttf */; };
-		FF20066BC49E40DB96ED2303 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E20858E5CF8346BCB7FD4312 /* FontAwesome5_Brands.ttf */; };
+		EFE23FD051EEF192AA46AD0B /* libPods-IdentityWalletMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E161EC5DEBB15137AD2F67 /* libPods-IdentityWalletMobile.a */; };
 		FF7AA6F34E6E4FABA3F396C5 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -70,20 +50,6 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "IdentityWalletMobile-tvOS";
 		};
-		9729E82F2335A3F2006686CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D7682761D8E76B80014119E;
-			remoteInfo = SplashScreen;
-		};
-		975FD69123477F1E0038BB6A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F60690131CA2766F0003FB26;
-			remoteInfo = RealmReact;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -91,9 +57,9 @@
 		00E356EE1AD99517003FC87E /* IdentityWalletMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityWalletMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentityWalletMobileTests.m; sourceTree = "<group>"; };
+		01876B57EA021CE064BB0EAA /* libPods-IdentityWalletMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../assets/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
-		0B8C07B0F02795179ABEDBD0 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		0CF5E07627EB481DAF91E69A /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		100608656A5AE434CBA112C4 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* IdentityWalletMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityWalletMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = IdentityWalletMobile/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = IdentityWalletMobile/AppDelegate.m; sourceTree = "<group>"; };
@@ -102,53 +68,31 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = IdentityWalletMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = IdentityWalletMobile/main.m; sourceTree = "<group>"; };
 		1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-LightItalic.ttf"; path = "../assets/fonts/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
-		1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
-		178B81E8AC524DE58113962D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		183E05EF45CA11FFCB776554 /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		18977E99A48EFE91CC55D280 /* Pods-IdentityWalletMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.release.xcconfig"; sourceTree = "<group>"; };
-		199E2A9865EB457799A2223A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		2B68A6188B5742138411191B /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		2C88BA48CFD94DD297DF642B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		1D97453BDC3220FB2E5B82C0 /* libPods-IdentityWalletMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* IdentityWalletMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IdentityWalletMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* IdentityWalletMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IdentityWalletMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DADDA4DF74B4A59A4C46AA9 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		2EED7F6B221E0A9BDE1CF5EE /* Pods-IdentityWalletMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-ThinItalic.ttf"; path = "../assets/fonts/Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
-		3637AE1285B8482BABCEED24 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		35E161EC5DEBB15137AD2F67 /* libPods-IdentityWalletMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37840D12A64A4BDB83682940 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		3A30CDB0FCAF4EEE81CEE2BC /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		3B12524E93A3431586D04C4D /* Lato-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Light.ttf"; path = "../assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
-		42A6675579E4488FBE49F2D6 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		4287816AAF5CF6F1B74734F9 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4B04224900684302860DBBC5 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-IdentityWalletMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-IdentityWalletMobileTests/Pods-IdentityWalletMobile-IdentityWalletMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53255243B8F048318A89B822 /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-RegularItalic.ttf"; path = "../assets/fonts/Lato-RegularItalic.ttf"; sourceTree = "<group>"; };
 		652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
-		6803A9CFB2EE2EB04BDF09F1 /* Pods-IdentityWalletMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobileTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobileTests/Pods-IdentityWalletMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		693FDFFF94F842B0ADABA526 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		70117592875C479BE6212177 /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
-		7C56D4BDC01840ADBC76EEBD /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		7C9262D7A52241019E666788 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
-		8AFFE435789FE2D477F1C7C8 /* Pods-IdentityWalletMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		922252A3725E64A4CF290356 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		93D20E777032A9DE8F0EEAB4 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-IdentityWalletMobileTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-IdentityWalletMobileTests/Pods-IdentityWalletMobile-IdentityWalletMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		9717AC67242CFAB90006426F /* IdentityWalletMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityWalletMobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		9717AC77242CFF870006426F /* SelfKeyWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfKeyWallet.swift; sourceTree = "<group>"; };
 		9717AC7B242CFF930006426F /* SelfKeyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfKeyWallet.m; sourceTree = "<group>"; };
-		9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
-		978EE435243F3F580021C5FC /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7F694D3EA7FE80F82307048 /* Pods-IdentityWalletMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobileTests/Pods-IdentityWalletMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A8A2A1170FA44D3591372D4F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		A91A5CF337D743C083660895 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C510A69F980D40058348FCBC /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		E0210BDD48B64834879421CF /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		E20858E5CF8346BCB7FD4312 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		E515B5AD097A47FF8E6B578C /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F6455A90B9B4F635024821C /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOS/Pods-IdentityWalletMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		A149F458273FEF60B3C82369 /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-IdentityWalletMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3281D123E04D1B891DD3CDB /* Pods-IdentityWalletMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.release.xcconfig"; sourceTree = "<group>"; };
+		DD5556CF439BF594DCB6148A /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile-tvOSTests/Pods-IdentityWalletMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF73DB8A25C74C8297BA8C4F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		F015BD8CD7274D2294ADCC68 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Thin.ttf"; path = "../assets/fonts/Lato-Thin.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E72ACDB18B62D824FD7BA6E8 /* libPods-IdentityWalletMobileTests.a in Frameworks */,
+				D9A08660B002DCB7D4534931 /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,11 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				978EE436243F3F580021C5FC /* libDoubleConversion.a in Frameworks */,
-				30D7D7D61D3C68348E8E62AF /* libPods-IdentityWalletMobile.a in Frameworks */,
-				CFF7A8AA952148AF8A722EA3 /* libRealmReact.a in Frameworks */,
-				968010D0DD014B4BB771E278 /* libc++.tbd in Frameworks */,
-				2A989ED33C25465D8836C076 /* libz.tbd in Frameworks */,
+				EFE23FD051EEF192AA46AD0B /* libPods-IdentityWalletMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59E017F37D8DB73F303FC49 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */,
+				8E65AD729A1ABB9A07022FED /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D13DA9DC589747C63FA99321 /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */,
+				A7420698E63AC99E7960134F /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,15 +169,12 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				978EE435243F3F580021C5FC /* libDoubleConversion.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				EC5C0364BBD5693E957902D8 /* libPods-IdentityWalletMobile.a */,
-				ED9699EB82EB6BDDF8C97966 /* libPods-IdentityWalletMobile-tvOS.a */,
-				B401E572770FE2830355A371 /* libPods-IdentityWalletMobile-tvOSTests.a */,
-				EDC434968E51718DA337EDF6 /* libPods-IdentityWalletMobileTests.a */,
-				A91A5CF337D743C083660895 /* libc++.tbd */,
-				178B81E8AC524DE58113962D /* libz.tbd */,
+				35E161EC5DEBB15137AD2F67 /* libPods-IdentityWalletMobile.a */,
+				A149F458273FEF60B3C82369 /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a */,
+				01876B57EA021CE064BB0EAA /* libPods-IdentityWalletMobile-tvOS.a */,
+				1D97453BDC3220FB2E5B82C0 /* libPods-IdentityWalletMobile-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,14 +182,14 @@
 		78E3C054695E658E671925B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8AFFE435789FE2D477F1C7C8 /* Pods-IdentityWalletMobile.debug.xcconfig */,
-				18977E99A48EFE91CC55D280 /* Pods-IdentityWalletMobile.release.xcconfig */,
-				922252A3725E64A4CF290356 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */,
-				70117592875C479BE6212177 /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */,
-				0B8C07B0F02795179ABEDBD0 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */,
-				183E05EF45CA11FFCB776554 /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */,
-				A7F694D3EA7FE80F82307048 /* Pods-IdentityWalletMobileTests.debug.xcconfig */,
-				6803A9CFB2EE2EB04BDF09F1 /* Pods-IdentityWalletMobileTests.release.xcconfig */,
+				2EED7F6B221E0A9BDE1CF5EE /* Pods-IdentityWalletMobile.debug.xcconfig */,
+				A3281D123E04D1B891DD3CDB /* Pods-IdentityWalletMobile.release.xcconfig */,
+				4B04224900684302860DBBC5 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.debug.xcconfig */,
+				93D20E777032A9DE8F0EEAB4 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.release.xcconfig */,
+				4287816AAF5CF6F1B74734F9 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */,
+				9F6455A90B9B4F635024821C /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */,
+				100608656A5AE434CBA112C4 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */,
+				DD5556CF439BF594DCB6148A /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -260,8 +197,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */,
-				1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -275,7 +210,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				78E3C054695E658E671925B8 /* Pods */,
-				9729E83723364664006686CB /* Recovered References */,
 				9526C2782B9A4ECC9D66B8A2 /* Resources */,
 			);
 			indentWidth = 2;
@@ -307,49 +241,9 @@
 				637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */,
 				F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */,
 				35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */,
-				7C56D4BDC01840ADBC76EEBD /* AntDesign.ttf */,
-				3637AE1285B8482BABCEED24 /* Entypo.ttf */,
-				2B68A6188B5742138411191B /* EvilIcons.ttf */,
-				2C88BA48CFD94DD297DF642B /* Feather.ttf */,
-				A8A2A1170FA44D3591372D4F /* FontAwesome.ttf */,
-				E20858E5CF8346BCB7FD4312 /* FontAwesome5_Brands.ttf */,
-				E0210BDD48B64834879421CF /* FontAwesome5_Regular.ttf */,
-				F015BD8CD7274D2294ADCC68 /* FontAwesome5_Solid.ttf */,
-				0CF5E07627EB481DAF91E69A /* Fontisto.ttf */,
-				2DADDA4DF74B4A59A4C46AA9 /* Foundation.ttf */,
-				693FDFFF94F842B0ADABA526 /* Ionicons.ttf */,
-				42A6675579E4488FBE49F2D6 /* MaterialCommunityIcons.ttf */,
-				C510A69F980D40058348FCBC /* MaterialIcons.ttf */,
-				EF73DB8A25C74C8297BA8C4F /* Octicons.ttf */,
-				199E2A9865EB457799A2223A /* SimpleLineIcons.ttf */,
-				E515B5AD097A47FF8E6B578C /* Zocial.ttf */,
 				3A30CDB0FCAF4EEE81CEE2BC /* icomoon.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		9729E82C2335A3F2006686CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9729E8302335A3F2006686CB /* libSplashScreen.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9729E83723364664006686CB /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				7C9262D7A52241019E666788 /* libRealmReact.a */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		975FD68E23477F1E0038BB6A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				975FD69223477F1E0038BB6A /* libRealmReact.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,10 +253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "IdentityWalletMobileTests" */;
 			buildPhases = (
-				1A93D0B323C3DADF02FAEECA /* [CP] Check Pods Manifest.lock */,
+				FDB529E16D6B7AFCED288603 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				806BB0114921A2B06BAE2BF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,13 +273,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "IdentityWalletMobile" */;
 			buildPhases = (
-				017E69BDF7E11F398600390C /* [CP] Check Pods Manifest.lock */,
+				1BBB48A7352614ECEBC2DC0F /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
-				2FD88DC6E9607CEE0F93EEBB /* [CP] Copy Pods Resources */,
 				97CBF0CB2492A2C80055B91C /* Bundle React Native code and images */,
+				33FABF71180455DBFE887E3C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -399,7 +294,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "IdentityWalletMobile-tvOS" */;
 			buildPhases = (
-				A175E09CFBF7ED07632CFFD8 /* [CP] Check Pods Manifest.lock */,
+				5B9446E6A39C297D424CF7DB /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -419,7 +314,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "IdentityWalletMobile-tvOSTests" */;
 			buildPhases = (
-				6A6384FC23EA412082774B04 /* [CP] Check Pods Manifest.lock */,
+				8311B2A59FC94D7121419E6E /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -477,16 +372,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 975FD68E23477F1E0038BB6A /* Products */;
-					ProjectRef = 1640B5C76EBA4091908DE230 /* RealmReact.xcodeproj */;
-				},
-				{
-					ProductGroup = 9729E82C2335A3F2006686CB /* Products */;
-					ProjectRef = 9729E82B2335A3F2006686CB /* SplashScreen.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* IdentityWalletMobile */,
@@ -496,23 +381,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9729E8302335A3F2006686CB /* libSplashScreen.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSplashScreen.a;
-			remoteRef = 9729E82F2335A3F2006686CB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		975FD69223477F1E0038BB6A /* libRealmReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRealmReact.a;
-			remoteRef = 975FD69123477F1E0038BB6A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -538,22 +406,6 @@
 				7245CA228751471887AC85E2 /* Lato-RegularItalic.ttf in Resources */,
 				9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */,
 				E56F21EE223D4962965B26C6 /* Lato-ThinItalic.ttf in Resources */,
-				07EE25ED8EAA43048BE83897 /* AntDesign.ttf in Resources */,
-				BB0958F5D6224DE694BE0F5B /* Entypo.ttf in Resources */,
-				341CFD908ADA4CE39D4F3A23 /* EvilIcons.ttf in Resources */,
-				047532E5621B452A8E759718 /* Feather.ttf in Resources */,
-				F18C721DE55F41A1BF63F377 /* FontAwesome.ttf in Resources */,
-				FF20066BC49E40DB96ED2303 /* FontAwesome5_Brands.ttf in Resources */,
-				E369141D0E474450B8A46B01 /* FontAwesome5_Regular.ttf in Resources */,
-				30CB1EF90BCE44A4AB206ED9 /* FontAwesome5_Solid.ttf in Resources */,
-				448A8434168E45689A06C18E /* Fontisto.ttf in Resources */,
-				67AE33A83089434D9602E23F /* Foundation.ttf in Resources */,
-				89CEFCC0667049278FDDF4D1 /* Ionicons.ttf in Resources */,
-				093E5AE0F02A4E7B9AB828E2 /* MaterialCommunityIcons.ttf in Resources */,
-				96C3C0255A3C4FD9B0F06C77 /* MaterialIcons.ttf in Resources */,
-				6F21DF3FD3D04B1C99722893 /* Octicons.ttf in Resources */,
-				F562A2AE9B9349F3A313613B /* SimpleLineIcons.ttf in Resources */,
-				282C408378884F4CA6098663 /* Zocial.ttf in Resources */,
 				4A5ECFA6F90F4D1AA6BBA52F /* icomoon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,7 +428,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		017E69BDF7E11F398600390C /* [CP] Check Pods Manifest.lock */ = {
+		1BBB48A7352614ECEBC2DC0F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -598,28 +450,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1A93D0B323C3DADF02FAEECA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IdentityWalletMobileTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,23 +464,129 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		2FD88DC6E9607CEE0F93EEBB /* [CP] Copy Pods Resources */ = {
+		33FABF71180455DBFE887E3C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A6384FC23EA412082774B04 /* [CP] Check Pods Manifest.lock */ = {
+		5B9446E6A39C297D424CF7DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IdentityWalletMobile-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		806BB0114921A2B06BAE2BF1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IdentityWalletMobile-IdentityWalletMobileTests/Pods-IdentityWalletMobile-IdentityWalletMobileTests-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IdentityWalletMobile-IdentityWalletMobileTests/Pods-IdentityWalletMobile-IdentityWalletMobileTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8311B2A59FC94D7121419E6E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -690,28 +626,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		A175E09CFBF7ED07632CFFD8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IdentityWalletMobile-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -748,6 +662,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FDB529E16D6B7AFCED288603 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IdentityWalletMobile-IdentityWalletMobileTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -819,7 +755,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7F694D3EA7FE80F82307048 /* Pods-IdentityWalletMobileTests.debug.xcconfig */;
+			baseConfigurationReference = 4B04224900684302860DBBC5 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -834,10 +770,7 @@
 				INFOPLIST_FILE = IdentityWalletMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -851,7 +784,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6803A9CFB2EE2EB04BDF09F1 /* Pods-IdentityWalletMobileTests.release.xcconfig */;
+			baseConfigurationReference = 93D20E777032A9DE8F0EEAB4 /* Pods-IdentityWalletMobile-IdentityWalletMobileTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -863,10 +796,7 @@
 				INFOPLIST_FILE = IdentityWalletMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -880,26 +810,21 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8AFFE435789FE2D477F1C7C8 /* Pods-IdentityWalletMobile.debug.xcconfig */;
+			baseConfigurationReference = 2EED7F6B221E0A9BDE1CF5EE /* Pods-IdentityWalletMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 6C99KF3727;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
-				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.3.22;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfkey.mobilewallet;
@@ -915,7 +840,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18977E99A48EFE91CC55D280 /* Pods-IdentityWalletMobile.release.xcconfig */;
+			baseConfigurationReference = A3281D123E04D1B891DD3CDB /* Pods-IdentityWalletMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -923,17 +848,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6C99KF3727;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
-				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.3.22;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfkey.mobilewallet;
@@ -948,7 +868,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 922252A3725E64A4CF290356 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 4287816AAF5CF6F1B74734F9 /* Pods-IdentityWalletMobile-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -965,10 +885,7 @@
 				);
 				INFOPLIST_FILE = "IdentityWalletMobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -984,7 +901,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70117592875C479BE6212177 /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */;
+			baseConfigurationReference = 9F6455A90B9B4F635024821C /* Pods-IdentityWalletMobile-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1001,10 +918,7 @@
 				);
 				INFOPLIST_FILE = "IdentityWalletMobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1020,7 +934,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B8C07B0F02795179ABEDBD0 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 100608656A5AE434CBA112C4 /* Pods-IdentityWalletMobile-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1036,10 +950,7 @@
 				);
 				INFOPLIST_FILE = "IdentityWalletMobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1055,7 +966,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 183E05EF45CA11FFCB776554 /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = DD5556CF439BF594DCB6148A /* Pods-IdentityWalletMobile-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1071,10 +982,7 @@
 				);
 				INFOPLIST_FILE = "IdentityWalletMobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1137,6 +1045,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = /usr/lib/swift;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1186,6 +1100,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = /usr/lib/swift;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(inherited)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

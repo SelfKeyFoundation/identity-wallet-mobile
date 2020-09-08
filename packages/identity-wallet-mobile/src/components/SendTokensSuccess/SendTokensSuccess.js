@@ -19,7 +19,7 @@ import {
 	Explanatory,
 	DefinitionTitle,
 	FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 const Body = styled.View``;
 

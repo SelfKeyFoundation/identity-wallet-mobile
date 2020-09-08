@@ -2,8 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImportWalletBackup } from './ImportWalletBackup';
-import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes, navigateBack } from 'core/navigation';
+import ducks from 'core/modules';
 import DocumentPicker from 'react-native-document-picker';
 import fs from 'react-native-fs';
 

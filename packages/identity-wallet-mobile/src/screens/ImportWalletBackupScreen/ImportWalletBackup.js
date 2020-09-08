@@ -13,7 +13,7 @@ import {
   Button,
   ThemeContext,
   TextInput
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'importWalletBackup';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, List, ListItem, Paragraph } from '@selfkey/mobile-ui';
+import { Link, List, ListItem, Paragraph } from 'design-system';
 
 export const TermsOfServiceContent = () => (
   <React.Fragment>

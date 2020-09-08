@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { Routes } from 'core/navigation';
 import CreatePasswordScreen from '../../screens/CreatePasswordScreen';
 import ConfirmPasswordScreen from '../../screens/ConfirmPasswordScreen';
 import BackupWalletScreen from '../../screens/BackupWalletScreen';

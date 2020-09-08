@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreatePassword } from './CreatePassword';
 import { useCreatePasswordController } from './useCreatePasswordController';
-import modules from '@selfkey/wallet-core/modules';
-import { navigateBack, navigate, Routes } from '@selfkey/wallet-core/navigation';
+import modules from 'core/modules';
+import { navigateBack, navigate, Routes } from 'core/navigation';
 import { WalletTracker } from '../../WalletTracker';
 const TRACKER_PAGE = 'chooseDifferentWallet';
 

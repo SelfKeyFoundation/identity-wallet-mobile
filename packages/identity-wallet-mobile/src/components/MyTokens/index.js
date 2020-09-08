@@ -3,8 +3,8 @@ import  { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
 import { TokensEmptyAlert } from '../TokensEmptyAlert'
-import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import modules from 'core/modules';
+import { navigate, Routes } from 'core/navigation';
 import { MyTokens } from './MyTokens';
 
 export * from './MyTokens';

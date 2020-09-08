@@ -6,7 +6,7 @@
 import { useMemo } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
+import { validateAll } from 'core/utils/validation-utils';
 
 /**
  *

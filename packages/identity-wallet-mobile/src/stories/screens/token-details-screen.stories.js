@@ -2,9 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import TokenDetailsScreen from '../../screens/TokenDetailsScreen';
-import { reduxMockDecorator } from '@selfkey/wallet-core/utils/storybook-utils';
-import { setNavigator } from '@selfkey/wallet-core/navigation';
-import { setPriceData } from '@selfkey/blockchain/services/price-service';
+import { reduxMockDecorator } from 'core/utils/storybook-utils';
+import { setNavigator } from 'core/navigation';
+import { setPriceData } from 'blockchain/services/price-service';
 
 setPriceData([{
   name: 'Ethereum',

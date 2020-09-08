@@ -12,7 +12,7 @@ import {
   Paragraph,
   Explanatory,
   FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 import { Text } from 'react-native';
 import styled from 'styled-components/native';

@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { Share } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { BackupWallet } from './BackupWallet';
-import ducks from '@selfkey/wallet-core/modules';
+import ducks from 'core/modules';
 
 const { operations, selectors } = ducks.createWallet;
 

@@ -19,7 +19,7 @@ import {
 	Explanatory,
 	DefinitionTitle,
 	FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { TouchableWithoutFeedback } from 'react-native';
 
 const Body = styled.View``;

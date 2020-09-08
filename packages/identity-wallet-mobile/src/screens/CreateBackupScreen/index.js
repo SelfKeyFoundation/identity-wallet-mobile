@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreateBackup } from './CreateBackup';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'createBackup';

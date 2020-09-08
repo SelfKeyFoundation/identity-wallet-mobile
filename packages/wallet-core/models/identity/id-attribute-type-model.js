@@ -1,6 +1,6 @@
 import { BaseModel } from '../common/base-model';
 import * as jsonSchema from '../../modules/identity/json-schema-utils';
-import { RepositoryModel } from '..';
+import { RepositoryModel } from './repository-model';
 import { getCurrentEnv } from '@selfkey/configs';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
 

@@ -2,11 +2,11 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
-import { RNForm } from '@selfkey/rjsf-native';
+import { validateAll } from 'core/utils/validation-utils';
+import { RNForm } from 'rjsf-native';
 import { SelectBox } from '../../components';
-import ducks from '@selfkey/wallet-core/modules';
-import { containsFile, removeMeta } from '@selfkey/wallet-core/modules/identity/json-schema-utils';
+import ducks from 'core/modules';
+import { containsFile, removeMeta } from 'core/modules/identity/json-schema-utils';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
 import {
@@ -17,7 +17,7 @@ import {
   Row,
   Col,
   Button
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 const Divider = styled.View`
   border: 0 solid #475768;

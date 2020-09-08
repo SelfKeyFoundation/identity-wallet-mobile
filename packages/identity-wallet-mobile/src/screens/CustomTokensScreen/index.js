@@ -2,12 +2,12 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomTokensScreen } from './CustomTokensScreen';
 import { TokenDetails, TxHistoryContainer } from '../../components';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import { IconKey, IconEth, IconTokens } from '@selfkey/mobile-ui/lib/svg-icons';
-import { getTokenPrice } from '@selfkey/blockchain/services/price-service';
-import modules from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import { IconKey, IconEth, IconTokens } from 'design-system/svg-icons';
+import { getTokenPrice } from 'blockchain/services/price-service';
+import modules from 'core/modules';
 import styled from 'styled-components/native';
-import { Grid, Row, Col } from '@selfkey/mobile-ui';
+import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'customTokens';

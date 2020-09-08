@@ -5,7 +5,7 @@
  */
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
+import { validateAll } from 'core/utils/validation-utils';
 
 function computePasswordStrength(value = '') {
   let strength = 0;

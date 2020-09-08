@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ForgotPassword } from './ForgotPassword';
-import ducks from '@selfkey/wallet-core/modules';
-import { navigateBack, navigate, Routes } from '@selfkey/wallet-core/navigation';
+import ducks from 'core/modules';
+import { navigateBack, navigate, Routes } from 'core/navigation';
 
 function ForgotPasswordContainer(props) {
   const dispatch = useDispatch();

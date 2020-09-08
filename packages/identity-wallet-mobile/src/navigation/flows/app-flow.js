@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { Routes } from 'core/navigation';
 import { AppTabBar } from '../../components/AppTabBar';
 import SettingsScreen from '../../screens/SettingsScreen';
 import DashboardScreen from '../../screens/DashboardScreen';

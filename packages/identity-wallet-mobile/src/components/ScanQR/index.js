@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components/native';
 import { Dimensions, View, SafeAreaView, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { SKIcon } from '@selfkey/mobile-ui';
+import { SKIcon } from 'design-system';
 // import { RNCamera as Camera } from 'react-native-camera';
 // import styled from 'styled-components/native';
 

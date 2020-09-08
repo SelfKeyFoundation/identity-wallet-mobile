@@ -2,9 +2,9 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ImportFromDesktop } from './ImportFromDesktop';
 import { ImportMessage } from './ImportMessage';
-import { navigate, Routes, navigateBack } from '@selfkey/wallet-core/navigation';
-import { Modal } from '@selfkey/mobile-ui';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes, navigateBack } from 'core/navigation';
+import { Modal } from 'design-system';
+import ducks from 'core/modules';
 import { PasswordScreen } from './PasswordScreen';
 import { WalletTracker } from '../../WalletTracker';
 

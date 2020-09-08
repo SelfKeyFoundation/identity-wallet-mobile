@@ -1,10 +1,10 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import ducks from 'core/modules';
 import { Linking } from 'react-native';
 import styled from 'styled-components/native';
-import { Grid, Row, Col, Modal } from '@selfkey/mobile-ui';
+import { Grid, Row, Col, Modal } from 'design-system';
 import { SettingsMenu } from './SettingsMenu';
 import * as Keychain from '../../rn-identity-vault/keychain';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';

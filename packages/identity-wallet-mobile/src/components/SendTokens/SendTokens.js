@@ -24,9 +24,9 @@ import {
   TextInput,
   H3,
   FormattedNumber,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import { SelectBox } from '../index';
-import { type Token } from '@selfkey/wallet-core/types/Token';
+import { type Token } from 'core/types/Token';
 
 const Body = styled.View`
   padding: 15px 15px 40px 15px;

@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TermsOfService, TermsOfServiceAgreement } from '../../components';
-import modules from '@selfkey/wallet-core/modules';
+import modules from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
 
 const { operations, selectors } = modules.app;

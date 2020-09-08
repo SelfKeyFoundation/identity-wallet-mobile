@@ -16,7 +16,7 @@ import {
   Col,
   Button,
   H3,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from '@selfkey/configs';

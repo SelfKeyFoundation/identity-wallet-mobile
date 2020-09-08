@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import ducks from '@selfkey/wallet-core/modules';
-import { TabNavigation } from '@selfkey/mobile-ui';
-import { Routes, navigate } from '@selfkey/wallet-core/navigation';
+import ducks from 'core/modules';
+import { TabNavigation } from 'design-system';
+import { Routes, navigate } from 'core/navigation';
 import { WalletTracker } from '../WalletTracker';
 
 export function AppTabBar(props) {

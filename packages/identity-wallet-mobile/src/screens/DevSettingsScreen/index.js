@@ -1,10 +1,10 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { navigateBack, Routes } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigateBack, Routes } from 'core/navigation';
+import ducks from 'core/modules';
 import { Linking } from 'react-native';
 import styled from 'styled-components/native';
-import { Grid, Row, Col } from '@selfkey/mobile-ui';
+import { Grid, Row, Col } from 'design-system';
 import { DevSettings } from './DevSettings';
 import * as Keychain from '../../rn-identity-vault/keychain';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { ScreenContainer } from '@selfkey/mobile-ui';
+import { ScreenContainer } from 'design-system';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
-import { RNForm } from '@selfkey/rjsf-native';
+import { RNForm } from 'rjsf-native';
 import schema from './schema.json';
 import schema2 from './schema2.json';
 import schema3 from './schema3.json';

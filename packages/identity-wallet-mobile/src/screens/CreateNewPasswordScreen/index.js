@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreatePassword } from '../CreatePasswordScreen/CreatePassword';
 import { useCreatePasswordController } from '../CreatePasswordScreen/useCreatePasswordController';
-import ducks from '@selfkey/wallet-core/modules';
-import { navigateBack, navigate, Routes } from '@selfkey/wallet-core/navigation';
+import ducks from 'core/modules';
+import { navigateBack, navigate, Routes } from 'core/navigation';
 
 
 function CreateNewPasswordContainer(props) {

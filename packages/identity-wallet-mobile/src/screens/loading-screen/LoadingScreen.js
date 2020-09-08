@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import styled from 'styled-components/native';
 import SplashScreen from 'react-native-splash-screen';
-import { SkLogo } from '@selfkey/mobile-ui/lib';
+import { SkLogo } from 'design-system';
 import { SkBackground } from '../../components';
 
 const Title = styled.Text`

@@ -14,7 +14,7 @@ import {
   H3,
   H4,
   Alert,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
 

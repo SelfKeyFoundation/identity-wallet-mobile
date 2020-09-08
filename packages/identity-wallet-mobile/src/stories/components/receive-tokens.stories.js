@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { Button, ScreenContainer } from '@selfkey/mobile-ui';
+import { Button, ScreenContainer } from 'design-system';
 import { ReceiveTokens } from '../../components';
 
 storiesOf('components', module)

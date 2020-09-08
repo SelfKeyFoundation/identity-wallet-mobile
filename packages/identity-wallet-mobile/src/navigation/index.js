@@ -2,7 +2,7 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { RootNavigation } from './RootNavigation';
 import { ReactNativeNavigator } from './rn-navigator';
-import { setNavigator } from '@selfkey/wallet-core/navigation';
+import { setNavigator } from 'core/navigation';
 
 
 const AppContainer = createAppContainer(RootNavigation);

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react-native';
 // import { action } from '@storybook/addon-actions';
 // import { bool } from '@storybook/addons-knobs';
 
-import { Button, ScreenContainer } from '@selfkey/mobile-ui';
+import { Button, ScreenContainer } from 'design-system';
 import { SendTokensSuccess } from '../../components';
 
 storiesOf('components', module)

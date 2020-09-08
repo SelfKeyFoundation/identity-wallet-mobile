@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EnterPassword } from './EnterPassword';
 import { MnemonicScreen } from './MnemonicScreen';
 import { Share } from 'react-native';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'recoveryInformation';

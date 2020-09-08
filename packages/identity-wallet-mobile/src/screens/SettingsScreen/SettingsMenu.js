@@ -6,7 +6,7 @@ import {
   Row,
   Col,
   DefinitionTitle,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import APP_VERSION from '@selfkey/identity-wallet-mobile/app-version.json';
 import { getCurrentEnv } from '@selfkey/configs';
 

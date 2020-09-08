@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MyProfile } from './MyProfile';
-import ducks from '@selfkey/wallet-core/modules';
-import { containsFile } from '@selfkey/wallet-core/modules/identity/json-schema-utils';
+import ducks from 'core/modules';
+import { containsFile } from 'core/modules/identity/json-schema-utils';
 import { AttributeModal } from './AttributeModal';
 import { DocumentModal } from './DocumentModal';
 
 import { EditPictureModal } from './EditPictureModal';
-import { FIRST_NAME_ATTRIBUTE } from '@selfkey/wallet-core/modules/identity/constants';
+import { FIRST_NAME_ATTRIBUTE } from 'core/modules/identity/constants';
 
 function MyProfileContainer(props) {
   const dispatch = useDispatch();

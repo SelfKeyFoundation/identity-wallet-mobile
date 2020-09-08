@@ -2,7 +2,7 @@ import React from 'react';
 import { TokenDetails } from '../../components';
 import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
-import { SKIcon } from '@selfkey/mobile-ui';
+import { SKIcon } from 'design-system';
 
 const Container = styled.SafeAreaView`
   flex: 1;

@@ -1,5 +1,5 @@
 import { createSwitchNavigator } from 'react-navigation';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import { Routes } from 'core/navigation';
 import { loadingFlow } from './flows/loading-flow';
 import { createWalletFlow } from './flows/create-wallet-flow';
 import { unlockWalletFlow } from './flows/unlock-wallet-flow';

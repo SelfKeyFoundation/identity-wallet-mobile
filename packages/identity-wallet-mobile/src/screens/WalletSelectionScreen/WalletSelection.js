@@ -16,7 +16,7 @@ import {
   ErrorMessage,
   Link,
   DefinitionTitle,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
 const Container = styled.SafeAreaView`

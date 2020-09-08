@@ -14,12 +14,12 @@ import {
   SKIcon,
   ButtonLink,
   IconAddImage
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import FileViewer from "react-native-file-viewer";
 import fs from 'react-native-fs';
 import { WalletTracker } from '../../WalletTracker';
-import { FIRST_NAME_ATTRIBUTE, EMAIL_ATTRIBUTE, LAST_NAME_ATTRIBUTE } from '@selfkey/wallet-core/modules/identity/constants';
-import { setFileViewer } from '@selfkey/rjsf-native/src/RNForm';
+import { FIRST_NAME_ATTRIBUTE, EMAIL_ATTRIBUTE, LAST_NAME_ATTRIBUTE } from 'core/modules/identity/constants';
+import { setFileViewer } from 'rjsf-native//RNForm';
 
 const TRACKER_PAGE = 'dashboard';
 

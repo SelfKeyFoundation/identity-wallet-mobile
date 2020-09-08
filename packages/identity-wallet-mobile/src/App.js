@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 import { StatusBar, NativeModules } from 'react-native';
 import { NavigationContainer } from './navigation';
-import { connect } from '@selfkey/wallet-core/redux';
-import modules from '@selfkey/wallet-core/modules';
+import { connect } from 'core/redux';
+import modules from 'core/modules';
 import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
 import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';

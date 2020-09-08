@@ -4,7 +4,7 @@ import React from 'react';
 import { Dimensions, View, Text } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { TokenBox } from '../TokenBox';
-import { IconKey, IconEth, IconTokens } from '@selfkey/mobile-ui/lib/svg-icons';
+import { IconKey, IconEth, IconTokens } from 'design-system/svg-icons';
 
 const ICON_MAP = {
   key: IconKey,

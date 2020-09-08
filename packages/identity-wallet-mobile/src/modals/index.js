@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ducks from '@selfkey/wallet-core/modules';
-import { Routes } from '@selfkey/wallet-core/navigation';
+import ducks from 'core/modules';
+import { Routes } from 'core/navigation';
 
 import TransactionDetailsModal from './TransactionDetailsModal';
 import CreateSelfKeyIdModal from './CreateSelfKeyIdModal';

@@ -2,10 +2,10 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Clipboard, Share, View, Linking } from 'react-native';
 import { SendTokensPending } from '../../components';
-import modules from '@selfkey/wallet-core/modules';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
+import modules from 'core/modules';
+import { navigate, Routes } from 'core/navigation';
 import { Snackbar } from 'react-native-paper';
-import EthUtils from '@selfkey/blockchain/util/eth-utils';
+import EthUtils from 'blockchain/util/eth-utils';
 import { WalletTracker } from '../../WalletTracker';
 
 const TRACKER_PAGE = 'sendTokens/pending';

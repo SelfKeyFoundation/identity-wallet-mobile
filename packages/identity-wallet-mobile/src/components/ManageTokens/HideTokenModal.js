@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Paragraph } from '@selfkey/mobile-ui';
+import { Modal, Paragraph } from 'design-system';
 
 export const HideTokenModal = props => (
   <Modal

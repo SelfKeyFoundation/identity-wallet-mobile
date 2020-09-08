@@ -14,7 +14,7 @@ import {
   Button,
   ThemeContext,
   TextInput
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 export function ImportFromDesktop(props) {
   return (

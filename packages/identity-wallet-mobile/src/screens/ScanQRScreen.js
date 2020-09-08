@@ -2,8 +2,8 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import modules from '@selfkey/wallet-core/modules';
-import { navigate, navigateBack, Routes, onNavigate } from '@selfkey/wallet-core/navigation';
+import modules from 'core/modules';
+import { navigate, navigateBack, Routes, onNavigate } from 'core/navigation';
  
 const { operations, selectors } = modules.transaction;
 import { WalletTracker } from '../WalletTracker';

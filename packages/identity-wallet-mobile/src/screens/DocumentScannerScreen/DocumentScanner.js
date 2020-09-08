@@ -14,7 +14,7 @@ import {
   ThemeContext,
   ErrorMessage,
   Link,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
 

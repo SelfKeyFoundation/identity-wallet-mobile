@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { reduxMockDecorator } from '@selfkey/wallet-core/utils/storybook-utils';
+import { reduxMockDecorator } from 'core/utils/storybook-utils';
 import ForgotPasswordScreen from '../../screens/ForgotPasswordScreen';
 import { ForgotPassword } from '../../screens/ForgotPasswordScreen/ForgotPassword';
 

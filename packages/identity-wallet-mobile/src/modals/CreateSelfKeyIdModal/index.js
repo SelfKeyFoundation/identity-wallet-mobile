@@ -2,13 +2,13 @@ import React, { useCallback, useMemo, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { validateAll } from '@selfkey/wallet-core/utils/validation-utils';
+import { validateAll } from 'core/utils/validation-utils';
 import { TransactionDetails } from '../../components';
-import { navigate, Routes } from '@selfkey/wallet-core/navigation';
-import { getUsdPrice } from '@selfkey/blockchain/services/price-service';
-import ducks from '@selfkey/wallet-core/modules';
+import { navigate, Routes } from 'core/navigation';
+import { getUsdPrice } from 'blockchain/services/price-service';
+import ducks from 'core/modules';
 import styled from 'styled-components/native';
-import EthUtils from '@selfkey/blockchain/util/eth-utils';
+import EthUtils from 'blockchain/util/eth-utils';
 import { Linking, KeyboardAvoidingView, Platform } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
 import {
@@ -26,7 +26,7 @@ import {
   Button,
   H3,
   Alert
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 const Divider = styled.View`
   border: 0 solid #475768;

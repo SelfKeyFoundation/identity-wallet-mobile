@@ -16,7 +16,7 @@ import {
   H3,
   H4,
   Alert,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 export interface BackupWalletProps {
   mnemonicPhrase: string;

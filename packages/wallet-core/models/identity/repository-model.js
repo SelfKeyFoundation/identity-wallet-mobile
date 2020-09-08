@@ -2,7 +2,9 @@ import { getCurrentEnv } from '@selfkey/configs';
 import { BaseModel } from '../common/base-model';
 import { Logger } from '@selfkey/wallet-core/utils/logger';
 import { loadRemoteRepository, loadLocalRepository } from '../../modules/identity/json-schema-utils';
-import { IdAttributeTypeModel, UISchemaModel } from '..';
+import { IdAttributeTypeModel } from './id-attribute-model';
+import { UISchemaModel } from './ui-schema-model';
+
 // import { UiSchema } from './ui-schema';
 // import config from 'common/config';
 // const env = config.attributeTypeSource;

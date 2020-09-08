@@ -9,7 +9,7 @@ import {
   H3,
   Paragraph,
   ThemeContext,
-} from '@selfkey/mobile-ui';
+} from 'design-system';
 
 const Container = styled.SafeAreaView`
   flex: 1;
