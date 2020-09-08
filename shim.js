@@ -1,3 +1,18 @@
+import {decode, encode} from 'base-64';
+import fetch from 'cross-fetch';
+
+if (!global.fetch) {
+  global.fetch = fetch;
+}
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+// if (!global.atob) {
+//   global.atob = decode;
+// }
+
 if (typeof __dirname === 'undefined') global.__dirname = '/'
 if (typeof __filename === 'undefined') global.__filename = ''
 if (typeof process === 'undefined') {

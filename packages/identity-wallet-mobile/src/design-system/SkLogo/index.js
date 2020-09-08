@@ -1,1 +1,0 @@
-export { SkLogo } from './SkLogo';

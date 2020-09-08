@@ -5,7 +5,6 @@
 /coverage
 # Xcode
 #
-.vscode
 build/
 *.pbxuser
 !default.pbxuser
@@ -23,14 +22,16 @@ DerivedData
 *.ipa
 *.xcuserstate
 # project.xcworkspace
+!debug.keystore
+*.bkp
 
 # Android/IntelliJ
 #
 build/
+*.aab
 .idea
 .gradle
 local.properties
-sentry.properties
 *.iml
 
 # node.js
@@ -60,7 +61,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
 
 package-lock.json
 .history/
