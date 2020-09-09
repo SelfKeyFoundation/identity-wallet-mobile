@@ -1,6 +1,6 @@
 // @flow
 import React, { useEffect } from 'react';
-import { StatusBar, NativeModules } from 'react-native';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from './navigation';
 import { connect } from 'core/redux';
 import modules from 'core/modules';
@@ -9,6 +9,8 @@ import ReceiveTokensScreen from './screens/ReceiveTokensScreen';
 import SendTokensScreen from './screens/SendTokensScreen';
 import { ModalRoot } from './modals';
 import { WalletTracker } from './WalletTracker';
+import { Snackbar } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
 
 type AppProps = {
   isLoading: boolean,
@@ -16,6 +18,8 @@ type AppProps = {
 };
 
 export function App(props: AppProps) {
+  const dispatch = useDispatch();
+  const snackMessage = useSelector(modules.app.selectors.getSnackMessage)
   const { loadApp, isLoading } = props;
 
   useEffect(() => {
@@ -40,6 +44,13 @@ export function App(props: AppProps) {
           <TermsOfServiceScreen />
         )
       }
+      <Snackbar
+        visible={!!snackMessage}
+        onDismiss={() => dispatch(modules.app.actions.setSnackMessage(null))}
+        duration={1000}
+      >
+        { snackMessage }
+      </Snackbar>
     </React.Fragment>
   );
 }

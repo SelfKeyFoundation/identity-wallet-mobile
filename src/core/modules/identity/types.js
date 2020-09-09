@@ -6,6 +6,7 @@ export const identityTypes = {
 	// IDENTITY_ID_ATTRIBUTE_TYPES_UPDATE_REMOTE: 'identity/id-atribute_types/UPDATE_REMOTE',
 	// IDENTITY_UI_SCHEMAS_LOAD: 'identity/ui-schemas/LOAD',
 	IDENTITY_UI_SCHEMAS_SET: 'identity/ui-schemas/SET',
+	SET_DID_STATUS: 'identity/didStatus/SET',
 	// IDENTITY_UI_SCHEMAS_UPDATE_REMOTE: 'identity/ui-schemas/UPDATE_REMOTE',
 	// IDENTITY_DOCUMENTS_LOAD: 'identity/documents/LOAD',
 	// IDENTITY_DOCUMENTS_SET: 'identity/documents/SET',

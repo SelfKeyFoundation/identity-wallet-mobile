@@ -20,6 +20,10 @@ export const appActions = {
   setSupportedBiometryType: (value) => ({
     type: appTypes.SET_SUPPORTED_BIOMETRY_TYPE,
     payload: { value },
+  }),
+  setSnackMessage: (message) => ({
+    type: appTypes.SET_SNACK_MESSAGE,
+    payload: { message },
   })
 };
 

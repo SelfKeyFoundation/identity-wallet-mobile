@@ -45,12 +45,20 @@ function setSupportedBiometryTypeReducer(state, action) {
   };
 }
 
+function setSnackMessageReducer(state, action) {
+  return {
+    ...state,
+    snackMessage: action.payload.message
+  }
+}
+
 export const appReducers = {
   setAppLoadingReducer,
   setGuideSettingsReducer,
   showSendTokensModalReducer,
   showReceiveTokensModalReducer,
   setSupportedBiometryTypeReducer,
+  setSnackMessageReducer,
 };
 
 const reducersMap = {
@@ -59,6 +67,8 @@ const reducersMap = {
   [appTypes.SHOW_SEND_TOKENS_MODAL]: appReducers.showSendTokensModalReducer,
   [appTypes.SHOW_RECEIVE_TOKENS_MODAL]: appReducers.showReceiveTokensModalReducer,
   [appTypes.SET_SUPPORTED_BIOMETRY_TYPE]: appReducers.setSupportedBiometryTypeReducer,
+  [appTypes.SET_SNACK_MESSAGE]: appReducers.setSnackMessageReducer,
+
 };
 
 export default createReducer(initialState, reducersMap);

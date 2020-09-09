@@ -120,6 +120,13 @@ export class IdentityService {
 		throw 'Method not implemented';
 	}
 
+	static updateIdentityDID(id, did) {
+		// return Identity.updateName({ id, name });
+		return IdentityModel.getInstance().updateById(id, {
+			did
+		})
+	}
+
 	static async updateIdentityProfilePicture(profilePicture, id) {
 		await IdentityModel.getInstance().updateById(id, {
 			profilePicture,

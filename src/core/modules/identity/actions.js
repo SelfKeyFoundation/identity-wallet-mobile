@@ -13,7 +13,11 @@ export const identityActions = {
 	setUISchemas: uiSchemas => ({
 		type: types.IDENTITY_UI_SCHEMAS_SET,
 		payload: uiSchemas
-  }),
+	}),
+	setDIDStatus: status => ({
+		type: types.SET_DID_STATUS,
+		payload: { status }
+	}),
   // setDocuments: (identityId, documents) => ({
 	// 	type: types.IDENTITY_DOCUMENTS_SET,
 	// 	payload: {

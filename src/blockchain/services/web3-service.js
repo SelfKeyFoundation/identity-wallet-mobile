@@ -1,5 +1,5 @@
 /** @flow */
-const Web3 = require('web3');
+import Web3 from 'web3';
 const ProviderEngine = require('web3-provider-engine');
 const FetchSubprovider = require('web3-provider-engine/subproviders/fetch');
 import HookedWalletEthTxSubprovider from 'web3-provider-engine/subproviders/hooked-wallet-ethtx';

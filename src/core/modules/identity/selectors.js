@@ -36,6 +36,8 @@ const selectProps = (...fields) => (state, props = {}) => _.pick(props, fields);
 // ##### Repositories ########
 // ###########################
 
+export const getDIDStatus = (state) => state.identity.didStatus;
+
 export const selectRepositories = createSelector(
 	selectRoot('repositories', 'repositoriesById'),
 	({ repositories, repositoriesById }) => repositories.map(id => repositoriesById[id])

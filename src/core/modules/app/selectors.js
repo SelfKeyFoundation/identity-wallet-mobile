@@ -17,3 +17,5 @@ export const showReceiveTokensModal = (state) => {
 export const getSupportedBiometryType = (state) => {
   return getRoot(state).supportedBiometryType;
 };
+
+export const getSnackMessage = state => getRoot(state).snackMessage;

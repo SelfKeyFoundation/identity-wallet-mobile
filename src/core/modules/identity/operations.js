@@ -2,6 +2,7 @@ import uuid from 'uuid/v4';
 import { IdentityService } from "./identity-service";
 import actions from './actions';
 import { Logger } from 'core/utils/logger';
+import EventEmitter from 'events';
 import duck from './index';
 import ducks from '../index';
 import { System } from '../../system';
@@ -20,6 +21,7 @@ import {
 import { navigate, Routes } from "../../navigation";
 import { WalletModel } from "../../models";
 import { containsFile } from "./json-schema-utils";
+import { DIDService } from 'core/services/did-service';
 
 const log = new Logger('identity-operations');
 
@@ -352,6 +354,106 @@ export const navigateToProfileOperation = () => async (dispatch, getState) => {
 	navigate(Routes.APP_MY_PROFILE);
 };
 
+export const updateDIDOperation = did => async (dispatch, getState) => {
+	const wallet = ducks.wallet.selectors.getWallet(getState());
+	const identity = duck.selectors.selectIdentity(getState());
+
+	let controllerAddress
+
+	try {
+		controllerAddress = await DIDService.getInstance().getControllerAddress(did);
+	} catch(err) {
+		throw 'Invalid DID.';
+	}
+
+	if (wallet.address.toLowerCase() === controllerAddress.toLowerCase()) {
+		await IdentityService.updateIdentityDID(identity.id, did);
+		await dispatch(actions.updateIdentity({
+			...identity,
+			did,
+		}));
+	} else {
+		throw 'The DID provided is not derived from the current wallet.'
+	}
+};
+
+export const clearDIDOperation = did => async (dispatch, getState) => {
+	const identity = duck.selectors.selectIdentity(getState());
+	await IdentityService.updateIdentityDID(identity.id, null);
+	await dispatch(actions.updateIdentity({
+		...identity,
+		did: null,
+	}));
+}
+
+export const createDIDOperation = () => async (dispatch, getState) => {
+	const wallet = ducks.wallet.selectors.getWallet(getState());
+
+	return new Promise(async (res, reject) => {
+		try {
+			const gasLimit = await DIDService.getInstance().getGasLimit(wallet.address);
+			const transaction = DIDService.getInstance().createDID(wallet.address, gasLimit);
+			// const transaction = new EventEmitter();
+
+			transaction.on('receipt', async receipt => {
+				const identity = duck.selectors.selectIdentity(getState());
+				const did = receipt.events.CreatedDID.returnValues.id;
+				await IdentityService.updateIdentityDID(identity.id, did);
+				await dispatch(actions.updateIdentity({
+					...identity,
+					did,
+				}));
+
+				dispatch(actions.setDIDStatus('created'));
+
+				System.getTracker().trackEvent({
+					category: `selfKeyProfile/did/create`,
+					action: 'sucess',
+					level: 'wallet'
+				});
+
+				res();
+			});
+
+			transaction.on('transactionHash', async hash => {
+				System.getTracker().trackEvent({
+					category: `selfKeyProfile/did/create`,
+					action: 'processing',
+					level: 'wallet'
+				});
+				dispatch(actions.setDIDStatus('processing'));
+			});
+		
+			transaction.on('error', async error => {
+				System.getTracker().trackEvent({
+					category: `selfKeyProfile/did/create`,
+					action: 'error',
+					level: 'wallet'
+				});
+
+				dispatch(actions.setDIDStatus('error'));
+				reject(error);
+				console.error(error);
+			});
+
+			// setTimeout(() => {
+			// 	transaction.emit('error', {
+			// 		// events: {
+			// 		// 	CreatedDID: {
+			// 		// 		returnValues: {
+			// 		// 			id: 'did:selfkey:alkjs;dlfkjas;lkjdf'
+			// 		// 		}
+			// 		// 	}
+			// 		// }
+			// 		message: 'error message'
+			// 	});
+			// }, 1500);
+		} catch(error) {
+			reject(error)
+		}
+	})
+}
+
 export const operations = {
 	loadIdentityOperation,
 	loadRepositoriesOperation,
@@ -370,7 +472,10 @@ export const operations = {
 	updateIdentitySetupOperation,
 	editIdAttributeOperation,
 	updateProfilePictureOperation,
-	removeIdAttributeOperation
+	removeIdAttributeOperation,
+	updateDIDOperation,
+	clearDIDOperation,
+	createDIDOperation
 };
 
 export const identityOperations = {

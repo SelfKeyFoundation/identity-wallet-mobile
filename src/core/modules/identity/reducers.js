@@ -15,7 +15,8 @@ export const initialState = {
 	countries: [],
 	identities: [],
 	identitiesById: {},
-	currentIdentity: null
+	currentIdentity: null,
+	didStatus: null
 };
 
 const setRepositoriesReducer = (state, action) => {
@@ -26,6 +27,12 @@ const setRepositoriesReducer = (state, action) => {
 	}, {});
 	repositories = repositories.map(repo => repo.id);
 	return { ...state, repositories, repositoriesById };
+};
+
+const setDIDStatusReducer = (state, action) => {
+	let { status } = action.payload || [];
+	
+	return { ...state, didStatus: status };
 };
 
 const setIdAttributeTypesReducer = (state, action) => {
@@ -234,6 +241,7 @@ export const identityReducers = {
 	addIdentityReducer,
 	updateIdentityReducer,
 	setCurrentIdentityReducer,
+	setDIDStatusReducer
 };
 
 const reducersMap = {
@@ -247,6 +255,7 @@ const reducersMap = {
 	// [types.]: identityReducers.setDocumentsReducer,
 	// [types.]: identityReducers.deleteDocumentsReducer,
 	[types.IDENTITY_ATTRIBUTES_SET]: identityReducers.setIdAttributesReducer,
+	[types.SET_DID_STATUS]: identityReducers.setDIDStatusReducer,
 	[types.IDENTITY_ATTRIBUTES_DELETE]: identityReducers.deleteIdAttributesReducer,
 	// [types.]: identityReducers.setAttributeDocumentsReducer,
 	// [types.]: identityReducers.deleteAttributeDocumentsReducer,

@@ -15,7 +15,8 @@ export class IdentityModel extends BaseModel {
       isSetupFinished: {
         type: 'bool',
         default: false,
-      }
+      },
+      did: 'string?'
       // id: { type: 'integer' },
       // walletId: { type: 'integer' },z
       // parentId: { type: ['integer', null] },

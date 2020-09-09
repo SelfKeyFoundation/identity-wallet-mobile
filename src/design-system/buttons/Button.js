@@ -35,7 +35,7 @@ export const Button = (props: ButtonProps) => {
     letterSpacing: 0,
   };
 
-  if (props.type === 'full-primary' && disabled) {
+  if ((!props.type || props.type === 'full-primary') && disabled) {
     buttonStyle.backgroundColor = theme.colors.primaryDisabled;
   } else if (props.type === 'shell-primary') {
     mode = 'outlined';

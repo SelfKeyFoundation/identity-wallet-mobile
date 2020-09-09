@@ -112,7 +112,7 @@ const ForgotLink = styled(Link)`
 
 export function DevSettings(props) {
   const theme = useContext(ThemeContext);
-
+  
   return (
     <Container>
       <Header>
@@ -150,6 +150,13 @@ export function DevSettings(props) {
           <Col>
             <Button onPress={props.onDeleteWallet}>
               Delete Wallet
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button onPress={props.onClearDID}>
+              Clear DID
             </Button>
           </Col>
         </Row>
