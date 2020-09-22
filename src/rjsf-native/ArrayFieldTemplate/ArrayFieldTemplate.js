@@ -1,6 +1,6 @@
 import React from 'react';
-import { utils } from '@rjsf/core';
-import { ArrayFieldTemplateProps, IdSchema } from '@rjsf/core';
+import { utils } from '@rjsf/core/src';
+import { ArrayFieldTemplateProps, IdSchema } from '@rjsf/core/src';
 import AddButton from '../AddButton/AddButton';
 import IconButton from '../IconButton/IconButton';
 import FileWidget from '../FileWidget/FileWidget';

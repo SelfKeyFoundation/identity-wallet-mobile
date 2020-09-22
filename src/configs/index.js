@@ -4,6 +4,8 @@ let currentEnv = 'prod';
 
 const CONFIGS = {
   dev: {
+    isDev: true,
+    did: true,
     chainId: 3,
     etherscanUrl: 'https://ropsten.etherscan.io',
     rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
@@ -14,9 +16,11 @@ const CONFIGS = {
     flags: {
       importFromDesktop: true,
       importFromMnemonic: false,
-    }
+    },
+    kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
   },
   prod: {
+    did: true,
     chainId: 1,
     etherscanUrl: 'https://etherscan.io',
     rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
@@ -27,7 +31,8 @@ const CONFIGS = {
     flags: {
       importFromDesktop: true,
       importFromMnemonic: false,
-    }
+    },
+    kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
   }
 }
 

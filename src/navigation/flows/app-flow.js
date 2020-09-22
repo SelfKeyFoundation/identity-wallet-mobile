@@ -20,7 +20,7 @@ import MyProfileScreen from '../../screens/MyProfileScreen';
 import DocumentScannerScreen from '../../screens/DocumentScannerScreen';
 import { AssociateDIDScreen } from '../../screens/AssociateDIDScreen';
 import { RegisterDIDScreen } from '../../screens/RegisterDIDScreen';
-
+import GetLockScreen from '../../screens/GetLockScreen';
 import { stackNavigatorConfig } from '../configs';
 
 export const appTabNavigation = createBottomTabNavigator({
@@ -49,7 +49,7 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.CHANGE_PASSWORD]: ChangePasswordScreen,
   [Routes.ASSOCIATE_DID]: AssociateDIDScreen,
   [Routes.REGISTER_DID]: RegisterDIDScreen,
-
+  [Routes.GET_LOCK]: GetLockScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);

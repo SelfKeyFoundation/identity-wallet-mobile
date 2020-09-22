@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { withTheme, FormProps } from '@rjsf/core';
+import { withTheme, FormProps } from '@rjsf/core/src';
 import { View } from 'react-native';
 import Theme from '../Theme';
 import { StatelessComponent } from 'react';

@@ -144,6 +144,8 @@ export default function FileWidget(props) {
           size: res.size,
         };
 
+        console.log(props);
+
         if (isMultiple) {
           const data = [
             ...props.formData,

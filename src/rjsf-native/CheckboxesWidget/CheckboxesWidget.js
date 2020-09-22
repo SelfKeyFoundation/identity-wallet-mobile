@@ -12,7 +12,7 @@ import {
   Explanatory,
 } from 'design-system';
 
-import { WidgetProps } from "@rjsf/core";
+import { WidgetProps } from "@rjsf/core/src";
 
 const selectValue = (value: any, selected: any, all: any) => {
   const at = all.indexOf(value);

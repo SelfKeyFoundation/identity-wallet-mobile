@@ -8,6 +8,7 @@ import txHistory from './tx-history';
 import wallets from './wallets';
 import modals from './modals';
 import identity from './identity';
+import kyc from './kyc';
 
 export default {
   wallet,
@@ -20,4 +21,5 @@ export default {
   wallets,
   modals,
   identity,
+  kyc,
 };

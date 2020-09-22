@@ -17,7 +17,7 @@ import {
 } from 'design-system';
 
 
-import { ErrorListProps } from '@rjsf/core';
+import { ErrorListProps } from '@rjsf/core/src';
 
 const ErrorList = ({ errors }: ErrorListProps) => (
   // <Col>

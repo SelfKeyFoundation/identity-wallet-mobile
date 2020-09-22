@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WidgetProps } from "@rjsf/core";
+import { WidgetProps } from "@rjsf/core/src";
 
 // import TextField from "@material-ui/core/TextField";
 

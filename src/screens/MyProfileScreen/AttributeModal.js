@@ -68,7 +68,19 @@ export function AttributeModal(props) {
   const dispatch = useDispatch();
   const idAttributes = useSelector(ducks.identity.selectors.selectAttributeTypesFiltered);
   const uiSchemas = useSelector(ducks.identity.selectors.selectUISchemas);
-  const [attribute, setAttribute] = useState(isEditMode && idAttributes.find(item => item.id === props.attribute.typeId));
+  const getDefaultAttribute = () => {
+    if (isEditMode) {
+      return idAttributes.find(item => item.id === props.attribute.typeId);
+    }
+
+    if (props.type) {
+      return idAttributes.find(item => item.id === props.type);
+    }
+
+    return null;
+  }
+
+  const [attribute, setAttribute] = useState(getDefaultAttribute());
   const [label, setLabel] = useState(isEditMode && props.attribute.name);
   const [labelError, setLabelError] = useState(null);
   const [formData, setFormData] = useState(isEditMode ? props.attribute.data.value : null);
@@ -201,7 +213,7 @@ export function AttributeModal(props) {
               selectedValue={attributeId}
               placeholder="Select"
               items={attrList}
-              disabled={isEditMode}
+              disabled={isEditMode || props.type}
               onValueChange={handleAttributeSelect}
             />
           </Col>

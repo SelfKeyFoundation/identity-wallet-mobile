@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldProps } from '@rjsf/core';
+import { FieldProps } from '@rjsf/core/src';
 import styled from 'styled-components/native';
 
 const FormLabel = styled.Text`

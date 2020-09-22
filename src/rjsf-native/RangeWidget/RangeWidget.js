@@ -10,8 +10,8 @@ import {
 } from 'design-system';
 
 
-import { utils } from "@rjsf/core";
-import { WidgetProps } from "@rjsf/core";
+import { utils } from "@rjsf/core/src";
+import { WidgetProps } from "@rjsf/core/src";
 
 const { rangeSpec } = utils;
 

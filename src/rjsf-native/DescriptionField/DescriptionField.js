@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FieldProps } from '@rjsf/core';
+import { FieldProps } from '@rjsf/core/src';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
 // import { makeStyles } from '@material-ui/styles';

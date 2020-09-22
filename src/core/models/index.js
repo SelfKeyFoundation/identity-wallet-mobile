@@ -9,9 +9,10 @@ import { IdentityModel } from './identity/identity-model';
 import { IdAttributeModel } from './identity/id-attribute-model';
 import { IdAttributeTypeModel } from './identity/id-attribute-type-model';
 import { UISchemaModel } from  './identity/ui-schema-model';
+import { KYCApplicationModel } from  './kyc/kyc-application-model';
 
-export const CURRENT_SCHEMA_VERSION = 11;
-export const SCHEMA_NAME = '11-did-update';
+export const CURRENT_SCHEMA_VERSION = 12;
+export const SCHEMA_NAME = '12-kyc-update';
 
 export {
   WalletModel,
@@ -25,6 +26,7 @@ export {
   IdAttributeModel,
   IdAttributeTypeModel,
   UISchemaModel,
+  KYCApplicationModel,
 };
 
 export default [
@@ -39,4 +41,5 @@ export default [
   IdAttributeModel,
   IdAttributeTypeModel,
   UISchemaModel,
+  KYCApplicationModel,
 ];

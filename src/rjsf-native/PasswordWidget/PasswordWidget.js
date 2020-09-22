@@ -5,7 +5,7 @@ import {
   TextInput
 } from 'design-system';
 
-import { WidgetProps } from "@rjsf/core";
+import { WidgetProps } from "@rjsf/core/src";
 
 const PasswordWidget = ({
   id,

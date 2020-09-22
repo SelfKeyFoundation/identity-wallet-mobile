@@ -12,8 +12,8 @@ import {
 } from 'design-system';
 
 
-import { WidgetProps } from "@rjsf/core";
-import { utils } from "@rjsf/core";
+import { WidgetProps } from "@rjsf/core/src";
+import { utils } from "@rjsf/core/src";
 import { getMessage } from "../TextWidget";
 
 const { asNumber, guessType } = utils;

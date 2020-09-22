@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "lint:style": "stylelint './src/**/*.js'",
     "flow": "flow",
-    "fix-deps": "npx jetify && yarn rn-nodeify --hack",
+    "fix-deps": "sh fix-deps.sh && npx jetify && yarn rn-nodeify --hack",
     "postinstall": "yarn fix-deps"
   },
   "detox": {
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
-    "@rjsf/core": "2.3.0",
+    "@rjsf/core": "https://github.com/maycon-mello/react-jsonschema-form#22f0f764a8b430eed725dc5e554a511a36a9e1b9",
     "@storybook/addon-actions": "5.2.6",
     "@storybook/addon-knobs": "5.2.6",
     "@storybook/addon-links": "5.2.6",
@@ -64,10 +64,12 @@
     "es6-promisify": "^6.0.2",
     "ethereumjs-util": "6.2.0",
     "events": "1.1.1",
+    "form-data": "3.0.0",
     "formik": "2.0.3",
     "hdkey": "1.1.1",
     "https-browserify": "0.0.1",
     "json-schema-ref-parser": "^9.0.1",
+    "jsonwebtoken": "^8.5.1",
     "keccak": "^3.0.0",
     "lodash": "^4.17.15",
     "matomo-tracker": "^2.2.1",
@@ -127,6 +129,7 @@
     "timers-browserify": "1.4.2",
     "tty-browserify": "0.0.0",
     "url": "0.10.3",
+    "url-join": "^4.0.1",
     "util": "0.10.4",
     "vm-browserify": "0.0.4",
     "web3": "1.0.0-beta.55",

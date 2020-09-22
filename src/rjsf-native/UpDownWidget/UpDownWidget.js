@@ -11,7 +11,7 @@ import {
 } from 'design-system';
 
 
-import { WidgetProps } from '@rjsf/core';
+import { WidgetProps } from '@rjsf/core/src';
 
 const UpDownWidget = ({
   id,

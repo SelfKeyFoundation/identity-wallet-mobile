@@ -27,7 +27,7 @@ export interface AlertProps {
 export function Alert(props: AlertProps) {
   const theme = useContext(ThemeContext);
   let iconName = props.icon || 'icon-shield-info';
-  let iconColor = props.iconColor || theme.colors.typography;
+  let iconColor = props.iconColor || props.color || theme.colors.typography;
   let TextComponent = Explanatory;
 
   if (props.type === 'error') {
@@ -44,7 +44,7 @@ export function Alert(props: AlertProps) {
         </View>
       </LeftSide> }
       <RightSide>
-        <TextComponent>{props.children}</TextComponent>
+        <TextComponent style={{ color: props.color || theme.colors.typography }}>{props.children}</TextComponent>
       </RightSide>
     </Container>
   );

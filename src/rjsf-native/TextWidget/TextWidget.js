@@ -26,7 +26,7 @@ import {
   DatePicker
 } from 'design-system';
 
-import { WidgetProps, utils } from "@rjsf/core";
+import { WidgetProps, utils } from "@rjsf/core/src";
 
 const { getDisplayLabel } = utils;
 

@@ -46,3 +46,4 @@ export const MODAL_TRANSACTION_DETAILS = 'modal/transactionDetails';
 export const MODAL_CREATE_SELFKEY_ID = 'modal/createSelfKeyId';
 export const ASSOCIATE_DID = 'associateDID';
 export const REGISTER_DID = 'registerDID';
+export const GET_LOCK = 'getLock';

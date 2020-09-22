@@ -54,7 +54,7 @@ export function ProfileDIDTab() {
 				<Row>
 					<Col>
 						<SectionTitle>Decentralized ID</SectionTitle>
-						<SectionDescription style={{ marginTop: 5 }}>{did ? did : (didStatus === 'processing' ? 'Processing' : 'No DID')}</SectionDescription>
+						<SectionDescription style={{ marginTop: 5 }}>{did ? `${did}` : (didStatus === 'processing' ? 'Processing' : 'No DID')}</SectionDescription>
 					</Col>
 				</Row>
 			</SectionHeader>

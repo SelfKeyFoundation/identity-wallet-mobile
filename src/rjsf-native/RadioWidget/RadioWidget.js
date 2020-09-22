@@ -11,7 +11,7 @@ import {
   Explanatory,
 } from 'design-system';
 
-import { WidgetProps } from "@rjsf/core";
+import { WidgetProps } from "@rjsf/core/src";
 
 const RadioWidget = ({
   id,

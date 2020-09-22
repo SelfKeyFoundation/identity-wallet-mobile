@@ -86,6 +86,10 @@ export async function createVault(props: VaultConstructor) {
 export async function getVault(vaultId) {
   return getKeychain().getItem(vaultId);
 }
+export async function getIdentityVault(vaultId) {
+  const props = await getVault(vaultId);
+  return new IdentityVault(props);
+}
 
 export function removeVault(vaultId) {
   return getKeychain().removeItem(vaultId);

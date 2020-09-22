@@ -45,6 +45,7 @@ module.exports = (async () => {
         'design-system': path.resolve(__dirname, "./src/design-system"),
         'core': path.resolve(__dirname, "./src/core"),
         'blockchain': path.resolve(__dirname, "./src/blockchain"),
+        'screens': path.resolve(__dirname, "./src/screens"),
         'configs': path.resolve(__dirname, "./src/configs"),
         'rjsf-native': path.resolve(__dirname, "./src/rjsf-native"),
       }

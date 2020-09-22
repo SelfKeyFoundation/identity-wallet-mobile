@@ -397,7 +397,7 @@ export const createDIDOperation = () => async (dispatch, getState) => {
 
 			transaction.on('receipt', async receipt => {
 				const identity = duck.selectors.selectIdentity(getState());
-				const did = receipt.events.CreatedDID.returnValues.id;
+				const did = `did:selfkey:${receipt.events.CreatedDID.returnValues.id}`;
 				await IdentityService.updateIdentityDID(identity.id, did);
 				await dispatch(actions.updateIdentity({
 					...identity,
@@ -437,15 +437,15 @@ export const createDIDOperation = () => async (dispatch, getState) => {
 			});
 
 			// setTimeout(() => {
-			// 	transaction.emit('error', {
-			// 		// events: {
-			// 		// 	CreatedDID: {
-			// 		// 		returnValues: {
-			// 		// 			id: 'did:selfkey:alkjs;dlfkjas;lkjdf'
-			// 		// 		}
-			// 		// 	}
-			// 		// }
-			// 		message: 'error message'
+			// 	transaction.emit('transactionHash', {
+			// 		events: {
+			// 			CreatedDID: {
+			// 				returnValues: {
+			// 					id: '0x7be1c7b5f6026065d02451d712f2b822ae179503f061f890438430dd49389246'
+			// 				}
+			// 			}
+			// 		}
+			// 		// message: 'error message'
 			// 	});
 			// }, 1500);
 		} catch(error) {
