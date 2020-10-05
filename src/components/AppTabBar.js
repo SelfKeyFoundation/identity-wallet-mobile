@@ -16,16 +16,22 @@ export function AppTabBar(props) {
     label: 'Dashboard',
     id: Routes.APP_DASHBOARD,
   }, {
+    icon: 'Staking_Icon',
+    label: 'Staking',
+    id: Routes.APP_STAKING,
+  }, {
     icon: 'icon-menu-tokens',
     label: 'My Tokens',
     id: Routes.APP_MY_TOKENS,
-  }, {
-    icon: 'icon-menu-qr',
-    label: 'Scan QR',
-    id: Routes.APP_SCAN_QR,
-  }, {
+  },
+  // {
+  //   icon: 'icon-menu-qr',
+  //   label: 'Scan QR',
+  //   id: Routes.APP_SCAN_QR,
+  // },
+  {
     icon: 'icon-menu-profile',
-    label: 'My Profile',
+    label: 'Profile',
     id: Routes.APP_MY_PROFILE,
   }, {
     icon: 'icon-menu-settings',
@@ -54,7 +60,7 @@ export function AppTabBar(props) {
 
   return (
     <TabNavigation
-      activeId={route.key}
+      activeId={route && route.key}
       onPress={handleNavigate}
       items={items}
     />

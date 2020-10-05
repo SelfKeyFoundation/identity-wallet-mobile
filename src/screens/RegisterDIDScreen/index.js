@@ -163,7 +163,7 @@ export function RegisterDIDScreen(props) {
               </Col>
               {fees ? (
                 <Col>
-                  <Ammount style={{ textAlign: 'right', marginBottom: 5 }}>
+                  <Ammount style={{ textAlign: 'right', marginBottom: 5, fontSize: 20  }}>
                     {FormattedNumber({
                       value: fees.usdFee,
                       currency: 'usd'

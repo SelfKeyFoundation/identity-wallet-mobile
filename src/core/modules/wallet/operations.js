@@ -12,6 +12,7 @@ import { unlockVault, updatePassword, unlockVaultWithBiometrics } from '../../id
 import { navigate, Routes } from '../../navigation';
 import { getConfigs } from 'configs';
 import { addTop20Tokens } from '../create-wallet/create-wallet-utils';
+import { navigateToDashboardOperation } from '../unlock-wallet/operations';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -316,7 +317,8 @@ const confirmNewPasswordOperation = ({ password }) => async (dispatch, getState)
     level: 'app'
   });
 
-  navigate(Routes.APP_DASHBOARD);
+  // navigate(Routes.APP_DASHBOARD);
+  await dispatch(navigateToDashboardOperation());
 };
 
 const addTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {

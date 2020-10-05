@@ -47,6 +47,7 @@ export const messageFilter = (messages = []) => {
 	return result;
 };
 
+// TODO: Remove it, just used for testing purposes
 const loadTemplateOperation = (templateId) => async (dispatch, getState) => {
   const data = await fetch(`https://dev.instance.kyc-chain.com/api/v2/templates/${templateId}`).then(res => res.json());
   dispatch(kycActions.setTemplate(data));
@@ -142,7 +143,6 @@ const loadRelyingPartyOperation = (
 		if (authenticate) {
 			applications = await session.listKYCApplications();
 			
-			debugger;
 			// for (const application of applications) {
 			// 	application.messages = await session.getKYCApplicationChat(application.id);
 			// 	const formattedMessages = messageFilter(application.messages);

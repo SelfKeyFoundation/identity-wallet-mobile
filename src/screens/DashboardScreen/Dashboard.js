@@ -41,7 +41,6 @@ const TxHistoryRow = styled.View`
 `;
 
 export function Dashboard(props) {
-  const handleGetLock = () => navigate(Routes.GET_LOCK);
   const handleRefresh = () => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/refreshButton`,
@@ -61,7 +60,6 @@ export function Dashboard(props) {
             <RefreshControl refreshing={props.refreshing} onRefresh={handleRefresh} />
           }
         >
-          <Button onPress={handleGetLock}>Get LOCK</Button>
           <CarouselRow>
             <TokenBoxCarouselContainer />
           </CarouselRow>  

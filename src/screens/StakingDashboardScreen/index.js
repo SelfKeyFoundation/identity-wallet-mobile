@@ -1,7 +1,7 @@
 import ducks from 'core/modules';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetLockScreen } from './GetLockScreen';
+import { StakingDashboard } from './StakingDashboard';
 
 export default function GetLockScreenContainer(props) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function GetLockScreenContainer(props) {
 	// 	props.templateId
 	// )
   return (
-    <GetLockScreen
+    <StakingDashboard
       requirements={requirements}
     />
   )

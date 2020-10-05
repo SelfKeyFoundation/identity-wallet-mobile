@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppRegistry, SafeAreaView, StyleSheet } from 'react-native';
 import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
-import { MobileUIProvider, Portal } from '@selfkey/mobile-ui';
+import { MobileUIProvider, Portal } from 'design-system';
 import SplashScreen from 'react-native-splash-screen';
 
 SplashScreen.hide();

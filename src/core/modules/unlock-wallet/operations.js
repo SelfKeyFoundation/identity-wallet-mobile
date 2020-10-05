@@ -5,6 +5,14 @@ import { WalletModel } from '../../models';
 import { navigate, Routes } from '../../navigation';
 import { System } from '../../system';
 import ducks from '../index';
+
+export const navigateToDashboardOperation = (form) => async (dispatch, getState) => {
+  // check if learn how to stake should be skip
+
+  await navigate(Routes.LEARN_HOW_TO_STAKE);
+  // await navigate(Routes.APP_DASHBOARD);
+  
+}
 /**
  * Unlock the default wallet
  *
@@ -42,8 +50,7 @@ const submitUnlockOperation = (form) => async (dispatch, getState) => {
   }
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
-  // Redirect to dashboard
-  await navigate(Routes.APP_DASHBOARD);
+  await dispatch(navigateToDashboardOperation());
 
   return true;
 };
@@ -94,7 +101,7 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
   }
 
   await dispatch(walletOperations.loadWalletOperation({ wallet, vault }));
-  await navigate(Routes.APP_DASHBOARD);
+  await dispatch(navigateToDashboardOperation());
 };
 
 const unlockWithVaultIdOperation = (vaultId, password) => async (dispatch, getState) => {
@@ -110,6 +117,7 @@ export const operations = {
   unlockWithAddressOperation,
   unlockWithVaultIdOperation,
   restoreAccessOperation,
+  navigateToDashboardOperation,
 };
 
 export const unlockWalletOperations = {

@@ -14,6 +14,8 @@ export const CUSTOM_TOKENS = 'app/customTokens';
 export const TRANSACTION_DETAILS = 'app/transactionDetails';
 export const DOCUMENT_SCANNER = 'app/documentScanner';
 export const APP_MY_PROFILE = 'app/profile';
+export const APP_STAKING = 'app/staking';
+export const LEARN_HOW_TO_STAKE = 'learnHowToStake';
 
 export const SCAN_QR = 'scanQR';
 export const CREATE_BACKUP = 'createBackup';
@@ -46,4 +48,3 @@ export const MODAL_TRANSACTION_DETAILS = 'modal/transactionDetails';
 export const MODAL_CREATE_SELFKEY_ID = 'modal/createSelfKeyId';
 export const ASSOCIATE_DID = 'associateDID';
 export const REGISTER_DID = 'registerDID';
-export const GET_LOCK = 'getLock';

@@ -75,7 +75,7 @@ export function DatePicker(props) {
     <FormInputContainer>
       <FormLabel>{props.label}{props.required ? '*' : ''}</FormLabel>
       <TouchableWithoutFeedback onPress={handlePress}>
-      <InputContainer hasError={props.error}>
+      <InputContainer hasError={props.error} style={props.inputStyle || {}}>
         <InputItem style={{ flex: 1 }}>
           <RNDatePicker
             date={value}

@@ -131,6 +131,7 @@
     "url": "0.10.3",
     "url-join": "^4.0.1",
     "util": "0.10.4",
+    "victory-native": "^35.0.1",
     "vm-browserify": "0.0.4",
     "web3": "1.0.0-beta.55",
     "web3-provider-engine": "14.1.0",

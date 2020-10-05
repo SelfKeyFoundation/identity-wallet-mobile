@@ -46,6 +46,20 @@ export const Explanatory = styled.Text`
   font-family: ${props => props.theme.fonts.lato};
 `;
 
+export const ExplanatoryWhite = styled.Text`
+  color: ${props => props.theme.colors.white};
+  font-size: 13px;
+  line-height: 19px;
+  font-family: ${props => props.theme.fonts.lato};
+`;
+
+export const LabelText = styled.Text`
+  color: ${props => props.theme.colors.white};
+  font-size: 12px;
+  line-height: 22px;
+  font-family: ${props => props.theme.fonts.lato};
+`;
+
 export const ExplanatorySmall = styled.Text`
   color: ${props => props.theme.colors.typography};
   font-size: 10px;

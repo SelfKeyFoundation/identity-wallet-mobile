@@ -70,7 +70,6 @@ function fetchAsJson(url, opts) {
 	}
 
 	if (opts.formData) {
-		// var formBody = [];
 		const form = new FormData();
 		
 		Object.keys(opts.formData).forEach((key) => {
@@ -87,15 +86,6 @@ function fetchAsJson(url, opts) {
 		});
 
 		opts.body = form;
-		// opts.headers['content-type'] = 'application/x-www-form-urlencoded';
-		// url = 'https://mzm-test2.free.beeceptor.com';
-		// for (var property in opts.formData) {
-		// 	var encodedKey = encodeURIComponent(property);
-		// 	var encodedValue = encodeURIComponent(JSON.stringify(opts.formData[property]));
-		// 	formBody.push(encodedKey + "=" + encodedValue);
-		// }
-		// opts.body = formBody.join("&");
-		// opts.headers['content-type'] = 'application/json';
 	}
 
 	console.log('Request', {

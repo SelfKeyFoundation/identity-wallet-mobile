@@ -18,9 +18,10 @@ import ChangePasswordScreen from '../../screens/ChangePasswordScreen';
 import DevSettingsScreen from '../../screens/DevSettingsScreen';
 import MyProfileScreen from '../../screens/MyProfileScreen';
 import DocumentScannerScreen from '../../screens/DocumentScannerScreen';
+import LearnHowToStakeScreen from '../../screens/LearnHowToStakeScreen';
 import { AssociateDIDScreen } from '../../screens/AssociateDIDScreen';
 import { RegisterDIDScreen } from '../../screens/RegisterDIDScreen';
-import GetLockScreen from '../../screens/GetLockScreen';
+import StakingDashboardScreen from '../../screens/StakingDashboardScreen';
 import { stackNavigatorConfig } from '../configs';
 
 export const appTabNavigation = createBottomTabNavigator({
@@ -31,6 +32,7 @@ export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_SCAN_QR]: ScanQRScreen,
   [Routes.APP_MY_TOKENS]: MyTokensScreen,
   [Routes.APP_MY_PROFILE]: MyProfileScreen,
+  [Routes.APP_STAKING]: StakingDashboardScreen,
 }, {
   tabBarComponent: AppTabBar,
 });
@@ -49,7 +51,8 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.CHANGE_PASSWORD]: ChangePasswordScreen,
   [Routes.ASSOCIATE_DID]: AssociateDIDScreen,
   [Routes.REGISTER_DID]: RegisterDIDScreen,
-  [Routes.GET_LOCK]: GetLockScreen,
+  [Routes.LEARN_HOW_TO_STAKE]: LearnHowToStakeScreen,
+  
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);

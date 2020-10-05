@@ -48,6 +48,7 @@ module.exports = (async () => {
         'screens': path.resolve(__dirname, "./src/screens"),
         'configs': path.resolve(__dirname, "./src/configs"),
         'rjsf-native': path.resolve(__dirname, "./src/rjsf-native"),
+        'components': path.resolve(__dirname, "./src/components"),
       }
     },
   };

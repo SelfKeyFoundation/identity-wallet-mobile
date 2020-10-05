@@ -54,7 +54,7 @@ export function ProfileDIDTab() {
 				<Row>
 					<Col>
 						<SectionTitle>Decentralized ID</SectionTitle>
-						<SectionDescription style={{ marginTop: 5 }}>{did ? `${did}` : (didStatus === 'processing' ? 'Processing' : 'No DID')}</SectionDescription>
+						<SectionDescription style={{ marginTop: 5 }}>{did ? `${did}` : (didStatus === 'processing' ? 'Processing' : '')}</SectionDescription>
 					</Col>
 				</Row>
 			</SectionHeader>
@@ -85,7 +85,7 @@ export function ProfileDIDTab() {
 				: (
 					<EmptyItemsConatiner>
 						<DocumentsEmptyAlert
-							title="You don't have an associatet DID yet"
+							title="You don't have an associated DID yet"
 							footer={
 								<Row marginTop={30}>
 									<Col>
@@ -97,7 +97,7 @@ export function ProfileDIDTab() {
 								</Row>
 							}
 						>
-							Use a DID when accesing different services in the marketplace. Getting a DID requires an
+							Use a DID when accessing different services in the marketplace. Getting a DID requires an
 							Ethereum transaction. This is a one time only transaction.
 						</DocumentsEmptyAlert>
 					</EmptyItemsConatiner>
