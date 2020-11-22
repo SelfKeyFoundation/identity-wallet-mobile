@@ -4,6 +4,7 @@ import { createStore, compose } from 'redux'
 import { getRootReducer } from './reducers';
 import { getInitialState } from './state';
 import { getMiddlewareEnhancer } from './middlewares';
+import { SchedulerService } from 'core/services/scheduler/scheduler-service';
 
 export function createEnhancedStore() {
   const rootReducer = getRootReducer();
@@ -19,6 +20,8 @@ export function createStoreProvider() {
   const store = createEnhancedStore();
 
   global.store = store;
+
+  SchedulerService.getInstance().setStore(store);
 
   return ({ children }) => (
     <Provider store={store}>

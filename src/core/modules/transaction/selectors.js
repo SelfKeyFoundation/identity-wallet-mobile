@@ -16,7 +16,7 @@ export const isAdvancedMode = (state) => getRoot(state).advancedMode;
 export const getTokenOptions = (state) => getRoot(state).tokenOptions;
 export const isSending = (state) => getRoot(state).isSending;
 export const getSelectedTransactionFee = (state) => {
-  const transactionFee = getTransactionFee(state);
+  const transactionFee = getTransactionFee(state) || 'normal';
   return getTransactionFeeOptions(state).find(opt => opt.id === transactionFee);
 }
 

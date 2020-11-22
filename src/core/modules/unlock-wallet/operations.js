@@ -5,14 +5,19 @@ import { WalletModel } from '../../models';
 import { navigate, Routes } from '../../navigation';
 import { System } from '../../system';
 import ducks from '../index';
+import { getUserPreferences } from 'core/Storage';
 
 export const navigateToDashboardOperation = (form) => async (dispatch, getState) => {
-  // check if learn how to stake should be skip
+  const preferences = await getUserPreferences();
+  const flags = ducks.app.selectors.getKeyFiEnabled(getState());
 
-  await navigate(Routes.LEARN_HOW_TO_STAKE);
-  // await navigate(Routes.APP_DASHBOARD);
-  
+  if (flags.keyfi && !preferences.skipKeyFiEligibility) {
+    return navigate(Routes.KEYFI_ELIGIBILITY_START);
+  }
+
+  return navigate(Routes.APP_DASHBOARD);
 }
+
 /**
  * Unlock the default wallet
  *

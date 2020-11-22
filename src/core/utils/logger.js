@@ -4,7 +4,8 @@ export class Logger {
 	}
 	
 	log = (level, msg, ...args) => {
-	  console.log(`${level}: ${msg}`);
+		console.log(`${level}: ${msg}`);
+		console.log(args);
 	};
 
 	info = (msg, ...args) => {

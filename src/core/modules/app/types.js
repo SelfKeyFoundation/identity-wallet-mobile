@@ -5,6 +5,7 @@ export const appTypes = {
   SHOW_RECEIVE_TOKENS_MODAL: 'app/showReceiveTokensModal',
   SET_SUPPORTED_BIOMETRY_TYPE: 'app/setSupportedBiometryType',
   SET_SNACK_MESSAGE: 'app/setSnackMessage',
+  SET_FEATURE_FLAGS: 'app/setFeatureFlags',
 };
 
 export default appTypes;

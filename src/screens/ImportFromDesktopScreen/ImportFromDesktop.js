@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { TokenDetails } from '../../components';
 import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
-import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
+import { ScanQR } from 'components';
 import {
   SKIcon,
   Row,

@@ -2,7 +2,9 @@ global.DEV = true
 import 'react-native';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
-import { setNavigator } from '@selfkey/wallet-core/navigation';
+import { setNavigator } from 'core/navigation';
+
+import './setup-app';
 
 setNavigator({
   navigate() {

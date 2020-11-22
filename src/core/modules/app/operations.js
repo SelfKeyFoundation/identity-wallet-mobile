@@ -7,7 +7,9 @@ import * as selectors from './selectors';
 import { getGuideSettings } from './app-module-utils';
 import { loadTokenPrices } from 'blockchain/services/price-service';
 import ducks from '../index';
-import { getSupportedBiometryType } from '@selfkey/identity-wallet-mobile/src/rn-identity-vault/keychain';
+import { getSupportedBiometryType } from 'rn-identity-vault/keychain';
+import ContractSyncJobHandler from 'core/services/contracts-sync-job-handler';
+import { getFeatureFlags } from 'screens/marketplaces/airtable-service';
 
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
@@ -49,6 +51,9 @@ const loadAppOperation = () => async (dispatch, getState) => {
     dispatch(ducks.wallet.actions.setWallet(defaultWallet));
   }
 
+  // Register Job Handlers 
+  // ContractSyncJobHandler.getInstance().registerHandler();
+
   if (wallets.length === 1) {
     navigate(Routes.UNLOCK_WALLET_PASSWORD);
   } else if (wallets.length > 1) {
@@ -76,6 +81,11 @@ const acceptTermsOperation = () => async (dispatch, getState) => {
   }));
 };
 
+const loadFeatureFlagsOperation = () => async (dispatch, getState) => { 
+  const flags = await getFeatureFlags();
+  dispatch(appActions.setFeatureFlags(flags));
+}
+
 const rejectTermsOperation = () => async (dispatch, getState) => {
   exitApp();
 };
@@ -84,6 +94,7 @@ export const operations = {
   loadAppOperation,
   acceptTermsOperation,
   rejectTermsOperation,
+  loadFeatureFlagsOperation,
 };
 
 export const appOperations = {

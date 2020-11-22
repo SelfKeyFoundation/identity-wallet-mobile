@@ -10,9 +10,16 @@ import { IdAttributeModel } from './identity/id-attribute-model';
 import { IdAttributeTypeModel } from './identity/id-attribute-type-model';
 import { UISchemaModel } from  './identity/ui-schema-model';
 import { KYCApplicationModel } from  './kyc/kyc-application-model';
+import { ContractModel } from  './contracts/contract-model';
+import { ContractAllowanceModel } from  './contracts/contract-allowance-model';
 
-export const CURRENT_SCHEMA_VERSION = 12;
-export const SCHEMA_NAME = '12-kyc-update';
+export const CURRENT_SCHEMA_VERSION = 13;
+export const SCHEMA_NAME = '13-kyc-applications';
+
+import { getRealmInstance } from '../db/realm-service';
+import { BaseModel } from './common/base-model';
+
+BaseModel.getRealmInstance = getRealmInstance;
 
 export {
   WalletModel,
@@ -27,6 +34,8 @@ export {
   IdAttributeTypeModel,
   UISchemaModel,
   KYCApplicationModel,
+  ContractModel,
+  ContractAllowanceModel,
 };
 
 export default [
@@ -42,4 +51,6 @@ export default [
   IdAttributeTypeModel,
   UISchemaModel,
   KYCApplicationModel,
+  ContractModel,
+  ContractAllowanceModel,
 ];

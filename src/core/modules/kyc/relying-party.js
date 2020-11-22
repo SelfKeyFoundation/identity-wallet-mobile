@@ -9,6 +9,7 @@ import FormData from 'form-data';
 import { Logger } from 'core/utils/logger';
 import { getConfigs } from 'configs';
 import { denormalizeDocumentsSchema } from '../identity/identity-attribute-utils';
+import { Platform } from 'react-native';
 // import request from 'request-promise-native';
 
 const log = new Logger('relying-party');
@@ -59,7 +60,26 @@ const bufferFromDataUrl = dataUrl => {
 
 const withQueryString = (url, qs) => `${url}?${objToQueryString(qs)}`;
 
-function fetchAsJson(url, opts) {
+export function getDocumentFormData(formData) {
+	const form = new FormData();
+		
+	Object.keys(formData).forEach((key) => {
+		const item = formData[key];
+		if (item.options) {
+			form.append(key, {
+				uri: item.value,
+				name: item.options.fileName,
+				type: item.options.contentType,
+			})
+		} else {
+			form.append(key, item);
+		}
+	});
+
+	return form;
+}
+
+export function fetchAsJson(url, opts) {
 	if (!opts.headers) {
 		opts.headers = {};
 	}
@@ -86,6 +106,7 @@ function fetchAsJson(url, opts) {
 		});
 
 		opts.body = form;
+		delete opts.form;
 	}
 
 	console.log('Request', {
@@ -574,12 +595,12 @@ export class RelyingPartyRest {
 		});
 	}
 
-	static uploadKYCApplicationFile(ctx, doc) {
+	static async uploadKYCApplicationFile(ctx, doc) {
 		let url = ctx.getEndpoint(KYC_APPLICATIONS_FILE_ENDPOINT_NAME);
 		if (!ctx.token) throw new Error('Session is not established');
 		let formData = {
 			document: {
-				value: doc.buffer,
+				value: Platform.OS === 'android' ? doc.uri : doc.buffer,
 				options: {
 					contentType: doc.mimeType,
 					fileName: doc.name || doc.fileName || 'document'
@@ -587,15 +608,24 @@ export class RelyingPartyRest {
 			}
 		};
 
-		return fetchAsJson(url, {
-			method: 'post',
-			formData,
-			headers: {
-				Authorization: this.getAuthorizationHeader(ctx.token.toString()),
-				'User-Agent': this.userAgent,
-				Origin: ctx.getOrigin()
-			},
-		});
+		let res;
+		
+		try {
+			res = await fetchAsJson(url, {
+				method: 'post',
+				formData,
+				headers: {
+					Authorization: this.getAuthorizationHeader(ctx.token.toString()),
+					'User-Agent': this.userAgent,
+					Origin: ctx.getOrigin()
+				},
+			});
+		} catch(err) {
+			debugger;
+			res = {};
+		}
+		
+		return res;
 	}
 	static getAccessToken(ctx) {
 		let url = ctx.getEndpoint(KYC_GET_ACCESS_TOKEN_ENDPOINT_NAME);
@@ -737,7 +767,6 @@ export class RelyingPartySession {
 							doc.buffer = doc.content;// bufferFromDataUrl(doc.content);
 						}
 						const res = await RelyingPartyRest.uploadKYCApplicationFile(this.ctx, doc);
-						debugger;
 						let newDoc = { ...doc };
 						delete newDoc.buffer;
 						newDoc.content = res.id;

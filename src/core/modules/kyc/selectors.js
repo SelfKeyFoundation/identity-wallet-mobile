@@ -8,9 +8,11 @@ import {
 	LAST_NAME_ATTRIBUTE,
 	ENTITY_TYPE_ATTRIBUTE
 } from '../identity/constants';
+import { APPLICATION_ANSWER_REQUIRED, APPLICATION_APPROVED, APPLICATION_CANCELLED, APPLICATION_REJECTED } from './kyc-status-codes';
 
 export const getRoot = state => state.kyc;
 
+export const kycSelector = (state) => state.kyc;
 
 export const relyingPartySelector = (rpName) => state => {
   if (!rpName) return null;
@@ -154,3 +156,62 @@ export const selectKYCAttributes = (identityId, attributes = []) => state => {
     return finalAttr;
   });
 }
+
+export const selectApplications = (state) => {
+  return kycSelector(state).applications.map(id => {
+    return kycSelector(state).applicationsById[id];
+  });
+}
+
+function isApplicationPaid(app) {
+  return app.payments && app.payments.length;
+}
+
+function getApplicationStatus(application) {
+  if (application.currentStatus === APPLICATION_APPROVED) {
+    return 'completed';
+  }
+
+  if (application.currentStatus === APPLICATION_REJECTED ||
+    application.currentStatus === APPLICATION_CANCELLED) {
+    return 'rejected';
+  }
+
+  if (!isApplicationPaid(application)) {
+    return 'unpaid';
+  }
+
+  if (application.currentStatus === APPLICATION_ANSWER_REQUIRED) {
+    return 'additionalRequirements';
+  } 
+    
+  return 'progress';
+}
+
+export const selectLastApplication = (rpName, templateId) => state => {
+  const rp = relyingPartySelector(rpName)(state);
+  if (!rp || !rp.authenticated) return false;
+  const { applications } = rp;
+  if (!applications || applications.length === 0) return false;
+
+  applications.sort((a, b) => {
+    const aDate = new Date(a.createdAt);
+    const bDate = new Date(b.createdAt);
+    return aDate > bDate ? 1 : -1;
+  });
+
+  let application;
+  let index = applications.length - 1;
+  for (; index >= 0; index--) {
+    if (applications[index].template === templateId) {
+      application = applications[index];
+      break;
+    }
+  }
+
+  if (application) {
+    application.status = getApplicationStatus(application);
+  }
+
+  return application;
+};

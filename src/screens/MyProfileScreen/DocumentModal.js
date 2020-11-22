@@ -170,7 +170,7 @@ export function DocumentModal(props) {
         attribute ? (
           <RNForm
             schema={prepareSchema(attribute)}
-            uiSchema={uiSchema.content}
+            uiSchema={uiSchema && uiSchema.content}
             onSubmit={handleSubmit}
             formData={formData}
             onChange={(evt) => {

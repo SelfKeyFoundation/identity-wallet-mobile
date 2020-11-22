@@ -2,3 +2,5 @@
 # Should not commit it
 # rm -rf  ./node_modules/@rjsf/core/lib
 # cp -rf ../react-jsonschema-form/src ./node_modules/@rjsf/core/lib
+
+rm -rf ./node_modules/react-native-svg-flagkit/node_modules/react-native-svg/

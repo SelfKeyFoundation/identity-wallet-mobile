@@ -21,8 +21,14 @@ import DocumentScannerScreen from '../../screens/DocumentScannerScreen';
 import LearnHowToStakeScreen from '../../screens/LearnHowToStakeScreen';
 import { AssociateDIDScreen } from '../../screens/AssociateDIDScreen';
 import { RegisterDIDScreen } from '../../screens/RegisterDIDScreen';
-import StakingDashboardScreen from '../../screens/StakingDashboardScreen';
+// import StakingDashboardScreen from '../../screens/StakingDashboardScreen';
+// import CredentialsDashboardScreen from '../../screens/CredentialsDashboardScreen';
+import KeyFiEligibilityStartScreen from '../../screens/KeyFiEligibilityStartScreen'
 import { stackNavigatorConfig } from '../configs';
+import MarketplaceCategoriesScreen from 'screens/marketplaces/MarketplaceCategoriesScreen';
+import MarketplaceProductScreen from 'screens/marketplaces/MarketplaceProductScreen';
+import MarketplaceProductListingScreen from 'screens/marketplaces/MarketplaceProductListingScreen';
+import { WalletConnectScreen } from 'screens/walletConnect/WalletConnectScreen';
 
 export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_DASHBOARD]: DashboardScreen,
@@ -32,7 +38,7 @@ export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_SCAN_QR]: ScanQRScreen,
   [Routes.APP_MY_TOKENS]: MyTokensScreen,
   [Routes.APP_MY_PROFILE]: MyProfileScreen,
-  [Routes.APP_STAKING]: StakingDashboardScreen,
+  [Routes.MARKETPLACE_CATEGORIES]: MarketplaceCategoriesScreen,
 }, {
   tabBarComponent: AppTabBar,
 });
@@ -52,7 +58,10 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.ASSOCIATE_DID]: AssociateDIDScreen,
   [Routes.REGISTER_DID]: RegisterDIDScreen,
   [Routes.LEARN_HOW_TO_STAKE]: LearnHowToStakeScreen,
-  
+  [Routes.KEYFI_ELIGIBILITY_START]: KeyFiEligibilityStartScreen,
+  [Routes.MARKETPLACE_PRODUCT]: MarketplaceProductScreen,
+  [Routes.MARKETPLACE_PRODUCT_LISTING]: MarketplaceProductListingScreen,
+  [Routes.WALLET_CONNECT]: WalletConnectScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);

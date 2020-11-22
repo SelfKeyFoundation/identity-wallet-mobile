@@ -68,12 +68,12 @@ export const kycActions = {
 	// 		type: kycTypes.KYC_APPLICATION_CURRENT_SET
 	// 	};
 	// },
-	// setApplicationsAction(applications) {
-	// 	return {
-	// 		type: kycTypes.KYC_APPLICATIONS_SET,
-	// 		payload: applications
-	// 	};
-	// },
+	setApplications(applications) {
+		return {
+			type: kycTypes.KYC_APPLICATIONS_SET,
+			payload: applications
+		};
+	},
 	// setProcessingAction(processing) {
 	// 	return {
 	// 		type: kycTypes.KYC_APPLICATIONS_PROCESSING,

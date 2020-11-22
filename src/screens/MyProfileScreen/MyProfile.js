@@ -10,6 +10,7 @@ import {
 
 import { ProfileOverviewTab } from './tabs/ProfileOverviewTab';
 import { ProfileDIDTab } from './tabs/ProfileDIDTab';
+import { ProfileApplicationsTab } from './tabs/ProfileApplicationsTab';
 
 const HeaderTitle = styled.Text`
 	color: ${props => props.theme.colors.white};
@@ -103,6 +104,10 @@ const TabList = [{
   id: 'did',
   title: 'DID',
   component: ProfileDIDTab,
+}, {
+	id: 'applications',
+	title: 'Applications',
+	component: ProfileApplicationsTab,
 }]
 
 export function MyProfile(props) {

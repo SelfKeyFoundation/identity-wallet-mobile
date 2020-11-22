@@ -98,7 +98,7 @@ export function RegisterDIDScreen(props) {
       .getGasLimit(address)
       .then(async (gasLimit) => {
         const { fast: gasPrice } = await EthGasStationService.getInstance().getInfo();
-        const ethFee = EthUnits.toEther(gasPrice * gasLimit, 'gwei');
+        const ethFee = EthUnits.toEther(gasPrice * gasLimit, 'mwei');
         const usdFee = getUsdPrice(ethFee);
 
         setFees({

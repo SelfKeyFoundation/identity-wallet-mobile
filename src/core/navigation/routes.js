@@ -15,13 +15,19 @@ export const TRANSACTION_DETAILS = 'app/transactionDetails';
 export const DOCUMENT_SCANNER = 'app/documentScanner';
 export const APP_MY_PROFILE = 'app/profile';
 export const APP_STAKING = 'app/staking';
+export const APP_CREDENTIALS_DASHBOARD = 'app/credentialsDashboard';
 export const LEARN_HOW_TO_STAKE = 'learnHowToStake';
+export const KEYFI_ELIGIBILITY_START = 'keyFiEligibilityStart';
 
 export const SCAN_QR = 'scanQR';
 export const CREATE_BACKUP = 'createBackup';
 export const RECOVERY_INFORMATION = 'recoveryInformation';
 export const DEVELOPER_SETTINGS = 'devSettings';
 export const CHANGE_PASSWORD = 'changePassword';
+
+export const MARKETPLACE_PRODUCT = 'marketplace/product';
+export const MARKETPLACE_PRODUCT_LISTING = 'marketplace/productListing';
+export const MARKETPLACE_CATEGORIES = 'marketplace/categories';
 
 export const CREATE_WALLET_FLOW = 'createWallet';
 export const CREATE_WALLET_PASSWORD = 'createWallet/password';
@@ -48,3 +54,7 @@ export const MODAL_TRANSACTION_DETAILS = 'modal/transactionDetails';
 export const MODAL_CREATE_SELFKEY_ID = 'modal/createSelfKeyId';
 export const ASSOCIATE_DID = 'associateDID';
 export const REGISTER_DID = 'registerDID';
+export const ALLOWANCE_EDITOR = 'allowanceEditor';
+export const ALLOWANCE_LIST = 'allowanceList';
+export const ALLOWANCE_TRANSACTION_PROCESSING = 'allowanceTransactionProcessing';
+export const WALLET_CONNECT = 'walletConnect';

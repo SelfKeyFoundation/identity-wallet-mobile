@@ -1,5 +1,3 @@
-import { getRealmInstance } from '../../db/realm-service';
-
 const convertToObject = (realmObject, maxDepth = 3, depth = 0) => {
   depth++;
   if (depth > maxDepth) {
@@ -49,11 +47,18 @@ export class BaseModel {
     this.toJson = this.toJson.bind(this);
   }
 
+  // Will be defined later
+  static getRealmInstance = () => null;
+
   get realm() {
-    return getRealmInstance();
+    return BaseModel.getRealmInstance();
   }
 
-  create(props) {
+  beforeCreate(props) {
+    return props;
+  }
+
+  async create(props) {
     // try {
       let result;
 

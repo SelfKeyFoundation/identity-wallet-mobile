@@ -49,6 +49,7 @@ module.exports = (async () => {
         'configs': path.resolve(__dirname, "./src/configs"),
         'rjsf-native': path.resolve(__dirname, "./src/rjsf-native"),
         'components': path.resolve(__dirname, "./src/components"),
+        'rn-identity-vault': path.resolve(__dirname, "./src/rn-identity-vault"),
       }
     },
   };

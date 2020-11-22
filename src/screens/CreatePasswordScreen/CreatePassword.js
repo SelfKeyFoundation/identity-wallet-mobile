@@ -260,7 +260,7 @@ export function CreatePassword(props: CreatePasswordProps) {
                   <ModalSelector
                     data={importOptions}
                     cancelText="Cancel"
-                    onChange={handleSelectChange}
+                    onModalClose={handleSelectChange}
                   >
                     <TouchableWithoutFeedback>
                       <UseDifferentWallet>

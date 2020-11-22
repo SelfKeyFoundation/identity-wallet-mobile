@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { ScanQR } from '@selfkey/identity-wallet-mobile/src/components';
+import { ScanQR } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import modules from 'core/modules';

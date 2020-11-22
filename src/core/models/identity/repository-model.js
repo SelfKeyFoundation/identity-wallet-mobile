@@ -231,7 +231,7 @@ export class RepositoryModel extends BaseModel {
       item.content = JSON.stringify(item.content);
     }
 
-    item.createdAt = new Date();
+    item.createdAt = new Date().toString();
     item.updatedAt = item.createdAt;
 
     return item;

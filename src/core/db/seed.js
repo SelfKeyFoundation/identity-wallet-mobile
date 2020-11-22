@@ -18,8 +18,8 @@ async function loadTokens() {
         icon: null,
         isCustom: false,
         symbol: data.symbol,
-        createdAt: new Date(),
-        updatedAt: new Date(), 
+        createdAt: new Date().toString(),
+        updatedAt: new Date().toString(),
       })
     } catch(err) {
       // console.error(err);

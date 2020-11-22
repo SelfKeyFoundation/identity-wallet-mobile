@@ -13,7 +13,8 @@ export async function resolveFileContent(data) {
       const fs = System.getFileSystem();
       const filePath = `${fs.DocumentDirectoryPath}/${data.content}`;
       const fileData = await fs.readFile(filePath, 'base64');
-      data.content = `data:${data.mimeType};base64,${fileData}`;
+			data.content = `data:${data.mimeType};base64,${fileData}`;
+			data.uri = `file:///${filePath}`;
 		}
 
 		await Promise.all(Object.keys(data).map(async (key) => {

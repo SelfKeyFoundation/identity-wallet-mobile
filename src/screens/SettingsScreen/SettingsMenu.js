@@ -7,7 +7,7 @@ import {
   Col,
   DefinitionTitle,
 } from 'design-system';
-import APP_VERSION from '@selfkey/identity-wallet-mobile/app-version.json';
+import APP_VERSION from '../../../app-version.json';
 import { getCurrentEnv } from 'configs';
 
 function getVersion() {
@@ -143,7 +143,9 @@ export function SettingsMenu(props) {
         <MenuItem onPress={props.onBackup}>
           Backup
         </MenuItem>
-
+        {/* <MenuItem onPress={props.onWalletConnect}>
+          Wallet Connect
+        </MenuItem> */}
         <Row marginTop={20}>
           <Col paddingLeft={20}>
             <SectionTitle>Choose Wallet</SectionTitle>

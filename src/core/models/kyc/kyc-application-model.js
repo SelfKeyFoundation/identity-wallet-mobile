@@ -16,11 +16,15 @@ export class KYCApplicationModel extends BaseModel {
       currentStatus: 'int?',
       currentStatusName: 'string?',
       applicationDate: 'string?' ,
-      // payments: { type: 'object' },
+      payments: {
+        type: 'string?',
+      },
       nextRoute: 'string?',
       identityId: 'int',
       templateId: 'string',
-      // messages: { type: 'array', default: [] }
+      messages: {
+        type: 'string?',
+      },
     },
   };
 
@@ -40,29 +44,34 @@ export class KYCApplicationModel extends BaseModel {
 	// 	return this.find('identityId = $0', identityId);
   // }
 
-  // applyCustomMapping(item) {
-  //   item.data = item.data ? JSON.parse(item.data) : {};
-  //   return item;
-  // }
+  applyCustomMapping(item) {
+    try {
+      item.payments = item.payments ? JSON.parse(item.payments) : [];
+    } catch(err) {
+      item.payments = [];
+    }
 
-  // beforeCreate(item) {
-  //   if (typeof item.data === 'object') {
-  //     item.data = JSON.stringify(item.data);
-  //   }
+    return item;
+  }
 
-  //   // item.createdAt = new Date();
-  //   // item.updatedAt = item.createdAt;
+  beforeCreate(item) {
+    if (typeof item.payments === 'object') {
+      item.payments = JSON.stringify(item.payments);
+    }
 
-  //   return item;
-  // }
+    // item.createdAt = new Date();
+    // item.updatedAt = item.createdAt;
 
-  // beforeUpdate(item) {
-  //   if (typeof item.data === 'object') {
-  //     item.data = JSON.stringify(item.data);
-  //   }
+    return item;
+  }
 
-  //   // item.updatedAt = new Date();
+  beforeUpdate(item) {
+    if (typeof item.payments === 'object') {
+      item.payments = JSON.stringify(item.payments);
+    }
 
-  //   return item;
-	// }
+    // item.updatedAt = new Date();
+
+    return item;
+	}
 }

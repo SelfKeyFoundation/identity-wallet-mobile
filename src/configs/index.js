@@ -18,6 +18,7 @@ const CONFIGS = {
       importFromMnemonic: false,
     },
     kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
+    airtableBaseUrl: 'https://airtable.selfkey.org/airtable?tableName=',
   },
   prod: {
     did: true,
@@ -33,6 +34,7 @@ const CONFIGS = {
       importFromMnemonic: false,
     },
     kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
+    airtableBaseUrl: 'https://airtable.selfkey.org/airtable?tableName=',
   }
 }
 
@@ -56,4 +58,8 @@ export function getConfigs() {
 
 export function getCurrentEnv() {
   return currentEnv;
+}
+
+export function isDevMode() {
+  return currentEnv !== 'prod';
 }

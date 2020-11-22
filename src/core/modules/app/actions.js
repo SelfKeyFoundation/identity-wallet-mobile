@@ -24,6 +24,10 @@ export const appActions = {
   setSnackMessage: (message) => ({
     type: appTypes.SET_SNACK_MESSAGE,
     payload: { message },
+  }),
+  setFeatureFlags: (flags) => ({
+    type: appTypes.SET_FEATURE_FLAGS,
+    payload: flags,
   })
 };
 

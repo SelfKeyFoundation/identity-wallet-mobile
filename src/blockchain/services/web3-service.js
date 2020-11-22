@@ -96,7 +96,21 @@ export class Web3Service {
 		const balance = EthUtils.getBalanceDecimal(balanceWei || 0, decimals);
 
 		return balance;
-  }
+	}
+	
+	ensureStrHex(str) {
+		if (!this.web3.utils.isHex(str)) {
+			return this.web3.utils.asciiToHex(str);
+		}
+		return str;
+	}
+
+	ensureIntHex(num) {
+		if (!this.web3.utils.isHex(num)) {
+			return this.web3.utils.numberToHex(num);
+		}
+		return num;
+	}
   
   waitForTicket(args) {
 		return new Promise(async (resolve, reject) => {

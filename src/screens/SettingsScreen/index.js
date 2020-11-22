@@ -135,6 +135,8 @@ function SettingsScreenContainer(props) {
 
   const handleDocumentScanner = () => navigate(Routes.DOCUMENT_SCANNER);
 
+  const handleWalletConnect = () => navigate(Routes.WALLET_CONNECT);
+
   useEffect(() => {
     Keychain.getItem('wallet-env').then(walletEnv => {
       setWalletEnv(walletEnv || {});  
@@ -147,6 +149,7 @@ function SettingsScreenContainer(props) {
         onBackup={handleBackup}
         onSwitchAccount={handleSwitchAccount}
         onPrivacyPolicy={togglePrivacyPolicy}
+        onWalletConnect={handleWalletConnect}
         onHelpAndSupport={handleHelpAndSupport}
         onRecoveryInformation={isHDWallet && handleRecoveryInformation}
         onChangePassword={handleChangePassword}

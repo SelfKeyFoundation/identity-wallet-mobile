@@ -22,6 +22,12 @@ export function getUsdPrice(amount, token = 'ETH') {
   return amount * price.priceUSD;
 }
 
+export function getTokenAmount(amountUsd, token = 'ETH') {
+  const price = getTokenPrice(token);
+  const amount = amountUsd / price.priceUSD;
+  return amount;
+}
+
 export function getTokenPrice(symbol) {
   let parsedSymbol = symbol && symbol.toUpperCase();
 

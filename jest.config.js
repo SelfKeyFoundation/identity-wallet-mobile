@@ -4,6 +4,7 @@ module.exports = {
     '<rootDir>/tests/setup.js',
     '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js',
   ],
+  'setupFilesAfterEnv': ['<rootDir>/tests/before-all.js'],
   'modulePaths': [
     '<rootDir>/src/',
   ],

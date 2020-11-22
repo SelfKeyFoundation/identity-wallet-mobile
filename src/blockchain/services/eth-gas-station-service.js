@@ -1,3 +1,5 @@
+import EthUnits from "blockchain/util/eth-units";
+import { Web3Service } from "./web3-service";
 
 const URL = 'https://ethgasstation.info/json/ethgasAPI.json';
 
@@ -21,6 +23,18 @@ export class EthGasStationService {
     }
 
     return EthGasStationService._instance;
+  }
+  
+  async getEthFee(gasLimit, priceType = 'average') {
+    const priceInfo = await this.getInfo();
+    const gasPriceInWei = EthUnits.unitToUnit(priceInfo[priceType], 'mwei', 'wei');
+    const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
+    const feeInEth = Web3Service.getInstance().web3.utils.fromWei(
+      feeInWei,
+      'ether'
+    );
+
+    return parseFloat(feeInEth);
   }
 }
 

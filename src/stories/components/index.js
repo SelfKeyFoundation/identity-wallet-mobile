@@ -13,4 +13,5 @@ import './send-tokens-error.stories.js';
 import './tx-history-row.stories.js';
 import './tx-history.stories.js';
 import './transaction-details.stories.js';
-import './tab-bar.stories.js';
+import './tab-bar.stories';
+import './marketplace-components.stories';

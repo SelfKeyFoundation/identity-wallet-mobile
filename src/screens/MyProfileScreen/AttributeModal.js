@@ -147,7 +147,7 @@ export function AttributeModal(props) {
       attribute ? (
         <RNForm
           schema={prepareSchema(attribute)}
-          uiSchema={uiSchema.content}
+          uiSchema={uiSchema && uiSchema.content}
           onSubmit={(formProps) => {
             const { formData } = formProps;
             setFormData(formData);
@@ -196,7 +196,7 @@ export function AttributeModal(props) {
         </Grid>
       )
     )
-  }, [formData, uiSchema.content, attribute])
+  }, [formData, uiSchema && uiSchema.content, attribute])
 
   return (
     <Modal

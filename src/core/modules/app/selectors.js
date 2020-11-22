@@ -19,3 +19,5 @@ export const getSupportedBiometryType = (state) => {
 };
 
 export const getSnackMessage = state => getRoot(state).snackMessage;
+export const getFeatureFlags = state => getRoot(state).featureFlags || {};
+export const getKeyFiEnabled = state => getFeatureFlags(state).keyfi;

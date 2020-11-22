@@ -3,6 +3,7 @@ import { AppRegistry, SafeAreaView, StyleSheet } from 'react-native';
 import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
 import { MobileUIProvider, Portal } from 'design-system';
 import SplashScreen from 'react-native-splash-screen';
+import '../src/setup-redux';
 
 SplashScreen.hide();
 

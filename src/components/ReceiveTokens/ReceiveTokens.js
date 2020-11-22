@@ -108,10 +108,10 @@ const AddressText  = styled.Text`
 
 export const ReceiveTokens = props => (
   <Modal
-    { ...props }
     title={`Receive ${props.tokenSymbol}`}
     footer={null}
     noBodyPadding
+    { ...props }
   >
     <Body>
       <QRCodeContainer>

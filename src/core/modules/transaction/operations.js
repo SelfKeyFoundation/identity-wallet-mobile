@@ -10,10 +10,10 @@ import ducks from '../index';
 import { getConfigs } from 'configs';
 
 // TODO: Move to separate file
-const getTransactionCount = async address => {
+export const getTransactionCount = async address => {
 	const params = {
 		method: 'getTransactionCount',
-		args: [address, 'pending']
+		args: [address, 'pending'],
 	};
 
 	return Web3Service.getInstance().waitForTicket(params);
@@ -22,315 +22,361 @@ const getTransactionCount = async address => {
 const transferHex = '0xa9059cbb';
 
 const generateContractData = (toAddress, value, decimal) => {
-	value = EthUtils.padLeft(
-		new BN(value).times(new BN(10).pow(decimal)).toString(16),
-		64
-	);
+	value = EthUtils.padLeft(new BN(value).times(new BN(10).pow(decimal)).toString(16), 64);
 	toAddress = EthUtils.padLeft(EthUtils.getNakedAddress(toAddress), 64);
 	return transferHex + toAddress + value;
 };
 
 function getFee(gasPrice, gasLimit) {
-  return new BN(getPrice)
-    .dividedBy(1000000000)
-    .multipliedBy(gasLimit || 0)
-    .toString();
+	return new BN(gasPrice)
+		.dividedBy(1000000000)
+		.multipliedBy(gasLimit || 0)
+		.toString();
 }
 
 // TODO: Compute gas for custom tokens
 export async function getGasLimit({ contractAddress, address, amount, from }) {
-  const tokenContract = Web3Service.getInstance().web3.eth.Contract(
-    Web3Service.getInstance().contractABI,
-    contractAddress
-  );
-  const MAX_GAS = 4500000;
-  const amountInWei = Web3Service.getInstance().web3.utils.toWei(amount);
-  const estimate = await tokenContract.methods
-    .transfer(address, amountInWei)
-    .estimateGas({ from });
+	const tokenContract = Web3Service.getInstance().web3.eth.Contract(
+		Web3Service.getInstance().contractABI,
+		contractAddress,
+	);
+	const MAX_GAS = 4500000;
+	const amountInWei = Web3Service.getInstance().web3.utils.toWei(amount);
+	try {
+		const estimate = await tokenContract.methods
+			.transfer(address, amountInWei)
+			.estimateGas({ from });
 
-  return Math.round(Math.min(estimate * 1.1, MAX_GAS));
+		return Math.round(Math.min(estimate * 1.1, MAX_GAS));
+	} catch (err) {
+		return MAX_GAS;
+	}
 }
 
 const computeGasLimit = () => async (dispatch, getState) => {
-  const state = getState();
-  const transaction = duck.selectors.getTransaction(state);
-  const token = transaction.token || transaction.cryptoCurrency;
+	const state = getState();
+	const transaction = duck.selectors.getTransaction(state);
+	const token = transaction.token || transaction.cryptoCurrency;
 
-  // TODO: Use constants
-  if (token && token.toUpperCase() === 'ETH') {
-    return;
-  }
+	// TODO: Use constants
+	if (token && token.toUpperCase() === 'ETH') {
+		return;
+	}
 
-  if (!transaction.address || !transaction.amount) {
-    return;
-  }
+	if (!transaction.address || !transaction.amount) {
+		return;
+	}
 
-  try {
-    const gasLimit = await getGasLimit(transaction);
-    console.log('gas limit computed', gasLimit);
-    await dispatch(duck.operations.updateTransaction({
-      gasLimit
-    }));
-  } catch(err) {
-    console.error(err);
-  }
+	try {
+		const gasLimit = await getGasLimit(transaction);
+		console.log('gas limit computed', gasLimit);
+		await dispatch(
+			duck.operations.updateTransaction({
+				gasLimit,
+			}),
+		);
+	} catch (err) {
+		console.error(err);
+	}
 };
 
-const getTransactionFeeOptions = (state) => {
-  const gasStationInfo = ducks.ethGasStation.selectors.getEthGasStationInfo(state);
-  const gasLimit = ducks.transaction.selectors.getGasLimit(state);
-    
-  return [{
-    id: 'slow',
-    name: 'Slow',
-    gasPrice: gasStationInfo.safeLow,
-    time: '5-30 min',
-  }, {
-    id: 'normal',
-    name: 'Normal',
-    gasPrice: gasStationInfo.average,
-    time: '2-5 min',
-  }, {
-    id: 'fast',
-    name: 'Fast',
-    gasPrice: gasStationInfo.fast,
-    time: '< 2 min',
-  }].map((option) => {
-    const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'gwei', 'wei');
-    const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
-    const feeInEth = Web3Service.getInstance().web3.utils.fromWei(
-      feeInWei,
-      'ether'
-    );
+export const getTransactionFeeOptions = (state, gasLimit) => {
+	const gasStationInfo = ducks.ethGasStation.selectors.getEthGasStationInfo(state);
 
-    const tokenPrice = getTokenPrice('ETH');
+	if (!gasLimit) {
+		gasLimit = gasLimit || ducks.transaction.selectors.getGasLimit(state);
+	}
 
-    return {
-      ...option,
-      ethAmount: feeInEth,
-      fiatAmount: feeInEth * tokenPrice.priceUSD,
-    }
-  });
-}
+	return [
+		{
+			id: 'slow',
+			name: 'Slow',
+			gasPrice: gasStationInfo.safeLow,
+			time: '5-30 min',
+		},
+		{
+			id: 'normal',
+			name: 'Normal',
+			gasPrice: gasStationInfo.average,
+			time: '2-5 min',
+		},
+		{
+			id: 'fast',
+			name: 'Fast',
+			gasPrice: gasStationInfo.fast,
+			time: '< 2 min',
+		},
+	].map(option => {
+		const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'mwei', 'wei');
+		const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
+		const feeInEth = Web3Service.getInstance().web3.utils.fromWei(feeInWei, 'ether');
+
+		const tokenPrice = getTokenPrice('ETH');
+
+		return {
+			...option,
+			ethAmount: feeInEth,
+			fiatAmount: feeInEth * tokenPrice.priceUSD,
+		};
+	});
+};
 
 export const operations = {
-  /**
-   * Go to transaction operation
-   * 
-   * initialize the transaction with the initial state
-   */
-  goToTransactionOperation: (tokenSymbol, addressTo) => async (dispatch, getState) => {
-    const state = getState();
-    const address = ducks.wallet.selectors.getAddress(state);
-    
-    await dispatch(duck.actions.updateTransaction({
-      ...duck.initialState,
-      address: addressTo,
-    }));
+	/**
+	 * Go to transaction operation
+	 *
+	 * initialize the transaction with the initial state
+	 */
+	goToTransactionOperation: (tokenSymbol, addressTo, showModal = true) => async (dispatch, getState) => {
+		const state = getState();
+		const address = ducks.wallet.selectors.getAddress(state);
 
-    // for testing
-    // tokenSymbol = 'all'
+		await dispatch(
+			duck.actions.updateTransaction({
+				...duck.initialState,
+				address: addressTo,
+			}),
+		);
 
-    /*
-     * all: eth, key and custom tokens
-     * custom: custom erc20 tokens
-     */
-    
-    if (tokenSymbol === 'all' || tokenSymbol === 'custom'){
-      const tokenOptions = tokenSymbol === 'custom' ? ducks.wallet.selectors.getTokens(state) : [
-        {
-          symbol: 'ETH',
-          name: 'Ethereum',
-        },
-        ...ducks.wallet.selectors.getTokens(state),
-      ];
+		// for testing
+		// tokenSymbol = 'all'
 
-      await dispatch(duck.actions.updateTransaction({
-        ...duck.initialState,
-        address: addressTo,
-        token: undefined,
-        tokenOptions: tokenOptions,
-      }));
-    } else {
-      await dispatch(operations.setSelectedTokenOperation(tokenSymbol))
-    }
+		/*
+		 * all: eth, key and custom tokens
+		 * custom: custom erc20 tokens
+		 */
 
-    await dispatch(ducks.app.operations.showSendTokensModal(true));
+		if (tokenSymbol === 'all' || tokenSymbol === 'custom') {
+			const tokenOptions =
+				tokenSymbol === 'custom'
+					? ducks.wallet.selectors.getTokens(state)
+					: [
+							{
+								symbol: 'ETH',
+								name: 'Ethereum',
+							},
+							...ducks.wallet.selectors.getTokens(state),
+					  ];
 
-    const nounce = await getTransactionCount(address);
-    await dispatch(ducks.ethGasStation.operations.loadDataOperation());
+			await dispatch(
+				duck.actions.updateTransaction({
+					...duck.initialState,
+					address: addressTo,
+					token: undefined,
+					tokenOptions: tokenOptions,
+				}),
+			);
+		} else {
+			await dispatch(operations.setSelectedTokenOperation(tokenSymbol));
+		}
 
-    await dispatch(duck.actions.updateTransaction({
-      nounce,
-      transactionFeeOptions: getTransactionFeeOptions(getState()),
-    }));
-  },
+		await dispatch(ducks.app.operations.showSendTokensModal(showModal === true));
 
-  setSelectedTokenOperation: (tokenSymbol) => async (dispatch, getState) => {
-    const state = getState();
-    const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
-    await dispatch(duck.actions.updateTransaction({
-      token: tokenSymbol,
-      balance: tokenDetails && tokenDetails.amount,
-      tokenDecimal: tokenDetails && tokenDetails.decimal,
-    }));
-  },
+		const nounce = await getTransactionCount(address);
+		await dispatch(ducks.ethGasStation.operations.loadDataOperation());
 
-  /**
-   * Create tx History
-   */
-  createTxHistoryOperation: () => async (dispatch, getState) => {
-    const state = getState();
-    const transaction = duck.selectors.getTransaction(state);
-    await dispatch(ducks.txHistory.operations.createTransactionOperation({
-      ...transaction,
-      status: 'sending'
-    }));
-  },
+		await dispatch(
+			duck.actions.updateTransaction({
+				nounce,
+				transactionFeeOptions: getTransactionFeeOptions(getState()),
+			}),
+		);
+	},
 
-  /**
-   * Send transaction
-   * 
-   * TODO: Clean the transaction when its finished
-   */
-  sendTransaction: () => async (dispatch, getState) => {
-    const state = getState();
-    const { isSending } = duck.selectors.getRoot(state);
+	setSelectedTokenOperation: tokenSymbol => async (dispatch, getState) => {
+		const state = getState();
+		const tokenDetails = ducks.wallet.selectors.getTokenDetails(tokenSymbol)(state);
+		await dispatch(
+			duck.actions.updateTransaction({
+				token: tokenSymbol,
+				balance: tokenDetails && tokenDetails.amount,
+				tokenDecimal: tokenDetails && tokenDetails.decimal,
+			}),
+		);
+	},
 
-    if (isSending) {
-      return;
-    }
+	/**
+	 * Create tx History
+	 */
+	createTxHistoryOperation: () => async (dispatch, getState) => {
+		const state = getState();
+		const transaction = duck.selectors.getTransaction(state);
+		await dispatch(
+			ducks.txHistory.operations.createTransactionOperation({
+				...transaction,
+				status: 'sending',
+			}),
+		);
+	},
 
-    await dispatch(duck.actions.updateTransaction({
-      isSending: true,
-    }));
+	/**
+	 * Send transaction
+	 *
+	 * TODO: Clean the transaction when its finished
+	 */
+	sendTransaction: ({ onSuccess, onError } = {}) => async (dispatch, getState) => {
+		const state = getState();
+		const { isSending } = duck.selectors.getRoot(state);
 
-    const transaction = duck.selectors.getTransaction(state);
+		if (isSending) {
+			return;
+		}
 
-    const transactionObject = {
-      nonce: await getTransactionCount(transaction.from),
-      gasPrice: EthUnits.unitToUnit(transaction.gasPrice, 'gwei', 'wei'),
-      gas: transaction.gasLimit,
-    };
-  
-    // TODO: Use constants to define ETH
-    if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === 'ETH') {
-      transactionObject.to = EthUtils.sanitizeHex(transaction.address);
-      transactionObject.value = EthUnits.unitToUnit(transaction.amount, 'ether', 'wei');
-    } else {
-      transactionObject.to = EthUtils.sanitizeHex(transaction.contractAddress);
-      transactionObject.value = 0;
-      const data = generateContractData(
-        transaction.address,
-        parseFloat(transaction.amount),
-        transaction.tokenDecimal
-      );
-      transactionObject.data = EthUtils.sanitizeHex(data);
-    }
+		await dispatch(
+			duck.actions.updateTransaction({
+				isSending: true,
+			}),
+		);
 
-    await dispatch(duck.actions.updateTransaction({
-      nonce: transactionObject.nonce,
-    }));
-  
-    const transactionEventEmitter = Web3Service.getInstance().web3.eth.sendTransaction(transactionObject);
+		const transaction = duck.selectors.getTransaction(state);
+		
+		const transactionObject = {
+			nonce: await getTransactionCount(transaction.from),
+			gasPrice: EthUnits.unitToUnit(transaction.gasPrice, 'gwei', 'wei'),
+			gas: transaction.gasLimit,
+		};
+		
+		// TODO: Use constants to define ETH
+		if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === 'ETH') {
+			transactionObject.to = EthUtils.sanitizeHex(transaction.address);
+			transactionObject.value = EthUnits.unitToUnit(transaction.amount, 'ether', 'wei');
+		} else {
+			transactionObject.to = EthUtils.sanitizeHex(transaction.contractAddress);
+			
+			transactionObject.value = 0;
+			const data = generateContractData(
+				transaction.address,
+				parseFloat(transaction.amount),
+				transaction.tokenDecimal,
+			);
+			
+			transactionObject.data = EthUtils.sanitizeHex(data);
+		}
 
-    transactionEventEmitter.on('transactionHash', async hash => {
-      await dispatch(
-        duck.actions.updateTransaction({
-          status: 'pending',
-          transactionHash: hash,
-          isSending: false,
-        })
-      );
-      await dispatch(transactionOperations.createTxHistoryOperation());
-    });
-  
-    transactionEventEmitter.on('receipt', async (receipt) => {
-      await dispatch(
-        duck.actions.updateTransaction({
-          status: 'sent',
-          isSending: false,
-        })
-      );
+		await dispatch(
+			duck.actions.updateTransaction({
+				nonce: transactionObject.nonce,
+			}),
+		);
 
-      const transaction = duck.selectors.getTransaction(getState());
- 
-      await dispatch(ducks.txHistory.operations.updateTransactionOperation(transaction.hash, {
-        hash: receipt.transactionHash,
-        status: 'sent',
-        timeStamp: Date.now(),
-        networkId: getConfigs().chainId,
-        tokenSymbol: transaction.tokenSymbol,
-        nonce: transaction.nonce,
-        isError: false,
-        blockHash: receipt.blockHash,
-        blockNumber: receipt.blockNumber,
-        contractAddress: transaction.contractAddress,
-        from: receipt.from.toLowerCase(),
-        to: receipt.to.toLowerCase(),
-        transactionIndex: receipt.transactionIndex,
-        value: parseFloat(transaction.amount),
-      }));
+		const transactionEventEmitter = Web3Service.getInstance().web3.eth.sendTransaction(
+			transactionObject,
+		);
 
-      await dispatch(ducks.wallet.operations.refreshBalanceOperation(true));
-    });
-  
-    transactionEventEmitter.on('error', async error => {
-      const message = error.toString().toLowerCase();
+		transactionEventEmitter.on('transactionHash', async hash => {
+			await dispatch(
+				duck.actions.updateTransaction({
+					status: 'pending',
+					transactionHash: hash,
+					isSending: false,
+				}),
+			);
+			await dispatch(transactionOperations.createTxHistoryOperation());
+		});
 
-      if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
-        await dispatch(duck.operations.updateTransaction({
-          isSending: false,
-          errorMessage: 'You don\'t have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.',
-          errorInfo: 'To learn more about transaction fees, click here.',
-          errorInfoUrl: 'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
-          status: 'error'
-        }));
-      }
-    });
-  },
+		transactionEventEmitter.on('receipt', async receipt => {
+			await dispatch(
+				duck.actions.updateTransaction({
+					status: 'sent',
+					isSending: false,
+				}),
+			);
 
-  /**
-   * Set address
-   * 
-   * Will also validate the address
-   */
-  setAddress: (address) => async (dispatch, getState) => {
-    await dispatch(transactionActions.setAddress(address));
+			const transaction = duck.selectors.getTransaction(getState());
 
-    try {
-      const web3Utils = Web3Service.getInstance().web3.utils;
-      const toChecksumAddress = web3Utils.toChecksumAddress(address);
+			if (onSuccess) {
+				onSuccess(transaction.hash);
+			}
 
-      if (web3Utils.isHex(address) || web3Utils.isAddress(toChecksumAddress)) {
-        await dispatch(transactionActions.setErrors({
-          address: undefined,
-        }));
-        await dispatch(computeGasLimit());
-        return;
-      }
-    } catch(err) {}
+			await dispatch(
+				ducks.txHistory.operations.updateTransactionOperation(transaction.hash, {
+					hash: receipt.transactionHash,
+					status: 'sent',
+					timeStamp: Date.now(),
+					networkId: getConfigs().chainId,
+					tokenSymbol: transaction.tokenSymbol,
+					nonce: transaction.nonce,
+					isError: false,
+					blockHash: receipt.blockHash,
+					blockNumber: receipt.blockNumber,
+					contractAddress: transaction.contractAddress,
+					from: receipt.from.toLowerCase(),
+					to: receipt.to.toLowerCase(),
+					transactionIndex: receipt.transactionIndex,
+					value: parseFloat(transaction.amount),
+				}),
+			);
 
-    await dispatch(transactionActions.setErrors({
-      address: 'Invalid address. Please check and try again',
-    })); 
-  },
+			await dispatch(ducks.wallet.operations.refreshBalanceOperation(true));
+		});
 
-  /**
-   * Set amount
-   * The limit for amount is handled in the reducer
-   * 
-   */
-  setAmount: (amount) => async (dispatch, getState) => {
-    await dispatch(transactionActions.setAmount(amount));
-    await dispatch(computeGasLimit());
-  }
+		transactionEventEmitter.on('error', async error => {
+			if (onError) {
+				onError();
+			}
+
+			const message = error.toString().toLowerCase();
+
+			if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
+				await dispatch(
+					duck.operations.updateTransaction({
+						isSending: false,
+						errorMessage:
+							"You don't have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.",
+						errorInfo: 'To learn more about transaction fees, click here.',
+						errorInfoUrl:
+							'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',
+						status: 'error',
+					}),
+				);
+			}
+		});
+	},
+
+	/**
+	 * Set address
+	 *
+	 * Will also validate the address
+	 */
+	setAddress: address => async (dispatch, getState) => {
+		await dispatch(transactionActions.setAddress(address));
+
+		try {
+			const web3Utils = Web3Service.getInstance().web3.utils;
+			const toChecksumAddress = web3Utils.toChecksumAddress(address);
+
+			if (web3Utils.isHex(address) || web3Utils.isAddress(toChecksumAddress)) {
+				await dispatch(
+					transactionActions.setErrors({
+						address: undefined,
+					}),
+				);
+				await dispatch(computeGasLimit());
+				return;
+			}
+		} catch (err) {}
+
+		await dispatch(
+			transactionActions.setErrors({
+				address: 'Invalid address. Please check and try again',
+			}),
+		);
+	},
+
+	/**
+	 * Set amount
+	 * The limit for amount is handled in the reducer
+	 *
+	 */
+	setAmount: amount => async (dispatch, getState) => {
+		await dispatch(transactionActions.setAmount(amount));
+		await dispatch(computeGasLimit());
+	},
 };
 
 export const transactionOperations = {
-  ...transactionActions,
-  ...operations,
+	...transactionActions,
+	...operations,
 };
 
 export default transactionOperations;

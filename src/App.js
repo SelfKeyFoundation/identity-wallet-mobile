@@ -1,6 +1,6 @@
 // @flow
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { Linking, StatusBar } from 'react-native';
 import { NavigationContainer } from './navigation';
 import { connect } from 'core/redux';
 import modules from 'core/modules';
@@ -11,6 +11,10 @@ import { ModalRoot } from './modals';
 import { WalletTracker } from './WalletTracker';
 import { Snackbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
+import { ConfirmConnectionModal } from 'screens/walletConnect/ConfirmConnectionModal';
+import { ConfirmTransactionModal } from 'screens/walletConnect/ConfirmTransactionModal';
+
+import './core/test2';
 
 type AppProps = {
   isLoading: boolean,
@@ -30,6 +34,24 @@ export function App(props: AppProps) {
     });
 
     loadApp();
+    
+    setTimeout(() => {
+      dispatch(modules.app.operations.loadFeatureFlagsOperation());
+    }, 1000);
+
+    // const handleOpenURL = ({ url }) => {
+    //   if (!url) {
+    //     return;
+    //   }
+
+    //   if (url.indexOf('selfkey://wc?uri=') === 0) {
+    //     const parsedUrl = url.replace('selfkey://wc?uri=', '');
+    //     alert(parsedUrl);
+    //   }
+    // }
+
+    // Linking.addEventListener('url', handleOpenURL);
+    // Linking.getInitialURL().then((url) => url && handleOpenURL({ url }));
   }, []);
 
   return (
@@ -38,6 +60,8 @@ export function App(props: AppProps) {
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />
+      {/* <ConfirmConnectionModal />
+      <ConfirmTransactionModal /> */}
       <ModalRoot />
       {
         !isLoading && (

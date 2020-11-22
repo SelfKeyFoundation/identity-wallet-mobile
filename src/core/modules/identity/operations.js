@@ -25,6 +25,8 @@ import { DIDService } from 'core/services/did-service';
 
 const log = new Logger('identity-operations');
 
+let profileCreationNextAction;
+
 export const loadIdentityOperation = (isLocal) => async (dispatch, getState) => {
 	// TODO: Implement forceUpdateAttributes
 	await dispatch(identityOperations.loadRepositoriesOperation());
@@ -241,7 +243,10 @@ const createIndividualProfile = (identityId, data) => async (dispatch, getState)
 		level: 'wallet'
 	});
 
-	navigate(Routes.APP_MY_PROFILE);
+	if (profileCreationNextAction) {
+		await profileCreationNextAction();
+		profileCreationNextAction = null;
+	}
 
 	await dispatch(ducks.modals.operations.hideModal(Routes.MODAL_CREATE_SELFKEY_ID));
 };
@@ -331,7 +336,7 @@ const updateProfilePictureOperation = (picture, identityId) => async (dispatch, 
 	});
 };
 
-export const navigateToProfileOperation = () => async (dispatch, getState) => {
+export const navigateToProfileOperation = (nextAction) => async (dispatch, getState) => {
 	const identity = duck.selectors.selectIdentity(getState());
 
 	System.getTracker().trackEvent({
@@ -346,6 +351,12 @@ export const navigateToProfileOperation = () => async (dispatch, getState) => {
 			action: 'navigate',
 			level: 'wallet'
 		});
+
+		if (nextAction) {
+			profileCreationNextAction = nextAction;
+		} else {
+			profileCreationNextAction = () => navigate(Routes.APP_MY_PROFILE);
+		}
 
 		dispatch(ducks.modals.operations.showModal(Routes.MODAL_CREATE_SELFKEY_ID));
 		return;

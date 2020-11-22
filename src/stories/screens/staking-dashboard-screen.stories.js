@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import { StakingDashboard } from 'screens/StakingDashboardScreen/StakingDashboard';
 import { reduxMockDecorator } from 'core/utils/storybook-utils';
+import { StakingSetup } from 'screens/CredentialsDashboardScreen/StakingSetup';
 
 storiesOf('Staking Dashboard', module)
   .addDecorator(reduxMockDecorator({
@@ -36,6 +37,9 @@ storiesOf('Staking Dashboard', module)
   }))
   .add('Staking Dashboard - Static', () => (
     <StakingDashboard />
-  ));
+  ))
+  .add('Staking Setup', () => (
+    <StakingSetup />
+  ))
 
   

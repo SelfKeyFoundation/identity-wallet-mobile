@@ -12,5 +12,4 @@ import './forgot-password-screen.stories';
 import './import-from-desktop-screen.stories';
 import './staking-dashboard-screen.stories';
 import './learn-how-to-stake-screen.stories';
-
-
+import './wallet-connect.stories';

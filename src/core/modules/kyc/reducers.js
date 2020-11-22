@@ -1,6 +1,7 @@
 
 import { createReducer } from '../../redux/reducers';
 import kycTypes from './types';
+import _ from 'lodash';
 
 export const initialState = {
   templates: {},
@@ -35,17 +36,29 @@ const updateRelyingPartyReducer = (state, { error, payload }) => {
 		relyingParties.push(payload.name);
 	}
 	relyingPartiesByName[payload.name] = { ...payload, error };
-	return { ...state, relyingPartiesByName, relyingParties };
+	return { ...state, relyingPartiesByName, relyingParties  };
+};
+
+const setApplicationsReducer = (state, { payload }) => {
+	let applications = payload || [];
+	let applicationsById = applications.reduce((acc, curr) => {
+		acc[curr.id] = curr;
+		return acc;
+	}, {});
+	applications = _.uniq(applications.map(app => app.id));
+	return { ...state, applications, applicationsById };
 };
 
 export const appReducers = {
   setTemplateReducer,
-  updateRelyingPartyReducer
+	updateRelyingPartyReducer,
+	setApplicationsReducer
 };
 
 const reducersMap = {
   [kycTypes.SET_TEMPLATE]: appReducers.setTemplateReducer,
-  [kycTypes.KYC_RP_UPDATE]: appReducers.updateRelyingPartyReducer
+	[kycTypes.KYC_RP_UPDATE]: appReducers.updateRelyingPartyReducer,
+	[kycTypes.KYC_APPLICATIONS_SET]: appReducers.setApplicationsReducer,
 };
 
 export default createReducer(initialState, reducersMap);

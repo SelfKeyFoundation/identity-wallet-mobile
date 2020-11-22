@@ -24,6 +24,13 @@ function setGuideSettingsReducer(state, action) {
   };
 }
 
+function setFeatureFlagsReducer(state, action) {
+  return {
+    ...state,
+    featureFlags: action.payload,
+  };
+}
+
 function showSendTokensModalReducer(state, action) {
   return {
     ...state,
@@ -59,6 +66,7 @@ export const appReducers = {
   showReceiveTokensModalReducer,
   setSupportedBiometryTypeReducer,
   setSnackMessageReducer,
+  setFeatureFlagsReducer,
 };
 
 const reducersMap = {
@@ -68,6 +76,7 @@ const reducersMap = {
   [appTypes.SHOW_RECEIVE_TOKENS_MODAL]: appReducers.showReceiveTokensModalReducer,
   [appTypes.SET_SUPPORTED_BIOMETRY_TYPE]: appReducers.setSupportedBiometryTypeReducer,
   [appTypes.SET_SNACK_MESSAGE]: appReducers.setSnackMessageReducer,
+  [appTypes.SET_FEATURE_FLAGS]: appReducers.setFeatureFlagsReducer,
 
 };
 
