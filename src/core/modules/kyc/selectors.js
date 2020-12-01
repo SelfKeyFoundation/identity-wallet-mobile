@@ -9,6 +9,17 @@ import {
 	ENTITY_TYPE_ATTRIBUTE
 } from '../identity/constants';
 import { APPLICATION_ANSWER_REQUIRED, APPLICATION_APPROVED, APPLICATION_CANCELLED, APPLICATION_REJECTED } from './kyc-status-codes';
+<<<<<<< HEAD
+=======
+
+export const ApplicationStatus = {
+  unpaid:'unpaid',
+  completed: 'completed',
+  rejected: 'rejected',
+  progress: 'progress',
+  additionalRequirements: 'additionalRequirements',
+}
+>>>>>>> b6bd67f... keyfi
 
 export const getRoot = state => state.kyc;
 
@@ -169,11 +180,16 @@ function isApplicationPaid(app) {
 
 function getApplicationStatus(application) {
   if (application.currentStatus === APPLICATION_APPROVED) {
+<<<<<<< HEAD
     return 'completed';
+=======
+    return ApplicationStatus.completed;
+>>>>>>> b6bd67f... keyfi
   }
 
   if (application.currentStatus === APPLICATION_REJECTED ||
     application.currentStatus === APPLICATION_CANCELLED) {
+<<<<<<< HEAD
     return 'rejected';
   }
 
@@ -186,6 +202,20 @@ function getApplicationStatus(application) {
   } 
     
   return 'progress';
+=======
+    return ApplicationStatus.rejected;
+  }
+  
+  if (application.currentStatus === APPLICATION_ANSWER_REQUIRED) {
+    return ApplicationStatus.additionalRequirements;
+  } 
+
+  if (!isApplicationPaid(application)) {
+    return ApplicationStatus.unpaid;
+  }
+    
+  return ApplicationStatus.progress;
+>>>>>>> b6bd67f... keyfi
 }
 
 export const selectLastApplication = (rpName, templateId) => state => {

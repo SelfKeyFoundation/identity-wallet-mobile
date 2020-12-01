@@ -37,7 +37,8 @@ export default function MarketplaceProductScreen(props) {
   const paymentInProgress = useSelector(mkpSelectors.getPaymentInProgress);
   const price = useSelector(mkpSelectors.getPrice);
   const handlePay = () => dispatch(mkpOperations.payApplication());
-
+  const handleAdditionalInfo = () => dispatch(mkpOperations.submiAdditionalInformation());
+ 
   useEffect(() => {
 		dispatch(mkpOperations.loadProduct(categoryId, skuId));
   }, [skuId, categoryId]);
@@ -83,6 +84,7 @@ export default function MarketplaceProductScreen(props) {
         lastApplication={lastApplication}
         paymentInProgress={paymentInProgress}
         onPay={handlePay}
+        onSubmitAdditionalInfo={handleAdditionalInfo}
       />
     </React.Fragment>
   )
