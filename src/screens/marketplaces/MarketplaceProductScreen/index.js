@@ -37,7 +37,7 @@ export default function MarketplaceProductScreen(props) {
   const paymentInProgress = useSelector(mkpSelectors.getPaymentInProgress);
   const price = useSelector(mkpSelectors.getPrice);
   const handlePay = () => dispatch(mkpOperations.payApplication());
-  const handleAdditionalInfo = () => dispatch(mkpOperations.submiAdditionalInformation());
+  const handleAdditionalInfo = () => dispatch(mkpOperations.submitAdditionalInformation());
  
   useEffect(() => {
 		dispatch(mkpOperations.loadProduct(categoryId, skuId));

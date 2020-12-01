@@ -400,7 +400,7 @@ export const mkpOperations = {
 		dispatch(mkpActions.setShowPaymentProgressModal(true));
 		dispatch(mkpActions.setPaymentInProgress(true));
 	},
-	submiAdditionalInformation: () => async (dispatch, getState) => {
+	submitAdditionalInformation: () => async (dispatch, getState) => {
 		const state = getState();
 		const application = mkpSelectors.getLastApplication(state);
 		const details = mkpSelectors.getProductDetails(state);
