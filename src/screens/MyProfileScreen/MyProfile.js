@@ -100,11 +100,13 @@ const TabList = [{
   id: 'overview',
   title: 'Overview',
   component: ProfileOverviewTab,
-}, {
-  id: 'did',
-  title: 'DID',
-  component: ProfileDIDTab,
-}, {
+},
+// {
+//   id: 'did',
+//   title: 'DID',
+//   component: ProfileDIDTab,
+// },
+ {
 	id: 'applications',
 	title: 'Applications',
 	component: ProfileApplicationsTab,

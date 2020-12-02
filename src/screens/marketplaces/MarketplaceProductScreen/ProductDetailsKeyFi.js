@@ -116,9 +116,10 @@ export default function ProductDetailsKeyFi(props) {
 	return (
 		<ScreenContainer>
 			<MarketplaceProductDetails
+				{
+					...props
+				}
 				title="KeyFi.com Credentials"
-				lastApplication={props.lastApplication}
-				paymentInProgress={props.paymentInProgress}
 				headerTitle="KeyFi.com"
 				logoComponent={<IconMarketplaceCredentials />}
 				applyText="Apply"
@@ -126,7 +127,6 @@ export default function ProductDetailsKeyFi(props) {
 				onPay={props.onPay}
 				onBack={() => navigate(Routes.MARKETPLACE_CATEGORIES)}
 				onPriceChange={handlePriceChange}
-				price={props.price}
 				tabs={[
 					{
 						id: 'overview',

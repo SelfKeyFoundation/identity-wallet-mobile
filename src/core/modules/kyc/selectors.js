@@ -10,6 +10,14 @@ import {
 } from '../identity/constants';
 import { APPLICATION_ANSWER_REQUIRED, APPLICATION_APPROVED, APPLICATION_CANCELLED, APPLICATION_REJECTED } from './kyc-status-codes';
 
+export const ApplicationStatus = {
+  unpaid:'unpaid',
+  completed: 'completed',
+  rejected: 'rejected',
+  progress: 'progress',
+  additionalRequirements: 'additionalRequirements',
+}
+
 export const getRoot = state => state.kyc;
 
 export const kycSelector = (state) => state.kyc;
@@ -169,23 +177,23 @@ function isApplicationPaid(app) {
 
 function getApplicationStatus(application) {
   if (application.currentStatus === APPLICATION_APPROVED) {
-    return 'completed';
+    return ApplicationStatus.completed;
   }
 
   if (application.currentStatus === APPLICATION_REJECTED ||
     application.currentStatus === APPLICATION_CANCELLED) {
-    return 'rejected';
+    return ApplicationStatus.rejected;
   }
+  
+  if (application.currentStatus === APPLICATION_ANSWER_REQUIRED) {
+    return ApplicationStatus.additionalRequirements;
+  } 
 
   if (!isApplicationPaid(application)) {
-    return 'unpaid';
+    return ApplicationStatus.unpaid;
   }
-
-  if (application.currentStatus === APPLICATION_ANSWER_REQUIRED) {
-    return 'additionalRequirements';
-  } 
     
-  return 'progress';
+  return ApplicationStatus.progress;
 }
 
 export const selectLastApplication = (rpName, templateId) => state => {

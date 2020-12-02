@@ -21,6 +21,7 @@ import {
 import { Theme } from 'design-system/theme';
 import { useSelector } from 'react-redux';
 import { mkpSelectors } from '../mkpSlice';
+import { ApplicationStatus } from 'core/modules/kyc/selectors';
 // import productIcon from './assets/product-icon.png';
 
 // const Box = styled.View`
@@ -177,7 +178,7 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 	const renderApplyButton = () => {
 		const status = lastApplication && lastApplication.status;
 
-		if (selectedPrice && status === 'unpaid') {
+		if (selectedPrice && status === ApplicationStatus.unpaid) {
 			return (
 				<Box
 					borderWidth={1}
@@ -202,30 +203,54 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 			);
 		}
 
-		// if (status === 'progress' || (!selectedPrice && status === 'unpaid')) {
-		// 	return (
-		// 		<Box
-		// 			borderWidth={1}
-		// 			borderColor={Theme.colors.baseLight}
-		// 			backgroundColor={Theme.colors.base}
-		// 			padding={12}
-		// 		>
-		// 			<Box row marginBottom={8} alignItems="center">
-		// 				<Box col autoWidth width={30}>
-		// 					<SKIcon name="icon-shield-info" size={24} color={Theme.colors.warning} />
-		// 				</Box>
-		// 				<Box col autoWidth>
-		// 					<Typography color={Theme.colors.typography}>
-		// 						You have an existing in progress application
-		// 					</Typography>
-		// 				</Box>
-		// 			</Box>
-		// 		</Box>
-		// 	);
-		// }
-
-		if (status === 'rejected') {
-			// Should not allow new application for KEYFI eligibility
+		if (status === ApplicationStatus.rejected) {
+			return (
+				<Box
+					borderWidth={1}
+					borderColor={Theme.colors.baseLight}
+					backgroundColor={Theme.colors.base}
+					padding={12}
+				>
+					<Box row marginBottom={8} alignItems="center">
+						<Box col autoWidth width={30}>
+							<SKIcon name="icon-shield-info" size={24} color={Theme.colors.error} />
+						</Box>
+						<Box col autoWidth>
+							<Typography color={Theme.colors.typography}>
+								Your previous application was rejected
+							</Typography>
+						</Box>
+					</Box>
+					{/* <Box marginTop={10}>
+						<Button onPress={props.onPay}>Pay</Button>
+					</Box> */}
+				</Box>
+			);
+		}
+		
+		if (status === ApplicationStatus.additionalRequirements) {
+			return (
+				<Box
+					borderWidth={1}
+					borderColor={Theme.colors.baseLight}
+					backgroundColor={Theme.colors.base}
+					padding={12}
+				>
+					<Box row marginBottom={8} alignItems="center">
+						<Box col autoWidth width={30}>
+							<SKIcon name="icon-shield-info" size={24} color={Theme.colors.error} />
+						</Box>
+						<Box col autoWidth>
+							<Typography color={Theme.colors.typography}>
+								Your existing application requires additional information
+							</Typography>
+						</Box>
+					</Box>
+					<Box marginTop={10}>
+						<Button onPress={props.onSubmitAdditionalInfo}>Complete Application</Button>
+					</Box>
+				</Box>
+			);
 		}
 
 		if (props.paymentInProgress) {

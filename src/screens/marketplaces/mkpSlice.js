@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Linking } from 'react-native';
 import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 import { getTokenAmount } from 'blockchain/services/price-service';
 import { getConfigs, isDevMode } from 'configs';
@@ -10,7 +11,7 @@ import { getKEYContractAddress } from 'core/services/contract-service';
 import { getGasLimit } from 'core/services/token-service';
 import { fetchIncorporations } from './incorporations-service';
 import { getInventoryItem, getVendor } from './airtable-service';
-import { navigate, Routes } from 'core/navigation';
+import { navigate, navigateBack, Routes } from 'core/navigation';
 
 export const ProductDetailSelectors = {
 	getTemplateId(details) {
@@ -399,6 +400,20 @@ export const mkpOperations = {
 		dispatch(mkpActions.setShowPaymentProgressModal(true));
 		dispatch(mkpActions.setPaymentInProgress(true));
 	},
+	submitAdditionalInformation: () => async (dispatch, getState) => {
+		const state = getState();
+		const application = mkpSelectors.getLastApplication(state);
+		const details = mkpSelectors.getProductDetails(state);
+		const rpName = ProductDetailSelectors.getRelyingPartyId(details);
+		const rp = modules.kyc.selectors.relyingPartySelector(rpName)(state);
+		const instanceUrl = rp.session.ctx.config.rootEndpoint;
+		const url = `${instanceUrl}/applications/${application.id}?access_token=${
+			rp.session.access_token.jwt
+		}`;
+
+		Linking.openURL(url);
+		navigate(Routes.MARKETPLACE_CATEGORIES);
+	}
 };
 
 export const mkpReducer = marketplace.reducer;
