@@ -256,9 +256,7 @@ function renderItemOptions({
 }) {
 	const {options} = item;
 
-	console.log(item);
-
-	if (!options || !options.length) {
+	if (item.required && (!options || !options.length)) {
 		return (
 			<Alert color="#E98548">Missing information or document</Alert>
 		);
@@ -319,7 +317,7 @@ export function KycChecklist(props) {
 		}
 
 		const hasMisingItem = requirements.reduce((isMissing, item) => {
-			return isMissing || item.options.length === 0;
+			return isMissing || (item.required && item.options.length === 0);
 		}, false);
 
 		if (hasMisingItem) {
