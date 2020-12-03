@@ -1,6 +1,4 @@
 import kycActions from './actions';
-// import { navigate, Routes } from '../../navigation';
-// import { WalletModel, GuideSettingsModel, WalletTokenModel, IdAttributeTypeModel } from '../../models';
 import * as selectors from './selectors';
 import ducks from '../index';
 import { getConfigs } from 'configs';
@@ -63,35 +61,18 @@ const getSession = async (
 	walletType,
 	loadInBackground = false,
 ) => async (dispatch, getState) => {
-	// let mpService = (getGlobalContext() || {}).marketplaceService;
-	let session;
-	try {
-		const state = getState();
-		// TODO: get wallet
-		// TODO: get identity
-		const wallet = ducks.wallet.selectors.getWallet(state);
-		const identity = ducks.identity.selectors.selectIdentity(state);
-		// session = mpService.createRelyingPartySession(config);
-		const identityData = await Identity.create(wallet, identity);
-
-		session = new RelyingPartySession(config, identityData);
-	} catch (error) {
-		// log.error('getSession createRelyingPartySession %s', error);
-		// if (!loadInBackground) {
-		throw error;
-		// }
-	}
+	const state = getState();
+	const wallet = ducks.wallet.selectors.getWallet(state);
+	const identity = ducks.identity.selectors.selectIdentity(state);
+	const identityData = await Identity.create(wallet, identity);
+	const session = new RelyingPartySession(config, identityData);
 
 	if (authenticate) {
 		try {
 			await session.establish();
 		} catch (error) {
 			log.error('getSession HD %s', error);
-
-			// if (!loadInBackground) {
-			// await dispatch(push('/main/auth-error'));
 			throw error;
-			// }
 		}
 	}
 
@@ -118,22 +99,17 @@ const loadRelyingPartyOperation = (
 	loadInBackground = false,
 ) => async (dispatch, getState) => {
 	const state = getState();
-	// const walletType = appSelectors.selectApp(state).walletType;
 	if (!rpName) return null;
 
 	const identity = ducks.identity.selectors.selectIdentity(state);
 
 	if (!identity) return;
 
-	const rp = getDevRPDetails();
-	// const rp = await getVendor(rpName);
+	// const rp = getDevRPDetails();
+	const rp = await getVendor(rpName);
 
 	dispatch(loadApplicationsOperation());
 
-	// marketplaceSelectors.selectRPDetails(state, rpName);
-	// if (devRPDetails.status === 'active') {
-	// 	log.debug('Selecting dev RP');
-	// }
 
 	const config = rp.relyingPartyConfig;
 
@@ -145,7 +121,6 @@ const loadRelyingPartyOperation = (
 	const ts = Date.now();
 
 	try {
-		// await dispatch(kycActions.setCancelRoute(cancelRoute));
 		const session = await dispatch(
 			getSession(
 				config,
@@ -205,25 +180,9 @@ const loadRelyingPartyOperation = (
 				lastUpdated: ts,
 			}),
 		);
-
-		// if (authenticate && afterAuthRoute) {
-		// 	if (walletType === 'ledger' || walletType === 'trezor') {
-		// 		clearTimeout(hardwalletConfirmationTimeout);
-		// 	}
-		// 	await dispatch(push(afterAuthRoute));
-		// }
 	} catch (error) {
+		log.error('Error loadRelyingParty %s', error);
 		throw error;
-		// log.error('Error loadRelyingParty %s', error);
-		// await dispatch(
-		// 	kycActions.updateRelyingParty(
-		// 		{
-		// 			name: rpName,
-		// 			lastUpdated: ts
-		// 		},
-		// 		error
-		// 	)
-		// );
 	}
 };
 
@@ -295,11 +254,8 @@ const createRelyingPartyKYCApplication = (rpName, templateId, attributes, title)
 			status: 'progress',
 		}));
 
-		// application = await rp.session.getKYCApplication(application.id);
-		// await dispatch(kycActions.addKYCApplication(rpName, { ...application, templateId }));
-		// application.messages = await rp.session.getKYCApplicationChat(application.id);
 		application.messages = [];
-		// const formattedMessages = messageFilter(application.messages);
+
 		await dispatch(
 			updateApplicationsOperation({
 				id: application.id,
@@ -348,77 +304,6 @@ const submitApplicationOperation = (rpName, templateId, selected) => async (disp
 			'SelfKey Mobile Application',
 		),
 	);
-
-	try {
-		// await dispatch(
-		// 	kycActions.setCurrentApplication(
-		// 		relyingPartyName,
-		// 		templateId,
-		// 		returnRoute,
-		// 		cancelRoute,
-		// 		title,
-		// 		description,
-		// 		agreement,
-		// 		vendor,
-		// 		privacyPolicy,
-		// 		termsOfService,
-		// 		attributes
-		// 	)
-		// );
-
-		try {
-			// if (identity.type === 'corporate') {
-			// await dispatch(
-			// 	kycOperations.submitCurrentApplicationMembers(
-			// 		selected,
-			// 		application,
-			// 		identity.id
-			// 	)
-			// );
-			// }
-		} catch (error) {
-			// log.error('failed to submit member applications %s', error);
-			// TODO: kycc internal api does not support status changes
-			// await dispatch(
-			// 	kycOperations.cancelRelyingPartyKYCApplication(
-			// 		relyingPartyName,
-			// 		application.id,
-			// 		'Member submission error'
-			// 	)
-			// );
-			// throw new Error('Failed to submit member applications');
-		}
-
-		// await dispatch(push(currentApplication.returnRoute));
-
-		// return application;
-	} catch (error) {
-		// let applicationError = error;
-		// if (error.error) {
-		// 	applicationError = error.error;
-		// }
-		// log.error('submit application error %2j', applicationError);
-		// await dispatch(
-		// 	kycActions.setCurrentApplication(
-		// 		relyingPartyName,
-		// 		templateId,
-		// 		returnRoute,
-		// 		cancelRoute,
-		// 		title,
-		// 		description,
-		// 		agreement,
-		// 		vendor,
-		// 		privacyPolicy,
-		// 		termsOfService,
-		// 		attributes,
-		// 		applicationError
-		// 	)
-		// );
-	} finally {
-		// if (kycSelectors.relyingPartyShouldUpdateSelector(state, relyingPartyName)) {
-		// 	await dispatch(kycOperations.loadRelyingParty(relyingPartyName));
-		// }
-	}
 };
 
 export const operations = {

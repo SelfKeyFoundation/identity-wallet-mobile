@@ -51,29 +51,10 @@ export function ProfileApplicationsTab() {
 	const dispatch = useDispatch();
 	const applications = useSelector(ducks.kyc.selectors.selectApplications);
 	const [activeApplication, setActiveApplication] = useState();
-		
-	// const handleTogglerPress = (applicationId) => setActiveApplication(applicationId);
 
 	useEffect(() => {
 		dispatch(ducks.kyc.operations.loadRelyingPartyOperation('selfkey'));
-		// dispatch(ducks.kyc.operations.loadApplicationsOperation());
 	}, []);
-	// const identity = useSelector(ducks.identity.selectors.selectIdentity);
-	// const didStatus = useSelector(ducks.identity.selectors.getDIDStatus);
-
-	// const did = identity.did;
-	// const handleCopy = () => {
-	// 	Clipboard.setString(did);
-	// 	dispatch(ducks.app.actions.setSnackMessage('DID Copied'));
-	// };
-
-	// const handleAssociate = () => {
-	// 	navigate(Routes.ASSOCIATE_DID);
-	// }
-
-	// const handleRegister = () => {
-	// 	navigate(Routes.REGISTER_DID);
-	// }
 
 	if (!applications) {
 		return (
@@ -88,15 +69,14 @@ export function ProfileApplicationsTab() {
 
 	return (
 		<View>
-      <Box margin={20}>
-        <Typography fontSize={24} lineHeight={30} >
-          Marketplace Applications 
-        </Typography>
-        <Typography fontSize={16} lineHeight={24} color="#93B0C1">
-          {applications.length} applications
-        </Typography>
-        
-      </Box>
+			<Box margin={20}>
+				<Typography fontSize={24} lineHeight={30}>
+					Marketplace Applications
+				</Typography>
+				<Typography fontSize={16} lineHeight={24} color="#93B0C1">
+					{applications.length} applications
+				</Typography>
+			</Box>
 			{applications.map((application, idx) => {
 				console.log('kyc applicaiton', application);
 				const isActive = activeApplication === application.id;
@@ -106,7 +86,7 @@ export function ProfileApplicationsTab() {
 							<Box row>
 								<Box col>
 									<Typography fontSize={15} lineHeight={22} fontWeight="bold">
-										{ resolveTitle(application.title) }
+										{resolveTitle(application.title)}
 									</Typography>
 								</Box>
 								<Box col autoWidth>
@@ -126,45 +106,37 @@ export function ProfileApplicationsTab() {
 										<SKIcon name="icon-hourglass" size={9} color="#ADC8D8" />
 										<Typography marginLeft={10} fontSize={10} fontWeight="bold" lineHeight={12}>
 											{application.currentStatusName}
-											
 										</Typography>
 									</Box>
-									
 								</Box>
 							</Box>
-							{
-										application.currentStatus === 9 ? (
-											<Box>
-												<Typography marginTop={10} marginBottom={10} fontSize={13}>
-													Requires additional information
-												</Typography>
-												<Button onPress={() => {
-													dispatch(mkpOperations.redirectToKyc(application));
-												}}>
-													Complete application
-												</Button>
-											</Box>
-										) : null
-									}
+							{application.currentStatus === 9 ? (
+								<Box>
+									<Typography marginTop={10} marginBottom={10} fontSize={13}>
+										Requires additional information
+									</Typography>
+									<Button
+										onPress={() => {
+											dispatch(mkpOperations.redirectToKyc(application));
+										}}
+									>
+										Complete application
+									</Button>
+								</Box>
+							) : null}
 						</Box>
-						{ isActive ? <Box>
-						<Box row>
-							<Box col autoWidth>
-								<Typography color={Theme.colors.typography}>
-									Application Date
-								</Typography>
+						{isActive ? (
+							<Box>
+								<Box row>
+									<Box col autoWidth>
+										<Typography color={Theme.colors.typography}>Application Date</Typography>
+									</Box>
+									<Box col>
+										<Typography>{moment(application.createdAt).format('DD MMM YYYY')}</Typography>
+									</Box>
+								</Box>
 							</Box>
-							<Box col>
-								<Typography>
-									{
-										moment(application.createdAt).format(
-											'DD MMM YYYY'
-										)
-									}
-								</Typography>
-							</Box>
-						</Box>
-								</Box> : null }
+						) : null}
 					</ApplicationItem>
 				);
 			})}
