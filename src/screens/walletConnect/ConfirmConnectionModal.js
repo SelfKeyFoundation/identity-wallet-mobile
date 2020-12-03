@@ -9,14 +9,14 @@ import { walletConnectOperations, walletConnectSelectors } from './walletConnect
 const screenHeight = Dimensions.get('screen').height;
 
 export function ConfirmConnectionModal() {
-  const dispatch = useDispatch();
-  const confirmConnection = useSelector(walletConnectSelectors.getConfirmConnection);
+	const dispatch = useDispatch();
+	const confirmConnection = useSelector(walletConnectSelectors.getConfirmConnection);
 	const handleConfirm = () => {
-    dispatch(walletConnectOperations.confirmConnection());
-  };
+		dispatch(walletConnectOperations.confirmConnection());
+	};
 	const handleReject = () => {
-    dispatch(walletConnectOperations.rejectConnection());
-  };
+		dispatch(walletConnectOperations.rejectConnection());
+	};
 
 	return (
 		<Modal
@@ -32,14 +32,14 @@ export function ConfirmConnectionModal() {
 					height: screenHeight * 0.5,
 					width: '100%',
 					borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
+					borderTopRightRadius: 16,
 				}}
 			>
 				<Box padding={24} flex={1}>
 					<Box flex={1} alignItems="center">
 						<Box autoWidth marginBottom={8}>
 							<Typography fontSize={18} fontWeight="bold">
-								{ confirmConnection && confirmConnection.peerMeta.name }
+								{confirmConnection && confirmConnection.peerMeta.name}
 							</Typography>
 						</Box>
 						<Box autoWidth marginBottom={8}>
