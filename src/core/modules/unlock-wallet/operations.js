@@ -6,6 +6,7 @@ import { navigate, Routes } from '../../navigation';
 import { System } from '../../system';
 import ducks from '../index';
 import { getUserPreferences } from 'core/Storage';
+import { walletConnectActions, walletConnectOperations } from 'screens/walletConnect/walletConnectSlice';
 
 export const navigateToDashboardOperation = (form) => async (dispatch, getState) => {
   const preferences = await getUserPreferences();
@@ -14,6 +15,9 @@ export const navigateToDashboardOperation = (form) => async (dispatch, getState)
   if (flags.keyfi && !preferences.skipKeyFiEligibility) {
     return navigate(Routes.KEYFI_ELIGIBILITY_START);
   }
+
+  dispatch(walletConnectActions.setUnlocked(true));
+  dispatch(walletConnectOperations.init());
 
   return navigate(Routes.APP_DASHBOARD);
 }

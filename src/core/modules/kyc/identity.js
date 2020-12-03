@@ -22,7 +22,7 @@ export class Identity {
 		this.privateKey = wallet.privateKey.replace('0x', '');
 		this.publicKey = ethUtil.privateToPublic(Buffer.from(this.privateKey, 'hex')).toString('hex');
 
-		this.did = ident.did
+		this.did = (getConfigs().did && ident.did)
 			? `did:selfkey:${ident.did.replace('did:selfkey:', '')}`
 			: `did:eth:${this.address ? this.address.toLowerCase() : ''}`;
 
@@ -44,11 +44,12 @@ export class Identity {
 		};
 
     return new Identity(wallet, ident);
-  }
-  // KEEP
+	}
+
 	getKeyId() {
 		return `${this.getDidWithParams()}#keys-1`;
-  }
+	}
+
   // KEEP
 	getDidWithParams() {
 		if (!this.ident.did || !getConfigs().isDev) {

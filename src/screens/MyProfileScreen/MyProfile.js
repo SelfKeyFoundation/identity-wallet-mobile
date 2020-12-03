@@ -101,16 +101,16 @@ const TabList = [{
   title: 'Overview',
   component: ProfileOverviewTab,
 },
-// {
-//   id: 'did',
-//   title: 'DID',
-//   component: ProfileDIDTab,
-// },
+{
+  id: 'did',
+  title: 'DID',
+  component: ProfileDIDTab,
+},
  {
 	id: 'applications',
 	title: 'Applications',
 	component: ProfileApplicationsTab,
-}]
+}];
 
 export function MyProfile(props) {
 	const { profile } = props;
@@ -120,9 +120,10 @@ export function MyProfile(props) {
 	const handleScroll = event => {
 		setScrollY(event.nativeEvent.contentOffset.y);
   };
-  
+
   const [activeTab, setActiveTab] = useState(TabList[0]);
 
+	const showDid = profile && profile.identity && profile.identity.did;
 	return (
 		<Container onScroll={handleScroll} scrollEventThrottle={160}>
 			<SafeAreaView style={{ position: 'relative' }}>
@@ -148,7 +149,7 @@ export function MyProfile(props) {
 				<TabMenu>
 					<Row alignItems="flex-end">
             {
-              TabList.map((item) => (
+              TabList.filter((item) => (showDid || item.id !== 'did')).map((item) => (
                 <TouchableWithoutFeedback onPress={() => setActiveTab(item)}>
                   <TabCol active={activeTab.id === item.id} autoWidth>
                     <TabTitle>{item.title}</TabTitle>

@@ -39,7 +39,7 @@ export function ConfirmConnectionModal() {
 					<Box flex={1} alignItems="center">
 						<Box autoWidth marginBottom={8}>
 							<Typography fontSize={18} fontWeight="bold">
-								{ confirmConnection && confirmConnection.url }
+								{ confirmConnection && confirmConnection.peerMeta.name }
 							</Typography>
 						</Box>
 						<Box autoWidth marginBottom={8}>

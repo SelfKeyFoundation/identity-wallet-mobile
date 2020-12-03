@@ -5,6 +5,7 @@ import walletTypes from './types';
 export const initialState = {
   isLoading: true,
   balance: 0,
+  unlocked: false,
 };
 
 function setWalletLoadingReducer(state, action) {

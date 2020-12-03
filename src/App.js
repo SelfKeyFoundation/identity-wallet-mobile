@@ -15,6 +15,7 @@ import { ConfirmConnectionModal } from 'screens/walletConnect/ConfirmConnectionM
 import { ConfirmTransactionModal } from 'screens/walletConnect/ConfirmTransactionModal';
 
 import './core/test2';
+import { walletConnectActions, walletConnectOperations } from 'screens/walletConnect/walletConnectSlice';
 
 type AppProps = {
   isLoading: boolean,
@@ -39,19 +40,24 @@ export function App(props: AppProps) {
       dispatch(modules.app.operations.loadFeatureFlagsOperation());
     }, 1000);
 
-    // const handleOpenURL = ({ url }) => {
-    //   if (!url) {
-    //     return;
-    //   }
+    const handleOpenURL = ({ url }) => {
+      if (!url) {
+        return;
+      }
 
-    //   if (url.indexOf('selfkey://wc?uri=') === 0) {
-    //     const parsedUrl = url.replace('selfkey://wc?uri=', '');
-    //     alert(parsedUrl);
-    //   }
-    // }
+      if (url.indexOf('selfkey://wc?uri=') === 0) {
+        const uri = url.replace('selfkey://wc?uri=', '');
+        dispatch(walletConnectOperations.handleUri(uri));
+      }
+    }
 
-    // Linking.addEventListener('url', handleOpenURL);
-    // Linking.getInitialURL().then((url) => url && handleOpenURL({ url }));
+    Linking.addEventListener('url', handleOpenURL);
+    Linking.getInitialURL().then((url) => url && handleOpenURL({ url }));
+
+    // handleOpenURL({
+    //   url:
+    //   'selfkey://wc?uri=wc:47c7a890-bfbd-482c-9aa7-e7852f8f322f@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=01c62203bf0d842f7b658c36619f74cd8549438608c514ae8103434c43065bec',
+    // });
   }, []);
 
   return (
@@ -60,8 +66,8 @@ export function App(props: AppProps) {
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />
-      {/* <ConfirmConnectionModal />
-      <ConfirmTransactionModal /> */}
+      <ConfirmConnectionModal />
+      <ConfirmTransactionModal />
       <ModalRoot />
       {
         !isLoading && (

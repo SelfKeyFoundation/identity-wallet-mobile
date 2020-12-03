@@ -9,6 +9,7 @@ import { Routes, navigate } from 'core/navigation';
 import moment from 'moment';
 import { ArrowIcon } from 'components/Toggler/ArrowIcon';
 import { Theme } from 'design-system/theme';
+import { mkpOperations } from 'screens/marketplaces/mkpSlice';
 
 const SectionHeader = styled(Grid)`
 	margin: 15px 20px 0 20px;
@@ -50,7 +51,7 @@ export function ProfileApplicationsTab() {
 	const dispatch = useDispatch();
 	const applications = useSelector(ducks.kyc.selectors.selectApplications);
 	const [activeApplication, setActiveApplication] = useState();
-
+		
 	// const handleTogglerPress = (applicationId) => setActiveApplication(applicationId);
 
 	useEffect(() => {
@@ -74,7 +75,7 @@ export function ProfileApplicationsTab() {
 	// 	navigate(Routes.REGISTER_DID);
 	// }
 
-	if (!applications || !applications.length) {
+	if (!applications) {
 		return (
 			<View style={{ marginTop: 40 }}>
 				<ActivityIndicator size="small" color="#00C0D9" />
@@ -85,7 +86,6 @@ export function ProfileApplicationsTab() {
 		);
 	}
 
-	// debugger;
 	return (
 		<View>
       <Box margin={20}>
@@ -126,10 +126,26 @@ export function ProfileApplicationsTab() {
 										<SKIcon name="icon-hourglass" size={9} color="#ADC8D8" />
 										<Typography marginLeft={10} fontSize={10} fontWeight="bold" lineHeight={12}>
 											{application.currentStatusName}
+											
 										</Typography>
 									</Box>
+									
 								</Box>
 							</Box>
+							{
+										application.currentStatus === 9 ? (
+											<Box>
+												<Typography marginTop={10} marginBottom={10} fontSize={13}>
+													Requires additional information
+												</Typography>
+												<Button onPress={() => {
+													dispatch(mkpOperations.redirectToKyc(application));
+												}}>
+													Complete application
+												</Button>
+											</Box>
+										) : null
+									}
 						</Box>
 						{ isActive ? <Box>
 						<Box row>

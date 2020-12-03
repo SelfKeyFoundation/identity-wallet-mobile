@@ -1,7 +1,9 @@
-import { Box, Button, Typography } from 'design-system';
+import EthUnits from 'blockchain/util/eth-units';
+import EthUtils from 'blockchain/util/eth-utils';
+import { Box, Button, SKIcon, Typography } from 'design-system';
 import { Theme } from 'design-system/theme';
 import React from 'react';
-import { View, Text, Dimensions, ScrollView } from 'react-native';
+import { View, Text, Dimensions, ScrollView, Linking } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { walletConnectOperations, walletConnectSelectors } from './walletConnectSlice';
@@ -13,26 +15,122 @@ function renderTransaction(confirmTransaction) {
     return null;
   }
 
+	const fee = EthUnits.unitToUnit(
+		+confirmTransaction.gas * +confirmTransaction.gasPrice,
+		'wei',
+		'ether'
+	);
+
+	const amount = EthUnits.unitToUnit(+confirmTransaction.value, 'wei', 'ether');;
+
+	// confirmTransaction.status = 'error';
+
+	if (confirmTransaction.status === 'pending') {
+		return (
+			<Box autoWidth alignItems="flex-start" width="100%">
+      	<Box alignItems="center" justifyContent="center" width="100%" marginTop={20}>
+					<SKIcon name="icon-hourglass-large" size={66} color="#93B0C1" />
+					<Typography fontSize={18} marginTop={20}>Transaction Pending</Typography>
+				</Box>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Amount
+				</Typography>
+				<Typography fontSize={16}>{amount} ETH</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Recipient Address
+				</Typography>
+				<Typography fontSize={16}>{confirmTransaction.to}</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Transaction Fee
+				</Typography>
+				<Typography fontSize={16}>{fee} ETH</Typography>
+				<Box width="100%" marginTop={20}>
+					<Button onPress={() => {
+							Linking.openURL(EthUtils.getTxReceiptUrl(confirmTransaction.hash))
+					}}>View on Etherscan</Button>
+				</Box>
+			</Box>
+		)
+	}
+	
+	if (confirmTransaction.status === 'success') {
+		return (
+			<Box autoWidth alignItems="flex-start" width="100%">
+      	<Box alignItems="center" justifyContent="center" width="100%" marginTop={20}>
+					<SKIcon name="icon-big-ok" size={66} color="#0ABBD0" />
+					<Typography fontSize={18} marginTop={20}>Sent</Typography>
+				</Box>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Amount
+				</Typography>
+				<Typography fontSize={16}>{amount} ETH</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Recipient Address
+				</Typography>
+				<Typography fontSize={16}>{confirmTransaction.to}</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Transaction Fee
+				</Typography>
+				<Typography fontSize={16}>{fee} ETH</Typography>
+				<Box width="100%" marginTop={20}>
+					<Button onPress={() => {
+							Linking.openURL(EthUtils.getTxReceiptUrl(confirmTransaction.hash))
+					}}>View on Etherscan</Button>
+				</Box>
+			</Box>
+		);
+	}
+
+	if (confirmTransaction.status === 'error') {
+		return (
+			<Box autoWidth alignItems="flex-start" width="100%">
+      	<Box alignItems="center" justifyContent="center" width="100%" marginTop={20}>
+				<SKIcon name="icon-warning-large" size={66} color="#DB7400" />
+					<Typography fontSize={18} marginTop={20}>Transaction Failed</Typography>
+					<Typography fontSize={16} marginTop={20} color={Theme.colors.error}>{confirmTransaction.message}</Typography>
+					
+				</Box>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Amount
+				</Typography>
+				<Typography fontSize={16}>{amount} ETH</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Recipient Address
+				</Typography>
+				<Typography fontSize={16}>{confirmTransaction.to}</Typography>
+				<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+					Transaction Fee
+				</Typography>
+				<Typography fontSize={16}>{fee} ETH</Typography>
+				{ confirmTransaction.hash ? <Box width="100%" marginTop={20}>
+					<Button onPress={() => {
+							Linking.openURL(EthUtils.getTxReceiptUrl(confirmTransaction.hash))
+					}}>View on Etherscan</Button>
+				</Box> : null}
+			</Box>
+		);
+	}
+
   return (
     <Box autoWidth alignItems="flex-start" width="100%">
       <Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
         Amount
       </Typography>
-      <Typography fontSize={16}>{confirmTransaction.amount} ETH</Typography>
+      <Typography fontSize={16}>{amount} ETH</Typography>
       <Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
         Recipient Address
       </Typography>
-      <Typography fontSize={16}>{confirmTransaction.address}</Typography>
+      <Typography fontSize={16}>{confirmTransaction.to}</Typography>
       <Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
         Transaction Fee
       </Typography>
-      <Typography fontSize={16}>{confirmTransaction.fee} ETH</Typography>
+      <Typography fontSize={16}>{fee} ETH</Typography>
       <Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
         Data
       </Typography>
-      <Typography fontSize={16}>{confirmTransaction.data}</Typography>
+      <Typography fontSize={16}>{confirmTransaction.data.substring(0, 100)}...</Typography>
     </Box>
-  )
+  );
 }
 
 export function ConfirmTransactionModal() {
@@ -44,6 +142,8 @@ export function ConfirmTransactionModal() {
 	const handleReject = () => {
 		dispatch(walletConnectOperations.rejectTransaction());
 	};
+
+	const status = confirmTransaction && confirmTransaction.status;
 
 	return (
 		<Modal
@@ -71,16 +171,20 @@ export function ConfirmTransactionModal() {
               renderTransaction(confirmTransaction)
             }
 					</Box>
-					<Box row autoWidth>
-						<Box col>
-							<Button type="shell-primary" onPress={handleReject}>
-								Reject
-							</Button>
-						</Box>
-						<Box col>
-							<Button onPress={handleConfirm}>Approve</Button>
-						</Box>
-					</Box>
+					{
+						(status === 'pending' || status === 'success' || status === 'error') ? null : (
+							<Box row autoWidth>
+								<Box col>
+									<Button type="shell-primary" onPress={handleReject}>
+										Reject
+									</Button>
+								</Box>
+								<Box col>
+									<Button onPress={handleConfirm}>Approve</Button>
+								</Box>
+							</Box>
+						)
+					}
 				</Box>
 			</View>
 		</Modal>

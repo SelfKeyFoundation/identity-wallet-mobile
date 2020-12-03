@@ -3,14 +3,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const Storage = {
 	Key: {
 		UserPreferences: '@user-preferences',
+		WalletConnectSession: '@wallet-connect-session',
 	},
-	async getItem(key) {
+	async getItem(key, defaultValue) {
 		try {
 			const result = await AsyncStorage.getItem(key);
 			return JSON.parse(result);
 		} catch (err) {}
 
-		return null;
+		return defaultValue;
 	},
 	async updateItem(key, updateFunc) {
 		const currentValue = await Storage.getItem(key);

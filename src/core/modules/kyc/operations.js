@@ -105,7 +105,8 @@ const updateApplicationsOperation = application => async (dispatch, getState) =>
 };
 
 const loadApplicationsOperation = () => async (dispatch, getState) => {
-	const applications = await KYCApplicationModel.getInstance().findAll();
+	const identity = ducks.identity.selectors.selectIdentity(getState());
+	const applications = await KYCApplicationModel.getInstance().find('identityId = $0', identity.id);
 	dispatch(kycActions.setApplications(applications));
 };
 
@@ -124,8 +125,8 @@ const loadRelyingPartyOperation = (
 
 	if (!identity) return;
 
-	// const devRp = getDevRPDetails();
-	const rp = await getVendor(rpName);
+	const rp = getDevRPDetails();
+	// const rp = await getVendor(rpName);
 
 	dispatch(loadApplicationsOperation());
 
@@ -294,7 +295,6 @@ const createRelyingPartyKYCApplication = (rpName, templateId, attributes, title)
 			status: 'progress',
 		}));
 
-		debugger;
 		// application = await rp.session.getKYCApplication(application.id);
 		// await dispatch(kycActions.addKYCApplication(rpName, { ...application, templateId }));
 		// application.messages = await rp.session.getKYCApplicationChat(application.id);
@@ -317,7 +317,6 @@ const createRelyingPartyKYCApplication = (rpName, templateId, attributes, title)
 		);
 		return application;
 	} catch (error) {
-		debugger;
 		log.error('createKycApplication %s', error);
 		throw error;
 	}

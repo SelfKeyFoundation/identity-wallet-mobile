@@ -413,7 +413,25 @@ export const mkpOperations = {
 
 		Linking.openURL(url);
 		navigate(Routes.MARKETPLACE_CATEGORIES);
-	}
+	},
+	
+	redirectToKyc: (application) => async (dispatch, getState) => {
+		const state = getState();
+		let rp = modules.kyc.selectors.relyingPartySelector(application.rpName)(state);
+
+		if (!rp) {
+			await dispatch(modules.kyc.operations.loadRelyingPartyOperation(rp));
+			rp = modules.kyc.selectors.relyingPartySelector(application.rpName)(state);
+		}
+
+		const instanceUrl = rp.session.ctx.config.rootEndpoint;
+		const url = `${instanceUrl}/applications/${application.id}?access_token=${
+			rp.session.access_token.jwt
+		}`;
+
+		Linking.openURL(url);
+	},
+	
 };
 
 export const mkpReducer = marketplace.reducer;

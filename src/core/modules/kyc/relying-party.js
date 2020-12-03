@@ -150,7 +150,7 @@ export class RelyingPartyCtx {
 	}
 	mergeWithConfig() {}
 	supportsDID() {
-		return getConfigs().did !== false;
+		return true;
 	}
 	getOrigin() {
 		return this.config.origin || DEFAULT_ORIGIN;
@@ -621,7 +621,6 @@ export class RelyingPartyRest {
 				},
 			});
 		} catch(err) {
-			debugger;
 			res = {};
 		}
 		

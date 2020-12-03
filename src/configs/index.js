@@ -5,7 +5,7 @@ let currentEnv = 'prod';
 const CONFIGS = {
   dev: {
     isDev: true,
-    did: true,
+    did: false,
     chainId: 3,
     etherscanUrl: 'https://ropsten.etherscan.io',
     rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
@@ -17,11 +17,12 @@ const CONFIGS = {
       importFromDesktop: true,
       importFromMnemonic: false,
     },
-    kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
+    // kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
+    kyccUrlOverride: 'http://localhost:8080/api/v2/',
     airtableBaseUrl: 'https://airtable.selfkey.org/airtable?tableName=',
   },
   prod: {
-    did: true,
+    did: false,
     chainId: 1,
     etherscanUrl: 'https://etherscan.io',
     rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
