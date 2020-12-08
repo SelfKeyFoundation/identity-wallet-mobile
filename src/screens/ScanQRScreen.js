@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import modules from 'core/modules';
 import { navigate, navigateBack, Routes, onNavigate } from 'core/navigation';
  
-const { operations, selectors } = modules.transaction;
 import { WalletTracker } from '../WalletTracker';
+import { walletConnectOperations } from './walletConnect/walletConnectSlice';
 
 const TRACKER_PAGE = 'scanQRCode';
 
@@ -14,28 +14,35 @@ export default function ScanQRScreen(props) {
   const [showQR, setShowQR] = useState(true);
   const referer = props.navigation.getParam('referer', 'dashboard');
   const dispatch = useDispatch();
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     if (referer === 'transaction') {
       dispatch(modules.app.operations.showSendTokensModal(true));      
     }
     navigateBack();
-  }, [referer, navigate]);
+  };
 
-  const handleSuccess = useCallback((address) => {
+  const handleSuccess = (value) => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/addressScanned`,
       action: 'success',
       level: 'wallet'
     });
+    
+    if (value.indexOf('wc:') === 0) {
+      // handle wallet connect address
+      navigateBack();
+      dispatch(walletConnectOperations.handleUri(value));
+      return;
+    }
 
     if (referer === 'transaction') {
-      dispatch(operations.setAddress(address));
+      dispatch(modules.transaction.operations.setAddress(value));
       dispatch(modules.app.operations.showSendTokensModal(true));
     } else {
-      dispatch(operations.goToTransactionOperation('all', address));
+      dispatch(modules.transaction.operations.goToTransactionOperation('all', value));
     }
     navigateBack();
-  }, [referer, operations]);
+  };
 
   useEffect(() => {
     if (referer !== 'dashboard') {
@@ -57,7 +64,7 @@ export default function ScanQRScreen(props) {
         onClose={handleClose}
         onSuccess={handleSuccess}
         title="Scan QR Code"
-        description="Scan any ERC-20 Token QR Code"
+        description="Scan the QR Code"
         smallDescription="Place Code inside the box"
       />
     );

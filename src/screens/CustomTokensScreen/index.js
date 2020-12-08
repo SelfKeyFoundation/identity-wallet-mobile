@@ -9,6 +9,7 @@ import modules from 'core/modules';
 import styled from 'styled-components/native';
 import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
+import {transactionOperations} from 'core/modules/transaction/operations';
 
 const TRACKER_PAGE = 'customTokens';
 
@@ -50,7 +51,7 @@ function CustomTokensContainer(props) {
       level: 'system'
     });
 
-    dispatch(modules.transaction.operations.goToTransactionOperation('custom'));
+    dispatch(transactionOperations.goToTransactionOperation('custom'));
   }, []);
 
   return (

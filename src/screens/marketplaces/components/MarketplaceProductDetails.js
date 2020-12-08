@@ -278,6 +278,28 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 			);
 		}
 		
+		if (status === ApplicationStatus.completed) {
+			return (
+				<Box
+					borderWidth={1}
+					borderColor={Theme.colors.baseLight}
+					backgroundColor={Theme.colors.base}
+					padding={12}
+				>
+					<Box row marginBottom={8} alignItems="center">
+						<Box col autoWidth width={30}>
+							<SKIcon name="icon-shield-check" size={24} color={Theme.colors.success} />
+						</Box>
+						<Box col autoWidth>
+							<Typography color={Theme.colors.typography}>
+								Your application is approved
+							</Typography>
+						</Box>
+					</Box>
+				</Box>
+			);
+		}
+
 		if (status) {
 			return (
 				<Box

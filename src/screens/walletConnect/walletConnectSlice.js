@@ -11,6 +11,13 @@ const initialState = {
 	isLoading: true,
 	pendingUri: null,
 	unlocked: false,
+	sessions: [],
+	// confirmSignRequest: {
+	// 	data:
+	// 		'0x37652f325437344958724c7033553639304446756354564f672f775378724237627152664b6c485377534c4f3863643446665249414e334c754c46502b5054366369614d4a782f32494e4c6641794e6a7268504a2b773d3d',
+	// 	address: '',
+	// 	id: 1,
+	// },
 };
 
 const walletConnect = createSlice({
@@ -35,6 +42,12 @@ const walletConnect = createSlice({
 		setUnlocked(state, action) {
 			state.unlocked = action.payload;
 		},
+		setSessions(state, action) {
+			state.sessions = action.payload;
+		},
+		setConfirmSignRequest(state, action) {
+			state.confirmSignRequest = action.payload;
+		},
 	},
 });
 
@@ -47,8 +60,10 @@ export const walletConnectSelectors = {
 	getConnector: state => getRoot(state).connector,
 	getConfirmConnection: state => getRoot(state).confirmConnection,
 	getConfirmTransaction: state => getRoot(state).confirmTransaction,
+	getConfirmSignRequest: state => getRoot(state).confirmSignRequest,
 	getPendingUri: state => getRoot(state).pendingUri,
 	getUnlocked: state => getRoot(state).unlocked,
+	getSessions: state => getRoot(state).sessions,
 };
 
 export const walletConnectOperations = {
@@ -63,10 +78,12 @@ export const walletConnectOperations = {
 				chainId: confirmConnection.chainId,
 			});
 
-			await Storage.updateItem(Storage.Key.WalletConnectSession, items => ({
+			await Storage.updateItem(Storage.Key.WalletConnectSession, items => [
 				...items,
-				[connector.uri]: connector.session,
-			}));
+				connector.session,
+			]);
+
+			await dispatch(walletConnectOperations.loadSessions());
 		}
 
 		dispatch(walletConnectActions.setConfirmConnection(null));
@@ -110,6 +127,14 @@ export const walletConnectOperations = {
 
 		txEvent.on('receipt', async receipt => {
 			const tx = walletConnectSelectors.getConfirmTransaction(getState());
+			const confirmTransaction = walletConnectSelectors.getConfirmTransaction(getState());
+			const connector = walletConnectSelectors.getConnector(getState());
+
+			// Approve Call Request
+			connector.approveRequest({
+				id: confirmTransaction.id,
+				result: receipt.transactionHash,
+			});
 
 			dispatch(
 				walletConnectActions.setConfirmTransaction({
@@ -149,7 +174,44 @@ export const walletConnectOperations = {
 					message: error.toString().toLowerCase(),
 				}),
 			);
+
+			const connector = walletConnectSelectors.getConnector(getState());
+
+			connector.rejectRequest({
+				id: tx.id,
+				error: {
+					message: error.toString().toLowerCase(),
+				},
+			});
 		});
+	},
+	confirmSignRequest: () => async (dispatch, getState) => {
+		const signRequest = walletConnectSelectors.getConfirmSignRequest(getState());
+		const result = await Web3Service.getInstance().web3.eth.sign(
+			signRequest.message,
+			signRequest.address,
+		);
+		const connector = walletConnectSelectors.getConnector(getState());
+
+		connector.approveRequest({
+			id: signRequest.id,
+			result,
+		});
+
+		dispatch(walletConnectActions.setConfirmSignRequest(null));
+	},
+	rejectSignRequest: () => async (dispatch, getState) => {
+		const signRequest = walletConnectSelectors.getConfirmSignRequest(getState());
+		const connector = walletConnectSelectors.getConnector(getState());
+
+		connector.rejectRequest({
+			id: signRequest.id,
+			error: {
+				message: 'Rejected',
+			},
+		});
+
+		dispatch(walletConnectActions.setConfirmSignRequest(null));
 	},
 	rejectTransaction: () => async (dispatch, getState) => {
 		dispatch(walletConnectActions.setConfirmTransaction(null));
@@ -182,13 +244,24 @@ export const walletConnectOperations = {
 		connector.on('call_request', (error, payload) => {
 			console.log('call_request', payload);
 
-			// if (error) {
-			//   throw error;
-			// }
 			dispatch(walletConnectActions.setConnector(connector));
-			dispatch(walletConnectActions.setConfirmTransaction(payload.params[0]));
 
-			// debugger;
+			if (payload.method === 'eth_sign' || payload.method === 'personal_sign') {
+				dispatch(
+					walletConnectActions.setConfirmSignRequest({
+						id,
+						message: payload.params[0],
+						address: payload.params[1],
+					}),
+				);
+			} else {
+				dispatch(
+					walletConnectActions.setConfirmTransaction({
+						id: payload.id,
+						...payload.params[0],
+					}),
+				);
+			}
 		});
 
 		connector.on('disconnect', (error, payload) => {
@@ -197,9 +270,20 @@ export const walletConnectOperations = {
 
 		await connector.createSession();
 	},
+	loadSessions: () => async (dispatch, getState) => {
+		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
+
+		if (!Array.isArray(sessions)) {
+			await Storage.setItem(Storage.Key.WalletConnectSession, []);
+		}
+
+		dispatch(walletConnectActions.setSessions(sessions));
+	},
 	init: () => async (dispatch, getState) => {
 		const pendingUri = walletConnectSelectors.getPendingUri(getState());
-		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, {});
+
+		await dispatch(walletConnectOperations.loadSessions());
+		const sessions = walletConnectSelectors.getSessions(getState());
 
 		if (pendingUri && !sessions[pendingUri]) {
 			dispatch(walletConnectOperations.handleSession(pendingUri));

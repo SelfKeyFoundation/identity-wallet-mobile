@@ -6,6 +6,7 @@ import { navigate, navigateBack, Routes } from 'core/navigation';
 import { IconKey, IconEth } from 'design-system/svg-icons';
 import { getTokenPrice } from 'blockchain/services/price-service';
 import modules from 'core/modules';
+import { transactionOperations } from 'core/modules/transaction/operations';
 import styled from 'styled-components/native';
 import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
@@ -63,7 +64,7 @@ function TokenDetailsContainer(props) {
   const tokenDetails = useSelector(selectors.getTokenDetails(tokenSymbol));
   const dispatch = useDispatch();
 
-  const handleReceive = useCallback((tokenSymbol) => {
+  const handleReceive = (tokenSymbol) => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/receiveButton`,
       action: 'press',
@@ -76,9 +77,9 @@ function TokenDetailsContainer(props) {
       visible: true,
       tokenSymbol,
     }));
-  }, []);
+  };
 
-  const handleSend = useCallback((tokenSymbol) => {
+  const handleSend = (tokenSymbol) => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/sendButton`,
       action: 'press',
@@ -86,8 +87,8 @@ function TokenDetailsContainer(props) {
     });
 
     WalletTracker.trackPageView('app/sendTokens');
-    dispatch(modules.transaction.operations.goToTransactionOperation(tokenDetails.symbol));
-  }, [tokenDetails.symbol]);
+    dispatch(transactionOperations.goToTransactionOperation(tokenDetails.symbol));
+  };
 
   const handleBack = () => {
     WalletTracker.trackEvent({

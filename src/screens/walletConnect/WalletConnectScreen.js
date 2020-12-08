@@ -9,25 +9,20 @@ import { walletConnectOperations } from './walletConnectSlice';
 
 export function WalletConnectScreen() {
 	const dispatch = useDispatch();
-	const [uri, setUri] = useState();
-	const handleTextChange = value => {
-		setUri(value);
-	};
-	const handleSubmit = () => {
-		dispatch(walletConnectOperations.createConnection(uri));
-	};
+	// const [uri, setUri] = useState();
+	// const handleTextChange = value => {
+	// 	setUri(value);
+	// };
+	// const handleSubmit = () => {
+	// 	dispatch(walletConnectOperations.createConnection(uri));
+	// };
 
 	return (
 		<ScreenContainer>
-			<ScreenHeader title="Wallet Connect" onBack={navigateBack} />
+			<ScreenHeader title="Wallet Connect Sessions" onBack={navigateBack} />
 			<Box row>
 				<Box col>
-					<TextInput label="URI" onChangeText={handleTextChange} value={uri} />
-				</Box>
-			</Box>
-			<Box row>
-				<Box col>
-					<Button onPress={handleSubmit}>Submit</Button>
+					
 				</Box>
 			</Box>
 		</ScreenContainer>

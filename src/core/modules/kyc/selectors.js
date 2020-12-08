@@ -184,7 +184,7 @@ function getApplicationStatus(application) {
     application.currentStatus === APPLICATION_CANCELLED) {
     return ApplicationStatus.rejected;
   }
-  
+
   if (application.currentStatus === APPLICATION_ANSWER_REQUIRED) {
     return ApplicationStatus.additionalRequirements;
   } 

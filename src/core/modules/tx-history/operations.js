@@ -96,9 +96,9 @@ export const operations = {
   }
 };
 
-export const transactionOperations = {
+export const txHistoryOperations = {
   ...txHistoryActions,
   ...operations,
 };
 
-export default transactionOperations;
+export default txHistoryOperations;

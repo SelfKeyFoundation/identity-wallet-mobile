@@ -13,8 +13,7 @@ import { Snackbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmConnectionModal } from 'screens/walletConnect/ConfirmConnectionModal';
 import { ConfirmTransactionModal } from 'screens/walletConnect/ConfirmTransactionModal';
-
-import './core/test2';
+import { ConfirmSignRequestModal } from 'screens/walletConnect/ConfirmSignRequestModal';
 import { walletConnectActions, walletConnectOperations } from 'screens/walletConnect/walletConnectSlice';
 
 type AppProps = {
@@ -56,18 +55,19 @@ export function App(props: AppProps) {
 
     // handleOpenURL({
     //   url:
-    //   'selfkey://wc?uri=wc:47c7a890-bfbd-482c-9aa7-e7852f8f322f@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=01c62203bf0d842f7b658c36619f74cd8549438608c514ae8103434c43065bec',
+    //   'selfkey://wc?uri=wc:b7b4fa13-9fb6-4128-a862-1e35810856f2@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=d3d3dc237183926f72006721850ff94ca28cfca852f93044ed2c622b495d8611',
     // });
   }, []);
 
   return (
     <React.Fragment>
-      <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" />
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />
       <ConfirmConnectionModal />
       <ConfirmTransactionModal />
+      <ConfirmSignRequestModal />
       <ModalRoot />
       {
         !isLoading && (
