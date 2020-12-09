@@ -83,9 +83,12 @@ export const walletConnectOperations = {
 				connector.session,
 			]);
 
-			await dispatch(walletConnectOperations.loadSessions());
+			try {
+				await dispatch(walletConnectOperations.loadSessions());
+			} catch(err) {}
 		}
 
+		dispatch(modules.app.operations.setSnackMessage('Wallet connect session created. Go back to the dapp'))
 		dispatch(walletConnectActions.setConfirmConnection(null));
 	},
 
@@ -218,10 +221,12 @@ export const walletConnectOperations = {
 	},
 	handleUri: uri => async (dispatch, getState) => {
 		const unlocked = walletConnectSelectors.getUnlocked(getState());
-		dispatch(walletConnectActions.setPendingUri(uri));
 
 		if (unlocked) {
-			dispatch(walletConnectOperations.init());
+			dispatch(walletConnectOperations.handleSession(uri));
+		} else {
+			dispatch(walletConnectActions.setPendingUri(uri));
+			// dispatch(walletConnectOperations.init());
 		}
 	},
 	handleSession: (uri, session) => async (dispatch, getState) => {
@@ -232,8 +237,6 @@ export const walletConnectOperations = {
 
 		connector.uri = uri;
 
-		console.log('handleSession', uri);
-
 		connector.on('session_request', (error, payload) => {
 			console.log('session_request', payload);
 
@@ -243,13 +246,12 @@ export const walletConnectOperations = {
 
 		connector.on('call_request', (error, payload) => {
 			console.log('call_request', payload);
-
 			dispatch(walletConnectActions.setConnector(connector));
 
 			if (payload.method === 'eth_sign' || payload.method === 'personal_sign') {
 				dispatch(
 					walletConnectActions.setConfirmSignRequest({
-						id,
+						id: payload.id,
 						message: payload.params[0],
 						address: payload.params[1],
 					}),
@@ -268,7 +270,13 @@ export const walletConnectOperations = {
 			console.log('disconnect', payload);
 		});
 
-		await connector.createSession();
+		try {
+			await connector.createSession();
+		} catch (err) {
+			if (uri) {
+				dispatch(modules.app.operations.setSnackMessage('Wallet connect session created.'))
+			}
+		}
 	},
 	loadSessions: () => async (dispatch, getState) => {
 		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
@@ -290,8 +298,25 @@ export const walletConnectOperations = {
 		}
 
 		Object.keys(sessions).forEach(key => {
-			dispatch(walletConnectOperations.handleSession(null, sessions[key]));
+			dispatch(walletConnectOperations.handleSession(null, d[key]));
 		});
+	},
+	disconnectSession: session => async (dispatch, getState) => {
+		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
+		const filtered = sessions.filter(item => item.key !== session.key);
+
+		const connector = new WalletConnect({
+			session,
+		});
+
+		connector.killSession();
+		
+		await Storage.setItem(
+			Storage.Key.WalletConnectSession,
+			filtered
+		);
+
+		dispatch(walletConnectOperations.loadSessions());
 	},
 };
 

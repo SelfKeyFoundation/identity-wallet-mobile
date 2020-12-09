@@ -143,9 +143,9 @@ export function SettingsMenu(props) {
         <MenuItem onPress={props.onBackup}>
           Backup
         </MenuItem>
-        {/* <MenuItem onPress={props.onWalletConnect}>
+        <MenuItem onPress={props.onWalletConnect}>
           Wallet Connect
-        </MenuItem> */}
+        </MenuItem>
         <Row marginTop={20}>
           <Col paddingLeft={20}>
             <SectionTitle>Choose Wallet</SectionTitle>

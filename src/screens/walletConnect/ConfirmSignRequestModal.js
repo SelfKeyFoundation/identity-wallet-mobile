@@ -40,11 +40,11 @@ export function ConfirmSignRequestModal() {
 						<Box autoWidth marginBottom={8}>
 							<Typography fontSize={24}>Confirm sign Request</Typography>
 						</Box>
-						{/* <Box autoWidth>
+						<Box autoWidth>
 							<Typography fontSize={16}>
-								By allowing the connection, the dapp will be able to view your public address.
+								By allowing this request, the dapp will get the message signed with your private key.
 							</Typography>
-						</Box> */}
+						</Box>
 					</Box>
 					<Box row autoWidth>
 						<Box col>

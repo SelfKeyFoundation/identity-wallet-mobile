@@ -6,12 +6,13 @@ import modules from 'core/modules';
 import { navigate, Routes } from 'core/navigation';
 import { Snackbar } from 'react-native-paper';
 import { WalletTracker } from '../../WalletTracker';
-
+import { transactionOperations } from 'core/modules/transaction/operations';
 const TRACKER_PAGE = 'sendTokens';
 
-const { operations, selectors } = modules.transaction;
 
 export function SendStep(props) {
+  const { selectors } = modules.transaction;
+  const operations = transactionOperations;
   const token = useSelector(selectors.getToken);
   const amount = useSelector(selectors.getAmount);
   const isSending = useSelector(selectors.isSending);
@@ -30,11 +31,11 @@ export function SendStep(props) {
   const handleChange = useCallback((field, value) => {
     switch(field) {
       case 'address': {
-        dispatch(operations.setAddress(value));
+        dispatch(transactionOperations.setAddress(value));
         break;
       }
       case 'amount': {
-        dispatch(operations.setAmount(value));
+        dispatch(transactionOperations.setAmount(value));
         break;
       }
       case 'transactionFee': {
@@ -44,7 +45,7 @@ export function SendStep(props) {
           level: 'wallet'
         });
 
-        dispatch(operations.setTransactionFee(value));
+        dispatch(transactionOperations.setTransactionFee(value));
         break;
       }
     }
@@ -57,7 +58,7 @@ export function SendStep(props) {
       level: 'wallet'
     });
 
-    dispatch(operations.setSelectedTokenOperation(token));
+    dispatch(transactionOperations.setSelectedTokenOperation(token));
   });
 
   const handleQRCodePress = useCallback(() => {
@@ -83,7 +84,7 @@ export function SendStep(props) {
       level: 'wallet'
     });
 
-    dispatch(operations.sendTransaction())
+    dispatch(transactionOperations.sendTransaction())
   };
 
   const handleAdvancedOptions = () => {
@@ -93,7 +94,7 @@ export function SendStep(props) {
       level: 'wallet'
     });
 
-    dispatch(operations.setAdvancedMode(!isAdvancedMode));
+    dispatch(transactionOperations.setAdvancedMode(!isAdvancedMode));
   };
 
   const handleMax = () => {
@@ -103,7 +104,7 @@ export function SendStep(props) {
       level: 'wallet'
     });
 
-    dispatch(operations.setAmount(tokenDetails.amount))
+    dispatch(transactionOperations.setAmount(tokenDetails.amount))
   };
 
   const handleCancel = () => {

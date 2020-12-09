@@ -40,6 +40,7 @@ export function App(props: AppProps) {
     }, 1000);
 
     const handleOpenURL = ({ url }) => {
+      // alert('handle open url: ' + url);
       if (!url) {
         return;
       }
