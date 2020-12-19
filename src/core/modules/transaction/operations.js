@@ -41,10 +41,9 @@ export async function getGasLimit({ contractAddress, address, amount, from }) {
 		contractAddress,
 	);
 	const MAX_GAS = 4500000;
-	const amountInWei = Web3Service.getInstance().web3.utils.toWei(amount);
 	try {
 		const estimate = await tokenContract.methods
-			.transfer(address, amountInWei)
+			.transfer(address, amount)
 			.estimateGas({ from });
 
 		return Math.round(Math.min(estimate * 1.1, MAX_GAS));
@@ -71,7 +70,7 @@ const computeGasLimit = () => async (dispatch, getState) => {
 		const gasLimit = await getGasLimit(transaction);
 		console.log('gas limit computed', gasLimit);
 		await dispatch(
-			duck.operations.updateTransaction({
+			transactionOperations.updateTransaction({
 				gasLimit,
 			}),
 		);
@@ -319,7 +318,7 @@ export const operations = {
 
 			if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
 				await dispatch(
-					duck.operations.updateTransaction({
+					transactionOperations.updateTransaction({
 						isSending: false,
 						errorMessage:
 							"You don't have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.",
