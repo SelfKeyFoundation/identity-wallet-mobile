@@ -140,6 +140,12 @@ export function SettingsMenu(props) {
             </MenuItem>
           ) : null
         }
+        {/* { props.onRecoveryInformation ? (
+            <MenuItem hasBorder onPress={props.onRecoveryInformation}>
+              Private Key
+            </MenuItem>
+          ) : null
+        } */}
         <MenuItem onPress={props.onBackup}>
           Backup
         </MenuItem>

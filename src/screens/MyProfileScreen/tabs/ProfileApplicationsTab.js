@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { DocumentsEmptyAlert } from '../../../components';
 import { Grid, Row, Col, SKIcon, Button, H3, Paragraph, Box, Typography } from 'design-system';
-import { ActivityIndicator, Clipboard, View } from 'react-native';
+import { ActivityIndicator, Clipboard, Linking, View } from 'react-native';
 import ducks from 'core/modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, navigate } from 'core/navigation';
@@ -123,6 +123,11 @@ export function ProfileApplicationsTab() {
 										Complete application
 									</Button>
 								</Box>
+							) : null}
+							{application.currentStatus === 2 ? (
+								<Button onPress={() => {
+									Linking.openURL('https://keyfi.com')
+								}}>Visit KeyFi.com</Button>
 							) : null}
 						</Box>
 						{isActive ? (

@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import { Image, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, Linking, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import {
 	Box,
@@ -295,7 +295,11 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 								Your application is approved
 							</Typography>
 						</Box>
+						
 					</Box>
+					<Button onPress={() => {
+						Linking.openURL('https://keyfi.com')
+					}}>Visit KeyFi.com</Button>
 				</Box>
 			);
 		}
