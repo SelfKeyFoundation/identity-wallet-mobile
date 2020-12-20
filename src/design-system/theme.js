@@ -12,6 +12,7 @@ export const Theme = {
     baseLight: colors.cello,
     baseDark: colors.blueCharcoal,
     base: colors.midnight,
+    link: colors.darkTurquoise,
     success: colors.mountainMeadow,
     warning: colors.flamenco,
     error: colors.bittersweet,

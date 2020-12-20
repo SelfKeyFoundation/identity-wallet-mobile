@@ -36,11 +36,12 @@ export const getETHFee = (state) => getSelectedTransactionFee(state).ethAmount;
  * 
  * @param {string} gasPrice in wei 
  */
-export const getGasPrice = (state) => {
-  return getSelectedTransactionFee(state).gasPrice;
-};
-
+export const getGasPrice = (state) => getRoot(state).gasPrice;
 export const getGasLimit = (state) => getRoot(state).gasLimit || DEFAULT_ETH_GAS_LIMIT;
+export const getManualGasLimit = (state) => getRoot(state).manualGasLimit;
+export const getManualGasPrice = (state) => getRoot(state).manualGasPrice;
+export const getNonce = (state) => getRoot(state).nonce || 0;
+export const getFeeAmount = (state) => getRoot(state).feeAmount;
 export const getFiatFee = (state) => getSelectedTransactionFee(state).fiatAmount;
 export const getStatus = (state) => getRoot(state).status;
 export const getTransactionHash = (state) => getRoot(state).transactionHash;
@@ -59,12 +60,12 @@ export const getTransaction = (state) => {
   const amount = getAmount(state);
 
   return {
-    nonce: transaction.nonce,
     tokenDecimal: tokenDetails.decimal,
     tokenSymbol: token,
     gasPrice: getGasPrice(state),
     gasLimit: getGasLimit(state),
     address: getAddress(state),
+    nonce: getNonce(state),
     amount: amount,
     cryptoCurrency: token,
     token: token,

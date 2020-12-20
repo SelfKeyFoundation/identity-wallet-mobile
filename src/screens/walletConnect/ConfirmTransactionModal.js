@@ -10,6 +10,8 @@ import { walletConnectOperations, walletConnectSelectors } from './walletConnect
 
 const screenHeight = Dimensions.get('screen').height;
 
+const APPROVE_FUNCTION_SIGNATURE = '0x095ea7b3';
+
 function renderTransaction(confirmTransaction) {
 	if (!confirmTransaction) {
 		return null;
@@ -21,7 +23,7 @@ function renderTransaction(confirmTransaction) {
 		'ether',
 	);
 
-	const amount = EthUnits.unitToUnit(+confirmTransaction.value, 'wei', 'ether');
+	const amount = confirmTransaction.value && EthUnits.unitToUnit(+confirmTransaction.value, 'wei', 'ether');
 
 	// confirmTransaction.status = 'error';
 
@@ -132,12 +134,24 @@ function renderTransaction(confirmTransaction) {
 		);
 	}
 
+	const isAllowanceRequest =
+		confirmTransaction.data && confirmTransaction.data.indexOf(APPROVE_FUNCTION_SIGNATURE) === 0;
+
 	return (
 		<Box autoWidth alignItems="flex-start" width="100%">
-			<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
-				Amount
-			</Typography>
-			<Typography fontSize={16}>{amount} ETH</Typography>
+			{isAllowanceRequest ? (
+				<Typography fontSize={20} marginTop={16} fontWeight="bold">
+					Allow the Dapp to spend your tokens?
+				</Typography>
+			) : null}
+			{amount ? (
+				<>
+					<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
+						Amount
+					</Typography>
+					<Typography fontSize={16}>{amount} ETH</Typography>
+				</>
+			) : null}
 			<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
 				Recipient Address
 			</Typography>
