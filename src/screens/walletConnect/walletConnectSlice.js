@@ -298,7 +298,7 @@ export const walletConnectOperations = {
 		}
 
 		Object.keys(sessions).forEach(key => {
-			dispatch(walletConnectOperations.handleSession(null, d[key]));
+			dispatch(walletConnectOperations.handleSession(null, sessions[key]));
 		});
 	},
 	disconnectSession: session => async (dispatch, getState) => {

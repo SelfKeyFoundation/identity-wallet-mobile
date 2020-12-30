@@ -12,6 +12,7 @@ export const initialState = {
   isProcessing: false,
   token: 'eth',
   transactionHash: '',
+  nonce: 0,
   errors: {
     address: undefined,
     transaction: undefined,

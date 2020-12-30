@@ -8,6 +8,7 @@ import transactionActions from './actions';
 import duck from './index';
 import ducks from '../index';
 import { getConfigs } from 'configs';
+import { DEFAULT_ETH_GAS_LIMIT } from './selectors';
 
 // TODO: Move to separate file
 export const getTransactionCount = async address => {
@@ -41,10 +42,9 @@ export async function getGasLimit({ contractAddress, address, amount, from }) {
 		contractAddress,
 	);
 	const MAX_GAS = 4500000;
-	const amountInWei = Web3Service.getInstance().web3.utils.toWei(amount);
 	try {
 		const estimate = await tokenContract.methods
-			.transfer(address, amountInWei)
+			.transfer(address, amount)
 			.estimateGas({ from });
 
 		return Math.round(Math.min(estimate * 1.1, MAX_GAS));
@@ -57,6 +57,10 @@ const computeGasLimit = () => async (dispatch, getState) => {
 	const state = getState();
 	const transaction = duck.selectors.getTransaction(state);
 	const token = transaction.token || transaction.cryptoCurrency;
+
+	if (transaction.manualGasLimit) {
+		return;		
+	}
 
 	// TODO: Use constants
 	if (token && token.toUpperCase() === 'ETH') {
@@ -71,7 +75,7 @@ const computeGasLimit = () => async (dispatch, getState) => {
 		const gasLimit = await getGasLimit(transaction);
 		console.log('gas limit computed', gasLimit);
 		await dispatch(
-			duck.operations.updateTransaction({
+			transactionOperations.updateTransaction({
 				gasLimit,
 			}),
 		);
@@ -172,15 +176,19 @@ export const operations = {
 
 		await dispatch(ducks.app.operations.showSendTokensModal(showModal === true));
 
-		const nounce = await getTransactionCount(address);
+		const nonce = await getTransactionCount(address);
 		await dispatch(ducks.ethGasStation.operations.loadDataOperation());
 
 		await dispatch(
 			duck.actions.updateTransaction({
-				nounce,
+				nonce,
 				transactionFeeOptions: getTransactionFeeOptions(getState()),
+				manualGasPrice: false,
+				manualGasLimit: false,
 			}),
 		);
+
+		await dispatch(operations.setTransactionFee('normal'));
 	},
 
 	setSelectedTokenOperation: tokenSymbol => async (dispatch, getState) => {
@@ -229,13 +237,13 @@ export const operations = {
 		);
 
 		const transaction = duck.selectors.getTransaction(state);
-		
+
 		const transactionObject = {
-			nonce: await getTransactionCount(transaction.from),
 			gasPrice: EthUnits.unitToUnit(transaction.gasPrice, 'gwei', 'wei'),
 			gas: transaction.gasLimit,
+			nonce: transaction.nonce,
 		};
-		
+
 		// TODO: Use constants to define ETH
 		if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === 'ETH') {
 			transactionObject.to = EthUtils.sanitizeHex(transaction.address);
@@ -319,7 +327,7 @@ export const operations = {
 
 			if (message.indexOf('insufficient funds') !== -1 || message.indexOf('underpriced') !== -1) {
 				await dispatch(
-					duck.operations.updateTransaction({
+					transactionOperations.updateTransaction({
 						isSending: false,
 						errorMessage:
 							"You don't have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.",
@@ -371,6 +379,63 @@ export const operations = {
 	setAmount: amount => async (dispatch, getState) => {
 		await dispatch(transactionActions.setAmount(amount));
 		await dispatch(computeGasLimit());
+	},
+	
+	resetGasLimit: () => async (dispatch, getState) => {
+		await dispatch(transactionActions.updateTransaction({
+			manualGasLimit: false,
+			gasLimit: DEFAULT_ETH_GAS_LIMIT,
+		}));
+		await dispatch(computeGasLimit());
+		await dispatch(operations.computeTransactionFee());
+	},
+
+	resetNonce: () => async (dispatch, getState) => {
+		const transaction = duck.selectors.getTransaction(getState());
+
+		await dispatch(transactionActions.updateTransaction({
+			nonce: await getTransactionCount(transaction.from),
+		}));
+	},
+
+	setGasLimit: gasLimit => async (dispatch, getState) => {
+		await dispatch(transactionActions.updateTransaction({
+			manualGasLimit: true,
+			gasLimit,
+		}));
+		await dispatch(operations.computeTransactionFee());
+	},
+  setGasPrice: gasPrice => async (dispatch, getState) => {
+		await dispatch(transactionActions.updateTransaction({
+			manualGasPrice: true,
+			transactionFee: null,
+			gasPrice,
+		}));
+		await dispatch(operations.computeTransactionFee());
+	},
+  setNonce: nonce => async (dispatch, getState) => {
+		await dispatch(transactionActions.updateTransaction({
+			nonce,
+		}));
+	},
+	setTransactionFee: option => async (dispatch, getState) => {
+		await dispatch(transactionActions.setTransactionFee(option));
+		const feeDetails = duck.selectors.getSelectedTransactionFee(getState());
+		await dispatch(transactionActions.updateTransaction({
+			gasPrice: feeDetails.gasPrice,
+			manualGasPrice: false,
+		}));
+		await dispatch(operations.computeTransactionFee());
+	},
+	computeTransactionFee: () => async (dispatch, getState) => {
+		const state = getState();
+		const gasLimit = duck.selectors.getGasLimit(state);
+		const gasPrice = duck.selectors.getGasPrice(state);
+		const feeAmount = getFee(gasPrice, gasLimit);
+
+		await dispatch(transactionActions.updateTransaction({
+			feeAmount,
+		}));
 	},
 };
 

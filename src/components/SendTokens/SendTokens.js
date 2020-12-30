@@ -24,9 +24,13 @@ import {
   TextInput,
   H3,
   FormattedNumber,
+  ButtonLink,
+  Box,
+  Typography,
 } from 'design-system';
 import { SelectBox } from '../index';
 import { type Token } from 'core/types/Token';
+import { Theme } from 'design-system/theme';
 
 const Body = styled.View`
   padding: 15px 15px 40px 15px;
@@ -162,6 +166,9 @@ export function SendTokens(props: SendTokensProps) {
 
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
 
+  
+  console.log('#mzm data', data);
+
   return (
     <Body>
       <Grid>
@@ -261,14 +268,15 @@ export function SendTokens(props: SendTokensProps) {
               <FormattedNumber
                 currency="eth"
                 decimal={10}
-                value={selectedTransactionFee.ethAmount}
+                value={data.feeAmount}
               /> /
             </H3>
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
                 currency="usd"
+                convertFromToken="eth"
                 decimal={3}
-                value={selectedTransactionFee.fiatAmount}
+                value={data.feeAmount}
               />
             </H3>
           </Col>
@@ -294,6 +302,40 @@ export function SendTokens(props: SendTokensProps) {
             options={props.transactionFeeOptions}
             selected={data.transactionFee}
             onSelect={handleChange('transactionFee')}
+          />
+          <TextInput
+            label="Gas Price"
+            placeholder="Enter the gas price"
+            error={''}
+            errorMessage={''}
+            value={data.gasPrice !== undefined && `${data.gasPrice}`}
+            onChangeText={handleChange('gasPrice')}
+          />
+          <TextInput
+            label="Gas Limit"
+            placeholder="Enter the gas limit"
+            icon={(
+              <Box marginTop={-4} onPress={props.onResetGasLimit}>
+                <Typography fontSize={13} color={Theme.colors.link}>Reset</Typography>
+              </Box>
+            )}
+            error={''}
+            errorMessage={''}
+            value={data.gasLimit !== undefined && `${data.gasLimit}`}
+            onChangeText={handleChange('gasLimit')}
+          />
+          <TextInput
+            label="Nonce"
+            placeholder="Enter the nonce value"
+            icon={(
+              <Box marginTop={-4} onPress={props.onResetNonce}>
+                <Typography fontSize={13} color={Theme.colors.link}>Reset</Typography>
+              </Box>
+            )}
+            error={''}
+            errorMessage={''}
+            value={`${data.nonce || 0}`}
+            onChangeText={handleChange('nonce')}
           />
         </AdvancedOptionsContainer>
       )}

@@ -16,6 +16,12 @@ export function SendStep(props) {
   const token = useSelector(selectors.getToken);
   const amount = useSelector(selectors.getAmount);
   const isSending = useSelector(selectors.isSending);
+  const gasPrice = useSelector(selectors.getGasPrice);
+  const gasLimit = useSelector(selectors.getGasLimit);
+  const manualGasPrice = useSelector(selectors.getManualGasPrice);
+  const manualGasLimit = useSelector(selectors.getManualGasLimit);
+  const feeAmount = useSelector(selectors.getFeeAmount);
+  const nonce = useSelector(selectors.getNonce);  
   const address = useSelector(selectors.getAddress);
   const fiatAmount = useSelector(selectors.getFiatAmount);
   const tokenOptions = useSelector(selectors.getTokenOptions);
@@ -36,6 +42,18 @@ export function SendStep(props) {
       }
       case 'amount': {
         dispatch(transactionOperations.setAmount(value));
+        break;
+      }
+      case 'gasPrice': {
+        dispatch(transactionOperations.setGasPrice(value));
+        break;
+      }
+      case 'gasLimit': {
+        dispatch(transactionOperations.setGasLimit(value));
+        break;
+      }
+      case 'nonce': {
+        dispatch(transactionOperations.setNonce(value));
         break;
       }
       case 'transactionFee': {
@@ -96,6 +114,11 @@ export function SendStep(props) {
 
     dispatch(transactionOperations.setAdvancedMode(!isAdvancedMode));
   };
+  
+    
+  const handleResetNonce = () => dispatch(transactionOperations.resetNonce());
+  const handleResetGasLimit = () => dispatch(transactionOperations.resetGasLimit());
+  
 
   const handleMax = () => {
     WalletTracker.trackEvent({
@@ -139,12 +162,20 @@ export function SendStep(props) {
       onChange={handleChange}
       tokenOptions={tokenOptions}
       onTokenSelect={handleTokenSelect}
+      onResetGasLimit={handleResetGasLimit}
+      onResetNonce={handleResetNonce}
       data={{
         address,
         amount,
         fiatAmount,
         transactionFee,
         token,
+        gasPrice,
+        gasLimit,
+        nonce,
+        manualGasPrice,
+        manualGasLimit,
+        feeAmount,
       }}
       tokenDetails={token && tokenDetails}
       tokens={tokens}
