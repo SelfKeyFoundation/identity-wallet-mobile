@@ -192,7 +192,7 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 						<Box col autoWidth width={30}>
 							<SKIcon name="icon-shield-info" size={24} color={Theme.colors.warning} />
 						</Box>
-						<Box col autoWidth>
+						<Box col>
 							<Typography color={Theme.colors.typography}>
 								This product is not currently available
 							</Typography>
