@@ -166,6 +166,8 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 	const [isLoading, setLoading] = useState();
 	const { lastApplication } = props;
 	const selectedPrice = useSelector(mkpSelectors.getSelectedPrice);
+	const isActive = useSelector(mkpSelectors.getProductActive);
+
 	const handleSignup = () => {
 		setLoading(true);
 		setTimeout(() => {
@@ -177,6 +179,28 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 
 	const renderApplyButton = () => {
 		const status = lastApplication && lastApplication.status;
+
+		if (!isActive) {
+			return (
+				<Box
+					borderWidth={1}
+					borderColor={Theme.colors.baseLight}
+					backgroundColor={Theme.colors.base}
+					padding={12}
+				>
+					<Box row marginBottom={8} alignItems="center">
+						<Box col autoWidth width={30}>
+							<SKIcon name="icon-shield-info" size={24} color={Theme.colors.warning} />
+						</Box>
+						<Box col autoWidth>
+							<Typography color={Theme.colors.typography}>
+								This product is not currently available
+							</Typography>
+						</Box>
+					</Box>
+				</Box>
+			);
+		}
 
 		if (selectedPrice && status === ApplicationStatus.unpaid) {
 			return (

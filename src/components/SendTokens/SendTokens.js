@@ -166,9 +166,6 @@ export function SendTokens(props: SendTokensProps) {
 
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
 
-  
-  console.log('#mzm data', data);
-
   return (
     <Body>
       <Grid>
