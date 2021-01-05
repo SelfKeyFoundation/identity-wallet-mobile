@@ -146,6 +146,7 @@ export const mkpSelectors = {
 	getProductListLoading: state => getRoot(state).productList.isLoading,
 	getProductLoading: state => getRoot(state).product.isLoading,
 	getProductDetails: state => getRoot(state).product.details,
+	getProductActive: state => mkpSelectors.getProductDetails(state).active,
 	getProductRequirements: state => getRoot(state).product.requirements,
 	getProductEthFee: state => getRoot(state).product.ethFee,
 	getShowConfirmationModal: state => getRoot(state).showConfirmationModal,
@@ -244,6 +245,7 @@ export const mkpOperations = {
 			details.walletAddress = vendor.payment_address;
 			details.templateId = details.relyingPartyConfig.templateId;
 			details.vendorId = categoryId;
+			details.active = details.status === 'active';
 			details.priceKey = details.price * 0.8;
 			price = parseFloat(details.price) === 0 ? [] : [{
 				id: 1,
