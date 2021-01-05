@@ -8,46 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
-		0479F4F029C9422384CAF275 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89426FE28CC0480282FCF270 /* EvilIcons.ttf */; };
-		07FE931EF670496EB5113987 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0EE17F54F3847C78A11791D /* Ionicons.ttf */; };
-		0F41CF15248249828815ACB8 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01D2EA7DFE0B4BC48E927329 /* AntDesign.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1B73EC0C2F09ADAF2E0DA872 /* libPods-IdentityWalletMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B717E7BBC506CD48AB975FF5 /* libPods-IdentityWalletMobile-tvOSTests.a */; };
-		28925AF3BF1444ABA0BAA6BD /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86A1D12504084B309E7FD4F5 /* Zocial.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* IdentityWalletMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* IdentityWalletMobileTests.m */; };
-		3457817A1B9B4554BAEF5426 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55A6505152894E1D98F90AE2 /* Fontisto.ttf */; };
 		4380C5C5DFB898FB027D5FCF /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC615C8CC3B8522D780B053D /* libPods-IdentityWalletMobile-IdentityWalletMobileTests.a */; };
 		494DFD93DE3A440BA115C5AC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53255243B8F048318A89B822 /* Lato-Black.ttf */; };
 		4A5ECFA6F90F4D1AA6BBA52F /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A30CDB0FCAF4EEE81CEE2BC /* icomoon.ttf */; };
-		4E7B931983074CCA869BE1FE /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 072AA2D0327944C99DFBB950 /* Foundation.ttf */; };
 		56D1A6EF9BE8457C8D2A28A1 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A6336C22F2345F19EF8A571 /* Lato-BlackItalic.ttf */; };
 		623002EDFFDF4188B3800E26 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 652FBDA5EB304BE0BCFD205C /* Lato-BoldItalic.ttf */; };
-		6C513317F28E49A79A967A18 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 426843AFE3A54ACCB9A5C23D /* FontAwesome5_Solid.ttf */; };
 		7245CA228751471887AC85E2 /* Lato-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637F1EF9DDD14CADA5F1C703 /* Lato-RegularItalic.ttf */; };
-		751A8A11AE594A6095EEF371 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D87A98E7749FD8028E13A /* MaterialCommunityIcons.ttf */; };
-		7C89B5C3D96C434384C7D249 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19FDCA5056F4421782785A3D /* FontAwesome.ttf */; };
-		7EACA78DDABE4389848B134E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7254F636AD7462AA9AD3CFA /* Feather.ttf */; };
 		8527F5A0AD1648D3993989E8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B12524E93A3431586D04C4D /* Lato-Light.ttf */; };
-		8D89029B89EE4AB5A6940C71 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16EEEE15E60849E1AA375544 /* FontAwesome5_Regular.ttf */; };
-		8F7ADDD253034F489B1FF755 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E72465DEAA84EC08BCBE536 /* Entypo.ttf */; };
 		9717AC7A242CFF880006426F /* SelfKeyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC77242CFF870006426F /* SelfKeyWallet.swift */; };
 		9717AC7C242CFF930006426F /* SelfKeyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC7B242CFF930006426F /* SelfKeyWallet.m */; };
 		9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */; };
-		9B10C47274B742AFAE6E6AEA /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8CBA4BBB2AA4A359C646A61 /* Octicons.ttf */; };
-		B1121A0A5FC44979B80CA99B /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE2906EA095F4D748BC2C821 /* FontAwesome5_Brands.ttf */; };
-		B3A3D133C67B4DB0A1BCC383 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1578BBA1D7884B2FBFC91F8F /* MaterialIcons.ttf */; };
 		D53CF3351976B3BA87FE4CE3 /* libPods-IdentityWalletMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160C8F479EF39C100313A1BF /* libPods-IdentityWalletMobile.a */; };
 		D97CB1602B4621D5DB23C4F7 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1FB12B2E75429688C70DF8 /* libPods-IdentityWalletMobile-tvOS.a */; };
 		DBBD5F2686C9498183416BDF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37840D12A64A4BDB83682940 /* Lato-Regular.ttf */; };
 		E56F21EE223D4962965B26C6 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35A46372470C4B44AAB82058 /* Lato-ThinItalic.ttf */; };
 		E7F0902F6AC24B239E984BF1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709A1C9120414F5288AC5D2D /* Lato-Bold.ttf */; };
-		EECAA899936A4E1F991A9BDB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA23AE39B02B4116AC87A20E /* SimpleLineIcons.ttf */; };
 		FF7AA6F34E6E4FABA3F396C5 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1586CF26E1284F9F98637268 /* Lato-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -328,6 +312,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				97CBF0CB2492A2C80055B91C /* Bundle React Native code and images */,
 				09E1319406F87E94D7595A0C /* [CP] Copy Pods Resources */,
+				FF52B089105F48C49F742265 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -455,22 +440,6 @@
 				9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */,
 				E56F21EE223D4962965B26C6 /* Lato-ThinItalic.ttf in Resources */,
 				4A5ECFA6F90F4D1AA6BBA52F /* icomoon.ttf in Resources */,
-				0F41CF15248249828815ACB8 /* AntDesign.ttf in Resources */,
-				8F7ADDD253034F489B1FF755 /* Entypo.ttf in Resources */,
-				0479F4F029C9422384CAF275 /* EvilIcons.ttf in Resources */,
-				7EACA78DDABE4389848B134E /* Feather.ttf in Resources */,
-				7C89B5C3D96C434384C7D249 /* FontAwesome.ttf in Resources */,
-				B1121A0A5FC44979B80CA99B /* FontAwesome5_Brands.ttf in Resources */,
-				8D89029B89EE4AB5A6940C71 /* FontAwesome5_Regular.ttf in Resources */,
-				6C513317F28E49A79A967A18 /* FontAwesome5_Solid.ttf in Resources */,
-				3457817A1B9B4554BAEF5426 /* Fontisto.ttf in Resources */,
-				4E7B931983074CCA869BE1FE /* Foundation.ttf in Resources */,
-				07FE931EF670496EB5113987 /* Ionicons.ttf in Resources */,
-				751A8A11AE594A6095EEF371 /* MaterialCommunityIcons.ttf in Resources */,
-				B3A3D133C67B4DB0A1BCC383 /* MaterialIcons.ttf in Resources */,
-				9B10C47274B742AFAE6E6AEA /* Octicons.ttf in Resources */,
-				EECAA899936A4E1F991A9BDB /* SimpleLineIcons.ttf in Resources */,
-				28925AF3BF1444ABA0BAA6BD /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,10 +468,42 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,7 +585,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\n# Type a script or drag a script file from your workspace to insert its path.\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		9EA3683EE5BD4035AE2E113F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -717,6 +718,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		FF52B089105F48C49F742265 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
 /* End PBXShellScriptBuildPhase section */
 

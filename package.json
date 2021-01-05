@@ -34,6 +34,7 @@
     "@react-native-async-storage/async-storage": "^1.13.2",
     "@reduxjs/toolkit": "^1.4.0",
     "@rjsf/core": "https://github.com/maycon-mello/react-jsonschema-form#22f0f764a8b430eed725dc5e554a511a36a9e1b9",
+    "@sentry/react-native": "^2.1.0",
     "@storybook/addon-actions": "5.2.6",
     "@storybook/addon-knobs": "5.2.6",
     "@storybook/addon-links": "5.2.6",
