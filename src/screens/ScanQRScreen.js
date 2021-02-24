@@ -7,6 +7,8 @@ import { navigate, navigateBack, Routes, onNavigate } from 'core/navigation';
  
 import { WalletTracker } from '../WalletTracker';
 import { walletConnectOperations } from './walletConnect/walletConnectSlice';
+import transactionOperations from 'core/modules/transaction/operations';
+import appOperations from 'core/modules/app/operations';
 
 const TRACKER_PAGE = 'scanQRCode';
 
@@ -36,10 +38,10 @@ export default function ScanQRScreen(props) {
     }
 
     if (referer === 'transaction') {
-      dispatch(modules.transaction.operations.setAddress(value));
-      dispatch(modules.app.operations.showSendTokensModal(true));
+      dispatch(transactionOperations.setAddress(value));
+      dispatch(appOperations.showSendTokensModal(true));
     } else {
-      dispatch(modules.transaction.operations.goToTransactionOperation('all', value));
+      dispatch(transactionOperations.goToTransactionOperation('all', value));
     }
     navigateBack();
   };

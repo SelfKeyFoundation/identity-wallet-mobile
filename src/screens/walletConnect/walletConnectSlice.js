@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import WalletConnect from '@walletconnect/client';
+import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 import { Web3Service } from 'blockchain/services/web3-service';
 import EthUtils from 'blockchain/util/eth-utils';
 import { getConfigs } from 'configs';
@@ -85,10 +86,12 @@ export const walletConnectOperations = {
 
 			try {
 				await dispatch(walletConnectOperations.loadSessions());
-			} catch(err) {}
+			} catch (err) {}
 		}
 
-		dispatch(modules.app.operations.setSnackMessage('Wallet connect session created. Go back to the dapp'))
+		dispatch(
+			modules.app.operations.setSnackMessage('Wallet connect session created. Go back to the dapp'),
+		);
 		dispatch(walletConnectActions.setConfirmConnection(null));
 	},
 
@@ -257,10 +260,13 @@ export const walletConnectOperations = {
 					}),
 				);
 			} else {
+				const gasPrice = await EthGasStationService.getInstance().getPrice();
+
 				dispatch(
 					walletConnectActions.setConfirmTransaction({
 						id: payload.id,
 						...payload.params[0],
+						gasPrice,
 					}),
 				);
 			}
@@ -274,12 +280,14 @@ export const walletConnectOperations = {
 			await connector.createSession();
 		} catch (err) {
 			if (uri) {
-				dispatch(modules.app.operations.setSnackMessage('Wallet connect session created.'))
+				dispatch(modules.app.operations.setSnackMessage('Wallet connect session created.'));
 			}
 		}
 	},
 	loadSessions: () => async (dispatch, getState) => {
-		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
+		let sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
+
+		sessions = sessions.filter(item => !!item);
 
 		if (!Array.isArray(sessions)) {
 			await Storage.setItem(Storage.Key.WalletConnectSession, []);
@@ -310,11 +318,8 @@ export const walletConnectOperations = {
 		});
 
 		connector.killSession();
-		
-		await Storage.setItem(
-			Storage.Key.WalletConnectSession,
-			filtered
-		);
+
+		await Storage.setItem(Storage.Key.WalletConnectSession, filtered);
 
 		dispatch(walletConnectOperations.loadSessions());
 	},
