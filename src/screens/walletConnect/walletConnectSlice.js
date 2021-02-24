@@ -247,7 +247,7 @@ export const walletConnectOperations = {
 			dispatch(walletConnectActions.setConfirmConnection(payload.params[0]));
 		});
 
-		connector.on('call_request', (error, payload) => {
+		connector.on('call_request', async (error, payload) => {
 			console.log('call_request', payload);
 			dispatch(walletConnectActions.setConnector(connector));
 
