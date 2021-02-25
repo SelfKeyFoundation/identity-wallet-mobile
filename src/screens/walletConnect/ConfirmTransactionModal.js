@@ -163,7 +163,7 @@ function renderTransaction(confirmTransaction) {
 			<Typography fontSize={16} marginTop={16} color={Theme.colors.typography}>
 				Data
 			</Typography>
-			<Typography fontSize={16}>{confirmTransaction.data.substring(0, 100)}...</Typography>
+			<Typography fontSize={16}>{confirmTransaction.data && confirmTransaction.data.substring(0, 100)}...</Typography>
 		</Box>
 	);
 }
