@@ -1,6 +1,7 @@
 import { getUsdPrice } from "blockchain/services/price-service";
 import EthUnits from "blockchain/util/eth-units";
 import modules from "..";
+import { NetworkStore } from "../app/NetworkStore";
 
 export function selectContractsTree(state) {
   return state.contracts;
@@ -52,7 +53,7 @@ export function selectAllowanceEditor(state) {
 
   if (editor.gas && editor.gasPrice) {
     const ethFee = EthUnits.toEther(editor.gasPrice * editor.gas, 'gwei');
-    const usdFee = getUsdPrice(amount, 'ETH');
+    const usdFee = getUsdPrice(amount, NetworkStore.getNetwork().symbol);
     editor = { ...editor, ethFee, usdFee };
   }
 

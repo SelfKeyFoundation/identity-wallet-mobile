@@ -22,6 +22,7 @@ import { Theme } from 'design-system/theme';
 import { useSelector } from 'react-redux';
 import { mkpSelectors } from '../mkpSlice';
 import { ApplicationStatus } from 'core/modules/kyc/selectors';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 // import productIcon from './assets/product-icon.png';
 
 // const Box = styled.View`
@@ -108,7 +109,7 @@ function ProductPrice({ price, onPriceChange }) {
 						<FormattedNumber
 							value={item && item.amount}
 							currency={item && item.cryptoCurrency}
-							decimal={item.cryptoCurrency === 'eth' ? 8 : 3}
+							decimal={item.cryptoCurrency === NetworkStore.getNetwork().symbol.toLowerCase() ? 8 : 3}
 							cleanEmptyDecimals
 							convertFromUsd
 						/>
@@ -150,7 +151,7 @@ function ProductPrice({ price, onPriceChange }) {
 						<FormattedNumber
 							value={price && price.amount}
 							currency={price && price.cryptoCurrency}
-							decimal={price.cryptoCurrency === 'eth' ? 8 : 3}
+							decimal={price.cryptoCurrency === NetworkStore.getNetwork().symbol.toLowerCase() ? 8 : 3}
 							cleanEmptyDecimals
 							convertFromUsd
 						/>
@@ -178,7 +179,8 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 	}
 
 	const renderApplyButton = () => {
-		const status = lastApplication && lastApplication.status;
+		// TODO: Remove workaround for PoC
+		const status = null // lastApplication && lastApplication.status;
 
 		if (!isActive) {
 			return (

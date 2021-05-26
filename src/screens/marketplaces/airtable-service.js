@@ -19,7 +19,6 @@ function fetchFeatureFlags(prefix = '') {
     .then(res => res.json())
     .then(data => {
       if (!data.entities) {
-        debugger;
         return [];
       }
       return data.entities.map(item => item.data);
@@ -57,7 +56,7 @@ export async function getVendor(vendorId) {
   const vendors = await getVendors(isDevMode() && 'Dev');
   const vendor = vendors.find(item => item.vendor_id === vendorId);
 
-  if (vendor.relying_party_config) {
+  if (vendor && vendor.relying_party_config) {
     vendor.relyingPartyConfig = parseJson(vendor.relying_party_config);
   }
 
@@ -70,7 +69,7 @@ export async function getFeatureFlags() {
   
   items.forEach(item => {
     if (item.name) {
-      flags[item.name] = true;//item.status === 'enabled';
+      flags[item.name] = item.status === 'enabled';
     }
   });
 

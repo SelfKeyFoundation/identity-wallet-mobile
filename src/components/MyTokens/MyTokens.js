@@ -20,6 +20,7 @@ import { IconKey, IconEth } from 'design-system/svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { WalletTracker } from '../../WalletTracker';
+import { TokenIconMapping } from 'components/token-icon-mapping';
 
 const TRACKER_PAGE = 'dashboard/myTokens';
 
@@ -80,13 +81,21 @@ const TitleRow = styled.View`
   flex-direction: row;
 `;
 
-const TokenIcon = props => (
-  <TokenIconContainer color={props.color}>
-    <TokenIconTitle>
-      { props.name && props.name.substring(0, 1)}
-    </TokenIconTitle>
-  </TokenIconContainer>
-);
+const TokenIcon = props => {
+  const IconComponent = TokenIconMapping[props.iconName];
+  if (IconComponent) {
+    
+    return <IconComponent width={44} height={44}/>
+  };
+
+  return (
+    <TokenIconContainer color={props.color}>
+      <TokenIconTitle>
+        { props.name && props.name.substring(0, 1)}
+      </TokenIconTitle>
+    </TokenIconContainer>
+  );
+}
 
 export interface Token {
   id: string;
@@ -158,7 +167,7 @@ export function MyTokens(props: MyTokensProps) {
             <TokenRowWrapper>
               <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
                 <Col autoWidth noPadding>
-                  <TokenIcon name={token.name || token.symbol} color={token.color} />
+                  <TokenIcon name={token.name || token.symbol} color={token.color} iconName={token.iconName}/>
                 </Col>
                 <Col noPadding paddingLeft={11}>
                   <TokenName>

@@ -58,3 +58,4 @@ export const ALLOWANCE_EDITOR = 'allowanceEditor';
 export const ALLOWANCE_LIST = 'allowanceList';
 export const ALLOWANCE_TRANSACTION_PROCESSING = 'allowanceTransactionProcessing';
 export const WALLET_CONNECT = 'walletConnect';
+export const SK_AGENT = 'skAgent';

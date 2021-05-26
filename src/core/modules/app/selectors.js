@@ -1,3 +1,5 @@
+import { NetworkStore } from "./NetworkStore";
+
 // @flow
 export const getRoot = state => state.app;
 export const getGuideSettings = state => getRoot(state).guideSettings;
@@ -21,3 +23,4 @@ export const getSupportedBiometryType = (state) => {
 export const getSnackMessage = state => getRoot(state).snackMessage;
 export const getFeatureFlags = state => getRoot(state).featureFlags || {};
 export const getKeyFiEnabled = state => getFeatureFlags(state).keyfi;
+export const getNetwork = state => getRoot(state).network || NetworkStore.getNetwork();

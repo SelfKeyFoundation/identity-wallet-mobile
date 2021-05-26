@@ -1,12 +1,15 @@
 // @flow
 import { getTokenPrice } from 'blockchain/services/price-service';
+import { NetworkStore } from '../app/NetworkStore';
+import { getNetwork } from '../app/selectors';
+
 export const getRoot = state => state.wallet;
 export const getWallet = (state) => getRoot(state) || {};
 export const getAddress = (state) => getWallet(state).address;
 export const isHDWallet = (state) => getWallet(state).type === 'hd';
 export const getBalance = (state) => getWallet(state).balance || 0;
 export const getFiatAmount = (state) => {
-  const prices = getTokenPrice('ETH');
+  const prices = getTokenPrice(NetworkStore.getNetwork().symbol);
   const balance = +getBalance(state);
   return balance * prices.priceUSD;
 }
@@ -29,11 +32,11 @@ export const getCustomTokens = (state) => {
 }
 
 // TODO: Move to token utils
-function getTokenName(symbol = 'eth') {
+function getTokenName(symbol = NetworkStore.getNetwork().symbol) {
   symbol = symbol && symbol.toUpperCase();
 
-  if (symbol === 'ETH') {
-    return 'Ethereum';
+  if (symbol === NetworkStore.getNetwork().symbol) {
+    return NetworkStore.getNetwork().tokenName;
   }
 
   if (symbol === 'KI' || symbol === 'KEY') {
@@ -55,18 +58,20 @@ export const getTokenByAddress = (state, address) => {
 };
 
 export const getTokens = (state) => getWallet(state).tokens || [];
-export const getTokenDetails = (symbol = 'eth') => (state) => {
+export const getTokenDetails = (symbol = NetworkStore.getNetwork().symbol) => (state) => {
+  const network = getNetwork(state);
+  
   symbol = symbol && symbol.toUpperCase();
 
-  if (symbol === 'ETH') {
+  if (symbol === NetworkStore.getNetwork().symbol) {
     return {
-      name: 'Ethereum',
+      name: NetworkStore.getNetwork().tokenName,
       // TODO: Remove this property 'code'
-      code: 'ETH',
-      symbol: 'ETH',
+      code: NetworkStore.getNetwork().symbol,
+      symbol: NetworkStore.getNetwork().symbol,
       amount: getBalance(state),
       decimal: 18,
-      lastPrice: getTokenPrice('ETH').priceUSD,
+      lastPrice: getTokenPrice(NetworkStore.getNetwork().symbol).priceUSD,
       lastPriceCurrency: 'usd',
       fiatCurrency: 'usd',
       fiatAmount: getFiatAmount(state),

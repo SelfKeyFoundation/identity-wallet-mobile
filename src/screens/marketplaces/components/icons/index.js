@@ -28,6 +28,12 @@ export function IconMarketplaceIncorporations(props) {
   );
 }
 
+export function IconMarketplacePassports(props) {
+  return (
+    <LoansSvg {...props}/>
+  );
+}
+
 export function IconMarketplaceCredentials(props) {
   return (
     // <Image

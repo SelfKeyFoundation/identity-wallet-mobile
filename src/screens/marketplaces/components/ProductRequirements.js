@@ -24,6 +24,9 @@ export function ProductRequirements(props: ProductOverviewProps) {
       <Typography fontWeight="bold" fontSize={24} lineHeight={30} marginBottom={20}>
         Requirements
       </Typography>
+      {
+        props.children
+      }
       <RequirementsList requirements={props.requirements}/>
     </Box>
   );

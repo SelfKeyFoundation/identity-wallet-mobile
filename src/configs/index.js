@@ -6,9 +6,6 @@ const CONFIGS = {
   dev: {
     isDev: true,
     did: false,
-    chainId: 3,
-    etherscanUrl: 'https://ropsten.etherscan.io',
-    rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KI',
     matomoUrl: 'https://analytics.selfkey.org/matomo.php',
     matomoSiteId: 3,
@@ -20,12 +17,15 @@ const CONFIGS = {
     // kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
     kyccUrlOverride: 'http://localhost:8080/api/v2/',
     airtableBaseUrl: 'https://airtable.selfkey.org/airtable?tableName=',
+    
+    // Deprecated attributes
+    chainId: 3,
+    etherscanUrl: 'https://ropsten.etherscan.io',
+    rpcUrl: 'https://ropsten.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
+    // ----
   },
   prod: {
     did: false,
-    chainId: 1,
-    etherscanUrl: 'https://etherscan.io',
-    rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
     primaryToken: 'KEY',
     matomoUrl: 'https://analytics.selfkey.org/matomo.php',
     matomoSiteId: 4,
@@ -36,6 +36,12 @@ const CONFIGS = {
     },
     kyccUrlOverride: 'https://dev.instance.kyc-chain.com/api/v2/',
     airtableBaseUrl: 'https://airtable.selfkey.org/airtable?tableName=',
+    
+    // Deprecated attributes
+    chainId: 1,
+    etherscanUrl: 'https://etherscan.io',
+    rpcUrl: 'https://mainnet.infura.io/v3/2e5fb5cf42714929a7f61a1617ef1ffd',
+    // ------
   }
 }
 

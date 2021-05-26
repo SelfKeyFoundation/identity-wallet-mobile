@@ -20,6 +20,7 @@ import {
 	DefinitionTitle,
 	FormattedNumber,
 } from 'design-system';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const Body = styled.View``;
 
@@ -114,7 +115,7 @@ export function SendTokensSuccess(props: SendTokensSuccessProps) {
 			<BorderGrid>
 				<Row>
 					<Col>
-						<Button onPress={props.onViewOnEtherscan}>View on Etherscan</Button>
+						<Button onPress={props.onViewOnEtherscan}>View on {NetworkStore.getNetwork().blockExplorerName}</Button>
 					</Col>
 				</Row>
 			</BorderGrid>

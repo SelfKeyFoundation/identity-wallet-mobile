@@ -10,6 +10,7 @@ import { normalizeDocumentsSchema } from '../identity/identity-attribute-utils';
 import { KYCApplicationModel } from 'core/models';
 import { getVendor } from 'screens/marketplaces/airtable-service';
 import { mkpActions } from 'screens/marketplaces/mkpSlice';
+import { walletConnectActions } from 'screens/walletConnect/walletConnectSlice';
 
 const log = new Logger('kyc-operations');
 
@@ -147,6 +148,21 @@ const loadRelyingPartyOperation = (
 				// application.messages = await session.getKYCApplicationChat(application.id);
 				// const formattedMessages = messageFilter(application.messages);
 				const template = templates.find(t => t.id === application.template);
+
+				if (application.attachments) {
+					await Promise.all(
+						application.attachments.map(async (item) => {
+							if (item.type === 'credential') {
+								const fileData = await session.getFile(item.file);
+								dispatch(walletConnectActions.addCredential({
+									id: item.file,
+									...fileData,
+								}));
+							}
+						})
+					)
+				}
+
 				await dispatch(
 					updateApplicationsOperation({
 						id: application.id,

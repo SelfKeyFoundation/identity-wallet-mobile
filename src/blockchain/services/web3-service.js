@@ -8,6 +8,7 @@ import { abi as ABI } from '../contracts/selfkey-token.json';
 import EthUnits from '../util/eth-units';
 import EthUtils from '../util/eth-utils';
 import { getConfigs } from 'configs';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 export const REQUEST_INTERVAL_DELAY = 500;
 
 export class Web3Service {
@@ -15,18 +16,26 @@ export class Web3Service {
 	web3: Web3;
 
   constructor() {
+		this.createWeb3();
+    this.contractABI = ABI;
+    this.q = new AsyncTaskQueue(this.handleTicket.bind(this), REQUEST_INTERVAL_DELAY);
+  }
+
+	createWeb3() {
 		const engine = new ProviderEngine();
 		engine.addProvider(this.getWalletEthTxSubprovider());
-		engine.addProvider(new FetchSubprovider({ rpcUrl: getConfigs().rpcUrl }));
+		engine.addProvider(new FetchSubprovider({ rpcUrl: NetworkStore.getNetwork().rpcUrl }));
     engine.start();
 
     this.web3 = new Web3(
       engine
 		);
 		this.web3.transactionConfirmationBlocks = 1;
-    this.contractABI = ABI;
-    this.q = new AsyncTaskQueue(this.handleTicket.bind(this), REQUEST_INTERVAL_DELAY);
-  }
+		if (this.currentPrivateKey) {
+			const account = this.privateKeyToAccount(this.currentPrivateKey);
+			this.setDefaultAccount(account);
+		}
+	}
 
 	getWalletEthTxSubprovider() {
 		return new HookedWalletEthTxSubprovider({
@@ -50,6 +59,7 @@ export class Web3Service {
 	}
 	
 	privateKeyToAccount(privateKey) {
+		this.currentPrivateKey = privateKey;
 		return this.web3.eth.accounts.privateKeyToAccount(privateKey);
 	}
 

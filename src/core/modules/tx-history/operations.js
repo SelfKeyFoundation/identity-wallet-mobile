@@ -4,6 +4,7 @@ import txHistoryActions from './actions';
 import duck from './index';
 import ducks from '../index';
 import { TxHistoryModel } from '../../models';
+import { NetworkStore } from '../app/NetworkStore';
 
 function filterTransactions(tx) {
   return !!tx.tokenSymbol;
@@ -42,7 +43,7 @@ export const operations = {
   createTransactionOperation: (transaction) => async (dispatch, getState) => {
     const newTransaction = {
       hash: transaction.hash,
-      networkId: getConfigs().chainId,
+      networkId: NetworkStore.getNetwork().id,
       tokenSymbol: transaction.tokenSymbol,
       from: transaction.from,
       to: transaction.address,
@@ -67,32 +68,6 @@ export const operations = {
     const createdTx = await TxHistoryModel.getInstance().findById(newTransaction.hash);
 
     await dispatch(txHistoryActions.addTransaction(newTransaction));
-
-    // nonce: 0,
-    // tokenDecimal: 10,
-    // gasPrice: 0.00001,
-    // gasLimit: 28000,
-    // address: 'some-address',
-    // amount: amount,
-    // cryptoCurrency: getToken(state),
-    // hash: getTransactionHash(state),
-    // from: ducks.wallet.selectors.getAddress(state),
-    // contractAddress: tokenDetails.tokenContract,
-
-    // const wallet = getWallet(getState());
-    // const transaction = getTransaction(getState());
-    // const { cryptoCurrency } = transaction;
-    // const tokenSymbol = cryptoCurrency === 'ETH' ? null : cryptoCurrency;
-    // const data = {
-    //   ...transaction,
-    //   tokenSymbol,
-    //   networkId: chainId,
-    //   from: wallet.address,
-    //   to: transaction.address,
-    //   value: +transaction.amount,
-    //   gasPrice: +transaction.gasPrice,
-    //   hash: transactionHash
-    // };
   }
 };
 

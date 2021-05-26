@@ -56,7 +56,7 @@ function SendTokensScreen(props) {
       <Modal
         visible={visible}
         onClose={handleClose}
-        title="Send Custom Tokens"
+        title="Send Token"
         footer={null}
         noBodyPadding
       >

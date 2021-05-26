@@ -14,6 +14,8 @@ import contract from './contract';
 import staking from './staking';
 import marketplace from '../../screens/marketplaces/mkpSlice';
 import walletConnect from '../../screens/walletConnect/walletConnectSlice';
+import skAgent from '../../features/selfkey-agent/sk-agent-slice';
+
 
 export default {
   wallet,
@@ -32,4 +34,5 @@ export default {
   staking,
   marketplace,
   walletConnect,
+  skAgent,
 };

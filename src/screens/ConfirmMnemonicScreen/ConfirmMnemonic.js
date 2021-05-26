@@ -204,7 +204,7 @@ export function ConfirmMnemonic(props: ConfirmMnemonicProps) {
                           }
 
                           return (
-                            <TouchableWithoutFeedback onPress={!isFound && handlePress}>
+                            <TouchableWithoutFeedback onPress={!isFound ? handlePress : () => {}}>
                               <WordBox disabled={isFound}>
                                 <WordBoxText>
                                   { isFound ? '': word }

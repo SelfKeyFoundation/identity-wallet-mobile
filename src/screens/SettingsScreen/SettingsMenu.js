@@ -9,6 +9,7 @@ import {
 } from 'design-system';
 import APP_VERSION from '../../../app-version.json';
 import { getCurrentEnv } from 'configs';
+import { navigate, Routes } from 'core/navigation';
 
 function getVersion() {
   const env = getCurrentEnv();
@@ -151,6 +152,9 @@ export function SettingsMenu(props) {
         </MenuItem>
         <MenuItem onPress={props.onWalletConnect}>
           Wallet Connect
+        </MenuItem>
+        <MenuItem onPress={() => {navigate(Routes.SK_AGENT)}}>
+          Selfkey Agent
         </MenuItem>
         <Row marginTop={20}>
           <Col paddingLeft={20}>

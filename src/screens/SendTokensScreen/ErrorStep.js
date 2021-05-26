@@ -6,6 +6,7 @@ import modules from 'core/modules';
 import { navigate, Routes } from 'core/navigation';
 import { Snackbar } from 'react-native-paper';
 import { WalletTracker } from '../../WalletTracker';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const TRACKER_PAGE = 'sendTokens/error';
 
@@ -64,7 +65,7 @@ export function ErrorStep(props) {
 
     dispatch(modules.app.operations.showSendTokensModal(false));
     navigate(Routes.SCAN_QR, {
-      tokenSymbol: 'ETH',
+      tokenSymbol: NetworkStore.getNetwork().symbol,
     });
   }, []);
 

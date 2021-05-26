@@ -12,6 +12,7 @@ export class TokenModel extends BaseModel {
       address: 'string',
       icon: 'string?',
       name: 'string?',
+      chainId: 'int?',
       isCustom: {
         type: 'bool',
         default: false,

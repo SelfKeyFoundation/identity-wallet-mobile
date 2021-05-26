@@ -14,6 +14,7 @@ export class MatomoTracker {
     this.res = `${parseInt(width)}x${parseInt(height)}`;
     this.trackingQueue = [];
     this.pageViewId = uuid();
+    this.disabled = true;
 
     DeviceInfo.getUserAgent().then(async (value) => {
       this.userAgent = value;
@@ -44,6 +45,10 @@ export class MatomoTracker {
   }
 
   handleTrackingQueue() {
+    if (this.disabled) {
+      return;
+    }
+
     if (!this.isReady || this.trackingQueueStarted || this.trackingQueue === 0) {
       this.trackingQueueStarted = false;
       return;
@@ -110,6 +115,10 @@ export class MatomoTracker {
   }
 
   track(opts, trackOptions = {}) {
+    if (this.disabled) {
+      return;
+    }
+
     if (!trackOptions.pageViewId) {
       trackOptions.pageViewId = this.pageViewId;
     }

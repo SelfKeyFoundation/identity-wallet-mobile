@@ -29,6 +29,7 @@ import MarketplaceCategoriesScreen from 'screens/marketplaces/MarketplaceCategor
 import MarketplaceProductScreen from 'screens/marketplaces/MarketplaceProductScreen';
 import MarketplaceProductListingScreen from 'screens/marketplaces/MarketplaceProductListingScreen';
 import { WalletConnectScreen } from 'screens/walletConnect/WalletConnectScreen';
+import { SKAgentScreen } from 'features/selfkey-agent/SKAgentScreen';
 
 export const appTabNavigation = createBottomTabNavigator({
   [Routes.APP_DASHBOARD]: DashboardScreen,
@@ -62,6 +63,7 @@ export const appFlow: SwitchNavigatorType = createStackNavigator({
   [Routes.MARKETPLACE_PRODUCT]: MarketplaceProductScreen,
   [Routes.MARKETPLACE_PRODUCT_LISTING]: MarketplaceProductListingScreen,
   [Routes.WALLET_CONNECT]: WalletConnectScreen,
+  [Routes.SK_AGENT]: SKAgentScreen,
   // We might use other flows inside of app where the tabs will not be visible
   // these flows can be placed here
 }, stackNavigatorConfig);

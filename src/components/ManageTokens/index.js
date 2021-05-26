@@ -17,6 +17,7 @@ export function ManageTokensContainer(props) {
   const [tokenToRemove, setTokenToRemove] = useState(null);
   const [showAdd, setShowAdd] = useState();
   const handleRemove = (token) => setTokenToRemove(token);
+  const network = useSelector(ducks.app.selectors.getNetwork);
   const dispatch = useDispatch();
   const handleCancelRemove = () => {
     WalletTracker.trackEvent({
@@ -73,10 +74,17 @@ export function ManageTokensContainer(props) {
 
   const tokens = useSelector(ducks.wallet.selectors.getCustomTokens)
   const fiatAmount = useSelector(ducks.wallet.selectors.getCustomTokensFiatAmount);
+  const filteredTokens = tokens.filter(token => {
+    if (!token.chainId && network.id === 1) {
+      return true;
+    }
 
+    return token.chainId === network.id;
+  });
+  
   return (
     <ManageTokens
-      tokens={tokens}
+      tokens={filteredTokens}
       onAdd={handleShowAdd}
       onRemove={handleRemove}
       onTokenDetails={handleTokenDetails}

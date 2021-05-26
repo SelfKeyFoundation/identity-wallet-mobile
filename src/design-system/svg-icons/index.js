@@ -4,6 +4,8 @@ import IconTokens from './icon-dashboard-tokens.svg';
 import IconSwap from './icon-swap.svg';
 import IconTouchId from './icon-touch-id.svg';
 import IconAddImage from './icon-add-image.svg';
+import IconBNB from './bnb.png';
+
 
 export {
   IconKey,
@@ -12,4 +14,5 @@ export {
   IconSwap,
   IconTouchId,
   IconAddImage,
+  IconBNB,
 };

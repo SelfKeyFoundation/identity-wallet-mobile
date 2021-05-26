@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import  { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
-import { TokensEmptyAlert } from '../TokensEmptyAlert'
+import { TokensEmptyAlert } from '../TokensEmptyAlert';
 import modules from 'core/modules';
 import { navigate, Routes } from 'core/navigation';
 import { MyTokens } from './MyTokens';
@@ -26,6 +26,7 @@ export function MyTokensContainer() {
   const tokensFiatAmount = useSelector(selectors.getTokensFiatAmount);
   const allTokens = useSelector(selectors.getTokens);
   const customTokens = useSelector(selectors.getCustomTokens);
+  const network = useSelector(modules.app.selectors.getNetwork);
   const primaryToken = allTokens[0] || {};
   const isEmpty = customTokens.length === 0;
   const handleManage = useCallback(() => {
@@ -42,33 +43,58 @@ export function MyTokensContainer() {
     });
   }, []);
 
-  const defaultTokens = [{
+  let defaultTokens;
+  
+  if (network.symbol === 'ETH') {
+      defaultTokens = [{
+        id: primaryToken.id,
+        iconName: 'key',
+        name: "SelfKey",
+        symbol: primaryToken.symbol,
+        balance: primaryToken.balance,
+        decimal: primaryToken.decimal,
+        fiatCurrency: "usd",
+        fiatAmount: primaryToken.balanceInFiat,
+        color: '#2DA1F8'
+      }, {
+        id: 'eth',
+        iconName: 'eth',
+        name: "Ethereum",
+        symbol: "eth",
+        decimal: 10,
+        balance: ethBalance,
+        fiatCurrency: "usd",
+        fiatAmount: fiatAmount,
+        color: '#9418DC'
+      },
+    ];
+  } else if (network.symbol === 'BNB') {
+    defaultTokens = [{
       id: primaryToken.id,
-      iconName: 'key',
-      name: "SelfKey",
-      symbol: primaryToken.symbol,
-      balance: primaryToken.balance,
-      decimal: primaryToken.decimal,
-      fiatCurrency: "usd",
-      fiatAmount: primaryToken.balanceInFiat,
-      color: '#2DA1F8'
-    }, {
-      id: 'eth',
-      iconName: 'eth',
-      name: "Ethereum",
-      symbol: "eth",
-      decimal: 10,
+      iconName: 'bnb',
+      name: "Binance Coin",
+      symbol: 'BNB',
       balance: ethBalance,
+      decimal: 10,
       fiatCurrency: "usd",
       fiatAmount: fiatAmount,
       color: '#9418DC'
-    },
-  ];
+    }];
+  }
+  
 
   const tokens = [
-    ...customTokens,
+    ...customTokens.filter(token => {
+      if (!token.chainId && network.id === 1) {
+        return true;
+      }
+      
+      return token.chainId === network.id;
+    }),
     ...defaultTokens,
   ];
+  
+  console.log('#mzm my tokens', tokens);
 
   return (
     <View>

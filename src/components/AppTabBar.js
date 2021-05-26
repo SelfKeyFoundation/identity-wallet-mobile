@@ -8,6 +8,7 @@ import { WalletTracker } from '../WalletTracker';
 export function AppTabBar(props) {
 	const dispatch = useDispatch();
 	const isKeyFiEnabled = useSelector(ducks.app.selectors.getKeyFiEnabled);
+	const network = useSelector(ducks.app.selectors.getNetwork);
 	const { navigation } = props;
 	const { routes } = navigation.state;
 	const route = routes[navigation.state.index];
@@ -23,7 +24,7 @@ export function AppTabBar(props) {
 			label: 'My Tokens',
 			id: Routes.APP_MY_TOKENS,
 		},
-		isKeyFiEnabled
+		network.featureFlags.marketplaces
 			? {
 					icon: 'icon-menu-marketplace',
 					label: 'Marketplace',

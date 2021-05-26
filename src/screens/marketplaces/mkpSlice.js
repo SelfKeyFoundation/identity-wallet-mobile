@@ -9,9 +9,10 @@ import { getTransactionFeeOptions } from 'core/modules/transaction/operations';
 import { getTokenBalance } from 'core/modules/wallet/wallet-util';
 import { getKEYContractAddress } from 'core/services/contract-service';
 import { getGasLimit } from 'core/services/token-service';
-import { fetchIncorporations } from './incorporations-service';
+import { fetchIncorporations, fetchPassports } from './incorporations-service';
 import { getInventoryItem, getVendor } from './airtable-service';
 import { navigate, navigateBack, Routes } from 'core/navigation';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 export const ProductDetailSelectors = {
 	getTemplateId(details) {
@@ -59,6 +60,18 @@ const initialState = {
 		// 	title: 'Incorporations',
 		// 	description:
 		// 		'Compare exchange accounts and instantly sign up for a verified account without waiting for limits',
+		// },
+		{
+			id: 'passports',
+			title: 'Passport & Residencies',
+			description:
+				'Build your life internationally by getting a second residency, which opens a myriad of opportunities that will let you grow both personally and professionally.',
+		},
+		// {
+		// 	id: 'idk',
+		// 	title: 'Selfkey Protocol',
+		// 	description:
+		// 		'PoC for Selfkey identity protocol',
 		// },
 	],
 	product: {
@@ -196,9 +209,25 @@ async function getIncorporationsItems(categoryId) {
 		}));
 }
 
+async function getPassportsItems(categoryId) {
+	const data = await fetchPassports();
+	// TODO: Fetch key price
+	const keyRate = 0.25;
+
+	return data
+		.filter(item => item.status === 'active')
+		.map(item => ({
+			...item,
+			keyPrice: item.price * keyRate,
+			type: categoryId,
+		}));
+}
+
+
 const itemFetcherMap = {
 	exchanges: getExchangesItems,
 	incorporations: getIncorporationsItems,
+	passports: getPassportsItems,
 };
 
 export const mkpOperations = {
@@ -239,19 +268,24 @@ export const mkpOperations = {
 		let price;
 
 		// Should verify current category
-		if (categoryId === 'keyfi') {
+		if (categoryId === 'keyfi' || categoryId === 'idk') {
 			details = await getInventoryItem(categoryId, skuId);
 			const vendor = await getVendor(categoryId);
 			details.walletAddress = vendor.payment_address;
 			details.templateId = details.relyingPartyConfig.templateId;
 			details.vendorId = categoryId;
 			details.active = details.status === 'active';
+
+			if (!details.price) {
+				details.price = 0;
+			}
+
 			details.priceKey = details.price * 0.8;
 			price = parseFloat(details.price) === 0 ? [] : [{
 				id: 1,
 				amount: details.price,
 				currency: 'usd',
-				cryptoCurrency: 'eth',
+				cryptoCurrency: NetworkStore.getNetwork().symbol.toLowerCase(),
 			}, {
 				id: 2,
 				amount: details.priceKey,
@@ -259,15 +293,40 @@ export const mkpOperations = {
 				cryptoCurrency: 'key',
 				isActive: true,
 			}];
-		} else {
+		} 
+		// else if (categoryId === 'passports') {
+			// should grab product details
+			// debugger;
+			// details = await getInventoryItem(categoryId, skuId);
+			// const vendor = await getVendor(categoryId);
+			// details.walletAddress = vendor.payment_address;
+			// details.templateId = details.relyingPartyConfig.templateId;
+			// details.vendorId = categoryId;
+			// details.active = details.status === 'active';
+			// details.priceKey = details.price;
+			// price = {
+			// 	id: 1,
+			// 	amount: details.priceKey,
+			// 	currency: 'usd',
+			// 	cryptoCurrency: 'key',
+			// 	isActive: true,
+			// }
+		else {
 			const categoryItems = mkpSelectors.getProductListItems(state);
 			details = categoryItems.find(item => item.sku === skuId);
-			price = {
+			
+			details = {
+				...details,
+				active: details.status === 'active',
+			}
+
+			price = [{
 				id: 1,
-				amount: details.price,
+				amount: parseFloat(details.price || details.data.price),
 				currency: 'usd',
 				cryptoCurrency: 'key',
-			}
+				isActive: true,	
+			}]
 		}
 
 		dispatch(mkpActions.setPrice(price));
@@ -295,7 +354,7 @@ export const mkpOperations = {
 
 	applyForApplication: () => async (dispatch, getState) => {
 		const price = mkpSelectors.getSelectedPrice(getState());//productDetails.keyPrice || productDetails.price;
-		
+
 		if (price) {
 			return dispatch(mkpActions.setShowConfirmationModal(true));
 		}

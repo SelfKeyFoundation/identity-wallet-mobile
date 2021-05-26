@@ -13,8 +13,8 @@ import { KYCApplicationModel } from  './kyc/kyc-application-model';
 import { ContractModel } from  './contracts/contract-model';
 import { ContractAllowanceModel } from  './contracts/contract-allowance-model';
 
-export const CURRENT_SCHEMA_VERSION = 13;
-export const SCHEMA_NAME = '13-kyc-applications';
+export const CURRENT_SCHEMA_VERSION = 14;
+export const SCHEMA_NAME = '14-network-toggle';
 
 import { getRealmInstance } from '../db/realm-service';
 import { BaseModel } from './common/base-model';

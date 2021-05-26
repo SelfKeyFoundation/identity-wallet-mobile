@@ -10,6 +10,8 @@ import { transactionOperations } from 'core/modules/transaction/operations';
 import styled from 'styled-components/native';
 import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
+import { TokenIconMapping } from 'components/token-icon-mapping';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const TRACKER_PAGE = 'tokenDetails';
 
@@ -45,14 +47,8 @@ function getCustomTokenIcon(name, color) {
   return () => <TokenIcon color={color} name={name} />;
 }
 
-const ICON_MAP = {
-  KEY: IconKey,
-  KI: IconKey,
-  ETH: IconEth
-};
-
 function getFiatDecimal(tokenDetails) {
-  if (tokenDetails.code === 'ETH') {
+  if (tokenDetails.code === NetworkStore.getNetwork().symbol) {
     return 2;
   }
 
@@ -60,7 +56,7 @@ function getFiatDecimal(tokenDetails) {
 }
 
 function TokenDetailsContainer(props) {
-  const tokenSymbol = props.navigation.getParam('tokenId', 'ETH').toUpperCase();
+  const tokenSymbol = props.navigation.getParam('tokenId', NetworkStore.getNetwork().symbol).toUpperCase();
   const tokenDetails = useSelector(selectors.getTokenDetails(tokenSymbol));
   const dispatch = useDispatch();
 
@@ -119,7 +115,7 @@ function TokenDetailsContainer(props) {
             <TokenDetails
               onReceive={handleReceive}
               onSend={handleSend}
-              iconComponent={ICON_MAP[tokenDetails.code] || getCustomTokenIcon(tokenDetails.name, tokenDetails.color)}
+              iconComponent={TokenIconMapping[tokenDetails.code && tokenDetails.code.toLowerCase()] || getCustomTokenIcon(tokenDetails.name, tokenDetails.color)}
               tokenName={tokenDetails.name}
               tokenCode={tokenDetails.code}
               tokenDecimal={tokenDetails.decimal}

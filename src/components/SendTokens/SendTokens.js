@@ -31,6 +31,7 @@ import {
 import { SelectBox } from '../index';
 import { type Token } from 'core/types/Token';
 import { Theme } from 'design-system/theme';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const Body = styled.View`
   padding: 15px 15px 40px 15px;
@@ -166,9 +167,6 @@ export function SendTokens(props: SendTokensProps) {
 
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
 
-  
-  console.log('#mzm data', data);
-
   return (
     <Body>
       <Grid>
@@ -266,7 +264,7 @@ export function SendTokens(props: SendTokensProps) {
           <Col>
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
-                currency="eth"
+                currency={NetworkStore.getNetwork().symbol}
                 decimal={10}
                 value={data.feeAmount}
               /> /
@@ -274,7 +272,7 @@ export function SendTokens(props: SendTokensProps) {
             <H3 style={{ textAlign: 'right' }}>
               <FormattedNumber
                 currency="usd"
-                convertFromToken="eth"
+                convertFromToken={NetworkStore.getNetwork().symbol}
                 decimal={3}
                 value={data.feeAmount}
               />
