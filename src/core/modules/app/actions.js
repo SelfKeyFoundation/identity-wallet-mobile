@@ -28,6 +28,10 @@ export const appActions = {
   setFeatureFlags: (flags) => ({
     type: appTypes.SET_FEATURE_FLAGS,
     payload: flags,
+  }),
+  setNetwork: (networkId) => ({
+    type: appTypes.SET_NETWORK,
+    payload: networkId,
   })
 };
 

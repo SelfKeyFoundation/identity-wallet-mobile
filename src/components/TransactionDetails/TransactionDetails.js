@@ -21,6 +21,7 @@ import {
 	FormattedNumber,
 } from 'design-system';
 import dateFormat from 'dateformat';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const Body = styled.View``;
 
@@ -140,7 +141,7 @@ export function TransactionDetails(props: TransactionDetailsProps) {
 			<Footer>
 				<Row>
 					<Col>
-						<Button onPress={props.onViewOnEtherscan}>View on Etherscan</Button>
+						<Button onPress={props.onViewOnEtherscan}>View on {NetworkStore.getNetwork().blockExplorerName}</Button>
 					</Col>
 				</Row>
 			</Footer>

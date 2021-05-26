@@ -5,6 +5,7 @@ import TermsOfServiceScreen from '../TermsOfServiceScreen';
 import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
 import { Modal, Paragraph } from 'design-system';
+import appOperations from 'core/modules/app/operations';
 
 const { operations, selectors } = ducks.wallet;
 
@@ -19,6 +20,7 @@ function DashboardContainer(props) {
     setRefreshing(false);
   }, []);
   const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
+  const featureFlags = useSelector(ducks.app.selectors.getFeatureFlags);
   const handleBiometricsSkip = () => {
     WalletTracker.trackEvent({
       category: `createWallet/biometricsModal`,
@@ -39,6 +41,10 @@ function DashboardContainer(props) {
     setShowBiomericsModal(false);
   };
 
+  const handleMoonpay = () => {
+    dispatch(appOperations.openhMoonpayOperation()); 
+  }
+
   useEffect(() => {
     if (supportedBiometryType && wallet.biometricsEnabled === null) {
       setShowBiomericsModal(true);
@@ -50,6 +56,8 @@ function DashboardContainer(props) {
       <Dashboard
         refreshing={refreshing}
         onRefresh={handleRefresh}
+        onOpenMoonpay={handleMoonpay}
+        featureFlags={featureFlags}
       />
       <Modal
         onClose={handleBiometricsSkip}

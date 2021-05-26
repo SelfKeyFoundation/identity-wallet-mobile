@@ -80,5 +80,4 @@ const withTermsCheck = Wrapper => props => {
   return <Wrapper {...props} />;
 }
 
-
 export default withTermsCheck(TermsOfServiceContainer);

@@ -7,6 +7,8 @@ import { mkpOperations, mkpSelectors } from '../mkpSlice';
 import ProductDetailsIncorporations from './ProductDetailsIncorporations';
 import ProductDetailsExchanges from './ProductDetailsExchanges';
 import ProductDetailsKeyFi from './ProductDetailsKeyFi';
+import ProductDetailsIdk from './ProductDetailsIdk';
+import ProductDetailsPassports from './ProductDetailsPassports';
 import { BalanceErrorModal } from './BalanceErrorModal';
 import { ConfirmationModal } from './ConfirmationModal';
 import { ChecklistModal } from './ChecklistModal';
@@ -17,6 +19,8 @@ const DetailsComponentMapping = {
   incorporations: ProductDetailsIncorporations,
   exchanges: ProductDetailsExchanges,
   keyfi: ProductDetailsKeyFi,
+  idk: ProductDetailsIdk,
+  passports: ProductDetailsPassports,
 }
 
 const DetailsNotFound = () => <Typography>Invalid Category</Typography>;

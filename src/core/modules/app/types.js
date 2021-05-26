@@ -6,6 +6,7 @@ export const appTypes = {
   SET_SUPPORTED_BIOMETRY_TYPE: 'app/setSupportedBiometryType',
   SET_SNACK_MESSAGE: 'app/setSnackMessage',
   SET_FEATURE_FLAGS: 'app/setFeatureFlags',
+  SET_NETWORK: 'app/setNetwork',
 };
 
 export default appTypes;

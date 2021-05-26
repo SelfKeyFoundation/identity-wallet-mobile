@@ -34,6 +34,7 @@ import modules from 'core/modules';
 import { DIDService } from 'core/services/did-service';
 import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 import EthUnits from 'blockchain/util/eth-units';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 
 const ContentGrid = styled(Grid)`
@@ -172,8 +173,8 @@ export function RegisterDIDScreen(props) {
                   <DefinitionTitle style={{ fontSize: 15, textAlign: 'right' }}>
                   {FormattedNumber({
                       value: fees.ethFee,
-                      currency: 'eth',
-                      decimal: 9
+                      currency: NetworkStore.getNetwork().symbol,
+                      decimal: NetworkStore.getNetwork().tokenDecimal
                     })}
                   </DefinitionTitle> 
                 </Col>

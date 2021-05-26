@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import WalletConnect from '@walletconnect/client';
-import { Box, Button, ScreenContainer, ScreenHeader, TextInput, Typography } from 'design-system';
+import {
+	Box,
+	Button,
+	Divider,
+	ScreenContainer,
+	ScreenHeader,
+	TextInput,
+	Typography,
+} from 'design-system';
 import { navigateBack } from 'core/navigation';
 import { Web3Service } from 'blockchain/services/web3-service';
 import { getConfigs } from 'configs';
@@ -22,34 +30,28 @@ export function WalletConnectScreen() {
 	// const handleSubmit = () => {
 	// 	dispatch(walletConnectOperations.createConnection(uri));
 	// };
-	const sessions = useSelector(walletConnectSelectors.getSessions);
+	const sessions = useSelector(walletConnectSelectors.getCredentials);
 
 	useEffect(() => {
 		dispatch(walletConnectOperations.loadSessions());
 	}, []);
-	
-	console.log(sessions);
+
+	// console.log(sessions);
 	return (
 		<ScreenContainer>
-			<ScreenHeader title="Wallet Connect Sessions" onBack={navigateBack} />
+			<ScreenHeader title="Credentials" onBack={navigateBack} />
 			<Body>
-				{
-					sessions.map((session) => {
-						return (
-							<Box row>
-								<Box col>
-									<Typography>{session.peerMeta && session.peerMeta.name}</Typography>
-									<Typography>{session.peerMeta && session.peerMeta.url}</Typography>
-									<Box marginTop={8}>
-										<Button onPress={() => {
-											dispatch(walletConnectOperations.disconnectSession(session))
-										}}>Disconnect</Button>
-									</Box>
-								</Box>
+				{sessions.map(session => {
+					return (
+						<Box marginBottom={18}>
+							<Box flex={0} marginBottom={6}>
+								<Typography>ID: {session.id}</Typography>
+								<Typography>Type: {session.type && session.type[0]}</Typography>
 							</Box>
-						)
-					})
-				}
+							<Divider />
+						</Box>
+					);
+				})}
 			</Body>
 		</ScreenContainer>
 	);

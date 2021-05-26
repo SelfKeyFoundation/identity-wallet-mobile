@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { Dimensions, View, SafeAreaView, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Dimensions, View, SafeAreaView, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { SKIcon } from 'design-system';
 // import { RNCamera as Camera } from 'react-native-camera';
@@ -164,10 +164,15 @@ export function ScanQR(props) {
             />
           </View>
         </Body>
-        <Footer>
-          <Description>{props.description}</Description>
-          <SmallDescription>{props.smallDescription}</SmallDescription>
-        </Footer>
+        <TouchableWithoutFeedback onPress={async () => {
+          const text = await Clipboard.getString();
+          props.onSuccess(text);
+        }}>
+          <Footer>
+            <Description>{props.description}</Description>
+            <SmallDescription>{props.smallDescription}</SmallDescription>
+          </Footer>
+        </TouchableWithoutFeedback>
       </Wrapper>
     </Container>
   );

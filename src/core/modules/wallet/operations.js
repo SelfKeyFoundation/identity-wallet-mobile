@@ -13,6 +13,7 @@ import { navigate, Routes } from '../../navigation';
 import { getConfigs } from 'configs';
 import { addTop20Tokens } from '../create-wallet/create-wallet-utils';
 import { navigateToDashboardOperation } from '../unlock-wallet/operations';
+import { NetworkStore } from '../app/NetworkStore';
 
 function getSymbol(symbol) {
   if (symbol === 'KI') {
@@ -22,11 +23,11 @@ function getSymbol(symbol) {
   return symbol;
 }
 
-function getTokenName(symbol = 'eth') {
+function getTokenName(symbol = NetworkStore.getNetwork().symbol) {
   symbol = symbol && symbol.toUpperCase();
 
-  if (symbol === 'ETH') {
-    return 'Ethereum';
+  if (symbol === NetworkStore.getNetwork().symbol) {
+    return NetworkStore.getNetwork().tokenName;
   }
 
   if (symbol === 'KI' || symbol === 'KEY') {

@@ -1,6 +1,7 @@
 import { BigNumber } from 'bignumber.js';
 import Web3 from 'web3';
 import { getConfigs } from 'configs';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 let web3;
 
@@ -10,7 +11,7 @@ class EthUtils {
 	}
 
 	static getTxReceiptUrl(hash) {
-		return `${getConfigs().etherscanUrl}/tx/${hash}`;
+		return `${NetworkStore.getNetwork().blockExplorer}/tx/${hash}`;
 	}
 
 	static isChecksumAddress(address) {

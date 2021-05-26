@@ -36,7 +36,7 @@ const KYC_APPLICATIONS_PAYMENT_ENDPOINT_NAME = '/applications/:id/payments';
 const KYC_APPLICATIONS_CHAT_ENDPOINT_NAME = '/applications/:id/chat';
 const KYC_APPLICATIONS_STATUS_ENDPOINT_NAME = '/applications/:id/change_status';
 const KYC_APPLICATIONS_LIST_ENDPOINT_NAME =
-	'/applications?fields=id,attributes,currentStatus,payments,questions,statusLog,statusName,template,createdAt&baseApplications=true&sort=-createdAt';
+	'/applications?fields=id,attributes,currentStatus,payments,questions,statusLog,statusName,template,attachments,createdAt&baseApplications=true&sort=-createdAt';
 const KYC_USERS_GET_ENDPOINT_NAME = '/kyc-users/me';
 const KYC_USERS_CREATE_ENDPOINT_NAME = '/kyc-users';
 const KYC_CORPORATE_MEMBERS_ENDPOINT_NAME = '/applications/:applicationId/members';
@@ -546,6 +546,27 @@ export class RelyingPartyRest {
 			throw error;
 		}
 	}
+	
+	static async getFile(ctx, fileId) {
+		let url = ctx.getEndpoint(`/files/${fileId}`);
+		log.debug(`[listKYCApplications] GET ${url}`);
+		if (!ctx.token) throw new Error('Session is not established');
+		try {
+			let fileData = await fetchAsJson(url, {
+				headers: {
+					Authorization: this.getAuthorizationHeader(ctx.token.toString()),
+					'User-Agent': this.userAgent,
+					Origin: ctx.getOrigin()
+				},
+			});
+			return fileData;
+		} catch (error) {
+			if (error.statusCode === 404) {
+				return [];
+			}
+			throw error;
+		}
+	}
 
 	static async getKYCUser(ctx) {
 		let url = ctx.getEndpoint(KYC_USERS_GET_ENDPOINT_NAME);
@@ -732,6 +753,10 @@ export class RelyingPartySession {
 
 	listKYCApplications() {
 		return RelyingPartyRest.listKYCApplications(this.ctx);
+	}
+
+	getFile(fileId) {
+		return RelyingPartyRest.getFile(this.ctx, fileId);
 	}
 
 	getKYCApplication(id) {

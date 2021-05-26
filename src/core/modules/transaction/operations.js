@@ -9,6 +9,8 @@ import duck from './index';
 import ducks from '../index';
 import { getConfigs } from 'configs';
 import { DEFAULT_ETH_GAS_LIMIT } from './selectors';
+import { NetworkMapping, NetworkStore } from '../app/NetworkStore';
+import { getAddress } from '../wallet/selectors';
 
 // TODO: Move to separate file
 export const getTransactionCount = async address => {
@@ -63,7 +65,7 @@ const computeGasLimit = () => async (dispatch, getState) => {
 	}
 
 	// TODO: Use constants
-	if (token && token.toUpperCase() === 'ETH') {
+	if (token && token.toUpperCase() === NetworkStore.getNetwork().symbol) {
 		return;
 	}
 
@@ -115,7 +117,7 @@ export const getTransactionFeeOptions = (state, gasLimit) => {
 		const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
 		const feeInEth = Web3Service.getInstance().web3.utils.fromWei(feeInWei, 'ether');
 
-		const tokenPrice = getTokenPrice('ETH');
+		const tokenPrice = getTokenPrice(NetworkStore.getNetwork().symbol);
 
 		return {
 			...option,
@@ -134,10 +136,12 @@ export const operations = {
 	goToTransactionOperation: (tokenSymbol, addressTo, showModal = true) => async (dispatch, getState) => {
 		const state = getState();
 		const address = ducks.wallet.selectors.getAddress(state);
+		// const network = ducks.app.selectors.getNetwork(state);
 
 		await dispatch(
 			duck.actions.updateTransaction({
 				...duck.initialState,
+				token: NetworkStore.getNetwork().symbol.toLowerCase(),
 				address: addressTo,
 			}),
 		);
@@ -156,8 +160,8 @@ export const operations = {
 					? ducks.wallet.selectors.getTokens(state)
 					: [
 							{
-								symbol: 'ETH',
-								name: 'Ethereum',
+								symbol: NetworkStore.getNetwork().symbol,
+								name: NetworkStore.getNetwork().tokenName,
 							},
 							...ducks.wallet.selectors.getTokens(state),
 					  ];
@@ -245,7 +249,7 @@ export const operations = {
 		};
 
 		// TODO: Use constants to define ETH
-		if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === 'ETH') {
+		if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === NetworkStore.getNetwork().symbol) {
 			transactionObject.to = EthUtils.sanitizeHex(transaction.address);
 			transactionObject.value = EthUnits.unitToUnit(transaction.amount, 'ether', 'wei');
 		} else {
@@ -301,7 +305,7 @@ export const operations = {
 					hash: receipt.transactionHash,
 					status: 'sent',
 					timeStamp: Date.now(),
-					networkId: getConfigs().chainId,
+					networkId: NetworkStore.getNetwork().id,
 					tokenSymbol: transaction.tokenSymbol,
 					nonce: transaction.nonce,
 					isError: false,
@@ -330,7 +334,7 @@ export const operations = {
 					transactionOperations.updateTransaction({
 						isSending: false,
 						errorMessage:
-							"You don't have enough Ethereum (ETH) to pay for the network transaction fee. Please transfer some ETH to your following wallet and try again.",
+							`You don't have enough ${NetworkStore.getNetwork().tokenName} (${NetworkStore.getNetwork().symbol}) to pay for the network transaction fee. Please transfer some ${NetworkStore.getNetwork().symbol} to your following wallet and try again.`,
 						errorInfo: 'To learn more about transaction fees, click here.',
 						errorInfoUrl:
 							'https://help.selfkey.org/article/87-how-does-gas-impact-transaction-speed',

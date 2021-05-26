@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import WalletConnect from '@walletconnect/client';
+import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 import { Web3Service } from 'blockchain/services/web3-service';
 import EthUtils from 'blockchain/util/eth-utils';
 import { getConfigs } from 'configs';
 import modules from 'core/modules';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 import { getTransactionCount } from 'core/modules/transaction/operations';
 import { Storage } from 'core/Storage';
 
@@ -12,6 +14,26 @@ const initialState = {
 	pendingUri: null,
 	unlocked: false,
 	sessions: [],
+	credentials: [
+		{
+				"credentialSubject": {
+						"firstName": "This should be",
+						"lastName": "Invalid",
+						"nationality": "Afghanistan",
+						"dateOfBirth": "2004-04-19",
+						"id": "did:ethr:0xb6b7848286c0be7d5473620bbb3c3f12ea2ac11b"
+				},
+				"id": "invalid",
+				"issuer": { "id": "did:web:issuer.selfkey.org" },
+				"type": ["VerifiableCredential"],
+				"@context": ["https://www.w3.org/2018/credentials/v1"],
+				"issuanceDate": "2021-04-22T10:30:15.000Z",
+				"proof": {
+						"type": "JwtProof2020",
+						"jwt": "eyJhbGcUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJ2YyI6eyJjcmVkZW50aWFsU3ViamVjdCI6eyJmaXJzdE5hbWUiOiJUZXN0IiwibGFzdE5hbWUiOiJURVNUIiwibmF0aW9uYWxpdHkiOiJBZmdoYW5pc3RhbiIsImRhdGVPZkJpcnRoIjoiMjAwNC0wNC0xOSJ9LCJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl19LCJzdWIiOiJkaWQ6ZXRocjoweGI2Yjc4NDgyODZjMGJlN2Q1NDczNjIwYmJiM2MzZjEyZWEyYWMxMWIiLCJuYmYiOjE2MTkwODc0MTUsImlzcyI6ImRpZDp3ZWI6aXNzdWVyLnNlbGZrZXkub3JnIn0.M14ZC3Ly3x7gdc75PjAB_NbrlotIDcHFiytATGC7Vi6yjNwuiAQhkz6XzzEU532m5a1CP_jLksrGSdxNQFUz6w"
+				}
+			}
+	],
 	// confirmSignRequest: {
 	// 	data:
 	// 		'0x37652f325437344958724c7033553639304446756354564f672f775378724237627152664b6c485377534c4f3863643446665249414e334c754c46502b5054366369614d4a782f32494e4c6641794e6a7268504a2b773d3d',
@@ -48,6 +70,15 @@ const walletConnect = createSlice({
 		setConfirmSignRequest(state, action) {
 			state.confirmSignRequest = action.payload;
 		},
+		addCredential(state, action) {
+			const itemFound = state.credentials.find(item => item.id === action.payload.id);
+
+			if (itemFound) {
+				return;
+			}
+
+			state.credentials.push(action.payload)
+		},
 	},
 });
 
@@ -64,6 +95,7 @@ export const walletConnectSelectors = {
 	getPendingUri: state => getRoot(state).pendingUri,
 	getUnlocked: state => getRoot(state).unlocked,
 	getSessions: state => getRoot(state).sessions,
+	getCredentials: state => getRoot(state).credentials,
 };
 
 export const walletConnectOperations = {
@@ -73,6 +105,7 @@ export const walletConnectOperations = {
 		const address = modules.wallet.selectors.getAddress(getState());
 
 		if (connector) {
+			try {
 			connector.approveSession({
 				accounts: [address],
 				chainId: confirmConnection.chainId,
@@ -83,12 +116,16 @@ export const walletConnectOperations = {
 				connector.session,
 			]);
 
-			try {
+			
 				await dispatch(walletConnectOperations.loadSessions());
-			} catch(err) {}
+			} catch (err) {
+				
+			}
 		}
 
-		dispatch(modules.app.operations.setSnackMessage('Wallet connect session created. Go back to the dapp'))
+		dispatch(
+			modules.app.operations.setSnackMessage('Wallet connect session created. Go back to the dapp'),
+		);
 		dispatch(walletConnectActions.setConfirmConnection(null));
 	},
 
@@ -103,7 +140,14 @@ export const walletConnectOperations = {
 
 		dispatch(walletConnectActions.setConfirmConnection(null));
 	},
-	confirmTransaction: () => async (dispatch, getState) => {
+	confirmTransaction: (requestData) => async (dispatch, getState) => {
+		if (requestData) {
+			const connector = walletConnectSelectors.getConnector(getState());
+			connector.sendCustomRequest(requestData);
+			dispatch(walletConnectActions.setConfirmTransaction(null));
+			return;
+		}
+
 		const transaction = walletConnectSelectors.getConfirmTransaction(getState());
 		const nonce = await getTransactionCount(transaction.from);
 
@@ -151,8 +195,8 @@ export const walletConnectOperations = {
 					hash: receipt.transactionHash,
 					status: 'sent',
 					timeStamp: Date.now(),
-					networkId: getConfigs().chainId,
-					tokenSymbol: 'eth',
+					networkId: NetworkStore.getNetwork().id,
+					tokenSymbol: NetworkStore.getNetwork().symbol,
 					nonce: nonce,
 					isError: false,
 					blockHash: receipt.blockHash,
@@ -244,7 +288,7 @@ export const walletConnectOperations = {
 			dispatch(walletConnectActions.setConfirmConnection(payload.params[0]));
 		});
 
-		connector.on('call_request', (error, payload) => {
+		connector.on('call_request', async (error, payload) => {
 			console.log('call_request', payload);
 			dispatch(walletConnectActions.setConnector(connector));
 
@@ -257,10 +301,14 @@ export const walletConnectOperations = {
 					}),
 				);
 			} else {
+				const gasPrice = await EthGasStationService.getInstance().getPrice();
+
 				dispatch(
 					walletConnectActions.setConfirmTransaction({
 						id: payload.id,
+						method: payload.method,
 						...payload.params[0],
+						gasPrice,
 					}),
 				);
 			}
@@ -274,16 +322,18 @@ export const walletConnectOperations = {
 			await connector.createSession();
 		} catch (err) {
 			if (uri) {
-				dispatch(modules.app.operations.setSnackMessage('Wallet connect session created.'))
+				dispatch(modules.app.operations.setSnackMessage('Wallet connect session created.'));
 			}
 		}
 	},
 	loadSessions: () => async (dispatch, getState) => {
-		const sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
+		let sessions = await Storage.getItem(Storage.Key.WalletConnectSession, []);
 
 		if (!Array.isArray(sessions)) {
 			await Storage.setItem(Storage.Key.WalletConnectSession, []);
 		}
+
+		sessions = (sessions || []).filter(item => !!item);
 
 		dispatch(walletConnectActions.setSessions(sessions));
 	},
@@ -310,11 +360,8 @@ export const walletConnectOperations = {
 		});
 
 		connector.killSession();
-		
-		await Storage.setItem(
-			Storage.Key.WalletConnectSession,
-			filtered
-		);
+
+		await Storage.setItem(Storage.Key.WalletConnectSession, filtered);
 
 		dispatch(walletConnectOperations.loadSessions());
 	},

@@ -1,19 +1,32 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux'
+// import { createStore, compose } from 'redux'
 import { getRootReducer } from './reducers';
-import { getInitialState } from './state';
-import { getMiddlewareEnhancer } from './middlewares';
+// import { getInitialState } from './state';
+import { middlewares } from './middlewares';
+import {configureStore} from '@reduxjs/toolkit';
+
 import { SchedulerService } from 'core/services/scheduler/scheduler-service';
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['skAgent'],
+}
 
 export function createEnhancedStore() {
-  const rootReducer = getRootReducer();
-  const initialState = getInitialState();
-  const composedEnhancers = compose(
-    getMiddlewareEnhancer(),
-  );
+  const rootReducer = persistReducer(persistConfig, getRootReducer());
 
-  return createStore(rootReducer, initialState, composedEnhancers);
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: middlewares,
+  });
+  
+  persistStore(store)
+
+  return store;
 }
 
 export function createStoreProvider() {

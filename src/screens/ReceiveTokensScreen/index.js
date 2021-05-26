@@ -7,6 +7,7 @@ import modules from 'core/modules';
 import { navigate, Routes } from 'core/navigation';
 import { Snackbar } from 'react-native-paper';
 import { WalletTracker } from '../../WalletTracker';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 const TRACKER_PAGE = 'receiveTokens';
 
@@ -15,7 +16,7 @@ const { operations, selectors } = modules.wallet;
 function ReceiveTokensContainer(props) {
   const receiveTokensModal = useSelector(modules.app.selectors.showReceiveTokensModal);
   const {
-    tokenSymbol = 'ETH',
+    tokenSymbol = NetworkStore.getNetwork().symbol,
     visible = false,
   } = receiveTokensModal || {};
 

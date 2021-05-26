@@ -5,30 +5,21 @@ import AsyncTaskQueue from 'blockchain/util/async-task-queue';
 import { getConfigs } from 'configs';
 import { Web3Service } from 'blockchain/services/web3-service';
 import { TxHistoryModel, WalletModel } from 'core/models/index';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 export const REQUEST_INTERVAL_DELAY = 1000; // millis
 export const ETH_BALANCE_DIVIDER = new BigNumber(10 ** 18);
-export const ENDPOINT_CONFIG = {
-	1: { url: 'https://api.etherscan.io/api' },
-	3: { url: 'http://api-ropsten.etherscan.io/api' }
-};
-export const getApiEndpoint = () => ENDPOINT_CONFIG[getConfigs().chainId].url;
-
-export const TX_HISTORY_ENDPOINT_CONFIG = {
-	1: { url: 'https://etherscan.io/tx' },
-	3: { url: 'https://ropsten.etherscan.io/tx' }
-};
-
-export const getTxHistoryApiEndpoint = () => TX_HISTORY_ENDPOINT_CONFIG[getConfigs().chainId].url;
-const API_KEY = 'Y559IXGJE6MS2QCHK1PAQJS3Q92E893T16';
+export const getApiEndpoint = () => NetworkStore.getNetwork().blockExplorerApi;
 
 export let OFFSET = 1000;
 
+const resolveApiEndpoint = (path) => `${getApiEndpoint()}${path}&apikey=${NetworkStore.getNetwork().blockExplorerApiKey}`;
+
 const wait = time => new Promise(res => setTimeout(res, time));
 
-export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
-export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}&apikey=${API_KEY}`;
-export const TX_RECEIPT_ACTION = `?module=proxy&action=eth_getTransactionReceipt&apikey=${API_KEY}`;
+export const TX_LIST_ACTION = `?module=account&action=txlist&sort=desc&offset=${OFFSET}`;
+export const TOKEN_TX_ACTION = `?module=account&action=tokentx&sort=desc&offset=${OFFSET}`;
+export const TX_RECEIPT_ACTION = `?module=proxy&action=eth_getTransactionReceipt`;
 
 // in order to change key name in runtime
 export const KEY_MAP = {
@@ -92,19 +83,19 @@ export class TxHistoryService {
 		return this.makeRequest(args.method, args.url, args.data || null);
 	}
 	loadEthTxHistory(address, startblock, endblock, page) {
-		const ACTION_URL = `${getApiEndpoint()}${TX_LIST_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
+		const ACTION_URL = resolveApiEndpoint(`${TX_LIST_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`);
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	loadERCTxHistory(address, startblock, endblock, page) {
-		const ACTION_URL = `${getApiEndpoint()}${TOKEN_TX_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`;
+		const ACTION_URL = resolveApiEndpoint(`${TOKEN_TX_ACTION}&address=${address}&startblock=${startblock}&endblock=${endblock}&page=${page}`);
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getTransactionReceipt(txhash) {
-		const ACTION_URL = getApiEndpoint() + TX_RECEIPT_ACTION + '&txhash=' + txhash;
+		const ACTION_URL = resolveApiEndpoint(TX_RECEIPT_ACTION + '&txhash=' + txhash);
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	getMostResentBlock() {
-		const ACTION_URL = getApiEndpoint() + `?module=proxy&action=eth_blockNumber&apikey=${API_KEY}`;
+		const ACTION_URL = resolveApiEndpoint(`?module=proxy&action=eth_blockNumber`);
 		return this.queue.push({ method: 'get', url: ACTION_URL });
 	}
 	async makeRequest(method, url) {
@@ -149,10 +140,10 @@ export class TxHistoryService {
 	}
 	async processTx(txs, walletAddress) {
 		let processedTx = {
-			networkId: getConfigs().chainId,
+			networkId: NetworkStore.getNetwork().id,
 			createdAt: new Date().getTime()
 		};
-		let propperTx = txs.token ? txs.token : txs.eth;
+		let propperTx = txs.token ? txs.token : txs[NetworkStore.getNetwork().symbol.toLowerCase()];
 
 		// means it's not NORMAL transaction
 		if (!propperTx.from || !propperTx.to) {
@@ -166,7 +157,7 @@ export class TxHistoryService {
 
 		let balanceValueDivider;
 		if (txs.token) {
-			processedTx.txReceiptStatus = txs.eth ? txs.eth.txReceiptStatus : null;
+			processedTx.txReceiptStatus = txs[NetworkStore.getNetwork().symbol.toLowerCase()] ? txs[NetworkStore.getNetwork().symbol.toLowerCase()].txReceiptStatus : null;
 
 			if (!this.hasContractInfo(processedTx)) {
 				let contractInfo = await this.getContractInfo(processedTx.contractAddress);
@@ -179,9 +170,9 @@ export class TxHistoryService {
 
 			balanceValueDivider = new BigNumber(10 ** processedTx.tokenDecimal);
 		} else {
-      processedTx.tokenSymbol = 'ETH';
-      processedTx.tokenDecimal = 10;
-      processedTx.tokenName = 'Ethereum';
+      processedTx.tokenSymbol = NetworkStore.getNetwork().symbol;
+      processedTx.tokenDecimal = NetworkStore.getNetwork().tokenDecimal;
+      processedTx.tokenName = NetworkStore.getNetwork().tokenName;
     }
 
     const isPending = !processedTx.blockHash;
@@ -239,7 +230,7 @@ export class TxHistoryService {
 	}
 
 	isFailedERC20TokenTx(txs) {
-		return !txs.token && +txs.eth.value === 0;
+		return !txs.token && +txs[NetworkStore.getNetwork().symbol.toLowerCase()].value === 0;
 	}
 
 	async getTxReceiptStatus(hash) {
@@ -310,7 +301,7 @@ export class TxHistoryService {
 					let hash = tx.hash;
 					txHashes[hash] = txHashes[hash] || {};
 					let isToken = index >= ethTxList.length;
-					txHashes[hash][isToken ? 'token' : 'eth'] = tx;
+					txHashes[hash][isToken ? 'token' : NetworkStore.getNetwork().symbol.toLowerCase()] = tx;
 				});
 
 				page++;

@@ -1,3 +1,5 @@
+import { NetworkStore } from "core/modules/app/NetworkStore";
+
 let priceData = [];
 
 export async function loadTokenPrices() {
@@ -16,13 +18,13 @@ export function setPriceData(data) {
   priceData = data;
 }
 
-export function getUsdPrice(amount, token = 'ETH') {
+export function getUsdPrice(amount, token = NetworkStore.getNetwork().symbol) {
   const price = getTokenPrice(token);
 
   return amount * price.priceUSD;
 }
 
-export function getTokenAmount(amountUsd, token = 'ETH') {
+export function getTokenAmount(amountUsd, token = NetworkStore.getNetwork().symbol) {
   const price = getTokenPrice(token);
   const amount = amountUsd / price.priceUSD;
   return amount;

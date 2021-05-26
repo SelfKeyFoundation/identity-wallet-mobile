@@ -25,6 +25,12 @@ export class EthGasStationService {
     return EthGasStationService._instance;
   }
   
+  async getPrice(type = 'average') {
+    const priceInfo = await this.getInfo();
+    const amount = priceInfo[type];
+    return EthUnits.unitToUnit(amount, 'mwei', 'wei')
+  }
+  
   async getEthFee(gasLimit, priceType = 'average') {
     const priceInfo = await this.getInfo();
     const gasPriceInWei = EthUnits.unitToUnit(priceInfo[priceType], 'mwei', 'wei');

@@ -5,6 +5,7 @@ import { Theme } from 'design-system/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { mkpActions, mkpOperations, mkpSelectors } from '../mkpSlice';
 import modules from 'core/modules';
+import { NetworkStore } from 'core/modules/app/NetworkStore';
 
 export function PaymentModal(props) {
 	const [loading, setLoading] = useState();
@@ -95,13 +96,13 @@ export function PaymentModal(props) {
 						<FormattedNumber
 							value={ethFee}
 							currency="usd"
-							convertFromToken="eth"
+							convertFromToken={NetworkStore.getNetwork().symbol}
 							decimal={3}
 							cleanEmptyDecimals
 						/>
 					</Typography>
 					<Typography fontSize={14} textAlign="right" color={Theme.colors.typography}>
-						<FormattedNumber value={ethFee} currency="eth" decimal={8} />
+						<FormattedNumber value={ethFee} currency={NetworkStore.getNetwork().symbol} decimal={8} />
 					</Typography>
 				</Box>
 			</Box>
