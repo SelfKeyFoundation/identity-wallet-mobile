@@ -32,6 +32,8 @@ import { SelectBox } from '../index';
 import { type Token } from 'core/types/Token';
 import { Theme } from 'design-system/theme';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
+import modules from 'core/modules';
+import { useSelector } from 'react-redux';
 
 const Body = styled.View`
   padding: 15px 15px 40px 15px;
@@ -164,7 +166,8 @@ export function SendTokens(props: SendTokensProps) {
   const { errors = {}, data, tokens, transactionFeeOptions, tokenDetails, tokenOptions, isSending } = props;
   const { token } = data;
   const handleChange = (fieldName) => (value) => props.onChange(fieldName, value);
-
+	const featureFlags = useSelector(modules.app.selectors.getFeatureFlags);
+  const eip1559Enabled = featureFlags.eip1559;
   const selectedTransactionFee = transactionFeeOptions.find(item => item.id === data.transactionFee);
 
   return (
@@ -299,16 +302,40 @@ export function SendTokens(props: SendTokensProps) {
           <TransactionFeeSwitcher
             options={props.transactionFeeOptions}
             selected={data.transactionFee}
+            eip1559={eip1559Enabled}
             onSelect={handleChange('transactionFee')}
           />
-          <TextInput
-            label="Gas Price"
-            placeholder="Enter the gas price"
-            error={''}
-            errorMessage={''}
-            value={data.gasPrice !== undefined && `${data.gasPrice}`}
-            onChangeText={handleChange('gasPrice')}
-          />
+          {
+            eip1559Enabled ? (
+              <>
+                <TextInput
+                  label="Max priority fee"
+                  placeholder="Enter the max priority fee"
+                  error={''}
+                  errorMessage={''}
+                  value={data.maxPriorityFee !== undefined && `${data.maxPriorityFee}`}
+                  onChangeText={handleChange('maxPriorityFee')}
+                />
+                <TextInput
+                  label="Max fee"
+                  placeholder="Enter the max fee"
+                  error={''}
+                  errorMessage={''}
+                  value={data.gasPrice !== undefined && `${data.gasPrice}`}
+                  onChangeText={handleChange('gasPrice')}
+                />
+              </>
+            ) : (
+              <TextInput
+                label="Gas Price"
+                placeholder="Enter the gas price"
+                error={''}
+                errorMessage={''}
+                value={data.gasPrice !== undefined && `${data.gasPrice}`}
+                onChangeText={handleChange('gasPrice')}
+              />
+            )
+          }
           <TextInput
             label="Gas Limit"
             placeholder="Enter the gas limit"

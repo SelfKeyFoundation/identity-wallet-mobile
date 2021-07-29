@@ -2,7 +2,7 @@ import EthUnits from "blockchain/util/eth-units";
 import { Web3Service } from "./web3-service";
 
 const URL = 'https://ethgasstation.info/json/ethgasAPI.json';
-
+const EIP_1559 = 'https://gas-api.metaswap.codefi.network/networks/3/suggestedGasFees';
 export class EthGasStationService {
   static _instance: EthGasStationService;
 
@@ -29,6 +29,11 @@ export class EthGasStationService {
     const priceInfo = await this.getInfo();
     const amount = priceInfo[type];
     return EthUnits.unitToUnit(amount, 'mwei', 'wei')
+  }
+  
+  async getEIP_1559Fees() {
+    const response = await fetch(EIP_1559);
+    return response.json();
   }
   
   async getEthFee(gasLimit, priceType = 'average') {
