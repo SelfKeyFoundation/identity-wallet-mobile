@@ -11,6 +11,8 @@ import { getConfigs } from 'configs';
 import { DEFAULT_ETH_GAS_LIMIT } from './selectors';
 import { NetworkMapping, NetworkStore } from '../app/NetworkStore';
 import { getAddress } from '../wallet/selectors';
+import modules from '../index';
+import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 
 // TODO: Move to separate file
 export const getTransactionCount = async address => {
@@ -86,45 +88,92 @@ const computeGasLimit = () => async (dispatch, getState) => {
 	}
 };
 
-export const getTransactionFeeOptions = (state, gasLimit) => {
-	const gasStationInfo = ducks.ethGasStation.selectors.getEthGasStationInfo(state);
+export const getTransactionFeeOptions = async (state, gasLimit) => {
+	const {eip1559} = modules.app.selectors.getFeatureFlags(state);
 
 	if (!gasLimit) {
 		gasLimit = gasLimit || ducks.transaction.selectors.getGasLimit(state);
 	}
 
-	return [
-		{
-			id: 'slow',
-			name: 'Slow',
-			gasPrice: gasStationInfo.safeLow,
-			time: '5-30 min',
-		},
-		{
-			id: 'normal',
-			name: 'Normal',
-			gasPrice: gasStationInfo.average,
-			time: '2-5 min',
-		},
-		{
-			id: 'fast',
-			name: 'Fast',
-			gasPrice: gasStationInfo.fast,
-			time: '< 2 min',
-		},
-	].map(option => {
-		const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'mwei', 'wei');
-		const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
-		const feeInEth = Web3Service.getInstance().web3.utils.fromWei(feeInWei, 'ether');
+	if (eip1559) {
+		const data = await EthGasStationService.getInstance().getEIP_1559Fees();
+		const options = [
+			{
+				id: 'slow',
+				name: 'Slow',
+				estimatedBaseFee: data.estimatedBaseFee,
+				gasPrice: data.low.suggestedMaxFeePerGas,
+				maxPriorityFee: data.low.suggestedMaxPriorityFeePerGas,
+				time: `Likely in < ${Math.ceil(data.low.maxWaitTimeEstimate / 1000 / 60)} minutes`,
+			},
+			{
+				id: 'normal',
+				name: 'Normal',
+				estimatedBaseFee: data.estimatedBaseFee,
+				gasPrice: data.medium.suggestedMaxFeePerGas,
+				maxPriorityFee: data.medium.suggestedMaxPriorityFeePerGas,
+				time: `Likely in < ${Math.ceil(data.medium.maxWaitTimeEstimate / 1000 / 60)} minutes`,
+			},
+			{
+				id: 'fast',
+				name: 'Fast',
+				estimatedBaseFee: data.estimatedBaseFee,
+				gasPrice: data.high.suggestedMaxFeePerGas,
+				maxPriorityFee: data.high.suggestedMaxPriorityFeePerGas,
+				time: `Likely in < ${Math.ceil(data.high.maxWaitTimeEstimate / 1000 / 60)} minutes`,
+			},
+		];
 
-		const tokenPrice = getTokenPrice(NetworkStore.getNetwork().symbol);
+		const result = options.map(option => {
+			const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'gwei', 'wei');
+			const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
+			const feeInEth = Web3Service.getInstance().web3.utils.fromWei(feeInWei, 'ether');
+			const tokenPrice = getTokenPrice(NetworkStore.getNetwork().symbol);
+	
+			return {
+				...option,
+				ethAmount: feeInEth,
+				fiatAmount: feeInEth * tokenPrice.priceUSD,
+			};
+		});
 
-		return {
-			...option,
-			ethAmount: feeInEth,
-			fiatAmount: feeInEth * tokenPrice.priceUSD,
-		};
-	});
+		return result;
+	} else {
+		const gasStationInfo = ducks.ethGasStation.selectors.getEthGasStationInfo(state);
+		const options = [
+			{
+				id: 'slow',
+				name: 'Slow',
+				gasPrice: gasStationInfo.safeLow,
+				time: '5-30 min',
+			},
+			{
+				id: 'normal',
+				name: 'Normal',
+				gasPrice: gasStationInfo.average,
+				time: '2-5 min',
+			},
+			{
+				id: 'fast',
+				name: 'Fast',
+				gasPrice: gasStationInfo.fast,
+				time: '< 2 min',
+			},
+		];
+		
+		return options.map(option => {
+			const gasPriceInWei = EthUnits.unitToUnit(option.gasPrice, 'mwei', 'wei');
+			const feeInWei = String(Math.round(gasPriceInWei * gasLimit));
+			const feeInEth = Web3Service.getInstance().web3.utils.fromWei(feeInWei, 'ether');
+			const tokenPrice = getTokenPrice(NetworkStore.getNetwork().symbol);
+	
+			return {
+				...option,
+				ethAmount: feeInEth,
+				fiatAmount: feeInEth * tokenPrice.priceUSD,
+			};
+		});
+	}
 };
 
 export const operations = {
@@ -186,7 +235,7 @@ export const operations = {
 		await dispatch(
 			duck.actions.updateTransaction({
 				nonce,
-				transactionFeeOptions: getTransactionFeeOptions(getState()),
+				transactionFeeOptions: await getTransactionFeeOptions(getState()),
 				manualGasPrice: false,
 				manualGasLimit: false,
 			}),
@@ -241,12 +290,17 @@ export const operations = {
 		);
 
 		const transaction = duck.selectors.getTransaction(state);
+		const {eip1559} = modules.app.selectors.getFeatureFlags(state);
 
 		const transactionObject = {
 			gasPrice: EthUnits.unitToUnit(transaction.gasPrice, 'gwei', 'wei'),
 			gas: transaction.gasLimit,
 			nonce: transaction.nonce,
 		};
+
+		if (eip1559) {
+			transactionObject.maxFeePerGas = transactionObject.gasPrice;
+		}
 
 		// TODO: Use constants to define ETH
 		if (transaction.cryptoCurrency && transaction.cryptoCurrency.toUpperCase() === NetworkStore.getNetwork().symbol) {
