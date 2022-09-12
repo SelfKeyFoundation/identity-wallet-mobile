@@ -38,9 +38,9 @@ const Wrapper = styled.View`
 `;
 
 const Container = styled(LinearGradient)`
-  background: #2E3945;
+  background: #111111;
   padding: 15px 21px;
-  border-radius: 4px;
+  border-radius: 16px;
 `;
 
 const TokenAmount = styled.Text`
@@ -71,7 +71,7 @@ export function TokenBox(props: TokenBoxProps) {
   if (props.tokenCode === 'custom') {
     return (
       <Wrapper>
-        <Container colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+        <Container colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
           <Row marginBottom={10}>
             <Col autoWidth>
               <TokenIcon width={44} height={44}/>
@@ -94,7 +94,7 @@ export function TokenBox(props: TokenBoxProps) {
 
   return (
     <Wrapper>
-      <Container colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+      <Container colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
         <Row marginBottom={10}>
           <Col autoWidth>
             <TokenIcon width={44} height={44}/>

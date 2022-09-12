@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard } from 'react-native';
-import { TokenBoxCarouselContainer, MyTokensContainer, TxHistoryContainer, SelectBox } from '../../components';
+import {
+	TokenBoxCarouselContainer,
+	MyTokensContainer,
+	TxHistoryContainer,
+	SelectBox,
+} from '../../components';
 import { ScreenContainer, Grid, Row, Col, Button, SKIcon, Box, Typography } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 import { navigate, Routes } from 'core/navigation';
@@ -41,8 +46,8 @@ const TxHistoryRow = styled.View`
 `;
 
 function WalletHeader() {
-  const address = useSelector(modules.wallet.selectors.getAddress);
-  const dispatch = useDispatch();
+	const address = useSelector(modules.wallet.selectors.getAddress);
+	const dispatch = useDispatch();
 	const network = useSelector(modules.app.selectors.getNetwork);
 
 	console.log(NetworkMapping);
@@ -50,71 +55,67 @@ function WalletHeader() {
 	return (
 		<Box>
 			<Box justifyContent="center" alignItems="center" flexDirection="row">
-        <Box
-            autoWidth
-            col
-            backgroundColor="#313D49"
-            borderRadius={12}
-            paddingLeft={16}
-            paddingRight={16}
-            paddingTop={4}
-            paddingBottom={4}
-            onPress={() => {
-              Clipboard.setString(address);
-              dispatch(modules.app.actions.setSnackMessage('Address copied.'));
-            }}
-          >
-            <Typography fontSize={14}>
-              {
-                compactAddress(address)
-              }
-            </Typography>
-          </Box>
-					
-					<Box
-            autoWidth
-            col
-            backgroundColor="#313D49"
-            borderRadius={12}
-            paddingLeft={16}
-            paddingRight={16}
-            paddingTop={7}
-            paddingBottom={7}
-						marginLeft={5}
-						width={170}
-          >
-						<RNPickerSelect
-              value={network.id}
-              items={Object.keys(NetworkMapping).map(key => ({
-								label: NetworkMapping[key].name,
-								value: parseInt(key),
-								key: parseInt(key),
-								color: '#000'
-							}))}
-							fixAndroidTouchableBug
-							useNativeAndroidPickerStyle={false}
-							style={{
-								padding: 0,
-							}}
-							textInputProps={{
-								fontSize: 14,
-								color: '#fff',
-								padding: 0,
-							}}
-              onValueChange={(value) => {
-								dispatch(modules.app.operations.setNetwork(value))
-							}}
-            />
-            {/* <Typography fontSize={14}>
-              {
-								network.name
-							}
-            </Typography> */}
-          </Box>
-        
-				<Box col autoWidth marginLeft={5} onPress={() => {
-          navigate(Routes.APP_SCAN_QR)
-        }}>
+				<Box
+					autoWidth
+					col
+					backgroundColor="#161A1F"
+					borderRadius={12}
+					paddingLeft={16}
+					paddingRight={16}
+					paddingTop={4}
+					paddingBottom={4}
+					onPress={() => {
+						Clipboard.setString(address);
+						dispatch(modules.app.actions.setSnackMessage('Address copied.'));
+					}}
+				>
+					<Typography fontSize={14}>{compactAddress(address)}</Typography>
+				</Box>
+
+				<Box
+					autoWidth
+					col
+					backgroundColor="#161A1F"
+					borderRadius={12}
+					paddingLeft={16}
+					paddingRight={16}
+					paddingTop={7}
+					paddingBottom={7}
+					marginLeft={5}
+					width={170}
+				>
+					<RNPickerSelect
+						value={network.id}
+						items={Object.keys(NetworkMapping).map(key => ({
+							label: NetworkMapping[key].name,
+							value: parseInt(key),
+							key: parseInt(key),
+							color: '#000',
+						}))}
+						fixAndroidTouchableBug
+						useNativeAndroidPickerStyle={false}
+						style={{
+							padding: 0,
+						}}
+						textInputProps={{
+							fontSize: 14,
+							color: '#fff',
+							padding: 0,
+						}}
+						onValueChange={value => {
+							dispatch(modules.app.operations.setNetwork(value));
+						}}
+					/>
+				</Box>
+
+				<Box
+					col
+					autoWidth
+					marginLeft={5}
+					onPress={() => {
+						navigate(Routes.APP_SCAN_QR);
+					}}
+				>
 					<Image source={QRCodeIcon} style={{ width: 24, height: 24 }} />
 				</Box>
 			</Box>
@@ -132,9 +133,9 @@ export function Dashboard(props) {
 
 		props.onRefresh();
 	};
-	
+
 	const featureFlags = useSelector(modules.app.selectors.getFeatureFlags);
-	
+
 	return (
 		<Container>
 			<SafeAreaView>
@@ -148,9 +149,11 @@ export function Dashboard(props) {
 					<CarouselRow>
 						<TokenBoxCarouselContainer />
 					</CarouselRow>
-					{ featureFlags.moonpay ? <Box padding={20} marginBottom={30}>
-						<Button onPress={props.onOpenMoonpay}>Buy KEY tokens</Button>
-					</Box> : null }
+					{featureFlags.moonpay ? (
+						<Box padding={20} marginBottom={30}>
+							<Button onPress={props.onOpenMoonpay}>Buy KEY tokens</Button>
+						</Box>
+					) : null}
 					<MyTokensRow>
 						<MyTokensContainer />
 					</MyTokensRow>

@@ -19,7 +19,7 @@ const InnerContainer = styled.View`
   background: ${({ theme }) => theme.colors.base };
   border: 1px solid ${({ theme }) => theme.colors.base };
   box-shadow: 2px 1px 2px rgba(0,0,0,0.3);
-  border-radius: 4px;
+  border-radius: 16px;
   flex: 0 1 auto;
 `;
 
@@ -28,6 +28,7 @@ const Header = styled.View`
   border: 0 solid #374758;
   border-bottom-width: 1px;
   flex-direction: row;
+  border-radius: 16px;
   padding: 20px 15px;
 `;
 

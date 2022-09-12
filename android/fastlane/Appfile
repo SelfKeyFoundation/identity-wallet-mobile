@@ -1,0 +1,2 @@
+json_key_file("../sk-googke-play-cert.json")
+package_name("com.identitywalletmobile")

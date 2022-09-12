@@ -1,0 +1,27 @@
+default_platform(:android)
+
+platform :android do
+
+  desc "Increment android version"
+  lane :increment_version do
+    increment_version_code
+  end
+
+  desc "Submit a new Beta Build to Google Play"
+  lane :internal do
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
+
+    supply(
+      track: 'internal',
+      apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH].to_s,
+      skip_upload_metadata: false,
+      skip_upload_images: false,
+      skip_upload_changelogs: true,
+    )
+  end
+end
+
+

@@ -8,7 +8,7 @@ import {configureStore} from '@reduxjs/toolkit';
 
 import { SchedulerService } from 'core/services/scheduler/scheduler-service';
 import {persistStore, persistReducer} from 'redux-persist';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
   key: 'root',

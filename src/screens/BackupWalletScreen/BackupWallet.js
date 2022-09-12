@@ -51,7 +51,7 @@ const PageDescription = styled(Paragraph)`
 const MnemonicContainer = styled.View`
   margin-top: 10px;
   border: 2px dashed ${({ theme }) => theme.colors.grey};
-  border-radius: 4px;
+  border-radius: 16px;
   padding: 30px;
   display: flex;
   justify-content: space-around;

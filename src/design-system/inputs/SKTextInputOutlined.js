@@ -146,7 +146,7 @@ class TextInputOutlined extends React.Component {
           style={[
             styles.outline,
             {
-              borderRadius: theme.roundness,
+              borderRadius: 50,
               borderWidth: hasActiveOutline ? 1 : 1,
               borderColor: hasActiveOutline ? activeColor : outlineColor,
               backgroundColor: (error && !hasActiveOutline) ? 'rgba(255,106,106,0.02)' : '#1B2229',

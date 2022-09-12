@@ -63,7 +63,7 @@ const OptionTitle = styled(DefinitionTitle)`
 `
 
 const MenuItemRow = styled(Row)`
-  background: #262F39;
+  background: #1A2836;
 `
 
 const MenuItemWrapper = styled(Col)`

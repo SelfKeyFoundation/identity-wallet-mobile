@@ -2,17 +2,17 @@ import { colors } from './colors';
 
 export const Theme = {
   colors: {
-    primary: colors.darkTurquoise,
+    primary: '#00E0FF',// colors.darkTurquoise,
     primaryDisabled: '#146C7A',
     primaryTint: colors.brightTurquoise,
-    typography: colors.spindle,
+    typography: '#485668',// colors.spindle,
     white: colors.white,
     grey: colors.slateGrey,
     disabled: '#697C95',
     baseLight: colors.cello,
-    baseDark: colors.blueCharcoal,
+    baseDark: '#111111', // colors.blueCharcoal,
     base: colors.midnight,
-    link: colors.darkTurquoise,
+    link: '#2DA1F8', //colors.darkTurquoise,
     success: colors.mountainMeadow,
     warning: colors.flamenco,
     error: colors.bittersweet,

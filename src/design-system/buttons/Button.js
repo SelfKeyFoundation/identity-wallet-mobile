@@ -21,6 +21,7 @@ export const Button = (props: ButtonProps) => {
   let mode = 'contained';
   let buttonStyle = {
     height: 45,
+    borderRadius: 50,
   };
 
   let contentStyle = {
@@ -63,7 +64,8 @@ export const Button = (props: ButtonProps) => {
   } else if (props.type === 'link') {
     mode = 'outlined';
     buttonStyle.borderWidth = 0;
-    textStyle.color = theme.colors.primary;
+    textStyle.color = theme.colors.link;
+    textStyle.fontWeight = 'normal';
 
     if (disabled) {
       buttonStyle.borderColor = '#586A77';

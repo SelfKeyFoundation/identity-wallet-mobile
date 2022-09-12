@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import SelfkeyAgent from '@selfkey/agent';
-import Entities from '@selfkey/agent/lib/entities';
+// import SelfkeyAgent from '@selfkey/agent';
+// import Entities from '@selfkey/agent/lib/entities';
+
+const SelfkeyAgent = {};
 
 import { createConnection, Connection } from 'typeorm';
 import modules from 'core/modules';
@@ -84,20 +86,20 @@ export const skAgentSelectors = {
 
 export const skAgentOperations = {
 	init: () => async (dispatch, getState) => {
-		const dbConnection = createConnection({
-			type: 'react-native',
-			database: 'mobile-sk-agent',
-			location: 'default',
-			synchronize: true,
-			logging: ['error', 'info', 'warn'],
-			entities: Entities
-		});
+		// const dbConnection = createConnection({
+		// 	type: 'react-native',
+		// 	database: 'mobile-sk-agent',
+		// 	location: 'default',
+		// 	synchronize: true,
+		// 	logging: ['error', 'info', 'warn'],
+		// 	entities: Entities
+		// });
 		
-		agent = new SelfkeyAgent({
-			dbConnection,
-			kmsKey,
-			didProvider: 'did:ethr:ropsten'
-		});
+		// agent = new SelfkeyAgent({
+		// 	dbConnection,
+		// 	kmsKey,
+		// 	didProvider: 'did:ethr:ropsten'
+		// });
 	},
   createDID: () => async (dispatch, getState) => {
 		const did = await agent.ensureAgentDID();

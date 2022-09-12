@@ -43,7 +43,7 @@ const Container = styled.View`
 `;
 
 const TokenRowWrapper = styled.View`
-  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
+
 `;
 
 const TokenRow = styled(LinearGradient)`
@@ -51,7 +51,10 @@ const TokenRow = styled(LinearGradient)`
   background: #2E3945;
   padding: 15px;
   margin-top: 15px;
-  border-radius: 4px;
+  box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
+  border-radius: 16px;
+  border-color: #273340;
+  border-width: 1px;
 `;
 
 const TokenOptionsRow = styled.View`
@@ -243,7 +246,7 @@ export function ManageTokens(props: ManageTokensProps) {
             renderItem={ ({ item: token }, rowMap) => (
               <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
                 <TokenRowWrapper>
-                  <TokenRow key={token.id} colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+                  <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
                     <Col autoWidth noPadding>
                       <TokenIcon name={token.name || token.symbol} color={token.color} />
                     </Col>

@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../mobile-ui-provider';
 
 const Container = styled.View`
-  background-color: #262F39;
+  background-color: #161A1F;
   flex: 1;
   flex-direction: row;
   width: 100%;
