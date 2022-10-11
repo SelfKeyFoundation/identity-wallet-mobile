@@ -36,7 +36,7 @@ const Paragraph = styled.Text`
 export function DocumentsEmptyAlert(props) {
 	return (
 		<Container>
-			<InnerContainer colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+			<InnerContainer colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
 				<SKIcon name={props.icon || 'icon-info-large'} color="#09A8BA" size={66} />
 				<Title>{props.title}</Title>
 				<Paragraph>{props.children}</Paragraph>

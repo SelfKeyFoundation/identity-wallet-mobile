@@ -25,9 +25,6 @@ export function SetupCompleteScreen() {
     <SkBackground>
       <Container>
         <Row>
-          <SkLogo />
-        </Row>
-        <Row>
           <Title>SETUP COMPLETE</Title>
         </Row>
       </Container>

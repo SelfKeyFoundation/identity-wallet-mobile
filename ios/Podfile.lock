@@ -355,8 +355,6 @@ PODS:
     - React
   - RNGestureHandler (1.3.0):
     - React
-  - RNInAppBrowser (3.7.0):
-    - React-Core
   - RNKeychain (6.0.0):
     - React
   - RNPermissions (2.2.2):
@@ -439,7 +437,6 @@ DEPENDENCIES:
   - RNFileViewer (from `../node_modules/react-native-file-viewer`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -553,8 +550,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNInAppBrowser:
-    :path: "../node_modules/react-native-inappbrowser-reborn"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
   RNPermissions:
@@ -627,7 +622,6 @@ SPEC CHECKSUMS:
   RNFileViewer: db62d60dd19007c54b2c959b5e675a46d59f8a43
   RNFS: d229ee245fa9685417e6d9367031d670d723547e
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
-  RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
   RNKeychain: bf2d7e9a0ae7a073c07770dd2aa6d11c67581733
   RNPermissions: 5df468064df661a4c8c017e2791ce90d7695eea5
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43

@@ -255,6 +255,7 @@ class TextInputOutlined extends React.Component {
             ...rest,
             ref: innerRef,
             onChangeText,
+            autoComplete: 'off',
             placeholder: label
               ? parentState.placeholder
               : this.props.placeholder,

@@ -28,6 +28,7 @@
 		9717AC7C242CFF930006426F /* SelfKeyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717AC7B242CFF930006426F /* SelfKeyWallet.m */; };
 		97296D56262F60B200B3AF49 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		97296DAD262F670A00B3AF49 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97296DAC262F670A00B3AF49 /* JavaScriptCore.framework */; };
+		97C9C9CA28EE228C00D9C337 /* logo full.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C9C9C928EE228C00D9C337 /* logo full.png */; };
 		9A9E7525A7E54D6293DEBBB9 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7883C9B85EE4DA697D12CBE /* Lato-Thin.ttf */; };
 		D53CF3351976B3BA87FE4CE3 /* libPods-IdentityWalletMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160C8F479EF39C100313A1BF /* libPods-IdentityWalletMobile.a */; };
 		D97CB1602B4621D5DB23C4F7 /* libPods-IdentityWalletMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1FB12B2E75429688C70DF8 /* libPods-IdentityWalletMobile-tvOS.a */; };
@@ -100,6 +101,7 @@
 		9717AC77242CFF870006426F /* SelfKeyWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfKeyWallet.swift; sourceTree = "<group>"; };
 		9717AC7B242CFF930006426F /* SelfKeyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfKeyWallet.m; sourceTree = "<group>"; };
 		97296DAC262F670A00B3AF49 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/iOSSupport/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		97C9C9C928EE228C00D9C337 /* logo full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo full.png"; path = "../../../../Downloads/logo full.png"; sourceTree = "<group>"; };
 		9F8E022A69BA8AA53EFF4498 /* Pods-IdentityWalletMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentityWalletMobile.release.xcconfig"; path = "Target Support Files/Pods-IdentityWalletMobile/Pods-IdentityWalletMobile.release.xcconfig"; sourceTree = "<group>"; };
 		B717E7BBC506CD48AB975FF5 /* libPods-IdentityWalletMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdentityWalletMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CBA4BBB2AA4A359C646A61 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				97C9C9C928EE228C00D9C337 /* logo full.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -438,6 +441,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				494DFD93DE3A440BA115C5AC /* Lato-Black.ttf in Resources */,
 				56D1A6EF9BE8457C8D2A28A1 /* Lato-BlackItalic.ttf in Resources */,
+				97C9C9CA28EE228C00D9C337 /* logo full.png in Resources */,
 				E7F0902F6AC24B239E984BF1 /* Lato-Bold.ttf in Resources */,
 				623002EDFFDF4188B3800E26 /* Lato-BoldItalic.ttf in Resources */,
 				8527F5A0AD1648D3993989E8 /* Lato-Light.ttf in Resources */,
@@ -892,7 +896,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 122;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 6C99KF3727;
 				ENABLE_BITCODE = NO;
@@ -952,9 +956,9 @@
 					"\"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS\"/**",
 				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.5.1;
+				MARKETING_VERSION = 0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-lc++",
@@ -976,9 +980,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 122;
 				DEVELOPMENT_TEAM = 6C99KF3727;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1037,9 +1041,9 @@
 					"\"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS\"/**",
 				);
 				INFOPLIST_FILE = IdentityWalletMobile/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.5.1;
+				MARKETING_VERSION = 0.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1047,7 +1051,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfkey.mobilewallet;
 				PRODUCT_NAME = IdentityWalletMobile;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "SK Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityWalletMobile-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

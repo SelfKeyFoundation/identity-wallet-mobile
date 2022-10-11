@@ -17,8 +17,8 @@ platform :android do
     supply(
       track: 'internal',
       apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH].to_s,
-      skip_upload_metadata: false,
-      skip_upload_images: false,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
       skip_upload_changelogs: true,
     )
   end

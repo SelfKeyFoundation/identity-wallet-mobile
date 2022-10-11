@@ -31,8 +31,8 @@ export function LoadingScreen() {
   return (
     <SkBackground>
       <Container>
-        <SkLogo />
-        <Title>IDENTITY WALLET</Title>
+        {/* <SkLogo />
+        <Title>IDENTITY WALLET</Title> */}
       </Container>
     </SkBackground>
   );

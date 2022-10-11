@@ -44,6 +44,8 @@ const renderInput = (inputProps: TextInputProps, theme: any) => (props: NativeTe
     <NativeTextInput
       {...props}
       autoCorrect={false}
+      autoCapitalize="none"
+      autoComplete="off"
       style={style}
     />
   );

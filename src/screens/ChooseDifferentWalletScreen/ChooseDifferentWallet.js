@@ -65,7 +65,7 @@ const PageDescription = styled(Paragraph)`
 
 const MenuOption = styled.View`
   border: 2px solid #1CA9BA;
-  border-radius: 4px;
+  border-radius: 40px;
   flex: 1;
   padding: 14px 25px;
   flex-direction: row;

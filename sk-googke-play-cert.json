@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pc-api-8354566160489406519-184",
+  "private_key_id": "ea8ac7114a2189e0af1cc51430d6996725b7758b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC+fAduGLejUMe4\nwpBlwd0KGRggnYg9mkB0OXjE00EEH1m4tWLw7XGS6mJzrVw9slmk7zyYhFkVK566\nibxzdJwEaxwwdD+P85EaoCiJpt0FxlFY55Ijfna1vEf5Kyb7qssRjGJQnVfgFkeP\na31aftvSQSMDRncu8hshgeZgtgj3NiArSbU7f+ZvNaNvFodxz5GLp1vYPig/0N16\na4n6eELLPT2KNy4ybrejoxBrySBfRObQCkijfc9I3fE3R1rT+zYDk9MqgsqbF0rj\nDFj5y4UqaLiZk2C12yZAZk2DApAa62Xo4EWFdSBjqx6Z1VefV1tshpy5Ng37eawl\nWLAcNH6zAgMBAAECggEASj/6fXXxDx4L2/8rXh7lVGxXtU7yrmCUQzmr070tGLhH\ntvItcRB9NvFaExE+ZWZB/0Kp8iGUv+XS54+M/8wyjJ5bzJ9jr28X3rMTWiTK/tdB\nGlCZ7G/9QfX0cDHb7jmzElIQeK/8cwL8PfF+WWodsaVmSn6LMqd43+TMsmICuKmZ\nWGleGMwBGFh0YVN0240+6gx2aCr2+Zm35N8gbTeTA+ubSOOUJejXo6RJfs+B/GXW\n3225nOkviSKTROykCtLDtoPtescRqkj3LJNvwqehJS0+JnvMo71YP8oS5Tl0Iod9\nbffyotS1RwlQk6DN4ul9dL+CN2S/83Hvl5CNFrMGQQKBgQD1vjVn0WTCyfm9xozB\nBYfQkMBZlUtLEAKyENJDgxfM1P3VQzq6T0b8lGKNK/s06Gsgmy3ijWHcOIx4da+I\nvu3QjpJCY0Aur2o1kalRubCrUgjPnwBoZEaXvbASxUVf/iGIJKrTZm9zKiTvx2Ty\ntOIgnsal5VXiMcWJySg6lp89wwKBgQDGb2CEoRnbjMRRTsAbnNJXbKsodK4MI9+N\nIfo6DoP+UIgrNBkApjyeiNlnYSUJG5R0j8RHCNVLxIRqRUqwMjSsfn1d4kqugZsm\nnnabM5rIZn2UUq4yObXJcY1qoRM3P2fCfoxNjmdXckIF4uFB0x1ruXo6OISvQ2bH\n2qy28oL8UQKBgCR5IbYR9xGOJroLARMY/gpvoYzqQq2WZ8AEDSEmEN8+8Zm4i7vh\nTljosSPg1j0JDfVd8taAQ3kLD5ZFaVMze1qL/ptJ3dnQAUSIJQhTNiyHVXVzVP0p\nfOzCo6J1kxFnR5TMVGph9sKyC59nCc2YGUPcLQGsYy3aU0ZbC9R+TI4/AoGBALt+\nEyFeItN6XyhAE25Dr88hA1vXW3hnENwGRatDed36c572u8UMTWyx+1EdzeOcJpo4\nGQnRQ9AyX7cVv6tZ1MFDRutFXLEkDtfflEuy58YAaRmTQbp9ItGytB8TENf71etE\nrQa+zdAnSlDLfXE3q63Uc7O9IUmEkwG1EcpOvArxAoGBALGM+wDUx4HioA/iXh0E\nmwrWGJdnaWVH0joorwFOtgmkp3XWVyxEAqJWeIubViba116GCHagS6BGp0MisFZu\nLhM1e8IZ2akN4cTInoH6y8rct1cZ/qz+CZjeLshpOVTKQzK6BbmogDPDLWq4YENh\nLLix7RkWB2peyUf8zAbSSPza\n-----END PRIVATE KEY-----\n",
+  "client_email": "mobile-wallet@pc-api-8354566160489406519-184.iam.gserviceaccount.com",
+  "client_id": "112903295834837408106",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mobile-wallet%40pc-api-8354566160489406519-184.iam.gserviceaccount.com"
+}

@@ -1,6 +1,6 @@
 import './shim.js';
 import { setEnv } from 'configs';
-import appVersion from './app-version.json';
+import appVersion from './app-version.js';
 import * as Keychain from './src/rn-identity-vault/keychain';
 import { WalletTracker } from './src/WalletTracker';
 

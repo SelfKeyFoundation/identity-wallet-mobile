@@ -74,7 +74,7 @@ export function LearnHowToStake(props) {
       <Grid style={{ marginLeft: 40, marginRight: 40 }}>
         <Row justifyContent="center" marginTop={56} marginBottom={58}>
           <Col autoWidth>
-            <LogoContainer colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}>
+            <LogoContainer colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}>
               <Image
                 source={LockLogoImg}
                 style={{ width: 55, height: 87 }}

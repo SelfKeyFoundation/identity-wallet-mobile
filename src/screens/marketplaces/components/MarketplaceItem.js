@@ -37,7 +37,7 @@ export function MarketplaceItem(props: MarketplaceItemProps) {
     <TouchableWithoutFeedback onPress={props.onPress}>  
       <Box style={props.style}>
         <LinearGradient
-          colors={['#2E3945', '#222B34']}
+          colors={['#161A1F', '#1A2836']}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
           style={{

@@ -8,6 +8,7 @@ import {
 import PaperButton from './PaperButton'; 
 import { View, ActivityIndicator } from 'react-native';
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface ButtonProps extends PaperButtonProps {
   type: 'full-primary' | 'shell-primary' | 'shell-secondary',
@@ -18,7 +19,7 @@ export const Button = (props: ButtonProps) => {
   const paperTheme = useContext(PaperThemeContext);
   const theme = useContext(ThemeContext);
 
-  let mode = 'contained';
+  let mode = 'outlined';
   let buttonStyle = {
     height: 45,
     borderRadius: 50,
@@ -73,33 +74,50 @@ export const Button = (props: ButtonProps) => {
     }
   }
 
+
+  const buttonContent = (
+    <PaperButton
+        {...props}
+        mode={mode}
+        theme={paperTheme}
+        style={{
+          ...buttonStyle,
+          ...(props.buttonStyle || {})
+        }}
+        contentStyle={{
+          ...contentStyle,
+          ...(props.contentStyle || {})
+        }}
+        loading={props.isLoading}
+      >
+        <Text
+          style={{
+            ...textStyle,
+            ...(props.textStyle || {})
+          }}
+        >
+          { props.children }
+        </Text>
+      </PaperButton>
+  )
   // buttonStyle.flex = 1;
   // buttonStyle.justifyContent = 'center';;
   // buttonStyle.alignItems = 'center';
 
-  return (
-    <PaperButton
-      {...props}
-      mode={mode}
-      theme={paperTheme}
-      style={{
-        ...buttonStyle,
-        ...(props.buttonStyle || {})
-      }}
-      contentStyle={{
-        ...contentStyle,
-        ...(props.contentStyle || {})
-      }}
-      loading={props.isLoading}
-    >
-      <Text
+  if (!props.type || props.type === 'full-primary') {
+    return (
+      <LinearGradient
+        colors={['#00E0FF', '#2DA1F8']}
         style={{
-          ...textStyle,
-          ...(props.textStyle || {})
+          borderRadius: 20
         }}
+        start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}
       >
-        { props.children }
-      </Text>
-    </PaperButton>
-  );
+        {buttonContent}
+      </LinearGradient>
+    );
+  }
+
+
+  return buttonContent
 };

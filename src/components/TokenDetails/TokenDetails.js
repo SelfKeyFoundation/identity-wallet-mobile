@@ -118,7 +118,7 @@ export function TokenDetails(props: TokenDetailsProps) {
 
   return (
     <Container>
-      <LinearGradient colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+      <LinearGradient colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
         <Header>
           <Row marginBottom={10}>
             <Col autoWidth>

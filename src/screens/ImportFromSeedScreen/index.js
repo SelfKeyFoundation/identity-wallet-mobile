@@ -26,7 +26,7 @@ function ImportFromSeedContainer(props) {
   });
 
   const handleMnemonicChange = (value) => {
-    dispatch(operations.setMnemonicPhrase(value.toLowerCase()));
+    dispatch(operations.setMnemonicPhrase(value));
   };
 
   const handleSubmit = () => {

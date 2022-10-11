@@ -162,6 +162,7 @@ export function ImportFromSeed(props: CreatePasswordProps) {
                 value={props.mnemonicPhrase}
                 placeholder="Enter your seed phrase"
                 label="Seed phrase"
+                autoComplete="off"
                 onChangeText={props.onMnemonicChange}
                 onSubmitEditing={handleTextSubmit}
               />

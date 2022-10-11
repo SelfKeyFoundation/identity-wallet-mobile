@@ -7,6 +7,7 @@ import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
 import { SKIcon } from '../icons';
 import DeviceInfo from 'react-native-device-info';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Container = styled.View`
   padding: ${() => {
@@ -16,7 +17,6 @@ const Container = styled.View`
 `;
 
 const InnerContainer = styled.View`
-  background: ${({ theme }) => theme.colors.base };
   border: 1px solid ${({ theme }) => theme.colors.base };
   box-shadow: 2px 1px 2px rgba(0,0,0,0.3);
   border-radius: 16px;
@@ -24,9 +24,8 @@ const InnerContainer = styled.View`
 `;
 
 const Header = styled.View`
-  background: #2A3540;
   border: 0 solid #374758;
-  border-bottom-width: 1px;
+  border-bottom-width: 0px;
   flex-direction: row;
   border-radius: 16px;
   padding: 20px 15px;
@@ -82,33 +81,51 @@ export function Modal(props) {
 
   const content = (
     <Container>
-      <InnerContainer>
-      <Header>
-        <Title>{props.title}</Title>
-        <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose}/>
-      </Header>
-      <Body contentContainerStyle={styles.scrollContainer}>
-        <BodyContent noBodyPadding={props.noBodyPadding}>
-          {props.children}
-        </BodyContent>
-      </Body>
-      {
-        props.footer !== undefined ? props.footer : (<Footer>
-          <ButtonWrapper>
-            <Button type="shell-primary" onPress={props.onCancel} {...cancelProps}>
-              {props.cancelText}
-            </Button>
-          </ButtonWrapper>
-          { props.okText && (
-            <ButtonWrapper>
-              <Button onPress={props.onOk} {...okProps}>
-                {props.okText}
-              </Button>
-            </ButtonWrapper>
-          )}
-        </Footer>)
-      }
-      </InnerContainer>
+      <LinearGradient
+        colors={['#161A1F', '#1A2836']}
+        style={{
+          borderRadius: 20
+        }}
+        start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
+      >
+        <InnerContainer>
+          <LinearGradient
+            colors={['#161A1F', '#1A2836']}
+            style={{
+              // borderRadius: 20
+            }}
+            start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
+          >
+            <Header>
+              
+              <Title>{props.title}</Title>
+              <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose}/>
+              
+            </Header>
+          </LinearGradient>
+          <Body contentContainerStyle={styles.scrollContainer}>
+            <BodyContent noBodyPadding={props.noBodyPadding}>
+              {props.children}
+            </BodyContent>
+          </Body>
+          {
+            props.footer !== undefined ? props.footer : (<Footer>
+              <ButtonWrapper>
+                <Button type="shell-primary" onPress={props.onCancel} {...cancelProps}>
+                  {props.cancelText}
+                </Button>
+              </ButtonWrapper>
+              { props.okText && (
+                <ButtonWrapper>
+                  <Button onPress={props.onOk} {...okProps}>
+                    {props.okText}
+                  </Button>
+                </ButtonWrapper>
+              )}
+            </Footer>)
+          }
+        </InnerContainer>
+      </LinearGradient>
     </Container>
   );
 

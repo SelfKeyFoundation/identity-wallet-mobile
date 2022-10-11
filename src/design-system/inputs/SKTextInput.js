@@ -295,6 +295,8 @@ class TextInput extends React.Component {
         innerRef={ref => {
           this._root = ref;
         }}
+
+        autoComplete="off"
         onFocus={this._handleFocus}
         onBlur={this._handleBlur}
         onChangeText={this._handleChangeText}

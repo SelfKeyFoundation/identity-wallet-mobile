@@ -7,7 +7,7 @@ import {
   Col,
   DefinitionTitle,
 } from 'design-system';
-import APP_VERSION from '../../../app-version.json';
+import APP_VERSION from '../../../app-version.js';
 import { getCurrentEnv } from 'configs';
 import { navigate, Routes } from 'core/navigation';
 
@@ -63,13 +63,13 @@ const OptionTitle = styled(DefinitionTitle)`
 `
 
 const MenuItemRow = styled(Row)`
-  background: #1A2836;
+  background: #262F39;
 `
 
 const MenuItemWrapper = styled(Col)`
   border-width: 0;
   border-bottom-width: ${props => props.hasBorder ? '1px' : '0'};
-  border-color: #475768;
+  border-color: #364453;
   border-style: solid;
   margin-left: 20px;
   margin-bottom: ${props => props.hasBorder ? '1px' : '0'};
@@ -147,13 +147,13 @@ export function SettingsMenu(props) {
             </MenuItem>
           ) : null
         } */}
-        <MenuItem onPress={props.onBackup}>
+        <MenuItem hasBorder onPress={props.onBackup}>
           Backup
         </MenuItem>
-        <MenuItem onPress={props.onWalletConnect}>
+        <MenuItem hasBorder onPress={props.onWalletConnect}>
           Wallet Connect
         </MenuItem>
-        <MenuItem onPress={() => {navigate(Routes.SK_AGENT)}}>
+        <MenuItem  onPress={() => {navigate(Routes.SK_AGENT)}}>
           Selfkey Agent
         </MenuItem>
         <Row marginTop={20}>

@@ -56,7 +56,7 @@ export function TxHistory(props) {
 
   return (
     <Container>
-      {/* <LinearGradient colors={['#2E3945', '#222B34']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}> */}
+      <LinearGradient colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
         <TxGrid>
           <Row>
             <Col autoWidth>
@@ -92,7 +92,7 @@ export function TxHistory(props) {
             </Col>
           </Row>}
         </TxGrid> 
-      {/* </LinearGradient> */}
+      </LinearGradient>
     </Container>
   )
 }
