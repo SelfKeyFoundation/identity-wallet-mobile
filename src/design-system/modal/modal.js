@@ -16,10 +16,10 @@ const Container = styled.View`
   height: 100%;
 `;
 
-const InnerContainer = styled.View`
+const InnerContainer = styled(LinearGradient)`
   border: 1px solid ${({ theme }) => theme.colors.base };
   box-shadow: 2px 1px 2px rgba(0,0,0,0.3);
-  border-radius: 16px;
+  border-radius: 20px;
   flex: 0 1 auto;
 `;
 
@@ -81,14 +81,13 @@ export function Modal(props) {
 
   const content = (
     <Container>
-      <LinearGradient
-        colors={['#161A1F', '#1A2836']}
-        style={{
-          borderRadius: 20
-        }}
-        start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
-      >
-        <InnerContainer>
+        <InnerContainer
+            colors={['#161A1F', '#1A2836']}
+              style={{
+                borderRadius: 20,
+              }}
+              start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
+              >
           <LinearGradient
             colors={['#161A1F', '#1A2836']}
             style={{
@@ -104,9 +103,13 @@ export function Modal(props) {
             </Header>
           </LinearGradient>
           <Body contentContainerStyle={styles.scrollContainer}>
+            {/* <LinearGradient
+              
+            > */}
             <BodyContent noBodyPadding={props.noBodyPadding}>
               {props.children}
             </BodyContent>
+          {/* </LinearGradient> */}
           </Body>
           {
             props.footer !== undefined ? props.footer : (<Footer>
@@ -125,7 +128,6 @@ export function Modal(props) {
             </Footer>)
           }
         </InnerContainer>
-      </LinearGradient>
     </Container>
   );
 
