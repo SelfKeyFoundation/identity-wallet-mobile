@@ -11,6 +11,8 @@ import styled from 'styled-components/native';
 import EthUtils from 'blockchain/util/eth-utils';
 import { Linking, ActivityIndicator, Platform } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
+import { System } from '../../core/system';
+
 import RNFS from 'react-native-fs';
 import uuid from 'uuid';
 
@@ -31,7 +33,7 @@ import {
   Alert,
   IconAddImage
 } from 'design-system';
-import ImagePicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import fs from 'react-native-fs';
 
 // More info on all the options is below in the API Reference... just some common use cases shown here
@@ -174,8 +176,14 @@ export function EditPictureModal(props) {
   }
 
   const handleUpload = () => {
-    ImagePicker.showImagePicker(options, async (response) => {
+    launchImageLibrary(options, async (response) => {
       const {uri, fileName} = response;
+
+      
+      const fs = System.getFileSystem();
+      const fileData = await fs.readFile(response.uri, 'base64')
+
+      console.log(fileData);
 
       if (!uri) {
         return;
@@ -197,9 +205,9 @@ export function EditPictureModal(props) {
       setTimeout(async () => {
         setImageToSave({
           filePath: `file://${filePath}`,
-          fileData: response.data
+          fileData,
         });
-        setImageUri(`data:${response.fileType};base64,${response.data}`);
+        setImageUri(`data:${response.type};base64,${fileData}`);
         setLoading(false);
       }, 100)
     });
