@@ -44,11 +44,11 @@ const initialState = {
 	paymentInProgress: false,
 	errorDetails: null,
 	categories: [
-		{
-			id: 'keyfi',
-			title: 'KeyFi.com Credentials',
-			description: 'Verify your Credentials to access and earn using KeyFi.com. A First of its kind DeFi aggregator platform backed by SelfKey Credentials that allows you to liquidity mine across top DeFi platforms and earn rewards.',
-		},
+		// {
+		// 	id: 'keyfi',
+		// 	title: 'KeyFi.com Credentials',
+		// 	description: 'Verify your Credentials to access and earn using KeyFi.com. A First of its kind DeFi aggregator platform backed by SelfKey Credentials that allows you to liquidity mine across top DeFi platforms and earn rewards.',
+		// },
 		// {
 		// 	id: 'exchanges',
 		// 	title: 'Crypto Exchanges',

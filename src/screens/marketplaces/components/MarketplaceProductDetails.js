@@ -172,7 +172,7 @@ export function MarketplaceProductDetails(props: MarketplaceProductDetailsProps)
 	const handleSignup = () => {
 		setLoading(true);
 		setTimeout(() => {
-			props.onSignUp().then(() => {
+			Promise.resolve(props.onSignUp()).then(() => {
 				setLoading(false);
 			})	
 		}, 200);		
