@@ -256,5 +256,8 @@
     "vm": "vm-browserify",
     "tls": false,
     "net": "react-native-tcp"
+  },
+  "resolutions": {
+    "react-native-svg": "9.6.4"
   }
 }
