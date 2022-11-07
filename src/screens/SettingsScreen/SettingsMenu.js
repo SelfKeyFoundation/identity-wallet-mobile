@@ -147,15 +147,15 @@ export function SettingsMenu(props) {
             </MenuItem>
           ) : null
         } */}
-        <MenuItem hasBorder onPress={props.onBackup}>
+        {/* <MenuItem hasBorder onPress={props.onBackup}>
           Backup
-        </MenuItem>
-        <MenuItem hasBorder onPress={props.onWalletConnect}>
+        </MenuItem> */}
+        {/* <MenuItem hasBorder onPress={props.onWalletConnect}>
           Wallet Connect
-        </MenuItem>
-        <MenuItem  onPress={() => {navigate(Routes.SK_AGENT)}}>
+        </MenuItem> */}
+        {/* <MenuItem  onPress={() => {navigate(Routes.SK_AGENT)}}>
           Selfkey Agent
-        </MenuItem>
+        </MenuItem> */}
         <Row marginTop={20}>
           <Col paddingLeft={20}>
             <SectionTitle>Choose Wallet</SectionTitle>

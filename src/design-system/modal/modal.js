@@ -137,7 +137,7 @@ export function Modal(props) {
         visible={props.visible}
         onDismiss={props.onClose}
         contentContainerStyle={{
-          backgroundColor: 'rgba(105,124,149,0.9)'
+          backgroundColor: 'rgba(0,0,0,0.8)'
         }}
       >
         {

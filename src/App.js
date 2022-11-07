@@ -62,7 +62,7 @@ export function App(props: AppProps) {
 
   return (
     <React.Fragment>
-        <StatusBar barStyle="light-content" />
+      {/* <StatusBar /> */}
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />

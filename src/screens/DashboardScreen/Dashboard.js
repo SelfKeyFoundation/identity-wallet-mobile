@@ -88,10 +88,11 @@ function WalletHeader() {
 						value={network.id}
 						items={Object.keys(NetworkMapping).map(key => ({
 							label: NetworkMapping[key].name,
+							hidden: NetworkMapping[key].hidden,
 							value: parseInt(key),
 							key: parseInt(key),
 							color: '#000',
-						}))}
+						})).filter(v => !v.hidden)}
 						fixAndroidTouchableBug
 						useNativeAndroidPickerStyle={false}
 						style={{

@@ -8,7 +8,7 @@ const ButtonLinkWrapper = styled.TouchableWithoutFeedback`
 `;
 
 const ButtonLinkText = styled.Text`
-  color: ${({ theme }) => theme.colors.primary };
+  color: ${({ theme }) => '#2DA1F8' };
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};
   text-transform: uppercase;
@@ -20,7 +20,7 @@ export const ButtonLink = (props) => {
   if (props.iconName) {
     iconItem = (
       <Col autoWidth>
-        <SKIcon name={props.iconName} size={props.iconSize || 16} color="#00C0D9"/>
+        <SKIcon name={props.iconName} size={props.iconSize || 16} color="#2DA1F8"/>
       </Col>
     );
   }

@@ -30,7 +30,6 @@ const TxGrid = styled(Grid)`
 
 const Container = styled.View`
   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
-  background: #262F39;
   padding: 18px 24px;
   border: 1px solid #303C49;
   border-radius: 4px;
@@ -55,8 +54,9 @@ export function TxHistory(props) {
   const { items = [] } = props;
 
   return (
+    <LinearGradient colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
     <Container>
-      <LinearGradient colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+     
         <TxGrid>
           <Row>
             <Col autoWidth>
@@ -92,7 +92,7 @@ export function TxHistory(props) {
             </Col>
           </Row>}
         </TxGrid> 
-      </LinearGradient>
     </Container>
+    </LinearGradient>
   )
 }

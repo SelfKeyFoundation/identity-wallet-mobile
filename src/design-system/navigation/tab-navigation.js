@@ -26,7 +26,7 @@ const Row = styled.View`
 `;
 
 const TabText = styled.Text`
-  color: ${({ theme, active }) => active ? theme.colors.primary : theme.colors.typography};
+  color: ${({ theme, active }) => active ? '#2DA1F8' : '#485668'};
   margin-top: 8px;
   margin-bottom: 2px;
   font-family: ${({ theme }) => theme.fonts.regular };
@@ -52,7 +52,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
     <TouchableWithoutFeedback onPress={() => props.onPress(props.id)}>
       <Col>
         <Row>
-          <SKIcon name={props.icon} color={props.active ? theme.colors.primary : theme.colors.typography} size={20} />
+          <SKIcon name={props.icon} color={props.active ? '#2DA1F8' : theme.colors.typography} size={20} />
         </Row>
         <Row>
           <TabText active={props.active}>{props.label}</TabText>

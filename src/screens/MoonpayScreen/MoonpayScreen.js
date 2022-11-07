@@ -1,5 +1,4 @@
 import React from 'react';
-// import { WebView } from 'react-native-webview';
 import { Box } from 'design-system';
 
 export function MoonpayScreen() {
@@ -7,11 +6,11 @@ export function MoonpayScreen() {
 
 	return (
 		<Box>
-			<WebView
+			{/* <WebView
 				source={{
 					uri: `https://buy-staging.moonpay.com?apiKey=${apiKey}`,
 				}}
-			/>
+			/> */}
 		</Box>
 	);
 }

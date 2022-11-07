@@ -121,7 +121,7 @@ export function CreatePassword(props: CreatePasswordProps) {
 
   const importOptions = [
     { key: 'import_backup_file', label: 'Import Backup File' },
-    { key: 'import_from_desktop', label: 'Import from Desktop Application' },
+    // { key: 'import_from_desktop', label: 'Import from Desktop Application' },
     { key: 'enter_recovery_phrase', label: 'Import from Seed Phrase' },
   ];
 

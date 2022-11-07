@@ -244,7 +244,7 @@ export function EditPictureModal(props) {
             <Button type="shell-primary" onPress={onClose}>Cancel</Button>
           </Col>
           <Col autoWidth style={{ width: 95 }}>
-            <Button type="primary" onPress={handleSave}>Save</Button>
+            <Button type="full-primary" onPress={handleSave}>Save</Button>
           </Col>
         </Row>
       </Grid>

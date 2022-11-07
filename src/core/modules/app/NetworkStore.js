@@ -36,6 +36,7 @@ export const NetworkMapping = {
 	3: {
     id: 3,
 		name: 'Ropsten Test Network',
+		hidden: true,
 		symbol: 'ETH',
 		tokenName: 'Ethereum',
 		tokenDecimal: 10,
