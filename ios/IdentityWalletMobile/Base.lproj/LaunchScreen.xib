@@ -13,19 +13,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo full.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1N-S9-9k3">
-                    <rect key="frame" x="164" y="405" width="86" height="92"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo full.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1N-S9-9k3">
+                    <rect key="frame" x="163" y="371" width="91" height="102"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="893" id="8Da-ka-SNn"/>
-                        <constraint firstAttribute="width" constant="412" id="xbx-EI-LkL"/>
+                        <constraint firstAttribute="height" constant="102" id="KEo-b8-0z2"/>
+                        <constraint firstAttribute="width" constant="91" id="nuy-DN-IcV"/>
                     </constraints>
                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.074509806930000005" green="0.094117648900000003" blue="0.11372549830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="d1N-S9-9k3" secondAttribute="trailing" id="SPc-M0-cR1"/>
-                <constraint firstAttribute="bottom" secondItem="d1N-S9-9k3" secondAttribute="bottom" id="VUL-iC-qJf"/>
+                <constraint firstItem="d1N-S9-9k3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="CfD-Pd-L8V"/>
+                <constraint firstItem="d1N-S9-9k3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="1" id="WCP-Mm-Tbk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -37,7 +37,7 @@ export const Button = (props: ButtonProps) => {
     letterSpacing: 0,
   };
 
-  if ((!props.type || props.type === 'full-primary') && disabled) {
+  if ((!props.type || props.type === 'full-primary' || props.type === 'primary') && disabled) {
     buttonStyle.backgroundColor = theme.colors.primaryDisabled;
   } else if (props.type === 'shell-primary') {
     mode = 'outlined';
@@ -104,7 +104,7 @@ export const Button = (props: ButtonProps) => {
   // buttonStyle.justifyContent = 'center';;
   // buttonStyle.alignItems = 'center';
 
-  if (!props.type || props.type === 'full-primary') {
+  if (!props.type || props.type === 'full-primary' || props.type === 'primary') {
     return (
       <LinearGradient
         colors={['#00E0FF', '#2DA1F8']}

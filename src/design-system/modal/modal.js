@@ -1,13 +1,14 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableHighlight } from 'react-native';
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
 import { SKIcon } from '../icons';
 import DeviceInfo from 'react-native-device-info';
 import LinearGradient from 'react-native-linear-gradient';
+import { Box } from 'design-system/grid';
 
 const Container = styled.View`
   padding: ${() => {
@@ -28,7 +29,7 @@ const Header = styled.View`
   border-bottom-width: 0px;
   flex-direction: row;
   border-radius: 16px;
-  padding: 20px 15px;
+  padding: 10px 15px;
 `;
 
 const Body = styled.ScrollView`
@@ -96,10 +97,12 @@ export function Modal(props) {
             start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
           >
             <Header>
-              
-              <Title>{props.title}</Title>
-              <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose}/>
-              
+              <Box paddingTop={10} paddingBottom={10} flex={1}>
+                <Title>{props.title}</Title>
+              </Box>
+              <TouchableHighlight onPress={props.onClose} style={{ padding: 10 }}>
+                <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose} />
+              </TouchableHighlight>
             </Header>
           </LinearGradient>
           <Body contentContainerStyle={styles.scrollContainer}>

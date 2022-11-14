@@ -62,7 +62,7 @@ export function App(props: AppProps) {
 
   return (
     <React.Fragment>
-      {/* <StatusBar /> */}
+      <StatusBar translucent={false} backgroundColor="transparent" />
       <NavigationContainer />
       <ReceiveTokensScreen />
       <SendTokensScreen />
