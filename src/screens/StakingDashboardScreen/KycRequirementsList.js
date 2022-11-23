@@ -15,7 +15,7 @@ import {
 } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 
-const RequirementCheckMark = styled.View`
+const RequirementCheckMark = styled(View)`
 	width: 30px;
 	height: 30px;
 	border: 1px solid #495b70;

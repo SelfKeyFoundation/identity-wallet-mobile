@@ -56,7 +56,7 @@ export class WalletModel extends BaseModel {
   }
 
   findByAddress(address) {
-		return this.findOne('address = $0', address);
+		return this.findAll().find(item => item.address === address);
   }
 
   updateByAddress(address, data) {

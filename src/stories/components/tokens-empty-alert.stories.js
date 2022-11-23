@@ -4,7 +4,7 @@ import { ScreenContainer } from 'design-system';
 import { TokensEmptyAlert } from '../../components';
 import styled from 'styled-components/native';
 
-const Container = styled.View`
+const Container = styled(View)`
   margin: 20px;
 `;
 

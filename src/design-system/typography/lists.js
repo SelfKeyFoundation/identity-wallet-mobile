@@ -1,8 +1,9 @@
 import React from  'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { Paragraph } from './body-text';
 
-const ListConatiner = styled.View`
+const ListConatiner = styled(View)`
   padding-left: 10px;
 `;
 

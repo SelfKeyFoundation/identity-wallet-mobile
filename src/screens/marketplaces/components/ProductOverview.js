@@ -13,7 +13,7 @@ type ProductOverviewProps = {
   
 }
 
-const Box = styled.View`
+const Box = styled(View)`
   margin: 30px 21px;
 `;
 

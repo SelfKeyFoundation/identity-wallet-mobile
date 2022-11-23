@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext, useCallback, useEffect, useState } from 'react';
-import { ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import {
   Explanatory,
   ScreenContainer,
@@ -89,7 +89,7 @@ const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -27px;
   left: -23px;

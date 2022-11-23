@@ -25,7 +25,7 @@ import { ApplicationStatus } from 'core/modules/kyc/selectors';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
 // import productIcon from './assets/product-icon.png';
 
-// const Box = styled.View`
+// const Box = styled(View)`
 // 	background: #293743;
 // 	border: 2px solid #1ca9ba;
 // 	padding: 35px 20px;

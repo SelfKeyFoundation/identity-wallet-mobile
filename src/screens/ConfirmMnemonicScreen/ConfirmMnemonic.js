@@ -15,7 +15,7 @@ import {
   H3,
   Alert,
 } from 'design-system';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, Text} from 'react-native';
 import styled from 'styled-components/native';
 
 import { WalletTracker } from '../../WalletTracker';
@@ -71,7 +71,7 @@ const WordBox = styled(Col)`
   background: ${props => props.isEmpty ?  '#313D49' : 'transparent'}
 `;
 
-const WordBoxText = styled.Text`
+const WordBoxText = styled(Text)`
   text-align: center;
   color: ${props => props.theme.colors.typography};
   font-size: 11px;

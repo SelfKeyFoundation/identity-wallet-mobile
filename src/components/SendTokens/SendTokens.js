@@ -4,7 +4,7 @@
 
 import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import {
   ScreenContainer,
   Modal,
@@ -36,11 +36,11 @@ import modules from 'core/modules';
 import { useSelector } from 'react-redux';
 
 
-const Body = styled.View`
+const Body = styled(View)`
   padding: 15px 15px 40px 15px;
 `;
 
-const LinkButtonWrapper = styled.TouchableWithoutFeedback`
+const LinkButtonWrapper = styled(TouchableWithoutFeedback)`
   flex-direction: row;
 `;
 
@@ -51,7 +51,7 @@ const TransactionFeeGrid = styled(Grid)`
   padding-top: 25px;
 `;
 
-const AdvancedOptionsContainer = styled.View`
+const AdvancedOptionsContainer = styled(View)`
   margin-top: 15px;
 `;
 

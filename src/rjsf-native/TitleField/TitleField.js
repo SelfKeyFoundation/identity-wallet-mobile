@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldProps } from '@rjsf/core/src';
 import styled from 'styled-components/native';
 
-const FormLabel = styled.Text`
+const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;  
   font-family: ${props => props.theme.fonts.bold};

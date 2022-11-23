@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 // import {Text} from 'react-native';
 import styled from 'styled-components/native';
 
@@ -17,7 +18,7 @@ const VariantMap = {
   paragraph: Paragraph,
 }
 
-export const DefaultText = styled.Text`
+export const DefaultText = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 16px;
   font-family: ${({ theme, fontWeight = 'regular'}) => theme.fonts[fontWeight]};

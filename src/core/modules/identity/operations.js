@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4';
+import {v4 as uuid} from 'uuid';
 import { IdentityService } from "./identity-service";
 import actions from './actions';
 import { Logger } from 'core/utils/logger';

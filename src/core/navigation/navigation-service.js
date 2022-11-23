@@ -9,9 +9,11 @@ export function setNavigator(n) {
 
 export function navigate(routeName, params) {
   if (!navigator) {
+    console.error('navigator not defined')
     return;
   }
 
+  console.log('navigate to ', routeName)
   navigator.navigate(routeName, params);
 
   history.push({

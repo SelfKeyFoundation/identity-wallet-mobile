@@ -27,7 +27,7 @@ const HeaderContainer = styled(Grid)`
 `;
 
 
-const OptionIndex = styled.View`
+const OptionIndex = styled(View)`
   background: #3B4B59;
   border: 1px solid #495B70;
   width: 25px;
@@ -38,7 +38,7 @@ const OptionIndex = styled.View`
   justify-content: center;
 `;
 
-const ItemBody = styled.View`
+const ItemBody = styled(View)`
   border: 1px solid #303C49;
   margin-top: -20px;
   border-radius: 4px;

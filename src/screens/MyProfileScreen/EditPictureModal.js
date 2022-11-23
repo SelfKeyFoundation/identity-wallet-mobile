@@ -9,7 +9,7 @@ import { getUsdPrice } from 'blockchain/services/price-service';
 import ducks from 'core/modules';
 import styled from 'styled-components/native';
 import EthUtils from 'blockchain/util/eth-utils';
-import { Linking, ActivityIndicator, Platform } from 'react-native';
+import { Linking, ActivityIndicator, Platform, View } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
 import { System } from '../../core/system';
 
@@ -34,6 +34,7 @@ import {
   IconAddImage
 } from 'design-system';
 import {launchImageLibrary} from 'react-native-image-picker';
+
 import fs from 'react-native-fs';
 
 // More info on all the options is below in the API Reference... just some common use cases shown here
@@ -46,13 +47,13 @@ const options = {
   },
 };
 
-const Divider = styled.View`
+const Divider = styled(View)`
   border: 0 solid #475768;
   border-bottom-width: 1px;
   height: 1px;
 `;
 
-const RoundedImage = styled.Image`
+const RoundedImage = styled(Image)`
   width: 170px;
   height: 170px;
   border-radius: 170px;
@@ -61,7 +62,7 @@ const RoundedImage = styled.Image`
   margin: 22px auto;
 `;
 
-const RoundedContainer = styled.View`
+const RoundedContainer = styled(View)`
   width: 170px;
   height: 170px;
   border-radius: 170px;
@@ -127,7 +128,7 @@ class SelfKeyFS {
   }
 }
 
-const ImageLoadingContainer = styled.View`
+const ImageLoadingContainer = styled(View)`
   width: 170px;
   height: 170px;
   border-radius: 75px;

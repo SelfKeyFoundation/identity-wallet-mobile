@@ -1,0 +1,27 @@
+diff --git a/node_modules/asyncstorage-down/asyncstorage-core.js b/node_modules/asyncstorage-down/asyncstorage-core.js
+index 8c56356..5d7149e 100644
+--- a/node_modules/asyncstorage-down/asyncstorage-core.js
++++ b/node_modules/asyncstorage-down/asyncstorage-core.js
+@@ -8,7 +8,7 @@ const DEFAULT_OPTS = require('./default-opts');
+ 
+ function AsyncStorageCore(dbname, opts = DEFAULT_OPTS) {
+   this._prefix = createPrefix(dbname);
+-  this._asyncStorageImpl = opts.AsyncStorage
++  this._asyncStorageImpl = opts.AsyncStorage;
+ }
+ 
+ const createPrefix = (dbname) => dbname.replace(/!/g, '!!') + '!'; // escape bangs in dbname;
+diff --git a/node_modules/asyncstorage-down/default-opts.js b/node_modules/asyncstorage-down/default-opts.js
+index c076d3d..58c387a 100644
+--- a/node_modules/asyncstorage-down/default-opts.js
++++ b/node_modules/asyncstorage-down/default-opts.js
+@@ -1,5 +1,8 @@
++
++const AsyncStorage = require('@react-native-async-storage/async-storage').default;
++
+ module.exports = {
+   get AsyncStorage() {
+-    return require('react-native').AsyncStorage
++    return AsyncStorage;
+   }
+ }

@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { View } from 'react-native';
 
-const Container = styled.View`
+const Container = styled(View)`
   flex: 1;
 	border: 0px solid ${props => props.noBorder ? 'transparent' : props.color || '#38C0D1'};
   border-left-width: ${props => props.noBorder ? '1px' : '8px'};

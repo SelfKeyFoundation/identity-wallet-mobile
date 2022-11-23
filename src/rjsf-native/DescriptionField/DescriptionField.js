@@ -29,7 +29,7 @@ import {
 //     marginTop: 5,
 //   },
 // });
-export const FormLabel = styled.Text`
+export const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};

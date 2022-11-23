@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TokenDetails } from '../../components';
-import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -11,20 +11,20 @@ import {
   ThemeContext,
 } from 'design-system';
 
-const Container = styled.SafeAreaView`
+const Container = styled(SafeAreaView)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   margin: 10px 20px 40px 20px;
 `;
 
-const Body = styled.ScrollView`
+const Body = styled(ScrollView)`
   margin: 0 35px;
 `;
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -39,7 +39,7 @@ const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -2px;
   left: -8px;
@@ -63,7 +63,7 @@ const PageDescription = styled(Paragraph)`
   line-height: 24px;
 `;
 
-const MenuOption = styled.View`
+const MenuOption = styled(View)`
   border: 2px solid #1CA9BA;
   border-radius: 40px;
   flex: 1;
@@ -73,7 +73,7 @@ const MenuOption = styled.View`
   margin-top: 20px;
 `
 
-const MenuOptionText = styled.Text`
+const MenuOptionText = styled(Text)`
   color: ${props => props.theme.colors.primary};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.bold};

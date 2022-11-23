@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 import React, { useContext } from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import { SKIcon } from 'design-system/icons';
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
 
-const CheckboxWrapper = styled.View`
+const CheckboxWrapper = styled(View)`
   width: 18px;
   height: 18px;
   border: 1px solid ${({ hasError, theme, checked }) => checked ? theme.colors.primary : (hasError ? theme.colors.error : theme.colors.disabled)};
@@ -15,7 +15,7 @@ const CheckboxWrapper = styled.View`
   background: ${props => props.hasError ? 'rgba(255,106,106,0.05)' : props.theme.colors.baseDark}
 `;
 
-// const RadioButtonInner = styled.View`
+// const RadioButtonInner = styled(View)`
 //   width: 6px;
 //   height: 6px;
 //   background:${props => props.theme.colors.primary};

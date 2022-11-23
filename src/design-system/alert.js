@@ -5,16 +5,16 @@ import styled from 'styled-components/native';
 import { useContext } from 'react';
 import { SKIcon, Explanatory, ThemeContext, ErrorMessage } from './index';
 
-const LeftSide = styled.View`
+const LeftSide = styled(View)`
   padding-right: 5px;
   padding-top: 2px;
 `;
 
-const RightSide = styled.View`
+const RightSide = styled(View)`
   flex: 1;
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
   display: flex;
   flex-direction: row;
 `;

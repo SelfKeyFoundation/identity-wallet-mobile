@@ -1,27 +1,23 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import styled from 'styled-components/native';
 
-const ContainerCentered = styled.View`
+const ContainerCentered = styled(View)`
   background-color: ${props => props.theme.colors.baseDark};
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
 
-export const ScreenContainer = styled.SafeAreaView`
+export const ScreenContainer = styled(SafeAreaView)`
   background-color: ${props => props.theme.colors.baseDark};
   flex: 1;
 `;
 
-const ContainerRegular = styled.View`
+const ContainerRegular = styled(View)`
   background-color: ${props => props.theme.colors.baseDark};
   margin: ${(props) => props.withMargin ? '35px' : 0};
-  flex: 1;
-`;
-
-const ScrollView = styled.ScrollView`
   flex: 1;
 `;
 
@@ -37,7 +33,7 @@ export const Container = (props) => {
 
   if (props.scrollable) {
     return (
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} style={{ flex: 1 }}>
         { innerContent }
       </ScrollView>
     );

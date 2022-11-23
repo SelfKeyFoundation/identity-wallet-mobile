@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -17,21 +17,21 @@ function getVersion() {
   return `${version}`;
 }
 
-const Container = styled.SafeAreaView`
+const Container = styled(SafeAreaView)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;
   
-const Header = styled.View`
+const Header = styled(View)`
   margin: 10px 20px 20px 20px;
 `;
 
-const Body = styled.ScrollView`
+const Body = styled(ScrollView)`
   margin: 0px;
 `;
 
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -40,7 +40,7 @@ const Title = styled.Text`
   text-align: center;
 `;
 
-const MenuRightText = styled.Text`
+const MenuRightText = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
@@ -48,7 +48,7 @@ const MenuRightText = styled.Text`
 `;
 
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.bold};

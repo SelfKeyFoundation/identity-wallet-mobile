@@ -50,7 +50,7 @@ export class TxHistoryModel extends BaseModel {
   }
 
   findByHash(hash) {
-    return this.findOne(`hash = "${hash}"`)
+    return this.findOne(item => item.hash === hash);
   }
 
   updatePendingTxsByPublicKey(address) {
@@ -58,10 +58,6 @@ export class TxHistoryModel extends BaseModel {
   }
 
   findByAddress(address) {
-    const result = this._findAll()
-      .filtered(`to="${address}" OR from="${address}"`)
-      .sorted('timeStamp', true);
-
-    return this.toJsonArray(result);
+    return this._findAll().filter(item => item.to === address || item.from === address);
   }
 }

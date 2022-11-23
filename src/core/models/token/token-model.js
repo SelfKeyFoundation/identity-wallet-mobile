@@ -32,7 +32,7 @@ export class TokenModel extends BaseModel {
   }
 
   findBySymbol(symbol) {
-    return this.findOne('symbol = $0', symbol);
+    return this.findAll().find(item => item.symbol === symbol);
   }
 
   findByAddress(address) {
@@ -40,7 +40,7 @@ export class TokenModel extends BaseModel {
     // const result = ;
     // console.log('result', result);
 
-    return this.findOne('address = $0', address);
+    return this.findAll().find(item => item.address === address);
   }
 
   constructor() {

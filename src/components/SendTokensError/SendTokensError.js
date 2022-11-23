@@ -20,9 +20,9 @@ import {
 	DefinitionTitle,
 	FormattedNumber,
 } from 'design-system';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
 
-const Body = styled.View``;
+const Body = styled(View)``;
 
 function formatAddress(address) {
 	if (!address) {
@@ -45,7 +45,7 @@ const Footer = styled(Grid)`
 	padding: 25px 15px;
 `;
 
-const AddressText  = styled.Text`
+const AddressText  = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.bold};

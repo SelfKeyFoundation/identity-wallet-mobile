@@ -4,7 +4,7 @@ import { ScreenContainer } from 'design-system';
 import { TxHistoryHOC } from '../../components';
 import styled from 'styled-components/native';
 import { reduxMockDecorator } from 'core/utils/storybook-utils';
-const Container = styled.View`
+const Container = styled(View)`
   margin: 20px;
 `;
 

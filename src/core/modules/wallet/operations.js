@@ -78,6 +78,8 @@ function getPrimaryToken() {
 }
 
 async function loadWalletTokens(wallet, checkBalance) {
+
+  return {};
   const updatedData = {};
   // Fetch tokens balance
   updatedData.tokens = await Promise.all(

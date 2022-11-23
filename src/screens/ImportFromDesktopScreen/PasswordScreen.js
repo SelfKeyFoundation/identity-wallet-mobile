@@ -13,7 +13,7 @@ import {
   Button,
   H3,
 } from 'design-system';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 
 const errorMessages = {
@@ -28,13 +28,13 @@ export interface CreateBackupProps {
   onBack: () => void,
 }
 
-const Header = styled.View`
+const Header = styled(View)`
   height: 80px;
   width: 100%;
   padding-top: 5px;
 `;
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -43,7 +43,7 @@ const Title = styled.Text`
   text-align: center;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -8px;
   left: 0px;

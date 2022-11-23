@@ -6,7 +6,7 @@ import { navigateBack } from 'core/navigation';
 import { SKAgentDID } from './SKAgentDID';
 import { SKAgentCredentials } from './SKAgentCredentials';
 
-const HeaderTitle = styled.Text`
+const HeaderTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 18px;
 	font-family: ${props => props.theme.fonts.bold};
@@ -15,13 +15,13 @@ const HeaderTitle = styled.Text`
 	margin-bottom: 25px;
 `;
 
-const Body = styled.ScrollView`
+const Body = styled(ScrollView)`
 	flex: 1;
 	background-color: ${props => props.theme.colors.baseDark};
 	padding-bottom: 50px;
 `;
 
-const RoundedImage = styled.Image`
+const RoundedImage = styled(Image)`
 	width: 85px;
 	height: 85px;
 	border-radius: 85px;
@@ -30,7 +30,7 @@ const RoundedImage = styled.Image`
 	margin: 10px auto;
 `;
 
-const RoundedContainer = styled.View`
+const RoundedContainer = styled(View)`
 	width: 85px;
 	height: 85px;
 	border-radius: 85px;
@@ -42,7 +42,7 @@ const RoundedContainer = styled.View`
 	justify-content: center;
 `;
 
-const ProfileName = styled.Text`
+const ProfileName = styled(Text)`
 	color: ${props => props.theme.colors.primary};
 	font-size: 24px;
 	font-family: ${props => props.theme.fonts.bold};
@@ -50,7 +50,7 @@ const ProfileName = styled.Text`
 	line-height: 30px;
 `;
 
-const ProfileEmail = styled.Text`
+const ProfileEmail = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.regular};

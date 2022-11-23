@@ -21,10 +21,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
+import { View, Text } from 'react-native';
 
 const TRACKER_PAGE = 'dashboard/myTokens';
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 24px;
   font-family: ${props => props.theme.fonts.regular};
@@ -32,15 +33,15 @@ const Title = styled.Text`
   margin-top: 0;
 `;
 
-const TotalTokenAmount = styled.Text`
+const TotalTokenAmount = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Container = styled.View``;
+const Container = styled(View)``;
 
-const TokenRowWrapper = styled.View`
+const TokenRowWrapper = styled(View)`
   
 `;
 
@@ -54,7 +55,7 @@ const TokenRow = styled(LinearGradient)`
   border-width: 1px;
 `;
 
-const TokenName = styled.Text`
+const TokenName = styled(Text)`
   color: ${({ theme }) => theme.colors.white };
   font-size: 18px;
   font-family: ${props => props.theme.fonts.regular};
@@ -62,14 +63,14 @@ const TokenName = styled.Text`
   line-height: 22px;
 `;
 
-const TokenIconContainer = styled.View`
+const TokenIconContainer = styled(View)`
   background-color: ${(props) => props.color || '#2DA1F8' };
   padding: 11px 0 14px 0;
   width: 44px;
   border-radius: 5px;
 `;
 
-const TokenIconTitle = styled.Text`
+const TokenIconTitle = styled(Text)`
   color: ${({ theme }) => theme.colors.white };
   font-size: 16px;
   text-align: center;
@@ -79,7 +80,7 @@ const TokenIconTitle = styled.Text`
   text-transform: uppercase;
 `;
 
-const TitleRow = styled.View`
+const TitleRow = styled(View)`
   margin: 0 14px 2px 14px;
   flex-direction: row;
 `;

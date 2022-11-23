@@ -16,6 +16,7 @@ import styled from 'styled-components/native';
 import { navigate, Routes } from 'core/navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import { TouchableHighlight } from 'react-native';
+import { View, Text } from 'react-native';
 
 export interface TokenBoxProps {
 	iconComponent: any;
@@ -26,14 +27,14 @@ export interface TokenBoxProps {
 	fiatAmount: number;
 }
 
-const Title = styled.Text`
+const Title = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 18px;
 	font-family: ${props => props.theme.fonts.regular};
 	margin-top: 10px;
 `;
 
-const Wrapper = styled.View`
+const Wrapper = styled(View)`
 	box-shadow: 2px 10px 24px rgba(0, 0, 0, 0.6);
 `;
 
@@ -43,7 +44,7 @@ const Container = styled(LinearGradient)`
 	border-radius: 16px;
 `;
 
-const TokenAmount = styled.Text`
+const TokenAmount = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 40px;
 	font-family: ${props => props.theme.fonts.regular};

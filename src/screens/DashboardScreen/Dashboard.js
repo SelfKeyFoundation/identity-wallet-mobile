@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard } from 'react-native';
+import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard, View } from 'react-native';
 import {
 	TokenBoxCarouselContainer,
 	MyTokensContainer,
@@ -20,7 +20,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const TRACKER_PAGE = 'dashboard';
 
-const HeaderTitle = styled.Text`
+const HeaderTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 18px;
 	font-family: ${props => props.theme.fonts.bold};
@@ -28,20 +28,20 @@ const HeaderTitle = styled.Text`
 	margin-top: 15px;
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
 	flex: 1;
 	background-color: ${props => props.theme.colors.baseDark};
 `;
 
-const CarouselRow = styled.View`
+const CarouselRow = styled(View)`
 	margin-top: 25px;
 `;
 
-const MyTokensRow = styled.View`
+const MyTokensRow = styled(View)`
 	margin: -10px 20px 10px 20px;
 `;
 
-const TxHistoryRow = styled.View`
+const TxHistoryRow = styled(View)`
 	margin: 20px 20px 50px 20px;
 `;
 

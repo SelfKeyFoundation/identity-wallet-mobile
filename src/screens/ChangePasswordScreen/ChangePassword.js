@@ -14,7 +14,7 @@ import {
   H3,
 } from 'design-system';
 import styled from 'styled-components/native';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 
 const errorMessages = {
   required: 'Password is required',
@@ -53,7 +53,7 @@ const PageTitle = styled(H3)`
   text-align: center;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -2px;
   left: -8px;
@@ -63,7 +63,7 @@ const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   margin: 10px 20px 40px 20px;
 `;
 

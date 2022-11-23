@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { walletConnectOperations, walletConnectSelectors } from './walletConnectSlice';
 import styled from 'styled-components/native';
 
-const Body = styled.View`
+const Body = styled(View)`
 	flex: 1;
 	padding: 16px;
 `;

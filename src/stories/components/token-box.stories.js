@@ -5,7 +5,7 @@ import { TokenBox } from '../../components';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from 'design-system/svg-icons';
 
-const Container = styled.View`
+const Container = styled(View)`
   margin: 20px;
 `;
 

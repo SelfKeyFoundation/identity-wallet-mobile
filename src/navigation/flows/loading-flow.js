@@ -1,9 +1,7 @@
-import { createStackNavigator } from 'react-navigation';
 import { Routes } from 'core/navigation';
 
 import { LoadingScreen } from '../../screens/loading-screen';
-import { stackNavigatorConfig } from '../configs';
 
-export const loadingFlow = createStackNavigator({
+export const loadingFlow = {
   [Routes.LOADING]: LoadingScreen,
-}, stackNavigatorConfig);
+};

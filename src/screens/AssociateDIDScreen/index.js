@@ -51,7 +51,7 @@ const PageTitle = styled(H3)`
   padding-top: 5px;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -2px;
   left: -8px;
@@ -61,7 +61,7 @@ const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   margin: 10px 20px 40px 20px;
 `;
 
@@ -69,7 +69,7 @@ const Body = styled(Container)`
   margin: 0 35px 35px 35px;
 `;
 
-const Divider = styled.View`
+const Divider = styled(View)`
   border: 0 solid #475768;
   border-bottom-width: 1px;
   height: 1px;

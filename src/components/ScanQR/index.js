@@ -6,18 +6,18 @@ import { SKIcon } from 'design-system';
 // import { RNCamera as Camera } from 'react-native-camera';
 // import styled from 'styled-components/native';
 
-const Container = styled.View`
+const Container = styled(View)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   height: 80px;
   width: 100%;
   padding-top: 10px;
 `;
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -26,7 +26,7 @@ const Title = styled.Text`
   text-align: center;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: 0px;
   left: 10px;
@@ -34,7 +34,7 @@ const IconContainer = styled.View`
   z-index: 99999;
 `;
 
-const Footer = styled.View`
+const Footer = styled(View)`
   display: flex;
   justify-content: center;
   background: #2E3945;
@@ -43,33 +43,33 @@ const Footer = styled.View`
   height: 93px;
 `;
 
-const Description = styled.Text`
+const Description = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
   text-align: center;
 `;
 
-const SmallDescription = styled.Text`
+const SmallDescription = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};
   text-align: center;
 `;
 
-const Body = styled.View`
+const Body = styled(View)`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
 
-const Wrapper = styled.SafeAreaView`
+const Wrapper = styled(SafeAreaView)`
   display: flex;
   flex-direction: column;
   flex: 1;
 `;
 
-const QRCodeContainer = styled.View`
+const QRCodeContainer = styled(View)`
   position: absolute;
   width: 100%;
   height: 100%;

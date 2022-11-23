@@ -3,8 +3,9 @@ import React from 'react';
 import { SKIcon } from 'design-system';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {View, Text} from 'react-native';
 
-const Container = styled.View`
+const Container = styled(View)`
 	border-radius: 4px;
 	box-shadow: 2px 10px 24px rgba(0, 0, 0, 0.3);
 `;
@@ -15,7 +16,7 @@ const InnerContainer = styled(LinearGradient)`
 	flex-direction: column;
 `;
 
-const Title = styled.Text`
+const Title = styled(Text)`
 	color: ${({ theme }) => theme.colors.white};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.bold};
@@ -24,7 +25,7 @@ const Title = styled.Text`
 	text-align: center;
 `;
 
-const Paragraph = styled.Text`
+const Paragraph = styled(Text)`
 	color: ${({ theme }) => theme.colors.white};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.regular};

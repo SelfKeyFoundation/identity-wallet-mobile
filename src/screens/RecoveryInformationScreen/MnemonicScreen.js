@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext } from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import {
   ScreenContainer,
@@ -23,7 +23,7 @@ export interface BackupWalletProps {
   onSubmit: () => void;
 }
 
-const Header = styled.View`
+const Header = styled(View)`
   margin: 10px 20px 40px 20px;
 `;
 
@@ -54,7 +54,7 @@ const PageDescription = styled(Paragraph)`
   line-height: 24px;
 `;
 
-const MnemonicContainer = styled.View`
+const MnemonicContainer = styled(View)`
   margin-top: 10px;
   border: 2px dashed ${({ theme }) => theme.colors.grey};
   border-radius: 4px;
@@ -66,17 +66,17 @@ const MnemonicContainer = styled.View`
   background: #1B2229;
 `;
 
-const MnemonicItem = styled.View`
+const MnemonicItem = styled(View)`
   margin: 5px;
 `;
 
-const MnemonicWord = styled.Text`
+const MnemonicWord = styled(Text)`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -2px;
   left: -8px;

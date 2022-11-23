@@ -17,7 +17,7 @@ import {
 } from 'design-system';
 // import { WalletTracker } from '../../WalletTracker';
 
-const RequirementCheckMark = styled.View`
+const RequirementCheckMark = styled(View)`
 	width: 30px;
 	height: 30px;
 	border: 1px solid #495b70;
@@ -31,7 +31,7 @@ const RequirementsTitle = styled(Ammount)`
   color: white;
 `;
 
-const OptionLine = styled.View`
+const OptionLine = styled(View)`
 	width: 1px;
 	height: 16px;
 	background: #364357;

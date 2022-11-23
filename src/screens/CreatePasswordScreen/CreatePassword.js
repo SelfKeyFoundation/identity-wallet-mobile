@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext, useCallback, useEffect, useState } from 'react';
-import { ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import {
   Explanatory,
   ScreenContainer,
@@ -22,6 +22,7 @@ import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from 'configs';
 import { WalletTracker } from '../../WalletTracker';
+// import {Button} from 'native-base';
 
 const TRACKER_PAGE = 'chooseDifferentWallet';
 
@@ -90,7 +91,7 @@ const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   top: -27px;
   left: -23px;

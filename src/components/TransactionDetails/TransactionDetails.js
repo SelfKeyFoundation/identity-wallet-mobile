@@ -4,8 +4,9 @@
 
 import React from 'react';
 import styled from 'styled-components/native';
+import {View} from 'react-native';
 import {
-	ScreenContainer,
+ 	ScreenContainer,
 	Modal,
 	Button,
 	SKIcon,
@@ -23,7 +24,7 @@ import {
 import dateFormat from 'dateformat';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
 
-const Body = styled.View``;
+const Body = styled(View)``;
 
 function formatAddress(address) {
 	if (!address) {

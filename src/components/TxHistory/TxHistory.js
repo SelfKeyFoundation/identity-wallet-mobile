@@ -10,12 +10,12 @@ import {
   Explanatory,
   Link
 } from 'design-system';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
 import { TxHistoryRow } from '../';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 20px;
   font-family: ${({ font = 'bold', theme }) => theme.fonts[font]};
@@ -28,7 +28,7 @@ const TxGrid = styled(Grid)`
   flex-direction: column;
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
   padding: 18px 24px;
   border: 1px solid #303C49;

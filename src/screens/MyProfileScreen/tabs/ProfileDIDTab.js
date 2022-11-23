@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { DocumentsEmptyAlert } from '../../../components';
 import { Grid, Row, Col, SKIcon, Button, H3, Paragraph } from 'design-system';
-import { Clipboard } from 'react-native';
+import { Clipboard, View, Text } from 'react-native';
 import ducks from 'core/modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, navigate } from 'core/navigation';
@@ -11,21 +11,21 @@ const SectionHeader = styled(Grid)`
 	margin: 15px 20px 0 20px;
 `;
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 24px;
 	font-family: ${props => props.theme.fonts.regular};
 	line-height: 30px;
 `;
 
-const SectionDescription = styled.Text`
+const SectionDescription = styled(Text)`
 	color: ${props => props.theme.colors.typography};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.regular};
 	line-height: 24px;
 `;
 
-const EmptyItemsConatiner = styled.View`
+const EmptyItemsConatiner = styled(View)`
 	margin: 20px;
 `;
 

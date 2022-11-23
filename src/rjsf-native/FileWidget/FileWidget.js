@@ -18,18 +18,18 @@ import {
   FormattedNumber,
   TableHeader,
 } from 'design-system';
-import { Platform, TouchableWithoutFeedback } from 'react-native';
+import { Platform, TouchableWithoutFeedback, View, Text } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import styled from 'styled-components/native';
 import { viewFile } from  '../RNForm'
-export const FormLabel = styled.Text`
+export const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;  
   font-family: ${props => props.theme.fonts.bold};
   text-transform: uppercase;
 `;
 
-const SelectInput = styled.View`
+const SelectInput = styled(View)`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
   color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
   border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
@@ -37,14 +37,14 @@ const SelectInput = styled.View`
   border-radius: 4px;
 `;
 
-const SelectText = styled.Text`
+const SelectText = styled(Text)`
   color: ${props => props.selectedItem ? 'white' : '#697C95'};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.regular};
   line-height: 21px;
 `;
 
-const FileText = styled.Text`
+const FileText = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 13px;
   font-family: ${props => props.theme.fonts.bold};

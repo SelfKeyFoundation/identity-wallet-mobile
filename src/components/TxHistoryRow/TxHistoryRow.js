@@ -12,12 +12,12 @@ import {
 import styled from 'styled-components/native';
 
 import dateFormat from 'dateformat';
-import { Image, View } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import IconSent from './icon-sent.png';
 import IconReceived from './icon-received.png';
 import IconPending from './icon-pending.png';
 
-const Container = styled.View`
+const Container = styled(View)`
   background: #2E3945;
   border-radius: 4px;
   padding: 40px 30px 50px 30px;
@@ -34,7 +34,7 @@ const DateText = styled(Explanatory)`
   padding-top: 5px;
 `;
 
-// const Title = styled.Text`
+// const Title = styled(Text)`
 //   color: ${({ theme }) => theme.colors.white };
 //   font-size: 16px;
 //   font-family: ${props => props.theme.fonts.bold};
@@ -43,13 +43,13 @@ const DateText = styled(Explanatory)`
 //   text-align: center;
 // `;
 
-const Description = styled.Text`
+const Description = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 15px;
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Amount = styled.Text`
+const Amount = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 15px;
   font-family: ${props => props.theme.fonts.regular};

@@ -17,6 +17,7 @@ import {
 } from 'design-system';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
+import {View, Text} from 'react-native';
 
 const TRACKER_PAGE = 'backupWallet';
 
@@ -48,7 +49,7 @@ const PageDescription = styled(Paragraph)`
   line-height: 24px;
 `;
 
-const MnemonicContainer = styled.View`
+const MnemonicContainer = styled(View)`
   margin-top: 10px;
   border: 2px dashed ${({ theme }) => theme.colors.grey};
   border-radius: 16px;
@@ -60,11 +61,11 @@ const MnemonicContainer = styled.View`
   background: #1B2229;
 `;
 
-const MnemonicItem = styled.View`
+const MnemonicItem = styled(View)`
   margin: 5px;
 `;
 
-const MnemonicWord = styled.Text`
+const MnemonicWord = styled(Text)`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;

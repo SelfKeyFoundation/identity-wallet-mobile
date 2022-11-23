@@ -1,44 +1,3 @@
-const convertToObject = (realmObject, maxDepth = 3, depth = 0) => {
-  depth++;
-  if (depth > maxDepth) {
-      return realmObject;
-  }
-
-  if (typeof realmObject !== 'object') {
-      return realmObject;
-  }
-
-  if (realmObject === null) {
-      return null;
-  }
-
-  let keys = Object.getOwnPropertyDescriptors(realmObject);
-
-  if (typeof realmObject.objectSchema === 'function') {
-      keys = realmObject.objectSchema().properties;
-  }
-
-  let object = {};
-
-  for (const key in keys) {
-      if (realmObject.hasOwnProperty(key)) {
-          //We don't follow linkinh objects
-          if (keys[key].type === 'linkingObjects') {
-              object[key] = realmObject[key];
-          } else if (isString(realmObject[key])) {
-              object[key] = realmObject[key];
-          } else if (isArrayLike(realmObject[key]) && !isString(realmObject[key])) {
-              object[key] = realmObject[key].map(item =>
-                  convertToObject(item, maxDepth, depth, key),
-              );
-          } else {
-              object[key] = convertToObject(realmObject[key], maxDepth, depth, key);
-          }
-      }
-  }
-  return object;
-};
-
 export class BaseModel {
   constructor(schema) {
     this.schema = schema;
@@ -110,8 +69,7 @@ export class BaseModel {
   }
 
   _findById(id) {
-    const items = this._findAll().filtered(`${this.schema.primaryKey} = $0`, id);
-    return items[0];
+    return this._findAll().find(item => item[this.schema.primaryKey] === id)
   }
 
   findById(id) {
@@ -141,7 +99,7 @@ export class BaseModel {
   }
 
   generateId() {
-    const items = this._findAll().sorted(this.schema.primaryKey);
+    const items = this._findAll();
     if (!items.length) {
       return 1;
     }
@@ -151,24 +109,14 @@ export class BaseModel {
     return lastItem.id + 1;
   }
 
-  toJson(realmObject) {
-    if (!realmObject) {
-      return realmObject;
+  toJson(data) {
+    if (!data) {
+      return data;
     }
-
-    // const data = convertToObject(realmObject);
-    
-    // Object.keys(realmObject).map(key => {
-    //   data[key] = realmObject[key];
-    // });
-
-    let data = realmObject.toJSON();
 
     if (this.applyCustomMapping) {
       data = this.applyCustomMapping(data);
     }
-
-    // console.log('convert realm to objecdt', data);
 
     return data;
   }
@@ -189,7 +137,8 @@ export class BaseModel {
     let results = this._findAll();
 
     if (query) {
-      results = results.filtered(query, ...args);
+      console.warn('Cannot handle query for this', query)
+      // results = results.filtered(query, ...args);
     }
 
     console.log('find results', results);
@@ -207,9 +156,10 @@ export class BaseModel {
     return Array.from(results).map(this.toJson);
   }
 
-  findOne(query, ...args) {
-    const items = this.find(query, ...args);
-    console.log('Find one result', items);
-    return items[0];
+  findOne(func) {
+    if (typeof func !== 'function') {
+      throw 'Expect a filter function as parameter'
+    }
+    return this.findAll().find(func);
   }
 }

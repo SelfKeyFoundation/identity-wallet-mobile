@@ -6,7 +6,7 @@ import SKLogo from './sk-logo.png';
 import LinearGradient from 'react-native-linear-gradient';
 import { StakingCard } from './StakingCard';
 
-const Container = styled.View`
+const Container = styled(View)`
   flex: 1;
 	border: 0px solid #0fb8d0;
 	border-left-width: 8px;

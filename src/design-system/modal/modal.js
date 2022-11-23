@@ -9,8 +9,9 @@ import { SKIcon } from '../icons';
 import DeviceInfo from 'react-native-device-info';
 import LinearGradient from 'react-native-linear-gradient';
 import { Box } from 'design-system/grid';
+import { View } from 'react-native';
 
-const Container = styled.View`
+const Container = styled(View)`
   padding: ${() => {
     return DeviceInfo.hasNotch() ? '45px 20px 40px 20px' : '20px';
   }};
@@ -24,7 +25,7 @@ const InnerContainer = styled(LinearGradient)`
   flex: 0 1 auto;
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   border: 0 solid #374758;
   border-bottom-width: 0px;
   flex-direction: row;
@@ -32,16 +33,16 @@ const Header = styled.View`
   padding: 10px 15px;
 `;
 
-const Body = styled.ScrollView`
+const Body = styled(ScrollView)`
   flex-grow: 1;
 `;
 
-const BodyContent = styled.View`
+const BodyContent = styled(View)`
   flex-grow: 1;
   padding: ${props => props.noBodyPadding ? 0 : '25px 15px'};
 `;
 
-const Footer = styled.View`
+const Footer = styled(View)`
   flex-direction: row;
   justify-content: flex-end;
   padding: 40px 15px;
@@ -51,7 +52,7 @@ const Title = styled(H3)`
   flex: 1;
 `;
 
-const ButtonWrapper = styled.View`
+const ButtonWrapper = styled(View)`
   margin-left: 15px;
 `;
 

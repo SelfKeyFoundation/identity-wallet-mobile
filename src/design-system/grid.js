@@ -3,14 +3,14 @@ import { View, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import _ from 'lodash';
 
-export const Grid = styled.View`
+export const Grid = styled(View)`
 	flex-direction: column;
 	flex-basis: auto;
 	margin-top: ${props => (props.marginTop ? `${props.marginTop}px` : 0)};
 	margin-bottom: ${props => (props.marginBottom ? `${props.marginBottom}px` : 0)};
 `;
 
-export const Row = styled.View`
+export const Row = styled(View)`
 	flex-direction: row;
 	margin-left: -5px;
 	margin-right: -5px;
@@ -35,7 +35,7 @@ export const Row = styled.View`
 //   return props.alignItems ? props.alignItems : 'flex-start';
 // }};
 
-export const Col = styled.View`
+export const Col = styled(View)`
 	flex: ${props => (props.autoWidth ? 0 : 1)};
 	flex-basis: auto;
 	flex-direction: column;
@@ -162,7 +162,7 @@ export function Box(props: CSSStyleDeclaration) {
 	return content;
 }
 
-// export const Box = styled.View`
+// export const Box = styled(View)`
 //   margin-top: ${getPropValue('marginTop', 'px')};
 //   margin-bottom: ${getPropValue('marginBottom', 'px')};
 //   margin-left: ${getPropValue('marginLeft', 'px')};

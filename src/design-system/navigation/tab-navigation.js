@@ -6,7 +6,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../mobile-ui-provider';
 
-const Container = styled.View`
+const Container = styled(View)`
   background-color: #161A1F;
   flex: 1;
   flex-direction: row;
@@ -14,18 +14,18 @@ const Container = styled.View`
   max-height: 80px;
 `;
 
-const Col = styled.View`
+const Col = styled(View)`
   flex: 1;
   flex-direction: column;
   align-items: center;
   margin: 13px auto 0 auto;
 `;
 
-const Row = styled.View`
+const Row = styled(View)`
   align-content: center;
 `;
 
-const TabText = styled.Text`
+const TabText = styled(Text)`
   color: ${({ theme, active }) => active ? '#2DA1F8' : '#485668'};
   margin-top: 8px;
   margin-bottom: 2px;

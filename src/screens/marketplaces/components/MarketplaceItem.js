@@ -14,7 +14,7 @@ import {
 import credentialIcon from './icons/assets/credentials.png';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Box = styled.View`
+const Box = styled(View)`
   border: 0px solid ${props => props.noBorder ? 'transparent' : props.color || '#2DA1F8'};
   border-bottom-width: ${props => props.noBorder ? '1px' : '8px'};
   border-right-width: 1px;
@@ -23,7 +23,7 @@ const Box = styled.View`
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 `;
 
-const Line = styled.View`
+const Line = styled(View)`
   background: #475768;
   height: 1px;
 `;

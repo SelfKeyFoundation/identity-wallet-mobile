@@ -25,24 +25,24 @@ const TRACKER_PAGE = 'manageTokens';
 
 const screenWidth = Dimensions.get('window').width
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 24px;
   font-family: ${props => props.theme.fonts.regular};
   margin-bottom: 4px;
 `;
 
-const TotalTokenAmount = styled.Text`
+const TotalTokenAmount = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
   flex: 1;
 `;
 
-const TokenRowWrapper = styled.View`
+const TokenRowWrapper = styled(View)`
 
 `;
 
@@ -57,7 +57,7 @@ const TokenRow = styled(LinearGradient)`
   border-width: 1px;
 `;
 
-const TokenOptionsRow = styled.View`
+const TokenOptionsRow = styled(View)`
   flex-direction: row;
   padding: 15px;
   margin-top: 15px;
@@ -69,7 +69,7 @@ const HideLink = styled(Link)`
   text-transform: uppercase;
 `
 
-const TokenName = styled.Text`
+const TokenName = styled(Text)`
   color: ${({ theme }) => theme.colors.white };
   font-size: 18px;
   font-family: ${props => props.theme.fonts.regular};
@@ -77,14 +77,14 @@ const TokenName = styled.Text`
   line-height: 22px;
 `;
 
-const TokenIconContainer = styled.View`
+const TokenIconContainer = styled(View)`
   background-color: ${(props) => props.color || '#2DA1F8' };
   padding: 11px 0 14px 0;
   width: 44px;
   border-radius: 5px;
 `;
 
-const TokenIconTitle = styled.Text`
+const TokenIconTitle = styled(Text)`
   color: ${({ theme }) => theme.colors.white };
   font-size: 16px;
   line-height: 19px;
@@ -94,7 +94,7 @@ const TokenIconTitle = styled.Text`
   text-transform: uppercase;
 `;
 
-const TitleRow = styled.View`
+const TitleRow = styled(View)`
   margin: 14px 14px 0 14px;
   flex-direction: row;
 `;
@@ -107,7 +107,7 @@ const TokenIcon = props => (
   </TokenIconContainer>
 );
 
-const HeaderTitle = styled.Text`
+const HeaderTitle = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -115,18 +115,18 @@ const HeaderTitle = styled.Text`
   margin-top: 15px;
 `;
 
-const EmptyAlertConatiner = styled.View`
+const EmptyAlertConatiner = styled(View)`
   margin-top: 10px;
 `;
 
-const TestView = styled.View`
+const TestView = styled(View)`
   height: 100px;
   width: 100%;
   background: red;
   margin-bottom: 20px;
 `;
 
-const ScrollWrapper = styled.View`
+const ScrollWrapper = styled(View)`
   margin-bottom: 400px;
 `;
 

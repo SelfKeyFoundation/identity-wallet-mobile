@@ -12,6 +12,8 @@ import IconInfoLarge from './svg-icons/icon-info-large.svg';
 import IconPasswordOk from './svg-icons/icon-password-ok.svg';
 import IconSafe from './svg-icons/icon-safe.svg';
 import IconId from './svg-icons/icon-id.svg';
+import IconErrWarning from './svg-icons/icon-err-warning.svg';
+import IconShieldCheck from './svg-icons/icon-shield-check.svg';
 
 type IconName =
   'icon-menu-settings' | 'icon-menu-qr' | 'icon-menu-tokens' |
@@ -31,17 +33,25 @@ const svgIconMap = {
   'icon-password-ok': IconPasswordOk,
   'icon-safe': IconSafe,
   'icon-id': IconId,
+  'icon-shield-check': IconShieldCheck,
+  'icon-err-warning': IconErrWarning,
 };
 
 export function SKIcon(props: SKIconProps) {
   const SvgIcon = svgIconMap[props.name];
 
   if (SvgIcon) {
-    return <SvgIcon />;
+    const {stroke, name, ...svgProps} = props;
+    return <SvgIcon {...svgProps} />;
   }
 
-  return (
-    <Icon {...props} />
-  );
+  return null;
+  // try {
+  //   return (
+  //     <Icon {...props} />
+  //   );
+  // } catch(err) {
+  //   return null;
+  // }
 }
 

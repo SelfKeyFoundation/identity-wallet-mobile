@@ -1,13 +1,14 @@
 import React from 'react';
+import { Text, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { Row, Col } from '../grid';
 import { SKIcon } from '../icons';
 
-const ButtonLinkWrapper = styled.TouchableWithoutFeedback`
+const ButtonLinkWrapper = styled(TouchableWithoutFeedback)`
   flex-direction: row;
 `;
 
-const ButtonLinkText = styled.Text`
+const ButtonLinkText = styled(Text)`
   color: ${({ theme }) => '#2DA1F8' };
   font-size: 13px;
   font-family: ${props => props.theme.fonts.regular};

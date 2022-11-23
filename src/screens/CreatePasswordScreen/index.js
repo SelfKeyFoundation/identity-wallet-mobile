@@ -5,6 +5,8 @@ import { useCreatePasswordController } from './useCreatePasswordController';
 import modules from 'core/modules';
 import { navigateBack, navigate, Routes } from 'core/navigation';
 import { WalletTracker } from '../../WalletTracker';
+import {getNavigationParam} from '../../v2/screen-utils';
+
 const TRACKER_PAGE = 'chooseDifferentWallet';
 
 const { operations, selectors } = modules.createWallet;
@@ -23,8 +25,8 @@ function CreatePasswordContainer(props) {
     ),
   });
 
-  const canReturn = props.navigation.getParam('canReturn', false);
-  const canImport = props.navigation.getParam('canImport', true);
+  const canReturn = getNavigationParam(props, 'canReturn', false);
+  const canImport = getNavigationParam(props, 'canImport', true);
   const handleBack = useCallback(() => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,

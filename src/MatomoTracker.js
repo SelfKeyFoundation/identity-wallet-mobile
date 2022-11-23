@@ -1,6 +1,6 @@
 import DeviceInfo from 'react-native-device-info';
 import { Dimensions } from 'react-native';
-import uuid from 'uuid/v4';
+import {v4 as uuid} from 'uuid';
 import qs from 'querystring';
 import appVersion from '../app-version.js';
 

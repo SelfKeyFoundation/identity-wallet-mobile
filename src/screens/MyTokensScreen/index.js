@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { ManageTokensContainer } from '../../components';
 
-const HeaderTitle = styled.Text`
+const HeaderTitle = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.bold};
@@ -11,17 +11,17 @@ const HeaderTitle = styled.Text`
   margin-top: 15px;
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;
 
-const Body = styled.View`
+const Body = styled(View)`
   flex: 1;
   margin: 10px 20px 60px 20px;
 `;
 
-const Wrapper = styled.SafeAreaView`
+const Wrapper = styled(SafeAreaView)`
   flex: 1;
 `;
 

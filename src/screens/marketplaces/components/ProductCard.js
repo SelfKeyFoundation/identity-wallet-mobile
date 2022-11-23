@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Button } from 'react-native-share';
 import { Flag } from 'react-native-svg-flagkit';
 
-const CardContainer = styled.View`
+const CardContainer = styled(View)`
 	border: 0px solid ${props => (props.noBorder ? 'transparent' : props.color || '#38C0D1')};
 	border-bottom-width: ${props => (props.noBorder ? '1px' : '8px')};
 	border-right-width: 1px;
@@ -20,7 +20,7 @@ const CardContainer = styled.View`
 	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 `;
 
-const Line = styled.View`
+const Line = styled(View)`
 	background: #475768;
 	height: 1px;
 `;

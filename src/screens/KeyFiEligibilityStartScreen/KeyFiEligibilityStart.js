@@ -37,7 +37,7 @@ const LogoContainer = styled(LinearGradient)`
 `;
 const LockLogo = () => null;
 
-const TopBar = styled.View`
+const TopBar = styled(View)`
   background: #2A3540;
   padding: 8px 24px;
   border-top-left-radius: 4px;

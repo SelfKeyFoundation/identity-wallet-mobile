@@ -84,29 +84,29 @@ export async function addTop20Tokens(wallet) {
 }
 
 export async function getDefaultTokens({ addTop20 = false } = {}) {
-  const primaryToken = await TokenModel.getInstance().findBySymbol(getConfigs().primaryToken);
-  let tokens = [{
-    tokenId: primaryToken.id
-  }];
+  // const primaryToken = await TokenModel.getInstance().findBySymbol(getConfigs().primaryToken);
+  // let tokens = [{
+  //   tokenId: primaryToken.id
+  // }];
 
-  if (addTop20) {
-    const top20 = await getTop20Tokens();
-    tokens = [
-      ...tokens,
-      ...top20,
-    ];
-  }
+  // if (addTop20) {
+  //   const top20 = await getTop20Tokens();
+  //   tokens = [
+  //     ...tokens,
+  //     ...top20,
+  //   ];
+  // }
 
-  const walletTokenId = WalletTokenModel.getInstance().generateId();
-  const result = tokens.map((item, idx) => ({
-    id: walletTokenId + idx,
-    balance: '0',
-    balanceInFiat: 0,
-    hidden: false,
-    ...item,
-  }));
+  // const walletTokenId = WalletTokenModel.getInstance().generateId();
+  // const result = tokens.map((item, idx) => ({
+  //   id: walletTokenId + idx,
+  //   balance: '0',
+  //   balanceInFiat: 0,
+  //   hidden: false,
+  //   ...item,
+  // }));
 
-  return result;
+  return [];
 }
 
 /**

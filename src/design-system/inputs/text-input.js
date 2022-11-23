@@ -15,7 +15,7 @@ import {
 
 import { PaperThemeContext, ThemeContext } from '../mobile-ui-provider';
 
-const IconContainer = styled.View`
+const IconContainer = styled(View)`
   position: absolute;
   right: 13px;
   top: 13px;

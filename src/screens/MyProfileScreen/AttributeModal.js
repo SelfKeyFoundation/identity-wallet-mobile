@@ -18,14 +18,15 @@ import {
   Col,
   Button
 } from 'design-system';
+import { View, Image } from 'react-native';
 
-const Divider = styled.View`
+const Divider = styled(View)`
   border: 0 solid #475768;
   border-bottom-width: 1px;
   height: 1px;
 `;
 
-const RoundedImage = styled.Image`
+const RoundedImage = styled(Image)`
   width: 170px;
   height: 170px;
   border-radius: 75px;

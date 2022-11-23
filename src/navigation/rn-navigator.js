@@ -1,4 +1,3 @@
-import { NavigationActions } from 'react-navigation';
 import { WalletTracker } from '../WalletTracker';
 
 export class ReactNativeNavigator {
@@ -15,12 +14,14 @@ export class ReactNativeNavigator {
 
     const route = typeof routeName === 'object'
       ? routeName
-      : NavigationActions.navigate({
+      : {
         routeName,
         params,
-      });
+      };
 
-    this.navigator.dispatch(route);
+    console.log('navigator', this);
+
+    this.navigator.navigate(routeName, params);
   }
 
   getParams(name, defaultValue) {

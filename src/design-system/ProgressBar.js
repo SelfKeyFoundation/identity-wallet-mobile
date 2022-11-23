@@ -8,11 +8,11 @@ import { Row, Col } from './grid';
 import { ThemeContext } from './mobile-ui-provider';
 import { Paragraph, FormPlaceholder } from './typography';
 
-const FormInputContainer = styled.View`
+const FormInputContainer = styled(View)`
 
 `;
 
-const InputContainer = styled.View`
+const InputContainer = styled(View)`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
   color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
   border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
@@ -24,7 +24,7 @@ const InputContainer = styled.View`
   height: 50px;
 `;
 
-const ProgressIndicator = styled.View`
+const ProgressIndicator = styled(View)`
   width: ${props => `${(props.value || 0) * 100}%`};
   position: absolute;
   background: #697C95;
@@ -34,14 +34,14 @@ const ProgressIndicator = styled.View`
   border-radius: 8px;
 `;
 
-const SelectText = styled.Text`
+const SelectText = styled(Text)`
   color: ${props => props.value ? 'white' : '#697C95'};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.regular};
   line-height: 21px;
 `;
 
-const FormLabel = styled.Text`
+const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;
   font-family: ${props => props.theme.fonts.bold};

@@ -10,12 +10,13 @@ import styled from 'styled-components/native';
 import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 import {transactionOperations} from 'core/modules/transaction/operations';
+import { View } from 'react-native';
 
 const TRACKER_PAGE = 'customTokens';
 
 const { selectors } = modules.wallet;
 
-const TransactionsContainer = styled.View`
+const TransactionsContainer = styled(View)`
   margin-top: 10px;
 `;
 

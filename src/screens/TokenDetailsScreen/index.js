@@ -12,22 +12,23 @@ import { Grid, Row, Col } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
+import { View, Text } from 'react-native';
 
 const TRACKER_PAGE = 'tokenDetails';
 
 const { selectors } = modules.wallet;
 
-const TransactionsContainer = styled.View`
+const TransactionsContainer = styled(View)`
   margin-top: 10px;
 `;
 
-const TokenIconContainer = styled.View`
+const TokenIconContainer = styled(View)`
   background-color: ${(props) => props.color || '#2DA1F8' };
   padding: 11px 17px 14px 18px;
   border-radius: 5px;
 `;
 
-const TokenIconTitle = styled.Text`
+const TokenIconTitle = styled(Text)`
   color: ${({ theme }) => theme.colors.white };
   font-size: 16px;
   line-height: 19px;

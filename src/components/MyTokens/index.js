@@ -11,11 +11,11 @@ export * from './MyTokens';
 
 const { selectors } = modules.wallet;
 
-const TokensContainer = styled.View`
+const TokensContainer = styled(View)`
   margin-bottom: 15px;
 `;
 
-const EmptyTokensContainer = styled.View`
+const EmptyTokensContainer = styled(View)`
   margin-bottom: 25px;
 `;
 

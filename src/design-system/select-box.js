@@ -19,7 +19,7 @@ import { Button } from './buttons';
 import { TextInput } from './inputs/text-input';
 import RNPickerSelect from 'react-native-picker-select';
 
-const SelectInput = styled.View`
+const SelectInput = styled(View)`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
   color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
   border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
@@ -27,14 +27,14 @@ const SelectInput = styled.View`
   border-radius: 4px;
 `;
 
-const SelectText = styled.Text`
+const SelectText = styled(Text)`
   color: ${props => props.selectedItem ? 'white' : '#697C95'};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.regular};
   line-height: 21px;
 `;
 
-const FormLabel = styled.Text`
+const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;
   font-family: ${props => props.theme.fonts.bold};
@@ -42,7 +42,7 @@ const FormLabel = styled.Text`
   margin-bottom: 10px;
 `;
 
-const SelectIcon = styled.View`
+const SelectIcon = styled(View)`
   position: absolute;
   right: 15px;
   top: 15px;

@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import modules from 'core/modules';
 import { containsFile } from 'core/modules/identity/json-schema-utils';
 
-const Container = styled.ScrollView`
+const Container = styled(ScrollView)`
 	flex: 1;
 	background-color: ${props => props.theme.colors.baseDark};
 	padding-bottom: 50px;
@@ -31,14 +31,14 @@ const SectionHeader = styled(Grid)`
 	margin: 15px 20px 0 20px;
 `;
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 24px;
 	font-family: ${props => props.theme.fonts.regular};
 	line-height: 30px;
 `;
 
-const SectionDescription = styled.Text`
+const SectionDescription = styled(Text)`
 	color: ${props => props.theme.colors.typography};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.regular};
@@ -59,11 +59,11 @@ const AttrLabel = styled(Explanatory)`
 	line-height: 19px;
 `;
 
-const EmptyItemsConatiner = styled.View`
+const EmptyItemsConatiner = styled(View)`
 	margin: 20px;
 `;
 
-const OptionsWrapper = styled.View`
+const OptionsWrapper = styled(View)`
 	z-index: 2;
 	position: absolute;
 	display: flex;
@@ -74,13 +74,13 @@ const OptionsWrapper = styled.View`
 	height: 200px;
 `;
 
-const OptionsMenuWrapper = styled.View`
+const OptionsMenuWrapper = styled(View)`
 	padding: 20px;
 	background: #313d49;
 	border-radius: 20px;
 `;
 
-const OverflowContainer = styled.View`
+const OverflowContainer = styled(View)`
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -88,11 +88,11 @@ const OverflowContainer = styled.View`
 	z-index: 1;
 `;
 
-const IconWrapper = styled.View`
+const IconWrapper = styled(View)`
 	padding: 10px;
 `;
 
-const OptionText = styled.Text`
+const OptionText = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 16px;
 	line-height: 24px;

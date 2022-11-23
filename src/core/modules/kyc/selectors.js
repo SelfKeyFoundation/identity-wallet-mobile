@@ -1,5 +1,5 @@
 // @flow
-import uuidv1 from 'uuid/v1';
+import {v1 as uuid} from 'uuid';
 import ducks from '../';
 import {
 	EMAIL_ATTRIBUTE,

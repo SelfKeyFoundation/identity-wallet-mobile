@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import React from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 
-const RadioButtonWrapper = styled.View`
+const RadioButtonWrapper = styled(View)`
   width: 18px;
   height: 18px;
   border: 1px solid ${props => props.checked ? props.theme.colors.primary : props.theme.colors.disabled};
@@ -13,7 +13,7 @@ const RadioButtonWrapper = styled.View`
   background: ${props => props.hasError ? 'rgba(255,106,106,0.05)' : props.theme.colors.baseDark}
 `;
 
-const RadioButtonInner = styled.View`
+const RadioButtonInner = styled(View)`
   width: 6px;
   height: 6px;
   background:${props => props.theme.colors.primary};

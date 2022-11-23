@@ -7,11 +7,11 @@ import { SKIcon } from './icons';
 import { Row, Col } from './grid';
 import { ThemeContext } from './mobile-ui-provider';
 
-const FormInputContainer = styled.View`
+const FormInputContainer = styled(View)`
 
 `;
 
-const InputContainer = styled.View`
+const InputContainer = styled(View)`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};
   color: ${ props => props.hasError ? props.theme.colors.error : props.theme.colors.typography};
   border: 1px solid ${ props => props.hasError ? props.theme.colors.error : '#485A6E'};
@@ -22,18 +22,18 @@ const InputContainer = styled.View`
   align-items: center;
 `;
 
-const InputItem = styled.View`
+const InputItem = styled(View)`
  
 `;
 
-const SelectText = styled.Text`
+const SelectText = styled(Text)`
   color: ${props => props.value ? 'white' : '#697C95'};
   font-size: 14px;
   font-family: ${props => props.theme.fonts.regular};
   line-height: 21px;
 `;
 
-const FormLabel = styled.Text`
+const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;
   font-family: ${props => props.theme.fonts.bold};

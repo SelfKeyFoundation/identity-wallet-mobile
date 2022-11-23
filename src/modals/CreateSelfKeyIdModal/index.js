@@ -28,7 +28,7 @@ import {
   Alert
 } from 'design-system';
 
-const Divider = styled.View`
+const Divider = styled(View)`
   border: 0 solid #475768;
   border-bottom-width: 1px;
   height: 1px;

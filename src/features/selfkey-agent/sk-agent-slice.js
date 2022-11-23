@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import SelfkeyAgent from '@selfkey/agent';
-// import Entities from '@selfkey/agent/lib/entities';
+import Entities from '@selfkey/agent/lib/entities';
 
 const SelfkeyAgent = {};
 

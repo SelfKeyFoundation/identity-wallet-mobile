@@ -21,8 +21,9 @@ import {
 	FormattedNumber,
 } from 'design-system';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
+import { View } from 'react-native';
 
-const Body = styled.View``;
+const Body = styled(View)``;
 
 function formatAddress(address) {
 	if (!address) {

@@ -15,21 +15,21 @@ const SectionHeader = styled(Grid)`
 	margin: 15px 20px 0 20px;
 `;
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
 	font-size: 24px;
 	font-family: ${props => props.theme.fonts.regular};
 	line-height: 30px;
 `;
 
-const SectionDescription = styled.Text`
+const SectionDescription = styled(Text)`
 	color: ${props => props.theme.colors.typography};
 	font-size: 16px;
 	font-family: ${props => props.theme.fonts.regular};
 	line-height: 24px;
 `;
 
-const EmptyItemsConatiner = styled.View`
+const EmptyItemsConatiner = styled(View)`
 	margin: 20px;
 `;
 

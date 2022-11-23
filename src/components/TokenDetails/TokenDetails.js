@@ -14,7 +14,7 @@ import {
   FormattedNumber,
 } from 'design-system';
 
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -32,36 +32,36 @@ export interface TokenDetailsProps {
   onSend: () => void;
 }
 
-const Title = styled.Text`
+const Title = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   font-family: ${props => props.theme.fonts.regular};
   margin-top: 10px;
 `;
 
-const Label = styled.Text`
+const Label = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const Container = styled.View`
+const Container = styled(View)`
   background: #2E3945;
   border-radius: 4px;
   box-shadow: 2px 10px 24px rgba(0,0,0,0.3);
 `;
 
-const Header = styled.View`
+const Header = styled(View)`
   padding: 21px;
 `;
 
-const TokenAmount = styled.Text`
+const TokenAmount = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 40px;
   font-family: ${props => props.theme.fonts.regular};
 `;
 
-const BodyText = styled.Text`
+const BodyText = styled(Text)`
   color: ${props => props.theme.colors.white};
   font-size: 16px;
   font-family: ${props => props.theme.fonts.bold};
@@ -74,11 +74,11 @@ const TokenSymbol = styled(Explanatory)`
   text-transform: uppercase;
 `;
 
-const ButtonText = styled.Text`
+const ButtonText = styled(Text)`
   align-items: center;
 `;
 
-const Body = styled.View`
+const Body = styled(View)`
   border-color: #475768;
   border-style: solid;
   border-top-width: 1px;
@@ -87,12 +87,12 @@ const Body = styled.View`
   padding: 31px 15px;
 `;
 
-const Footer = styled.View`
+const Footer = styled(View)`
   padding: 0 8px 40px 8px;
   flex-direction: row;
 `;
 
-const FooterCol = styled.View`
+const FooterCol = styled(View)`
   flex: 1;
   padding: 0 8px;
 `;
