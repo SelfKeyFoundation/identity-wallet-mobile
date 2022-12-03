@@ -88,7 +88,7 @@ const updateApplicationsOperation = application => async (dispatch, getState) =>
 
 const loadApplicationsOperation = () => async (dispatch, getState) => {
 	const identity = ducks.identity.selectors.selectIdentity(getState());
-	const applications = await KYCApplicationModel.getInstance().find('identityId = $0', identity.id);
+	const applications = await KYCApplicationModel.getInstance().find(item => item.identityId === identity.id);
 	dispatch(kycActions.setApplications(applications));
 };
 

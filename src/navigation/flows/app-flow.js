@@ -27,7 +27,7 @@ import MyProfileScreen from '../../screens/MyProfileScreen';
 // import { stackNavigatorConfig } from '../configs';
 import MarketplaceCategoriesScreen from 'screens/marketplaces/MarketplaceCategoriesScreen';
 import MarketplaceProductListingScreen from 'screens/marketplaces/MarketplaceProductListingScreen';
-// import MarketplaceProductScreen from 'screens/marketplaces/MarketplaceProductScreen';
+import MarketplaceProductScreen from 'screens/marketplaces/MarketplaceProductScreen';
 // import { WalletConnectScreen } from 'screens/walletConnect/WalletConnectScreen';
 // import { SKAgentScreen } from 'features/selfkey-agent/SKAgentScreen';
 
@@ -58,12 +58,12 @@ export const appFlow = {
 
   // [Routes.DOCUMENT_SCANNER]: DocumentScannerScreen,
   [Routes.CHANGE_PASSWORD]: ChangePasswordScreen,
+  [Routes.MARKETPLACE_PRODUCT]: MarketplaceProductScreen,
+  [Routes.MARKETPLACE_PRODUCT_LISTING]: MarketplaceProductListingScreen,
   // [Routes.ASSOCIATE_DID]: AssociateDIDScreen,
   // [Routes.REGISTER_DID]: RegisterDIDScreen,
   // [Routes.LEARN_HOW_TO_STAKE]: LearnHowToStakeScreen,
   // [Routes.KEYFI_ELIGIBILITY_START]: KeyFiEligibilityStartScreen,
-  // [Routes.MARKETPLACE_PRODUCT]: MarketplaceProductScreen,
-  [Routes.MARKETPLACE_PRODUCT_LISTING]: MarketplaceProductListingScreen,
   // [Routes.WALLET_CONNECT]: WalletConnectScreen,
   // [Routes.SK_AGENT]: SKAgentScreen,
   // We might use other flows inside of app where the tabs will not be visible

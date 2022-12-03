@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components/native';
-import { View, TouchableWithoutFeedback, Text } from 'react-native';
+import { View, TouchableWithoutFeedback, Text, ScrollView } from 'react-native';
 import { DocumentsEmptyAlert } from '../../../components';
 import {
 	Grid,

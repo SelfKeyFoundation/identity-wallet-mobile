@@ -13,6 +13,7 @@ import {
 import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { mkpOperations, mkpSelectors } from '../mkpSlice';
+import { getNavigationParam } from '../../../v2/screen-utils';
 
 // const categories = [
 // 	{
@@ -39,7 +40,8 @@ import { mkpOperations, mkpSelectors } from '../mkpSlice';
 
 function PassportsPLP(props) {
 	// const dispatch = useDispatch();
-	const categoryId = props.navigation.getParam('categoryId');
+	const categoryId = getNavigationParam(props, 'categoryId');
+	// props.navigation.getParam('categoryId');
 	// const [products, setProducts] = useState([]);
 	const category = useSelector(mkpSelectors.getProductListCategory);
 	const allItems = useSelector(mkpSelectors.getProductListItems);
@@ -104,7 +106,7 @@ function PassportsPLP(props) {
 }
 
 function SharedPLP(props) {
-	const categoryId = props.navigation.getParam('categoryId');
+	const categoryId = getNavigationParam(props, 'categoryId');
 	// const [products, setProducts] = useState([]);
 	const category = useSelector(mkpSelectors.getProductListCategory);
 	const items = useSelector(mkpSelectors.getProductListItems);
@@ -142,7 +144,7 @@ function SharedPLP(props) {
 }
 
 export default function MarketplaceProductListingScreen(props) {
-	const categoryId = props.navigation.getParam('categoryId');
+	const categoryId = getNavigationParam(props, 'categoryId');
 	const dispatch = useDispatch();
 
 	useEffect(() => {

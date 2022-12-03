@@ -1,0 +1,1032 @@
+{
+    "entities": [
+        {
+            "data": {
+                "vendor_id": "selfkey_certifier",
+                "name": "SelfKey Certifiers",
+                "description": "SelfKey Certifier Platform - Get your documents notarized by a US notary and pay with KEY",
+                "status": "active",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://certifiers.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}",
+                "categories": [
+                    "notaries"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://selfkey.org/privacy-policy/",
+                "contact_email": "certifier_support@selfkey.org",
+                "payment_address": "0x24233C848BdA9AD4559772763aC869d6305D177e",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "xcoins",
+                "name": "XCoins",
+                "description": "xCoins offers bitcoin to the public through a unique peer-to-peer lending model that connects borrowers and lenders through a series of â€œsecure loansâ€.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://xcoins.io/privacy",
+                "terms_of_service": "https://xcoins.io/terms",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "coinsbit",
+                "name": "Coinsbit",
+                "description": "Coinsbit is a company that provides cryptocurrency exchange and lending services. The company supports various types of coins, including BTC, ETH, LTC, BCH, BTG, ETC, and TUSD.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://coinsbit.io/privacy-policy",
+                "terms_of_service": "https://coinsbit.io/terms",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "tokens",
+                "name": "Tokens",
+                "description": "Trade on a Trusted European Crypto Exchange. Tokens.net is a centralised exchange based in the UK and Slovenia. Its most distinctive feature is 100% trading volume transparency verifiable through the smart contract. It is a full-featured cryptocurrency exchange supporting 60 crypto pairs and on-exchange market making bot, loans and fiat gateway",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "modeplatform",
+                "name": "Mode Platform",
+                "description": "Mode was created with a vision:Â to build a next-gen ecosystemÂ that combines the benefits of traditional and tokenised finance.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://modebanking.com/privacy-policy",
+                "terms_of_service": "https://modebanking.com/terms-and-conditions",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "cryptocom",
+                "name": "Crypto.com",
+                "description": "Crypto.com (formerly known as Monaco) is a pioneering cryptocurrency and financial services firm. Its integrated portfolio of premium consumer cryptocurrency products, including a wallet app, crypto loans and Visa payment cards, are branded as MCO to align with the name of its token.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://crypto.com/en/privacy/global.html",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "liquid",
+                "name": "Liquid",
+                "description": "Liquid is aÂ company thatÂ operates a next-generation cryptocurrency trading platform to make financial services accessible to all. The Company provides trading, exchange, and next-generation financial services powered by blockchain technology.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://quoine-prod.s3.amazonaws.com/uploads/policy_document/term_document/116/Liquid_Privacy_Policy_and_Cookie_Policy__Global__v2.00__Final_2019.03.06_.pdf",
+                "terms_of_service": "https://quoine-prod.s3.amazonaws.com/uploads/policy_document/term_document/196/Liquid_Terms_of_Use__Quoine_Pte._Ltd.__v3.01__2020.01.09_.pdf",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "jarvis",
+                "name": "Jarvis Exchange",
+                "description": "Jarvis market harvests the power of Blockchain to provide you with trustless peer-to-contract trading on multiple financial markets",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "whitebit",
+                "name": "WhiteBIT",
+                "description": "Whitebit is a centralized and regulated exchange based in Estonia. It aims to offer an intuitive user interface with a suite of analytical tools",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "lendabit",
+                "name": "LendaBit",
+                "description": "LendaBit.com is a fintech startup created by professionals with a unique mix of blockchain-based project experience, financial expertise and global market intelligence. LendaBit.com is willing to bring the benefits of this new digital space to our customers.\n",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://lendabit.com/privacypolicy",
+                "terms_of_service": "https://lendabit.com/terms_of_use",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "gateio",
+                "name": "Gate.io",
+                "description": "Gate.io is a financial technology company providing a crypto exchange platform. It allows users to buy, sell, and trade crypto. The company also offers investment and digital wallet services.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.gate.io/docs/agreement.pdf",
+                "terms_of_service": "https://www.gate.io/docs/agreement.pdf",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "flagtheory_incorporations",
+                "name": "Flag Theory Incorporations",
+                "description": "Flag Theory incorporations",
+                "status": "active",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://flagtheory-v2.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
+                "categories": [
+                    "incorporations"
+                ],
+                "inventory_source": "external",
+                "privacy_policy": "https://flagtheory.com/privacy-policy",
+                "terms_of_service": "http://flagtheory.com/terms-and-conditions",
+                "contact_email": "support@flagtheory.com",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "gbx",
+                "name": "GBX",
+                "description": "GBX is a regulated, insured and licensed exchange with multiple fiat currency onboarding available",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "btcpop",
+                "name": "BTC POP",
+                "description": "BTCPOP offers a unique P2P Banking experience with Instant Loans, Investment Pools, Collateral Tied Loans.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "flagtheory_passports",
+                "name": "Global Tech Resources LTD",
+                "description": "Passports & Residencies Marketplace\n",
+                "status": "active",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://shelter.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
+                "categories": [
+                    "passports"
+                ],
+                "inventory_source": "external",
+                "privacy_policy": "https://shelter.global/privacy-policy-marketplace/",
+                "terms_of_service": "https://shelter.global/terms-of-service-marketplace/",
+                "contact_email": "mark@shelter.global ",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "moneytoken",
+                "name": "Money Token",
+                "description": "MoneyToken is a worldwide blockchain-based financial services ecosystem, which provides opportunities for leveraging, borrowing and lending cryptocurrency assets.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://moneytoken.eu/doc/PrivacyPolicy.pdf",
+                "terms_of_service": "https://moneytoken.eu/doc/TermsAndConditions.pdf",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "blockfi",
+                "name": "BlockFi",
+                "description": "BlockFi provides the wealth management products cryptoinvestors need, all powered by blockchain technology.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "adax",
+                "name": "ADAX",
+                "description": "ADAX is a fully regulated asset backed token issuance and exchange platform. They support utility and security tokens",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "tokpie",
+                "name": "Tokpie",
+                "description": "Tokpie is a P2P cryptocurrency exchange. Allows the users to buy and sell crypto assets using both fiat and cryptocurrency. Provides multiple tools such as market screener, spread analysis, watchlists, price charting, price alerts, and notifications. Also provides P2P decentralized lending, cross-exchange spread trade analysis for brokerage, order books for crypto-fiat trades.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://tokpie.io/privacy",
+                "terms_of_service": "https://tokpie.io/terms",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "mine",
+                "name": "Mine Digital Exchange",
+                "description": " Australiaâ€™s fastest, most liquid and secure Digital Asset exchange",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "inlock",
+                "name": "INLOCK",
+                "description": "Income Locker is a peer-to-peer lending platform where users can borrow or lend using their cryptocurrencies as a collateral. The platform holds no liquidity for institutional lenders that provide the necessary funds.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://inlock.io/privpol",
+                "terms_of_service": "https://inlock.io/tos",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "bitcratic",
+                "name": "Bitcratic",
+                "description": "Bitcratic is a decentralized exchange for ERC 20 Tokens. They use off-chain order book with On-chain settlement.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "zos",
+                "name": "ZOS",
+                "description": "ZOS LendingÂ Network connectsÂ cryptoÂ currencies by cross-chain technology, and providesÂ crypto-holders withÂ crypto-backedÂ loanÂ service and risk management of smart contract.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.zos.io/PrivacyPolicy.html",
+                "terms_of_service": "https://www.zos.io/terms-en.html",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "probit",
+                "name": "Probit",
+                "description": "The fastest growing exchange in Korea",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "bitkub",
+                "name": "Bitkub",
+                "description": " Thailand's leading digital asset exchange. Buy, sell, and store Bitcoin, Ether, and other cryptocurrencies with Thai Baht now",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "moonpay",
+                "name": "Moonpay",
+                "description": "Buy key with credit card service",
+                "status": "active",
+                "relying_party_config": "{\n   \"key\":\"pk_live_gkfvdfbHHU6Zxlt2GhOQJm7MUTERhqv1\",\n   \"secret\": \"sk_live_MW0tRjhw8EzNtUKSq44wwzXXJD0TarLm\"\n}",
+                "categories": [
+                    "other"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual",
+                    "corporate"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "zipmex",
+                "name": "Zipmex",
+                "description": "Zipmex is a digital asset exchange that is focused on providing retail and institutional investors the ability to invest securely in cryptocurrencies",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "celsiusnetwork",
+                "name": "Celsius Network",
+                "description": "Celsius is a provider of a platform designed to use blockchain technology from peer to peer lending. Its app is intended to replace big banks and futures exchanges through cryptocurrency transactions, enabling users to earn interest on coins held by them.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://celsius.network/privacy-policy/",
+                "terms_of_service": "https://celsius.network/terms-of-use/",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "exmarkets",
+                "name": "Exmarkets",
+                "description": "Centralized platform that enable customers to trade up to 12 crypto-pairs among most traded crypto assets, at low transaction fees, with deep volume, 24h/7",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "youhodler",
+                "name": "YouHodler",
+                "description": "YouHodler FinTech platform is focused on crypto-backed lending with fiat (USD, EUR, CHF, GBP), crypto (BTC) and stablecoin loans (USDT, USDC, TUSD, PAX, PAXG), crypto/fiat and crypto/crypto conversions, as well as high-yield saving accounts. The platform supports BTC, BCH, BNB, ETH, LTC, XLM, XRP, DASH, HT, REP and other popular cryptocurrencies and tokens. YouHodler is an EU and Swiss-based company with two main offices: Limassol, Cyprus and Lausanne, Switzerland.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.youhodler.com/dock/privacy-policy",
+                "terms_of_service": "https://app.youhodler.com/dock/youhodler_terms_and_conditions",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "finrax",
+                "name": "Finrax",
+                "description": "With Finrax you can trade more than 20 cryptocurrencies paired with fiat currencies. They support low-fee credit card deposits, free of charge bank deposits and local payment methods. Easy registration, real-time document verification, fast and professional customer support and Multi-sig cryptocurrency wallets to ensure the safety of your crypto assets.\n\n.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "ais",
+                "name": "AIS-X",
+                "description": "AIS-X is the Mongolian based next generation cryptocurrency exchange that has established business affiliation with the National Investment Bank and several other financial institutions in Mongolia.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "zgtop",
+                "name": "ZG Top",
+                "description": "World's leading blockchain asset trading platform, serving the global blockchain enthusiasts.ZG.TOP has obtained investment of 10 million US dollars, and the blockchain transaction financial license issued by GBC of the Global Blockchain Research Center.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "xs2",
+                "name": "XS2",
+                "description": "XS2 is a crypto to crypto exchange. You can trade cryptocurrencies and tokens in markets, such as the ETH/BTC market in which you can buy/sell Ethereum for Bitcoin. You don't exchange with us. You trade with other customers on the exchange in an open market.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "bankofhodlers",
+                "name": "Bank of Hodlers ",
+                "description": "Bank of Hodlers provides crypto-backed loans, crypto-credit cards & insurance against crypto-theft by using blockchain technology.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://bankofhodlers.com/privacy-policy",
+                "terms_of_service": "https://bankofhodlers.com/terms-and-conditions",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "ledn",
+                "name": "Ledn",
+                "description": "Ledn is reinventing financial services around cryptoassets for Canadians. Its first product, Bitcoin-backed loans, offers the best rates and simplest application process in the Canadian market and is designed to help investors â€˜hodlâ€™ their cryptoassets. Applying for a Ledn loan is easy, does not affect your credit score and requires only Bitcoin as collateral. Bitcoin is held securely in institutional-grade cold-storage, and borrowers retain all benefits from any appreciation in the value of their asset. Ledn is the first company to announce Bitcoin-backed loans in Canadian dollars.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://platform.ledn.io/privacy-policy",
+                "terms_of_service": "https://platform.ledn.io/loan-terms-service",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "babelfinance",
+                "name": "Babel Finance",
+                "description": "Operator of a financial services platform for cryptocurrencies designed to build the financial infrastructure of the crypto world. The company's services offer crypto-backed loans, deposit services, financing, margin trading and other derivatives services, enabling clients to receive immediate funding based on the market value of their Bitcoin.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://babel.finance/otcagreement/agreement.html?lang=en",
+                "terms_of_service": "https://babel.finance/userAgent.html?lang=en&hasTitle=yes",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "keyfi",
+                "name": "KeyFI",
+                "description": "KeyFI Eligibility: Verify your Credentials to access and earn using KeyFi.ai. A First of its kind DeFi aggregator platform backed by SelfKey Credentials that allows you to liquidity mine across top DeFi platforms and earn rewards.",
+                "status": "active",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://credentials.keyfi.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
+                "categories": [
+                    "other"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://keyfi.com/privacy",
+                "terms_of_service": "https://keyfi.com/TOC",
+                "contact_email": "kyc@keyfi.com",
+                "payment_address": "0x245f27cfb617118c4869c8e526dcfadf8d9d31a8",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "hodinaut",
+                "name": "Hodlnaut",
+                "description": "Hodlnaut is a company that provides financial services to cryptocurrency users. It provides crypto-backed loans and crypto deposits.Â ",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.hodlnaut.com/privacy",
+                "terms_of_service": "https://www.hodlnaut.com/tos",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "kyber_network",
+                "name": "Kyber Network",
+                "description": "Kyber Network is a decentralized crypto-exchange focused on security and usability. The trade in Kyber Network is fast, easy and happens almost instantly. It is powered by smart contract, a new technology enabled by the Ethereum blockchain, which protects users from hacking incidents.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "bitlocus",
+                "name": "Bitlocus",
+                "description": "Crypto to fiat exchange with personal crypto-friendly bank account",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "wandx",
+                "name": "WandX",
+                "description": "WandX is a decentralized exchange that enables seamless creation and trade of any ERC20 Token or ERC20 Token baskets.Â The WAND Token can be used to get a 75% discount on the exchange fee.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "change_now",
+                "name": "ChangeNOW",
+                "description": "Non-custodial service for simple and fast cryptocurrency exchanges. More than 170 coins available. The fiat option is also available - you can buy cryptocurrency with Visa or MasterCard through their third-party partner Indacoin.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "hotbit",
+                "name": "Hotbit",
+                "description": "Hotbit is one of the professional digital asset exchange platforms that provide trading services among major digital currencies like Bitcoin, Litecoin and Ethereum for users from all over the world",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "nuo",
+                "name": "Nuo",
+                "description": "Nuo.Network is a decentralised debt marketplace that connects lenders and borrowers across the world using smart contracts. Our goal is to create global decentralized debt products using the Nuo Protocol.\n",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.nuo.network/privacy.html",
+                "terms_of_service": "https://nuo.network/terms.html",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "idcm",
+                "name": "IDCM",
+                "description": "IDCM is a globally well-known cryptocurrency trading platform as well as the originator and practitioner of the concept of alliance exchange",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "flagtheory_banking",
+                "name": "Flag Theory Banking",
+                "description": "Flag Theory banking",
+                "status": "active",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://flagtheory-v2.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
+                "categories": [
+                    "banking"
+                ],
+                "inventory_source": "external",
+                "privacy_policy": "https://flagtheory.com/privacy-policy",
+                "terms_of_service": "http://flagtheory.com/terms-and-conditions",
+                "contact_email": "support@flagtheory.com",
+                "entity_types": [
+                    "individual",
+                    "corporate"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "instaswap",
+                "name": "InstaSwap",
+                "description": "Cross-chain non custodial next generation exchange platform. Directly at market price at almost no time. Personal data are never in any way shared with a third part. Granted anonymity",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "easyrabbit",
+                "name": "Easyrabbit",
+                "description": "Safe and fast way to exchange among 57 Cryptocurrencies and more than 3150 possible pairs at the best rates. Secure and anonymous transactions with no account registration needed. No custodial risk for your funds and information. Transactions are processed over SSL/TLS certificate.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "simpleswap",
+                "name": "SimpleSwap",
+                "description": "SimpleSwap is an instant cryptocurrency exchange that allows customers to swap crypto in an easy way. The platform is free from sign-up and supports more than 300 cryptocurrencies. SimpleSwap provides two exchange types: floating and fixed rate. SimpleSwap has made the cryptocurrency exchange process simple, safe and comfortable",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "serenity",
+                "name": "Serenity Exchange",
+                "description": "Escrow for over-the-counter markets in the stock exchange ecosystem. Aggregated liquidity from the world's largest crypto exchanges for clients",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "velicloanx",
+                "name": "VELIC Crypto Loan X",
+                "description": "VELIC Platform provides a comprehensive solution for crypto-assets that delivers highest quality crypto-related services under a single integrated-user-account. Our services are built upon an innovative secure storage infrastructure which simultaneously offers security and accessibility - traits which are typically mutually exclusive. With a heavy focus on security, VELIC aims to transform the crypto-finance experience for everyone.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://man.velic.io/VELIC_Privacy_Policy.pdf",
+                "terms_of_service": "https://man.velic.io/VELIC_Terms_of_Use.pdf",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "constant",
+                "name": "Constant",
+                "description": "Constant was founded in early 2019 by a diverse team of engineers, designers, scientists and engineers. The California-based startup is dedicated to building powerful yet simple financial tools for an increasingly connected world starting with its flagship fully-secured P2P lending platform.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.myconstant.com/agreements?view=privacy",
+                "terms_of_service": "https://www.myconstant.com/agreements?view=termOfService",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "wirex",
+                "name": "Wirex",
+                "description": "Buy, store, transfer and exchange crypto with our secure and versatile wallets",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "digitalexchangeid",
+                "name": "Digitalexchange.id",
+                "description": "The Future of Digital Assets Exchange in Indonesia",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "korporatio",
+                "name": "Korporatio",
+                "description": "Korporatio description",
+                "status": "active",
+                "relying_party_config": "{\"rootEndpoint\": \"https://korporatio.instance.kyc-chain.com/api/v2/\",\"did\":true,\"endpoints\":{\"/templates/:id\":\"https://korporatio.instance.kyc-chain.com/api/v2/templates/:id?format=minimum\"}}",
+                "categories": [
+                    "incorporations"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://korporatio.com/PrivacyPolicy",
+                "terms_of_service": "https://korporatio.com/TermsAndConditions",
+                "contact_email": "future@korporatio.com",
+                "payment_address": "0x9175A64882d239CD35D88aEF071e1657C6e03351",
+                "entity_types": [
+                    "individual",
+                    "corporate"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "coinloan",
+                "name": "CoinLoan",
+                "description": "CoinLoan is a company that develops a P2P lending platform for crypto-assets backed loans. It combines and connects borrowers who want to receive fiat money without selling crypto assets and investors.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://coinloan.io/privacy-policy/",
+                "terms_of_service": "https://coinloan.io/terms-and-conditions/",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "saltlending",
+                "name": "SALT Lending\t",
+                "description": "SALT helps leverage blockchain assets to secure cash loans. ItsÂ platform gives an access to capital-on-demand through an extensive network of lenders.Â ",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://saltlending.com/privacy",
+                "terms_of_service": "https://saltlending.com/terms",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "bitrue",
+                "name": "Bitrue",
+                "description": "Bitrue exchange is established by a group of blockchain enthusiasts and focus on cryptocurrency trading. We have launched our crypto lending services recently. We dedicate to providing safe and convenient service for cryptocurrency trading, and being the best aggregator of qualified cryptocurrency all over the world.",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "loans"
+                ],
+                "inventory_source": "selfkey",
+                "privacy_policy": "https://www.bitrue.com/exchange-web/footer/privacy.html",
+                "terms_of_service": "https://www.bitrue.com/exchange-web/footer/terms.html",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        },
+        {
+            "data": {
+                "vendor_id": "p2pb2b",
+                "name": "p2pb2b",
+                "description": "p2pb2bâ€Œ is an advanced cryptocurrency exchange that works for the benefit of its users. In order to make your trading even more convenient and safe, the platform has all the necessary features and tools",
+                "status": "active",
+                "relying_party_config": "{}",
+                "categories": [
+                    "exchanges"
+                ],
+                "inventory_source": "selfkey",
+                "entity_types": [
+                    "individual"
+                ]
+            }
+        }
+    ]
+}

@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import styled from 'styled-components/native';
 import {
   Col,

@@ -14,6 +14,7 @@ import { ConfirmationModal } from './ConfirmationModal';
 import { ChecklistModal } from './ChecklistModal';
 import { PaymentModal } from './PaymentModal';
 import { PaymentProgressModal } from './PaymentProgressModal';
+import { getNavigationParam } from '../../../v2/screen-utils';
 
 const DetailsComponentMapping = {
   incorporations: ProductDetailsIncorporations,
@@ -27,8 +28,10 @@ const DetailsNotFound = () => <Typography>Invalid Category</Typography>;
 
 export default function MarketplaceProductScreen(props) {
   const dispatch = useDispatch();
-  const skuId = props.navigation.getParam('sku');
-  const categoryId = props.navigation.getParam('categoryId');  
+  const skuId = getNavigationParam(props, 'sku');
+  // props.navigation.getParam('sku');
+  const categoryId = getNavigationParam(props, 'categoryId');
+  // props.navigation.getParam('categoryId');  
   const isLoadig = useSelector(mkpSelectors.getProductLoading);
   const details = useSelector(mkpSelectors.getProductDetails);
   const DetailsComponent = DetailsComponentMapping[categoryId] || DetailsNotFound;

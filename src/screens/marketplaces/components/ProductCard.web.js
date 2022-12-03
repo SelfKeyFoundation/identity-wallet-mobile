@@ -9,8 +9,9 @@ import { Box, Col, FormattedNumber, Grid, Row, Typography } from 'design-system'
 import credentialIcon from './icons/assets/credentials.png';
 import LinearGradient from 'react-native-linear-gradient';
 // import { Button } from 'react-native-share';
-import { Flag } from 'react-native-svg-flagkit';
+// import { Flag } from 'react-native-svg-flagkit';
 
+const Flag = () => null;
 
 const CardContainer = styled(View)`
 	border: 0px solid ${props => (props.noBorder ? 'transparent' : props.color || '#38C0D1')};

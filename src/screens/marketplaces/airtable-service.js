@@ -1,6 +1,7 @@
 import { getConfigs, isDevMode } from "configs";
 import { withLocalCache } from "core/Storage";
 import { parseJson } from "core/utils";
+import vendorsMock from './mocks/vendors.json';
 
 function fetchInventory(prefix = '') {
 	return fetch('https://airtable.selfkey.org/airtable?tableName=Inventory' + (prefix || ''))
@@ -9,9 +10,10 @@ function fetchInventory(prefix = '') {
 }
 
 function fetchVendors(prefix = '') {
-	return fetch('https://airtable.selfkey.org/airtable?tableName=Vendors' + (prefix || ''))
-    .then(res => res.json())
-    .then(data => data.entities.map(item => item.data));
+	return Promise.resolve(vendorsMock.entities.map(item => item.data));
+  // fetch('https://airtable.selfkey.org/airtable?tableName=Vendors' + (prefix || ''))
+  //   .then(res => res.json())
+  //   .then(data => data.entities.map(item => item.data));
 }
 
 function fetchFeatureFlags(prefix = '') {
