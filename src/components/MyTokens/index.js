@@ -93,8 +93,6 @@ export function MyTokensContainer() {
     }),
     ...defaultTokens,
   ];
-  
-  console.log('#mzm my tokens', tokens);
 
   return (
     <View>

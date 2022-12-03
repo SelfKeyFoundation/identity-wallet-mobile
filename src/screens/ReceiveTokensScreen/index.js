@@ -75,13 +75,13 @@ function ReceiveTokensContainer(props) {
         onCopy={handleCopy}
         onShare={handleShare}
       >
-        <Snackbar
+        {/* <Snackbar
           visible={!!snackBarMessage}
           onDismiss={hideSnackBar}
           duration={1000}
         >
           { snackBarMessage }
-        </Snackbar>
+        </Snackbar> */}
       </ReceiveTokens>
     </React.Fragment>
   );

@@ -36,18 +36,18 @@ export class IdAttributeModel extends BaseModel {
   }
 
   findAllByIdentityId(identityId) {
-		return this.find('identityId = $0', identityId);
+		return this.find(item => item.identityId === identityId, identityId);
   }
 
   applyCustomMapping(item) {
-    item.data = item.data ? JSON.parse(item.data) : {};
+    // item.data = typeof item.data === 'string' ? JSON.parse(item.data) : item.data || {};
     return item;
   }
 
   beforeCreate(item) {
-    if (typeof item.data === 'object') {
-      item.data = JSON.stringify(item.data);
-    }
+    // if (typeof item.data === 'object') {
+    //   item.data = JSON.stringify(item.data);
+    // }
 
     // item.createdAt = new Date();
     // item.updatedAt = item.createdAt;

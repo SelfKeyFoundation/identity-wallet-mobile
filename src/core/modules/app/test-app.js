@@ -13,8 +13,9 @@ export async function testWalletSetup({ dispatch }) {
 
   console.log('wallet created', { setupData });
 
-  await dispatch(walletOperations.loadWalletOperation(setupData));
-  setTimeout(() => {
-    navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
-  }, 1000);
+  // await dispatch(walletOperations.loadWalletOperation(setupData));
+
+  // setTimeout(() => {
+  //   navigate(Routes.CREATE_WALLET_SETUP_COMPLETE);
+  // }, 1000);
 }

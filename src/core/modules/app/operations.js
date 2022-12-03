@@ -35,14 +35,14 @@ const loadAppOperation = () => async (dispatch, getState) => {
 
 	await seedDb();
 
-	dispatch(skAgentOperations.init());
+	// dispatch(skAgentOperations.init());
 	// Load guide settings
 	const guideSettings = await getGuideSettings();
 	dispatch(appActions.setGuideSettings(guideSettings));
 
-	getSupportedBiometryType().then(value => {
-		dispatch(appActions.setSupportedBiometryType(value));
-	});
+	// getSupportedBiometryType().then(value => {
+	// 	dispatch(appActions.setSupportedBiometryType(value));
+	// });
 
 	const idAttributes = await IdAttributeTypeModel.getInstance().findAll();
 
@@ -56,7 +56,7 @@ const loadAppOperation = () => async (dispatch, getState) => {
 	} catch (err) {
 		console.error(err);
 	}
-
+	
 	const wallets = await WalletModel.getInstance().findAll();
 	const defaultWallet = wallets[0];
 

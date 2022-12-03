@@ -9,9 +9,9 @@ export function AppTabBar(props) {
 	const dispatch = useDispatch();
 	const isKeyFiEnabled = useSelector(ducks.app.selectors.getKeyFiEnabled);
 	const network = useSelector(ducks.app.selectors.getNetwork);
-	const { navigation } = props;
-	const { routes } = navigation.state;
-	const route = routes[navigation.state.index];
+	const { navigation, state } = props;
+	const { routes } = state;
+	const route = routes[state.index];
 
 	const items = [
 		{
@@ -65,5 +65,9 @@ export function AppTabBar(props) {
 		navigate(route);
 	};
 
-	return <TabNavigation activeId={route && route.key} onPress={handleNavigate} items={items} />;
+	if (!route.name || route.name.indexOf('app/') !== 0) {
+		return null;
+	}
+
+	return <TabNavigation activeId={route && route.name} onPress={handleNavigate} items={items} />;
 }

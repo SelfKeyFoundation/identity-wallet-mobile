@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard, View } from 'react-native';
+import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard, View, Text } from 'react-native';
 import {
 	TokenBoxCarouselContainer,
 	MyTokensContainer,
@@ -140,7 +140,7 @@ export function Dashboard(props) {
 	return (
 		<Container>
 			<SafeAreaView>
-				<WalletHeader />
+				{/* <WalletHeader /> */}
 				<HeaderTitle>Dashboard</HeaderTitle>
 				<ScrollView
 					refreshControl={

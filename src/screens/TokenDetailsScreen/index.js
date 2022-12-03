@@ -13,6 +13,7 @@ import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
 import { View, Text } from 'react-native';
+import { getNavigationParam } from '../../v2/screen-utils';
 
 const TRACKER_PAGE = 'tokenDetails';
 
@@ -57,7 +58,7 @@ function getFiatDecimal(tokenDetails) {
 }
 
 function TokenDetailsContainer(props) {
-  const tokenSymbol = props.navigation.getParam('tokenId', NetworkStore.getNetwork().symbol).toUpperCase();
+  const tokenSymbol = getNavigationParam(props, 'tokenId', NetworkStore.getNetwork().symbol).toUpperCase();
   const tokenDetails = useSelector(selectors.getTokenDetails(tokenSymbol));
   const dispatch = useDispatch();
 

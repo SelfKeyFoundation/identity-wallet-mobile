@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { SkLogo } from 'design-system';
 import { SkBackground } from '../../components';
 import {View} from 'react-native';
+import { SKIcon } from '../../design-system/icons';
 
 const Title = styled(Text)`
   color: #0ABBD0;

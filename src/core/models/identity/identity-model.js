@@ -42,6 +42,6 @@ export class IdentityModel extends BaseModel {
   }
 
   findAllByWalletId(walletId) {
-    return this.find('walletId = $0', walletId); 
+    return this.find(item => item.walletId === walletId, walletId); 
   }
 }

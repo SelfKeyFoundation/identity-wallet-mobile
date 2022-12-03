@@ -63,7 +63,7 @@ export class RepositoryModel extends BaseModel {
 	}
 
   findByUrl(url) {
-    return this.findOne('url = $0', url); 
+    return this.findOne(item => item.url === url); 
   }
 
   diffAttributes(remote, local) {
@@ -222,14 +222,14 @@ export class RepositoryModel extends BaseModel {
   }
 
   applyCustomMapping(item) {
-    item.content = JSON.parse(item.content);
+    // item.content = JSON.parse(item.content);
     return item;
   }
 
   beforeCreate(item) {
-    if (typeof item.content === 'object') {
-      item.content = JSON.stringify(item.content);
-    }
+    // if (typeof item.content === 'object') {
+    //   item.content = JSON.stringify(item.content);
+    // }
 
     item.createdAt = new Date().toString();
     item.updatedAt = item.createdAt;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import { ManageTokensContainer } from '../../components';
 
 const HeaderTitle = styled(Text)`

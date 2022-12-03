@@ -26,9 +26,9 @@ export default function MarketplaceCategoriesScreen(props) {
 	return (
 		<ScreenContainer>
 			<Box marginTop={15}>
-				<Typography color="#fff" fontSize={19} textAlign="center" fontWeight="bold">
+				{/* <Typography color="#fff" fontSize={19} textAlign="center" fontWeight="bold">
 					Marketplace
-				</Typography>
+				</Typography> */}
 			</Box>
 			<ScrollView>
 				{categories.map(category => {

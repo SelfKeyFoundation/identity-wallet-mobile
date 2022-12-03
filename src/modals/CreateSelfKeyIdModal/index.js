@@ -9,7 +9,7 @@ import { getUsdPrice } from 'blockchain/services/price-service';
 import ducks from 'core/modules';
 import styled from 'styled-components/native';
 import EthUtils from 'blockchain/util/eth-utils';
-import { Linking, KeyboardAvoidingView, Platform } from 'react-native';
+import { Linking, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { WalletTracker } from '../../WalletTracker';
 import {
   ScreenContainer,

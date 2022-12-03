@@ -7,6 +7,7 @@ import { View } from 'react-native';
 
 import LogoFull from './splash/logo-full.svg';
 import { useApp } from '../../core/modules/app/use-app';
+import { SKIcon } from '../../design-system/icons';
 
 const Title = styled(Text)`
   color: #0ABBD0;
@@ -26,7 +27,7 @@ export function LoadingScreen() {
   const {loadAndRedirect} = useApp();
 
   useEffect(() => {
-    setTimeout(loadAndRedirect, 1000);
+    setTimeout(loadAndRedirect, 2000);
   }, []);
 
   return (

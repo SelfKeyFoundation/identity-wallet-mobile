@@ -5,12 +5,12 @@ import './inject-system';
 // import './rn-identity-vault/index';
 import './db';
 import { createStoreProvider } from 'core/redux';
-import { MobileUIProvider, Portal } from 'design-system';
+import { MobileUIProvider } from 'design-system';
 // import { TermsOfService } from './components';
 // import App from './App';
 import App from './WebApp';
 import { extendTheme, NativeBaseProvider } from 'native-base';
-
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const Provider = createStoreProvider();
 
@@ -43,15 +43,13 @@ export function Root(props: RootProps) {
   console.log('Loading root');
 
   return (
-    <Provider>
-      <NativeBaseProvider theme={theme}>
+    <NativeBaseProvider theme={theme}>
+      <Provider>
         <MobileUIProvider>
-          <Portal.Host>
-            <App />
-          </Portal.Host>
+          <App />
         </MobileUIProvider>
-      </NativeBaseProvider>
-    </Provider>
+      </Provider>
+    </NativeBaseProvider>
   );
 }
 

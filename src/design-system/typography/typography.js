@@ -2,6 +2,8 @@ import React from 'react';
 import { Text } from 'react-native';
 // import {Text} from 'react-native';
 import styled from 'styled-components/native';
+import { CustomPaperTheme } from '../paper-theme';
+import { Theme } from '../theme';
 
 // export * from './links';
 // export * from './lists';
@@ -19,9 +21,9 @@ const VariantMap = {
 }
 
 export const DefaultText = styled(Text)`
-  color: ${props => props.theme.colors.white};
+  color: ${props => Theme.colors.white};
   font-size: 16px;
-  font-family: ${({ theme, fontWeight = 'regular'}) => theme.fonts[fontWeight]};
+  font-family: ${({ theme, fontWeight = 'regular'}) => Theme.fonts[fontWeight]};
   line-height: 24px;
 `;
 

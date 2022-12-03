@@ -73,27 +73,30 @@ const computeColor = token => token.color ? token : ({
 function getPrimaryToken() {
   const primaryToken = getConfigs().primaryToken;
   const token = TokenModel.getInstance().findBySymbol(primaryToken);
-
   return token;
 }
 
 async function loadWalletTokens(wallet, checkBalance) {
 
-  return {};
   const updatedData = {};
   // Fetch tokens balance
   updatedData.tokens = await Promise.all(
     wallet.tokens
       .map(async (tk, idx) => {
         const walletTokenId = tk.parsed ? tk.walletTokenId : tk.id;
-        const walletToken = await WalletTokenModel.getInstance().findById(walletTokenId);
+        let walletToken = await WalletTokenModel.getInstance().findById(walletTokenId);
+
+        if (!walletToken) {
+          walletToken = tk;
+        }
 
         if (idx === 0) {
           const primaryToken = getPrimaryToken();
           walletToken.tokenId = primaryToken.id;
         }
 
-        const token = await TokenModel.getInstance().findById(walletToken.tokenId);
+        const token = await TokenModel.getInstance().findById(walletToken.tokenId || walletToken.id);
+
         let balance = walletToken.balance || 0;
 
         if (checkBalance) {
@@ -111,7 +114,7 @@ async function loadWalletTokens(wallet, checkBalance) {
           balance = 0;
         }
 
-        const price = getTokenPrice(token.symbol);
+        const price = getTokenPrice(walletToken.symbol);
 
         return {
           parsed: true,
@@ -260,12 +263,18 @@ const loadWalletOperation = ({ wallet, vault }) => async (dispatch, getState) =>
   };
 
   async function loadIt() {
-    await updateWalletLastUnlock(wallet).then(updateState);
-    await addTop20Tokens(wallet).then(updateState);
-    await loadWalletTokens(wallet).then(updateState);
-    dispatch(refreshWalletOperation());
-    await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
-    await dispatch(ducks.identity.operations.unlockIdentityOperation());
+    try {
+      
+      await updateWalletLastUnlock(wallet).then(updateState);
+      await addTop20Tokens(wallet).then(updateState);
+      await loadWalletTokens(wallet).then(updateState);
+      dispatch(refreshWalletOperation());
+      await dispatch(ducks.identity.operations.loadIdentitiesOperation(wallet.address));
+      await dispatch(ducks.identity.operations.unlockIdentityOperation());
+    } catch(err) {
+      console.error(err);
+    }
+    
   }
 
   setTimeout(() => {

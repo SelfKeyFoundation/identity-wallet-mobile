@@ -17,6 +17,8 @@ import {
 import QRCode from 'react-native-qrcode-svg';
 import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
+import { colors } from '../../design-system/colors';
+import { CustomPaperTheme } from '../../design-system/paper-theme';
 
 export interface ReceiveTokensProps {
   tokenSymbol: string;
@@ -102,9 +104,9 @@ const QRCodeContainer = styled(View)`
 `;
 
 const AddressText  = styled(Text)`
-  color: ${props => props.theme.colors.white};
+  color: ${colors.white};
   font-size: 13px;
-  font-family: ${props => props.theme.fonts.bold};
+  font-family: ${props => CustomPaperTheme.fonts.medium};
 `;
 
 export const ReceiveTokens = props => (

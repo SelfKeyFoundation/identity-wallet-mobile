@@ -1,6 +1,6 @@
 // @flow
 import styled from 'styled-components/native';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableWithoutFeedback, Text } from 'react-native';
 import { SKIcon } from '../icons';
 import React from 'react';
 import { useContext } from 'react';

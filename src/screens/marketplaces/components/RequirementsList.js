@@ -15,6 +15,7 @@ import {
 	Typography,
 	Button
 } from 'design-system';
+import { View } from 'react-native';
 // import { WalletTracker } from '../../WalletTracker';
 
 const RequirementCheckMark = styled(View)`

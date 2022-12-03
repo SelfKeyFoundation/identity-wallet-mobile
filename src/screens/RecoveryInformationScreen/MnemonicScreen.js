@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext } from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import {
   ScreenContainer,

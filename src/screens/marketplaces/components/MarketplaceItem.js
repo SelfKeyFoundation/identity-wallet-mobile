@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { Image, TouchableWithoutFeedback } from 'react-native';
+import { Image, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import {
   Col,

@@ -14,29 +14,29 @@ import {
   Explanatory,
   FormattedNumber
 } from 'design-system';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, View, Text} from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from 'design-system/svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
-import { View, Text } from 'react-native';
+import { Theme } from '../../design-system/theme';
 
 const TRACKER_PAGE = 'dashboard/myTokens';
 
 const Title = styled(Text)`
-  color: ${props => props.theme.colors.white};
+  color: ${props => Theme.colors.white};
   font-size: 24px;
-  font-family: ${props => props.theme.fonts.regular};
+  font-family: ${props => Theme.fonts.regular};
   margin-bottom: 4px;
   margin-top: 0;
 `;
 
 const TotalTokenAmount = styled(Text)`
-  color: ${props => props.theme.colors.typography};
+  color: ${props => Theme.colors.typography};
   font-size: 16px;
-  font-family: ${props => props.theme.fonts.regular};
+  font-family: ${props => Theme.fonts.regular};
 `;
 
 const Container = styled(View)``;
@@ -56,9 +56,9 @@ const TokenRow = styled(LinearGradient)`
 `;
 
 const TokenName = styled(Text)`
-  color: ${({ theme }) => theme.colors.white };
+  color: ${({ theme }) => Theme.colors.white };
   font-size: 18px;
-  font-family: ${props => props.theme.fonts.regular};
+  font-family: ${props => Theme.fonts.regular};
   margin-bottom: 3px;
   line-height: 22px;
 `;
@@ -71,12 +71,12 @@ const TokenIconContainer = styled(View)`
 `;
 
 const TokenIconTitle = styled(Text)`
-  color: ${({ theme }) => theme.colors.white };
+  color: ${({ theme }) => Theme.colors.white };
   font-size: 16px;
   text-align: center;
   width: 100%;
   line-height: 19px;
-  font-family: ${props => props.theme.fonts.regular};
+  font-family: ${props => Theme.fonts.regular};
   text-transform: uppercase;
 `;
 

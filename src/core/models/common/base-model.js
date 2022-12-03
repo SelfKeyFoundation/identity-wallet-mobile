@@ -18,24 +18,17 @@ export class BaseModel {
   }
 
   async create(props) {
-    // try {
-      let result;
+    let result;
 
-      if (this.beforeCreate) {
-        props = this.beforeCreate(props);
-      }
+    if (this.beforeCreate) {
+      props = this.beforeCreate(props);
+    }
 
-      this.realm.write(() => {
-        result = this.realm.create(this.schema.name, props);
-      });
+    this.realm.write(() => {
+      result = this.realm.create(this.schema.name, props);
+    });
 
-
-      return this.toJson(result);
-    // } catch(err) {
-    //   console.log('Error creating entity with props: ', props);
-    //   console.error(err);
-    //   throw err;
-    // }
+    return this.toJson(result);
   }
 
   removeById(id) {
@@ -106,7 +99,7 @@ export class BaseModel {
 
     const lastItem = items[items.length - 1];
 
-    return lastItem.id + 1;
+    return lastItem[this.schema.primaryKey] + 1;
   }
 
   toJson(data) {
@@ -136,18 +129,19 @@ export class BaseModel {
   find(query, ...args) {
     let results = this._findAll();
 
-    if (query) {
-      console.warn('Cannot handle query for this', query)
-      // results = results.filtered(query, ...args);
+    if (typeof query === 'string') {
+      throw new Error('Query cannot be a string');
     }
 
-    console.log('find results', results);
+    if (typeof query === 'function') {
+      results = results.filter(query);
+    }
 
     return this.toJsonArray(results);
   }
 
   findSorted(query, sort, ...args) {
-    let results = this._findAll().sorted(sort);
+    let results = this._findAll();
 
     if (query) {
       results = results.filtered(query, ...args);
@@ -156,10 +150,11 @@ export class BaseModel {
     return Array.from(results).map(this.toJson);
   }
 
-  findOne(func) {
+  findOne(func = () => true) {
     if (typeof func !== 'function') {
-      throw 'Expect a filter function as parameter'
+      debugger;
     }
+
     return this.findAll().find(func);
   }
 }

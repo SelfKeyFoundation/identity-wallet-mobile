@@ -46,18 +46,18 @@ export class UISchemaModel extends BaseModel {
   }
 
   findByUrl(url, repoId) {
-    return this.findOne('url = $0 and repositoryId = $1', url, repoId); 
+    return this.findOne(item => item.url === url && item.repositoryId === repoId);
   }
 
   applyCustomMapping(item) {
-    item.content = JSON.parse(item.content);
+    // item.content = typeof item.content === 'string' ? JSON.parse(item.content) : item.content || {};
     return item;
   }
 
   beforeCreate(item) {
-    if (typeof item.content === 'object') {
-      item.content = JSON.stringify(item.content);
-    }
+    // if (typeof item.content === 'object') {
+    //   item.content = JSON.stringify(item.content);
+    // }
 
     item.createdAt = new Date();
     item.updatedAt = item.createdAt;

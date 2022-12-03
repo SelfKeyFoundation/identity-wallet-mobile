@@ -12,9 +12,10 @@ export const navigateToDashboardOperation = (form) => async (dispatch, getState)
   const preferences = await getUserPreferences();
   const flags = ducks.app.selectors.getKeyFiEnabled(getState());
 
-  if (flags.keyfi && !preferences.skipKeyFiEligibility) {
-    return navigate(Routes.KEYFI_ELIGIBILITY_START);
-  }
+  // debugger;
+  // if (flags.keyfi && !preferences.skipKeyFiEligibility) {
+  //   return navigate(Routes.KEYFI_ELIGIBILITY_START);
+  // }
 
   dispatch(walletConnectActions.setUnlocked(true));
   dispatch(walletConnectOperations.init());
@@ -114,7 +115,7 @@ const unlockWithAddressOperation = ({ address, password, biometrics }) => async 
 };
 
 const unlockWithVaultIdOperation = (vaultId, password) => async (dispatch, getState) => {
-  const wallet = await WalletModel.getInstance().findOne('vaultId = $0', vaultId);
+  const wallet = await WalletModel.getInstance().findOne(item => item.vaultId === vaultId);
   await dispatch(unlockWithAddressOperation({
     address: wallet.address,
     password,

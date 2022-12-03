@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,

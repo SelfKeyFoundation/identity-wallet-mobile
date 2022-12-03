@@ -25,9 +25,9 @@ export const RECOVERY_INFORMATION = 'recoveryInformation';
 export const DEVELOPER_SETTINGS = 'devSettings';
 export const CHANGE_PASSWORD = 'changePassword';
 
-export const MARKETPLACE_PRODUCT = 'marketplace/product';
-export const MARKETPLACE_PRODUCT_LISTING = 'marketplace/productListing';
-export const MARKETPLACE_CATEGORIES = 'marketplace/categories';
+export const MARKETPLACE_PRODUCT = 'app/marketplace/product';
+export const MARKETPLACE_PRODUCT_LISTING = 'app/marketplace/productListing';
+export const MARKETPLACE_CATEGORIES = 'app/marketplace/categories';
 
 export const CREATE_WALLET_FLOW = 'createWallet';
 export const CREATE_WALLET_PASSWORD = 'createWallet/password';
@@ -52,10 +52,10 @@ export const WALLET_SELECTION = 'walletSelection';
 
 export const MODAL_TRANSACTION_DETAILS = 'modal/transactionDetails';
 export const MODAL_CREATE_SELFKEY_ID = 'modal/createSelfKeyId';
-export const ASSOCIATE_DID = 'associateDID';
-export const REGISTER_DID = 'registerDID';
-export const ALLOWANCE_EDITOR = 'allowanceEditor';
-export const ALLOWANCE_LIST = 'allowanceList';
-export const ALLOWANCE_TRANSACTION_PROCESSING = 'allowanceTransactionProcessing';
-export const WALLET_CONNECT = 'walletConnect';
-export const SK_AGENT = 'skAgent';
+export const ASSOCIATE_DID = 'app/associateDID';
+export const REGISTER_DID = 'app/registerDID';
+export const ALLOWANCE_EDITOR = 'app/allowanceEditor';
+export const ALLOWANCE_LIST = 'app/allowanceList';
+export const ALLOWANCE_TRANSACTION_PROCESSING = 'app/allowanceTransactionProcessing';
+export const WALLET_CONNECT = 'app/walletConnect';
+export const SK_AGENT = 'app/skAgent';
