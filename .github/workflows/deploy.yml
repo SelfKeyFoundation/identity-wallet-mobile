@@ -23,3 +23,7 @@ jobs:
       - name: Build artifacts
         run: |
           yarn build:web
+
+      - name: Check files
+        run: |
+          ls dist
