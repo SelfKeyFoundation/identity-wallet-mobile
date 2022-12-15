@@ -14,16 +14,22 @@ jobs:
         with:
           node-version: '18.12.1'
 
-      - name: Install dependencies
-        run: |
-          git config --global url."https://".insteadOf git://
-          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          yarn install
+      # - name: Install dependencies
+      #   run: |
+      #     git config --global url."https://".insteadOf git://
+      #     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+      #     yarn install
 
-      - name: Build artifacts
-        run: |
-          yarn build:web
+      # - name: Build artifacts
+      #   run: |
+      #     yarn build:web
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: Check files
         run: |
-          ls dist
+          # ls dist
+          gsutil ls gs://poi-dapp
