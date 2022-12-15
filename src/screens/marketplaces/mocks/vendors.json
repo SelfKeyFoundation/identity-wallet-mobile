@@ -249,13 +249,13 @@
                 "name": "Global Tech Resources LTD",
                 "description": "Passports & Residencies Marketplace\n",
                 "status": "active",
-                "relying_party_config": "{\n  \"rootEndpoint\": \"https://shelter.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
+                "relying_party_config": "{\n  \"rootEndpoint\": \"https://metaproof.instance.kyc-chain.com/api/v2/\",\n  \"endpoints\": {\n    \"/templates/:id\": \"/templates/:id?format=minimum\",\n    \"/kyc-users/me\": \"/users/me\",\n    \"/kyc-users\": \"/users\"\n  }\n}\n",
                 "categories": [
                     "passports"
                 ],
                 "inventory_source": "external",
-                "privacy_policy": "https://shelter.global/privacy-policy-marketplace/",
-                "terms_of_service": "https://shelter.global/terms-of-service-marketplace/",
+                "privacy_policy": "https://metaproof.global/privacy-policy-marketplace/",
+                "terms_of_service": "https://metaproof.global/terms-of-service-marketplace/",
                 "contact_email": "mark@shelter.global ",
                 "entity_types": [
                     "individual"

@@ -6,6 +6,7 @@ import ducks from 'core/modules';
 
 const { operations, selectors } = ducks.createWallet;
 
+// remove unused imports
 function BackupWalletContainer(props) {
   const dispatch = useDispatch();
   const mnemonic = useSelector(selectors.getMnemonicPhrase);
