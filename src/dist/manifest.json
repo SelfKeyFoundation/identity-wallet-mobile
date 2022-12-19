@@ -1,0 +1,22 @@
+{
+    "name": "Selfkey Wallet",
+    "description": "Selfkey Wallet",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [],
+    "host_permissions": [],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Selfkey Wallet",
+        "default_icon": "selfkey-icon.png",
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "16": "selfkey-icon.png",
+        "32": "selfkey-icon.png",
+        "48": "selfkey-icon.png",
+        "128": "selfkey-icon.png"
+    }
+}
