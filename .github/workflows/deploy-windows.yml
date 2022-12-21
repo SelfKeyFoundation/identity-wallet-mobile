@@ -26,7 +26,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-          yarn build:web
+          # yarn build:web
 
       - name: Make windows artifacts
         run: |
