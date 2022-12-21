@@ -3,6 +3,7 @@ const { hideBin } = require('yargs/helpers')
 const argv = yargs(process.argv).argv
 const axios = require('axios').default;
 const token = argv.token;
+const moment = require('moment');
 
 const WEBHOOK_URL = `https://mattermost.kyc-chain.com/hooks/${token}`;
 const childProcess = require('child_process');
@@ -29,7 +30,9 @@ const platformName =  argv.platform;
 
 const repositoryUrl = argv.repositoryUrl ? `${argv.repositoryUrl}/` : '';
 const appName =  argv.appName || `Selfkey Wallet`;
-const artifactsUrl = `https://console.cloud.google.com/storage/browser/sk-builds/unified-wallet/2022-12-18-22_10?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=selfkey2&prefix=&forceOnObjectsSortingFiltering=false`;
+const commitDate = new Date(getCommandOutput('git show -s --format=%ci'));
+const formattedDate = moment(commitDate).format('YYYY-MM-DD_HHMMss')
+const artifactsUrl = `https://console.cloud.google.com/storage/browser/sk-builds/unified-wallet/${formattedDate};tab=objects?project=selfkey2&prefix=&forceOnObjectsSortingFiltering=false`;
 const buildNumber = null;//`123`;
 const environmentName = 'Staging';
 
