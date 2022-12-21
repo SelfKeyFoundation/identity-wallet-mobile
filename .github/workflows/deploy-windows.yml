@@ -30,7 +30,7 @@ jobs:
 
       - name: Make windows artifacts
         run: |
-          yarn make --platform win32
+          yarn package --platform win32
       
       # - id: 'auth'
       #   uses: 'google-github-actions/auth@v1'
