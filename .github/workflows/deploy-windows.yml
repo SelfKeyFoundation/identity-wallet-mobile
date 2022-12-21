@@ -30,8 +30,12 @@ jobs:
 
       - name: Make windows artifacts
         run: |
-          yarn package --platform win32
+          yarn make --platform win32
       
+      - name: upload Artifacts
+        run: |
+          node electron-dev-upload.js 
+          
       # - id: 'auth'
       #   uses: 'google-github-actions/auth@v1'
       #   # if: runner.os == 'Windows'
@@ -52,5 +56,5 @@ jobs:
       #   #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
       #   run: |
       #     # ls dist
-      #     gsutil ls gs://poi-dapp
+      #     gsutil ls gs://sk-builds
         
