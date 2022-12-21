@@ -13,6 +13,7 @@
     "test": "jest",
     "lint": "eslint .",
     "make": "electron-forge make",
+    "package": "electron-forge package",
     "lint:style": "stylelint './src/**/*.js'",
     "flow": "flow",
     "fix-deps": "sh fix-deps.sh && npx jetify && yarn rn-nodeify --hack",
