@@ -28,18 +28,24 @@ jobs:
       #   run: |
       #     yarn build:web
 
-      - name: 'Gcloud auth'
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud
-        if: runner.os == 'Windows'
-        env:
-          CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        # if: runner.os == 'Windows'
+        # env:
+        #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
       - name: Check files
-        if: runner.os == 'Windows'
-        env:
-          CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
+        # if: runner.os == 'Windows'
+        # env:
+        #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
         run: |
           # ls dist
           gsutil ls gs://poi-dapp
