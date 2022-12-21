@@ -1,12 +1,10 @@
 name: Deployment
-on:
-  push:
-    paths: ["skip/**"]
+on: [push]
 
 jobs:
   browser_extension:
     name: "Browser extension deploy"
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
