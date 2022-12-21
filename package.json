@@ -11,6 +11,7 @@
     "bundle:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/IdentityWalletMobile/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
     "test": "jest",
     "lint": "eslint .",
+    "make": "electron-forge make",
     "lint:style": "stylelint './src/**/*.js'",
     "flow": "flow",
     "fix-deps": "sh fix-deps.sh && npx jetify && yarn rn-nodeify --hack",
@@ -39,7 +40,7 @@
       }
     }
   },
-  "main": "./electron/index.js",
+  "main": ".webpack/main",
   "build": {
     "appId": "com.selfkey.wallet",
     "productName": "selfkey",
