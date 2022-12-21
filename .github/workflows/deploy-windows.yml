@@ -29,7 +29,7 @@ jobs:
       #     yarn build:web
 
       - name: 'Gcloud auth'
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud
         if: runner.os == 'Windows'
         env:
           CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
