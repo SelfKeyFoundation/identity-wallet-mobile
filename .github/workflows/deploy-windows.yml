@@ -14,6 +14,10 @@ jobs:
         with:
           node-version: '18.12.1'
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
       # - name: Install dependencies
       #   run: |
       #     git config --global url."https://".insteadOf git://
@@ -26,10 +30,17 @@ jobs:
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
+        if: runner.os == 'Windows'
+        env:
+          CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: Check files
+        if: runner.os == 'Windows'
+        env:
+          CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
         run: |
           # ls dist
           gsutil ls gs://poi-dapp
+        
