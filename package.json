@@ -1,6 +1,7 @@
 {
   "name": "my-webpack-project",
   "version": "1.0.0",
+  "author": "Selfkey",
   "scripts": {
     "start": "react-native start",
     "storybook": "(adb reverse tcp:7007 tcp:7007 || true) && start-storybook",
