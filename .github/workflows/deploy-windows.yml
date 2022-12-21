@@ -45,16 +45,10 @@ jobs:
 
       - name: Upload build artifacts
         run: |
-          node electron-dev-upload.js 
-
-      # - name: 'Use gcloud CLI'
-      #   run: 'gcloud info'
-
-      # - name: Check files
-      #   # if: runner.os == 'Windows'
-      #   # env:
-      #   #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
-      #   run: |
-      #     # ls dist
-      #     gsutil ls gs://sk-builds
+          node electron-dev-upload.js --platform=Windows
+      
+      - name: Send slack notification
+        run: |
+          node build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }}  --platform=Windows
+  
         
