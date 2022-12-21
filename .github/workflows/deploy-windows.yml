@@ -18,35 +18,39 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      # - name: Install dependencies
-      #   run: |
-      #     git config --global url."https://".insteadOf git://
-      #     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-      #     yarn install
-
-      # - name: Build artifacts
-      #   run: |
-      #     yarn build:web
-
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        # if: runner.os == 'Windows'
-        # env:
-        #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
-
-      - name: Check files
-        # if: runner.os == 'Windows'
-        # env:
-        #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
+      - name: Install dependencies
         run: |
-          # ls dist
-          gsutil ls gs://poi-dapp
+          git config --global url."https://".insteadOf git://
+          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+          yarn install
+
+      - name: Build artifacts
+        run: |
+          yarn build:web
+
+      - name: Make windows artifacts
+        run: |
+          yarn make --platform win32
+      
+      # - id: 'auth'
+      #   uses: 'google-github-actions/auth@v1'
+      #   # if: runner.os == 'Windows'
+      #   # env:
+      #   #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      # - name: 'Set up Cloud SDK'
+      #   uses: 'google-github-actions/setup-gcloud@v1'
+
+      # - name: 'Use gcloud CLI'
+      #   run: 'gcloud info'
+
+      # - name: Check files
+      #   # if: runner.os == 'Windows'
+      #   # env:
+      #   #   CLOUDSDK_PYTHON: ${{env.pythonLocation}}\python.exe
+      #   run: |
+      #     # ls dist
+      #     gsutil ls gs://poi-dapp
         
