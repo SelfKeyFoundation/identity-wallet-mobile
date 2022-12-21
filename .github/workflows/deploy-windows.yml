@@ -43,11 +43,11 @@ jobs:
 
       - name: Upload build artifacts
         run: |
-          node electron-dev-upload.js --platform=Windows
+          node ./scripts/electron-build-upload.js --platform=Windows
       
       - name: Send slack notification
         run: |
-          node build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
 
   linux-deploy:
     name: "Linux deploy"
@@ -74,7 +74,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-          # yarn build:web
+          yarn build:web
 
       - name: Make windows artifacts
         run: |
@@ -90,11 +90,19 @@ jobs:
 
       - name: Upload build artifacts
         run: |
-          node electron-dev-upload.js --platform=Linux
+          node ./scripts/electron-build-upload.js --platform=Linux
       
       - name: Send slack notification
         run: |
-          node build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Linux
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Linux
+
+      - name: Upload build artifacts (browser extension)
+        run: |
+          node ./scripts/extension-build-upload.js --platform=BrowserExtension
+      
+      - name: Send slack notification (browser extension)
+        run: |
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=BrowserExtension
 
   macos-deploy:
     name: "MacOS deploy"
@@ -102,7 +110,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
@@ -126,7 +134,7 @@ jobs:
       - name: Make windows artifacts
         run: |
           yarn make
-      
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
@@ -137,12 +145,12 @@ jobs:
 
       - name: Upload build artifacts
         run: |
-          node electron-dev-upload.js --platform=MacOS
+          node ./scripts/electron-build-upload.js --platform=MacOS
       
       - name: Send slack notification
         run: |
-          node build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
-  
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
+
         
 
         
