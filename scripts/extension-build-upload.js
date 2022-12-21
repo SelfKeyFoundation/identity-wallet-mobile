@@ -21,4 +21,4 @@ console.log(`Uploading [${platform}] artifacts to: ${bucketFolder}`);
 
 getCommandOutput(`cp -rf browser-extension/** ./dist`);
 getCommandOutput(`zip browser-extension.zip dist`);
-getCommandOutput(`gsutil cp ${file} ${bucketFolder}`)
+getCommandOutput(`gsutil cp browser-extension.zip ${bucketFolder}`)
