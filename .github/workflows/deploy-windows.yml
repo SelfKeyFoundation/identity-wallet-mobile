@@ -32,10 +32,6 @@ jobs:
         run: |
           yarn make --platform win32
       
-      - name: upload Artifacts
-        run: |
-          node electron-dev-upload.js 
-          
       # - id: 'auth'
       #   uses: 'google-github-actions/auth@v1'
       #   # if: runner.os == 'Windows'
@@ -46,6 +42,12 @@ jobs:
 
       # - name: 'Set up Cloud SDK'
       #   uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Upload build artifacts
+        run: |
+          node electron-dev-upload.js 
+          
+
 
       # - name: 'Use gcloud CLI'
       #   run: 'gcloud info'
