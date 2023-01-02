@@ -1,17 +1,13 @@
+const iconPath = './images/icon';
+
 module.exports = {
     packagerConfig: {
-
+      icon: iconPath
     },
     rebuildConfig: {},
     makers: [
       {
         name: '@electron-forge/maker-squirrel',
-        config: {
-        //   authors: 'Selfkey',
-        //   // iconUrl: 'https://your_site/favicon.ico',
-        //   exe: `Selfkey.exe`,
-        //   name: `Selfkey`,
-        },
       },
       {
         name: '@electron-forge/maker-dmg',
@@ -21,7 +17,6 @@ module.exports = {
       },
       {
         name: '@electron-forge/maker-deb',
-        config: {},
       },
       // {
       //   name: '@electron-forge/maker-rpm',

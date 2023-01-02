@@ -27,7 +27,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-          # yarn build:web
+          yarn build:web
 
       - name: Make windows artifacts
         run: |
@@ -129,7 +129,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-          # yarn build:web
+          yarn build:web
 
       - name: Make windows artifacts
         run: |
@@ -146,7 +146,7 @@ jobs:
       - name: Upload build artifacts
         run: |
           node ./scripts/electron-build-upload.js --platform=MacOS
-      
+
       - name: Send slack notification
         run: |
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
