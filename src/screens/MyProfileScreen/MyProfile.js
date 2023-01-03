@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { Clipboard, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { Grid, Row, Col, FormText, IconAddImage } from 'design-system';
 import {
 	FIRST_NAME_ATTRIBUTE,
@@ -128,7 +128,10 @@ export function MyProfile(props) {
 		<Container onScroll={handleScroll} scrollEventThrottle={160}>
 			<SafeAreaView style={{ position: 'relative' }}>
 				<HeaderTitle>SelfKey Profile</HeaderTitle>
-				<TouchableWithoutFeedback onPress={props.onPictureEdit}>
+				<TouchableWithoutFeedback onPress={() => {
+					Clipboard.setString(identity.profilePicture);
+					props.onPictureEdit();
+				}}>
 					{identity.profilePicture ? (
 						<RoundedImage
 							source={{

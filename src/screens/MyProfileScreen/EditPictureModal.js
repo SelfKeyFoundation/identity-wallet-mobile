@@ -163,27 +163,22 @@ export function EditPictureModal(props) {
 
   const handleSave = async () => {
     if (imageToSave) {
-      await fs.writeFile(imageToSave.filePath, imageToSave.fileData, 'base64');
-      await dispatch(ducks.identity.operations.updateProfilePictureOperation(imageToSave.filePath, identityId));
+      // await fs.writeFile(imageToSave.filePath, imageToSave.fileData, 'base64');
+      await dispatch(ducks.identity.operations.updateProfilePictureOperation(imageToSave.base64Data, identityId));
     }
 
     onClose();
-  }
+  };
 
   const handleDelete = async () => {
     setImageUri(null);
     await dispatch(ducks.identity.operations.updateProfilePictureOperation(null, identityId));
-  }
+  };
 
   const handleUpload = () => {
     launchImageLibrary(options, async (response) => {
       const {uri, fileName} = response;
-
-      
-      const fs = System.getFileSystem();
-      const fileData = await fs.readFile(response.uri, 'base64')
-
-      console.log(fileData);
+      const fileData = await System.getFileSystem().readFile(response.uri, 'base64');
 
       if (!uri) {
         return;
@@ -202,14 +197,17 @@ export function EditPictureModal(props) {
 
       setLoading(true);
 
+      const base64Data = `data:${response.type};base64,${fileData}`;
+
       setTimeout(async () => {
         setImageToSave({
           filePath: `file://${filePath}`,
+          base64Data,
           fileData,
         });
-        setImageUri(`data:${response.type};base64,${fileData}`);
+        setImageUri(base64Data);
         setLoading(false);
-      }, 100)
+      }, 100);
     });
   }
 

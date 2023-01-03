@@ -23,7 +23,7 @@ export const NetworkMapping = {
 		symbol: 'BNB',
 		tokenName: 'Binance Coin',
 		tokenDecimal: 10,
-		rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+		rpcUrl: 'https://bsc-dataseed.binance.org/',
 		blockExplorer: 'https://bscscan.com',
 		blockExplorerName: 'BscScan',
 		blockExplorerApi: 'http://api.bscscan.com/api',
