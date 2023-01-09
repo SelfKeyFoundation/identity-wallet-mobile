@@ -39,5 +39,3 @@ const bodyElement = document.body;
 bodyElement.style.maxWidth = '100%';
 bodyElement.style.padding = '0';
 bodyElement.style.margin = '0';
-
-
