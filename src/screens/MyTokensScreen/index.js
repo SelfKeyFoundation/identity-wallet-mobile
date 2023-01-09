@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { SafeAreaView, Text, View } from 'react-native';
 import { ManageTokensContainer } from '../../components';
+import { ScrollView } from 'native-base';
 
 const HeaderTitle = styled(Text)`
   color: ${props => props.theme.colors.white};
@@ -11,7 +12,7 @@ const HeaderTitle = styled(Text)`
   margin-top: 15px;
 `;
 
-const Container = styled(View)`
+const Container = styled(ScrollView)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;

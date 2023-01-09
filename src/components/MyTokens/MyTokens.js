@@ -22,6 +22,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
 import { Theme } from '../../design-system/theme';
+import { ScrollView } from 'native-base';
 
 const TRACKER_PAGE = 'dashboard/myTokens';
 
@@ -39,7 +40,7 @@ const TotalTokenAmount = styled(Text)`
   font-family: ${props => Theme.fonts.regular};
 `;
 
-const Container = styled(View)``;
+const Container = styled(ScrollView)``;
 
 const TokenRowWrapper = styled(View)`
   
@@ -148,7 +149,7 @@ export function MyTokens(props: MyTokensProps) {
   }
 
   return (
-    <Container>
+    <Container data-testid="my-tokens-container">
       <TitleRow>
         <Col paddingTop={0}>
           <Title>My Tokens</Title>

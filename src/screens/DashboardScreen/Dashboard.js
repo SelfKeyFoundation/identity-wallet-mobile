@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, ScrollView, RefreshControl, Image, Clipboard, View, Text } from 'react-native';
+import { SafeAreaView, RefreshControl, Image, Clipboard, View, Text } from 'react-native';
 import {
 	TokenBoxCarouselContainer,
 	MyTokensContainer,
@@ -17,6 +17,7 @@ import modules from 'core/modules';
 import { compactAddress } from 'core/utils/wallet-utils';
 import { NetworkMapping } from 'core/modules/app/NetworkStore';
 import RNPickerSelect from 'react-native-picker-select';
+import { ScrollView } from 'native-base';
 
 const TRACKER_PAGE = 'dashboard';
 
@@ -28,7 +29,7 @@ const HeaderTitle = styled(Text)`
 	margin-top: 15px;
 `;
 
-const Container = styled(View)`
+const Container = styled(ScrollView)`
 	flex: 1;
 	background-color: ${props => props.theme.colors.baseDark};
 `;

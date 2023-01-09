@@ -20,6 +20,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
 import LinearGradient from 'react-native-linear-gradient';
+import { Box } from 'native-base';
 
 const TRACKER_PAGE = 'manageTokens';
 
@@ -211,7 +212,7 @@ export function ManageTokens(props: ManageTokensProps) {
 
 
   return (
-    <Container>
+    <Box>
       { props.children }
       <TitleRow>
         <Col>
@@ -238,71 +239,69 @@ export function ManageTokens(props: ManageTokensProps) {
           </EmptyAlertConatiner>
         )
       }
-      <Row>
-        <Col marginBottom={40}>
-          <SwipeListView
-            data={listData}
-            previewRowKey="0"
-            renderItem={ ({ item: token }, rowMap) => (
-              <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
-                <TokenRowWrapper>
-                  <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
-                    <Col autoWidth noPadding>
-                      <TokenIcon name={token.name || token.symbol} color={token.color} />
-                    </Col>
-                    <Col noPadding paddingLeft={11}>
-                      <TokenName>
-                        { token.name || token.symbol }
-                      </TokenName>
-                      <Explanatory>
-                        { token.symbol && token.symbol.toUpperCase() }
-                      </Explanatory>
-                    </Col>
-                    <Col autoWidth alignItems="flex-end" noPadding>
-                      <TokenName>
-                        <FormattedNumber
-                          value={token.balance}
-                          decimal={token.decimal || 10}
-                          digitLimit={9}
-                        />
-                      </TokenName>
-                      <Explanatory>
-                        <FormattedNumber
-                          value={token.balanceInFiat}
-                          currency={token.fiatCurrency}
-                          decimal={2}
-                        />
-                      </Explanatory>
-                    </Col>
-                  </TokenRow>
-                </TokenRowWrapper>
-              </TouchableWithoutFeedback>
-            )}
-            renderHiddenItem={ (data, rowMap) => (
-              <TokenOptionsRow key={data.item.id}>
-                <TouchableWithoutFeedback onPress={handleRemove(data.item)}>
+      <Box>
+        <SwipeListView
+          data={listData}
+          previewRowKey="0"
+          renderItem={ ({ item: token }, rowMap) => (
+            <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
+              <TokenRowWrapper>
+                <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
                   <Col autoWidth noPadding>
-                    <Row justifyContent="center">
-                      <Col autoWidth noPadding>
-                        <SKIcon name="icon-hide" color="#00C0D9" size={16} />
-                      </Col>
-                    </Row>
-                    <Row justifyContent="center" marginTop={10}>
-                      <Col autoWidth noPadding>
-                        <HideLink>Hide</HideLink>
-                      </Col>
-                    </Row>
+                    <TokenIcon name={token.name || token.symbol} color={token.color} />
                   </Col>
-                </TouchableWithoutFeedback>
-              </TokenOptionsRow>
-            )}
-            onRowOpen={handleRowOpen}
-            onRowClose={handleRowClose}
-            leftOpenValue={0}
-            rightOpenValue={-70}
-          />
-        </Col>
-      </Row>
-    </Container>
+                  <Col noPadding paddingLeft={11}>
+                    <TokenName>
+                      { token.name || token.symbol }
+                    </TokenName>
+                    <Explanatory>
+                      { token.symbol && token.symbol.toUpperCase() }
+                    </Explanatory>
+                  </Col>
+                  <Col autoWidth alignItems="flex-end" noPadding>
+                    <TokenName>
+                      <FormattedNumber
+                        value={token.balance}
+                        decimal={token.decimal || 10}
+                        digitLimit={9}
+                      />
+                    </TokenName>
+                    <Explanatory>
+                      <FormattedNumber
+                        value={token.balanceInFiat}
+                        currency={token.fiatCurrency}
+                        decimal={2}
+                      />
+                    </Explanatory>
+                  </Col>
+                </TokenRow>
+              </TokenRowWrapper>
+            </TouchableWithoutFeedback>
+          )}
+          renderHiddenItem={ (data, rowMap) => (
+            <TokenOptionsRow key={data.item.id}>
+              <TouchableWithoutFeedback onPress={handleRemove(data.item)}>
+                <Col autoWidth noPadding>
+                  <Row justifyContent="center">
+                    <Col autoWidth noPadding>
+                      <SKIcon name="icon-hide" color="#00C0D9" size={16} />
+                    </Col>
+                  </Row>
+                  <Row justifyContent="center" marginTop={10}>
+                    <Col autoWidth noPadding>
+                      <HideLink>Hide</HideLink>
+                    </Col>
+                  </Row>
+                </Col>
+              </TouchableWithoutFeedback>
+            </TokenOptionsRow>
+          )}
+          onRowOpen={handleRowOpen}
+          onRowClose={handleRowClose}
+          leftOpenValue={0}
+          rightOpenValue={-70}
+        />
+      </Box>
+    </Box>
   );
 }
