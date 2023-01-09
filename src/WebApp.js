@@ -14,6 +14,8 @@ import { ModalRoot } from './modals';
 
 let vault = {};
 
+global.platform = 'desktop';
+
 function fetchVault() {
   const items = localStorage.getItem('vault');
   try {

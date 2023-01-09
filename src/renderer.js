@@ -27,8 +27,17 @@
  */
 
 import './index.css';
-import './dist/bundle.web.js';
+// import './dist/bundle.web.js';
+import '../index.web';
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+const rootElement = document.getElementById('root');
 
-console.log('yet another message')
+rootElement.style.width = '100%';
+rootElement.style.height = '100vh';
+
+const bodyElement = document.body;
+bodyElement.style.maxWidth = '100%';
+bodyElement.style.padding = '0';
+bodyElement.style.margin = '0';
+
+
