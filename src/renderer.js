@@ -27,8 +27,8 @@
  */
 
 import './index.css';
-// import './dist/bundle.web.js';
-import '../index.web';
+import './dist/bundle.web.js';
+// import '../index.web';
 
 const rootElement = document.getElementById('root');
 
