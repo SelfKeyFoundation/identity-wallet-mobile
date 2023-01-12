@@ -1,24 +1,18 @@
 // @flow
 import { TokenIconMapping } from 'components/token-icon-mapping';
 import { Box } from 'native-base';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 // import Carousel from 'react-native-snap-carousel';
 import Carousel from "react-native-reanimated-carousel";
 import { TokenBox } from '../TokenBox';
 
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 function wp(percentage) {
   const value = (percentage * viewportWidth) / 100;
   return Math.round(value);
 }
 
-// const slideHeight = viewportHeight * 0.36;
-const slideWidth = wp(90);
-const itemHorizontalMargin = -20;
-const sliderWidth = viewportWidth;
-const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
 export interface TokenBoxCarouselProps {
   items: any[];
@@ -41,10 +35,32 @@ const renderItem = ({ item, key, handlePress }) => {
   );
 };
 
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState(Dimensions.get('window'));
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize(Dimensions.get('window'));
+    }
+    // Add event listener
+    window && window?.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window && window?.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
 
 export function TokenBoxCarousel(props: TokenBoxCarouselProps) {
   const ref = useRef();
   const pressTimeoutRef = useRef();
+  const { width: viewportWidth } = useWindowSize();
 
   const handlePressAction = useCallback((pressHandler) => {
     const prevIndex = ref.current?.getCurrentIndex();
@@ -61,7 +77,7 @@ export function TokenBoxCarousel(props: TokenBoxCarouselProps) {
     <View style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: 0, height: 230 }}>
       <Carousel
         ref={ref}
-        width={sliderWidth}
+        width={viewportWidth}
         height={230}
         data={props.items}
         renderItem={(props) => renderItem({ ...props, handlePress: handlePressAction})}
