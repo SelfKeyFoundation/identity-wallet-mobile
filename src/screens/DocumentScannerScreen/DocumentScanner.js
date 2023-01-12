@@ -19,6 +19,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
 
 import ScannerTest from './ScannerTest';
+import { BackButton } from '../../v2/components/BackButton';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -120,9 +121,7 @@ export function DocumentScanner(props) {
     <Container>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={props.onBack} />
         </IconContainer>
       </Header>
       <Body>

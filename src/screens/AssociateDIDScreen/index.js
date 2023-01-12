@@ -28,6 +28,7 @@ import {
   Alert
 } from 'design-system';
 import modules from 'core/modules';
+import { BackButton } from '../../v2/components/BackButton';
 
 const ContentGrid = styled(Grid)`
   flex: 1;
@@ -98,9 +99,7 @@ export function AssociateDIDScreen(props) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={navigateBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={navigateBack} />
         </IconContainer>
       </Header>
       <Body scrollable>

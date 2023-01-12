@@ -15,6 +15,7 @@ import {
 } from 'design-system';
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback, View } from 'react-native';
+import { BackButton } from '../../v2/components/BackButton';
 
 const errorMessages = {
   required: 'Password is required',
@@ -74,9 +75,7 @@ export function ChangePassword(props: ChangePasswordProps) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={rops.onBack} />
         </IconContainer>
       </Header>
       <Body scrollable>

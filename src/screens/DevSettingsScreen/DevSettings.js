@@ -17,6 +17,7 @@ import {
 } from 'design-system';
 import RNPickerSelect from 'react-native-picker-select';
 import { formatAddress } from '../../utils/address-utils';
+import { BackButton } from '../../v2/components/BackButton';
 const Container = styled(SafeAreaView)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
@@ -117,9 +118,7 @@ export function DevSettings(props) {
     <Container>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={props.onBack} />
         </IconContainer>
       </Header>
       <Body>

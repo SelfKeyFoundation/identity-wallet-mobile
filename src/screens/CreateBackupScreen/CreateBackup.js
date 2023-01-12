@@ -18,6 +18,7 @@ import {
 } from 'design-system';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
+import { BackButton } from '../../v2/components/BackButton';
 
 const TRACKER_PAGE = 'createBackup';
 
@@ -175,9 +176,7 @@ export function CreateBackup(props: CreateBackupProps) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={handleBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={handleBack} />
         </IconContainer>
       </Header>
       <Body scrollable>

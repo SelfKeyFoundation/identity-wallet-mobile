@@ -15,6 +15,7 @@ import {
   TextInput
 } from 'design-system';
 import { WalletTracker } from '../../WalletTracker';
+import { BackButton } from '../../v2/components/BackButton';
 
 const TRACKER_PAGE = 'importWalletBackup';
 
@@ -111,9 +112,7 @@ export function ImportWalletBackup(props) {
     <Container>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={handleBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={handleBack} />
         </IconContainer>
       </Header>
       <Body>

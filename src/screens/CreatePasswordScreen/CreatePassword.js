@@ -22,6 +22,7 @@ import { ValidationCheck } from './ValidationCheck';
 import ModalSelector from 'react-native-modal-selector'
 import { getConfigs, onConfigChange } from 'configs';
 import { WalletTracker } from '../../WalletTracker';
+import { BackButton } from '../../v2/components/BackButton';
 // import {Button} from 'native-base';
 
 const TRACKER_PAGE = 'chooseDifferentWallet';
@@ -185,9 +186,7 @@ export function CreatePassword(props: CreatePasswordProps) {
       <Container withMargin scrollable>
         <ContentGrid>
           { props.onBack && <IconContainer>
-            <TouchableWithoutFeedback onPress={props.onBack}>
-              <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-            </TouchableWithoutFeedback>
+            <BackButton onPress={props.onBack} />
           </IconContainer> }
           <Row>
             <IconCol>

@@ -10,6 +10,7 @@ import {
   Paragraph,
   ThemeContext,
 } from 'design-system';
+import { BackButton } from '../../v2/components/BackButton';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -88,9 +89,7 @@ export function ChooseDifferentWallet(props) {
     <Container>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={props.onBack} />
         </IconContainer>
       </Header>
       <Body>

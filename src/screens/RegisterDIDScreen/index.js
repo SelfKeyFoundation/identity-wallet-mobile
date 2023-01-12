@@ -35,6 +35,7 @@ import { DIDService } from 'core/services/did-service';
 import EthGasStationService from 'blockchain/services/eth-gas-station-service';
 import EthUnits from 'blockchain/util/eth-units';
 import { NetworkStore } from 'core/modules/app/NetworkStore';
+import { BackButton } from '../../v2/components/BackButton';
 
 
 const ContentGrid = styled(Grid)`
@@ -130,9 +131,8 @@ export function RegisterDIDScreen(props) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={navigateBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={navigateBack} />
+
         </IconContainer>
       </Header>
       <Body scrollable>

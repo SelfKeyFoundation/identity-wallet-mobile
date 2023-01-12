@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { navigateBack } from '../../core/navigation';
 import { SKIcon } from "../../design-system/icons";
 
-
 const BackIcon = styled(SKIcon)`
   padding: 10px;
 `;

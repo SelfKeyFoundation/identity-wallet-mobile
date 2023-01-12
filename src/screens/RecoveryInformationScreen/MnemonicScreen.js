@@ -17,6 +17,7 @@ import {
   H4,
   Alert,
 } from 'design-system';
+import { BackButton } from '../../v2/components/BackButton';
 
 export interface BackupWalletProps {
   mnemonicPhrase: string;
@@ -94,9 +95,7 @@ export function MnemonicScreen(props: BackupWalletProps) {
     <ScreenContainer sidePadding>
     <Header>
       <IconContainer>
-        <TouchableWithoutFeedback onPress={props.onBack}>
-          <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-        </TouchableWithoutFeedback>
+        <BackButton onPress={props.onBack} />
       </IconContainer>
     </Header>
     <Body scrollable>

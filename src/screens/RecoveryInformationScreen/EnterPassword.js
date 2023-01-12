@@ -151,9 +151,7 @@ export function EnterPassword(props: RecoveryInformationProps) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <TouchableWithoutFeedback onPress={props.onBack}>
-            <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-          </TouchableWithoutFeedback>
+          <BackButton onPress={props.onBack} />
         </IconContainer>
       </Header>
       <Body scrollable>

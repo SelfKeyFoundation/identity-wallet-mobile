@@ -19,6 +19,7 @@ import {
 } from 'design-system';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
+import { BackButton } from '../../v2/components/BackButton';
 
 const TRACKER_PAGE = 'forgotPassword';
 
@@ -110,9 +111,7 @@ export function ForgotPassword(props: ForgotPasswordProps) {
       <Container withMargin scrollable>
         <ContentGrid>
           { props.onBack && <IconContainer>
-            <TouchableWithoutFeedback onPress={handleBack}>
-              <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-            </TouchableWithoutFeedback>
+            <BackButton onPress={handleBack} />
           </IconContainer> }
           <Row>
             <IconCol>

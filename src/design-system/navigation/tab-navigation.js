@@ -49,7 +49,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
   const theme = useContext(ThemeContext);
 
   return (
-    <TouchableHighlight onPress={() => props.onPress(props.id)} style={{ flex: 1 }}>
+    <TouchableHighlight onPress={() => props.onPress(props.id)} style={{ flex: 1  }}>
       <Col>
         <Row>
           <SKIcon name={props.icon} color={props.active ? '#2DA1F8' : theme.colors.typography} size={20} />

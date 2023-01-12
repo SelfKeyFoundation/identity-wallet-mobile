@@ -3,6 +3,7 @@ import { TokenDetails } from '../../components';
 import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView, Text} from 'react-native';
 import styled from 'styled-components/native';
 import { SKIcon } from 'design-system';
+import { BackButton } from '../../v2/components/BackButton';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -46,9 +47,7 @@ export function TokenDetailsScreen(props) {
         <Title>{props.title}</Title>
         
           <IconContainer>
-            <TouchableWithoutFeedback onPress={props.onBack}>
-              <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-            </TouchableWithoutFeedback>
+            <BackButton onPress={props.onBack} />
           </IconContainer>
         
       </Header>
