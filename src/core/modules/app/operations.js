@@ -68,9 +68,9 @@ const loadAppOperation = () => async (dispatch, getState) => {
 	// ContractSyncJobHandler.getInstance().registerHandler();
 
 
-	// dispatch(unlockWalletOperations.submitUnlockOperation({
-	// 	password: '!@9Mnemdm'
-	// }));
+	dispatch(unlockWalletOperations.submitUnlockOperation({
+		password: '!@9Mnemdm'
+	}));
 
 	if (wallets.length === 1) {
 		navigate(Routes.UNLOCK_WALLET_PASSWORD);

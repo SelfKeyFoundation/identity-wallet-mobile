@@ -75,7 +75,7 @@ export function ChangePassword(props: ChangePasswordProps) {
     <ScreenContainer sidePadding>
       <Header>
         <IconContainer>
-          <BackButton onPress={rops.onBack} />
+          <BackButton onPress={props.onBack} />
         </IconContainer>
       </Header>
       <Body scrollable>

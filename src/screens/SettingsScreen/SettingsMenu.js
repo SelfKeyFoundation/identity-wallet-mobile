@@ -78,7 +78,7 @@ const MenuItemWrapper = styled(Col)`
 function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding }) {
   return (
     <MenuItemRow>
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableHighlight onPress={onPress} style={{ flex: 1 }}>
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
@@ -92,7 +92,7 @@ function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding 
             <Col autoWidth style={{ width: 20 }}/>
           </Row>
         </MenuItemWrapper>
-      </TouchableWithoutFeedback>
+      </TouchableHighlight>
     </MenuItemRow>
   )
 }
@@ -100,7 +100,7 @@ function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding 
 function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
   return (
     <MenuItemRow>
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableHighlight onPress={onPress} style={{ flex: 1 }}>
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
@@ -112,7 +112,7 @@ function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
             <Col autoWidth style={{ width: 20 }}/>
           </Row>
         </MenuItemWrapper>
-      </TouchableWithoutFeedback>
+      </TouchableHighlight>
     </MenuItemRow>
   )
 }

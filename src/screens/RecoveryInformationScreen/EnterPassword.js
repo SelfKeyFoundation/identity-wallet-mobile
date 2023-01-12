@@ -17,6 +17,7 @@ import {
   IconTouchId,
 } from 'design-system';
 import styled from 'styled-components/native';
+import {BackButton} from '../../v2/components/BackButton';
 
 const errorMessages = {
   required: 'Password is required',

@@ -14,7 +14,7 @@ import {
   Explanatory,
   FormattedNumber
 } from 'design-system';
-import { TouchableWithoutFeedback, View, Text} from 'react-native';
+import { TouchableWithoutFeedback, View, Text, TouchableHighlight} from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from 'design-system/svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
@@ -168,7 +168,7 @@ export function MyTokens(props: MyTokensProps) {
       </TitleRow>
       {
         props.tokens.map(token => (
-          <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
+          <TouchableHighlight onPress={handleTokenDetails(token)}>
             <TokenRowWrapper>
               <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
                 <Col autoWidth noPadding>
@@ -199,7 +199,7 @@ export function MyTokens(props: MyTokensProps) {
                 </Col>
               </TokenRow>
             </TokenRowWrapper>
-          </TouchableWithoutFeedback>
+          </TouchableHighlight>
         ))
       }
       { props.showViewAll &&

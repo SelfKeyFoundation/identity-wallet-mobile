@@ -15,7 +15,7 @@ import {
   FormattedNumber
 } from 'design-system';
 import { TokensEmptyAlert } from '../index';
-import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Dimensions, ScrollView, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import styled from 'styled-components/native';
 import { WalletTracker } from '../../WalletTracker';
@@ -244,7 +244,7 @@ export function ManageTokens(props: ManageTokensProps) {
           data={listData}
           previewRowKey="0"
           renderItem={ ({ item: token }, rowMap) => (
-            <TouchableWithoutFeedback onPress={handleTokenDetails(token)}>
+            <TouchableHighlight onPress={handleTokenDetails(token)}>
               <TokenRowWrapper>
                 <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
                   <Col autoWidth noPadding>
@@ -276,11 +276,11 @@ export function ManageTokens(props: ManageTokensProps) {
                   </Col>
                 </TokenRow>
               </TokenRowWrapper>
-            </TouchableWithoutFeedback>
+            </TouchableHighlight>
           )}
           renderHiddenItem={ (data, rowMap) => (
             <TokenOptionsRow key={data.item.id}>
-              <TouchableWithoutFeedback onPress={handleRemove(data.item)}>
+              <TouchableHighlight onPress={handleRemove(data.item)}>
                 <Col autoWidth noPadding>
                   <Row justifyContent="center">
                     <Col autoWidth noPadding>
@@ -293,7 +293,7 @@ export function ManageTokens(props: ManageTokensProps) {
                     </Col>
                   </Row>
                 </Col>
-              </TouchableWithoutFeedback>
+              </TouchableHighlight>
             </TokenOptionsRow>
           )}
           onRowOpen={handleRowOpen}
