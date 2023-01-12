@@ -68,7 +68,8 @@
   ],
   "dependencies": {
     "@electron-forge/maker-dmg": "^6.0.4",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "react-native-reanimated-carousel": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -193,7 +194,7 @@
     "react-native-exit-app": "1.1.0",
     "react-native-file-viewer": "2.1.1",
     "react-native-fs": "2.13.2",
-    "react-native-gesture-handler": "1.3.0",
+    "react-native-gesture-handler": "2.8.0",
     "react-native-htmlview": "^0.16.0",
     "react-native-image-picker": "^2.3.1",
     "react-native-keychain": "6.0.0",
@@ -208,7 +209,7 @@
     "react-native-qrcode-scanner": "^1.3.1",
     "react-native-qrcode-svg": "^6.0.1",
     "react-native-randombytes": "3.5.3",
-    "react-native-reanimated": "1.2.0",
+    "react-native-reanimated": "2.9.1",
     "react-native-render-html": "^4.2.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "^3.18.2",

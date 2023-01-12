@@ -31,6 +31,15 @@ const ToolbarAndroid = function() {
     return null;
 }
 
+const Dimensions = {
+    get(type) {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight,
+        };//window.innerWidth;
+    }
+}
+
 
 export {
     ViewPropTypes,
@@ -38,4 +47,5 @@ export {
     StyleSheet,
     Platform,
     ToolbarAndroid,
+    Dimensions
 };

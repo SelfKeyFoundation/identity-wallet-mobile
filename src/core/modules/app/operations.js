@@ -22,6 +22,7 @@ import { NetworkStore } from './NetworkStore';
 import { Web3Service } from 'blockchain/services/web3-service';
 import walletOperations from '../wallet/operations';
 import { skAgentOperations } from 'features/selfkey-agent/sk-agent-slice';
+import unlockWalletOperations from '../unlock-wallet/operations';
 
 const delay = time => new Promise(res => setTimeout(res, time));
 
@@ -65,6 +66,11 @@ const loadAppOperation = () => async (dispatch, getState) => {
 	}
 	// Register Job Handlers
 	// ContractSyncJobHandler.getInstance().registerHandler();
+
+
+	dispatch(unlockWalletOperations.submitUnlockOperation({
+		password: '!@9Mnemdm'
+	}));
 
 	if (wallets.length === 1) {
 		navigate(Routes.UNLOCK_WALLET_PASSWORD);

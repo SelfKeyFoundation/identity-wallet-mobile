@@ -1,6 +1,6 @@
 // @flow
 import styled from 'styled-components/native';
-import { View, TouchableWithoutFeedback, Text } from 'react-native';
+import { View, TouchableWithoutFeedback, Text, TouchableHighlight } from 'react-native';
 import { SKIcon } from '../icons';
 import React from 'react';
 import { useContext } from 'react';
@@ -49,7 +49,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
   const theme = useContext(ThemeContext);
 
   return (
-    <TouchableWithoutFeedback onPress={() => props.onPress(props.id)}>
+    <TouchableHighlight onPress={() => props.onPress(props.id)} style={{ flex: 1 }}>
       <Col>
         <Row>
           <SKIcon name={props.icon} color={props.active ? '#2DA1F8' : theme.colors.typography} size={20} />
@@ -58,7 +58,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
           <TabText active={props.active}>{props.label}</TabText>
         </Row>
       </Col>
-    </TouchableWithoutFeedback>
+    </TouchableHighlight>
   );
 }
 
