@@ -14,6 +14,8 @@ import { ModalRoot } from './modals';
 
 let vault = {};
 
+import './index.web.css';
+
 global.platform = 'desktop';
 
 function fetchVault() {

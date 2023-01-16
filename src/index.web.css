@@ -1,0 +1,17 @@
+/* @font-face {
+  font-family: 'Lato';
+  src:url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  background: #111111;
+}
