@@ -171,6 +171,7 @@ const config = {
       'rn-identity-vault': path.resolve(appDirectory, './src/rn-identity-vault'),
       'react-native-image-picker': path.resolve(appDirectory, './web/polyfills/react-native-image-picker.js'),
       'react-native-linear-gradient': path.resolve(appDirectory, './web/polyfills/react-native-linear-gradient.js'),
+      // 'react-native-linear-gradient': 'react-native-web-linear-gradient',
       'react-native-dark-mode': path.resolve(appDirectory, './web/polyfills/react-native-dark-mode.js'),
       'react-native-keychain': path.resolve(appDirectory, './web/polyfills/react-native-keychain.js'),
       'react-native-web/dist/index': path.resolve(appDirectory, './web/polyfills/react-native-web.js'),
@@ -178,8 +179,6 @@ const config = {
       'react-native-permissions': path.resolve(appDirectory, './web/polyfills/react-native-permissions.js'),
       'react-native-camera': path.resolve(appDirectory, './web/polyfills/react-native-camera.js'),
       'react-native-splash-screen': path.resolve(appDirectory, './web/polyfills/react-native-splash-screen.js'),
-
-
       // TODO: create polyfill file
       'react-native-qrcode-scanner': path.resolve(appDirectory, './web/polyfills/react-native-camera.js'),
       'realm': path.resolve(appDirectory, './web/polyfills/react-native-camera.js'),

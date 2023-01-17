@@ -93,7 +93,9 @@ export function Modal(props) {
           <LinearGradient
             colors={['#161A1F', '#1A2836']}
             style={{
-              // borderRadius: 20
+              borderRadius: 20,
+              // borderTopLeftRadius: 20,
+              // borderTopRightRadius: 20,
             }}
             start={{ y: 0.0, x: 0.0 }} end={{ y: 1.0, x: 1.0 }}
           >

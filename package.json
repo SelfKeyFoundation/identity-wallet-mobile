@@ -70,6 +70,7 @@
     "@electron-forge/maker-dmg": "^6.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "react-native-reanimated-carousel": "^3.3.0",
+    "react-native-web-linear-gradient": "^1.1.2",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
