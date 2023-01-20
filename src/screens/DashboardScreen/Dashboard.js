@@ -151,11 +151,11 @@ export function Dashboard(props) {
 					<CarouselRow>
 						<TokenBoxCarouselContainer />
 					</CarouselRow>
-					{featureFlags.moonpay ? (
-						<Box padding={20} marginBottom={30}>
-							<Button onPress={props.onOpenMoonpay}>Buy KEY tokens</Button>
-						</Box>
-					) : null}
+					
+					<Box padding={20} marginBottom={30}>
+						<Button onPress={props.onOpenMoonpay}>Buy KEY tokens</Button>
+					</Box>
+
 					<MyTokensRow>
 						<MyTokensContainer />
 					</MyTokensRow>
