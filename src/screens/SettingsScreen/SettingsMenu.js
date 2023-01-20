@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import {
@@ -6,10 +6,12 @@ import {
   Row,
   Col,
   DefinitionTitle,
+  Modal,
 } from 'design-system';
 import APP_VERSION from '../../../app-version.js';
 import { getCurrentEnv } from 'configs';
 import { navigate, Routes } from 'core/navigation';
+import Modals from '../../core/modules/modals/index.js';
 
 function getVersion() {
   const env = getCurrentEnv();
@@ -21,7 +23,7 @@ const Container = styled(SafeAreaView)`
   flex: 1;
   background-color:  ${props => props.theme.colors.baseDark};
 `;
-  
+
 const Header = styled(View)`
   margin: 10px 20px 20px 20px;
 `;
@@ -82,14 +84,14 @@ function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding 
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
-              <OptionTitle>{ children }</OptionTitle>
+              <OptionTitle>{children}</OptionTitle>
             </Col>
             <Col autoWidth noPadding={controlNoPadding}>
               {
                 menuControl ? menuControl : <SKIcon name="arrow-right" size={13} color="#93B0C1" />
               }
             </Col>
-            <Col autoWidth style={{ width: 20 }}/>
+            <Col autoWidth style={{ width: 20 }} />
           </Row>
         </MenuItemWrapper>
       </TouchableHighlight>
@@ -104,12 +106,12 @@ function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
-              <OptionTitle>{ children }</OptionTitle>
+              <OptionTitle>{children}</OptionTitle>
             </Col>
             <Col autoWidth noPadding>
               <Switch />
             </Col>
-            <Col autoWidth style={{ width: 20 }}/>
+            <Col autoWidth style={{ width: 20 }} />
           </Row>
         </MenuItemWrapper>
       </TouchableHighlight>
@@ -118,6 +120,7 @@ function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
 }
 
 export function SettingsMenu(props) {
+  const [removeWallet, setRemoveWallet] = useState();
 
   return (
     <Container>
@@ -135,12 +138,17 @@ export function SettingsMenu(props) {
           //   Document Scanner
           // </MenuItem>
         }
-        { props.onRecoveryInformation ? (
-            <MenuItem hasBorder onPress={props.onRecoveryInformation}>
-              Recovery Information
-            </MenuItem>
-          ) : null
+        {props.onRecoveryInformation ? (
+          <MenuItem hasBorder onPress={props.onRecoveryInformation}>
+            Recovery Information
+          </MenuItem>
+        ) : null
         }
+        <MenuItem hasBorder onPress={() => {
+          setRemoveWallet(true);
+        }}>
+          Remove wallet
+        </MenuItem>
         {/* { props.onRecoveryInformation ? (
             <MenuItem hasBorder onPress={props.onRecoveryInformation}>
               Private Key
@@ -201,13 +209,29 @@ export function SettingsMenu(props) {
         </MenuItem>}
         <MenuItem
           menuControl={
-            <MenuRightText>{ getVersion(props.walletEnv) }</MenuRightText>
+            <MenuRightText>{getVersion(props.walletEnv)}</MenuRightText>
           }
           onPress={props.onVersionPress}
         >
           Version
         </MenuItem>
       </Body>
+      <Modal
+        visible={removeWallet}
+        onClose={() => setRemoveWallet(false)}
+        onOk={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+        title="Remove wallet"
+        okText="Confirm"
+        okProps={{
+          isLoading: false
+        }}
+        cancelText="Cancel"
+      >
+
+      </Modal>
     </Container>
   )
 }
