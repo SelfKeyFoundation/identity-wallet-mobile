@@ -418,7 +418,10 @@ const validateTokenOperation = ({ contractAddress }) => async (dispatch, getStat
 const hideTokenOperation = ({ contractAddress }) => async (dispatch, getState) => {
   const state = getState();
   const token = TokenModel.getInstance().findByAddress(contractAddress);
-  const walletTokens = await WalletTokenModel.getInstance().find('tokenId = $0', token.id);
+  const walletTokens = await WalletTokenModel.getInstance().find(
+    ({ tokenId }) => tokenId === token.id
+    // 'tokenId = $0', token.id
+  );
 
   await Promise.all(walletTokens.map(walletToken => {
     return WalletTokenModel.getInstance().updateById(walletToken.id, {
