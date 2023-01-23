@@ -2,10 +2,12 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { EnterPassword } from './EnterPassword';
 import { MnemonicScreen } from './MnemonicScreen';
-import { Share } from 'react-native';
+import { Clipboard, Share } from 'react-native';
 import { navigate, Routes } from 'core/navigation';
 import ducks from 'core/modules';
 import { WalletTracker } from '../../WalletTracker';
+import { isDesktop } from '../../v2/platform-utils';
+import { Snackbar } from 'react-native-paper';
 
 const TRACKER_PAGE = 'recoveryInformation';
 
@@ -19,6 +21,11 @@ function RecoveryInformationContainer(props) {
   const isHDWallet = useSelector(ducks.wallet.selectors.isHDWallet);
   const wallet = useSelector(ducks.wallet.selectors.getWallet);
   const supportedBiometryType = useSelector(ducks.app.selectors.getSupportedBiometryType);
+  const [snackBarMessage, setSnackMessage] = useState();
+  const hideSnackBar = useCallback((message) => {
+    setSnackMessage(undefined)
+  }, []);
+
   const handleBack = useCallback(() => {
     WalletTracker.trackEvent({
       category: `${TRACKER_PAGE}/backButton`,
@@ -64,7 +71,7 @@ function RecoveryInformationContainer(props) {
       });
       setMnemonic(mnemonic);
       setPassword(null);
-    } catch(err) {
+    } catch (err) {
       if (!biometrics) {
         if (err.message === 'wrong_password') {
           setError('Wrong password. Please try again.');
@@ -94,17 +101,36 @@ function RecoveryInformationContainer(props) {
     }, 500)
   });
 
-  const handleCopy= useCallback(() => Share.share({
-    message: mnemonic,
-  }), [mnemonic]);
+  const handleCopy = useCallback(() => {
+    if (isDesktop()) {
+      Clipboard.setString(mnemonic);
+      setSnackMessage('Mnemonic copied!')
+      return;
+    }
+
+    Share.share({
+      message: mnemonic,
+    })
+
+    
+  }, [mnemonic]);
 
   if (mnemonic) {
     return (
-      <MnemonicScreen
-        mnemonicPhrase={mnemonic}
-        onCopyPhrase={handleCopy}
-        onBack={handleMnemonicBack}
-      />
+      <>
+        <MnemonicScreen
+          mnemonicPhrase={mnemonic}
+          onCopyPhrase={handleCopy}
+          onBack={handleMnemonicBack}
+        />
+        <Snackbar
+          visible={!!snackBarMessage}
+          onDismiss={hideSnackBar}
+          duration={1000}
+        >
+          { snackBarMessage }
+        </Snackbar>
+      </>
     )
   }
 

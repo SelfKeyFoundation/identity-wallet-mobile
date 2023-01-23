@@ -19,6 +19,7 @@ import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
 import { colors } from '../../design-system/colors';
 import { CustomPaperTheme } from '../../design-system/paper-theme';
+import { isDesktop } from '../../v2/platform-utils';
 
 export interface ReceiveTokensProps {
   tokenSymbol: string;

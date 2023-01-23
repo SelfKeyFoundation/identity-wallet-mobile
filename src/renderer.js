@@ -26,6 +26,9 @@
  * ```
  */
 
+global.platform = 'desktop'
+
+
 import './index.css';
 // import '../dist/bundle.web.js';
 import '../index.web';

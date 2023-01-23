@@ -130,6 +130,7 @@ export class BaseModel {
     let results = this._findAll();
 
     if (typeof query === 'string') {
+      console.log(query);
       throw new Error('Query cannot be a string');
     }
 

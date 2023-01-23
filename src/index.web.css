@@ -30,3 +30,10 @@ body {
     Arial, sans-serif;
   background: #111111;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

@@ -153,7 +153,7 @@ export const ReceiveTokens = props => (
             Copy
         </Button>
       </FooterCol>
-      <FooterCol>
+      {/* <FooterCol>
         <Button
           type="shell-primary"
           onPress={props.onShare}
@@ -167,7 +167,7 @@ export const ReceiveTokens = props => (
         >
           Share
         </Button>
-      </FooterCol>
+      </FooterCol> */}
     </Footer>
   </Modal>
 );
