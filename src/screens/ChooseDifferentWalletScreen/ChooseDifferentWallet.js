@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TokenDetails } from '../../components';
-import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,

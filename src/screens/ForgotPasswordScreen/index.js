@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ForgotPassword } from './ForgotPassword';
 import ducks from 'core/modules';
 import { navigateBack, navigate, Routes } from 'core/navigation';
+import {getNavigationParam} from '../../v2/screen-utils';
 
 function ForgotPasswordContainer(props) {
   const dispatch = useDispatch();
   const [mnemonic, setMnemonic] = useState();
   const [isLoading, setLoading] = useState();
 
-  const walletAddress = props.navigation.getParam('walletAddress');
+  const walletAddress = getNavigationParam(props, 'walletAddress');
   const [error, setError] = useState();
   const handleBack = useCallback(() => {
     navigateBack();
