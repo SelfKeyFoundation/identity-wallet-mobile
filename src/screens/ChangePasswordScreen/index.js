@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChangePassword } from './ChangePassword';
 import { navigate, Routes } from 'core/navigation';
@@ -9,7 +9,10 @@ function ChangePasswordContainer(props) {
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState({});
-  const handleBack = useCallback(() => navigate(Routes.APP_SETTINGS), []);
+  const handleBack = useCallback(() => {
+    navigate(Routes.APP_SETTINGS);
+    setPassword('');
+  }, []);
   const handlePasswordChange = useCallback(password => setPassword(password), []);
   const handleSubmit = useCallback(async () => {
     if (isLoading) {
@@ -20,6 +23,7 @@ function ChangePasswordContainer(props) {
 
     try {
       await dispatch(ducks.wallet.operations.changePasswordOperation(password));
+      setPassword('');
     } catch(err) {
       if (err.message === 'wrong_password') {
         setError({
@@ -29,6 +33,10 @@ function ChangePasswordContainer(props) {
     }
     setLoading(false);
   }, [isLoading, password]);
+
+  useEffect(() => {
+    setPassword('');
+  }, []);
 
   return (
     <ChangePassword

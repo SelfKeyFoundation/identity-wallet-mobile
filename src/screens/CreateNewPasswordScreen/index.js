@@ -13,14 +13,22 @@ function CreateNewPasswordContainer(props) {
     initialValues: {
       password: password,
     },
-    onSubmit: form => dispatch(
-      ducks.wallet.operations.submitNewPasswordOperation(form)
-    ),
+    onSubmit: async (form) => {
+      // controller.handleChange
+      await dispatch(
+        ducks.wallet.operations.submitNewPasswordOperation(form)
+      );
+    },
   });
+
+  console.log('password', { password, controller });
 
   return (
     <CreatePassword
-      onBack={navigateBack}
+      onBack={() => {
+        controller.onBack();
+        navigateBack()
+      }}
       onChange={controller.handleChange}
       onSubmit={controller.handleSubmit}
       values={controller.values}

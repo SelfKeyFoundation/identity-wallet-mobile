@@ -53,13 +53,21 @@ export function useCreatePasswordController(props) {
   const formik = useFormik({
     initialValues: props.initialValues,
     validate: values => validateAll(schema, values),
-    onSubmit: values => props.onSubmit(values),
+    onSubmit: values => {
+      props.onSubmit(values);
+      formik.setFieldValue('password', '');
+      formik.resetForm();
+    },
   });
 
   return {
     passwordStrength: computePasswordStrength(formik.values.password),
     handleChange: formik.handleChange,
     handleSubmit: formik.handleSubmit,
+    onBack: () => {
+      formik.setFieldValue('password', '');
+      formik.resetForm();
+    },
     values: formik.values,
     errors: formik.errors,
   };

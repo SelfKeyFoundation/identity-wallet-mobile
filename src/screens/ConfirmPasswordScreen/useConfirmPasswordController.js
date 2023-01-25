@@ -29,12 +29,21 @@ export function useConfirmPasswordController(props) {
       confirmPassword: '',
     },
     validate: values => validateAll(schema, values),
-    onSubmit: values => props.onSubmit(values),
+    onSubmit: values => {
+      formik.setFieldValue('password', '');
+      formik.resetForm();
+      props.onSubmit(values);
+    },
   });
+
 
   return {
     handleChange: formik.handleChange,
     handleSubmit: formik.handleSubmit,
+    onBack: () => {
+      formik.setFieldValue('password', '');
+      formik.resetForm();
+    },
     values: formik.values,
     errors: formik.errors,
   };

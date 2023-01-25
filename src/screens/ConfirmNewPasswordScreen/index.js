@@ -22,7 +22,10 @@ function ConfirmNewPasswordContainer(props) {
       onSubmit={controller.handleSubmit}
       values={controller.values}
       errors={controller.errors}
-      onBack={navigateBack}
+      onBack={() => {
+        navigateBack();
+        controller.onBack();
+      }}
     />
   );
 }
