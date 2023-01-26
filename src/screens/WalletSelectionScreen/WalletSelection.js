@@ -185,7 +185,7 @@ function renderUnlockOptions(props) {
       <Row>
         <Col>
           <Button
-            onPress={props.Submit}
+            onPress={props.onSubmit}
             type="full-primary"
             isLoading={props.isLoading}
           >
