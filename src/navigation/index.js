@@ -33,6 +33,7 @@ const Stack = createBottomTabNavigator();
 const renderStackNavigator = (flow) => Object.keys(flow).map(route => {
   return <Stack.Screen key={route} name={route} component={flow[route]} options={{
     headerShown: false,
+    title: 'SelfKey Identity Wallet'
   }}/>
 })
 
