@@ -24,7 +24,7 @@ import {
 } from './constants';
 
 // TODO: Implement forceUpdateAttributes config
-const forceUpdateAttributes = false;
+const forceUpdateAttributes = true;
 
 const createRootSelector = rootKey => (...fields) => state => _.pick(state[rootKey], fields);
 
@@ -56,7 +56,7 @@ export const selectExpiredRepositories = state => {
 export const selectIdAttributeTypes = createSelector(
 	selectRoot('idAtrributeTypes', 'idAtrributeTypesById'),
 	({ idAtrributeTypes, idAtrributeTypesById }) =>
-		idAtrributeTypes.map(id => idAtrributeTypesById[id]).filter(t => t && t.content)
+		idAtrributeTypes.map(id => idAtrributeTypesById[id]).filter(t => t)
 );
 
 // props: entityType, includeSystem
@@ -70,6 +70,9 @@ export const selectAttributeTypesFiltered = createSelector(
 			entityType = [entityType];
 		}
 		return attributeTypes.filter(t => {
+			if (!t || !t.content) {
+				return true;
+			}
 			if (t.content.system && !includeSystem) return false;
 
 			if (!t.content.entityType && !entityType.includes('individual')) {

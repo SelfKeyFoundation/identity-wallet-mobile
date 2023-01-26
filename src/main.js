@@ -6,6 +6,16 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+// app.whenReady().then(_ => {
+//   // If using method B for the session you should first construct the BrowserWindow
+//   const filter = { urls: ['*'] };
+//   session.defaultSession.webRequest.onHeadersReceived(filter, (details, callback) => {
+//     details.responseHeaders['Access-Control-Allow-Origin'] = ['*'];
+//     callback({ responseHeaders: details.responseHeaders });
+//   }
+//   // Construct the BrowserWindow if haven't done so yet...
+// });
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -13,8 +23,24 @@ const createWindow = () => {
     height: 768,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     },
+  });
+
+  mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+    (details, callback) => {
+      callback({ requestHeaders: { Origin: 'http://platform.selfkey.org', ...details.requestHeaders } });
+    },
+  );
+
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        'Access-Control-Allow-Origin': ['http://platform.selfkey.org'],
+        ...details.responseHeaders,
+      },
+    });
   });
 
   // and load the index.html of the app.

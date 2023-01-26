@@ -49,18 +49,18 @@ export class IdAttributeModel extends BaseModel {
     //   item.data = JSON.stringify(item.data);
     // }
 
-    // item.createdAt = new Date();
-    // item.updatedAt = item.createdAt;
+    item.createdAt = new Date();
+    item.updatedAt = item.createdAt;
 
     return item;
   }
 
   beforeUpdate(item) {
-    if (typeof item.data === 'object') {
-      item.data = JSON.stringify(item.data);
-    }
+    // if (typeof item.data === 'object') {
+    //   item.data = JSON.stringify(item.data);
+    // }
 
-    // item.updatedAt = new Date();
+    item.updatedAt = new Date();
 
     return item;
 	}

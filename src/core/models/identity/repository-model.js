@@ -238,9 +238,9 @@ export class RepositoryModel extends BaseModel {
   }
 
   beforeUpdate(item) {
-    if (typeof item.content === 'object') {
-      item.content = JSON.stringify(item.content);
-    }
+    // if (typeof item.content === 'object') {
+    //   item.content = JSON.stringify(item.content);
+    // }
 
     item.updatedAt = new Date();
 
