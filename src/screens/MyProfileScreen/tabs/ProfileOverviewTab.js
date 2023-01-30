@@ -223,8 +223,11 @@ function renderDocumentValue(attr) {
 				<TouchableWithoutFeedback
 					onPress={() => {
 						if (isDesktop()) {
-							console.log(image.content);
-							window.open(`${image.content}`);
+							const anchor = document.createElement('a');
+							anchor.href = image.content;
+							anchor.target = '_blank';
+							document.body.appendChild(anchor);
+							anchor.click();
 						} else {
 							FileViewer.open(`${fs.DocumentDirectoryPath}/${image.content}`)
 						}

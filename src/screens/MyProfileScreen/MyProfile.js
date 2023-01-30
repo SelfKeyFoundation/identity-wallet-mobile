@@ -11,6 +11,7 @@ import {
 import { ProfileOverviewTab } from './tabs/ProfileOverviewTab';
 import { ProfileDIDTab } from './tabs/ProfileDIDTab';
 import { ProfileApplicationsTab } from './tabs/ProfileApplicationsTab';
+import { Image } from 'native-base';
 
 const HeaderTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
