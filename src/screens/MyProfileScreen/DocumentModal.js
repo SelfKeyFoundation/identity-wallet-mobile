@@ -71,7 +71,7 @@ export function DocumentModal(props) {
   }
   const uiSchemas = useSelector(ducks.identity.selectors.selectUISchemas);
   const [attribute, setAttribute] = useState(getDefaultAttribute());
-  const [label, setLabel] = useState(isEditMode && props.attribute.name);
+  const [label, setLabel] = useState(isEditMode ? props.attribute.name : '');
   const [labelError, setLabelError] = useState(null);
   const [formData, setFormData] = useState(isEditMode ? props.attribute.data.value : null);
   const attributeId = attribute && attribute.id;

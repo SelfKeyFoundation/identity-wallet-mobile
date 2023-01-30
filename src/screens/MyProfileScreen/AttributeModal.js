@@ -82,9 +82,9 @@ export function AttributeModal(props) {
   }
 
   const [attribute, setAttribute] = useState(getDefaultAttribute());
-  const [label, setLabel] = useState(isEditMode && props.attribute.name);
+  const [label, setLabel] = useState(Boolean(isEditMode) ? props.attribute.name : '');
   const [labelError, setLabelError] = useState(null);
-  const [formData, setFormData] = useState(isEditMode ? props.attribute.data.value : null);
+  const [formData, setFormData] = useState(Boolean(isEditMode) ? props.attribute.data.value : null);
 
   useEffect(() => {
     currentLabel = isEditMode ? props.attribute.name : null;

@@ -90,6 +90,7 @@ export function SelectBox(props) {
         }}
         selectedValue={props.selectedValue}
       >
+        <Picker.Item label={props.placeholder} value="" />
         {
           props.items.map(item => (
             <Picker.Item
