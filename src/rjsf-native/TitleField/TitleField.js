@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldProps } from '@rjsf/core/src';
 import styled from 'styled-components/native';
+import { Text } from 'react-native';
 
 const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
