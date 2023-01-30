@@ -14,7 +14,8 @@ import {
   ErrorMessage,
   Link,
 } from 'design-system';
-import RNPickerSelect from 'react-native-picker-select';
+import { Theme } from '../design-system/theme';
+// import RNPickerSelect from 'react-native-picker-select';
 
 const SelectInput = styled(View)`
   background: ${ props => props.hasError ? 'rgba(255,106,106,0.05)' : '#1B2229'};

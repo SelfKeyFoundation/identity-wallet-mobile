@@ -92,7 +92,7 @@ export function DocumentModal(props) {
     setLabel(value);
   }
   const handleAttributeSelect = (value) => {
-    const attr = idAttributes.find(item => item.id === value);
+    const attr = idAttributes.find(item => item.id === parseInt(value));
     setAttribute(attr);
   };
 
