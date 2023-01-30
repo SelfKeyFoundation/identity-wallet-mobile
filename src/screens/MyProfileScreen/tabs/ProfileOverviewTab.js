@@ -15,6 +15,7 @@ import {
 import FileViewer from 'react-native-file-viewer';
 import fs from 'react-native-fs';
 import { setFileViewer } from 'rjsf-native//RNForm';
+import { isDesktop } from '../../../v2/platform-utils';
 
 const SectionHeader = styled(Grid)`
 	margin: 15px 20px 0 20px;
@@ -220,7 +221,14 @@ function renderDocumentValue(attr) {
 			const image = images[0];
 			return (
 				<TouchableWithoutFeedback
-					onPress={() => FileViewer.open(`${fs.DocumentDirectoryPath}/${image.content}`)}
+					onPress={() => {
+						if (isDesktop()) {
+							console.log(image.content);
+							window.open(`${image.content}`);
+						} else {
+							FileViewer.open(`${fs.DocumentDirectoryPath}/${image.content}`)
+						}
+					}}
 				>
 					<Text>{image.fileName}</Text>
 				</TouchableWithoutFeedback>

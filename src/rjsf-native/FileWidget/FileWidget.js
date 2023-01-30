@@ -22,6 +22,7 @@ import { Platform, TouchableWithoutFeedback, View, Text } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import styled from 'styled-components/native';
 import { viewFile } from  '../RNForm'
+import { isDesktop } from '../../v2/platform-utils';
 export const FormLabel = styled(Text)`
   color: ${props => props.theme.colors.typography};
   font-size: 12px;  
