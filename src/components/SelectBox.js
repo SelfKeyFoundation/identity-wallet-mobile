@@ -77,8 +77,16 @@ export function SelectBox(props) {
       <Picker
         note
         mode="dropdown"
+        style={{
+          height: 50,
+          background: Theme.colors.base,
+          color: Theme.colors.white,
+          borderColor: Theme.colors.baseDark,
+        }}
         items={items}
-        onValueChange={props.onValueChange}
+        onValueChange={(v) => {
+          props.onValueChange(v);
+        }}
         selectedValue={props.selectedValue}
       >
         {
