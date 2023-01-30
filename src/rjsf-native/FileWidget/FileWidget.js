@@ -129,7 +129,6 @@ export default function FileWidget(props) {
   };
   const mimeTypes = getMimeType(props);
 
-  // debugger;
   const handleSelect = () => {
     DocumentPicker
       .pick({

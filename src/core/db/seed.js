@@ -5,9 +5,10 @@ async function loadTokens() {
   // check if tokens are already loaded
   const model = TokenModel.getInstance();
   const items = model.findAll();
-  if (items.length < 10) {
-    return;
-  }
+
+  // if (items.length < 10) {
+  //   return;
+  // }
 
   const operation = tokensData.map(async (data, idx) => {
     try {
