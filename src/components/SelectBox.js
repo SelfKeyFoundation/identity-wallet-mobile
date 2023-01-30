@@ -74,12 +74,23 @@ export function SelectBox(props) {
   return (
     <View>
       <FormLabel>{props.label}</FormLabel>
-      <RNPickerSelect
+      <Picker
+        note
+        mode="dropdown"
         items={items}
         onValueChange={props.onValueChange}
         selectedValue={props.selectedValue}
       >
-        <SelectInput hasError={props.error}>
+        {
+          props.items.map(item => (
+            <Picker.Item
+              key={item.value}
+              label={item.label}
+              value={item.value}
+            /> 
+          ))
+        }
+        {/* <SelectInput hasError={props.error}>
           <SelectIcon>
             <SKIcon name="icon-expand_arrow-1" size={12} color="rgba(147,176,193,0.5)" />
           </SelectIcon>
@@ -88,8 +99,8 @@ export function SelectBox(props) {
               selectedItem ? selectedItem.label : props.placeholder
             }
           </SelectText>
-        </SelectInput>
-      </RNPickerSelect>
+        </SelectInput> */}
+      </Picker>
       {
         (props.error && props.errorMessage) ? (
           <View style={{ marginBottom: 5, marginTop: 10 }}>

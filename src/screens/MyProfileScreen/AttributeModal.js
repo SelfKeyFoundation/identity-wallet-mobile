@@ -101,7 +101,7 @@ export function AttributeModal(props) {
   const uiSchema = useMemo(() => attribute && uiSchemas.find((item) => item.attributeTypeId === attributeId), [attributeId, uiSchemas]);
 
   const handleAttributeSelect = (value) => {
-    const attr = idAttributes.find(item => item.id === value);
+    const attr = idAttributes.find(item => item.id === parseInt(value));
     setAttribute(attr);
   };
 

@@ -4,8 +4,8 @@ import tokensData from '../assets/data/eth-tokens.json';
 async function loadTokens() {
   // check if tokens are already loaded
   const model = TokenModel.getInstance();
-
-  if (model.findAll().length === tokensData.length) {
+  const items = model.findAll();
+  if (items.length < 10) {
     return;
   }
 
