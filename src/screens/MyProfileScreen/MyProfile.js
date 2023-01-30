@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, TouchableWithoutFeedback, ScrollView, View, Text } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, ScrollView, View, Text, TouchableHighlight } from 'react-native';
 import { Grid, Row, Col, FormText, IconAddImage } from 'design-system';
 import {
 	FIRST_NAME_ATTRIBUTE,
@@ -129,7 +129,7 @@ export function MyProfile(props) {
 		<Container onScroll={handleScroll} scrollEventThrottle={160}>
 			<SafeAreaView style={{ position: 'relative' }}>
 				<HeaderTitle>SelfKey Profile</HeaderTitle>
-				<TouchableWithoutFeedback onPress={props.onPictureEdit}>
+				<TouchableHighlight onPress={props.onPictureEdit}>
 					{identity.profilePicture ? (
 						<RoundedImage
 							source={{
@@ -141,7 +141,7 @@ export function MyProfile(props) {
 							<IconAddImage width={40} height={40} />
 						</RoundedContainer>
 					)}
-				</TouchableWithoutFeedback>
+				</TouchableHighlight>
 				<ProfileName>
 					{getAttributeValue(basicAttributes, FIRST_NAME_ATTRIBUTE)}{' '}
 					{getAttributeValue(basicAttributes, LAST_NAME_ATTRIBUTE)}
@@ -151,11 +151,11 @@ export function MyProfile(props) {
 					<Row alignItems="flex-end">
             {
               TabList.filter((item) => (showDid || item.id !== 'did')).map((item) => (
-                <TouchableWithoutFeedback onPress={() => setActiveTab(item)}>
+                <TouchableHighlight onPress={() => setActiveTab(item)}>
                   <TabCol active={activeTab.id === item.id} autoWidth>
                     <TabTitle>{item.title}</TabTitle>
                   </TabCol>
-                </TouchableWithoutFeedback>
+                </TouchableHighlight>
               ))
             }
             <TabPlaceholder />
