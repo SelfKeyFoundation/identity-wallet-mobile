@@ -17,8 +17,7 @@ const Container = styled(View)`
   padding: ${() => {
     return DeviceInfo.hasNotch() ? '45px 20px 40px 20px' : '20px';
   }};
-  height: 100%;
-  
+  height: calc(100% - 80px);
 `;
 
 const InnerContainer = styled(LinearGradient)`
