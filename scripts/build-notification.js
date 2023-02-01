@@ -34,7 +34,7 @@ const commitDate = new Date(getCommandOutput('git show -s --format=%ci'));
 const formattedDate = moment(commitDate).format('YYYY-MM-DD_HHMMss');
 const mobileArtifacts = `https://console.cloud.google.com/storage/browser/sk-builds/unified-wallet/mobile-apks;tab=objects?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=selfkey2&prefix=&forceOnObjectsSortingFiltering=false`;
 const artifactsUrl = isMobileDeploy ? mobileArtifacts : `https://console.cloud.google.com/storage/browser/sk-builds/unified-wallet/${formattedDate};tab=objects?project=selfkey2&prefix=&forceOnObjectsSortingFiltering=false`;
-const appVersion = isMobileDeploy && 'v1.0.1 build(146)';
+const appVersion = isMobileDeploy && 'v1.0.1 build(147)';
 const environmentName = 'Staging';
 
 const data = {

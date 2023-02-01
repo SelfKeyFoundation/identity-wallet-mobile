@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView, Text } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView, Text, Clipboard } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -12,6 +12,7 @@ import APP_VERSION from '../../../app-version.js';
 import { getCurrentEnv } from 'configs';
 import { navigate, Routes } from 'core/navigation';
 import Modals from '../../core/modules/modals/index.js';
+import { Snackbar } from 'react-native-paper';
 
 function getVersion() {
   const env = getCurrentEnv();
@@ -121,9 +122,17 @@ function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
 
 export function SettingsMenu(props) {
   const [removeWallet, setRemoveWallet] = useState();
+  const [snackMessage, setSnackMessage] = useState(null);
 
   return (
     <Container>
+      <Snackbar
+        visible={!!snackMessage}
+        onDismiss={() => setSnackMessage(null)}
+        duration={1000}
+      >
+        { snackMessage }
+      </Snackbar>
       <Header>
         <Title>Settings</Title>
       </Header>
@@ -211,7 +220,12 @@ export function SettingsMenu(props) {
           menuControl={
             <MenuRightText>{getVersion(props.walletEnv)}</MenuRightText>
           }
-          onPress={props.onVersionPress}
+          onPress={() => {
+            props.onVersionPress();
+            const versionName = getVersion(props.walletEnv);
+            Clipboard.setString(versionName);
+            setSnackMessage('Version copied to clipboard');
+          }}
         >
           Version
         </MenuItem>
