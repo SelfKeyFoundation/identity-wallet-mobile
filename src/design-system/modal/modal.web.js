@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableHighlight } from 'react-native';
 // import { Modal as PaperModal, Portal } from 'react-native-paper';
-import { Modal as NBModal } from 'native-base';
+import { Modal as NBModal, Pressable } from 'native-base';
 import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
 import { SKIcon } from '../icons';
@@ -115,9 +115,9 @@ export function Modal(props) {
             <Box paddingTop={10} paddingBottom={10} flex={1}>
               <Title>{props.title}</Title>
             </Box>
-            <TouchableHighlight onPress={props.onClose} style={{ padding: 10 }}>
+            <Pressable onPress={props.onClose} style={{ padding: 10 }}>
               <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose} />
-            </TouchableHighlight>
+            </Pressable>
           </Header>
         </LinearGradient>
         <Body contentContainerStyle={styles.scrollContainer}>

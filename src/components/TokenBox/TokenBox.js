@@ -17,6 +17,7 @@ import { navigate, Routes } from 'core/navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import { TouchableHighlight } from 'react-native';
 import { View, Text } from 'react-native';
+import { Pressable } from 'native-base';
 
 export interface TokenBoxProps {
   iconComponent: any;
@@ -77,7 +78,7 @@ export function TokenBox(props: TokenBoxProps) {
 
   if (props.tokenCode === 'custom') {
     return (
-      <TouchableHighlight onPress={handleCustomTokens}>
+      <Pressable onPress={handleCustomTokens}>
         <Wrapper>
           <Container colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
             <Row marginBottom={10}>
@@ -97,12 +98,12 @@ export function TokenBox(props: TokenBoxProps) {
             </Row>
           </Container>
         </Wrapper>
-      </TouchableHighlight>
+      </Pressable>
     );
   }
 
   return (
-    <TouchableHighlight onPress={handleDetails}>
+    <Pressable onPress={handleDetails}>
       <Wrapper>
         <Container colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
           <Row marginBottom={10}>
@@ -113,9 +114,9 @@ export function TokenBox(props: TokenBoxProps) {
               <Title>{props.tokenName}</Title>
             </Col>
             <Col autoWidth>
-              <TouchableHighlight onPress={handleDetails} style={{ padding: 6 }}>
+              <Pressable onPress={handleDetails} style={{ padding: 6 }}>
                 <SKIcon name="icon-swap" size={26} color="#93B0C1" />
-              </TouchableHighlight>
+              </Pressable>
             </Col>
           </Row>
           <Row alignBottom marginBottom={10}>
@@ -131,6 +132,6 @@ export function TokenBox(props: TokenBoxProps) {
           </Row>
         </Container>
       </Wrapper>
-    </TouchableHighlight>
+    </Pressable>
   );
 }

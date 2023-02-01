@@ -1,3 +1,4 @@
+import { Pressable } from 'native-base';
 import React from 'react';
 import { TouchableHighlight } from "react-native";
 import styled from "styled-components/native";
@@ -10,8 +11,8 @@ const BackIcon = styled(SKIcon)`
 
 export function BackButton({ onPress }) {
   return (
-    <TouchableHighlight onPress={onPress || navigateBack}>
+    <Pressable onPress={onPress || navigateBack}>
       <BackIcon name="icon-nav-ar-left" size={12} color="#fff" />
-    </TouchableHighlight>
+    </Pressable>
   )
 }

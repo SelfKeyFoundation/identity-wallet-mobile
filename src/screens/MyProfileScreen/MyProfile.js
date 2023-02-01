@@ -11,7 +11,7 @@ import {
 import { ProfileOverviewTab } from './tabs/ProfileOverviewTab';
 import { ProfileDIDTab } from './tabs/ProfileDIDTab';
 import { ProfileApplicationsTab } from './tabs/ProfileApplicationsTab';
-import { Image } from 'native-base';
+import { Image, Pressable } from 'native-base';
 
 const HeaderTitle = styled(Text)`
 	color: ${props => props.theme.colors.white};
@@ -129,7 +129,7 @@ export function MyProfile(props) {
 		<Container onScroll={handleScroll} scrollEventThrottle={160}>
 			<SafeAreaView style={{ position: 'relative' }}>
 				<HeaderTitle>SelfKey Profile</HeaderTitle>
-				<TouchableHighlight onPress={props.onPictureEdit}>
+				<Pressable onPress={props.onPictureEdit}>
 					{identity.profilePicture ? (
 						<RoundedImage
 							source={{
@@ -141,7 +141,7 @@ export function MyProfile(props) {
 							<IconAddImage width={40} height={40} />
 						</RoundedContainer>
 					)}
-				</TouchableHighlight>
+				</Pressable>
 				<ProfileName>
 					{getAttributeValue(basicAttributes, FIRST_NAME_ATTRIBUTE)}{' '}
 					{getAttributeValue(basicAttributes, LAST_NAME_ATTRIBUTE)}
@@ -151,11 +151,11 @@ export function MyProfile(props) {
 					<Row alignItems="flex-end">
             {
               TabList.filter((item) => (showDid || item.id !== 'did')).map((item) => (
-                <TouchableHighlight onPress={() => setActiveTab(item)}>
+                <Pressable onPress={() => setActiveTab(item)}>
                   <TabCol active={activeTab.id === item.id} autoWidth>
                     <TabTitle>{item.title}</TabTitle>
                   </TabCol>
-                </TouchableHighlight>
+                </Pressable>
               ))
             }
             <TabPlaceholder />

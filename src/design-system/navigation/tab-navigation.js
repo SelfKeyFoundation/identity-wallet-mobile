@@ -5,6 +5,7 @@ import { SKIcon } from '../icons';
 import React from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../mobile-ui-provider';
+import { Pressable } from 'native-base';
 
 const Container = styled(View)`
   background-color: #161A1F;
@@ -49,7 +50,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
   const theme = useContext(ThemeContext);
 
   return (
-    <TouchableHighlight onPress={() => props.onPress(props.id)} style={{ flex: 1  }}>
+    <Pressable onPress={() => props.onPress(props.id)} style={{ flex: 1  }}>
       <Col>
         <Row>
           <SKIcon name={props.icon} color={props.active ? '#2DA1F8' : theme.colors.typography} size={20} />
@@ -58,7 +59,7 @@ export function TabNavigationItem(props: TabNavigationItemProps) {
           <TabText active={props.active}>{props.label}</TabText>
         </Row>
       </Col>
-    </TouchableHighlight>
+    </Pressable>
   );
 }
 
