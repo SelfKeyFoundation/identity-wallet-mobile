@@ -390,7 +390,7 @@ export function SendTokens(props: SendTokensProps) {
               disabled={!props.canSend}
               isLoading={isSending}
             >
-              Send {tokenDetails && tokenDetails.symbol}
+              {`Send ${tokenDetails && tokenDetails.symbol}`}
             </Button>
           </Col>
         </Row>
