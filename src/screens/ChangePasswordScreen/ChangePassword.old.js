@@ -63,7 +63,7 @@ export function ChangePassword(props: ChangePasswordProps) {
           <Row>
             <TitleCol>
               <PageTitle align="center">
-                Change passcode
+                Change password
               </PageTitle>
             </TitleCol>
           </Row>
@@ -74,7 +74,7 @@ export function ChangePassword(props: ChangePasswordProps) {
                 errorMessage={props.error.password}
                 value={props.password}
                 placeholder="Current password"
-                label="Current passcode"
+                label="Current password"
                 onChangeText={props.onPasswordChange}
                 secureTextEntry={true}
               />
@@ -86,8 +86,8 @@ export function ChangePassword(props: ChangePasswordProps) {
                 error={props.error.newPassword}
                 errorMessage={props.error.newPassword}
                 value={props.newPassword}
-                placeholder="New passcode"
-                label="New passcode"
+                placeholder="New password"
+                label="New password"
                 onChangeText={props.onNewPasswordChange}
                 secureTextEntry={true}
               />
@@ -100,7 +100,7 @@ export function ChangePassword(props: ChangePasswordProps) {
                 errorMessage={props.error.confirmPasswod}
                 value={props.confirmPasswod}
                 placeholder="New password confirmation"
-                label="Confirm the new passcode"
+                label="Confirm the new password"
                 onChangeText={props.onConfirmPasswordChange}
                 secureTextEntry={true}
                 onSubmitEditing={props.onSubmit}

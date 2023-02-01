@@ -191,7 +191,7 @@ export function SettingsMenu(props) {
           {props.supportedBiometryType}
         </MenuItem>}
         <MenuItem onPress={props.onChangePassword}>
-          Change Passcode
+          Change Password
         </MenuItem>
         <Row marginTop={20}>
           <Col paddingLeft={20}>
