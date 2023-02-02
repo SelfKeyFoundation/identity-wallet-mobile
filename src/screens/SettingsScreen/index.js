@@ -9,6 +9,8 @@ import { SettingsMenu } from './SettingsMenu';
 import * as Keychain from '../../rn-identity-vault/keychain';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';
 import { WalletTracker } from '../../WalletTracker';
+import { isDesktop } from '../../v2/platform-utils';
+// const shell = require('electron').shell;
 
 function SettingsScreenContainer(props) {
   const dispatch = useDispatch();
@@ -54,7 +56,15 @@ function SettingsScreenContainer(props) {
       level: 'machine'
     });
 
-    Linking.openURL('https://help.selfkey.org/')
+    const url = 'https://help.selfkey.org/';
+
+    if (isDesktop()) {
+      // shell.openExternal(url)
+      // window.require('electron').shell.openExternal(url);
+      window.electronAPI.openUrl(url);
+    } else {
+      Linking.openURL(url)
+    }
   };
 
   const handleSwitchAccount = () => {

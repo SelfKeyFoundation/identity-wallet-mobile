@@ -76,7 +76,7 @@ const data = {
 };
 
 
-console.log(JSON.stringify(data));
+// console.log(JSON.stringify(data));
 
 
 axios.post(WEBHOOK_URL, data);
