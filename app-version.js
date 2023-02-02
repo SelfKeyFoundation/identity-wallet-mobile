@@ -1,7 +1,7 @@
 import DeviceInfo from 'react-native-device-info';
 import { isDesktop } from './src/v2/platform-utils';
 
-const envName = 'DEV';
+const envName = 'PROD';
 const appVersion = '1.0.1';
 const buildNumber = '146';
 
