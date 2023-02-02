@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, TouchableWithoutFeedback, ScrollView, View, Text, TouchableHighlight } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, ScrollView, View, Text } from 'react-native';
 import { Grid, Row, Col, FormText, IconAddImage } from 'design-system';
 import {
 	FIRST_NAME_ATTRIBUTE,

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 // import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { Modal as NBModal, Pressable } from 'native-base';
 import { H3 } from '../typography/headings';

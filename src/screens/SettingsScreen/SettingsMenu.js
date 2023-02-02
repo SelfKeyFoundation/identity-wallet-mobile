@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, TouchableHighlight, Switch, View, ScrollView, Text, Clipboard } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, Switch, View, ScrollView, Text, Clipboard } from 'react-native';
 import styled from 'styled-components/native';
 import {
   SKIcon,
@@ -13,6 +13,7 @@ import { getCurrentEnv } from 'configs';
 import { navigate, Routes } from 'core/navigation';
 import Modals from '../../core/modules/modals/index.js';
 import { Snackbar } from 'react-native-paper';
+import { Pressable } from 'native-base';
 
 function getVersion() {
   const env = getCurrentEnv();
@@ -81,7 +82,7 @@ const MenuItemWrapper = styled(Col)`
 function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding }) {
   return (
     <MenuItemRow>
-      <TouchableHighlight onPress={onPress} style={{ flex: 1 }}>
+      <Pressable onPress={onPress} style={{ flex: 1 }}>
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
@@ -95,7 +96,7 @@ function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding 
             <Col autoWidth style={{ width: 20 }} />
           </Row>
         </MenuItemWrapper>
-      </TouchableHighlight>
+      </Pressable>
     </MenuItemRow>
   )
 }
@@ -103,7 +104,7 @@ function MenuItem({ hasBorder, children, onPress, menuControl, controlNoPadding 
 function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
   return (
     <MenuItemRow>
-      <TouchableHighlight onPress={onPress} style={{ flex: 1 }}>
+      <Pressable onPress={onPress} style={{ flex: 1 }}>
         <MenuItemWrapper hasBorder={hasBorder}>
           <Row>
             <Col noPadding>
@@ -115,7 +116,7 @@ function SwitchMenuItem({ hasBorder, children, onPress, menuControl }) {
             <Col autoWidth style={{ width: 20 }} />
           </Row>
         </MenuItemWrapper>
-      </TouchableHighlight>
+      </Pressable>
     </MenuItemRow>
   )
 }

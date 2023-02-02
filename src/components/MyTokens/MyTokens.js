@@ -14,7 +14,7 @@ import {
   Explanatory,
   FormattedNumber
 } from 'design-system';
-import { TouchableWithoutFeedback, View, Text, TouchableHighlight} from 'react-native';
+import { TouchableWithoutFeedback, View, Text} from 'react-native';
 import styled from 'styled-components/native';
 import { IconKey, IconEth } from 'design-system/svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
@@ -22,7 +22,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { WalletTracker } from '../../WalletTracker';
 import { TokenIconMapping } from 'components/token-icon-mapping';
 import { Theme } from '../../design-system/theme';
-import { ScrollView } from 'native-base';
+import { Pressable, ScrollView } from 'native-base';
 
 const TRACKER_PAGE = 'dashboard/myTokens';
 
@@ -168,7 +168,7 @@ export function MyTokens(props: MyTokensProps) {
       </TitleRow>
       {
         props.tokens.map(token => (
-          <TouchableHighlight onPress={handleTokenDetails(token)}>
+          <Pressable onPress={handleTokenDetails(token)}>
             <TokenRowWrapper>
               <TokenRow key={token.id} colors={['#161A1F', '#1A2836']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.5 }}>
                 <Col autoWidth noPadding>
@@ -199,7 +199,7 @@ export function MyTokens(props: MyTokensProps) {
                 </Col>
               </TokenRow>
             </TokenRowWrapper>
-          </TouchableHighlight>
+          </Pressable>
         ))
       }
       { props.showViewAll &&

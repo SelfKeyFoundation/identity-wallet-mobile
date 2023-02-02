@@ -1,6 +1,5 @@
 import { Pressable } from 'native-base';
 import React from 'react';
-import { TouchableHighlight } from "react-native";
 import styled from "styled-components/native";
 import { navigateBack } from '../../core/navigation';
 import { SKIcon } from "../../design-system/icons";

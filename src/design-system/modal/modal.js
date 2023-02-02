@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { H3 } from '../typography/headings';
 import { Button } from '../buttons/Button';
@@ -10,6 +10,7 @@ import DeviceInfo from 'react-native-device-info';
 import LinearGradient from 'react-native-linear-gradient';
 import { Box } from 'design-system/grid';
 import { View } from 'react-native';
+import { Pressable } from 'native-base';
 
 const Container = styled(View)`
   padding: ${() => {
@@ -102,9 +103,9 @@ export function Modal(props) {
               <Box paddingTop={10} paddingBottom={10} flex={1}>
                 <Title>{props.title}</Title>
               </Box>
-              <TouchableHighlight onPress={props.onClose} style={{ padding: 10 }}>
+              <Pressable onPress={props.onClose} style={{ padding: 10 }}>
                 <SKIcon name="icon-clear" color="#23E6FE" size={16} onPress={props.onClose} />
-              </TouchableHighlight>
+              </Pressable>
             </Header>
           </LinearGradient>
           <Body contentContainerStyle={styles.scrollContainer}>

@@ -15,7 +15,6 @@ import {
 import styled from 'styled-components/native';
 import { navigate, Routes } from 'core/navigation';
 import LinearGradient from 'react-native-linear-gradient';
-import { TouchableHighlight } from 'react-native';
 import { View, Text } from 'react-native';
 import { Pressable } from 'native-base';
 

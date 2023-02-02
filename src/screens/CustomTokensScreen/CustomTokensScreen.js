@@ -1,6 +1,6 @@
 import React from 'react';
 import { TokenDetails } from '../../components';
-import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView, Text, TouchableHighlight } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, View, ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { SKIcon } from 'design-system';
 import { BackButton } from '../../v2/components/BackButton';
