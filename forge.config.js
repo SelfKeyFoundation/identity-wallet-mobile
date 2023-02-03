@@ -1,25 +1,31 @@
 const iconPath = './images/icon';
 
+const packagerConfig = {
+  icon: iconPath,
+  name: 'SelfKey',
+  // productName: 'SelfKey',
+  // executableName: 'SelfKey',
+};
+
 module.exports = {
-    packagerConfig: {
-      icon: iconPath,
-      name: 'SelfKey',
-      productName: 'SelfKey',
-      executableName: 'SelfKey',
-    },
+    packagerConfig,
     rebuildConfig: {},
     makers: [
       {
         name: '@electron-forge/maker-squirrel',
+        packagerConfig,
       },
       {
         name: '@electron-forge/maker-dmg',
+        packagerConfig,
       },
       {
         name: '@electron-forge/maker-zip',
+        packagerConfig,
       },
       {
         name: '@electron-forge/maker-deb',
+        packagerConfig,
       },
       // {
       //   name: '@electron-forge/maker-rpm',
