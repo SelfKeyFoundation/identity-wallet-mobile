@@ -1,10 +1,11 @@
+import { Pressable } from 'native-base';
 import React from 'react';
-import { Text, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import { Text, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { Row, Col } from '../grid';
 import { SKIcon } from '../icons';
 
-const ButtonLinkWrapper = styled(TouchableHighlight)`
+const ButtonLinkWrapper = styled(Pressable)`
   flex-direction: row;
 `;
 
