@@ -30,7 +30,7 @@ const TabText = styled(Text)`
   color: ${({ theme, active }) => active ? '#2DA1F8' : '#485668'};
   margin-top: 8px;
   margin-bottom: 2px;
-  font-family: ${({ theme }) => theme.fonts.regular };
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 10px;
 `;
 
@@ -46,11 +46,14 @@ export interface TabNavigationProps {
   selectedOption: string,
 }
 
+
 export function TabNavigationItem(props: TabNavigationItemProps) {
   const theme = useContext(ThemeContext);
 
+  const style = { flex: 1, shadow: 'none', border: 'none' }
+
   return (
-    <Pressable onPress={() => props.onPress(props.id)} style={{ flex: 1  }}>
+    <Pressable shadow={'none'} onPress={() => props.onPress(props.id)} style={style} _focusVisible={style} _focus={style} _hover={style} _pressed={style}>
       <Col>
         <Row>
           <SKIcon name={props.icon} color={props.active ? '#2DA1F8' : theme.colors.typography} size={20} />

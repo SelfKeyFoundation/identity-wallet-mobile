@@ -21,5 +21,6 @@ console.log(`Uploading [${platform}] artifacts to: ${bucketFolder}`);
 
 glob.sync('./out/**/*.zip').forEach((file, idx) => {
   console.log('Uploading file...', file);
-  getCommandOutput(`gsutil cp ${file} ${bucketFolder}`)
+  const fileName = file.replace(/ /g, '\\ ');
+  getCommandOutput(`gsutil cp ${fileName} ${bucketFolder}`)
 });
