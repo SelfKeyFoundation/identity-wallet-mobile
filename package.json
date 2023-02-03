@@ -1,7 +1,7 @@
 {
-  "name": "Selfkey",
+  "name": "SelfKey",
   "version": "1.0.0",
-  "author": "Selfkey",
+  "author": "SelfKey",
   "scripts": {
     "start": "react-native start",
     "storybook": "(adb reverse tcp:7007 tcp:7007 || true) && start-storybook",
@@ -45,7 +45,7 @@
   "main": ".webpack/main",
   "build": {
     "appId": "com.selfkey.wallet",
-    "productName": "selfkey",
+    "productName": "SelfKey",
     "mac": {
       "icon": "./dist/selfkey-icon.png"
     },
@@ -53,7 +53,7 @@
     "mas": {},
     "win": {
       "icon": "./dist/selfkey-icon.png",
-      "publisherName": "Selfkey"
+      "publisherName": "SelfKey"
     },
     "appx": {},
     "portable": {},

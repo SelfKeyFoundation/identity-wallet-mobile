@@ -3,8 +3,8 @@ const iconPath = './images/icon';
 const packagerConfig = {
   icon: iconPath,
   name: 'SelfKey',
-  // productName: 'SelfKey',
-  // executableName: 'SelfKey',
+  productName: 'Selfkey',
+  executableName: 'SelfKey',
 };
 
 module.exports = {
