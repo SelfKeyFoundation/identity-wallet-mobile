@@ -3,9 +3,9 @@ const iconPath = './images/icon';
 module.exports = {
     packagerConfig: {
       icon: iconPath,
-      name: 'SelfKey Identity Wallet',
-      productName: 'SelfKey Identity Wallet',
-      executableName: 'SelfKey Identity Wallet',
+      name: 'SelfKey',
+      productName: 'SelfKey',
+      executableName: 'SelfKey',
     },
     rebuildConfig: {},
     makers: [
