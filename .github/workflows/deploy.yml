@@ -2,53 +2,6 @@ name: Deployment
 on: [push]
 
 jobs:
-  windows-deploy:
-    name: "Windows deploy"
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '18.12.1'
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Install dependencies
-        run: |
-          git config --global url."https://".insteadOf git://
-          # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          yarn install
-
-      - name: Build artifacts
-        run: |
-          yarn build:web
-
-      - name: Make windows artifacts
-        run: |
-          yarn make --platform win32
-      
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-
-      - name: Upload build artifacts
-        run: |
-          node ./scripts/electron-build-upload.js --platform=Windows
-      
-      - name: Send slack notification
-        run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
-
   linux-deploy:
     name: "Linux deploy"
     runs-on: ubuntu-latest
@@ -57,9 +10,10 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '18.12.1'
+          cache: 'npm'
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -105,6 +59,7 @@ jobs:
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=BrowserExtension
 
   macos-deploy:
+    needs: linux-deploy
     name: "MacOS deploy"
     runs-on: macos-latest
     steps:
@@ -112,9 +67,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '18.12.1'
+          cache: 'npm'
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -151,8 +107,51 @@ jobs:
         run: |
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
 
-        
+  windows-deploy:
+    name: "Windows deploy"
+    needs: macos-deploy
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+          cache: 'npm'
 
-        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
 
-        
+      - name: Install dependencies
+        run: |
+          git config --global url."https://".insteadOf git://
+          # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+          yarn install
+
+      - name: Build artifacts
+        run: |
+          yarn build:web
+
+      - name: Make windows artifacts
+        run: |
+          yarn make --platform win32
+      
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Upload build artifacts
+        run: |
+          node ./scripts/electron-build-upload.js --platform=Windows
+      
+      - name: Send slack notification
+        run: |
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
