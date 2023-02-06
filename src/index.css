@@ -28,3 +28,7 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+div[data-focusvisible-polyfill] {
+  box-shadow: none !important;
+}
