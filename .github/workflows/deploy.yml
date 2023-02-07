@@ -156,11 +156,9 @@ jobs:
       - name: Send slack notification
         if: failure()
         run: |
-          echo "result is: failed"
-          # node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows --failed
 
       - name: Send slack notification
         if: success()
         run: |
-          echo "result is: success"
-          # node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows

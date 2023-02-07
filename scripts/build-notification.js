@@ -25,6 +25,7 @@ const nameMapping = {
 
 const userName = nameMapping[commitAuthor] || commitAuthor;
 const isMobileDeploy = argv.isMobile;
+const success = !argv.failed;
 const platformIcon = isMobileDeploy ? `📲` : `💻`;
 const platformName =  argv.platform;
 
@@ -41,8 +42,8 @@ const data = {
   username: userName,
   icon_emoji: '🚀',
   attachments: [{
-    color: '#196cda',
-    pretext: `${appName} has been deployed`,
+    color: success ? '#196cda' : '#ff7b72',
+    pretext: `${appName} ${success ? 'has been deployed' : 'failed to deploy'}`,
     fields: [{
       title: `${platformIcon} Platform`,
       value: `${platformName}`,
@@ -67,16 +68,12 @@ const data = {
       title: 'App Version',
       value: appVersion,
       short: true,
-    }, artifactsUrl && {
+    }, success && artifactsUrl && {
       title: '🗂️ Build files',
       value: `[click here to download](${artifactsUrl})`,
       short: true,
     }].filter(item => !!item)
   }],
 };
-
-
-// console.log(JSON.stringify(data));
-
 
 axios.post(WEBHOOK_URL, data);
