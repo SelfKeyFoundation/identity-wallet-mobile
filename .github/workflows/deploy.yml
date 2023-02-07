@@ -128,30 +128,30 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo 123
-          git config --global url."https://".insteadOf git://
+          cat asdfij qpwoeir 
+          # git config --global url."https://".insteadOf git://
           # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          yarn install
+          # yarn install
 
-      - name: Build artifacts
-        run: |
-          yarn build:web
+      # - name: Build artifacts
+      #   run: |
+      #     yarn build:web
 
-      - name: Make windows artifacts
-        run: |
-          yarn make --platform win32
+      # - name: Make windows artifacts
+      #   run: |
+      #     yarn make --platform win32
       
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      # - id: 'auth'
+      #   uses: 'google-github-actions/auth@v1'
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
+      # - name: 'Set up Cloud SDK'
+      #   uses: 'google-github-actions/setup-gcloud@v1'
 
-      - name: Upload build artifacts
-        run: |
-          node ./scripts/electron-build-upload.js --platform=Windows
+      # - name: Upload build artifacts
+      #   run: |
+      #     node ./scripts/electron-build-upload.js --platform=Windows
       
       - name: Send slack notification
         if: failure()
