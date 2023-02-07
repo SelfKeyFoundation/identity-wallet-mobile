@@ -2,110 +2,110 @@ name: Deployment
 on: [push]
 
 jobs:
-  linux-deploy:
-    name: "Linux deploy"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # linux-deploy:
+  #   name: "Linux deploy"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
       
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.12.1'
-          cache: 'npm'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.12.1'
+  #         cache: 'npm'
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: 3.7
 
-      - name: Install dependencies
-        run: |
-          git config --global url."https://".insteadOf git://
-          # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          yarn install
+  #     - name: Install dependencies
+  #       run: |
+  #         git config --global url."https://".insteadOf git://
+  #         # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  #         yarn install
 
-      - name: Build artifacts
-        run: |
-          yarn build:web
+  #     - name: Build artifacts
+  #       run: |
+  #         yarn build:web
 
-      - name: Make windows artifacts
-        run: |
-          yarn make
+  #     - name: Make windows artifacts
+  #       run: |
+  #         yarn make
       
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+  #     - id: 'auth'
+  #       uses: 'google-github-actions/auth@v1'
+  #       with:
+  #         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
+  #     - name: 'Set up Cloud SDK'
+  #       uses: 'google-github-actions/setup-gcloud@v1'
 
-      - name: Upload build artifacts
-        run: |
-          node ./scripts/electron-build-upload.js --platform=Linux
+  #     - name: Upload build artifacts
+  #       run: |
+  #         node ./scripts/electron-build-upload.js --platform=Linux
       
-      - name: Send slack notification
-        run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Linux
+  #     - name: Send slack notification
+  #       run: |
+  #         node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Linux
 
-      - name: Upload build artifacts (browser extension)
-        run: |
-          node ./scripts/extension-build-upload.js --platform=BrowserExtension
+  #     - name: Upload build artifacts (browser extension)
+  #       run: |
+  #         node ./scripts/extension-build-upload.js --platform=BrowserExtension
       
-      - name: Send slack notification (browser extension)
-        run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=BrowserExtension
+  #     - name: Send slack notification (browser extension)
+  #       run: |
+  #         node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=BrowserExtension
 
-  macos-deploy:
-    needs: linux-deploy
-    name: "MacOS deploy"
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # macos-deploy:
+  #   needs: linux-deploy
+  #   name: "MacOS deploy"
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.12.1'
-          cache: 'npm'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.12.1'
+  #         cache: 'npm'
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: 3.7
 
-      - name: Install dependencies
-        run: |
-          git config --global url."https://".insteadOf git://
-          # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          yarn install
+  #     - name: Install dependencies
+  #       run: |
+  #         git config --global url."https://".insteadOf git://
+  #         # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  #         yarn install
 
-      - name: Build artifacts
-        run: |
-          yarn build:web
+  #     - name: Build artifacts
+  #       run: |
+  #         yarn build:web
 
-      - name: Make windows artifacts
-        run: |
-          yarn make
+  #     - name: Make windows artifacts
+  #       run: |
+  #         yarn make
 
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+  #     - id: 'auth'
+  #       uses: 'google-github-actions/auth@v1'
+  #       with:
+  #         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
+  #     - name: 'Set up Cloud SDK'
+  #       uses: 'google-github-actions/setup-gcloud@v1'
 
-      - name: Upload build artifacts
-        run: |
-          node ./scripts/electron-build-upload.js --platform=MacOS
+  #     - name: Upload build artifacts
+  #       run: |
+  #         node ./scripts/electron-build-upload.js --platform=MacOS
 
-      - name: Send slack notification
-        run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
+  #     - name: Send slack notification
+  #       run: |
+  #         node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=MacOS
 
   windows-deploy:
     name: "Windows deploy"
@@ -128,6 +128,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          echo 123
           git config --global url."https://".insteadOf git://
           # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
           yarn install
@@ -153,5 +154,7 @@ jobs:
           node ./scripts/electron-build-upload.js --platform=Windows
       
       - name: Send slack notification
+        if: always()
         run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
+          echo "result is: ${{success()}}"
+          # node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
