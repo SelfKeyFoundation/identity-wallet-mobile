@@ -175,26 +175,26 @@ jobs:
         run: |
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
 
-  ios-deploy:
-    name: "iOS deploy"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # ios-deploy:
+  #   name: "iOS deploy"
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
       
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.12.1'
-          cache: 'npm'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.12.1'
+  #         cache: 'npm'
 
-  android-deploy:
-    name: "Android deploy"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # android-deploy:
+  #   name: "Android deploy"
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
       
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.12.1'
-          cache: 'npm'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.12.1'
+  #         cache: 'npm'
