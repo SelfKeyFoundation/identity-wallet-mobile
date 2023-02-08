@@ -65,11 +65,9 @@ jobs:
         run: |
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=BrowserExtension
 
-
-
   macos-deploy:
-    needs: linux-deploy
     name: "MacOS deploy"
+    # needs: linux-deploy
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -124,7 +122,7 @@ jobs:
 
   windows-deploy:
     name: "Windows deploy"
-    needs: macos-deploy
+    # needs: macos-deploy
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -176,3 +174,27 @@ jobs:
         if: success()
         run: |
           node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
+
+  ios-deploy:
+    name: "iOS deploy"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+          cache: 'npm'
+
+  android-deploy:
+    name: "Android deploy"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+          cache: 'npm'
