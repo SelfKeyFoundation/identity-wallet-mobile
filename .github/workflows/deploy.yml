@@ -161,9 +161,9 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
-      # - name: Upload build artifacts
-      #   run: |
-      #     node ./scripts/electron-build-upload.js --platform=Windows
+      - name: Upload build artifacts
+        run: |
+          node ./scripts/electron-build-upload.js --platform=Windows
       
       - name: Send slack notification
         if: failure()
@@ -173,7 +173,7 @@ jobs:
       - name: Send slack notification
         if: success()
         run: |
-          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows --failed
+          node ./scripts/build-notification.js --token=${{ secrets.MATTERMOST_TOKEN }} --platform=Windows
 
   # ios-deploy:
   #   name: "iOS deploy"
