@@ -31,6 +31,10 @@ jobs:
           yarn build:web
 
       - name: Make windows artifacts
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
         run: |
           yarn make
       

@@ -6,7 +6,12 @@ const packagerConfig = {
   productName: 'Selfkey',
   executableName: 'SelfKey',
   osxSign: {},
-
+  osxNotarize: {
+    tool: 'notarytool',
+    appleId: process.env.APPLE_ID,
+    appleIdPassword: process.env.APPLE_ID_PASSWORD,
+    teamId: process.env.TEAM_ID,
+  }
 };
 
 module.exports = {
