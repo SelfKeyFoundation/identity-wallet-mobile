@@ -6,6 +6,7 @@ const packagerConfig = {
   productName: 'Selfkey',
   executableName: 'SelfKey',
   osxSign: {},
+
 };
 
 module.exports = {
