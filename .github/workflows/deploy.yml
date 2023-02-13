@@ -71,7 +71,7 @@ jobs:
 
   macos-deploy:
     name: "MacOS deploy"
-    # needs: linux-deploy
+    needs: linux-deploy
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -126,7 +126,7 @@ jobs:
 
   windows-deploy:
     name: "Windows deploy"
-    # needs: macos-deploy
+    needs: macos-deploy
     runs-on: windows-latest
     steps:
       - name: Checkout
